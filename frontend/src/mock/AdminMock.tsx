@@ -1,29 +1,26 @@
-// Definición de los tipos de ocupación permitidos
-type ocupation = 'Estudiante' | 'Docente' | 'Administrativo'
-
 // Interfaz que define los datos que el administrador deberá tener
-export interface Admins {
-    ID: number
-    password: string
-    name: string
-    last_name: string
-    ocupation: ocupation
+export interface Admin {
+    id: number;
+    username: string;
+    email: string;
+    activo: boolean;
+    creado_en: string;
 }
 
 // Arreglo de objetos con los datos de prueba
-export const admins: Admins[] = [
+export const admins: Admin[] = [
     {
-        ID: 1001,
-        password: 'hola',
-        name: 'Edwin',
-        last_name: 'Echeverria',
-        ocupation: 'Estudiante'
+        id: 1001,
+        username: 'eecheverria',
+        email: 'edwin.echeverria@uacj.mx',
+        activo: true,
+        creado_en: '2026-03-30T10:00:00Z'
     },
     {
-        ID: 1002,
-        password: 'adios',
-        name: 'Benito',
-        last_name: 'Ponce',
-        ocupation: 'Docente'
+        id: 1002,
+        username: 'bponce',
+        email: 'benito.ponce@uacj.mx',
+        activo: true,
+        creado_en: '2026-03-30T10:00:00Z'
     }
-]
+];
