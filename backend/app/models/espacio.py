@@ -19,7 +19,7 @@ class Espacio(Base):
     activo = Column(Boolean, default=True, nullable=False)
     notas = Column(Text, nullable=True)
     creado_en = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
-    actualizado_en = Column(TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
+    actualizado_en = Column(TIMESTAMP(timezone=True), onupdate=func.now(), nullable=True)
 
     # Relaciones
     categoria = relationship("Categoria", back_populates="espacios")

@@ -1,0 +1,143 @@
+"""Lógica de negocio para espacios."""
+import math
+from datetime import datetime, timezone
+from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import or_, func, text
+from fastapi import HTTPException, status
+from app.models.espacio import Espacio
+from app.models.evento import Evento
+from app.models.horario import Horario
+from app.schemas.espacio import EspacioCreate, EspacioUpdate
+
+
+def _base_query(db: Session):
+    return (
+        db.query(Espacio)
+        .options(
+            joinedload(Espacio.categoria),
+            joinedload(Espacio.piso),
+            joinedload(Espacio.horarios),
+            joinedload(Espacio.contactos),
+            joinedload(Espacio.servicios),
+            joinedload(Espacio.fotos),
+            joinedload(Espacio.eventos),
+        )
+    )
+
+
+def listar_espacios(
+    db: Session,
+    categoria_id: int | None = None,
+    edificio_id: int | None = None,
+    activo: bool | None = True,
+) -> list[Espacio]:
+    q = _base_query(db)
+    if activo is not None:
+        q = q.filter(Espacio.activo == activo)
+    if categoria_id is not None:
+        q = q.filter(Espacio.categoria_id == categoria_id)
+    if edificio_id is not None:
+        from app.models.piso import Piso
+        q = q.join(Piso, Espacio.piso_id == Piso.id).filter(Piso.edificio_id == edificio_id)
+    return q.all()
+
+
+def buscar_espacios(db: Session, q: str, limite: int = 20) -> list[Espacio]:
+    termino = f"%{q}%"
+    return (
+        _base_query(db)
+        .filter(
+            Espacio.activo == True,
+            or_(
+                Espacio.nombre.ilike(termino),
+                Espacio.codigo.ilike(termino),
+                Espacio.notas.ilike(termino),
+            ),
+        )
+        .limit(limite)
+        .all()
+    )
+
+
+def espacios_abiertos_ahora(db: Session) -> list[Espacio]:
+    ahora = datetime.now(timezone.utc)
+    dia_actual = ahora.weekday()  # 0=lunes … 6=domingo
+    hora_actual = ahora.time()
+
+    ids_abiertos = (
+        db.query(Horario.espacio_id)
+        .filter(
+            Horario.dia_semana == dia_actual,
+            Horario.hora_apertura <= hora_actual,
+            Horario.hora_cierre >= hora_actual,
+        )
+        .subquery()
+    )
+
+    return (
+        _base_query(db)
+        .filter(Espacio.activo == True, Espacio.id.in_(ids_abiertos))
+        .all()
+    )
+
+
+def espacios_cercanos(db: Session, lat: float, lon: float, radio: float = 200.0) -> list[Espacio]:
+    """Devuelve espacios activos dentro de `radio` metros usando la fórmula de Haversine en SQL."""
+    query = text(
+        """
+        SELECT id FROM espacios
+        WHERE activo = TRUE
+          AND latitud IS NOT NULL
+          AND longitud IS NOT NULL
+          AND (
+            6371000 * acos(
+              LEAST(1.0,
+                cos(radians(:lat)) * cos(radians(latitud::float))
+                * cos(radians(longitud::float) - radians(:lon))
+                + sin(radians(:lat)) * sin(radians(latitud::float))
+              )
+            )
+          ) <= :radio
+        """
+    )
+    rows = db.execute(query, {"lat": lat, "lon": lon, "radio": radio}).fetchall()
+    ids = [r[0] for r in rows]
+    if not ids:
+        return []
+    return _base_query(db).filter(Espacio.id.in_(ids)).all()
+
+
+def obtener_espacio(db: Session, espacio_id: int) -> Espacio:
+    espacio = _base_query(db).filter(Espacio.id == espacio_id).first()
+    if not espacio:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Espacio no encontrado")
+    return espacio
+
+
+def crear_espacio(db: Session, datos: EspacioCreate) -> Espacio:
+    espacio = Espacio(**datos.model_dump())
+    db.add(espacio)
+    db.commit()
+    db.refresh(espacio)
+    return obtener_espacio(db, espacio.id)
+
+
+def actualizar_espacio(db: Session, espacio_id: int, datos: EspacioUpdate) -> Espacio:
+    espacio = db.query(Espacio).filter(Espacio.id == espacio_id).first()
+    if not espacio:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Espacio no encontrado")
+    for campo, valor in datos.model_dump(exclude_unset=True).items():
+        setattr(espacio, campo, valor)
+    db.commit()
+    return obtener_espacio(db, espacio_id)
+
+
+def desactivar_espacio(db: Session, espacio_id: int) -> Espacio:
+    """Borrado lógico — nunca físico."""
+    espacio = db.query(Espacio).filter(Espacio.id == espacio_id).first()
+    if not espacio:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Espacio no encontrado")
+    espacio.activo = False
+    db.commit()
+    db.refresh(espacio)
+    return espacio

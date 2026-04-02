@@ -39,7 +39,7 @@ class EspacioOut(EspacioBase):
 
     id: int
     creado_en: datetime
-    actualizado_en: datetime
+    actualizado_en: datetime | None = None
     # Categoria anidada para que Leaflet pinte marcadores sin segunda petición
     categoria: CategoriaOut | None = None
 

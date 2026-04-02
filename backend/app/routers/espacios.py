@@ -4,14 +4,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.auth.dependencies import get_current_admin
 from app.models.administrador import Administrador
-from app.models.horario import Horario
-from app.models.contacto import Contacto
-from app.models.foto_espacio import FotoEspacio
 from app.schemas.espacio import EspacioCreate, EspacioOut, EspacioUpdate, EspacioCompleto
 from app.schemas.evento import EventoOut
-from app.schemas.horario import HorarioOut
-from app.schemas.contacto import ContactoOut
-from app.schemas.foto_espacio import FotoOut
 from app.services import espacios as svc
 from app.services import eventos as svc_ev
 
@@ -85,33 +79,6 @@ def desactivar(
     return svc.desactivar_espacio(db, espacio_id)
 
 
-# ── Sub-recursos de un espacio ────────────────────────────────────────────────
-
-@router.get("/{espacio_id}/horarios", response_model=list[HorarioOut], tags=["Horarios"])
-def horarios_espacio(espacio_id: int, db: Session = Depends(get_db)):
-    return (
-        db.query(Horario)
-        .filter(Horario.espacio_id == espacio_id)
-        .order_by(Horario.dia_semana)
-        .all()
-    )
-
-
-@router.get("/{espacio_id}/contactos", response_model=list[ContactoOut], tags=["Contactos"])
-def contactos_espacio(espacio_id: int, db: Session = Depends(get_db)):
-    return db.query(Contacto).filter(Contacto.espacio_id == espacio_id).all()
-
-
-@router.get("/{espacio_id}/fotos", response_model=list[FotoOut], tags=["Fotos"])
-def fotos_espacio(espacio_id: int, db: Session = Depends(get_db)):
-    return (
-        db.query(FotoEspacio)
-        .filter(FotoEspacio.espacio_id == espacio_id)
-        .order_by(FotoEspacio.orden)
-        .all()
-    )
-
-
-@router.get("/{espacio_id}/eventos", response_model=list[EventoOut], tags=["Eventos"])
+@router.get("/{espacio_id}/eventos", response_model=list[EventoOut])
 def eventos_espacio(espacio_id: int, db: Session = Depends(get_db)):
     return svc_ev.eventos_de_espacio(db, espacio_id)

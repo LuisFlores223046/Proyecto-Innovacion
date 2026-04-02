@@ -15,14 +15,6 @@ def listar(db: Session = Depends(get_db)):
     return db.query(Categoria).order_by(Categoria.nombre).all()
 
 
-@router.get("/{cat_id}", response_model=CategoriaOut)
-def obtener(cat_id: int, db: Session = Depends(get_db)):
-    cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
-    if not cat:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")
-    return cat
-
-
 @router.post("", response_model=CategoriaOut, status_code=status.HTTP_201_CREATED)
 def crear(
     datos: CategoriaCreate,
@@ -53,16 +45,3 @@ def actualizar(
     db.commit()
     db.refresh(cat)
     return cat
-
-
-@router.delete("/{cat_id}", status_code=status.HTTP_204_NO_CONTENT)
-def eliminar(
-    cat_id: int,
-    db: Session = Depends(get_db),
-    _: Administrador = Depends(get_current_admin),
-):
-    cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
-    if not cat:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")
-    db.delete(cat)
-    db.commit()
