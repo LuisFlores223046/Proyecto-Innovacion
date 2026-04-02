@@ -1,0 +1,68 @@
+"""Rutas para categorías."""
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.auth.dependencies import get_current_admin
+from app.models.categoria import Categoria
+from app.models.administrador import Administrador
+from app.schemas.categoria import CategoriaCreate, CategoriaOut, CategoriaUpdate
+
+router = APIRouter(prefix="/categorias", tags=["Categorías"])
+
+
+@router.get("", response_model=list[CategoriaOut])
+def listar(db: Session = Depends(get_db)):
+    return db.query(Categoria).order_by(Categoria.nombre).all()
+
+
+@router.get("/{cat_id}", response_model=CategoriaOut)
+def obtener(cat_id: int, db: Session = Depends(get_db)):
+    cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
+    if not cat:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")
+    return cat
+
+
+@router.post("", response_model=CategoriaOut, status_code=status.HTTP_201_CREATED)
+def crear(
+    datos: CategoriaCreate,
+    db: Session = Depends(get_db),
+    _: Administrador = Depends(get_current_admin),
+):
+    if db.query(Categoria).filter(Categoria.nombre == datos.nombre).first():
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="La categoría ya existe")
+    cat = Categoria(**datos.model_dump())
+    db.add(cat)
+    db.commit()
+    db.refresh(cat)
+    return cat
+
+
+@router.patch("/{cat_id}", response_model=CategoriaOut)
+def actualizar(
+    cat_id: int,
+    datos: CategoriaUpdate,
+    db: Session = Depends(get_db),
+    _: Administrador = Depends(get_current_admin),
+):
+    cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
+    if not cat:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")
+    for campo, valor in datos.model_dump(exclude_unset=True).items():
+        setattr(cat, campo, valor)
+    db.commit()
+    db.refresh(cat)
+    return cat
+
+
+@router.delete("/{cat_id}", status_code=status.HTTP_204_NO_CONTENT)
+def eliminar(
+    cat_id: int,
+    db: Session = Depends(get_db),
+    _: Administrador = Depends(get_current_admin),
+):
+    cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
+    if not cat:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")
+    db.delete(cat)
+    db.commit()
