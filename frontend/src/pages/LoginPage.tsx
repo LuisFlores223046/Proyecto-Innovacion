@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { toast } from "sonner"
-import { Link, useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 import { useAuth } from "../hooks/useAuth"
+import logo from "../assets/logo_uacj.png"
+import loginImage from "../assets/login_image.png"
 
 
 export const LoginPage = () => {
@@ -39,34 +41,53 @@ export const LoginPage = () => {
     };
 
     return (
-        <div className="login-container">
-            <h1>Iniciar Sesión</h1>
+        <div className="min-h-screen flex flex-col justify-end sm:justify-end items-center relative bg-gradient-to-b from-[#003f88] to-[#2a8dff] gap-4 overflow-hidden">
 
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="username" // Este name vincula el input con el estado
-                    placeholder="Nombre de usuario"
-                    value={credentials.username}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="password" // ¡Seguridad corregida!
-                    name="password"
-                    placeholder="Contraseña"
-                    value={credentials.password}
-                    onChange={handleChange}
-                    required
-                />
+            <img src={logo} alt="Logo UACJ" className="w-[250px] relative z-20 pointer-events-none" style={{ filter: 'brightness(0) invert(1)' }} />
 
-                <button type="submit">Iniciar</button>
-            </form>
+            <div className="relative w-full sm:w-[420px] z-10">
 
-            {/* 4. Corregido el HTML semántico (sin un button dentro de un Link) */}
-            <Link to='/' className="btn-back" style={{ display: 'block', marginTop: '1rem' }}>
-                Volver a la pantalla principal
-            </Link>
+                <div className="absolute -top-4 left-7 right-7 h-20 bg-white/40 backdrop-blur-md rounded-t-[40px] -z-10"></div>
+
+                <form onSubmit={handleSubmit} noValidate className="bg-white w-full rounded-t-[40px] pt-10 pb-12 px-8 sm:p-10 shadow-2xl flex flex-col gap-4 h-[75vh] justify-center sm:justify-start relative z-10">
+                    <div>
+                        <h1 className="text-2xl font-bold text-center mb-2">Inicia Sesión</h1>
+                        <h2 className="text-center mb-6 text-gray-600 text-lg">Ingresa tus datos a continuación</h2>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="username">Nombre de usuario</label>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Nombre de usuario"
+                            value={credentials.username}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Contraseña"
+                            value={credentials.password}
+                            onChange={handleChange}
+                            required
+                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
+                    </div>
+
+                    <button type="submit" className="w-full px-4 py-3 bg-[#003DA5] text-white rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors hover:bg-[#002b75]">
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <img src={loginImage} alt="Login" className="hidden sm:block absolute bottom-[-300px] w-[1500px] object-cover z- max-w-[1500px] pointer-events-none z-10" />
         </div>
     )
 }
