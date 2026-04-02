@@ -5,12 +5,6 @@ from app.routers import (
     categorias,
     edificios,
     espacios,
-    horarios,
-    contactos,
-    servicios,
-    fotos,
-    eventos,
-    auth,
 )
 
 app = FastAPI(
@@ -27,7 +21,6 @@ origins = [
     "http://localhost:3000",
     settings.FRONTEND_URL,
 ]
-# Eliminar duplicados y vacíos
 origins = list({o for o in origins if o})
 
 app.add_middleware(
@@ -41,15 +34,9 @@ app.add_middleware(
 # ── Routers ───────────────────────────────────────────────────────────────────
 PREFIX = "/api/v1"
 
-app.include_router(auth.router, prefix=PREFIX)
 app.include_router(categorias.router, prefix=PREFIX)
 app.include_router(edificios.router, prefix=PREFIX)
 app.include_router(espacios.router, prefix=PREFIX)
-app.include_router(horarios.router, prefix=PREFIX)
-app.include_router(contactos.router, prefix=PREFIX)
-app.include_router(servicios.router, prefix=PREFIX)
-app.include_router(fotos.router, prefix=PREFIX)
-app.include_router(eventos.router, prefix=PREFIX)
 
 
 @app.get("/", tags=["Salud"])
