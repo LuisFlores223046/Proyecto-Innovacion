@@ -9,8 +9,8 @@ const navItems = [
 
 export const SideBar = () => {
     return (
-        <aside className="bg-white text-[#003DA5] w-fit h-screen flex flex-col px-4 pt-20">
-            <ul className="flex flex-col gap-6">
+        <aside className="bg-white text-[#003DA5] w-full sm:w-fit sm:h-screen h-fit px-4 sm:pt-20 py-4">
+            <ul className="flex flex-row sm:flex-col justify-around sm:justify-start gap-6">
                 {navItems.map(({ to, icon: Icon, label }) => (
                     <li key={to}>
                         <NavLink
