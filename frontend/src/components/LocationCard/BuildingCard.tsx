@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import type { Edificio } from "../../types/edificio";
 import type { Espacio } from "../../types/espacio";
 import { fetchEspaciosPorEdificio } from "../../services/api";
+import StatusBadge from "../UI/StatusBadge";
 
 interface Props {
     edificio: Edificio;
@@ -140,19 +141,7 @@ export default function BuildingCard({ edificio, onClose }: Props) {
 
                 {!loading && (
                     <div className="absolute top-2 left-2">
-                        <span
-                            className={`
-                                inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold
-                                backdrop-blur-sm shadow-lg
-                                ${hayAbiertos
-                                    ? "bg-emerald-500/20 text-emerald-700 border border-emerald-400/30"
-                                    : "bg-red-500/20 text-red-700 border border-red-400/30"
-                                }
-                            `}
-                        >
-                            <span className={`w-1.5 h-1.5 rounded-full ${hayAbiertos ? "bg-emerald-400 animate-pulse" : "bg-red-400"}`} />
-                            {hayAbiertos ? "Abierto" : "Cerrado"}
-                        </span>
+                        <StatusBadge active={hayAbiertos} pulse />
                     </div>
                 )}
 

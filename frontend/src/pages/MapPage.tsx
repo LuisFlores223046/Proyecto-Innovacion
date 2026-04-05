@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents, ZoomControl } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, useMapEvents, ZoomControl, useMap } from "react-leaflet";
 import type { LatLngBoundsExpression, LatLngExpression } from "leaflet";
 import L from "leaflet";
 import type { JSX } from "react";
 import type { Edificio } from "../types/edificio";
+import type { Espacio } from "../types/espacio";
 import { fetchEdificios } from "../services/api";
-import BuildingCard from "../components/Map/BuildingCard";
+import BuildingCard from "../components/LocationCard/BuildingCard";
+import SpaceDetailCard from "../components/LocationCard/SpaceDetailCard";
+import { useLocation } from "react-router-dom";
 
 const CU_CENTER: LatLngExpression = [31.49261, -106.41446];
 
@@ -24,6 +27,13 @@ const iconoRojo = new L.Icon({
     iconAnchor: [12, 41],
 });
 
+const iconoAzul = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+});
+
 function MapClickHandler({ onMapClick }: { onMapClick: () => void }) {
     useMapEvents({
         click: () => onMapClick(),
@@ -31,9 +41,36 @@ function MapClickHandler({ onMapClick }: { onMapClick: () => void }) {
     return null;
 }
 
-function MapPage(): JSX.Element {
+interface FlyToTarget {
+    lat: number;
+    lng: number;
+}
+
+function FlyToHandler({ target }: { target: FlyToTarget }) {
+    const map = useMap();
+
+    useEffect(() => {
+        map.flyTo([target.lat, target.lng], 20, { duration: 1.5 });
+    }, [map, target.lat, target.lng]);
+
+    return (
+        <Marker position={[target.lat, target.lng]} icon={iconoAzul} />
+    );
+}
+
+interface LocationState {
+    flyTo?: FlyToTarget;
+    espacio?: Espacio;
+}
+
+export default function MapPage(): JSX.Element {
     const [edificios, setEdificios] = useState<Edificio[]>([]);
     const [selected, setSelected] = useState<Edificio | null>(null);
+    const location = useLocation();
+
+    const flyToState = location.state as LocationState | null;
+    const [flyTarget, setFlyTarget] = useState<FlyToTarget | null>(null);
+    const [espacioDetalle, setEspacioDetalle] = useState<Espacio | null>(null);
 
     useEffect(() => {
         fetchEdificios()
@@ -41,11 +78,27 @@ function MapPage(): JSX.Element {
             .catch((err) => console.error("Error cargando edificios:", err));
     }, []);
 
+    useEffect(() => {
+        if (flyToState?.flyTo) {
+            setFlyTarget(flyToState.flyTo);
+            setEspacioDetalle(flyToState.espacio ?? null);
+            setSelected(null);
+            window.history.replaceState({}, "");
+        }
+    }, [flyToState]);
+
+    const clearEspacio = () => {
+        setFlyTarget(null);
+        setEspacioDetalle(null);
+    };
+
+    const isMobile = window.innerWidth < 640;
+
     return (
         <div className="relative h-screen w-full">
             <MapContainer
                 center={CU_CENTER}
-                zoom={18}
+                zoom={isMobile ? 17 : 18}
                 maxZoom={20}
                 zoomAnimation={true}
                 minZoom={16}
@@ -64,7 +117,7 @@ function MapPage(): JSX.Element {
                 />
                 <ZoomControl position="bottomright" />
 
-                <MapClickHandler onMapClick={() => setSelected(null)} />
+                <MapClickHandler onMapClick={() => { setSelected(null); clearEspacio(); }} />
 
                 {edificios
                     .filter((e) => e.latitud !== null && e.longitud !== null)
@@ -74,10 +127,12 @@ function MapPage(): JSX.Element {
                             position={[edificio.latitud!, edificio.longitud!]}
                             icon={iconoRojo}
                             eventHandlers={{
-                                click: () => setSelected(edificio),
+                                click: () => { setSelected(edificio); clearEspacio(); },
                             }}
                         />
                     ))}
+
+                {flyTarget && <FlyToHandler target={flyTarget} />}
             </MapContainer>
 
             {selected && (
@@ -86,8 +141,18 @@ function MapPage(): JSX.Element {
                     onClose={() => setSelected(null)}
                 />
             )}
+
+            {espacioDetalle && (
+                <SpaceDetailCard
+                    espacioId={espacioDetalle.id}
+                    espacioBasic={{
+                        nombre: espacioDetalle.nombre,
+                        codigo: espacioDetalle.codigo,
+                        icono: espacioDetalle.categoria?.icono,
+                    }}
+                    onClose={clearEspacio}
+                />
+            )}
         </div>
     );
 }
-
-export default MapPage;

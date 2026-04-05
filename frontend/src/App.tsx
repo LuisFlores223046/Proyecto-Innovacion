@@ -3,7 +3,7 @@ import MapPage from './pages/MapPage'
 import SearchPage from './pages/SearchPage'
 import EventsPage from './pages/EventsPage'
 import "leaflet/dist/leaflet.css";
-import { LoginPage } from './pages/LoginPage';
+import LoginPage from './pages/LoginPage';
 import { MainLayout } from './components/Layout/MainLayout';
 // import { ProtectedRoute } from './components/Layout/ProtectedRoute';
 
