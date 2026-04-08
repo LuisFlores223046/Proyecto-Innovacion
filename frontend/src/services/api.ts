@@ -36,5 +36,9 @@ export async function fetchEspacioDetalle(espacioId: number): Promise<EspacioCom
 export async function fetchTodosLosEspacios(): Promise<Espacio[]> {
   const res = await fetch(`${API_BASE}/espacios`);
   if (!res.ok) throw new Error("Error al obtener todos los espacios");
-  return res.json();
+  const data: Espacio[] = await res.json();
+  const excludedCategories = ["Aula", "Bano Mujeres", "Bano Hombres"];
+  return data.filter((espacio) => 
+    !espacio.categoria || !excludedCategories.includes(espacio.categoria.nombre)
+  );
 }
