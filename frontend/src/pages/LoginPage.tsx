@@ -6,7 +6,7 @@ import logo from "../assets/logo_uacj.png"
 import loginImage from "../assets/login_image.png"
 
 
-export const LoginPage = () => {
+export default function LoginPage() {
     const { login } = useAuth()
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({

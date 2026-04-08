@@ -1,5 +1,3 @@
-function EventsPage() {
+export default function EventsPage() {
     return <div>EventsPage</div>
 }
-
-export default EventsPage
