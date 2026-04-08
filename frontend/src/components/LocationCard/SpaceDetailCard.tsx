@@ -3,6 +3,7 @@ import type { EspacioCompleto } from "../../types/espacio";
 import { fetchEspacioDetalle } from "../../services/api";
 import StatusBadge from "../UI/StatusBadge";
 
+
 const DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
 
 function timeToMinutes(t: string): number {
