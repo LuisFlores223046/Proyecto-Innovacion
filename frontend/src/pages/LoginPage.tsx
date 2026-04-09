@@ -1,18 +1,30 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { useNavigate } from "react-router"
 import { useAuth } from "../hooks/useAuth"
 import logo from "../assets/logo_uacj.png"
 import loginImage from "../assets/login_image.png"
-
+import type { SubmitEvent } from "react"
+import Input from "../components/UI/Input"
 
 export default function LoginPage() {
-    const { login } = useAuth()
+    const { login, isAuthenticated, status } = useAuth()
     const navigate = useNavigate()
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
     });
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/admin', { replace: true });
+        }
+    }, [isAuthenticated, navigate]);
+
+    // para que no parpadee el login
+    if (status === 'checking') {
+        return null;
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -22,7 +34,7 @@ export default function LoginPage() {
         }));
     };
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         if (!credentials.username.trim() || !credentials.password.trim()) {
@@ -37,7 +49,7 @@ export default function LoginPage() {
         }
 
         toast.success('Sesión iniciada correctamente');
-        navigate('/buscar');
+        navigate('/admin');
     };
 
     return (
@@ -55,31 +67,25 @@ export default function LoginPage() {
                         <h2 className="text-center mb-6 text-gray-600 text-lg">Ingresa tus datos a continuación</h2>
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="username">Nombre de usuario</label>
-                        <input
-                            type="text"
-                            name="username"
-                            placeholder="Nombre de usuario"
-                            value={credentials.username}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        />
-                    </div>
+                    <Input
+                        label="Nombre de usuario"
+                        type="text"
+                        name="username"
+                        placeholder="Nombre de usuario"
+                        value={credentials.username}
+                        onChange={handleChange}
+                        required
+                    />
 
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="password">Contraseña</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Contraseña"
-                            value={credentials.password}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        />
-                    </div>
+                    <Input
+                        label="Contraseña"
+                        type="password"
+                        name="password"
+                        placeholder="Contraseña"
+                        value={credentials.password}
+                        onChange={handleChange}
+                        required
+                    />
 
                     <button type="submit" className="w-full px-4 py-3 bg-[#003DA5] text-white rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors hover:bg-[#002b75]">
                         Iniciar Sesión

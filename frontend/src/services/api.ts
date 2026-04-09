@@ -33,12 +33,20 @@ export async function fetchEspacioDetalle(espacioId: number): Promise<EspacioCom
   return res.json();
 }
 
-export async function fetchTodosLosEspacios(): Promise<Espacio[]> {
+export async function fetchTodosLosEspacios(excludedCategories: string[] = []): Promise<Espacio[]> {
   const res = await fetch(`${API_BASE}/espacios`);
   if (!res.ok) throw new Error("Error al obtener todos los espacios");
   const data: Espacio[] = await res.json();
-  const excludedCategories = ["Aula", "Bano Mujeres", "Bano Hombres"];
+  
+  if (excludedCategories.length === 0) return data;
+  
   return data.filter((espacio) => 
     !espacio.categoria || !excludedCategories.includes(espacio.categoria.nombre)
   );
+}
+
+export async function fetchBuscarEspacios(query: string): Promise<Espacio[]> {
+  const res = await fetch(`${API_BASE}/espacios/buscar/${encodeURIComponent(query)}`);
+  if (!res.ok) throw new Error("Error en la búsqueda rápida de espacios");
+  return res.json();
 }

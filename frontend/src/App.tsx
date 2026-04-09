@@ -5,7 +5,10 @@ import EventsPage from './pages/EventsPage'
 import "leaflet/dist/leaflet.css";
 import LoginPage from './pages/LoginPage';
 import { MainLayout } from './components/Layout/MainLayout';
-// import { ProtectedRoute } from './components/Layout/ProtectedRoute';
+import { ProtectedRoute } from './components/Layout/ProtectedRoute';
+import AdminLugares from './pages/AdminLugares';
+import AdminEventos from './pages/AdminEventos';
+import AdminAdministradores from './pages/AdminAdministradores';
 
 function App() {
   return (
@@ -18,11 +21,15 @@ function App() {
         <Route path="/" element={<MapPage />} />
         <Route path="/buscar" element={<SearchPage />} />
         <Route path="/eventos" element={<EventsPage />} />
-
-        {/* rutas protegidas */}
-        {/* <Route element={<ProtectedRoute />}>
-        </Route> */}
       </Route>
+
+      {/* rutas protegidas */}
+      <Route element={<ProtectedRoute />}>
+        <Route path="/admin" element={<AdminLugares />} />
+        <Route path="/admin/eventos" element={<AdminEventos />} />
+        <Route path="/admin/administradores" element={<AdminAdministradores />} />
+      </Route>
+
     </Routes>
   )
 }
