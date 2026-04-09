@@ -139,7 +139,7 @@ export default function MapPage(): JSX.Element {
     }, []);
 
     useEffect(() => {
-        fetchTodosLosEspacios()
+        fetchTodosLosEspacios(["Aula", "Bano Mujeres", "Bano Hombres"])
             .then(data => setPuntos(data))
             .catch(err => console.error(err));
     }, []);

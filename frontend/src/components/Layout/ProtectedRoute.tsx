@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { SideBarAdmin } from "../Admin/SideBarAdmin";
 
 export const ProtectedRoute = () => {
     const { isAuthenticated, status } = useAuth();
@@ -12,5 +13,12 @@ export const ProtectedRoute = () => {
         return <Navigate to="/login" replace />;
     }
 
-    return <Outlet />;
+    return (
+        <div className="flex flex-col-reverse sm:flex-row h-screen ">
+            <SideBarAdmin />
+            <main className="h-full sm:flex-1 sm:overflow-auto">
+                <Outlet />
+            </main>
+        </div>
+    );
 };

@@ -1,3 +1,5 @@
+import type { Edificio } from "./edificio";
+
 export interface Categoria {
   id: number;
   nombre: string;
@@ -39,6 +41,7 @@ export interface Espacio {
   creado_en: string;
   actualizado_en: string | null;
   categoria: Categoria | null;
+  edificio: Edificio | null;
 }
 
 /** Detalle completo con todas las relaciones anidadas */
