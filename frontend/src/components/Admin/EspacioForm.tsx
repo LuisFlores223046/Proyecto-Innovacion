@@ -1,9 +1,9 @@
 import { type JSX, useState, useEffect } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-import { fetchCategorias, fetchEdificios } from "../../services/api";
+import { fetchCategorias } from "../../services/api";
 import type { Espacio, Categoria } from "../../types/espacio";
-import type { Edificio } from "../../types/edificio";
+import { agregarEspacio, editarEspacio } from "../../services/api";
 
 interface Props {
     initialData: Espacio | null;
@@ -13,7 +13,6 @@ interface Props {
 
 export default function EspacioForm({ initialData, onSubmit, onCancel }: Props): JSX.Element {
     const [categorias, setCategorias] = useState<Categoria[]>([]);
-    const [edificios, setEdificios] = useState<Edificio[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [formData, setFormData] = useState({
@@ -21,20 +20,18 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
         codigo: initialData?.codigo || "",
         notas: initialData?.notas || "",
         categoria_id: initialData?.categoria?.id || "",
-        edificio_id: initialData?.edificio?.id || "",
+
         latitud: initialData?.latitud || "",
-        longitud: initialData?.longitud || ""
+        longitud: initialData?.longitud || "",
+        activo: initialData?.activo ?? true,
+        piso_id: initialData?.piso_id || ""
     });
 
     useEffect(() => {
         async function loadSelectData() {
             try {
-                const [cats, edifs] = await Promise.all([
-                    fetchCategorias(),
-                    fetchEdificios()
-                ]);
+                const cats = await fetchCategorias();
                 setCategorias(cats);
-                setEdificios(edifs);
             } catch (e) {
                 console.error("Error al cargar catálogos del formulario:", e);
             } finally {
@@ -48,9 +45,35 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmit(formData);
+        
+        // Limpiamos los datos para mandarle al backend EXACTAMENTE lo que pide
+        const dataToSend = {
+            codigo: formData.codigo,
+            nombre: formData.nombre,
+            categoria_id: formData.categoria_id ? Number(formData.categoria_id) : null,
+            piso_id: formData.piso_id ? Number(formData.piso_id) : null,
+            latitud: formData.latitud ? Number(formData.latitud) : null,
+            longitud: formData.longitud ? Number(formData.longitud) : null,
+            activo: formData.activo,
+            notas: formData.notas || null
+        };
+
+        try {
+            let savedEspacio;
+            if (initialData) {
+                // @ts-ignore
+                savedEspacio = await editarEspacio(initialData.id, dataToSend);
+            } else {
+                // @ts-ignore
+                savedEspacio = await agregarEspacio(dataToSend);
+            }
+            onSubmit(savedEspacio);
+        } catch (error) {
+            console.error("Error al guardar el espacio:", error);
+            // Podríamos meter un toast de error local aquí si fuera necesario
+        }
     };
 
     if (loading) {
@@ -91,20 +114,6 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-2">
-                    <label className="text-gray-700">Edificio (Opcional)</label>
-                    <select
-                        name="edificio_id"
-                        value={formData.edificio_id}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                    >
-                        <option value="">-- Sin Edificio --</option>
-                        {edificios.map(edif => (
-                            <option key={edif.id} value={edif.id}>{edif.nombre}</option>
-                        ))}
-                    </select>
-                </div>
 
                 <div className="flex flex-col gap-2">
                     <label className="text-gray-700">Categoría</label>

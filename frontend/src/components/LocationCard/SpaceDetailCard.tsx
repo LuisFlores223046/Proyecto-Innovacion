@@ -41,6 +41,7 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
     const [detalle, setDetalle] = useState<EspacioCompleto | null>(null);
     const [loading, setLoading] = useState(true);
     const [expanded, setExpanded] = useState(false);
+    const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
     useEffect(() => {
         setLoading(true);
@@ -56,6 +57,10 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
     const horariosHoy = detalle?.horarios.filter((h) => h.dia_semana === diaActual) ?? [];
     const abierto = detalle ? estaAbierto(detalle) : false;
 
+    // Detectar foto principal vs galería adicional
+    const fotoPrincipal = detalle?.fotos?.find(f => f.es_principal) || detalle?.fotos?.[0];
+    const otrasFotos = detalle?.fotos?.filter(f => f.id !== fotoPrincipal?.id) || [];
+
     return (
         <div
             className={`
@@ -64,11 +69,28 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
                 bg-white border border-gray-200
                 rounded-2xl shadow-2xl shadow-black/15
                 text-gray-900
-                transition-all duration-300 ease-out
-                ${expanded ? "max-h-[80vh]" : "max-h-[200px]"}
+                transition-all duration-300 ease-out flex flex-col
+                ${expanded ? "max-h-[80vh]" : "max-h-[380px]"}
                 overflow-hidden
             `}
         >
+            {/* Imagen Principal (si existe) */}
+            {!loading && fotoPrincipal && (
+                <div 
+                    className="w-full h-28 sm:h-32 relative bg-gray-100 shrink-0 cursor-pointer group"
+                    onClick={() => setExpandedImage(fotoPrincipal.url)}
+                >
+                    <img 
+                        src={fotoPrincipal.url} 
+                        alt="Foto del espacio"
+                        className="w-full h-full object-cover transition-opacity group-hover:opacity-90"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                        <span className="bg-white/30 text-white p-2 rounded-full backdrop-blur-md">🔍</span>
+                    </div>
+                </div>
+            )}
+
             {/* Header */}
             <div className="px-4 pt-4 pb-3">
                 <div className="flex items-start justify-between gap-3">
@@ -225,8 +247,51 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
                             </p>
                         </div>
                     )}
+
+                    {/* Galería Adicional */}
+                    {otrasFotos.length > 0 && (
+                        <div className="pt-2">
+                            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                                Más fotos
+                            </h3>
+                            <div className="flex gap-2 overflow-x-auto pb-2 snap-x scrollbar-thin scrollbar-thumb-gray-300">
+                                {otrasFotos.map((foto) => (
+                                    <div 
+                                        key={foto.id} 
+                                        className="w-24 h-24 shrink-0 rounded-lg overflow-hidden snap-center border border-gray-200 cursor-pointer group relative"
+                                        onClick={() => setExpandedImage(foto.url)}
+                                    >
+                                        <img src={foto.url} alt="Galería" className="w-full h-full object-cover transition-opacity group-hover:opacity-90" />
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                                            <span className="bg-white/30 text-white text-xs p-1.5 rounded-full backdrop-blur-md">🔍</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
+
+            {/* Modal Lightbox de Pantalla Completa */}
+            {expandedImage && (
+                <div 
+                    className="fixed inset-0 z-[2000] bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm cursor-zoom-out"
+                    onClick={() => setExpandedImage(null)}
+                >
+                    <img 
+                        src={expandedImage} 
+                        alt="Expandida" 
+                        className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+                    />
+                    <button 
+                        className="absolute top-6 right-6 text-white bg-white/20 hover:bg-white/40 rounded-full w-10 h-10 flex items-center justify-center text-xl transition-colors backdrop-blur-md"
+                        onClick={(e) => { e.stopPropagation(); setExpandedImage(null); }}
+                    >
+                        ✕
+                    </button>
+                </div>
+            )}
         </div>
     );
 }

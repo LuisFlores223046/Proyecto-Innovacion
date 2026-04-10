@@ -3,25 +3,37 @@ import { toast } from "sonner";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import { FaSearch } from "react-icons/fa";
-import { fetchTodosLosEspacios, fetchEdificios, fetchEspaciosPorEdificio, fetchBuscarEspacios } from "../services/api";
+import { fetchTodosLosEspacios, fetchBuscarEspacios, deleteEspacio, fetchEdificios } from "../services/api";
 import type { Espacio } from "../types/espacio";
 import type { Edificio } from "../types/edificio";
 import Modal from "../components/UI/Modal";
 import ConfirmModal from "../components/UI/ConfirmModal";
 import EspacioForm from "../components/Admin/EspacioForm";
+import EdificioForm from "../components/Admin/EdificioForm";
+import AdministrarInfoModal from "../components/Admin/AdministrarInfoModal";
+
+type ActiveTab = "lugares" | "edificios";
 
 export default function AdminLugares() {
+    const [activeTab, setActiveTab] = useState<ActiveTab>("lugares");
+
+    // --- Estados para Lugares ---
     const [espacios, setEspacios] = useState<Espacio[]>([]);
-    const [edificiosDict, setEdificiosDict] = useState<Map<number, Edificio>>(new Map());
-    
     const [searchTerm, setSearchTerm] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
-
-    // Estados para el Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [espacioAEditar, setEspacioAEditar] = useState<Espacio | null>(null);
     const [espacioAEliminar, setEspacioAEliminar] = useState<Espacio | null>(null);
+    const [highlightedRowId, setHighlightedRowId] = useState<number | null>(null);
+    const [espacioAdministrar, setEspacioAdministrar] = useState<Espacio | null>(null);
 
+    // --- Estados para Edificios ---
+    const [edificios, setEdificios] = useState<Edificio[]>([]);
+    const [isEdificioModalOpen, setIsEdificioModalOpen] = useState(false);
+    const [edificioAEditar, setEdificioAEditar] = useState<Edificio | null>(null);
+    const [highlightedEdificioId, setHighlightedEdificioId] = useState<number | null>(null);
+
+    // Debounce para búsqueda
     useEffect(() => {
         const timer = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
@@ -29,49 +41,37 @@ export default function AdminLugares() {
         return () => clearTimeout(timer);
     }, [searchTerm]);
 
-    // Cargar diccionario de edificios (solo una vez)
+    // Cargar lugares reaccionando a la barra de búsqueda
     useEffect(() => {
-        async function buildDict() {
-            try {
-                const listEdificios = await fetchEdificios();
-                const map = new Map<number, Edificio>();
-                const promises = listEdificios.map(async (edificio) => {
-                    const espaciosEdificio = await fetchEspaciosPorEdificio(edificio.id);
-                    espaciosEdificio.forEach(esp => {
-                        map.set(esp.id, edificio);
-                    });
-                });
-                await Promise.all(promises);
-                setEdificiosDict(map);
-            } catch (err) {
-                console.error("Error construyendo diccionario de edificios:", err);
-            }
-        }
-        buildDict();
-    }, []);
-
-    // Cargar lugares reaccionando a la barra de búsqueda o mapeo de edificios
-    useEffect(() => {
+        if (activeTab !== "lugares") return;
         async function loadEspacios() {
             try {
                 const results = debouncedSearchTerm.trim() !== ""
                     ? await fetchBuscarEspacios(debouncedSearchTerm)
                     : await fetchTodosLosEspacios();
-
-                const finalEspacios = results.map(esp => ({
-                    ...esp,
-                    edificio: edificiosDict.get(esp.id) || null
-                }));
-
-                setEspacios(finalEspacios);
+                setEspacios(results);
             } catch (err) {
                 console.error("Error cargando lugares:", err);
             }
         }
-        
         loadEspacios();
-    }, [debouncedSearchTerm, edificiosDict]);
+    }, [debouncedSearchTerm, activeTab]);
 
+    // Cargar edificios al cambiar de pestaña
+    useEffect(() => {
+        if (activeTab !== "edificios") return;
+        async function loadEdificios() {
+            try {
+                const results = await fetchEdificios();
+                setEdificios(results);
+            } catch (err) {
+                console.error("Error cargando edificios:", err);
+            }
+        }
+        loadEdificios();
+    }, [activeTab]);
+
+    // --- Handlers Espacios ---
     const handleOpenAdd = () => {
         setEspacioAEditar(null);
         setIsModalOpen(true);
@@ -87,73 +87,195 @@ export default function AdminLugares() {
         setEspacioAEditar(null);
     };
 
-    const handleSave = (data: any) => {
-        console.log("Datos a guardar:", data);
+    const handleSave = (savedEspacio: Espacio) => {
+        if (espacioAEditar) {
+            setEspacios(prev => prev.map(esp => esp.id === savedEspacio.id ? savedEspacio : esp));
+        } else {
+            setEspacios(prev => [savedEspacio, ...prev]);
+        }
+
         toast.success(espacioAEditar ? "Cambios guardados con éxito" : "Lugar añadido con éxito");
         handleCloseModal();
+
+        // Disparar la animación
+        setHighlightedRowId(savedEspacio.id);
+        setTimeout(() => setHighlightedRowId(null), 2500);
     };
 
-    const handleDelete = (id: number) => {
-        console.log("Eliminar espacio ID:", id);
-        toast.success("Lugar eliminado simuladamente (Aún no hay backend)");
+    const handleDelete = async (id: number) => {
+        try {
+            await deleteEspacio(id);
+            setEspacios(prev => prev.filter(esp => esp.id !== id));
+            toast.success("Lugar eliminado con éxito");
+        } catch (error) {
+            console.error("Error al eliminar espacio:", error);
+            toast.error("Error al eliminar el lugar");
+        }
+        setEspacioAEliminar(null);
+    };
+
+    // --- Handlers Edificios ---
+    const handleOpenAddEdificio = () => {
+        setEdificioAEditar(null);
+        setIsEdificioModalOpen(true);
+    };
+
+    const handleOpenEditEdificio = (edificio: Edificio) => {
+        setEdificioAEditar(edificio);
+        setIsEdificioModalOpen(true);
+    };
+
+    const handleCloseEdificioModal = () => {
+        setIsEdificioModalOpen(false);
+        setEdificioAEditar(null);
+    };
+
+    const handleSaveEdificio = (savedEdificio: Edificio) => {
+        if (edificioAEditar) {
+            setEdificios(prev => prev.map(ed => ed.id === savedEdificio.id ? savedEdificio : ed));
+        } else {
+            setEdificios(prev => [savedEdificio, ...prev]);
+        }
+
+        toast.success(edificioAEditar ? "Edificio actualizado con éxito" : "Edificio añadido con éxito");
+        handleCloseEdificioModal();
+
+        setHighlightedEdificioId(savedEdificio.id);
+        setTimeout(() => setHighlightedEdificioId(null), 2500);
+    };
+
+    // cambio de pestaña
+    const handleTabChange = (tab: ActiveTab) => {
+        setActiveTab(tab);
+        setSearchTerm("");
+        setDebouncedSearchTerm("");
     };
 
     return (
         <div className="bg-[#EBF2FD] px-6 py-12 h-full">
             <div className="flex justify-between items-center mb-2">
-                <h1 className="text-2xl font-semibold">Lugares</h1>
-                <Button onClick={handleOpenAdd}>+ Añadir lugar</Button>
+                <h1 className="text-2xl font-semibold">
+                    {activeTab === "lugares" ? "Lugares" : "Edificios"}
+                </h1>
+                {activeTab === "lugares" ? (
+                    <Button onClick={handleOpenAdd}>+ Añadir lugar</Button>
+                ) : (
+                    <Button onClick={handleOpenAddEdificio}>+ Añadir edificio</Button>
+                )}
             </div>
-            <p className="text-gray-500 font-medium text-center mt-10">Todos los lugares en la base de datos</p>
+            <p className="text-gray-500 font-medium text-center mt-10">
+                {activeTab === "lugares"
+                    ? "Todos los lugares en la base de datos"
+                    : "Todos los edificios en la base de datos"}
+            </p>
             <div className="mt-4 bg-white border border-gray-200 h-[700px] flex flex-col">
-                <div className="flex gap-2 p-4 justify-between shrink-0">
+                <div className="flex gap-2 p-4 justify-between items-center shrink-0 min-h-[72px]">
                     <div className="flex gap-2">
-                        <Button onClick={() => { }}>Lugares</Button>
-                        <Button variant="ghost" onClick={() => { }}>Edificios</Button>
+                        <Button
+                            variant={activeTab === "lugares" ? undefined : "ghost"}
+                            onClick={() => handleTabChange("lugares")}
+                        >
+                            Lugares
+                        </Button>
+                        <Button
+                            variant={activeTab === "edificios" ? undefined : "ghost"}
+                            onClick={() => handleTabChange("edificios")}
+                        >
+                            Edificios
+                        </Button>
                     </div>
-                    <div className="flex gap-2">
-                        <Input
-                            label="Buscar"
-                            name="buscar"
-                            placeholder="Buscar lugar"
-                            showLabel={false}
-                            icon={<FaSearch size={20} />}
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-                    </div>
+                    {activeTab === "lugares" && (
+                        <div className="flex gap-2">
+                            <Input
+                                label="Buscar"
+                                name="buscar"
+                                placeholder="Buscar lugar"
+                                showLabel={false}
+                                icon={<FaSearch size={20} />}
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+                    )}
                 </div>
+
                 <div className="overflow-y-auto flex-1 h-0">
-                    <table className="w-full text-left relative">
-                        <thead className="sticky top-0 z-10">
-                            <tr className="border-b border-gray-200 bg-gray-50 text-gray-600 shadow-sm">
-                                <th className="px-4 py-3 font-medium bg-gray-50">Lugar</th>
-                                <th className="px-4 py-3 font-medium bg-gray-50">Edificio</th>
-                                <th className="px-4 py-3 font-medium bg-gray-50">Categoria</th>
-                                <th className="px-4 py-3 font-medium bg-gray-50">Latitud</th>
-                                <th className="px-4 py-3 font-medium bg-gray-50">Longitud</th>
-                                <th className="px-4 py-3 font-medium bg-gray-50">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {espacios.map((espacio) => (
-                                <tr key={espacio.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                    <td className="px-4 py-3">{espacio.nombre}</td>
-                                    <td className="px-4 py-3 ">{espacio.edificio?.nombre || "-"}</td>
-                                    <td className="px-4 py-3 ">{espacio.categoria?.nombre || "-"}</td>
-                                    <td className="px-4 py-3 ">{espacio.latitud || "-"}</td>
-                                    <td className="px-4 py-3 ">{espacio.longitud || "-"}</td>
-                                    <td className="px-4 py-3 flex gap-10">
-                                        <Button variant="link" onClick={() => handleOpenEdit(espacio)}>Editar</Button>
-                                        <Button variant="link-danger" onClick={() => setEspacioAEliminar(espacio)}>Eliminar</Button>
-                                    </td>
+                    {/* tabla de lugares*/}
+                    {activeTab === "lugares" && (
+                        <table className="w-full text-left relative">
+                            <thead className="sticky top-0 z-10">
+                                <tr className="border-b border-gray-200 bg-gray-50 text-gray-600 shadow-sm">
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Código</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Lugar</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Categoría</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Latitud</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Longitud</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Acciones</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {espacios.map((espacio) => (
+                                    <tr key={espacio.id} className={`border-b border-gray-100 transition-colors duration-1000 ${highlightedRowId === espacio.id ? 'bg-green-100' : 'hover:bg-gray-50'
+                                        }`}>
+                                        <td className="px-4 py-3">{espacio.codigo}</td>
+                                        <td className="px-4 py-3">{espacio.nombre}</td>
+                                        <td className="px-4 py-3 ">{espacio.categoria?.nombre || "-"}</td>
+                                        <td className="px-4 py-3 ">{espacio.latitud || "-"}</td>
+                                        <td className="px-4 py-3 ">{espacio.longitud || "-"}</td>
+                                        <td className="px-4 py-3 flex gap-4">
+                                            <Button variant="link" onClick={() => handleOpenEdit(espacio)}>Editar</Button>
+                                            <Button variant="link" onClick={() => setEspacioAdministrar(espacio)}>Detalles</Button>
+                                            <Button variant="link-danger" onClick={() => setEspacioAEliminar(espacio)}>Eliminar</Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+
+                    {/* tabla de edificios */}
+                    {activeTab === "edificios" && (
+                        <table className="w-full text-left relative">
+                            <thead className="sticky top-0 z-10">
+                                <tr className="border-b border-gray-200 bg-gray-50 text-gray-600 shadow-sm">
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Código</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Nombre</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Descripción</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Latitud</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Longitud</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {edificios.map((edificio) => (
+                                    <tr key={edificio.id} className={`border-b border-gray-100 transition-colors duration-1000 ${highlightedEdificioId === edificio.id ? 'bg-green-100' : 'hover:bg-gray-50'
+                                        }`}>
+                                        <td className="px-4 py-3">{edificio.codigo}</td>
+                                        <td className="px-4 py-3">{edificio.nombre}</td>
+                                        <td className="px-4 py-3 max-w-[200px] truncate">
+                                            {edificio.descripcion || "-"}
+                                        </td>
+                                        <td className="px-4 py-3">{edificio.latitud || "-"}</td>
+                                        <td className="px-4 py-3">{edificio.longitud || "-"}</td>
+                                        <td className="px-4 py-3 flex gap-4">
+                                            <Button variant="link" onClick={() => handleOpenEditEdificio(edificio)}>Editar</Button>
+                                            <Button
+                                                variant="link-danger"
+                                                disabled
+                                                onClick={() => toast.info("La eliminación de edificios no está disponible aún en el backend.")}
+                                            >
+                                                Eliminar
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </div>
 
+            {/* Modal para Espacios */}
             <Modal
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
@@ -163,6 +285,19 @@ export default function AdminLugares() {
                     initialData={espacioAEditar}
                     onSubmit={handleSave}
                     onCancel={handleCloseModal}
+                />
+            </Modal>
+
+            {/* Modal para Edificios */}
+            <Modal
+                isOpen={isEdificioModalOpen}
+                onClose={handleCloseEdificioModal}
+                title={edificioAEditar ? "Editar Edificio" : "Añadir Nuevo Edificio"}
+            >
+                <EdificioForm
+                    initialData={edificioAEditar}
+                    onSubmit={handleSaveEdificio}
+                    onCancel={handleCloseEdificioModal}
                 />
             </Modal>
 
@@ -180,6 +315,19 @@ export default function AdminLugares() {
                     }
                 }}
             />
+
+            <Modal
+                isOpen={!!espacioAdministrar}
+                onClose={() => setEspacioAdministrar(null)}
+                title={espacioAdministrar ? `Administrar: ${espacioAdministrar.nombre}` : ""}
+            >
+                {espacioAdministrar && (
+                    <AdministrarInfoModal
+                        espacio={espacioAdministrar}
+                        onClose={() => setEspacioAdministrar(null)}
+                    />
+                )}
+            </Modal>
         </div>
     )
 }
