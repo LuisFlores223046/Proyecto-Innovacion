@@ -9,11 +9,12 @@ from app.schemas.contacto import ContactoCreate, ContactoOut
 
 router = APIRouter(prefix="/contactos", tags=["Contactos"])
 
-@router.post("",response_model=ContactoOut, status_code=status.HTTP_201_CREATED)
+
+@router.post("", response_model=ContactoOut, status_code=status.HTTP_201_CREATED)
 def crear(
-    datos: ContactoOut,
+    datos: ContactoCreate,
     db: Session = Depends(get_db),
-    _:Administrador = Depends(get_current_admin),
+    _: Administrador = Depends(get_current_admin),
 ):
     contacto = Contacto(**datos.model_dump())
     db.add(contacto)
@@ -21,14 +22,16 @@ def crear(
     db.refresh(contacto)
     return contacto
 
-@router.delete("/{contacto_id}",status_code=status.HTTP_204_NO_CONTENT)
+
+@router.delete("/{contacto_id}", response_model=ContactoOut)
 def eliminar(
-    contacto_id:int,
-    db:Session = Depends(get_db),
-    _:Administrador = Depends(get_current_admin),
+    contacto_id: int,
+    db: Session = Depends(get_db),
+    _: Administrador = Depends(get_current_admin),
 ):
     contacto = db.query(Contacto).filter(Contacto.id == contacto_id).first()
     if not contacto:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Contacto no encontrado")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contacto no encontrado")
     db.delete(contacto)
     db.commit()
+    return contacto

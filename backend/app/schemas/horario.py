@@ -1,5 +1,5 @@
 from datetime import time
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
 
 class HorarioBase(BaseModel):
@@ -14,6 +14,12 @@ class HorarioBase(BaseModel):
         if v < 0 or v > 6:
             raise ValueError("dia_semana debe estar entre 0 y 6")
         return v
+
+    @model_validator(mode="after")
+    def validar_horario(self) -> "HorarioBase":
+        if self.hora_apertura >= self.hora_cierre:
+            raise ValueError("hora_apertura debe ser anterior a hora_cierre")
+        return self
 
 
 class HorarioCreate(HorarioBase):
