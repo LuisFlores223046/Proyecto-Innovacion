@@ -28,6 +28,16 @@ export interface Servicio {
   descripcion: string;
 }
 
+export interface Foto {
+  id: number;
+  espacio_id: number;
+  descripcion: string | null;
+  es_principal: boolean;
+  orden: number;
+  url: string;
+  subida_en: string;
+}
+
 export interface Espacio {
   id: number;
   codigo: string;
@@ -49,4 +59,5 @@ export interface EspacioCompleto extends Espacio {
   horarios: Horario[];
   contactos: Contacto[];
   servicios: Servicio[];
+  fotos: Foto[];
 }

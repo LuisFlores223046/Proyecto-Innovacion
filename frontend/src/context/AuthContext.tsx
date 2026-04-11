@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect, type PropsWithChildren } from "react";
-import { admins, type Admin } from "../mock/AdminMock";
+// import { admins, type Admin } from "../mock/AdminMock";
+import { getMe, loginAdmin, type MeResponse as Admin } from "../services/api";
+
 
 type AuthStatus = 'checking' | 'authenticated' | 'unauthenticated';
 
@@ -20,10 +22,18 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         if (token) {
-            // TODO: Hacer una petición GET a /me para validar el token y obtener los datos del admin
-            // Por ahora, simulamos que el token es válido y usamos el primer administrador
-            setAdmin(admins[0]);
-            setStatus('authenticated');
+            const validarSesion = async () => {
+                try {
+                    const adminData = await getMe(token);
+                    setAdmin(adminData);
+                    setStatus('authenticated');
+                } catch (error) {
+                    console.error("Error al validar sesión:", error);
+                    localStorage.removeItem('access_token');
+                    setStatus('unauthenticated');
+                }
+            }
+            validarSesion();
         } else {
             setStatus('unauthenticated');
         }
@@ -31,31 +41,22 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
     const handleLogin = async (username: string, password: string) => {
         setStatus('checking');
-
-        // TODO: Reemplazar esta busqueda local con una peticion POST a la ruta /login de FastAPI usando axios y variables de entorno. 
-        // Despues de recibir el access_token, guardarlo y hacer un GET a la ruta /me para obtener y guardar los datos del administrador en el estado.
-
-        const foundAdmin = admins.find(a => a.username === username);
-
-        // Para propósito de pruebas con mocks, requerimos la contraseña "admin123"
-        if (!foundAdmin || password !== "admin123") {
-            console.warn('Credenciales incorrectas');
+        try {
+            const res = await loginAdmin({ username, password });
+            localStorage.setItem("access_token", res.access_token);
+            const adminData = await getMe(res.access_token);
+            setAdmin(adminData);
+            setStatus("authenticated");
+            return true;
+        } catch (error) {
+            console.error("Error al iniciar sesión:", error);
             setAdmin(null);
-            setStatus('unauthenticated');
+            setStatus("unauthenticated");
             return false;
         }
-
-        //simulamos el token de jwt
-        const mockToken = "mock_jwt_access_token_bearer";
-        localStorage.setItem('access_token', mockToken);
-
-        setAdmin(foundAdmin);
-        setStatus('authenticated');
-        return true;
     };
 
     const handleLogout = () => {
-        //limpiamos el token y el estado
         localStorage.removeItem('access_token');
         setAdmin(null);
         setStatus('unauthenticated');
