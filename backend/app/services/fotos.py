@@ -109,7 +109,7 @@ def actualizar_foto(db: Session, foto_id: int, datos: FotoUpdate) -> FotoEspacio
     return foto
 
 
-def eliminar_foto(db: Session, foto_id: int) -> None:
+def eliminar_foto(db: Session, foto_id: int) -> FotoEspacio:
     foto = db.query(FotoEspacio).filter(FotoEspacio.id == foto_id).first()
     if not foto:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Foto no encontrada")
@@ -127,3 +127,4 @@ def eliminar_foto(db: Session, foto_id: int) -> None:
 
     db.delete(foto)
     db.commit()
+    return foto

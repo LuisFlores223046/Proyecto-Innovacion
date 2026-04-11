@@ -1,11 +1,9 @@
 """Lógica de negocio para espacios."""
-import math
 from datetime import datetime, timezone
 from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import or_, func, text
+from sqlalchemy import or_, text
 from fastapi import HTTPException, status
 from app.models.espacio import Espacio
-from app.models.evento import Evento
 from app.models.horario import Horario
 from app.schemas.espacio import EspacioCreate, EspacioUpdate
 

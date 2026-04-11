@@ -50,9 +50,10 @@ def actualizar_evento(db: Session, evento_id: int, datos: EventoUpdate) -> Event
     return evento
 
 
-def eliminar_evento(db: Session, evento_id: int) -> None:
+def eliminar_evento(db: Session, evento_id: int) -> Evento:
     evento = db.query(Evento).filter(Evento.id == evento_id).first()
     if not evento:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado")
     db.delete(evento)
     db.commit()
+    return evento

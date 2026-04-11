@@ -84,3 +84,31 @@ def crear_admin(
 @router.get("/me", response_model=AdminOut)
 def perfil(admin: Administrador = Depends(get_current_admin)):
     return admin
+
+
+@router.delete("/admin/{admin_id}", response_model=AdminOut)
+def eliminar_admin(
+    admin_id: int,
+    db: Session = Depends(get_db),
+    admin_actual: Administrador = Depends(get_current_admin),
+):
+    if admin_actual.id == admin_id:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="No puedes eliminar tu propia cuenta",
+        )
+
+    total_admins = db.query(Administrador).filter(Administrador.activo == True).count()
+    if total_admins <= 1:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Debe existir al menos un administrador activo",
+        )
+
+    admin = db.query(Administrador).filter(Administrador.id == admin_id).first()
+    if not admin:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Administrador no encontrado")
+
+    db.delete(admin)
+    db.commit()
+    return admin

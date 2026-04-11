@@ -27,3 +27,14 @@ class EdificioOut(EdificioBase):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
+
+
+class PisoSimple(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    numero: str
+
+
+class EdificioConPisos(EdificioOut):
+    pisos: list[PisoSimple] = []
