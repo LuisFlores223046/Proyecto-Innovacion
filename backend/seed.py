@@ -6,6 +6,7 @@ Ejecutar: python seed.py
 import sys, os
 sys.path.insert(0, os.path.dirname(__file__))
 
+from sqlalchemy import text
 from app.database import SessionLocal
 from app.models import (
     Categoria, Edificio, Piso, Espacio, Horario,
@@ -57,7 +58,7 @@ def run():
             "fotos_espacio", "eventos", "administradores",
         ]
         for tabla in tablas:
-            db.execute(__import__("sqlalchemy").text(
+            db.execute(text(
                 f"ALTER SEQUENCE {tabla}_id_seq RESTART WITH 1"
             ))
         db.commit()
@@ -67,18 +68,22 @@ def run():
         print("Creando categorias...")
         cats = {}
         categorias_data = [
-            ("Aula",                   "🏫", "#4A90E2"),
-            ("Laboratorio",            "🔬", "#7B68EE"),
+            ("Aula",                    "🏫", "#4A90E2"),
+            ("Laboratorio",             "🔬", "#7B68EE"),
+            ("Taller",                  "🔧", "#E67E22"),
             ("Oficina Administrativa",  "🏢", "#F5A623"),
-            ("Cafeteria",              "☕", "#D0021B"),
-            ("Biblioteca",             "📚", "#2D7D46"),
-            ("Bano Hombres",           "🚹", "#1565C0"),
-            ("Bano Mujeres",           "🚺", "#C2185B"),
-            ("Impresoras",             "🖨",  "#8B572A"),
-            ("Zona de Estudio",        "📖", "#00897B"),
-            ("Servicio Medico",        "🏥", "#B71C1C"),
-            ("Audiovisual",            "🎬", "#6A1B9A"),
-            ("Otro",                   "📍", "#757575"),
+            ("Servicios Estudiantiles", "🎓", "#27AE60"),
+            ("Cafeteria",               "☕", "#D0021B"),
+            ("Biblioteca",              "📚", "#2D7D46"),
+            ("Bano Hombres",            "🚹", "#1565C0"),
+            ("Bano Mujeres",            "🚺", "#C2185B"),
+            ("Impresoras",              "🖨",  "#8B572A"),
+            ("Zona de Estudio",         "📖", "#00897B"),
+            ("Sala de Descanso",        "🛋",  "#95A5A6"),
+            ("Servicio Medico",         "🏥", "#B71C1C"),
+            ("Audiovisual",             "🎬", "#6A1B9A"),
+            ("Deportes",                "⚽", "#16A085"),
+            ("Otro",                    "📍", "#757575"),
         ]
         for nombre, icono, color in categorias_data:
             c = Categoria(nombre=nombre, icono=icono, color_hex=color)
@@ -183,7 +188,7 @@ def run():
             eid = add_espacio(codigo, f"Salon {codigo}", "Aula", "A", "PB", lat, lon)
             add_horarios(eid, H_AULA); count += 1
 
-        eid = add_espacio("A-110", "CBU", "Oficina Administrativa", "A", "PB", 31.492139, -106.415594,
+        eid = add_espacio("A-110", "CBU", "Servicios Estudiantiles", "A", "PB", 31.492139, -106.415594,
                           "Ayuda con psicoterapia, becas, objetos extraviados, informacion general, canalizacion psicologica")
         add_horarios(eid, lv("08:00", "20:00"))
         add_contacto(eid, "telefono", "656-688-2100")
@@ -217,7 +222,7 @@ def run():
         eid = add_espacio("A-115", "Bano Mujeres A-PB-2", "Bano Mujeres", "A", "PB", 31.491869, -106.415564)
         add_horarios(eid, H_BANO); count += 1
 
-        eid = add_espacio("A-117", "Libreria Tienda UACJ", "Otro", "A", "PB", 31.491869, -106.415605)
+        eid = add_espacio("A-117", "Libreria Tienda UACJ", "Servicios Estudiantiles", "A", "PB", 31.491869, -106.415605)
         add_horarios(eid, lv("08:00", "18:00"))
         add_servicio(eid, "Venta de articulos UACJ")
         add_servicio(eid, "Libros y papeleria")
@@ -326,9 +331,11 @@ def run():
         eid = add_espacio("B-120", "Bano Hombres B-PB-2", "Bano Hombres", "B", "PB", 31.493738, -106.413672)
         add_horarios(eid, H_BANO); count += 1
 
-        eid = add_espacio("B-CAS", "Casilleros Edificio B", "Otro", "B", "PB", 31.493713, -106.413984)
+        eid = add_espacio("B-CAS", "Casilleros Edificio B", "Servicios Estudiantiles", "B", "PB", 31.493713, -106.413984)
         count += 1
         eid = add_espacio("B-EST", "Zona de Estudio B", "Zona de Estudio", "B", "PB", 31.493787, -106.413672)
+        count += 1
+        eid = add_espacio("B-AJE", "Mesa de Ajedrez B", "Deportes", "B", "PB", 31.493762, -106.413797)
         count += 1
 
         # — Piso 1 —
@@ -513,7 +520,7 @@ def run():
             ("D1-111", "Taller de Fotografia",              31.491508, -106.413805),
             ("D1-112", "Taller de Serigrafia",              31.491508, -106.413805),
         ]:
-            eid = add_espacio(codigo, nombre, "Laboratorio", "D", "PB", lat, lon)
+            eid = add_espacio(codigo, nombre, "Taller", "D", "PB", lat, lon)
             add_horarios(eid, H_AULA); count += 1
 
         for codigo, nombre, lat, lon in [
@@ -531,7 +538,7 @@ def run():
             ("D2-104", "Laboratorio de Sistemas Hidraulicos y Neumaticos", 31.491253, -106.414293),
             ("D2-105", "Taller de Maquetas",                              31.491259, -106.414282),
         ]:
-            eid = add_espacio(codigo, nombre, "Laboratorio", "D", "PB", lat, lon)
+            eid = add_espacio(codigo, nombre, "Taller", "D", "PB", lat, lon)
             add_horarios(eid, H_AULA); count += 1
 
         eid = add_espacio("D2-106", "Bano Mujeres D2-PB", "Bano Mujeres", "D", "PB", 31.491242, -106.414045)
@@ -624,6 +631,13 @@ def run():
         eid = add_espacio("D3-203", "Sala de Maestros D3", "Oficina Administrativa", "D", "1", 31.491103, -106.413615)
         add_horarios(eid, H_OFIC); count += 1
 
+        eid = add_espacio("D3-201", "Sala de Descanso Estudiantes D3-1", "Sala de Descanso", "D", "1", 31.491109, -106.413634)
+        count += 1
+        eid = add_espacio("D3-202", "Audiovisual D3", "Audiovisual", "D", "1", 31.491109, -106.413634)
+        add_horarios(eid, H_AULA); count += 1
+        eid = add_espacio("D3-211b", "Sala de Descanso Estudiantes D3-2", "Sala de Descanso", "D", "1", 31.491081, -106.413629)
+        count += 1
+
         # — Piso 1 — D4
         for codigo, lat, lon in [
             ("D4-208", 31.491236, -106.413420),
@@ -637,6 +651,9 @@ def run():
         add_horarios(eid, H_OFIC)
         add_servicio(eid, "Impresion")
         add_servicio(eid, "Copiado")
+        count += 1
+
+        eid = add_espacio("D-PING", "Mesas de Ping-Pong", "Deportes", "D", "1", 31.491146, -106.413863)
         count += 1
 
         # — Piso 2 — D3 y D4
@@ -672,7 +689,7 @@ def run():
         print("Procesando Gimnasio...")
 
         # PB
-        eid = add_espacio("GIM-E108", "Sala de Halterofilia", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E108", "Sala de Halterofilia", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.7766, 106, 24, 58.1606))
         add_horarios(eid, H_GIM); count += 1
 
@@ -684,19 +701,19 @@ def run():
                           *dms(31, 29, 36.2862, 106, 25, 0.1766))
         add_horarios(eid, H_GIM); count += 1
 
-        eid = add_espacio("GIM-E106A", "Sala de Caminadoras", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E106A", "Sala de Caminadoras", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.7767, 106, 24, 57.9515))
         add_horarios(eid, H_GIM)
         add_servicio(eid, "Caminadoras electricas")
         count += 1
 
-        eid = add_espacio("GIM-E106B", "Sala de Maquinas", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E106B", "Sala de Maquinas", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.7927, 106, 24, 58.4228))
         add_horarios(eid, H_GIM)
         add_servicio(eid, "Maquinas de ejercicio")
         count += 1
 
-        eid = add_espacio("GIM-E110", "Sala de Calistenia", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E110", "Sala de Calistenia", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.308, 106, 24, 58.358))
         add_horarios(eid, H_GIM); count += 1
 
@@ -704,14 +721,14 @@ def run():
                           31.493420, -106.416300)  # coord. general: DMS original es sospechosa
         add_horarios(eid, lv("08:00", "15:00")); count += 1
 
-        eid = add_espacio("GIM-E111", "Canchas Polideportivas", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E111", "Canchas Polideportivas", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.6551, 106, 24, 59.2708))
         add_horarios(eid, H_GIM)
         add_servicio(eid, "Basketball")
         add_servicio(eid, "Voleibol")
         count += 1
 
-        eid = add_espacio("GIM-E112", "Alberca Olimpica", "Otro", "GIM", "PB",
+        eid = add_espacio("GIM-E112", "Alberca Olimpica", "Deportes", "GIM", "PB",
                           *dms(31, 29, 36.1000, 106, 24, 58.666))
         add_horarios(eid, H_GIM); count += 1
 
@@ -754,24 +771,31 @@ def run():
                           *dms(31, 29, 36.7062, 106, 24, 58.9691))
         add_horarios(eid, H_GIM); count += 1
 
-        eid = add_espacio("GIM-E203", "Sala de Elipticas", "Otro", "GIM", "1",
+        eid = add_espacio("GIM-E203", "Sala de Elipticas", "Deportes", "GIM", "1",
                           *dms(31, 29, 36.612, 106, 24, 59.223))  # coord. aproximada
         add_horarios(eid, H_GIM)
         add_servicio(eid, "Elipticas")
         count += 1
 
-        eid = add_espacio("GIM-E204", "Sala de Bicicletas Estaticas", "Otro", "GIM", "1",
+        eid = add_espacio("GIM-E204", "Sala de Bicicletas Estaticas", "Deportes", "GIM", "1",
                           *dms(31, 29, 36.612, 106, 24, 59.223))  # coord. aproximada
         add_horarios(eid, H_GIM)
         add_servicio(eid, "Bicicletas estaticas")
         count += 1
 
-        eid = add_espacio("GIM-E208", "Gradas de Canchas", "Otro", "GIM", "1",
+        eid = add_espacio("GIM-E208", "Gradas de Canchas", "Deportes", "GIM", "1",
                           *dms(31, 29, 36.6708, 106, 24, 59.2231))
         add_horarios(eid, H_GIM); count += 1
-        eid = add_espacio("GIM-E209", "Gradas de Alberca", "Otro", "GIM", "1",
+        eid = add_espacio("GIM-E209", "Gradas de Alberca", "Deportes", "GIM", "1",
                           *dms(31, 29, 36.6708, 106, 24, 59.2231))
         add_horarios(eid, H_GIM); count += 1
+
+        eid = add_espacio("GIM-E210", "Maquinas de Peso Libre", "Deportes", "GIM", "1",
+                          31.493420, -106.416300)  # coord. aproximada gimnasio
+        add_horarios(eid, H_GIM)
+        add_servicio(eid, "Pesas libres")
+        add_servicio(eid, "Mancuernas")
+        count += 1
 
         db.commit()
         print(f"  Gimnasio: {count} espacios")

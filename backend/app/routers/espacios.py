@@ -45,36 +45,40 @@ def listar(
 ):
     return svc.listar_espacios(db, categoria_id=categoria_id, edificio_id=edificio_id, activo=activo)
 
-@router.post("",response_model=EspacioOut, status_code=status.HTTP_201_CREATED)
+
+@router.post("", response_model=EspacioOut, status_code=status.HTTP_201_CREATED)
 def crear(
     datos: EspacioCreate,
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    return svc.crear_espacio(db,datos)
-    
+    return svc.crear_espacio(db, datos)
+
 
 @router.get("/{espacio_id}", response_model=EspacioCompleto)
 def detalle(espacio_id: int, db: Session = Depends(get_db)):
     return svc.obtener_espacio(db, espacio_id)
 
+
 @router.patch("/{espacio_id}", response_model=EspacioOut)
 def actualizar(
-    espacio_id:int,
+    espacio_id: int,
     datos: EspacioUpdate,
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    return svc.actualizar_espacio(db,espacio_id,datos)
+    return svc.actualizar_espacio(db, espacio_id, datos)
 
-@router.delete("/{espacio_id}",response_model=EspacioOut)
+
+@router.delete("/{espacio_id}", response_model=EspacioOut)
 def desactivar(
     espacio_id: int,
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    return svc.desactivar_espacio(db,espacio_id)
+    return svc.desactivar_espacio(db, espacio_id)
 
-@router.get("/{espacio_id}/eventos",response_model=list[EventoOut])
-def eventos_espacio(espacio_id:int, db:Session = Depends(get_db)):
-    return svc_ev.eventos_de_espacio(db,espacio_id)
+
+@router.get("/{espacio_id}/eventos", response_model=list[EventoOut])
+def eventos_espacio(espacio_id: int, db: Session = Depends(get_db)):
+    return svc_ev.eventos_de_espacio(db, espacio_id)

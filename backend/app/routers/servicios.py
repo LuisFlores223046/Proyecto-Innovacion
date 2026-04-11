@@ -23,7 +23,7 @@ def crear(
     return servicio
 
 
-@router.delete("/{servicio_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{servicio_id}", response_model=ServicioOut)
 def eliminar(
     servicio_id: int,
     db: Session = Depends(get_db),
@@ -34,3 +34,4 @@ def eliminar(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Servicio no encontrado")
     db.delete(servicio)
     db.commit()
+    return servicio

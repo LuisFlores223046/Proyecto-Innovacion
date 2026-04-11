@@ -9,37 +9,40 @@ from app.services.fotos import subir_foto, actualizar_foto, eliminar_foto
 
 router = APIRouter(prefix="/fotos", tags=["Fotos"])
 
-@router.post("",response_model=FotoOut,status_code=status.HTTP_201_CREATED)
+
+@router.post("", response_model=FotoOut, status_code=status.HTTP_201_CREATED)
 def crear(
     espacio_id: int = Form(...),
-    descripcion:str | None = Form(None),
+    descripcion: str | None = Form(None),
     es_principal: bool = Form(False),
     orden: int = Form(0),
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    _:Administrador = Depends(get_current_admin),
+    _: Administrador = Depends(get_current_admin),
 ):
     datos = FotoCreate(
         espacio_id=espacio_id,
         descripcion=descripcion,
         es_principal=es_principal,
-        orden=orden
+        orden=orden,
     )
-    return subir_foto(db,file,datos)
+    return subir_foto(db, file, datos)
 
-@router.patch("/{foto_id}",response_model=FotoOut)
+
+@router.patch("/{foto_id}", response_model=FotoOut)
 def actualizar(
     foto_id: int,
     datos: FotoUpdate,
     db: Session = Depends(get_db),
-    _:Administrador = Depends(get_current_admin),
+    _: Administrador = Depends(get_current_admin),
 ):
-    return actualizar_foto(db,foto_id,datos)
+    return actualizar_foto(db, foto_id, datos)
 
-@router.delete("/{foto_id}",status_code=status.HTTP_204_NO_CONTENT)
+
+@router.delete("/{foto_id}", response_model=FotoOut)
 def borrar(
     foto_id: int,
     db: Session = Depends(get_db),
-    _:Administrador = Depends(get_current_admin),
+    _: Administrador = Depends(get_current_admin),
 ):
-    eliminar_foto(db,foto_id)
+    return eliminar_foto(db, foto_id)
