@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-import type { Edificio } from "../../types/edificio";
-import { agregarEdificio, editarEdificio } from "../../services/api";
+import type { Edificio, Piso } from "../../types/edificio";
+import {
+  agregarEdificio,
+  editarEdificio,
+  subirFotoEdificio,
+  eliminarFotoEdificio,
+  fetchPisos,
+  agregarPiso
+} from "../../services/api";
+import { toast } from "sonner";
+import { FaTrash, FaCloudUploadAlt, FaPlus } from "react-icons/fa";
 
 interface Props {
   initialData?: Edificio | null;
@@ -11,6 +20,7 @@ interface Props {
 }
 
 export default function EdificioForm({ initialData, onSubmit, onCancel }: Props) {
+  const [currentEdificio, setCurrentEdificio] = useState<Edificio | null>(initialData || null);
   const [formData, setFormData] = useState({
     codigo: initialData?.codigo || "",
     nombre: initialData?.nombre || "",
@@ -19,106 +29,275 @@ export default function EdificioForm({ initialData, onSubmit, onCancel }: Props)
     longitud: initialData?.longitud || "",
   });
 
+  const [pisos, setPisos] = useState<Piso[]>([]);
+  const [newPisoNumero, setNewPisoNumero] = useState("");
+  const [isSubmittingPiso, setIsSubmittingPiso] = useState(false);
+  const [isUploadingFoto, setIsUploadingFoto] = useState(false);
+
+  const edificioId = currentEdificio?.id;
+
   useEffect(() => {
-    if (initialData) {
-      setFormData({
-        codigo: initialData.codigo || "",
-        nombre: initialData.nombre || "",
-        descripcion: initialData.descripcion || "",
-        latitud: initialData.latitud || "",
-        longitud: initialData.longitud || "",
-      });
+    if (edificioId) {
+      loadPisos();
     }
-  }, [initialData]);
+  }, [edificioId]);
+
+  async function loadPisos() {
+    if (!edificioId) return;
+    try {
+      const data = await fetchPisos(edificioId);
+      setPisos(data);
+    } catch (e) {
+      console.error("Error al cargar pisos:", e);
+    }
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitInfo = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const dataToSend = {
       codigo: formData.codigo,
       nombre: formData.nombre,
       descripcion: formData.descripcion || null,
       latitud: formData.latitud ? Number(formData.latitud) : null,
       longitud: formData.longitud ? Number(formData.longitud) : null,
+      foto_url: currentEdificio?.foto_url || null,
     };
 
     try {
-      let savedEdificio;
-      if (initialData) {
-        // @ts-ignore
-        savedEdificio = await editarEdificio(initialData.id, dataToSend);
+      let saved;
+      if (edificioId) {
+        saved = await editarEdificio(edificioId, dataToSend);
+        toast.success("Información básica actualizada");
       } else {
-        // @ts-ignore
-        savedEdificio = await agregarEdificio(dataToSend);
+        saved = await agregarEdificio(dataToSend);
+        toast.success("Edificio creado. Ahora puedes añadir fotos y pisos.");
       }
-      onSubmit(savedEdificio);
+      setCurrentEdificio(saved);
+      // No cerramos el modal ni llamamos a onSubmit forzadamente para dejar que el usuario siga administrando
+      // Pero notificamos al padre para que la lista de atrás se actualice
+      onSubmit(saved);
     } catch (error) {
       console.error("Error al guardar el edificio:", error);
     }
   };
 
+  const handleUploadFoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!edificioId || !e.target.files?.[0]) return;
+    setIsUploadingFoto(true);
+    try {
+      const saved = await subirFotoEdificio(edificioId, e.target.files[0]);
+      setCurrentEdificio(saved);
+      toast.success("Foto subida con éxito");
+      onSubmit(saved);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsUploadingFoto(false);
+    }
+  };
+
+  const handleDeleteFoto = async () => {
+    if (!edificioId) return;
+    try {
+      const saved = await eliminarFotoEdificio(edificioId);
+      setCurrentEdificio(saved);
+      toast.success("Foto eliminada");
+      onSubmit(saved);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleAddPiso = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!edificioId || !newPisoNumero.trim()) return;
+    setIsSubmittingPiso(true);
+    try {
+      await agregarPiso({ edificio_id: edificioId, numero: newPisoNumero });
+      setNewPisoNumero("");
+      loadPisos();
+      toast.success("Piso añadido");
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsSubmittingPiso(false);
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Input
-          label="Código del Edificio"
-          name="codigo"
-          value={formData.codigo}
-          onChange={handleChange}
-          placeholder="Ej: A, B, Gimnasio"
-          required
-        />
-        <Input
-          label="Nombre"
-          name="nombre"
-          value={formData.nombre}
-          onChange={handleChange}
-          placeholder="Ej: Edificio A, Gimnasio Universitario"
-          required
-        />
-      </div>
+    <div className="flex flex-col gap-6 max-h-[100vh] overflow-y-auto">
+      {/* SECCIÓN 1: INFO BÁSICA */}
+      <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+        <form onSubmit={handleSubmitInfo} noValidate className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Código del Edificio"
+              name="codigo"
+              value={formData.codigo}
+              onChange={handleChange}
+              placeholder="Ej: A, B, Gimnasio"
+              required
+            />
+            <Input
+              label="Nombre"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              placeholder="Ej: Edificio A, Gimnasio Universitario"
+              required
+            />
+          </div>
 
-      <div className="flex flex-col gap-2">
-        <label className="text-gray-700">Descripción</label>
-        <textarea
-          name="descripcion"
-          value={formData.descripcion}
-          onChange={handleChange}
-          rows={3}
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-          placeholder="Detalles sobre el edificio..."
-        ></textarea>
-      </div>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-semibold text-gray-700">Descripción</label>
+            <textarea
+              name="descripcion"
+              value={formData.descripcion}
+              onChange={handleChange}
+              rows={2}
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm"
+              placeholder="Detalles sobre el edificio..."
+            ></textarea>
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Input
-          label="Latitud"
-          name="latitud"
-          type="number"
-          step="any"
-          value={formData.latitud}
-          onChange={handleChange}
-          placeholder="Ej. 31.733..."
-        />
-        <Input
-          label="Longitud"
-          name="longitud"
-          type="number"
-          step="any"
-          value={formData.longitud}
-          onChange={handleChange}
-          placeholder="Ej. -106.48..."
-        />
-      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Input
+              label="Latitud"
+              name="latitud"
+              type="number"
+              step="any"
+              value={formData.latitud}
+              onChange={handleChange}
+              placeholder="Ej. 31.7..."
+            />
+            <Input
+              label="Longitud"
+              name="longitud"
+              type="number"
+              step="any"
+              value={formData.longitud}
+              onChange={handleChange}
+              placeholder="Ej. -106..."
+            />
+          </div>
 
-      <div className="flex justify-end gap-3 mt-4 pt-4 border-t border-gray-100">
-        <Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button>
-        <Button type="submit">{initialData ? "Guardar Cambios" : "Añadir Edificio"}</Button>
+          <div className="flex justify-end gap-3 pt-2">
+            <Button type="button" variant="ghost" onClick={onCancel}>Cerrar</Button>
+            <Button type="submit">{edificioId ? "Actualizar Datos" : "Crear Edificio"}</Button>
+          </div>
+        </form>
+      </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* SECCIÓN 2: FOTO */}
+        <section className={`relative transition-all duration-300 ${!edificioId ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
+          {!edificioId && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[1px] rounded-2xl">
+              <span className="bg-gray-800 text-white text-xs px-3 py-1.5 rounded-full shadow-lg">
+                Bloqueado: Guarda primero el edificio
+              </span>
+            </div>
+          )}
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full flex flex-col overflow-y-auto">
+            <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+              Foto del Edificio
+            </h3>
+
+            <div className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4 min-h-[150px]">
+              {currentEdificio?.foto_url ? (
+                <div className="relative group w-full h-40">
+                  <img
+                    src={currentEdificio.foto_url}
+                    alt="Edificio"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
+                    <button
+                      onClick={handleDeleteFoto}
+                      className="bg-red-500 text-white p-2 rounded-full hover:scale-110 transition-transform"
+                      title="Eliminar foto"
+                    >
+                      <FaTrash size={18} />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <label className="flex flex-col items-center gap-3 cursor-pointer hover:text-blue-500 transition-colors">
+                  <FaCloudUploadAlt size={40} className="text-gray-300" />
+                  <span className="text-sm text-gray-500 text-center">
+                    {isUploadingFoto ? "Subiendo..." : "Subir foto del edificio"}
+                  </span>
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={handleUploadFoto}
+                    accept="image/*"
+                    disabled={isUploadingFoto}
+                  />
+                </label>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* SECCIÓN 3: PISOS */}
+        <section className={`relative transition-all duration-300 ${!edificioId ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
+          {!edificioId && (
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[1px] rounded-2xl">
+              <span className="bg-gray-800 text-white text-xs px-3 py-1.5 rounded-full shadow-lg">
+                Bloqueado: Guarda primero el edificio
+              </span>
+            </div>
+          )}
+          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full flex flex-col overflow-y-auto">
+            <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+              Gestión de Pisos
+            </h3>
+
+            <div className="flex-1">
+              {/* Formulario para añadir piso */}
+              <form onSubmit={handleAddPiso} className="flex gap-2 mb-4">
+                <input
+                  type="text"
+                  placeholder="Ej: Piso 1, PB..."
+                  value={newPisoNumero}
+                  onChange={(e) => setNewPisoNumero(e.target.value)}
+                  className="flex-1 px-3 py-2 rounded-lg border border-gray-300 text-sm focus:ring-2 focus:ring-blue-400 outline-none"
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmittingPiso || !newPisoNumero.trim()}
+                  className="bg-blue-600 text-white p-2.5 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 transition-colors"
+                >
+                  <FaPlus size={14} />
+                </button>
+              </form>
+
+              {/* Lista de pisos */}
+              <div className="space-y-2 max-h-[140px] overflow-y-auto custom-scrollbar">
+                {pisos.length === 0 ? (
+                  <p className="text-xs text-gray-400 text-center py-4">No hay pisos registrados</p>
+                ) : (
+                  pisos.map((piso) => (
+                    <div
+                      key={piso.id}
+                      className="flex items-center justify-between px-3 py-2 bg-gray-50 rounded-lg group animate-in fade-in slide-in-from-left-2"
+                    >
+                      <span className="text-sm font-medium text-gray-700">{piso.numero}</span>
+                      {/* Por ahora no hay endpoint de eliminar piso en el backend, se queda el icono deshabilitado o informativo */}
+                      <span className="text-gray-300 text-xs italic">ID: {piso.id}</span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </form>
+    </div>
   );
 }

@@ -128,8 +128,6 @@ export default function BuildingCard({ edificio, onClose }: Props) {
                     </div>
                 )}
 
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent" /> */}
-
                 <button
                     onClick={onClose}
                     className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/70 backdrop-blur-sm
@@ -145,16 +143,14 @@ export default function BuildingCard({ edificio, onClose }: Props) {
                     </div>
                 )}
 
-                <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
+
+            </div>
+
+            <div className="px-4 py-3 flex flex-row gap-5 justify-between">
+                <div className="flex flex-col flex-shrink-0">
                     <h2 className="text-lg font-bold leading-tight drop-shadow-lg">
                         {edificio.nombre}
                     </h2>
-                    <p className="text-xs text-gray-500 mt-0.5">{edificio.codigo}</p>
-                </div>
-            </div>
-
-            <div className="px-4 py-3">
-                <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 text-sm text-gray-500">
                         {!loading && (
                             <span className="flex items-center gap-1">
@@ -174,25 +170,24 @@ export default function BuildingCard({ edificio, onClose }: Props) {
                             </span>
                         )}
                     </div>
-
-                    <button
-                        onClick={() => setExpanded(!expanded)}
-                        className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700
+                </div>
+                <button
+                    onClick={() => setExpanded(!expanded)}
+                    className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700
                                    bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-full
                                    transition-all duration-200 font-medium"
+                >
+                    {expanded ? "Menos" : "Más info"}
+                    <svg
+                        className={`w-3.5 h-3.5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2.5}
                     >
-                        {expanded ? "Menos" : "Más info"}
-                        <svg
-                            className={`w-3.5 h-3.5 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2.5}
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-                </div>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
             </div>
 
             <div

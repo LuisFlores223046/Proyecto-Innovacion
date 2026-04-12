@@ -3,14 +3,13 @@ import { toast } from "sonner";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import { FaSearch } from "react-icons/fa";
-import { fetchTodosLosEspacios, fetchBuscarEspacios, deleteEspacio, fetchEdificios } from "../services/api";
+import { fetchTodosLosEspacios, fetchBuscarEspacios, deleteEspacio, fetchEdificios, eliminarEdificio, fetchEspacioDetalle } from "../services/api";
 import type { Espacio } from "../types/espacio";
 import type { Edificio } from "../types/edificio";
 import Modal from "../components/UI/Modal";
 import ConfirmModal from "../components/UI/ConfirmModal";
 import EspacioForm from "../components/Admin/EspacioForm";
 import EdificioForm from "../components/Admin/EdificioForm";
-import AdministrarInfoModal from "../components/Admin/AdministrarInfoModal";
 
 type ActiveTab = "lugares" | "edificios";
 
@@ -32,6 +31,7 @@ export default function AdminLugares() {
     const [isEdificioModalOpen, setIsEdificioModalOpen] = useState(false);
     const [edificioAEditar, setEdificioAEditar] = useState<Edificio | null>(null);
     const [highlightedEdificioId, setHighlightedEdificioId] = useState<number | null>(null);
+    const [edificioAEliminar, setEdificioAEliminar] = useState<Edificio | null>(null);
 
     // Debounce para búsqueda
     useEffect(() => {
@@ -77,9 +77,11 @@ export default function AdminLugares() {
         setIsModalOpen(true);
     };
 
-    const handleOpenEdit = (espacio: Espacio) => {
+    const handleOpenEdit = (espacio: Espacio, tab: any = "info") => {
         setEspacioAEditar(espacio);
         setIsModalOpen(true);
+        // Podríamos pasar el tab al formulario si quisiéramos, 
+        // pero por ahora abrimos el formulario centralizado.
     };
 
     const handleCloseModal = () => {
@@ -143,6 +145,17 @@ export default function AdminLugares() {
         setHighlightedEdificioId(savedEdificio.id);
         setTimeout(() => setHighlightedEdificioId(null), 2500);
     };
+
+    const handleDeleteEdificio = async (edificioId: number) => {
+        try {
+            await eliminarEdificio(edificioId);
+            setEdificios(prev => prev.filter(ed => ed.id !== edificioId));
+            toast.success("Se eliminó el edificio con éxito!")
+        } catch (error) {
+            console.log("Ocurrio un error al eliminar el edificio: ", error)
+            toast.error("Error al eliminar el edificio")
+        }
+    }
 
     // cambio de pestaña
     const handleTabChange = (tab: ActiveTab) => {
@@ -224,7 +237,6 @@ export default function AdminLugares() {
                                         <td className="px-4 py-3 ">{espacio.longitud || "-"}</td>
                                         <td className="px-4 py-3 flex gap-4">
                                             <Button variant="link" onClick={() => handleOpenEdit(espacio)}>Editar</Button>
-                                            <Button variant="link" onClick={() => setEspacioAdministrar(espacio)}>Detalles</Button>
                                             <Button variant="link-danger" onClick={() => setEspacioAEliminar(espacio)}>Eliminar</Button>
                                         </td>
                                     </tr>
@@ -243,6 +255,7 @@ export default function AdminLugares() {
                                     <th className="px-4 py-3 font-medium bg-gray-50">Descripción</th>
                                     <th className="px-4 py-3 font-medium bg-gray-50">Latitud</th>
                                     <th className="px-4 py-3 font-medium bg-gray-50">Longitud</th>
+                                    <th className="px-4 py-3 font-medium bg-gray-50">Foto</th>
                                     <th className="px-4 py-3 font-medium bg-gray-50">Acciones</th>
                                 </tr>
                             </thead>
@@ -257,12 +270,18 @@ export default function AdminLugares() {
                                         </td>
                                         <td className="px-4 py-3">{edificio.latitud || "-"}</td>
                                         <td className="px-4 py-3">{edificio.longitud || "-"}</td>
+                                        <td className="px-4 py-3">
+                                            {edificio.foto_url ? (
+                                                <img src={edificio.foto_url} alt={edificio.nombre} className="w-10 h-10 object-cover rounded-full" />
+                                            ) : (
+                                                "-"
+                                            )}
+                                        </td>
                                         <td className="px-4 py-3 flex gap-4">
                                             <Button variant="link" onClick={() => handleOpenEditEdificio(edificio)}>Editar</Button>
                                             <Button
                                                 variant="link-danger"
-                                                disabled
-                                                onClick={() => toast.info("La eliminación de edificios no está disponible aún en el backend.")}
+                                                onClick={() => setEdificioAEliminar(edificio)}
                                             >
                                                 Eliminar
                                             </Button>
@@ -302,32 +321,21 @@ export default function AdminLugares() {
             </Modal>
 
             <ConfirmModal
-                isOpen={!!espacioAEliminar}
-                onClose={() => setEspacioAEliminar(null)}
-                title="Eliminar Lugar"
-                message={`¿Estás seguro de que deseas eliminar "${espacioAEliminar?.nombre}"? Esta acción no se puede deshacer.`}
+                isOpen={!!espacioAEliminar || !!edificioAEliminar}
+                onClose={() => { setEspacioAEliminar(null); setEdificioAEliminar(null); }}
+                title={`${espacioAEliminar ? "Eliminar Lugar" : "Eliminar Edificio"}`}
+                message={`¿Estás seguro de que deseas eliminar "${espacioAEliminar?.nombre || edificioAEliminar?.nombre}"? Esta acción no se puede deshacer.`}
                 confirmText="Eliminar permanentemente"
                 cancelText="Cancelar"
                 isDanger={true}
                 onConfirm={() => {
                     if (espacioAEliminar) {
                         handleDelete(espacioAEliminar.id);
+                    } else if (edificioAEliminar) {
+                        handleDeleteEdificio(edificioAEliminar.id);
                     }
                 }}
             />
-
-            <Modal
-                isOpen={!!espacioAdministrar}
-                onClose={() => setEspacioAdministrar(null)}
-                title={espacioAdministrar ? `Administrar: ${espacioAdministrar.nombre}` : ""}
-            >
-                {espacioAdministrar && (
-                    <AdministrarInfoModal
-                        espacio={espacioAdministrar}
-                        onClose={() => setEspacioAdministrar(null)}
-                    />
-                )}
-            </Modal>
         </div>
     )
 }

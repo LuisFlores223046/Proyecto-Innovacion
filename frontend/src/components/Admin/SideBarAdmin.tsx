@@ -1,6 +1,6 @@
 import logo from "../../assets/logo_uacj.png";
 import { NavLink } from "react-router-dom";
-import { FaMapMarkerAlt, FaCalendar, FaUser, FaSignOutAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaCalendar, FaUser, FaSignOutAlt, FaMap } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 import Button from "../UI/Button";
 
@@ -11,6 +11,7 @@ export const SideBarAdmin = () => {
         { to: "/admin", icon: FaMapMarkerAlt, label: "Lugares" },
         { to: "/admin/eventos", icon: FaCalendar, label: "Eventos" },
         { to: "/admin/administradores", icon: FaUser, label: "Administradores" },
+        { to: "/", icon: FaMap, label: "Ir al mapa" },
     ];
 
     return (

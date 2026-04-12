@@ -1,4 +1,4 @@
-import type { Edificio } from "../types/edificio";
+import type { Edificio, Piso } from "../types/edificio";
 import type { Espacio, Categoria, EspacioCompleto, Contacto, Servicio, Horario, Foto } from "../types/espacio";
 import { toast } from "sonner";
 
@@ -42,7 +42,7 @@ async function fetchClient<T>(endpoint: string, options: RequestInit = {}): Prom
     } catch (e) {
       // No era JSON válido, nos quedamos con el statusText
     }
-    
+
     toast.error(`Error: ${errorDetail || "Ocurrió un error inesperado"}`);
     throw new Error(`Error en la petición: ${errorDetail}`);
   }
@@ -55,17 +55,40 @@ async function fetchClient<T>(endpoint: string, options: RequestInit = {}): Prom
 }
 
 export const fetchEdificios = () => fetchClient<Edificio[]>("/edificios");
+export const fetchEdificiosCompleto = () => fetchClient<Edificio[]>("/edificios/completo");
 
-export const agregarEdificio = (datosNuevos: Omit<Edificio, "id">) => 
+export const agregarEdificio = (datosNuevos: Omit<Edificio, "id">) =>
   fetchClient<Edificio>("/edificios", {
     method: "POST",
     body: JSON.stringify(datosNuevos)
   });
 
-export const editarEdificio = (edificioId: number, datosNuevos: Partial<Edificio>) => 
+export const editarEdificio = (edificioId: number, datosNuevos: Partial<Edificio>) =>
   fetchClient<Edificio>(`/edificios/${edificioId}`, {
     method: "PATCH",
     body: JSON.stringify(datosNuevos)
+  });
+
+export const eliminarEdificio = (edificioId: number) => fetchClient<void>(`/edificios/${edificioId}`, { method: "DELETE" });
+
+export const subirFotoEdificio = (edificioId: number, archivo: File) => {
+  const data = new FormData();
+  data.append("file", archivo);
+  return fetchClient<Edificio>(`/edificios/${edificioId}/foto`, {
+    method: "POST",
+    body: data,
+  });
+};
+
+export const eliminarFotoEdificio = (edificioId: number) =>
+  fetchClient<Edificio>(`/edificios/${edificioId}/foto`, { method: "DELETE" });
+
+export const fetchPisos = (edificioId: number) => fetchClient<Piso[]>(`/edificios/${edificioId}/pisos`);
+
+export const agregarPiso = (datos: { edificio_id: number, numero: string }) =>
+  fetchClient<Piso>("/pisos", {
+    method: "POST",
+    body: JSON.stringify(datos),
   });
 
 export const fetchEspaciosPorEdificio = (edificioId: number) => fetchClient<Espacio[]>(`/espacios?edificio_id=${edificioId}`);
@@ -118,7 +141,6 @@ export const agregarEspacio = (datosNuevos: Omit<Espacio, "id">) =>
 
 export const deleteEspacio = (espacioId: number) => fetchClient<void>(`/espacios/${espacioId}`, { method: "DELETE" });
 
-// --- Contactos ---
 export const agregarContacto = (datos: { espacio_id: number, tipo: string, valor: string }) =>
   fetchClient<Contacto>("/contactos", {
     method: "POST",
@@ -127,7 +149,6 @@ export const agregarContacto = (datos: { espacio_id: number, tipo: string, valor
 
 export const eliminarContacto = (contactoId: number) => fetchClient<void>(`/contactos/${contactoId}`, { method: "DELETE" });
 
-// --- Servicios ---
 export const agregarServicio = (datos: { espacio_id: number, descripcion: string }) =>
   fetchClient<Servicio>("/servicios", {
     method: "POST",
@@ -136,7 +157,6 @@ export const agregarServicio = (datos: { espacio_id: number, descripcion: string
 
 export const eliminarServicio = (servicioId: number) => fetchClient<void>(`/servicios/${servicioId}`, { method: "DELETE" });
 
-// --- Horarios ---
 export const agregarHorario = (datos: { espacio_id: number, dia_semana: number, hora_apertura: string, hora_cierre: string }) =>
   fetchClient<Horario>("/horarios", {
     method: "POST",
@@ -145,20 +165,19 @@ export const agregarHorario = (datos: { espacio_id: number, dia_semana: number, 
 
 export const eliminarHorario = (horarioId: number) => fetchClient<void>(`/horarios/${horarioId}`, { method: "DELETE" });
 
-// --- Fotos ---
 export const subirFoto = (espacioId: number, archivo: File, principal: boolean = false) => {
   const data = new FormData();
   data.append("espacio_id", espacioId.toString());
   data.append("file", archivo);
   data.append("es_principal", principal.toString());
-  
+
   return fetchClient<Foto>("/fotos", {
     method: "POST",
     body: data,
   });
 };
 
-export const editarFoto = (fotoId: number, datos: Partial<Foto>) => 
+export const editarFoto = (fotoId: number, datos: Partial<Foto>) =>
   fetchClient<Foto>(`/fotos/${fotoId}`, {
     method: "PATCH",
     body: JSON.stringify(datos),

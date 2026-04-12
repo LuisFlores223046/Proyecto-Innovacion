@@ -1,9 +1,18 @@
 import { type JSX, useState, useEffect } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-import { fetchCategorias } from "../../services/api";
-import type { Espacio, Categoria } from "../../types/espacio";
+import { fetchCategorias, fetchEdificiosCompleto, fetchEspacioDetalle } from "../../services/api";
+import type { Espacio, Categoria, EspacioCompleto } from "../../types/espacio";
+import type { Edificio } from "../../types/edificio";
 import { agregarEspacio, editarEspacio } from "../../services/api";
+import { toast } from "sonner";
+import { FaInfoCircle, FaPhone, FaClock, FaImage, FaConciergeBell } from "react-icons/fa";
+
+// Componentes Administradores
+import ContactosManager from "./SpaceDetails/ContactosManager";
+import ServiciosManager from "./SpaceDetails/ServiciosManager";
+import HorariosManager from "./SpaceDetails/HorariosManager";
+import FotosManager from "./SpaceDetails/FotosManager";
 
 interface Props {
     initialData: Espacio | null;
@@ -11,44 +20,78 @@ interface Props {
     onCancel: () => void;
 }
 
+type TabName = "info" | "contactos" | "servicios" | "horarios" | "fotos";
+
 export default function EspacioForm({ initialData, onSubmit, onCancel }: Props): JSX.Element {
+    const [currentEspacio, setCurrentEspacio] = useState<Espacio | null>(initialData);
+    const [espacioCompleto, setEspacioCompleto] = useState<EspacioCompleto | null>(null);
+    const [activeTab, setActiveTab] = useState<TabName>("info");
+
     const [categorias, setCategorias] = useState<Categoria[]>([]);
+    const [edificios, setEdificios] = useState<Edificio[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedEdificioId, setSelectedEdificioId] = useState<string>("");
 
     const [formData, setFormData] = useState({
-        nombre: initialData?.nombre || "",
-        codigo: initialData?.codigo || "",
-        notas: initialData?.notas || "",
-        categoria_id: initialData?.categoria?.id || "",
-
-        latitud: initialData?.latitud || "",
-        longitud: initialData?.longitud || "",
-        activo: initialData?.activo ?? true,
-        piso_id: initialData?.piso_id || ""
+        nombre: currentEspacio?.nombre || "",
+        codigo: currentEspacio?.codigo || "",
+        notas: currentEspacio?.notas || "",
+        categoria_id: currentEspacio?.categoria?.id || "",
+        latitud: currentEspacio?.latitud || "",
+        longitud: currentEspacio?.longitud || "",
+        activo: currentEspacio?.activo ?? true,
+        piso_id: currentEspacio?.piso_id || ""
     });
 
+    const isCreated = !!currentEspacio?.id;
+
     useEffect(() => {
-        async function loadSelectData() {
+        async function loadData() {
             try {
-                const cats = await fetchCategorias();
+                const [cats, edifs] = await Promise.all([
+                    fetchCategorias(),
+                    fetchEdificiosCompleto()
+                ]);
                 setCategorias(cats);
+                setEdificios(edifs);
+
+                if (currentEspacio?.piso_id) {
+                    const edif = edifs.find(ed => ed.pisos?.some(p => p.id === currentEspacio.piso_id));
+                    if (edif) setSelectedEdificioId(edif.id.toString());
+                }
+
+                if (isCreated) {
+                    refreshDetails();
+                }
             } catch (e) {
-                console.error("Error al cargar catálogos del formulario:", e);
+                console.error(e);
             } finally {
                 setLoading(false);
             }
         }
-        loadSelectData();
-    }, []);
+        loadData();
+    }, [initialData]);
+
+    const refreshDetails = async () => {
+        if (!currentEspacio?.id) return;
+        try {
+            const full = await fetchEspacioDetalle(currentEspacio.id);
+            setEspacioCompleto(full);
+        } catch (e) { console.error(e); }
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        if (name === "edificio_id") {
+            setSelectedEdificioId(value);
+            setFormData(prev => ({ ...prev, piso_id: "" }));
+            return;
+        }
+        setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitInfo = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        // Limpiamos los datos para mandarle al backend EXACTAMENTE lo que pide
         const dataToSend = {
             codigo: formData.codigo,
             nombre: formData.nombre,
@@ -61,102 +104,180 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
         };
 
         try {
-            let savedEspacio;
-            if (initialData) {
+            let saved;
+            if (isCreated) {
                 // @ts-ignore
-                savedEspacio = await editarEspacio(initialData.id, dataToSend);
+                saved = await editarEspacio(currentEspacio.id, dataToSend);
+                toast.success("Información actualizada");
             } else {
                 // @ts-ignore
-                savedEspacio = await agregarEspacio(dataToSend);
+                saved = await agregarEspacio(dataToSend);
+                toast.success("Lugar creado. Ahora puedes añadir detalles.");
             }
-            onSubmit(savedEspacio);
+            setCurrentEspacio(saved);
+            onSubmit(saved); // Notificar al padre para actualizar tabla
         } catch (error) {
-            console.error("Error al guardar el espacio:", error);
-            // Podríamos meter un toast de error local aquí si fuera necesario
+            console.error(error);
         }
     };
 
-    if (loading) {
-        return <div className="p-8 text-center text-gray-500 animate-pulse">Cargando catálogos...</div>;
+    const handleTabClick = (tab: TabName) => {
+        if (tab !== "info" && !isCreated) {
+            toast.error("Guarda la información básica primero");
+            return;
+        }
+        setActiveTab(tab);
     }
 
+    const pisosDisponibles = edificios.find(ed => ed.id.toString() === selectedEdificioId)?.pisos || [];
+
+    if (loading) return <div className="p-8 text-center text-gray-500 animate-pulse">Cargando...</div>;
+
     return (
-        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Input
-                    label="Nombre del lugar"
-                    name="nombre"
-                    required
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    placeholder="Ej. Audiovisual 102"
+        <div className="flex flex-col  w-full max-h-[85vh] overflow-hidden">
+            {/* TABS HEADER */}
+            <div className="flex border-b border-gray-100 gap-4 sm:gap-6 overflow-x-auto custom-scrollbar whitespace-nowrap">
+                <TabButton
+                    active={activeTab === "info"}
+                    icon={<FaInfoCircle />}
+                    label="Info Básica"
+                    onClick={() => handleTabClick("info")}
                 />
-                <Input
-                    label="Código"
-                    name="codigo"
-                    required
-                    value={formData.codigo}
-                    onChange={handleChange}
-                    placeholder="Ej. A-102"
+                <TabButton
+                    active={activeTab === "contactos"}
+                    disabled={!isCreated}
+                    icon={<FaPhone />}
+                    label="Contactos"
+                    onClick={() => handleTabClick("contactos")}
                 />
-            </div>
-
-            <div className="flex flex-col gap-2">
-                <label className="text-gray-700">Notas</label>
-                <textarea
-                    name="notas"
-                    value={formData.notas}
-                    onChange={handleChange}
-                    rows={3}
-                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                    placeholder="Detalles sobre el lugar..."
-                ></textarea>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                <div className="flex flex-col gap-2">
-                    <label className="text-gray-700">Categoría</label>
-                    <select
-                        name="categoria_id"
-                        value={formData.categoria_id}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                    >
-                        <option value="">-- Seleccionar Categoría --</option>
-                        {categorias.map(cat => (
-                            <option key={cat.id} value={cat.id}>{cat.nombre}</option>
-                        ))}
-                    </select>
-                </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Input
-                    label="Latitud"
-                    name="latitud"
-                    type="number"
-                    step="any"
-                    value={formData.latitud}
-                    onChange={handleChange}
-                    placeholder="Ej. 31.49227"
+                <TabButton
+                    active={activeTab === "servicios"}
+                    disabled={!isCreated}
+                    icon={<FaConciergeBell />}
+                    label="Servicios"
+                    onClick={() => handleTabClick("servicios")}
                 />
-                <Input
-                    label="Longitud"
-                    name="longitud"
-                    type="number"
-                    step="any"
-                    value={formData.longitud}
-                    onChange={handleChange}
-                    placeholder="Ej. -106.415795"
+                <TabButton
+                    active={activeTab === "horarios"}
+                    disabled={!isCreated}
+                    icon={<FaClock />}
+                    label="Horarios"
+                    onClick={() => handleTabClick("horarios")}
+                />
+                <TabButton
+                    active={activeTab === "fotos"}
+                    disabled={!isCreated}
+                    icon={<FaImage />}
+                    label="Galería"
+                    onClick={() => handleTabClick("fotos")}
                 />
             </div>
 
-            <div className="flex justify-end gap-3 mt-4 pt-4 border-t border-gray-100">
-                <Button type="button" variant="ghost" onClick={onCancel}>Cancelar</Button>
-                <Button type="submit">{initialData ? "Guardar Cambios" : "Añadir Lugar"}</Button>
+            {/* CONTENT AREA */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar pb-4 pr-1">
+                {activeTab === "info" && (
+                    <form onSubmit={handleSubmitInfo} noValidate className="flex flex-col gap-6 bg-white p-4 rounded-xl border border-gray-50">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <Input label="Nombre del lugar" name="nombre" required value={formData.nombre} onChange={handleChange} placeholder="Ej. Audiovisual 102" />
+                            <Input label="Código" name="codigo" required value={formData.codigo} onChange={handleChange} placeholder="Ej. A-102" />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <label className="text-sm font-semibold text-gray-700">Notas</label>
+                            <textarea
+                                name="notas" value={formData.notas} onChange={handleChange} rows={2}
+                                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-sm"
+                                placeholder="Detalles sobre el lugar..."
+                            ></textarea>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-2">
+                                <label className="text-gray-700 text-sm font-semibold">Categoría</label>
+                                <select
+                                    name="categoria_id" value={formData.categoria_id} onChange={handleChange} required
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm"
+                                >
+                                    <option value="">-- Seleccionar Categoría --</option>
+                                    {categorias.map(cat => (
+                                        <option key={cat.id} value={cat.id}>{cat.nombre}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <label className="text-gray-700 text-sm font-semibold">Edificio (Opcional)</label>
+                                <select
+                                    name="edificio_id" value={selectedEdificioId} onChange={handleChange}
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm"
+                                >
+                                    <option value="">-- Exterior --</option>
+                                    {edificios.map(ed => (
+                                        <option key={ed.id} value={ed.id}>{ed.nombre}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-2">
+                                <label className={`text-sm font-semibold ${!selectedEdificioId ? 'text-gray-400' : 'text-gray-700'}`}>Piso</label>
+                                <select
+                                    name="piso_id" value={formData.piso_id} onChange={handleChange} disabled={!selectedEdificioId}
+                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm disabled:bg-gray-50"
+                                >
+                                    <option value="">-- Seleccionar Piso --</option>
+                                    {pisosDisponibles.map(p => (
+                                        <option key={p.id} value={p.id}>{p.numero}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2">
+                                <Input label="Latitud" name="latitud" type="number" step="any" value={formData.latitud} onChange={handleChange} placeholder="31.4..." />
+                                <Input label="Longitud" name="longitud" type="number" step="any" value={formData.longitud} onChange={handleChange} placeholder="-106..." />
+                            </div>
+                        </div>
+
+                        <div className="flex justify-end gap-3 mt-4 pt-4 border-t border-gray-100">
+                            <Button type="button" variant="ghost" onClick={onCancel}>Cerrar</Button>
+                            <Button type="submit">{isCreated ? "Actualizar Lugar" : "Crear Lugar"}</Button>
+                        </div>
+                    </form>
+                )}
+
+                {activeTab === "contactos" && isCreated && (
+                    <ContactosManager espacioId={currentEspacio!.id} contactos={espacioCompleto?.contactos || []} onUpdate={refreshDetails} />
+                )}
+
+                {activeTab === "servicios" && isCreated && (
+                    <ServiciosManager espacioId={currentEspacio!.id} servicios={espacioCompleto?.servicios || []} onUpdate={refreshDetails} />
+                )}
+
+                {activeTab === "horarios" && isCreated && (
+                    <HorariosManager espacioId={currentEspacio!.id} horarios={espacioCompleto?.horarios || []} onUpdate={refreshDetails} />
+                )}
+
+                {activeTab === "fotos" && isCreated && (
+                    <FotosManager espacioId={currentEspacio!.id} fotos={espacioCompleto?.fotos || []} onUpdate={refreshDetails} />
+                )}
             </div>
-        </form>
+        </div>
+    );
+}
+
+function TabButton({ active, label, icon, onClick, disabled }: { active: boolean, label: string, icon: React.ReactNode, onClick: () => void, disabled?: boolean }) {
+    return (
+        <button
+            onClick={onClick}
+            className={`flex items-center gap-2 pb-3 px-1 text-sm font-semibold transition-all border-b-2 relative ${active
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-gray-400 hover:text-gray-600"
+                } ${disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer"}`}
+        >
+            {icon}
+            <span>{label}</span>
+            {disabled && <div className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-gray-300 rounded-full" />}
+        </button>
     );
 }
