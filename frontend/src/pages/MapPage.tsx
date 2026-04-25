@@ -10,6 +10,7 @@ import BuildingCard from "../components/LocationCard/BuildingCard";
 import SpaceDetailCard from "../components/LocationCard/SpaceDetailCard";
 import { useLocation } from "react-router-dom";
 import { fetchTodosLosEspacios } from "../services/api";
+import SearchBar from "../components/Search/SearchBar";
 import "leaflet/dist/leaflet.css"
 
 const CU_CENTER: LatLngExpression = [31.49261, -106.41446];
@@ -164,6 +165,14 @@ export default function MapPage(): JSX.Element {
         setEspacioDetalle(null);
     };
 
+    const handleSearchSelect = (espacio: Espacio) => {
+        setSelected(null);
+        setEspacioDetalle(espacio);
+        if (espacio.latitud && espacio.longitud) {
+            setFlyTarget({ lat: espacio.latitud, lng: espacio.longitud });
+        }
+    };
+
     const isMobile = window.innerWidth < 640;
 
     const showEspacios = zoomLevel >= ZOOM_THRESHOLD_ESPACIOS;
@@ -177,6 +186,10 @@ export default function MapPage(): JSX.Element {
 
     return (
         <div className="relative h-screen w-full">
+            <div className="absolute top-4 left-[72px] right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[400px] z-[1000] pointer-events-auto">
+                <SearchBar onSelectResult={handleSearchSelect} />
+            </div>
+
             <MapContainer
                 center={CU_CENTER}
                 zoom={isMobile ? 17 : 18}

@@ -34,7 +34,7 @@ export const BadgesEspacios = ({ selectedId, onSelect }: Props) => {
                         className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs border transition-all duration-200 cursor-pointer
                             ${isActive
                                 ? "bg-[#003DA5] text-white border-[#003DA5] shadow-sm"
-                                : "bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100"
+                                : "bg-white border-gray-200 text-gray-600 hover:bg-gray-100"
                             }`}
                     >
                         <span>{cat.icono}</span>
