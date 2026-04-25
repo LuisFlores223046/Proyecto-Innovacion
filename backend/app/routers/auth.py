@@ -81,6 +81,14 @@ def crear_admin(
     return admin
 
 
+@router.get("/admin", response_model=list[AdminOut])
+def listar_admins(
+    db: Session = Depends(get_db),
+    _: Administrador = Depends(get_current_admin),
+):
+    return db.query(Administrador).order_by(Administrador.id).all()
+
+
 @router.get("/me", response_model=AdminOut)
 def perfil(admin: Administrador = Depends(get_current_admin)):
     return admin
