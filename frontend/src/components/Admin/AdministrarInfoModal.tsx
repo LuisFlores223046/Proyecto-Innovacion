@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import Select from "../UI/Select";
 import { toast } from "sonner";
 import {
   fetchEspacioDetalle,
@@ -207,15 +208,17 @@ export default function AdministrarInfoModal({ espacio, onClose }: AdministrarIn
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Contactos</h3>
               <form onSubmit={handleAgregarContacto} className="flex gap-2 items-end mb-4">
                 <div className="flex flex-col flex-1">
-                  <select
+                  <Select
+                    name="tipo_contacto"
                     value={nuevoContacto.tipo}
                     onChange={(e) => setNuevoContacto({ ...nuevoContacto, tipo: e.target.value })}
-                    className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                  >
-                    <option value="telefono">Teléfono</option>
-                    <option value="correo">Correo</option>
-                    <option value="extension">Extensión</option>
-                  </select>
+                    showLabel={false}
+                    options={[
+                      { value: "telefono", label: "Teléfono" },
+                      { value: "correo", label: "Correo" },
+                      { value: "extension", label: "Extensión" }
+                    ]}
+                  />
                 </div>
                 <div className="flex-[2]">
                   <Input
@@ -280,20 +283,21 @@ export default function AdministrarInfoModal({ espacio, onClose }: AdministrarIn
               <h3 className="text-lg font-semibold text-gray-800 mb-4">Añadir Horario</h3>
               <form onSubmit={handleAgregarHorario} className="flex gap-4 items-end mb-4 flex-wrap">
                 <div className="flex flex-col flex-1 min-w-[110px]">
-                  <label className="text-sm text-gray-600 mb-1">Día</label>
-                  <select
+                  <Select
+                    name="dia_semana"
+                    label="Día"
                     value={nuevoHorario.dia_semana}
                     onChange={(e) => setNuevoHorario({ ...nuevoHorario, dia_semana: e.target.value })}
-                    className="px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                  >
-                    <option value="0">Lunes</option>
-                    <option value="1">Martes</option>
-                    <option value="2">Miércoles</option>
-                    <option value="3">Jueves</option>
-                    <option value="4">Viernes</option>
-                    <option value="5">Sábado</option>
-                    <option value="6">Domingo</option>
-                  </select>
+                    options={[
+                      { value: "0", label: "Lunes" },
+                      { value: "1", label: "Martes" },
+                      { value: "2", label: "Miércoles" },
+                      { value: "3", label: "Jueves" },
+                      { value: "4", label: "Viernes" },
+                      { value: "5", label: "Sábado" },
+                      { value: "6", label: "Domingo" }
+                    ]}
+                  />
                 </div>
                 <div className="flex flex-col flex-[1.5] min-w-[120px]">
                   <label className="text-sm text-gray-600 mb-1">Apertura</label>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { EspacioCompleto } from "../../types/espacio";
 import { fetchEspacioDetalle } from "../../services/api";
 import StatusBadge from "../UI/StatusBadge";
+
 
 
 const DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
@@ -38,10 +40,12 @@ interface Props {
 }
 
 export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Props) {
+    const navigate = useNavigate();
     const [detalle, setDetalle] = useState<EspacioCompleto | null>(null);
     const [loading, setLoading] = useState(true);
     const [expanded, setExpanded] = useState(false);
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
+
 
     useEffect(() => {
         setLoading(true);
@@ -246,6 +250,57 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
                                 {detalle.latitud.toFixed(6)}, {detalle.longitud.toFixed(6)}
                             </p>
                         </div>
+                    )}
+
+                    {/* Eventos Programados */}
+                    {detalle && detalle.eventos && detalle.eventos.length > 0 && (
+                        (() => {
+                            const eventosActivos = detalle.eventos.filter(e => {
+                                if (!e.activo) return false;
+                                const fechaRef = e.fecha_fin ? new Date(e.fecha_fin) : new Date(e.fecha_inicio);
+                                if (!e.fecha_fin) fechaRef.setHours(fechaRef.getHours() + 2);
+                                return fechaRef >= new Date();
+                            }).sort((a, b) => new Date(a.fecha_inicio).getTime() - new Date(b.fecha_inicio).getTime());
+
+                            if (eventosActivos.length === 0) return null;
+
+                            return (
+                                <div>
+                                    <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                                        Eventos Programados
+                                    </h3>
+                                    <div className="space-y-2">
+                                        {eventosActivos.map(evento => {
+                                            const fecha = new Date(evento.fecha_inicio);
+                                            const dia = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+                                            const hora = fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+                                            
+                                            return (
+                                                <div 
+                                                    key={evento.id}
+                                                    onClick={() => navigate('/eventos', { state: { focusEventId: evento.id } })}
+                                                    className="flex items-center gap-3 p-2 rounded-lg bg-blue-50/50 border border-blue-100 hover:bg-blue-50 cursor-pointer transition-colors"
+                                                >
+                                                    <div className="flex flex-col items-center justify-center bg-white rounded-md w-10 h-10 shrink-0 border border-blue-200 text-blue-700">
+                                                        <span className="text-[10px] font-bold uppercase leading-none">{fecha.toLocaleDateString('es-ES', { month: 'short' })}</span>
+                                                        <span className="text-sm font-black leading-none mt-0.5">{fecha.getDate()}</span>
+                                                    </div>
+                                                    <div className="min-w-0 flex-1">
+                                                        <p className="text-sm font-bold text-gray-800 truncate">{evento.titulo}</p>
+                                                        <p className="text-xs text-gray-500">{hora}</p>
+                                                    </div>
+                                                    <div className="text-blue-400 mr-1">
+                                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })()
                     )}
 
                     {/* Galería Adicional */}

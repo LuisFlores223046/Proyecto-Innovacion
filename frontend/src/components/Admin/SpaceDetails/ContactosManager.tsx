@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
+import Select from "../../UI/Select";
 import { toast } from "sonner";
 import { agregarContacto, eliminarContacto } from "../../../services/api";
 import type { Contacto } from "../../../types/espacio";
@@ -38,15 +39,17 @@ export default function ContactosManager({ espacioId, contactos, onUpdate }: Pro
       <h3 className="text-lg font-semibold text-gray-800 mb-4">Contactos</h3>
       <form onSubmit={handleAgregar} className="flex gap-2 items-end mb-4 flex-wrap sm:flex-nowrap">
         <div className="flex flex-col flex-1">
-          <select
+          <Select
+            name="tipo_contacto"
             value={nuevoContacto.tipo}
             onChange={(e) => setNuevoContacto({ ...nuevoContacto, tipo: e.target.value })}
-            className="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-          >
-            <option value="telefono">Teléfono</option>
-            <option value="correo">Correo</option>
-            <option value="extension">Extensión</option>
-          </select>
+            showLabel={false}
+            options={[
+              { value: "telefono", label: "Teléfono" },
+              { value: "correo", label: "Correo" },
+              { value: "extension", label: "Extensión" }
+            ]}
+          />
         </div>
         <div className="flex-[2] min-w-[200px]">
           <Input

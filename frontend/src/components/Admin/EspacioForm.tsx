@@ -1,5 +1,6 @@
 import { type JSX, useState, useEffect } from "react";
 import Input from "../UI/Input";
+import Select from "../UI/Select";
 import Button from "../UI/Button";
 import { fetchCategorias, fetchEdificiosCompleto, fetchEspacioDetalle } from "../../services/api";
 import type { Espacio, Categoria, EspacioCompleto } from "../../types/espacio";
@@ -192,46 +193,34 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className="flex flex-col gap-2">
-                                <label className="text-gray-700 text-sm font-semibold">Categoría</label>
-                                <select
-                                    name="categoria_id" value={formData.categoria_id} onChange={handleChange} required
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm"
-                                >
-                                    <option value="">-- Seleccionar Categoría --</option>
-                                    {categorias.map(cat => (
-                                        <option key={cat.id} value={cat.id}>{cat.nombre}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            <Select
+                                name="categoria_id"
+                                label="Categoría"
+                                value={formData.categoria_id}
+                                onChange={handleChange}
+                                required={true}
+                                options={categorias.map(cat => ({ value: cat.id, label: cat.nombre }))}
+                            />
 
-                            <div className="flex flex-col gap-2">
-                                <label className="text-gray-700 text-sm font-semibold">Edificio (Opcional)</label>
-                                <select
-                                    name="edificio_id" value={selectedEdificioId} onChange={handleChange}
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm"
-                                >
-                                    <option value="">-- Exterior --</option>
-                                    {edificios.map(ed => (
-                                        <option key={ed.id} value={ed.id}>{ed.nombre}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            <Select
+                                name="edificio_id"
+                                label="Edificio (Opcional)"
+                                value={selectedEdificioId}
+                                onChange={handleChange}
+                                placeholder="Exterior"
+                                options={edificios.map(ed => ({ value: ed.id, label: ed.nombre }))}
+                            />
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className="flex flex-col gap-2">
-                                <label className={`text-sm font-semibold ${!selectedEdificioId ? 'text-gray-400' : 'text-gray-700'}`}>Piso</label>
-                                <select
-                                    name="piso_id" value={formData.piso_id} onChange={handleChange} disabled={!selectedEdificioId}
-                                    className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 bg-white text-sm disabled:bg-gray-50"
-                                >
-                                    <option value="">-- Seleccionar Piso --</option>
-                                    {pisosDisponibles.map(p => (
-                                        <option key={p.id} value={p.id}>{p.numero}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            <Select
+                                name="piso_id"
+                                label="Piso"
+                                value={formData.piso_id}
+                                onChange={handleChange}
+                                disabled={!selectedEdificioId}
+                                options={pisosDisponibles.map(p => ({ value: p.id, label: p.numero }))}
+                            />
 
                             <div className="grid grid-cols-2 gap-2">
                                 <Input label="Latitud" name="latitud" type="number" step="any" value={formData.latitud} onChange={handleChange} placeholder="31.4..." />
