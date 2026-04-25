@@ -184,3 +184,37 @@ export const editarFoto = (fotoId: number, datos: Partial<Foto>) =>
   });
 
 export const eliminarFoto = (fotoId: number) => fetchClient<void>(`/fotos/${fotoId}`, { method: "DELETE" });
+
+// --- Eventos ---
+import type { Evento, EventoCreate, EventoUpdate } from "../types/evento";
+
+export const fetchEventos = (tipo?: string) => {
+  const url = tipo ? `/eventos?tipo=${tipo}` : "/eventos";
+  return fetchClient<Evento[]>(url);
+};
+
+export const crearEvento = (datos: EventoCreate) =>
+  fetchClient<Evento>("/eventos", {
+    method: "POST",
+    body: JSON.stringify(datos),
+  });
+
+export const actualizarEvento = (eventoId: number, datos: EventoUpdate) =>
+  fetchClient<Evento>(`/eventos/${eventoId}`, {
+    method: "PATCH",
+    body: JSON.stringify(datos),
+  });
+
+export const eliminarEvento = (eventoId: number) => fetchClient<void>(`/eventos/${eventoId}`, { method: "DELETE" });
+
+// --- Administradores ---
+export const fetchAdmins = () => fetchClient<MeResponse[]>("/auth/admin");
+
+export const crearAdmin = (datos: { username: string; email: string; password?: string }) =>
+  fetchClient<MeResponse>("/auth/admin", {
+    method: "POST",
+    body: JSON.stringify(datos),
+  });
+
+export const eliminarAdmin = (adminId: number) => fetchClient<void>(`/auth/admin/${adminId}`, { method: "DELETE" });
+

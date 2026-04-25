@@ -7,6 +7,9 @@ interface Props {
     disabled?: boolean;
     variant?: 'primary' | 'danger' | 'ghost' | 'link' | 'link-danger';
     type?: 'button' | 'submit' | 'reset';
+    href?: string;
+    target?: string;
+    rel?: string;
 }
 
 export default function Button({
@@ -15,7 +18,10 @@ export default function Button({
     className = '',
     disabled,
     variant = 'primary',
-    type = 'button'
+    type = 'button',
+    href,
+    target,
+    rel
 }: Props): JSX.Element {
     let variantStyles = '';
 
@@ -37,12 +43,28 @@ export default function Button({
             break;
     }
 
+    const commonClasses = `transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles} ${className}`;
+
+    if (href) {
+        return (
+            <a
+                href={href}
+                onClick={onClick}
+                target={target}
+                rel={rel}
+                className={`inline-flex items-center justify-center ${commonClasses}`}
+            >
+                {children}
+            </a>
+        );
+    }
+
     return (
         <button
             type={type}
             onClick={onClick}
             disabled={disabled}
-            className={`transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed ${variantStyles} ${className}`}
+            className={commonClasses}
         >
             {children}
         </button>
