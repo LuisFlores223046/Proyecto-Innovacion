@@ -14,7 +14,7 @@ export const ProtectedRoute = () => {
     }
 
     return (
-        <div className="flex flex-col-reverse sm:flex-row h-screen ">
+        <div className="flex flex-col sm:flex-row h-screen">
             <SideBarAdmin />
             <main className="h-full sm:flex-1 sm:overflow-auto">
                 <Outlet />
