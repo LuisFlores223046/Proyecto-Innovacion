@@ -165,7 +165,7 @@ export default function AdminLugares() {
     };
 
     return (
-        <div className="bg-[#EBF2FD] px-6 py-12 h-full">
+        <div className="bg-[#EBF2FD] px-6 py-24 h-full">
             <div className="flex justify-between items-center mb-2">
                 <h1 className="text-2xl font-semibold">
                     {activeTab === "lugares" ? "Lugares" : "Edificios"}
