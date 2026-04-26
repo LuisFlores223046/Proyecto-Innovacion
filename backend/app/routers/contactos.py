@@ -16,6 +16,9 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Ruta para la creación de un contacto. Acción reservada para un administrador.
+    """
     contacto = Contacto(**datos.model_dump())
     db.add(contacto)
     db.commit()
@@ -29,6 +32,9 @@ def eliminar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Ruta para la eliminación de un contacto que haya cambiado o no es necesario. Acción reservada para un adminstrador.
+    """
     contacto = db.query(Contacto).filter(Contacto.id == contacto_id).first()
     if not contacto:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contacto no encontrado")

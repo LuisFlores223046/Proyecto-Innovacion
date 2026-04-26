@@ -12,6 +12,9 @@ router = APIRouter(prefix="/eventos", tags=["Eventos"])
 
 @router.get("", response_model=list[EventoOut])
 def listar(tipo: str | None = None, db: Session = Depends(get_db)):
+    """
+    Devuelve todos los eventos que están disponibles.
+    """
     return listar_eventos(db, tipo=tipo)
 
 
@@ -21,6 +24,9 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Crea un nuevo evento rellenando la información necesaria (lugar, horario, activo, etc.). Acción reservada para un administrador.
+    """
     return crear_evento(db, datos)
 
 
@@ -31,6 +37,9 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Actualiza un evento, permite modificar información necesaria. Acción reservada para un administrador.
+    """
     return actualizar_evento(db, evento_id, datos)
 
 
@@ -40,4 +49,7 @@ def borrar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina un evento que ya no esté activo. Acción reservada para un administrador.
+    """
     return eliminar_evento(db, evento_id)

@@ -15,6 +15,9 @@ router = APIRouter(prefix="/auth", tags=["Autenticación"])
 
 @router.post("/login", response_model=TokenOut)
 def login(datos: LoginIn, db: Session = Depends(get_db)):
+    """
+    Login del administrador. Verifica que las credenciales son las que están guardadas y crea un token de la sesión.
+    """
     admin = db.query(Administrador).filter(Administrador.username == datos.username).first()
 
     if not admin or not admin.activo:
@@ -59,6 +62,9 @@ def crear_admin(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Crea un nuevo administrador. Solo es posible cuando otro administrador esté autenticado.
+    """
     if db.query(Administrador).filter(Administrador.username == datos.username).first():
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -86,11 +92,17 @@ def listar_admins(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Devuelve todos los administradores que hay en la base de datos
+    """
     return db.query(Administrador).order_by(Administrador.id).all()
 
 
 @router.get("/me", response_model=AdminOut)
 def perfil(admin: Administrador = Depends(get_current_admin)):
+    """
+    Devuelve el perfil de un admministrador.
+    """
     return admin
 
 
@@ -100,6 +112,9 @@ def eliminar_admin(
     db: Session = Depends(get_db),
     admin_actual: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina un administrador de la base de datos.
+    """
     if admin_actual.id == admin_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

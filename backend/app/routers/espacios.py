@@ -16,11 +16,17 @@ router = APIRouter(prefix="/espacios", tags=["Espacios"])
 
 @router.get("/buscar/{q}", response_model=list[EspacioOut])
 def buscar(q: str, db: Session = Depends(get_db)):
+    """
+    Devuelve información relacionada con la búsqueda de un lugar en particular.
+    """
     return svc.buscar_espacios(db, q)
 
 
 @router.get("/abiertos/ahora", response_model=list[EspacioOut])
 def abiertos_ahora(db: Session = Depends(get_db)):
+    """
+    Devuelve lo servicios, espacios, zonas que están abiertas en un momento determinado.
+    """
     return svc.espacios_abiertos_ahora(db)
 
 
@@ -31,6 +37,9 @@ def cercanos(
     radio: float = Query(200.0, description="Radio en metros"),
     db: Session = Depends(get_db),
 ):
+    """
+    Devuelve todos los espacios cercanos al usuario.
+    """
     return svc.espacios_cercanos(db, lat, lon, radio)
 
 
@@ -43,6 +52,9 @@ def listar(
     activo: bool | None = True,
     db: Session = Depends(get_db),
 ):
+    """
+    Devuelve todos los espacios del mapa.
+    """
     return svc.listar_espacios(db, categoria_id=categoria_id, edificio_id=edificio_id, activo=activo)
 
 
@@ -52,11 +64,17 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Crea un nuevo espacio dentro del mapa. Acción reservada para un administrador.
+    """
     return svc.crear_espacio(db, datos)
 
 
 @router.get("/{espacio_id}", response_model=EspacioCompleto)
 def detalle(espacio_id: int, db: Session = Depends(get_db)):
+    """
+    Devuelve la información, fotos, horario (si aplica) de un espacio.
+    """
     return svc.obtener_espacio(db, espacio_id)
 
 
@@ -67,6 +85,9 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Actualiza la información de un espacio en particular. Acción reservada para un administrador.
+    """
     return svc.actualizar_espacio(db, espacio_id, datos)
 
 
@@ -76,9 +97,15 @@ def desactivar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Desactiva un espacio para evitar que se visualice. Acción reservada para un administrador.
+    """
     return svc.desactivar_espacio(db, espacio_id)
 
 
 @router.get("/{espacio_id}/eventos", response_model=list[EventoOut])
 def eventos_espacio(espacio_id: int, db: Session = Depends(get_db)):
+    """
+    Devuelve todos los espacios donde hay eventos.
+    """
     return svc_ev.eventos_de_espacio(db, espacio_id)
