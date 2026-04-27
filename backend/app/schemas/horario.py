@@ -38,6 +38,7 @@ class HorarioUpdate(BaseModel):
 
 
 class HorarioOut(HorarioBase):
+    """Esquema de salida para horarios."""
     model_config = ConfigDict(from_attributes=True)
 
     id: int
