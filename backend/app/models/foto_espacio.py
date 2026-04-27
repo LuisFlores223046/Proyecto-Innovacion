@@ -5,6 +5,18 @@ from app.database import Base
 
 
 class FotoEspacio(Base):
+    """
+    Almacena referencias a imágenes asociadas a un espacio específico.
+
+    Attributes:
+        id: Identificador único.
+        espacio_id: FK hacia el espacio propietario.
+        url: Dirección del recurso en el storage (Cloudinary).
+        descripcion: Texto descriptivo o leyenda de la imagen.
+        es_principal: Indica si la foto debe mostrarse como portada.
+        orden: Valor numérico para organizar la galería.
+        subida_en: Registro temporal de la carga del archivo.
+    """
     __tablename__ = "fotos_espacio"
 
     id = Column(Integer, primary_key=True, index=True)

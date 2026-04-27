@@ -4,6 +4,17 @@ from app.database import Base
 
 
 class Horario(Base):
+    """
+    Define los tiempos de operación de un espacio según el día de la semana.
+
+    Attributes:
+        id: Identificador único del horario.
+        espacio_id: Identificador del espacio al que pertenece este horario.
+        dia_semana: Representación numérica (0=lunes, 6=domingo).
+        hora_apertura: Objeto Time que indica el inicio de actividades.
+        hora_cierre: Objeto Time que indica el fin de actividades.
+        espacio: Relación inversa hacia el objeto Espacio.
+    """
     __tablename__ = "horarios"
     __table_args__ = (
         CheckConstraint("dia_semana >= 0 AND dia_semana <= 6", name="ck_horario_dia_semana"),

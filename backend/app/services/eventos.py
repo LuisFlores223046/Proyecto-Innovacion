@@ -7,6 +7,7 @@ from app.schemas.evento import EventoCreate, EventoUpdate
 
 
 def listar_eventos(db: Session, tipo: str | None = None) -> list[Evento]:
+    """Lista eventos activos cuya fecha de finalización no ha pasado."""
     ahora = datetime.now(timezone.utc)
     q = db.query(Evento).filter(
         Evento.activo == True,
@@ -18,6 +19,7 @@ def listar_eventos(db: Session, tipo: str | None = None) -> list[Evento]:
 
 
 def eventos_de_espacio(db: Session, espacio_id: int) -> list[Evento]:
+    """Obtiene eventos programados asociados a un espacio físico específico."""
     ahora = datetime.now(timezone.utc)
     return (
         db.query(Evento)
@@ -32,6 +34,7 @@ def eventos_de_espacio(db: Session, espacio_id: int) -> list[Evento]:
 
 
 def crear_evento(db: Session, datos: EventoCreate) -> Evento:
+    """Registra un nuevo evento en el sistema."""
     evento = Evento(**datos.model_dump())
     db.add(evento)
     db.commit()
@@ -40,6 +43,7 @@ def crear_evento(db: Session, datos: EventoCreate) -> Evento:
 
 
 def actualizar_evento(db: Session, evento_id: int, datos: EventoUpdate) -> Evento:
+    """Modifica la información de un evento existente."""
     evento = db.query(Evento).filter(Evento.id == evento_id).first()
     if not evento:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado")
@@ -51,6 +55,19 @@ def actualizar_evento(db: Session, evento_id: int, datos: EventoUpdate) -> Event
 
 
 def eliminar_evento(db: Session, evento_id: int) -> Evento:
+    """
+    Elimina un evento de la base de datos de forma permanente.
+
+    Args:
+        db: Sesión de la base de datos.
+        evento_id: Identificador único del evento a eliminar.
+
+    Returns:
+        Evento: El objeto del evento que ha sido eliminado.
+
+    Raises:
+        HTTPException: 404 si el evento no existe en los registros.
+    """
     evento = db.query(Evento).filter(Evento.id == evento_id).first()
     if not evento:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Evento no encontrado")

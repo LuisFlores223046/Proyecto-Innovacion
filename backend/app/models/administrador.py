@@ -4,6 +4,19 @@ from app.database import Base
 
 
 class Administrador(Base):
+    """
+    Representa a un usuario con privilegios de gestión en el sistema.
+
+    Attributes:
+        id: Identificador único.
+        username: Nombre de usuario único para inicio de sesión.
+        email: Correo electrónico de contacto.
+        password_hash: Contraseña cifrada.
+        activo: Estado del administrador.
+        intentos_fallidos: Contador para políticas de seguridad.
+        bloqueado_hasta: Fecha límite de bloqueo temporal.
+        creado_en: Fecha de registro del administrador.
+    """
     __tablename__ = "administradores"
 
     id = Column(Integer, primary_key=True, index=True)

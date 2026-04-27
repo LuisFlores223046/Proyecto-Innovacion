@@ -9,6 +9,7 @@ from app.schemas.evento import EventoOut
 
 
 class EspacioBase(BaseModel):
+    """Definición base de un espacio en el mapa."""
     codigo: str
     nombre: str
     categoria_id: int | None = None
@@ -20,10 +21,12 @@ class EspacioBase(BaseModel):
 
 
 class EspacioCreate(EspacioBase):
+    """Esquema para el registro de nuevos espacios."""
     pass
 
 
 class EspacioUpdate(BaseModel):
+    """Campos modificables de un espacio."""
     codigo: str | None = None
     nombre: str | None = None
     categoria_id: int | None = None
@@ -35,6 +38,7 @@ class EspacioUpdate(BaseModel):
 
 
 class EspacioOut(EspacioBase):
+    """Respuesta estándar para la visualización de espacios."""
     model_config = ConfigDict(from_attributes=True)
 
     id: int

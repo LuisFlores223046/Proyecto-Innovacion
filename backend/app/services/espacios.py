@@ -9,6 +9,7 @@ from app.schemas.espacio import EspacioCreate, EspacioUpdate
 
 
 def _base_query(db: Session):
+    """Prepara una consulta con carga optimizada de todas las relaciones."""
     return (
         db.query(Espacio)
         .options(
@@ -29,6 +30,18 @@ def listar_espacios(
     edificio_id: int | None = None,
     activo: bool | None = True,
 ) -> list[Espacio]:
+    """
+    Filtra y devuelve una lista de espacios según criterios.
+
+    Args:
+        db: Sesión activa de base de datos.
+        categoria_id: ID de categoría para filtrar.
+        edificio_id: ID de edificio para filtrar.
+        activo: Estado de activación del espacio.
+
+    Returns:
+        List[Espacio]: Lista de espacios que coinciden con los filtros.
+    """
     q = _base_query(db)
     if activo is not None:
         q = q.filter(Espacio.activo == activo)
@@ -41,6 +54,20 @@ def listar_espacios(
 
 
 def buscar_espacios(db: Session, q: str, limite: int = 20) -> list[Espacio]:
+    """
+    Realiza una búsqueda de espacios activos basada en una cadena de texto.
+
+    La búsqueda es insensible a mayúsculas y minúsculas (ilike) y compara el
+    término contra el nombre, código y notas del espacio.
+
+    Args:
+        db: Sesión de la base de datos.
+        q: Término de búsqueda proporcionado por el usuario.
+        limite: Número máximo de resultados a devolver (por defecto 20).
+
+    Returns:
+        List[Espacio]: Lista de espacios que coinciden con los criterios.
+    """
     termino = f"%{q}%"
     return (
         _base_query(db)
@@ -58,6 +85,18 @@ def buscar_espacios(db: Session, q: str, limite: int = 20) -> list[Espacio]:
 
 
 def espacios_abiertos_ahora(db: Session) -> list[Espacio]:
+    """
+    Consulta los espacios que se encuentran operativos en el momento actual.
+
+    Utiliza la hora y el día de la semana actual (UTC) para filtrar contra
+    los registros de la tabla de horarios.
+
+    Args:
+        db: Sesión de la base de datos.
+
+    Returns:
+        List[Espacio]: Espacios activos cuyo horario coincide con el tiempo actual.
+    """
     ahora = datetime.now(timezone.utc)
     dia_actual = ahora.weekday()  # 0=lunes … 6=domingo
     hora_actual = ahora.time()
@@ -106,6 +145,7 @@ def espacios_cercanos(db: Session, lat: float, lon: float, radio: float = 200.0)
 
 
 def obtener_espacio(db: Session, espacio_id: int) -> Espacio:
+    """Recupera un espacio por su ID con todas sus relaciones."""
     espacio = _base_query(db).filter(Espacio.id == espacio_id).first()
     if not espacio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Espacio no encontrado")
@@ -113,6 +153,7 @@ def obtener_espacio(db: Session, espacio_id: int) -> Espacio:
 
 
 def crear_espacio(db: Session, datos: EspacioCreate) -> Espacio:
+    """Crea un nuevo registro de espacio en la base de datos."""
     espacio = Espacio(**datos.model_dump())
     db.add(espacio)
     db.commit()
@@ -121,6 +162,7 @@ def crear_espacio(db: Session, datos: EspacioCreate) -> Espacio:
 
 
 def actualizar_espacio(db: Session, espacio_id: int, datos: EspacioUpdate) -> Espacio:
+    """Actualiza campos específicos de un espacio existente."""
     espacio = db.query(Espacio).filter(Espacio.id == espacio_id).first()
     if not espacio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Espacio no encontrado")
