@@ -4,6 +4,16 @@ from app.database import Base
 
 
 class Piso(Base):
+    """
+    Representa un nivel o planta dentro de un edificio físico.
+
+    Attributes:
+        id: Identificador único del piso.
+        edificio_id: Identificador del edificio contenedor.
+        numero: Denominación del piso (ej. 'PB', 'P1').
+        edificio: Relación hacia el objeto Edificio.
+        espacios: Lista de espacios contenidos en este piso.
+    """
     __tablename__ = "pisos"
     __table_args__ = (UniqueConstraint("edificio_id", "numero", name="uq_piso_edificio_numero"),)
 

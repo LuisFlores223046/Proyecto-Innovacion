@@ -20,6 +20,18 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Sube una imagen al almacenamiento en la nube y la asocia a un espacio.
+
+    Args:
+        espacio_id: ID del espacio al que pertenece la foto.
+        descripcion: Texto alternativo para la imagen.
+        es_principal: Indica si es la foto de portada del espacio.
+        orden: Prioridad de visualización en la galería.
+        file: Binario de la imagen.
+        db: Sesión de BD.
+        _: Admin actual.
+    """
     datos = FotoCreate(
         espacio_id=espacio_id,
         descripcion=descripcion,
@@ -36,6 +48,7 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Modifica los metadatos de una foto ya existente."""
     return actualizar_foto(db, foto_id, datos)
 
 
@@ -45,4 +58,5 @@ def borrar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Borra el registro de la foto y el archivo en Cloudinary."""
     return eliminar_foto(db, foto_id)

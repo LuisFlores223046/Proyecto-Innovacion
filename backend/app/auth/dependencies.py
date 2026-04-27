@@ -12,6 +12,20 @@ def get_current_admin(
     credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
     db: Session = Depends(get_db),
 ) -> Administrador:
+    """
+    Valida el token JWT y devuelve el administrador autenticado.
+
+    Args:
+        credentials: Credenciales extraídas del encabezado Authorization.
+        db: Sesión de la base de datos.
+
+    Returns:
+        Administrador: Instancia del administrador que posee el token.
+
+    Raises:
+        HTTPException: 401 si el token es inválido, expiró, está malformado
+            o si el administrador no existe o está inactivo.
+    """
     token = credentials.credentials
     payload = decode_token(token)
 
