@@ -12,9 +12,6 @@ router = APIRouter(prefix="/categorias", tags=["Categorías"])
 
 @router.get("", response_model=list[CategoriaOut])
 def listar(db: Session = Depends(get_db)):
-    """
-    Devuelve todas las categorías existentes del mapa
-    """
     return db.query(Categoria).order_by(Categoria.nombre).all()
 
 
@@ -24,9 +21,6 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Crea una nueva categoría necesaria para el mapa. Acción reservada para un adminsitrador.
-    """
     if db.query(Categoria).filter(Categoria.nombre == datos.nombre).first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="La categoría ya existe")
     cat = Categoria(**datos.model_dump())
@@ -43,9 +37,6 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Actualiza una categoría existente. Acción reservada para un administrador.
-    """
     cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
     if not cat:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")

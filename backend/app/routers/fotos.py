@@ -20,9 +20,6 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Permite subir una foto de un espacio para subirse a Cloudinary. 
-    """
     datos = FotoCreate(
         espacio_id=espacio_id,
         descripcion=descripcion,
@@ -39,9 +36,6 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Permite actualizar un foto que está subida a Cloudinary.
-    """
     return actualizar_foto(db, foto_id, datos)
 
 
@@ -51,7 +45,4 @@ def borrar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Permite eliminar una foto de un espacio.
-    """
     return eliminar_foto(db, foto_id)
