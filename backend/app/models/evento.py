@@ -5,6 +5,22 @@ from app.database import Base
 
 
 class Evento(Base):
+    """
+    Actividad programada vinculada a un espacio físico.
+
+    Attributes:
+        id: Identificador único.
+        espacio_id: FK hacia el lugar donde ocurre el evento.
+        titulo: Nombre del evento.
+        descripcion: Información detallada de la actividad.
+        fecha_inicio: Fecha y hora de inicio.
+        fecha_fin: Fecha y hora de finalización (opcional).
+        tipo: Categoría del evento según restricción CK.
+        foto_url: Imagen promocional del evento.
+        url_registro: Enlace externo para inscripciones.
+        activo: Visibilidad del evento.
+        creado_en: Fecha de registro del evento.
+    """
     __tablename__ = "eventos"
     __table_args__ = (
         CheckConstraint(

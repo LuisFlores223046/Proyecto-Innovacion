@@ -27,7 +27,7 @@ router = APIRouter(tags=["Edificios"])
 
 @router.get("/edificios/completo", response_model=list[EdificioConPisos])
 def listar_edificios_con_pisos(db: Session = Depends(get_db)):
-    """Devuelve todos los edificios con sus pisos anidados."""
+    """Obtiene información básica de todos los edificios registrados."""
     edificios = db.query(Edificio).order_by(Edificio.nombre).all()
     for edificio in edificios:
         edificio.pisos = (
@@ -41,6 +41,7 @@ def listar_edificios_con_pisos(db: Session = Depends(get_db)):
 
 @router.get("/edificios", response_model=list[EdificioOut])
 def listar_edificios(db: Session = Depends(get_db)):
+    """Obtiene edificios incluyendo sus pisos asociados en una sola respuesta."""
     return db.query(Edificio).order_by(Edificio.nombre).all()
 
 
@@ -50,6 +51,7 @@ def crear_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Registra un nuevo edificio físico en el sistema."""
     if db.query(Edificio).filter(Edificio.codigo == datos.codigo).first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="El código de edificio ya existe")
     edificio = Edificio(**datos.model_dump())
@@ -66,6 +68,16 @@ def actualizar_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina un edificio, sus pisos y sus espacios de forma recursiva.
+
+    Args:
+        edificio_id: ID del edificio.
+        db: Sesión de BD.
+
+    Returns:
+        Edificio: Datos del edificio eliminado.
+    """
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -83,6 +95,7 @@ def subir_foto_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Sube y vincula una imagen de Cloudinary a un edificio específico."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -109,6 +122,7 @@ def eliminar_foto_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Desvincula la foto del edificio y la borra de la nube."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -131,6 +145,24 @@ def eliminar_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina un edificio de forma permanente, incluyendo sus recursos y dependencias.
+
+    Realiza una limpieza integral que abarca la eliminación de la imagen en 
+    Cloudinary, así como el borrado en cascada manual de todos los pisos y 
+    espacios asociados para mantener la integridad de la base de datos.
+
+    Args:
+        edificio_id: Identificador único del edificio a eliminar.
+        db: Sesión de la base de datos.
+        _: Dependencia de seguridad que valida privilegios de administrador.
+
+    Returns:
+        Edificio: El objeto del edificio eliminado.
+
+    Raises:
+        HTTPException: 404 si el edificio no existe en la base de datos.
+    """
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -156,6 +188,7 @@ def eliminar_edificio(
 
 @router.get("/edificios/{edificio_id}/pisos", response_model=list[PisoOut])
 def listar_pisos(edificio_id: int, db: Session = Depends(get_db)):
+    """Lista todos los pisos pertenecientes a un edificio dado."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -168,6 +201,7 @@ def crear_piso(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Agrega un nuevo nivel o piso a un edificio existente."""
     existente = (
         db.query(Piso)
         .filter(Piso.edificio_id == datos.edificio_id, Piso.numero == datos.numero)

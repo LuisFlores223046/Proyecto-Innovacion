@@ -22,6 +22,7 @@ router = APIRouter(prefix="/eventos", tags=["Eventos"])
 
 @router.get("", response_model=list[EventoOut])
 def listar(tipo: str | None = None, db: Session = Depends(get_db)):
+    """Obtiene todos los eventos activos, opcionalmente filtrados por tipo."""
     return listar_eventos(db, tipo=tipo)
 
 
@@ -31,6 +32,7 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Registra un nuevo evento con su ubicación y temporalidad."""
     return crear_evento(db, datos)
 
 
@@ -41,6 +43,7 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Modifica los detalles de un evento existente."""
     return actualizar_evento(db, evento_id, datos)
 
 
@@ -50,6 +53,7 @@ def borrar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Elimina definitivamente un evento del cronograma."""
     return eliminar_evento(db, evento_id)
 
 

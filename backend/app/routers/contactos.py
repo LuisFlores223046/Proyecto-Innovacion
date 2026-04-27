@@ -16,6 +16,7 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Crea un registro de contacto (teléfono, red social, etc.) para un espacio."""
     contacto = Contacto(**datos.model_dump())
     db.add(contacto)
     db.commit()
@@ -29,6 +30,16 @@ def eliminar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina un contacto específico de la base de datos.
+
+    Args:
+        contacto_id: ID del contacto a remover.
+        db: Sesión de base de datos.
+
+    Returns:
+        Contacto: Los datos del contacto eliminado.
+    """
     contacto = db.query(Contacto).filter(Contacto.id == contacto_id).first()
     if not contacto:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contacto no encontrado")

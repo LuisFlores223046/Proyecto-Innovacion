@@ -7,6 +7,7 @@ TipoEvento = Literal["academico", "deportivo", "cultural", "administrativo", "ot
 
 
 class EventoBase(BaseModel):
+    """Atributos base de un evento programado."""
     espacio_id: int | None = None
     titulo: str
     descripcion: str | None = None
@@ -19,10 +20,12 @@ class EventoBase(BaseModel):
 
 
 class EventoCreate(EventoBase):
+    """Esquema para creación de eventos."""
     pass
 
 
 class EventoUpdate(BaseModel):
+    """Campos actualizables del evento."""
     espacio_id: int | None = None
     titulo: str | None = None
     descripcion: str | None = None
@@ -35,6 +38,7 @@ class EventoUpdate(BaseModel):
 
 
 class EventoOut(EventoBase):
+    """Esquema de salida para eventos."""
     model_config = ConfigDict(from_attributes=True)
 
     id: int

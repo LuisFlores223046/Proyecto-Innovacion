@@ -13,6 +13,11 @@ Base = declarative_base()
 
 
 def get_db():
+    """
+    Generador de sesiones de base de datos para inyección de dependencias.
+    
+    Garantiza el cierre automático de la sesión tras finalizar la petición.
+    """
     db = SessionLocal()
     try:
         yield db

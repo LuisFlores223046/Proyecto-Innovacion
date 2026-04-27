@@ -39,7 +39,20 @@ def _folder_path(edificio_codigo: str, piso_numero: str, espacio_codigo: str, es
 
 
 def subir_foto(db: Session, file: UploadFile, datos: FotoCreate) -> FotoEspacio:
-    # Obtener espacio con edificio y piso
+    """
+    Carga una imagen a Cloudinary y guarda su referencia en la DB.
+
+    Args:
+        db: Sesión de base de datos.
+        file: Objeto del archivo subido.
+        datos: Esquema con metadatos de la foto.
+
+    Returns:
+        FotoEspacio: El objeto de la foto creada.
+
+    Raises:
+        HTTPException: 404 si el espacio no existe, 400 si falla Cloudinary.
+    """
     espacio = (
         db.query(Espacio)
         .join(Piso, Espacio.piso_id == Piso.id)
@@ -99,6 +112,7 @@ def subir_foto(db: Session, file: UploadFile, datos: FotoCreate) -> FotoEspacio:
 
 
 def actualizar_foto(db: Session, foto_id: int, datos: FotoUpdate) -> FotoEspacio:
+    """Actualiza metadatos de una foto ya existente."""
     foto = db.query(FotoEspacio).filter(FotoEspacio.id == foto_id).first()
     if not foto:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Foto no encontrada")
@@ -110,6 +124,20 @@ def actualizar_foto(db: Session, foto_id: int, datos: FotoUpdate) -> FotoEspacio
 
 
 def eliminar_foto(db: Session, foto_id: int) -> FotoEspacio:
+    """
+    Elimina permanentemente una fotografía tanto del almacenamiento en la nube
+    como de la base de datos.
+
+    Args:
+        db: Sesión activa de la base de datos.
+        foto_id: Identificador único de la fotografía a eliminar.
+
+    Returns:
+        FotoEspacio: El objeto de la fotografía que ha sido eliminada.
+
+    Raises:
+        HTTPException: 404 si la fotografía no existe en los registros.
+    """
     foto = db.query(FotoEspacio).filter(FotoEspacio.id == foto_id).first()
     if not foto:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Foto no encontrada")
