@@ -4,6 +4,16 @@ from app.database import Base
 
 
 class Contacto(Base):
+    """
+    Información de contacto asociada a un espacio.
+
+    Attributes:
+        id: Identificador único.
+        espacio_id: Clave foránea al espacio relacionado.
+        tipo: Clasificación del contacto (teléfono, correo, extensión).
+        valor: El dato de contacto per se.
+        espacio: Relación hacia el objeto Espacio.
+    """
     __tablename__ = "contactos"
     __table_args__ = (
         CheckConstraint(

@@ -12,6 +12,7 @@ router = APIRouter(prefix="/categorias", tags=["Categorías"])
 
 @router.get("", response_model=list[CategoriaOut])
 def listar(db: Session = Depends(get_db)):
+    """Lista todas las categorías de espacios disponibles en orden alfabético."""
     return db.query(Categoria).order_by(Categoria.nombre).all()
 
 
@@ -21,6 +22,20 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Crea una nueva categoría para clasificar espacios.
+
+    Args:
+        datos: Datos de la categoría (nombre, icono, etc).
+        db: Sesión de base de datos.
+        _: Valida rol de administrador.
+
+    Returns:
+        Categoria: La categoría creada.
+
+    Raises:
+        HTTPException: 409 si el nombre de la categoría ya está en uso.
+    """
     if db.query(Categoria).filter(Categoria.nombre == datos.nombre).first():
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="La categoría ya existe")
     cat = Categoria(**datos.model_dump())
@@ -37,6 +52,17 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Modifica parcialmente una categoría existente.
+
+    Args:
+        cat_id: Identificador único de la categoría.
+        datos: Campos a actualizar.
+        db: Sesión de base de datos.
+
+    Returns:
+        Categoria: La categoría actualizada.
+    """
     cat = db.query(Categoria).filter(Categoria.id == cat_id).first()
     if not cat:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Categoría no encontrada")

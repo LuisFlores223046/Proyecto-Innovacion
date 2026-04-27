@@ -15,6 +15,20 @@ router = APIRouter(prefix="/auth", tags=["Autenticación"])
 
 @router.post("/login", response_model=TokenOut)
 def login(datos: LoginIn, db: Session = Depends(get_db)):
+    """
+    Verifica credenciales y genera un token JWT de sesión.
+
+    Args:
+        datos: Esquema con nombre de usuario y contraseña.
+        db: Sesión de base de datos inyectada.
+
+    Returns:
+        TokenOut: Objeto conteniendo el access_token generado.
+
+    Raises:
+        HTTPException: 401 si las credenciales son inválidas.
+        HTTPException: 403 si la cuenta está bloqueada por intentos fallidos.
+    """
     admin = db.query(Administrador).filter(Administrador.username == datos.username).first()
 
     if not admin or not admin.activo:
@@ -59,6 +73,20 @@ def crear_admin(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """
+    Registra un nuevo administrador en el sistema.
+
+    Args:
+        datos: Información del nuevo administrador.
+        db: Sesión de base de datos.
+        _: Dependencia que asegura que solo un admin actual cree otros.
+
+    Returns:
+        Administrador: El objeto administrador creado.
+
+    Raises:
+        HTTPException: 409 si el username o email ya existen.
+    """
     if db.query(Administrador).filter(Administrador.username == datos.username).first():
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -86,11 +114,13 @@ def listar_admins(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Obtiene la lista completa de administradores registrados."""
     return db.query(Administrador).order_by(Administrador.id).all()
 
 
 @router.get("/me", response_model=AdminOut)
 def perfil(admin: Administrador = Depends(get_current_admin)):
+    """Obtiene la información del administrador actualmente autenticado."""
     return admin
 
 
@@ -100,6 +130,21 @@ def eliminar_admin(
     db: Session = Depends(get_db),
     admin_actual: Administrador = Depends(get_current_admin),
 ):
+    """
+    Elimina permanentemente un administrador del sistema.
+
+    Args:
+        admin_id: ID del administrador a eliminar.
+        db: Sesión de base de datos.
+        admin_actual: Instancia del admin que realiza la petición.
+
+    Returns:
+        Administrador: El objeto eliminado.
+
+    Raises:
+        HTTPException: 400 si se intenta eliminar a sí mismo o al último admin.
+        HTTPException: 404 si el admin no existe.
+    """
     if admin_actual.id == admin_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

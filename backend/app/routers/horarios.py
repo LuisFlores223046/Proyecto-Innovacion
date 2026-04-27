@@ -16,6 +16,7 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Define una franja horaria de atención para un espacio."""
     horario = Horario(**datos.model_dump())
     db.add(horario)
     db.commit()
@@ -30,6 +31,7 @@ def actualizar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Actualiza los días o las horas de un registro horario."""
     horario = db.query(Horario).filter(Horario.id == horario_id).first()
     if not horario:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Horario no encontrado")
@@ -46,6 +48,7 @@ def eliminar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Elimina permanentemente un registro de horario."""
     horario = db.query(Horario).filter(Horario.id == horario_id).first()
     if not horario:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Horario no encontrado")

@@ -5,6 +5,18 @@ load_dotenv()
 
 
 class Settings:
+    """
+    Contenedor de parámetros de configuración del sistema.
+
+    Attributes:
+        DATABASE_URL: Cadena de conexión a la base de datos.
+        SECRET_KEY: Clave para firma de tokens criptográficos.
+        ALGORITHM: Algoritmo de cifrado JWT.
+        ACCESS_TOKEN_EXPIRE_HOURS: Duración de validez del token.
+        MAX_LOGIN_ATTEMPTS: Límite antes de bloqueo de cuenta.
+        LOCKOUT_MINUTES: Tiempo de espera tras bloqueo.
+        ENVIRONMENT: Entorno de ejecución (development/production).
+    """
     DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/MapaCU")
     SECRET_KEY: str = os.getenv("SECRET_KEY", "cambia-esto-en-produccion")
     ALGORITHM: str = os.getenv("ALGORITHM", "HS256")

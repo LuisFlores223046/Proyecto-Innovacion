@@ -16,6 +16,7 @@ def crear(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Vincula un servicio (ej. Wi-Fi, Baños) a un espacio específico."""
     servicio = ServicioEspacio(**datos.model_dump())
     db.add(servicio)
     db.commit()
@@ -29,6 +30,7 @@ def eliminar(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
+    """Elimina un servicio asociado a un espacio."""
     servicio = db.query(ServicioEspacio).filter(ServicioEspacio.id == servicio_id).first()
     if not servicio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Servicio no encontrado")
