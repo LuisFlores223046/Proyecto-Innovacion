@@ -2,7 +2,9 @@ import { type JSX, useState, useEffect } from "react";
 import Input from "../UI/Input";
 import Button from "../UI/Button";
 import Select from "../UI/Select";
-import { fetchTodosLosEspacios } from "../../services/api";
+import { fetchTodosLosEspacios, subirFotoEvento, eliminarFotoEvento } from "../../services/api";
+import { toast } from "sonner";
+import ImageInput from "../UI/ImageInput";
 import type { Evento, EventoCreate } from "../../types/evento";
 import type { Espacio } from "../../types/espacio";
 
@@ -26,6 +28,8 @@ export default function EventoForm({ initialData, onSubmit, onCancel }: Props): 
         url_registro: initialData?.url_registro || "",
         activo: initialData?.activo ?? true,
     });
+    const [isUploadingFoto, setIsUploadingFoto] = useState(false);
+    const eventoId = initialData?.id;
 
     useEffect(() => {
         async function loadData() {
@@ -66,10 +70,42 @@ export default function EventoForm({ initialData, onSubmit, onCancel }: Props): 
         onSubmit(dataToSend);
     };
 
+    const handleUploadFoto = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!eventoId || !e.target.files?.[0]) return;
+        setIsUploadingFoto(true);
+        try {
+            const saved = await subirFotoEvento(eventoId, e.target.files[0]);
+            // Since initialData won't automatically update from here (unless parent refetches and passes down),
+            // we fake the onSubmit to update parent state, or we could just trust that parent updates.
+            // The safest is to notify parent with full object.
+            toast.success("Foto subida con éxito");
+            // @ts-ignore
+            onSubmit({ ...saved, foto_url: saved.foto_url });
+        } catch (e) {
+            console.error(e);
+        } finally {
+            setIsUploadingFoto(false);
+        }
+    };
+
+    const handleDeleteFoto = async () => {
+        if (!eventoId) return;
+        try {
+            const saved = await eliminarFotoEvento(eventoId);
+            toast.success("Foto eliminada");
+            // @ts-ignore
+            onSubmit({ ...saved, foto_url: null });
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
     if (loading) return <div className="p-8 text-center text-gray-500 animate-pulse">Cargando...</div>;
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6 bg-white rounded-xl border border-gray-50">
+        <div className="flex flex-col gap-6">
+            <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <Input
                 label="Título del Evento"
                 name="titulo"
@@ -166,5 +202,19 @@ export default function EventoForm({ initialData, onSubmit, onCancel }: Props): 
                 <Button type="submit">{initialData ? "Actualizar Evento" : "Crear Evento"}</Button>
             </div>
         </form>
+        </section>
+
+        {/* IMAGE UPLOAD SECTION */}
+        <div className="grid grid-cols-1 gap-6">
+            <ImageInput
+                handleUploadFoto={handleUploadFoto}
+                handleDeleteFoto={handleDeleteFoto}
+                isUploadingFoto={isUploadingFoto}
+                fotoUrl={initialData?.foto_url}
+                entityId={eventoId}
+                entityName="Evento"
+            />
+        </div>
+    </div>
     );
 }

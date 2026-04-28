@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import ImageInput from "../UI/ImageInput";
 import type { Edificio, Piso } from "../../types/edificio";
 import {
   agregarEdificio,
@@ -77,8 +78,6 @@ export default function EdificioForm({ initialData, onSubmit, onCancel }: Props)
         toast.success("Edificio creado. Ahora puedes añadir fotos y pisos.");
       }
       setCurrentEdificio(saved);
-      // No cerramos el modal ni llamamos a onSubmit forzadamente para dejar que el usuario siga administrando
-      // Pero notificamos al padre para que la lista de atrás se actualice
       onSubmit(saved);
     } catch (error) {
       console.error("Error al guardar el edificio:", error);
@@ -129,7 +128,7 @@ export default function EdificioForm({ initialData, onSubmit, onCancel }: Props)
   };
 
   return (
-    <div className="flex flex-col gap-6 max-h-[100vh] overflow-y-auto">
+    <div className="flex flex-col gap-6">
       {/* SECCIÓN 1: INFO BÁSICA */}
       <section className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
         <form onSubmit={handleSubmitInfo} noValidate className="flex flex-col gap-4">
@@ -194,55 +193,14 @@ export default function EdificioForm({ initialData, onSubmit, onCancel }: Props)
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* SECCIÓN 2: FOTO */}
-        <section className={`relative transition-all duration-300 ${!edificioId ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
-          {!edificioId && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/60 backdrop-blur-[1px] rounded-2xl">
-              <span className="bg-gray-800 text-white text-xs px-3 py-1.5 rounded-full shadow-lg">
-                Bloqueado: Guarda primero el edificio
-              </span>
-            </div>
-          )}
-          <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm h-full flex flex-col overflow-y-auto">
-            <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-              Foto del Edificio
-            </h3>
-
-            <div className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-4 min-h-[150px]">
-              {currentEdificio?.foto_url ? (
-                <div className="relative group w-full h-40">
-                  <img
-                    src={currentEdificio.foto_url}
-                    alt="Edificio"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
-                    <button
-                      onClick={handleDeleteFoto}
-                      className="bg-red-500 text-white p-2 rounded-full hover:scale-110 transition-transform"
-                      title="Eliminar foto"
-                    >
-                      <FaTrash size={18} />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <label className="flex flex-col items-center gap-3 cursor-pointer hover:text-blue-500 transition-colors">
-                  <FaCloudUploadAlt size={40} className="text-gray-300" />
-                  <span className="text-sm text-gray-500 text-center">
-                    {isUploadingFoto ? "Subiendo..." : "Subir foto del edificio"}
-                  </span>
-                  <input
-                    type="file"
-                    className="hidden"
-                    onChange={handleUploadFoto}
-                    accept="image/*"
-                    disabled={isUploadingFoto}
-                  />
-                </label>
-              )}
-            </div>
-          </div>
-        </section>
+        <ImageInput
+          handleUploadFoto={handleUploadFoto}
+          handleDeleteFoto={handleDeleteFoto}
+          isUploadingFoto={isUploadingFoto}
+          fotoUrl={currentEdificio?.foto_url}
+          entityId={edificioId}
+          entityName="Edificio"
+        />
 
         {/* SECCIÓN 3: PISOS */}
         <section className={`relative transition-all duration-300 ${!edificioId ? 'opacity-50 grayscale pointer-events-none' : ''}`}>

@@ -1,119 +1,19 @@
 import { useEffect, useState, useCallback } from "react";
-import { MapContainer, TileLayer, Marker, useMapEvents, ZoomControl, useMap } from "react-leaflet";
-import type { LatLngBoundsExpression, LatLngExpression, LatLngBounds } from "leaflet";
-import L from "leaflet";
+import { MapContainer, TileLayer, Marker, ZoomControl } from "react-leaflet";
+import type { LatLngExpression, LatLngBounds } from "leaflet";
 import type { JSX } from "react";
 import type { Edificio } from "../types/edificio";
 import type { Espacio } from "../types/espacio";
-import { fetchEdificios } from "../services/api";
+import { fetchEdificios, fetchTodosLosEspacios } from "../services/api";
 import BuildingCard from "../components/LocationCard/BuildingCard";
 import SpaceDetailCard from "../components/LocationCard/SpaceDetailCard";
 import { useLocation } from "react-router-dom";
-import { fetchTodosLosEspacios } from "../services/api";
 import SearchBar from "../components/Search/SearchBar";
 import "leaflet/dist/leaflet.css"
 
-const CU_CENTER: LatLngExpression = [31.49261, -106.41446];
-
-const CU_BOUNDS: LatLngBoundsExpression = [
-    [31.498198447766526, -106.409644733004],
-    [31.48653567027508, -106.42205879769486],
-];
-
-const urlTile =
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
-
-const createBuildingIcon = (codigo: string) => {
-    return L.divIcon({
-        className: 'custom-building-marker bg-transparent border-none',
-        html: `<div style="width: 36px; height: 48px; transition: transform 0.2s; transform-origin: bottom center;">
-            <svg viewBox="0 0 36 48" width="36" height="48" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25)); overflow: visible;">
-              <path d="M18 0C8.06 0 0 8.06 0 18c0 12.33 16.53 28.92 17.11 29.5a1.2 1.2 0 0 0 1.78 0C19.47 46.92 36 30.33 36 18 36 8.06 27.94 0 18 0z" fill="#ef4444" stroke="#ffffff" stroke-width="2"/>
-              <text x="18" y="23" font-family="sans-serif" font-size="14px" fill="white" font-weight="bold" text-anchor="middle">${codigo}</text>
-            </svg>
-        </div>`,
-        iconSize: [36, 48],
-        iconAnchor: [18, 48],
-    });
-};
-
-const iconoAzul = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-});
-
-const createEmojiIcon = (emoji: string, colorHex: string, isPulsing: boolean = false) => {
-    return L.divIcon({
-        className: 'custom-emoji-marker bg-transparent border-none',
-        html: `
-        <div style="position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
-            ${isPulsing ? `<div class="animate-ping" style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background-color: ${colorHex};"></div>` : ''}
-            <div style="
-                background-color: ${colorHex};
-                border: 2px solid #ffffff;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 16px;
-                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-                position: relative;
-                z-index: 10;
-                transition: transform 0.2s;
-            ">${emoji}</div>
-        </div>`,
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-    });
-};
-
-const ZOOM_THRESHOLD_ESPACIOS = 19;
-
-function MapClickHandler({ onMapClick }: { onMapClick: () => void }) {
-    useMapEvents({
-        click: () => onMapClick(),
-    });
-    return null;
-}
-
-function ZoomWatcher({ onViewChange }: {
-    onViewChange: (zoom: number, bounds: LatLngBounds) => void;
-}) {
-    const map = useMap();
-
-    useEffect(() => {
-        // Estado inicial
-        onViewChange(map.getZoom(), map.getBounds());
-    }, [map, onViewChange]);
-
-    useMapEvents({
-        zoomend: () => onViewChange(map.getZoom(), map.getBounds()),
-        moveend: () => onViewChange(map.getZoom(), map.getBounds()),
-    });
-
-    return null;
-}
-
-interface FlyToTarget {
-    lat: number;
-    lng: number;
-}
-
-function FlyToHandler({ target, icon }: { target: FlyToTarget, icon: L.DivIcon | L.Icon }) {
-    const map = useMap();
-
-    useEffect(() => {
-        map.flyTo([target.lat, target.lng], 20, { duration: 1.5 });
-    }, [map, target.lat, target.lng]);
-
-    return (
-        <Marker position={[target.lat, target.lng]} icon={icon} />
-    );
-}
+import { CU_CENTER, CU_BOUNDS, urlTile, ZOOM_THRESHOLD_ESPACIOS } from "../components/Map/mapConfig";
+import { createBuildingIcon, createEmojiIcon, createUserLocationIcon } from "../components/Map/mapIcons";
+import { MapClickHandler, ZoomWatcher, FlyToHandler, type FlyToTarget } from "../components/Map/MapEventHandlers";
 
 interface LocationState {
     flyTo?: FlyToTarget;
@@ -121,6 +21,7 @@ interface LocationState {
 }
 
 export default function MapPage(): JSX.Element {
+    const [userLocation, setUserLocation] = useState<LatLngExpression | null>(null);
     const [edificios, setEdificios] = useState<Edificio[]>([]);
     const [selected, setSelected] = useState<Edificio | null>(null);
     const location = useLocation();
@@ -134,13 +35,36 @@ export default function MapPage(): JSX.Element {
     const [zoomLevel, setZoomLevel] = useState<number>(18);
     const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null);
 
+    useEffect(() => {
+        if (!navigator.geolocation) {
+            console.warn("La geolocalización no está soportada por tu navegador");
+            return;
+        }
+
+        const watchId = navigator.geolocation.watchPosition(
+            (position) => {
+                setUserLocation([position.coords.latitude, position.coords.longitude]);
+            },
+            (error) => {
+                console.error("Error obteniendo ubicación:", error);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+
+        return () => navigator.geolocation.clearWatch(watchId);
+    }, []);
+
     const handleViewChange = useCallback((zoom: number, bounds: LatLngBounds) => {
         setZoomLevel(zoom);
         setMapBounds(bounds);
     }, []);
 
     useEffect(() => {
-        fetchTodosLosEspacios(["Aula", "Bano Mujeres", "Bano Hombres"])
+        fetchTodosLosEspacios(["Aula", "Baño Mujeres", "Baño Hombres"])
             .then(data => setPuntos(data))
             .catch(err => console.error(err));
     }, []);
@@ -251,8 +175,16 @@ export default function MapPage(): JSX.Element {
                         target={flyTarget}
                         icon={espacioDetalle
                             ? createEmojiIcon(espacioDetalle.categoria?.icono || "📍", espacioDetalle.categoria?.color_hex || "#3b82f6", true)
-                            : iconoAzul
+                            : createEmojiIcon("📍", "#3b82f6")
                         }
+                    />
+                )}
+
+                {userLocation && (
+                    <Marker
+                        position={userLocation}
+                        icon={createUserLocationIcon()}
+                        eventHandlers={{ click: () => { } }} // handler vacío para evitar propagación al mapa
                     />
                 )}
             </MapContainer>

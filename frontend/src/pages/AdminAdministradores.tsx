@@ -90,7 +90,7 @@ export default function AdminAdministradores() {
                                     </td>
                                     <td className="px-4 py-3">{formatFecha(admin.creado_en)}</td>
                                     <td className="px-4 py-3 flex gap-4">
-                                        <Button variant="link-danger" onClick={() => setAdminAEliminar(admin)}>Eliminar</Button>
+                                        <Button variant="link-danger" onClick={() => setAdminAEliminar(admin)} disabled={admins.length <= 1}>Eliminar</Button>
                                     </td>
                                 </tr>
                             ))}

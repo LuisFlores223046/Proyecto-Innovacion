@@ -55,13 +55,32 @@ export default function EventCard({
             ref={eventRef}
             onClick={onClick}
             className={`
-                bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden 
+                group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden 
                 transition-all duration-300 flex flex-col h-full cursor-pointer
-                ${terminado ? 'opacity-60 grayscale-[0.3]' : 'hover:shadow-md hover:-translate-y-1'}
+                ${terminado ? 'opacity-60 grayscale-[0.3]' : 'hover:shadow-xl hover:-translate-y-1'}
                 ${isFocused ? 'ring-4 ring-blue-500/50 shadow-lg' : ''}
             `}
         >
-            <div className={`px-6 py-4 border-b border-gray-50 flex justify-between items-start ${terminado ? 'bg-gray-50' : 'bg-white'}`}>
+            {evento.foto_url && (
+                <div className="w-full h-56 relative overflow-hidden bg-gray-900 shrink-0 flex items-center justify-center">
+                    {/* Blurred background layer to fill empty space */}
+                    <div 
+                        className="absolute inset-0 z-0 opacity-40 blur-xl scale-125 transition-transform duration-700 group-hover:scale-150"
+                        style={{
+                            backgroundImage: `url(${evento.foto_url})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}
+                    />
+                    {/* Main image */}
+                    <img
+                        src={evento.foto_url}
+                        alt={evento.titulo}
+                        className="relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 group-hover:scale-105"
+                    />
+                </div>
+            )}
+            <div className={`px-6 py-4 ${!evento.foto_url ? 'border-b border-gray-50' : 'pt-5'} flex justify-between items-start ${terminado ? 'bg-gray-50' : 'bg-white'}`}>
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${getTipoColor(evento.tipo)}`}>
                     {evento.tipo}
                 </span>
@@ -76,37 +95,33 @@ export default function EventCard({
                     </span>
                 )}
             </div>
-
-            <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
+            <div className={`px-6 pb-6 flex-1 flex flex-col ${terminado ? 'bg-gray-50' : 'bg-white'}`}>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-blue-600 transition-colors">
                     {evento.titulo}
                 </h3>
-
                 {evento.descripcion && (
-                    <p className="text-gray-500 text-sm mb-6 line-clamp-3">
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
                         {evento.descripcion}
                     </p>
                 )}
-
-                <div className="mt-auto space-y-3">
-                    <div className="flex items-start text-sm text-gray-600 gap-3">
-                        <FaCalendarAlt className="mt-0.5 text-gray-400 shrink-0" />
+                
+                <div className="mt-auto space-y-3 bg-gray-50 p-4 rounded-xl border border-gray-100/60">
+                    <div className="flex items-start text-sm text-gray-700 gap-3">
+                        <FaCalendarAlt className="mt-0.5 text-blue-500 shrink-0" />
                         <div>
-                            <p className="capitalize">{formatFecha(evento.fecha_inicio)}</p>
+                            <p className="capitalize font-medium">{formatFecha(evento.fecha_inicio)}</p>
                         </div>
                     </div>
-
-                    <div className="flex items-center text-sm text-gray-600 gap-3">
-                        <FaClock className="text-gray-400 shrink-0" />
-                        <p>
+                    <div className="flex items-center text-sm text-gray-700 gap-3">
+                        <FaClock className="text-blue-500 shrink-0" />
+                        <p className="font-medium">
                             {formatHora(evento.fecha_inicio)}
                             {evento.fecha_fin && ` - ${formatHora(evento.fecha_fin)}`}
                         </p>
                     </div>
-
-                    <div className="flex items-start text-sm text-gray-600 gap-3">
-                        <FaMapMarkerAlt className="mt-0.5 text-gray-400 shrink-0" />
-                        <p className="font-medium text-gray-900">
+                    <div className="flex items-start text-sm text-gray-700 gap-3">
+                        <FaMapMarkerAlt className="mt-0.5 text-blue-500 shrink-0" />
+                        <p className="font-medium text-gray-900 line-clamp-2">
                             {espacioVinculado ? espacioVinculado.nombre : "Por confirmar / Ubicación externa"}
                         </p>
                     </div>

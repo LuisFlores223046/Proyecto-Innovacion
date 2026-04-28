@@ -73,7 +73,7 @@ export const eliminarEdificio = (edificioId: number) => fetchClient<void>(`/edif
 
 export const subirFotoEdificio = (edificioId: number, archivo: File) => {
   const data = new FormData();
-  data.append("file", archivo);
+  data.append("foto", archivo);
   return fetchClient<Edificio>(`/edificios/${edificioId}/foto`, {
     method: "POST",
     body: data,
@@ -206,6 +206,18 @@ export const actualizarEvento = (eventoId: number, datos: EventoUpdate) =>
   });
 
 export const eliminarEvento = (eventoId: number) => fetchClient<void>(`/eventos/${eventoId}`, { method: "DELETE" });
+
+export const subirFotoEvento = (eventoId: number, foto: File) => {
+  const data = new FormData();
+  data.append("foto", foto);
+  return fetchClient<Evento>(`/eventos/${eventoId}/foto`, {
+    method: "POST",
+    body: data,
+  });
+};
+
+export const eliminarFotoEvento = (eventoId: number) =>
+  fetchClient<Evento>(`/eventos/${eventoId}/foto`, { method: "DELETE" });
 
 // --- Administradores ---
 export const fetchAdmins = () => fetchClient<MeResponse[]>("/auth/admin");

@@ -135,7 +135,7 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
     if (loading) return <div className="p-8 text-center text-gray-500 animate-pulse">Cargando...</div>;
 
     return (
-        <div className="flex flex-col  w-full max-h-[85vh] overflow-hidden">
+        <div className="flex flex-col w-full">
             {/* TABS HEADER */}
             <div className="flex border-b border-gray-100 gap-4 sm:gap-6 overflow-x-auto custom-scrollbar whitespace-nowrap">
                 <TabButton
@@ -175,7 +175,7 @@ export default function EspacioForm({ initialData, onSubmit, onCancel }: Props):
             </div>
 
             {/* CONTENT AREA */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar pb-4 pr-1">
+            <div className="flex-1 pb-4 pr-1 pt-4">
                 {activeTab === "info" && (
                     <form onSubmit={handleSubmitInfo} noValidate className="flex flex-col gap-6 bg-white p-4 rounded-xl border border-gray-50">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
