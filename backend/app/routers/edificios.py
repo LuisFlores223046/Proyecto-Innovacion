@@ -27,7 +27,7 @@ router = APIRouter(tags=["Edificios"])
 
 @router.get("/edificios/completo", response_model=list[EdificioConPisos])
 def listar_edificios_con_pisos(db: Session = Depends(get_db)):
-    """Obtiene información básica de todos los edificios registrados."""
+    """Devuelve todos los edificios con sus pisos anidados."""
     edificios = db.query(Edificio).order_by(Edificio.nombre).all()
     for edificio in edificios:
         edificio.pisos = (
@@ -41,7 +41,6 @@ def listar_edificios_con_pisos(db: Session = Depends(get_db)):
 
 @router.get("/edificios", response_model=list[EdificioOut])
 def listar_edificios(db: Session = Depends(get_db)):
-    """Obtiene edificios incluyendo sus pisos asociados en una sola respuesta."""
     return db.query(Edificio).order_by(Edificio.nombre).all()
 
 
@@ -64,27 +63,45 @@ def crear_edificio(
 @router.patch("/edificios/{edificio_id}", response_model=EdificioOut)
 def actualizar_edificio(
     edificio_id: int,
-    datos: EdificioUpdate,
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
     """
-    Elimina un edificio, sus pisos y sus espacios de forma recursiva.
+    Elimina un edificio de forma permanente, incluyendo sus recursos y dependencias.
+
+    Realiza una limpieza integral que abarca la eliminación de la imagen en 
+    Cloudinary, así como el borrado en cascada manual de todos los pisos y 
+    espacios asociados para mantener la integridad de la base de datos.
 
     Args:
-        edificio_id: ID del edificio.
-        db: Sesión de BD.
+        edificio_id: Identificador único del edificio a eliminar.
+        db: Sesión de la base de datos.
+        _: Dependencia de seguridad que valida privilegios de administrador.
 
     Returns:
-        Edificio: Datos del edificio eliminado.
+        Edificio: El objeto del edificio eliminado.
+
+    Raises:
+        HTTPException: 404 si el edificio no existe en la base de datos.
     """
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
-    for campo, valor in datos.model_dump(exclude_unset=True).items():
-        setattr(edificio, campo, valor)
+
+    # Eliminar foto de Cloudinary si existe
+    if edificio.foto_url:
+        slug = re.sub(r"[^a-z0-9]+", "_", edificio.nombre.lower()).strip("_")
+        public_id = f"mapacu/edificios/{slug}_foto"
+        cloudinary.uploader.destroy(public_id, resource_type="image")
+
+    # Cascada manual: eliminar espacios de cada piso, luego pisos
+    pisos = db.query(Piso).filter(Piso.edificio_id == edificio_id).all()
+    for piso in pisos:
+        db.query(Espacio).filter(Espacio.piso_id == piso.id).delete()
+    db.query(Piso).filter(Piso.edificio_id == edificio_id).delete()
+
+    db.delete(edificio)
     db.commit()
-    db.refresh(edificio)
     return edificio
 
 
@@ -95,7 +112,6 @@ def subir_foto_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """Sube y vincula una imagen de Cloudinary a un edificio específico."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -122,7 +138,6 @@ def eliminar_foto_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """Desvincula la foto del edificio y la borra de la nube."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
@@ -145,24 +160,6 @@ def eliminar_edificio(
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Elimina un edificio de forma permanente, incluyendo sus recursos y dependencias.
-
-    Realiza una limpieza integral que abarca la eliminación de la imagen en 
-    Cloudinary, así como el borrado en cascada manual de todos los pisos y 
-    espacios asociados para mantener la integridad de la base de datos.
-
-    Args:
-        edificio_id: Identificador único del edificio a eliminar.
-        db: Sesión de la base de datos.
-        _: Dependencia de seguridad que valida privilegios de administrador.
-
-    Returns:
-        Edificio: El objeto del edificio eliminado.
-
-    Raises:
-        HTTPException: 404 si el edificio no existe en la base de datos.
-    """
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
