@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Numeric, Text
+from sqlalchemy import Column, Integer, String, Numeric, Text, Boolean
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -26,5 +26,6 @@ class Edificio(Base):
     latitud = Column(Numeric(10, 7), nullable=True)
     longitud = Column(Numeric(10, 7), nullable=True)
     foto_url = Column(String(500), nullable=True)
+    activo = Column(Boolean, default=True, nullable=False)
 
     pisos = relationship("Piso", back_populates="edificio", cascade="all, delete-orphan")

@@ -1,5 +1,6 @@
 """Lógica de negocio para espacios."""
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, text
 from fastapi import HTTPException, status
@@ -84,12 +85,15 @@ def buscar_espacios(db: Session, q: str, limite: int = 20) -> list[Espacio]:
     )
 
 
+_ZONA_JUAREZ = ZoneInfo("America/Ciudad_Juarez")
+
+
 def espacios_abiertos_ahora(db: Session) -> list[Espacio]:
     """
     Consulta los espacios que se encuentran operativos en el momento actual.
 
-    Utiliza la hora y el día de la semana actual (UTC) para filtrar contra
-    los registros de la tabla de horarios.
+    Utiliza la hora local de Ciudad Juárez para comparar contra los horarios
+    almacenados en BD (que son hora local, sin zona).
 
     Args:
         db: Sesión de la base de datos.
@@ -97,7 +101,7 @@ def espacios_abiertos_ahora(db: Session) -> list[Espacio]:
     Returns:
         List[Espacio]: Espacios activos cuyo horario coincide con el tiempo actual.
     """
-    ahora = datetime.now(timezone.utc)
+    ahora = datetime.now(_ZONA_JUAREZ)
     dia_actual = ahora.weekday()  # 0=lunes … 6=domingo
     hora_actual = ahora.time()
 
