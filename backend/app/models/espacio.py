@@ -7,6 +7,22 @@ from app.database import Base
 
 
 class Espacio(Base):
+    """
+    Representa un punto de interés, oficina o lugar específico en el mapa.
+
+    Attributes:
+        id: Identificador único.
+        codigo: Código único asignado al espacio.
+        nombre: Nombre descriptivo del lugar.
+        categoria_id: FK hacia la categoría del espacio.
+        piso_id: FK hacia el piso donde se ubica el espacio.
+        latitud: Coordenada de latitud específica.
+        longitud: Coordenada de longitud específica.
+        activo: Define si el espacio es visible para los usuarios.
+        notas: Información interna o aclaraciones adicionales.
+        creado_en: Timestamp de creación.
+        actualizado_en: Timestamp de la última modificación.
+    """
     __tablename__ = "espacios"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -19,7 +35,7 @@ class Espacio(Base):
     activo = Column(Boolean, default=True, nullable=False)
     notas = Column(Text, nullable=True)
     creado_en = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
-    actualizado_en = Column(TIMESTAMP(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
+    actualizado_en = Column(TIMESTAMP(timezone=True), onupdate=func.now(), nullable=True)
 
     # Relaciones
     categoria = relationship("Categoria", back_populates="espacios")

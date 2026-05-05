@@ -1,5 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_validator
+from typing import Self
 from app.schemas.categoria import CategoriaOut
 from app.schemas.horario import HorarioOut
 from app.schemas.contacto import ContactoOut
@@ -9,6 +10,7 @@ from app.schemas.evento import EventoOut
 
 
 class EspacioBase(BaseModel):
+    """Definición base de un espacio en el mapa."""
     codigo: str
     nombre: str
     categoria_id: int | None = None
@@ -20,10 +22,26 @@ class EspacioBase(BaseModel):
 
 
 class EspacioCreate(EspacioBase):
-    pass
+    """Esquema para el registro de nuevos espacios."""
+
+    @model_validator(mode="after")
+    def validar_coordenadas(self) -> Self:
+        lat, lon = self.latitud, self.longitud
+        # Latitud y longitud deben proporcionarse juntas o dejarse ambas vacías
+        if (lat is None) != (lon is None):
+            raise ValueError(
+                "Debes proporcionar latitud y longitud juntas, o dejar ambas vacías."
+            )
+        # Validar rangos geográficos si se proporcionaron
+        if lat is not None and not (-90 <= lat <= 90):
+            raise ValueError("La latitud debe estar entre -90 y 90.")
+        if lon is not None and not (-180 <= lon <= 180):
+            raise ValueError("La longitud debe estar entre -180 y 180.")
+        return self
 
 
 class EspacioUpdate(BaseModel):
+    """Campos modificables de un espacio."""
     codigo: str | None = None
     nombre: str | None = None
     categoria_id: int | None = None
@@ -35,11 +53,12 @@ class EspacioUpdate(BaseModel):
 
 
 class EspacioOut(EspacioBase):
+    """Respuesta estándar para la visualización de espacios."""
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     creado_en: datetime
-    actualizado_en: datetime
+    actualizado_en: datetime | None = None
     # Categoria anidada para que Leaflet pinte marcadores sin segunda petición
     categoria: CategoriaOut | None = None
 

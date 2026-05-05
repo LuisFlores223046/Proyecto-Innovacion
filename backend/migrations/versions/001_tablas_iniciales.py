@@ -126,22 +126,6 @@ def upgrade() -> None:
         ),
     )
 
-    # ── reportes ──────────────────────────────────────────────────────────────
-    op.create_table(
-        "reportes",
-        sa.Column("id", sa.Integer(), primary_key=True),
-        sa.Column("espacio_id", sa.Integer(), sa.ForeignKey("espacios.id"), nullable=False),
-        sa.Column("tipo", sa.String(20), nullable=False),
-        sa.Column("descripcion", sa.Text(), nullable=True),
-        sa.Column("resuelto", sa.Boolean(), server_default=sa.false(), nullable=False),
-        sa.Column("creado_en", sa.TIMESTAMP(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("resuelto_en", sa.TIMESTAMP(timezone=True), nullable=True),
-        sa.CheckConstraint(
-            "tipo IN ('cerrado', 'sucio', 'danado', 'lleno', 'otro')",
-            name="ck_reporte_tipo",
-        ),
-    )
-
     # ── administradores ───────────────────────────────────────────────────────
     op.create_table(
         "administradores",
@@ -173,7 +157,6 @@ def downgrade() -> None:
     op.drop_index("ix_espacios_codigo", "espacios")
 
     op.drop_table("administradores")
-    op.drop_table("reportes")
     op.drop_table("eventos")
     op.drop_table("fotos_espacio")
     op.drop_table("servicios_espacio")

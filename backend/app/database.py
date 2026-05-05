@@ -13,8 +13,17 @@ Base = declarative_base()
 
 
 def get_db():
+    """
+    Generador de sesiones de base de datos para inyección de dependencias.
+
+    Garantiza rollback automático ante cualquier excepción y el cierre
+    de la sesión al finalizar la petición.
+    """
     db = SessionLocal()
     try:
         yield db
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()

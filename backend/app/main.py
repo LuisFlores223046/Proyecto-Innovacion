@@ -27,7 +27,6 @@ origins = [
     "http://localhost:3000",
     settings.FRONTEND_URL,
 ]
-# Eliminar duplicados y vacíos
 origins = list({o for o in origins if o})
 
 app.add_middleware(
@@ -50,6 +49,7 @@ app.include_router(contactos.router, prefix=PREFIX)
 app.include_router(servicios.router, prefix=PREFIX)
 app.include_router(fotos.router, prefix=PREFIX)
 app.include_router(eventos.router, prefix=PREFIX)
+
 
 
 @app.get("/", tags=["Salud"])
