@@ -37,8 +37,12 @@ def login(datos: LoginIn, db: Session = Depends(get_db)):
             detail="Credenciales incorrectas",
         )
 
-    # Verificar bloqueo
-    if admin.bloqueado_hasta and admin.bloqueado_hasta > datetime.now(timezone.utc):
+    # Verificar bloqueo (compatible con SQLite naive y PostgreSQL aware)
+    bloqueado_hasta = admin.bloqueado_hasta
+    if bloqueado_hasta:
+        if bloqueado_hasta.tzinfo is None:
+            bloqueado_hasta = bloqueado_hasta.replace(tzinfo=timezone.utc)
+    if bloqueado_hasta and bloqueado_hasta > datetime.now(timezone.utc):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Cuenta bloqueada temporalmente por múltiples intentos fallidos",
