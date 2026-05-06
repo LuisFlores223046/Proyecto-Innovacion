@@ -37,12 +37,11 @@ def dms(lat_d, lat_m, lat_s, lon_d, lon_m, lon_s):
 def run():
     db = SessionLocal()
     try:
-        # ── Verificar si ya se ejecutó el seed ────────────────────────────────
         existing = db.query(Categoria).first()
         if existing:
             print("Seed ya fue ejecutado, omitiendo...")
             db.close()
-            return  # <-- sale sin hacer nada
+            return
         # ── Limpiar datos anteriores ──────────────────────────────────────────
         print("Limpiando datos anteriores...")
         db.query(FotoEspacio).delete()
