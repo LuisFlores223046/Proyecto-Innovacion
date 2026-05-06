@@ -25,6 +25,7 @@ app = FastAPI(
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://mapacu-frontend.onrender.com",
     settings.FRONTEND_URL,
 ]
 origins = list({o for o in origins if o})
@@ -49,7 +50,6 @@ app.include_router(contactos.router, prefix=PREFIX)
 app.include_router(servicios.router, prefix=PREFIX)
 app.include_router(fotos.router, prefix=PREFIX)
 app.include_router(eventos.router, prefix=PREFIX)
-
 
 
 @app.get("/", tags=["Salud"])
