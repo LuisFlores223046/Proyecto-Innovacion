@@ -1,4 +1,5 @@
 import type { Edificio } from "./edificio";
+import type { Evento } from "./evento";
 
 export interface Categoria {
   id: number;
@@ -60,4 +61,5 @@ export interface EspacioCompleto extends Espacio {
   contactos: Contacto[];
   servicios: Servicio[];
   fotos: Foto[];
+  eventos: Evento[];
 }

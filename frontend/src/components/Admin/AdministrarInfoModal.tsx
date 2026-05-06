@@ -19,7 +19,7 @@ interface AdministrarInfoModalProps {
 
 type TabName = "general" | "horarios" | "fotos";
 
-export default function AdministrarInfoModal({ espacio, onClose }: AdministrarInfoModalProps) {
+export default function AdministrarInfoModal({ espacio, onClose: _onClose }: AdministrarInfoModalProps) {
   const [detalles, setDetalles] = useState<EspacioCompleto | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<TabName>("general");

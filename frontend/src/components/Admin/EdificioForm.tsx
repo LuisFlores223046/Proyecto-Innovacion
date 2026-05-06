@@ -12,7 +12,7 @@ import {
   agregarPiso
 } from "../../services/api";
 import { toast } from "sonner";
-import { FaTrash, FaCloudUploadAlt, FaPlus } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa";
 
 interface Props {
   initialData?: Edificio | null;

@@ -13,7 +13,7 @@ interface AuthContextProps {
     logout: () => void;
 }
 
-export const AuthContext = createContext({} as AuthContextProps);
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
     const [admin, setAdmin] = useState<Admin | null>(null);
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         if (token) {
             const validarSesion = async () => {
                 try {
-                    const adminData = await getMe(token);
+                    const adminData = await getMe();
                     setAdmin(adminData);
                     setStatus('authenticated');
                 } catch (error) {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         try {
             const res = await loginAdmin({ username, password });
             localStorage.setItem("access_token", res.access_token);
-            const adminData = await getMe(res.access_token);
+            const adminData = await getMe();
             setAdmin(adminData);
             setStatus("authenticated");
             return true;

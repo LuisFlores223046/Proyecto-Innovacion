@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { EspacioCompleto } from "../../types/espacio";
+import type { Evento } from "../../types/evento";
 import { fetchEspacioDetalle } from "../../services/api";
 import StatusBadge from "../UI/StatusBadge";
 
@@ -255,12 +256,12 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
                     {/* Eventos Programados */}
                     {detalle && detalle.eventos && detalle.eventos.length > 0 && (
                         (() => {
-                            const eventosActivos = detalle.eventos.filter(e => {
+                            const eventosActivos = detalle.eventos.filter((e: Evento) => {
                                 if (!e.activo) return false;
                                 const fechaRef = e.fecha_fin ? new Date(e.fecha_fin) : new Date(e.fecha_inicio);
                                 if (!e.fecha_fin) fechaRef.setHours(fechaRef.getHours() + 2);
                                 return fechaRef >= new Date();
-                            }).sort((a, b) => new Date(a.fecha_inicio).getTime() - new Date(b.fecha_inicio).getTime());
+                            }).sort((a: Evento, b: Evento) => new Date(a.fecha_inicio).getTime() - new Date(b.fecha_inicio).getTime());
 
                             if (eventosActivos.length === 0) return null;
 
@@ -270,9 +271,8 @@ export default function SpaceDetailCard({ espacioId, espacioBasic, onClose }: Pr
                                         Eventos Programados
                                     </h3>
                                     <div className="space-y-2">
-                                        {eventosActivos.map(evento => {
+                                        {eventosActivos.map((evento: Evento) => {
                                             const fecha = new Date(evento.fecha_inicio);
-                                            const dia = fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
                                             const hora = fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
                                             
                                             return (

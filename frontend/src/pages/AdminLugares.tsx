@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import { FaSearch } from "react-icons/fa";
-import { fetchTodosLosEspacios, fetchBuscarEspacios, deleteEspacio, fetchEdificios, eliminarEdificio, fetchEspacioDetalle } from "../services/api";
+import { fetchTodosLosEspacios, fetchBuscarEspacios, deleteEspacio, fetchEdificios, eliminarEdificio } from "../services/api";
 import type { Espacio } from "../types/espacio";
 import type { Edificio } from "../types/edificio";
 import Modal from "../components/UI/Modal";
@@ -24,7 +24,6 @@ export default function AdminLugares() {
     const [espacioAEditar, setEspacioAEditar] = useState<Espacio | null>(null);
     const [espacioAEliminar, setEspacioAEliminar] = useState<Espacio | null>(null);
     const [highlightedRowId, setHighlightedRowId] = useState<number | null>(null);
-    const [espacioAdministrar, setEspacioAdministrar] = useState<Espacio | null>(null);
 
     // --- Estados para Edificios ---
     const [edificios, setEdificios] = useState<Edificio[]>([]);
@@ -77,7 +76,7 @@ export default function AdminLugares() {
         setIsModalOpen(true);
     };
 
-    const handleOpenEdit = (espacio: Espacio, tab: any = "info") => {
+    const handleOpenEdit = (espacio: Espacio, _tab: string = "info") => {
         setEspacioAEditar(espacio);
         setIsModalOpen(true);
         // Podríamos pasar el tab al formulario si quisiéramos, 
