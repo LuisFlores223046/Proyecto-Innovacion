@@ -4,7 +4,7 @@ set -e
 echo "Corriendo migraciones..."
 alembic upgrade head
 
-echo "Ejecutando seed..."
+echo "Ejecutando seed (categorias, edificios, espacios, admin)..."
 python seed.py
 
 echo "Iniciando servidor..."
