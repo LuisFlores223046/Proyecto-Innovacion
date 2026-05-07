@@ -5,7 +5,7 @@ import { toast } from "sonner";
 const API_BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api/v1";
 
 async function fetchClient<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-  const token = localStorage.getItem("access_token");
+  const token = sessionStorage.getItem("access_token");
 
   const headers = new Headers(options.headers);
   if (!headers.has("Content-Type") && options.method && options.method !== "GET") {

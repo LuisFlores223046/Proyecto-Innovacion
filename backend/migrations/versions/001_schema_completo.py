@@ -1,14 +1,18 @@
-"""Tablas iniciales — Mapa Interactivo CU UACJ
+"""Schema completo consolidado — Mapa Interactivo CU UACJ
 
-Revision ID: 001
+Revision ID: 001_schema_completo
 Revises:
-Create Date: 2026-03-30
+Create Date: 2026-05-07
+
+Reemplaza las migraciones 001, 002, 003 y 004.
+Para usarla en una BD existente ejecuta:
+    UPDATE alembic_version SET version_num = '001_schema_completo';
 """
 from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 
-revision: str = "001"
+revision: str = "001_schema_completo"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -25,7 +29,7 @@ def upgrade() -> None:
         sa.UniqueConstraint("nombre", name="uq_categoria_nombre"),
     )
 
-    # ── edificios ─────────────────────────────────────────────────────────────
+    # ── edificios (incluye columna activo de la migración 004) ────────────────
     op.create_table(
         "edificios",
         sa.Column("id", sa.Integer(), primary_key=True),
@@ -35,6 +39,7 @@ def upgrade() -> None:
         sa.Column("latitud", sa.Numeric(10, 7), nullable=True),
         sa.Column("longitud", sa.Numeric(10, 7), nullable=True),
         sa.Column("foto_url", sa.String(500), nullable=True),
+        sa.Column("activo", sa.Boolean(), server_default=sa.true(), nullable=False),
         sa.UniqueConstraint("codigo", name="uq_edificio_codigo"),
     )
 
@@ -47,7 +52,7 @@ def upgrade() -> None:
         sa.UniqueConstraint("edificio_id", "numero", name="uq_piso_edificio_numero"),
     )
 
-    # ── espacios ──────────────────────────────────────────────────────────────
+    # ── espacios (actualizado_en NOT NULL con server_default, de migración 002) ─
     op.create_table(
         "espacios",
         sa.Column("id", sa.Integer(), primary_key=True),
@@ -60,7 +65,7 @@ def upgrade() -> None:
         sa.Column("activo", sa.Boolean(), server_default=sa.true(), nullable=False),
         sa.Column("notas", sa.Text(), nullable=True),
         sa.Column("creado_en", sa.TIMESTAMP(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("actualizado_en", sa.TIMESTAMP(timezone=True), nullable=True),
+        sa.Column("actualizado_en", sa.TIMESTAMP(timezone=True), server_default=sa.func.now(), nullable=False),
         sa.UniqueConstraint("codigo", name="uq_espacio_codigo"),
     )
 
@@ -147,9 +152,13 @@ def upgrade() -> None:
     op.create_index("ix_espacios_activo", "espacios", ["activo"])
     op.create_index("ix_horarios_espacio_id", "horarios", ["espacio_id"])
     op.create_index("ix_eventos_fecha_inicio", "eventos", ["fecha_inicio"])
+    op.create_index("ix_eventos_espacio_id", "eventos", ["espacio_id"])
+    op.create_index("ix_administradores_username", "administradores", ["username"])
 
 
 def downgrade() -> None:
+    op.drop_index("ix_administradores_username", "administradores")
+    op.drop_index("ix_eventos_espacio_id", "eventos")
     op.drop_index("ix_eventos_fecha_inicio", "eventos")
     op.drop_index("ix_horarios_espacio_id", "horarios")
     op.drop_index("ix_espacios_activo", "espacios")

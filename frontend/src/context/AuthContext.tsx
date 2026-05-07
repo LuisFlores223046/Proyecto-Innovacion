@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     const [status, setStatus] = useState<AuthStatus>('checking');
 
     useEffect(() => {
-        const token = localStorage.getItem('access_token');
+        const token = sessionStorage.getItem('access_token');
         if (token) {
             const validarSesion = async () => {
                 try {
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
                     setStatus('authenticated');
                 } catch (error) {
                     console.error("Error al validar sesión:", error);
-                    localStorage.removeItem('access_token');
+                    sessionStorage.removeItem('access_token');
                     setStatus('unauthenticated');
                 }
             }
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         setStatus('checking');
         try {
             const res = await loginAdmin({ username, password });
-            localStorage.setItem("access_token", res.access_token);
+            sessionStorage.setItem("access_token", res.access_token);
             const adminData = await getMe();
             setAdmin(adminData);
             setStatus("authenticated");
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
         setAdmin(null);
         setStatus('unauthenticated');
     };

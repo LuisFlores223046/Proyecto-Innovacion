@@ -19,6 +19,26 @@ cloudinary.config(
     secure=True,
 )
 
+_ALLOWED_MIME_TYPES = {"image/jpeg", "image/png", "image/webp", "image/gif"}
+_MAX_FILE_BYTES = 5 * 1024 * 1024  # 5 MB
+
+
+def _validar_archivo(file: UploadFile) -> bytes:
+    """Valida tipo MIME y tamaño; devuelve el contenido para reutilizar."""
+    if file.content_type not in _ALLOWED_MIME_TYPES:
+        raise HTTPException(
+            status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            detail=f"Tipo de archivo no permitido. Usa: jpeg, png, webp o gif.",
+        )
+    contenido = file.file.read()
+    if len(contenido) > _MAX_FILE_BYTES:
+        raise HTTPException(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            detail="El archivo supera el límite de 5 MB.",
+        )
+    file.file.seek(0)
+    return contenido
+
 
 def _slug(text: str) -> str:
     """Normaliza texto para uso en carpetas/public_id."""
@@ -53,6 +73,8 @@ def subir_foto(db: Session, file: UploadFile, datos: FotoCreate) -> FotoEspacio:
     Raises:
         HTTPException: 404 si el espacio no existe, 400 si falla Cloudinary.
     """
+    _validar_archivo(file)
+
     espacio = (
         db.query(Espacio)
         .join(Piso, Espacio.piso_id == Piso.id)

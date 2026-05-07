@@ -63,45 +63,18 @@ def crear_edificio(
 @router.patch("/edificios/{edificio_id}", response_model=EdificioOut)
 def actualizar_edificio(
     edificio_id: int,
+    datos: EdificioUpdate,
     db: Session = Depends(get_db),
     _: Administrador = Depends(get_current_admin),
 ):
-    """
-    Elimina un edificio de forma permanente, incluyendo sus recursos y dependencias.
-
-    Realiza una limpieza integral que abarca la eliminación de la imagen en 
-    Cloudinary, así como el borrado en cascada manual de todos los pisos y 
-    espacios asociados para mantener la integridad de la base de datos.
-
-    Args:
-        edificio_id: Identificador único del edificio a eliminar.
-        db: Sesión de la base de datos.
-        _: Dependencia de seguridad que valida privilegios de administrador.
-
-    Returns:
-        Edificio: El objeto del edificio eliminado.
-
-    Raises:
-        HTTPException: 404 si el edificio no existe en la base de datos.
-    """
+    """Actualiza los campos del edificio que se envíen en el cuerpo."""
     edificio = db.query(Edificio).filter(Edificio.id == edificio_id).first()
     if not edificio:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Edificio no encontrado")
-
-    # Eliminar foto de Cloudinary si existe
-    if edificio.foto_url:
-        slug = re.sub(r"[^a-z0-9]+", "_", edificio.nombre.lower()).strip("_")
-        public_id = f"mapacu/edificios/{slug}_foto"
-        cloudinary.uploader.destroy(public_id, resource_type="image")
-
-    # Cascada manual: eliminar espacios de cada piso, luego pisos
-    pisos = db.query(Piso).filter(Piso.edificio_id == edificio_id).all()
-    for piso in pisos:
-        db.query(Espacio).filter(Espacio.piso_id == piso.id).delete()
-    db.query(Piso).filter(Piso.edificio_id == edificio_id).delete()
-
-    db.delete(edificio)
+    for campo, valor in datos.model_dump(exclude_unset=True).items():
+        setattr(edificio, campo, valor)
     db.commit()
+    db.refresh(edificio)
     return edificio
 
 
