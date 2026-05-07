@@ -1,6 +1,5 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 from app.config import settings
 from app.routers import (
@@ -56,14 +55,6 @@ app.add_middleware(
 )
 
 app.add_middleware(SecurityHeadersMiddleware)
-
-# En producción rechaza peticiones con Host no reconocido
-if _is_prod:
-    _allowed_hosts = list({
-        h.replace("https://", "").replace("http://", "").split("/")[0]
-        for h in _prod_origins if h
-    })
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=_allowed_hosts or ["*"])
 
 # ── Routers ───────────────────────────────────────────────────────────────────
 PREFIX = "/api/v1"
