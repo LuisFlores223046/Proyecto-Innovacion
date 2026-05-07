@@ -13,13 +13,18 @@ Qué se valida:
 
 Nota: POST /fotos usa multipart/form-data con un archivo binario.
       Cloudinary se mockea completamente para no requerir credenciales reales.
+      El servicio de subida requiere que el espacio tenga piso + edificio
+      asignados, por lo que se usa la fixture espacio_con_piso.
 """
 
 import io
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from httpx import AsyncClient
 from app.models.foto_espacio import FotoEspacio
+from app.models.edificio import Edificio
+from app.models.piso import Piso
+from app.models.espacio import Espacio
 
 pytestmark = pytest.mark.asyncio
 
@@ -27,13 +32,52 @@ pytestmark = pytest.mark.asyncio
 FAKE_CLOUDINARY_URL = "https://res.cloudinary.com/fake/image/upload/v1/mapacu/espacios/lab101_1.jpg"
 
 
+# ─── Fixture: espacio con cadena completa edificio→piso→espacio ──────────────
+@pytest.fixture()
+def espacio_con_piso(db_session, categoria_prueba) -> Espacio:
+    """
+    El servicio de subida de fotos requiere que el espacio esté asignado
+    a un piso que pertenezca a un edificio.  Esta fixture crea toda la cadena.
+    """
+    edificio = Edificio(
+        codigo="FOTO-EDIF",
+        nombre="Edificio Fotos",
+        activo=True,
+    )
+    db_session.add(edificio)
+    db_session.commit()
+    db_session.refresh(edificio)
+
+    piso = Piso(edificio_id=edificio.id, numero="PB")
+    db_session.add(piso)
+    db_session.commit()
+    db_session.refresh(piso)
+
+    espacio = Espacio(
+        codigo="LAB-FOTO",
+        nombre="Lab Fotos",
+        categoria_id=categoria_prueba.id,
+        piso_id=piso.id,
+        latitud=31.72,
+        longitud=-106.427,
+        activo=True,
+    )
+    db_session.add(espacio)
+    db_session.commit()
+    db_session.refresh(espacio)
+    return espacio
+
+
 # ─── Fixture: foto existente en BD ───────────────────────────────────────────
 @pytest.fixture()
 def foto_existente(db_session, espacio_prueba) -> FotoEspacio:
+    """
+    Crea directamente un registro FotoEspacio en la BD de test.
+    No requiere piso/edificio porque solo inserta la fila, sin usar el service.
+    """
     foto = FotoEspacio(
         espacio_id=espacio_prueba.id,
         url=FAKE_CLOUDINARY_URL,
-        public_id="mapacu/espacios/lab101_1",
         descripcion="Vista frontal del laboratorio",
         es_principal=False,
         orden=1,
@@ -48,28 +92,28 @@ def foto_existente(db_session, espacio_prueba) -> FotoEspacio:
 class TestSubirFoto:
 
     async def test_subir_foto_exitosa(
-        self, client: AsyncClient, espacio_prueba, auth_headers
+        self, client: AsyncClient, espacio_con_piso, auth_headers
     ):
         """
         POST /fotos con multipart/form-data debe subir la imagen a Cloudinary
         (mockeado) y registrar la URL resultante en la BD.
+        El espacio debe tener piso + edificio asignados (requerido por el service).
         """
         fake_upload_result = {
             "secure_url": FAKE_CLOUDINARY_URL,
             "public_id": "mapacu/espacios/lab101_1",
         }
 
-        with patch("app.services.fotos.cloudinary.uploader.upload") as mock_upload:
+        with patch("app.services.fotos.cloudinary.uploader.upload") as mock_upload, \
+             patch("app.services.fotos.cloudinary.api.create_folder"):
             mock_upload.return_value = fake_upload_result
 
-            # Crear un archivo de imagen falso en memoria
             fake_image = io.BytesIO(b"fake-image-content")
-            fake_image.name = "foto_lab.jpg"
 
             response = await client.post(
                 "/api/v1/fotos",
                 data={
-                    "espacio_id": str(espacio_prueba.id),
+                    "espacio_id": str(espacio_con_piso.id),
                     "descripcion": "Foto del laboratorio",
                     "es_principal": "false",
                     "orden": "1",
@@ -81,7 +125,7 @@ class TestSubirFoto:
         assert response.status_code == 201
         body = response.json()
         assert body["url"] == FAKE_CLOUDINARY_URL
-        assert body["espacio_id"] == espacio_prueba.id
+        assert body["espacio_id"] == espacio_con_piso.id
         mock_upload.assert_called_once()
 
     async def test_subir_foto_sin_token_retorna_403(

@@ -203,8 +203,8 @@ class TestEliminarContacto:
     def contacto(self, db_session, espacio_prueba) -> Contacto:
         c = Contacto(
             espacio_id=espacio_prueba.id,
-            tipo="web",
-            valor="https://uacj.mx",
+            tipo="telefono",          # válido: 'telefono'|'correo'|'extension'
+            valor="656-688-1800",
         )
         db_session.add(c)
         db_session.commit()
@@ -218,7 +218,7 @@ class TestEliminarContacto:
             f"/api/v1/contactos/{contacto.id}", headers=auth_headers
         )
         assert response.status_code == 200
-        assert response.json()["valor"] == "https://uacj.mx"
+        assert response.json()["valor"] == "656-688-1800"
 
     async def test_eliminar_contacto_inexistente_retorna_404(
         self, client: AsyncClient, auth_headers
@@ -247,15 +247,14 @@ class TestCrearServicio:
         """Se puede vincular un servicio (Wi-Fi, impresión, etc.) a un espacio."""
         payload = {
             "espacio_id": espacio_prueba.id,
-            "nombre": "Wi-Fi",
-            "icono": "📶",
+            "descripcion": "Wi-Fi",   # ServicioEspacio usa 'descripcion', no 'nombre'
         }
         response = await client.post(
             "/api/v1/servicios", json=payload, headers=auth_headers
         )
         assert response.status_code == 201
         body = response.json()
-        assert body["nombre"] == "Wi-Fi"
+        assert body["descripcion"] == "Wi-Fi"
         assert body["espacio_id"] == espacio_prueba.id
 
     async def test_crear_servicio_sin_token_retorna_403(
@@ -263,7 +262,7 @@ class TestCrearServicio:
     ):
         response = await client.post(
             "/api/v1/servicios",
-            json={"espacio_id": espacio_prueba.id, "nombre": "Hack"},
+            json={"espacio_id": espacio_prueba.id, "descripcion": "Hack"},
         )
         assert response.status_code in (401, 403)
 
@@ -274,8 +273,7 @@ class TestEliminarServicio:
     def servicio(self, db_session, espacio_prueba) -> ServicioEspacio:
         s = ServicioEspacio(
             espacio_id=espacio_prueba.id,
-            nombre="Impresión",
-            icono="🖨️",
+            descripcion="Impresión",   # ServicioEspacio solo tiene 'descripcion'
         )
         db_session.add(s)
         db_session.commit()
@@ -289,7 +287,7 @@ class TestEliminarServicio:
             f"/api/v1/servicios/{servicio.id}", headers=auth_headers
         )
         assert response.status_code == 200
-        assert response.json()["nombre"] == "Impresión"
+        assert response.json()["descripcion"] == "Impresión"
 
     async def test_eliminar_servicio_inexistente_retorna_404(
         self, client: AsyncClient, auth_headers

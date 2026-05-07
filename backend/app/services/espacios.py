@@ -132,10 +132,10 @@ def espacios_cercanos(db: Session, lat: float, lon: float, radio: float = 200.0)
           AND longitud IS NOT NULL
           AND (
             6371000 * acos(
-              LEAST(1.0,
-                cos(radians(:lat)) * cos(radians(latitud::float))
-                * cos(radians(longitud::float) - radians(:lon))
-                + sin(radians(:lat)) * sin(radians(latitud::float))
+              MIN(1.0,
+                cos(radians(:lat)) * cos(radians(latitud))
+                * cos(radians(longitud) - radians(:lon))
+                + sin(radians(:lat)) * sin(radians(latitud))
               )
             )
           ) <= :radio

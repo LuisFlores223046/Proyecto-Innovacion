@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
 import logo from "../assets/logo_uacj.png"
 import loginImage from "../assets/login_image.png"
