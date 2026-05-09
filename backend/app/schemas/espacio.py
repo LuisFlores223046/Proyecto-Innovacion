@@ -1,5 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_validator
+from typing import Self
 from app.schemas.categoria import CategoriaOut
 from app.schemas.horario import HorarioOut
 from app.schemas.contacto import ContactoOut
@@ -22,7 +23,21 @@ class EspacioBase(BaseModel):
 
 class EspacioCreate(EspacioBase):
     """Esquema para el registro de nuevos espacios."""
-    pass
+
+    @model_validator(mode="after")
+    def validar_coordenadas(self) -> Self:
+        lat, lon = self.latitud, self.longitud
+        # Latitud y longitud deben proporcionarse juntas o dejarse ambas vacías
+        if (lat is None) != (lon is None):
+            raise ValueError(
+                "Debes proporcionar latitud y longitud juntas, o dejar ambas vacías."
+            )
+        # Validar rangos geográficos si se proporcionaron
+        if lat is not None and not (-90 <= lat <= 90):
+            raise ValueError("La latitud debe estar entre -90 y 90.")
+        if lon is not None and not (-180 <= lon <= 180):
+            raise ValueError("La longitud debe estar entre -180 y 180.")
+        return self
 
 
 class EspacioUpdate(BaseModel):

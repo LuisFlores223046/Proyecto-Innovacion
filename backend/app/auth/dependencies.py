@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
@@ -48,6 +49,13 @@ def get_current_admin(
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Administrador no encontrado o inactivo",
+        )
+
+    # Verificar si la cuenta está bloqueada temporalmente por intentos fallidos
+    if admin.bloqueado_hasta and admin.bloqueado_hasta > datetime.now(timezone.utc):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Cuenta bloqueada temporalmente. Intente más tarde.",
         )
 
     return admin
