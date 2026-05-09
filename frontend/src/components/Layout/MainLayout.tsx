@@ -3,7 +3,7 @@ import { SideBar } from "./SideBar";
 
 export const MainLayout = () => {
     return (
-        <div className="flex flex-col sm:flex-row h-screen">
+        <div className="flex flex-col sm:flex-row h-dvh">
             <SideBar />
             <main className="h-full sm:flex-1 sm:overflow-auto">
                 <div className="h-full w-full overflow-y-auto overflow-x-hidden bg-gray-50">

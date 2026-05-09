@@ -9,6 +9,7 @@ import BuildingCard from "../components/LocationCard/BuildingCard";
 import SpaceDetailCard from "../components/LocationCard/SpaceDetailCard";
 import { useLocation } from "react-router-dom";
 import SearchBar from "../components/Search/SearchBar";
+import logo from "../assets/logoCU.png";
 import "leaflet/dist/leaflet.css"
 
 import { CU_CENTER, CU_BOUNDS, urlTile, ZOOM_THRESHOLD_ESPACIOS } from "../components/Map/mapConfig";
@@ -109,7 +110,7 @@ export default function MapPage(): JSX.Element {
         : [];
 
     return (
-        <div className="relative h-screen w-full">
+        <div className="relative h-dvh w-full">
             <div className="absolute top-4 left-[72px] right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:w-[400px] z-[1000] pointer-events-auto">
                 <SearchBar onSelectResult={handleSearchSelect} />
             </div>

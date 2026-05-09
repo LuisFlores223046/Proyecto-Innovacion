@@ -101,7 +101,7 @@ export default function EventsPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="min-h-dvh bg-gray-50 flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
             </div>
         );
@@ -109,7 +109,7 @@ export default function EventsPage() {
 
     return (
         <div
-            className="min-h-screen pt-20 pb-12 px-4 sm:px-6 lg:px-8"
+            className="min-h-dvh pt-20 pb-12 px-4 sm:px-6 lg:px-8"
             onClick={() => setFocusedId(null)}
         >
             <div className="max-w-7xl mx-auto">
