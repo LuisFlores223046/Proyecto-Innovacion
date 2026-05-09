@@ -39,7 +39,7 @@ def cercanos(
 
 # ── CRUD general ──────────────────────────────────────────────────────────────
 
-@router.get("", response_model=list[EspacioOut])
+@router.get("", response_model=list[EspacioCompleto])
 def listar(
     categoria_id: int | None = None,
     edificio_id: int | None = None,

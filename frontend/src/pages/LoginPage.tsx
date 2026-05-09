@@ -51,7 +51,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col justify-end sm:justify-end items-center relative bg-gradient-to-b from-[#003f88] to-[#2a8dff] gap-4 overflow-hidden">
+        <div className="min-h-dvh flex flex-col justify-end sm:justify-end items-center relative bg-gradient-to-b from-[#003f88] to-[#2a8dff] gap-4 overflow-hidden">
 
             <img src={logo} alt="Logo UACJ" className="w-[250px] relative z-20 pointer-events-none" style={{ filter: 'brightness(0) invert(1)' }} />
 
@@ -85,8 +85,8 @@ export default function LoginPage() {
                         required
                     />
 
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         disabled={status === 'checking'}
                         className={`w-full px-4 py-3 bg-[#003DA5] text-white rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors hover:bg-[#002b75] flex justify-center items-center gap-2 ${status === 'checking' ? 'opacity-75 cursor-not-allowed' : ''}`}
                     >
@@ -105,7 +105,7 @@ export default function LoginPage() {
                 </form>
             </div>
 
-            <img src={loginImage} alt="Login" className="hidden sm:block absolute bottom-[-300px] w-[1500px] object-cover z- max-w-[1500px] pointer-events-none z-10" />
+            <img src={loginImage} alt="Login" className="hidden sm:block [@media(max-height:830px)]:hidden absolute bottom-[-300px] w-[1500px] object-cover max-w-[1500px] pointer-events-none z-10" />
         </div>
     )
 }
