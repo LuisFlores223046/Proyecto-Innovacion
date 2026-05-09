@@ -9,7 +9,6 @@ import BuildingCard from "../components/LocationCard/BuildingCard";
 import SpaceDetailCard from "../components/LocationCard/SpaceDetailCard";
 import { useLocation } from "react-router-dom";
 import SearchBar from "../components/Search/SearchBar";
-import logo from "../assets/logoCU.png";
 import "leaflet/dist/leaflet.css"
 
 import { CU_CENTER, CU_BOUNDS, urlTile, ZOOM_THRESHOLD_ESPACIOS } from "../components/Map/mapConfig";
