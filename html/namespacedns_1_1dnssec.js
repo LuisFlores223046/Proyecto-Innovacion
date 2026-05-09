@@ -1,0 +1,26 @@
+var namespacedns_1_1dnssec =
+[
+    [ "Policy", "classdns_1_1dnssec_1_1Policy.html", null ],
+    [ "SimpleDeny", "classdns_1_1dnssec_1_1SimpleDeny.html", null ],
+    [ "_make_cdnskey", "namespacedns_1_1dnssec.html#a5bdbe2034db87cf3b5d97061ea62c616", null ],
+    [ "_make_dnskey", "namespacedns_1_1dnssec.html#a10b60d0d0f0aa460f5fcfb197fa231b7", null ],
+    [ "_make_rrsig_signature_data", "namespacedns_1_1dnssec.html#a7b2d632879b025a46b94378454bf09d1", null ],
+    [ "_sign", "namespacedns_1_1dnssec.html#a9be0cc30bc41d099e69baa7620b27e21", null ],
+    [ "_sign_zone_nsec", "namespacedns_1_1dnssec.html#af7a1b2026d6de27327beee537ee10487", null ],
+    [ "_validate", "namespacedns_1_1dnssec.html#a0f152108d82068d50dd3ffbd8ef62588", null ],
+    [ "_validate_rrsig", "namespacedns_1_1dnssec.html#ac996db23de442d9933b1a81f66a5af5f", null ],
+    [ "algorithm_from_text", "namespacedns_1_1dnssec.html#a2faed9545ff83d5cfa0868cd7e7b72a3", null ],
+    [ "algorithm_to_text", "namespacedns_1_1dnssec.html#a89d85eddc0d578269a708683a533c0f0", null ],
+    [ "cds_rdataset_to_ds_rdataset", "namespacedns_1_1dnssec.html#a111759cf5cc3e6b62b6303df4a525791", null ],
+    [ "default_rrset_signer", "namespacedns_1_1dnssec.html#adb380a6efaf035c59badf910a13ef3da", null ],
+    [ "dnskey_rdataset_to_cdnskey_rdataset", "namespacedns_1_1dnssec.html#a8d4ec7c410081392c665d236de90476f", null ],
+    [ "dnskey_rdataset_to_cds_rdataset", "namespacedns_1_1dnssec.html#a15795c4992f08e8d05a37af143108ed7", null ],
+    [ "key_id", "namespacedns_1_1dnssec.html#a11e6623e02abcfcf319e7601f4fe0ee6", null ],
+    [ "make_cds", "namespacedns_1_1dnssec.html#a8344383216c162921d4b40f862b9956f", null ],
+    [ "make_ds", "namespacedns_1_1dnssec.html#a52b4bd4a781501c1f47d0246db502b48", null ],
+    [ "make_ds_rdataset", "namespacedns_1_1dnssec.html#a40779d0f92ca6d93c7ba5ccaca254b9f", null ],
+    [ "nsec3_hash", "namespacedns_1_1dnssec.html#ab74ca307a78aaa50d937c836331197dc", null ],
+    [ "sign_zone", "namespacedns_1_1dnssec.html#ad5efa22497692b178150f36c5244e94a", null ],
+    [ "to_timestamp", "namespacedns_1_1dnssec.html#aa6f6248efe5df0278ad98a58765f2003", null ],
+    [ "RSAMD5", "namespacedns_1_1dnssec.html#aabbcec8afd3c4eba825bc3df4b761ac3", null ]
+];

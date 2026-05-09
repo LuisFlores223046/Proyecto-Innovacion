@@ -1,0 +1,133 @@
+\doxysection{tests.\+conftest Namespace Reference}
+\hypertarget{namespacetests_1_1conftest}{}\label{namespacetests_1_1conftest}\index{tests.conftest@{tests.conftest}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacetests_1_1conftest_aa084faa897769c385a5ba22b31dfc381}{create\+\_\+tables}} ()
+\item 
+\doxymbox{\hyperlink{namespacetests_1_1conftest_a4e90b5ba087117ac5b1fffcc088eb67f}{db\+\_\+session}} ()
+\item 
+\doxymbox{\hyperlink{namespacetests_1_1conftest_a737d6de3b5d61d2f89df90a571337a6a}{override\+\_\+db}} (db\+\_\+session)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \doxymbox{\hyperlink{namespacetests_1_1conftest_a76e4398b371ed118e47c6d3f36b5500c}{admin\+\_\+user}} (db\+\_\+session)
+\item 
+str \doxymbox{\hyperlink{namespacetests_1_1conftest_a59b336974456f54a6b040be23791b796}{admin\+\_\+token}} (admin\+\_\+user)
+\item 
+dict \doxymbox{\hyperlink{namespacetests_1_1conftest_a22c59d175ad892fb5f0393add285d0fb}{auth\+\_\+headers}} (admin\+\_\+token)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1categoria_1_1Categoria}{Categoria}} \doxymbox{\hyperlink{namespacetests_1_1conftest_a2c9bf56097fa750ef13dae429c2ddb8a}{categoria\+\_\+prueba}} (db\+\_\+session)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespacetests_1_1conftest_a29266577c52dd3574e34d3fdfc6f1b2e}{espacio\+\_\+prueba}} (db\+\_\+session, categoria\+\_\+prueba)
+\item 
+\doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}} \doxymbox{\hyperlink{namespacetests_1_1conftest_aa95e85a8279c28414d5afa79a77e5375}{client}} (override\+\_\+db)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1conftest_a0a1af9be74c13adb63c3aed84ff7cd57}\label{namespacetests_1_1conftest_a0a1af9be74c13adb63c3aed84ff7cd57} 
+str {\bfseries SQLALCHEMY\+\_\+\+TEST\+\_\+\+URL} = "{}sqlite:\+/\+/\+/\+./\+test\+\_\+mapa\+\_\+cu.\+db"{}
+\item 
+\doxymbox{\hyperlink{namespacetests_1_1conftest_a84edf7b81896b270cd8e8731f432668a}{engine\+\_\+test}}
+\item 
+\Hypertarget{namespacetests_1_1conftest_a4bd71f8c131db352168f5d87cfe4b0c0}\label{namespacetests_1_1conftest_a4bd71f8c131db352168f5d87cfe4b0c0} 
+{\bfseries Testing\+Session\+Local} = \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1sessionmaker}{sessionmaker}}(autocommit=False, autoflush=False, bind=engine\+\_\+test)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}conftest.py — Fixtures compartidos para toda la suite de integración.
+
+Estrategia:
+  - Se usa una base de datos SQLite en memoria para aislar cada sesión de tests.
+  - Se sobrescriben las dependencias de FastAPI (get_db) mediante app.dependency_overrides.
+  - Se provee un cliente httpx.AsyncClient y un token JWT de administrador listo para usar.
+\end{DoxyVerb}
+ 
+
+\label{namespacetests_1_1conftest_doc-func-members}
+\Hypertarget{namespacetests_1_1conftest_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetests_1_1conftest_a59b336974456f54a6b040be23791b796}\index{tests.conftest@{tests.conftest}!admin\_token@{admin\_token}}
+\index{admin\_token@{admin\_token}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{admin\_token()}{admin\_token()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a59b336974456f54a6b040be23791b796} 
+ str admin\+\_\+token (\begin{DoxyParamCaption}\item[{}]{admin\+\_\+user}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Genera un JWT válido para el administrador de prueba.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a76e4398b371ed118e47c6d3f36b5500c}\index{tests.conftest@{tests.conftest}!admin\_user@{admin\_user}}
+\index{admin\_user@{admin\_user}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{admin\_user()}{admin\_user()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a76e4398b371ed118e47c6d3f36b5500c} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} admin\+\_\+user (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea un administrador de prueba en la BD de test.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a22c59d175ad892fb5f0393add285d0fb}\index{tests.conftest@{tests.conftest}!auth\_headers@{auth\_headers}}
+\index{auth\_headers@{auth\_headers}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{auth\_headers()}{auth\_headers()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a22c59d175ad892fb5f0393add285d0fb} 
+ dict auth\+\_\+headers (\begin{DoxyParamCaption}\item[{}]{admin\+\_\+token}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encabezados HTTP con el token JWT listo para usar en peticiones.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a2c9bf56097fa750ef13dae429c2ddb8a}\index{tests.conftest@{tests.conftest}!categoria\_prueba@{categoria\_prueba}}
+\index{categoria\_prueba@{categoria\_prueba}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{categoria\_prueba()}{categoria\_prueba()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a2c9bf56097fa750ef13dae429c2ddb8a} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1categoria_1_1Categoria}{Categoria}} categoria\+\_\+prueba (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea una categoría de espacio para relacionarla con espacios de prueba.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_aa95e85a8279c28414d5afa79a77e5375}\index{tests.conftest@{tests.conftest}!client@{client}}
+\index{client@{client}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{client()}{client()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_aa95e85a8279c28414d5afa79a77e5375} 
+ \doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}} client (\begin{DoxyParamCaption}\item[{}]{override\+\_\+db}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Cliente httpx que monta la app FastAPI directamente en memoria.
+No necesita un servidor corriendo — perfecto para CI.
+\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_aa084faa897769c385a5ba22b31dfc381}\index{tests.conftest@{tests.conftest}!create\_tables@{create\_tables}}
+\index{create\_tables@{create\_tables}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{create\_tables()}{create\_tables()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_aa084faa897769c385a5ba22b31dfc381} 
+create\+\_\+tables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea todas las tablas una vez por sesión de tests y las elimina al finalizar.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a4e90b5ba087117ac5b1fffcc088eb67f}\index{tests.conftest@{tests.conftest}!db\_session@{db\_session}}
+\index{db\_session@{db\_session}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{db\_session()}{db\_session()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a4e90b5ba087117ac5b1fffcc088eb67f} 
+db\+\_\+session (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Devuelve una sesión de BD con rollback automático después de cada test.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a29266577c52dd3574e34d3fdfc6f1b2e}\index{tests.conftest@{tests.conftest}!espacio\_prueba@{espacio\_prueba}}
+\index{espacio\_prueba@{espacio\_prueba}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{espacio\_prueba()}{espacio\_prueba()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a29266577c52dd3574e34d3fdfc6f1b2e} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} espacio\+\_\+prueba (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{, }\item[{}]{categoria\+\_\+prueba}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea un espacio activo con coordenadas para usarlo en tests de búsqueda y proximidad.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1conftest_a737d6de3b5d61d2f89df90a571337a6a}\index{tests.conftest@{tests.conftest}!override\_db@{override\_db}}
+\index{override\_db@{override\_db}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{override\_db()}{override\_db()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a737d6de3b5d61d2f89df90a571337a6a} 
+override\+\_\+db (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sobrescribe la dependencia get_db de FastAPI con la sesión de test.\end{DoxyVerb}
+ 
+
+\label{namespacetests_1_1conftest_doc-var-members}
+\Hypertarget{namespacetests_1_1conftest_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetests_1_1conftest_a84edf7b81896b270cd8e8731f432668a}\index{tests.conftest@{tests.conftest}!engine\_test@{engine\_test}}
+\index{engine\_test@{engine\_test}!tests.conftest@{tests.conftest}}
+\doxysubsubsection{\texorpdfstring{engine\_test}{engine\_test}}
+{\footnotesize\ttfamily \label{namespacetests_1_1conftest_a84edf7b81896b270cd8e8731f432668a} 
+tests.\+conftest.\+engine\+\_\+test}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ create\_engine(}
+\DoxyCodeLine{\ \ \ \ SQLALCHEMY\_TEST\_URL,}
+\DoxyCodeLine{\ \ \ \ connect\_args=\{\textcolor{stringliteral}{"{}check\_same\_thread"{}}:\ \textcolor{keyword}{False}\},}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

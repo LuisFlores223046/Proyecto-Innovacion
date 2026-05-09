@@ -1,0 +1,64 @@
+\doxysection{passlib.\+handlers.\+misc.\+plaintext Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext}{}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext}\index{passlib.handlers.misc.plaintext@{passlib.handlers.misc.plaintext}}
+Inheritance diagram for passlib.\+handlers.\+misc.\+plaintext:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1handlers_1_1misc_1_1plaintext}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_adc3735e5068ec755c6a8fec14955f52e}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_adc3735e5068ec755c6a8fec14955f52e} 
+{\bfseries identify} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_ad3d301c8a55fd8c1d6dc56948bfe071e}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_ad3d301c8a55fd8c1d6dc56948bfe071e} 
+{\bfseries hash} (cls, secret, encoding=None)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_a718510321ef4acf7239a244cae40c4d3}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_a718510321ef4acf7239a244cae40c4d3} 
+{\bfseries verify} (cls, secret, hash, encoding=None)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_ad73be990a18c3c5770b2364dec59247c}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_ad73be990a18c3c5770b2364dec59247c} 
+{\bfseries genconfig} (cls)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_aaf04c591c51f4e9c2007a2a88eff6701}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_aaf04c591c51f4e9c2007a2a88eff6701} 
+{\bfseries genhash} (cls, secret, config, encoding=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_a0af3a547ca96eaefdc9d759a239e58ff}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_a0af3a547ca96eaefdc9d759a239e58ff} 
+str {\bfseries name} = "{}plaintext"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_acf8c6ba150a85dad70d714efed4f101e}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_acf8c6ba150a85dad70d714efed4f101e} 
+tuple {\bfseries setting\+\_\+kwds} = ()
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_a247b09314dcb6a3b4f4e850a55ffb8a0}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_a247b09314dcb6a3b4f4e850a55ffb8a0} 
+tuple {\bfseries context\+\_\+kwds} = ("{}encoding"{},)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1plaintext_a10d9922040b5b1d05bb205bfbd45be96}\label{classpasslib_1_1handlers_1_1misc_1_1plaintext_a10d9922040b5b1d05bb205bfbd45be96} 
+str {\bfseries default\+\_\+encoding} = "{}utf-\/8"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class stores passwords in plaintext, and follows the :ref:`password-hash-api`.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`, :meth:`~passlib.ifc.PasswordHash.genhash`, and :meth:`~passlib.ifc.PasswordHash.verify` methods all require the
+following additional contextual keyword:
+
+:type encoding: str
+:param encoding:
+    This controls the character encoding to use (defaults to ``utf-8``).
+
+    This encoding will be used to encode :class:`!unicode` passwords
+    under Python 2, and decode :class:`!bytes` hashes under Python 3.
+
+.. versionchanged:: 1.6
+    The ``encoding`` keyword was added.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+misc.\+py\end{DoxyCompactItemize}

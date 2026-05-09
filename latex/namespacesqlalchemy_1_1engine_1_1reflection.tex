@@ -1,0 +1,53 @@
+\doxysection{sqlalchemy.\+engine.\+reflection Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1engine_1_1reflection}{}\label{namespacesqlalchemy_1_1engine_1_1reflection}\index{sqlalchemy.engine.reflection@{sqlalchemy.engine.reflection}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind}{Object\+Kind}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectScope}{Object\+Scope}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1Inspector}{Inspector}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1ReflectionDefaults}{Reflection\+Defaults}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1__ReflectionInfo}{\+\_\+\+Reflection\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1engine_1_1reflection_a1ce2ae231b538ccfe274d41547913c42}\label{namespacesqlalchemy_1_1engine_1_1reflection_a1ce2ae231b538ccfe274d41547913c42} 
+\+\_\+R {\bfseries cache} (Callable\+[..., \+\_\+R]\+ fn, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} con, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1engine_1_1reflection_a3ba85ef1f270f5c4f2d5d6149c8d84b7}\label{namespacesqlalchemy_1_1engine_1_1reflection_a3ba85ef1f270f5c4f2d5d6149c8d84b7} 
+Callable\+[\+[Callable\+[..., \+\_\+R]\+]\+, Callable\+[..., \+\_\+R]\+]\+ {\bfseries flexi\+\_\+cache} (\texorpdfstring{$\ast$}{*}Tuple\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1visitors_1_1InternalTraversal}{Internal\+Traversal}}]\+ traverse\+\_\+args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1engine_1_1reflection_abbc023292d74415c148dc14ef519888c}\label{namespacesqlalchemy_1_1engine_1_1reflection_abbc023292d74415c148dc14ef519888c} 
+{\bfseries \+\_\+R} = Type\+Var("{}\+\_\+\+R"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Provides an abstraction for obtaining database schema information.
+
+Usage Notes:
+
+Here are some general conventions when accessing the low level inspector
+methods such as get_table_names, get_columns, etc.
+
+1. Inspector methods return lists of dicts in most cases for the following
+   reasons:
+
+   * They're both standard types that can be serialized.
+   * Using a dict instead of a tuple allows easy expansion of attributes.
+   * Using a list for the outer structure maintains order and is easy to work
+     with (e.g. list comprehension [d['name'] for d in cols]).
+
+2. Records that contain a name, such as the column name in a column record
+   use the key 'name'. So for most return values, each record will have a
+   'name' attribute..
+\end{DoxyVerb}
+ 

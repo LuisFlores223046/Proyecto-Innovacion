@@ -1,0 +1,598 @@
+\doxysection{sqlalchemy.\+engine.\+events.\+Connection\+Events Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents}{}\label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+Inheritance diagram for sqlalchemy.\+engine.\+events.\+Connection\+Events:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[ Tuple\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, \+\_\+\+Core\+Multi\+Execute\+Params, \+\_\+\+Core\+Single\+Execute\+Params]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a4a10017b6573f3476a10359368184ecf}{before\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} clauseelement, \+\_\+\+Core\+Multi\+Execute\+Params multiparams, \+\_\+\+Core\+Single\+Execute\+Params params, \+\_\+\+Execute\+Options execution\+\_\+options)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_afc64ba5a78fea021b664c3e87c83843b}{after\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} clauseelement, \+\_\+\+Core\+Multi\+Execute\+Params multiparams, \+\_\+\+Core\+Single\+Execute\+Params params, \+\_\+\+Execute\+Options execution\+\_\+options, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+ result)
+\item 
+Optional\+[Tuple\+[str, \+\_\+\+DBAPIAny\+Execute\+Params]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ab438ccd54ae7c493694d01048d332abd}{before\+\_\+cursor\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIAny\+Execute\+Params parameters, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ context, bool executemany)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a9e2bbfeb9046be229880be8cdd5d3c15}{after\+\_\+cursor\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIAny\+Execute\+Params parameters, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ context, bool executemany)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ad1f2ac194f490235fb8216ebd4d03e71}{engine\+\_\+connect}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0e9a385a91185bb466ba252fb6310f98}{set\+\_\+connection\+\_\+execution\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, Dict\+[str, Any]\+ opts)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aae3b044d7e54b63323d094947b0d8a79}{set\+\_\+engine\+\_\+execution\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}} engine, Dict\+[str, Any]\+ opts)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a83ea1882065769381bbe20e351f640ff}{engine\+\_\+disposed}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}} engine)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a960f61721721857198873598900b55a7}{begin}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a298a7e3c63ab9a4754be793e0e2fb157}{rollback}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aca212083b6c96a89b322344b8c43cc19}{commit}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_adbcb9d3d6f7820ebe5a74c0ab8d8b0b3}{savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a7758b975436959c85bc931c6365443d7}{rollback\+\_\+savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, str name, None context)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aa57cfb3af9296075fa4535e54f8a8d46}{release\+\_\+savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, str name, None context)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ae24b84cccc4e328dd5024d60a147240b}{begin\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, Any xid)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a234a30e9f312bb9bd1d105df49cf7ab9}{prepare\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, Any xid)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ac960775a613b565926a3848112d7f2a0}{rollback\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, Any xid, bool is\+\_\+prepared)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0cba4a7e974a0d041deee902090094eb}{commit\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, Any xid, bool is\+\_\+prepared)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1attr_1_1__InstanceLevelDispatch}{\+\_\+\+Instance\+Level\+Dispatch}}\+[\+\_\+\+ET]\+ {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch_a9026fd04cd9a1b42239d35300c03e03b}{\+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+}} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a23a2e55ba10952a2f764932e3476c84c}{\+\_\+accept\+\_\+with}} (cls, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+]\+ target, str identifier)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a32a298f128aa5ee65825767ed0a7a59e}{\+\_\+listen}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{event.\+\_\+\+Event\+Key}}\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+ event\+\_\+key, \texorpdfstring{$\ast$}{*}, bool retval=False, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+remove} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{\+\_\+\+Event\+Key}}\+[\+\_\+\+ET]\+ event\+\_\+key)
+\item 
+None {\bfseries \+\_\+clear} (cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch_a91b0d5a9e26db068e863654097b79636}{\+\_\+create\+\_\+dispatcher\+\_\+class}} (cls, str classname, Tuple\+[type,...]\+ bases, Mapping\+[str, Any]\+ dict\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a6abe25119a5a9ff4458758da48d30888}\label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a6abe25119a5a9ff4458758da48d30888} 
+str {\bfseries \+\_\+target\+\_\+class\+\_\+doc} = "{}Some\+Engine"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries \+\_\+dispatch\+\_\+target} \+[Type\+[\+\_\+\+ET]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}} {\bfseries dispatch} \+[\+\_\+\+ET]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}}\+[\+\_\+\+ET]\+ {\bfseries \+\_\+set\+\_\+dispatch} (Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{\+\_\+\+Has\+Events\+Dispatch}}\+[\+\_\+\+ET]\+]\+ klass, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}}\+[\+\_\+\+ET]\+]\+ dispatch\+\_\+cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Available events for
+:class:`_engine.Connection` and :class:`_engine.Engine`.
+
+The methods here define the name of an event as well as the names of
+members that are passed to listener functions.
+
+An event listener can be associated with any
+:class:`_engine.Connection` or :class:`_engine.Engine`
+class or instance, such as an :class:`_engine.Engine`, e.g.::
+
+    from sqlalchemy import event, create_engine
+
+    def before_cursor_execute(conn, cursor, statement, parameters, context,
+                                                    executemany):
+        log.info("Received statement: %s", statement)
+
+    engine = create_engine('postgresql+psycopg2://scott:tiger@localhost/test')
+    event.listen(engine, "before_cursor_execute", before_cursor_execute)
+
+or with a specific :class:`_engine.Connection`::
+
+    with engine.begin() as conn:
+        @event.listens_for(conn, 'before_cursor_execute')
+        def before_cursor_execute(conn, cursor, statement, parameters,
+                                        context, executemany):
+            log.info("Received statement: %s", statement)
+
+When the methods are called with a `statement` parameter, such as in
+:meth:`.after_cursor_execute` or :meth:`.before_cursor_execute`,
+the statement is the exact SQL string that was prepared for transmission
+to the DBAPI ``cursor`` in the connection's :class:`.Dialect`.
+
+The :meth:`.before_execute` and :meth:`.before_cursor_execute`
+events can also be established with the ``retval=True`` flag, which
+allows modification of the statement and parameters to be sent
+to the database.  The :meth:`.before_cursor_execute` event is
+particularly useful here to add ad-hoc string transformations, such
+as comments, to all executions::
+
+    from sqlalchemy.engine import Engine
+    from sqlalchemy import event
+
+    @event.listens_for(Engine, "before_cursor_execute", retval=True)
+    def comment_sql_calls(conn, cursor, statement, parameters,
+                                        context, executemany):
+        statement = statement + " -- some comment"
+        return statement, parameters
+
+.. note:: :class:`_events.ConnectionEvents` can be established on any
+   combination of :class:`_engine.Engine`, :class:`_engine.Connection`,
+   as well
+   as instances of each of those classes.  Events across all
+   four scopes will fire off for a given instance of
+   :class:`_engine.Connection`.  However, for performance reasons, the
+   :class:`_engine.Connection` object determines at instantiation time
+   whether or not its parent :class:`_engine.Engine` has event listeners
+   established.   Event listeners added to the :class:`_engine.Engine`
+   class or to an instance of :class:`_engine.Engine`
+   *after* the instantiation
+   of a dependent :class:`_engine.Connection` instance will usually
+   *not* be available on that :class:`_engine.Connection` instance.
+   The newly
+   added listeners will instead take effect for
+   :class:`_engine.Connection`
+   instances created subsequent to those event listeners being
+   established on the parent :class:`_engine.Engine` class or instance.
+
+:param retval=False: Applies to the :meth:`.before_execute` and
+  :meth:`.before_cursor_execute` events only.  When True, the
+  user-defined event function must have a return value, which
+  is a tuple of parameters that replace the given statement
+  and parameters.  See those methods for a description of
+  specific return arguments.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a23a2e55ba10952a2f764932e3476c84c}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!\_accept\_with@{\_accept\_with}}
+\index{\_accept\_with@{\_accept\_with}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{\_accept\_with()}{\_accept\_with()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a23a2e55ba10952a2f764932e3476c84c} 
+ Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+]\+]\+ sqlalchemy.\+engine.\+events.\+Connection\+Events.\+\_\+accept\+\_\+with (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+]\+}]{target}{, }\item[{str}]{identifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a32a298f128aa5ee65825767ed0a7a59e}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!\_listen@{\_listen}}
+\index{\_listen@{\_listen}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{\_listen()}{\_listen()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a32a298f128aa5ee65825767ed0a7a59e} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+\_\+listen (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{event.\+\_\+\+Event\+Key}}\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ConnectionEventsTarget}{Connection\+Events\+Target}}]\+}]{event\+\_\+key}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{retval}{ = {\ttfamily False}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a9e2bbfeb9046be229880be8cdd5d3c15}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!after\_cursor\_execute@{after\_cursor\_execute}}
+\index{after\_cursor\_execute@{after\_cursor\_execute}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{after\_cursor\_execute()}{after\_cursor\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a9e2bbfeb9046be229880be8cdd5d3c15} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+after\+\_\+cursor\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIAny\+Execute\+Params}]{parameters}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+}]{context}{, }\item[{bool}]{executemany}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept low-level cursor execute() events after execution.
+
+:param conn: :class:`_engine.Connection` object
+:param cursor: DBAPI cursor object.  Will have results pending
+ if the statement was a SELECT, but these should not be consumed
+ as they will be needed by the :class:`_engine.CursorResult`.
+:param statement: string SQL statement, as passed to the DBAPI
+:param parameters: Dictionary, tuple, or list of parameters being
+ passed to the ``execute()`` or ``executemany()`` method of the
+ DBAPI ``cursor``.  In some cases may be ``None``.
+:param context: :class:`.ExecutionContext` object in use.  May
+ be ``None``.
+:param executemany: boolean, if ``True``, this is an ``executemany()``
+ call, if ``False``, this is an ``execute()`` call.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_afc64ba5a78fea021b664c3e87c83843b}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!after\_execute@{after\_execute}}
+\index{after\_execute@{after\_execute}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{after\_execute()}{after\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_afc64ba5a78fea021b664c3e87c83843b} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+after\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}}]{clauseelement}{, }\item[{\+\_\+\+Core\+Multi\+Execute\+Params}]{multiparams}{, }\item[{\+\_\+\+Core\+Single\+Execute\+Params}]{params}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+}]{result}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept high level execute() events after execute.
+
+
+:param conn: :class:`_engine.Connection` object
+:param clauseelement: SQL expression construct, :class:`.Compiled`
+ instance, or string statement passed to
+ :meth:`_engine.Connection.execute`.
+:param multiparams: Multiple parameter sets, a list of dictionaries.
+:param params: Single parameter set, a single dictionary.
+:param execution_options: dictionary of execution
+ options passed along with the statement, if any.  This is a merge
+ of all options that will be used, including those of the statement,
+ the connection, and those passed in to the method itself for
+ the 2.0 style of execution.
+
+ .. versionadded: 1.4
+
+:param result: :class:`_engine.CursorResult` generated by the
+ execution.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ab438ccd54ae7c493694d01048d332abd}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!before\_cursor\_execute@{before\_cursor\_execute}}
+\index{before\_cursor\_execute@{before\_cursor\_execute}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{before\_cursor\_execute()}{before\_cursor\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ab438ccd54ae7c493694d01048d332abd} 
+ Optional\+[Tuple\+[str, \+\_\+\+DBAPIAny\+Execute\+Params]\+]\+ sqlalchemy.\+engine.\+events.\+Connection\+Events.\+before\+\_\+cursor\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIAny\+Execute\+Params}]{parameters}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+}]{context}{, }\item[{bool}]{executemany}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept low-level cursor execute() events before execution,
+receiving the string SQL statement and DBAPI-specific parameter list to
+be invoked against a cursor.
+
+This event is a good choice for logging as well as late modifications
+to the SQL string.  It's less ideal for parameter modifications except
+for those which are specific to a target backend.
+
+This event can be optionally established with the ``retval=True``
+flag.  The ``statement`` and ``parameters`` arguments should be
+returned as a two-tuple in this case::
+
+    @event.listens_for(Engine, "before_cursor_execute", retval=True)
+    def before_cursor_execute(conn, cursor, statement,
+                    parameters, context, executemany):
+        # do something with statement, parameters
+        return statement, parameters
+
+See the example at :class:`_events.ConnectionEvents`.
+
+:param conn: :class:`_engine.Connection` object
+:param cursor: DBAPI cursor object
+:param statement: string SQL statement, as to be passed to the DBAPI
+:param parameters: Dictionary, tuple, or list of parameters being
+ passed to the ``execute()`` or ``executemany()`` method of the
+ DBAPI ``cursor``.  In some cases may be ``None``.
+:param context: :class:`.ExecutionContext` object in use.  May
+ be ``None``.
+:param executemany: boolean, if ``True``, this is an ``executemany()``
+ call, if ``False``, this is an ``execute()`` call.
+
+.. seealso::
+
+    :meth:`.before_execute`
+
+    :meth:`.after_cursor_execute`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a4a10017b6573f3476a10359368184ecf}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!before\_execute@{before\_execute}}
+\index{before\_execute@{before\_execute}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{before\_execute()}{before\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a4a10017b6573f3476a10359368184ecf} 
+ Optional\+[         Tuple\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, \+\_\+\+Core\+Multi\+Execute\+Params, \+\_\+\+Core\+Single\+Execute\+Params]\+     ]\+ sqlalchemy.\+engine.\+events.\+Connection\+Events.\+before\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}}]{clauseelement}{, }\item[{\+\_\+\+Core\+Multi\+Execute\+Params}]{multiparams}{, }\item[{\+\_\+\+Core\+Single\+Execute\+Params}]{params}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept high level execute() events, receiving uncompiled
+SQL constructs and other objects prior to rendering into SQL.
+
+This event is good for debugging SQL compilation issues as well
+as early manipulation of the parameters being sent to the database,
+as the parameter lists will be in a consistent format here.
+
+This event can be optionally established with the ``retval=True``
+flag.  The ``clauseelement``, ``multiparams``, and ``params``
+arguments should be returned as a three-tuple in this case::
+
+    @event.listens_for(Engine, "before_execute", retval=True)
+    def before_execute(conn, clauseelement, multiparams, params):
+        # do something with clauseelement, multiparams, params
+        return clauseelement, multiparams, params
+
+:param conn: :class:`_engine.Connection` object
+:param clauseelement: SQL expression construct, :class:`.Compiled`
+ instance, or string statement passed to
+ :meth:`_engine.Connection.execute`.
+:param multiparams: Multiple parameter sets, a list of dictionaries.
+:param params: Single parameter set, a single dictionary.
+:param execution_options: dictionary of execution
+ options passed along with the statement, if any.  This is a merge
+ of all options that will be used, including those of the statement,
+ the connection, and those passed in to the method itself for
+ the 2.0 style of execution.
+
+ .. versionadded: 1.4
+
+.. seealso::
+
+    :meth:`.before_cursor_execute`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a960f61721721857198873598900b55a7}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!begin@{begin}}
+\index{begin@{begin}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a960f61721721857198873598900b55a7} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+begin (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept begin() events.
+
+:param conn: :class:`_engine.Connection` object
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ae24b84cccc4e328dd5024d60a147240b}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!begin\_twophase@{begin\_twophase}}
+\index{begin\_twophase@{begin\_twophase}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{begin\_twophase()}{begin\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ae24b84cccc4e328dd5024d60a147240b} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+begin\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{Any}]{xid}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept begin_twophase() events.
+
+:param conn: :class:`_engine.Connection` object
+:param xid: two-phase XID identifier
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aca212083b6c96a89b322344b8c43cc19}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!commit@{commit}}
+\index{commit@{commit}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aca212083b6c96a89b322344b8c43cc19} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+commit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept commit() events, as initiated by a
+:class:`.Transaction`.
+
+Note that the :class:`_pool.Pool` may also "auto-commit"
+a DBAPI connection upon checkin, if the ``reset_on_return``
+flag is set to the value ``'commit'``.  To intercept this
+commit, use the :meth:`_events.PoolEvents.reset` hook.
+
+:param conn: :class:`_engine.Connection` object
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0cba4a7e974a0d041deee902090094eb}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!commit\_twophase@{commit\_twophase}}
+\index{commit\_twophase@{commit\_twophase}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{commit\_twophase()}{commit\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0cba4a7e974a0d041deee902090094eb} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+commit\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{Any}]{xid}{, }\item[{bool     }]{is\+\_\+prepared}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept commit_twophase() events.
+
+:param conn: :class:`_engine.Connection` object
+:param xid: two-phase XID identifier
+:param is_prepared: boolean, indicates if
+ :meth:`.TwoPhaseTransaction.prepare` was called.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ad1f2ac194f490235fb8216ebd4d03e71}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!engine\_connect@{engine\_connect}}
+\index{engine\_connect@{engine\_connect}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{engine\_connect()}{engine\_connect()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ad1f2ac194f490235fb8216ebd4d03e71} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+engine\+\_\+connect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept the creation of a new :class:`_engine.Connection`.
+
+This event is called typically as the direct result of calling
+the :meth:`_engine.Engine.connect` method.
+
+It differs from the :meth:`_events.PoolEvents.connect` method, which
+refers to the actual connection to a database at the DBAPI level;
+a DBAPI connection may be pooled and reused for many operations.
+In contrast, this event refers only to the production of a higher level
+:class:`_engine.Connection` wrapper around such a DBAPI connection.
+
+It also differs from the :meth:`_events.PoolEvents.checkout` event
+in that it is specific to the :class:`_engine.Connection` object,
+not the
+DBAPI connection that :meth:`_events.PoolEvents.checkout` deals with,
+although
+this DBAPI connection is available here via the
+:attr:`_engine.Connection.connection` attribute.
+But note there can in fact
+be multiple :meth:`_events.PoolEvents.checkout`
+events within the lifespan
+of a single :class:`_engine.Connection` object, if that
+:class:`_engine.Connection`
+is invalidated and re-established.
+
+:param conn: :class:`_engine.Connection` object.
+
+.. seealso::
+
+    :meth:`_events.PoolEvents.checkout`
+    the lower-level pool checkout event
+    for an individual DBAPI connection
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a83ea1882065769381bbe20e351f640ff}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!engine\_disposed@{engine\_disposed}}
+\index{engine\_disposed@{engine\_disposed}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{engine\_disposed()}{engine\_disposed()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a83ea1882065769381bbe20e351f640ff} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+engine\+\_\+disposed (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}}]{engine}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept when the :meth:`_engine.Engine.dispose` method is called.
+
+The :meth:`_engine.Engine.dispose` method instructs the engine to
+"dispose" of it's connection pool (e.g. :class:`_pool.Pool`), and
+replaces it with a new one.  Disposing of the old pool has the
+effect that existing checked-in connections are closed.  The new
+pool does not establish any new connections until it is first used.
+
+This event can be used to indicate that resources related to the
+:class:`_engine.Engine` should also be cleaned up,
+keeping in mind that the
+:class:`_engine.Engine`
+can still be used for new requests in which case
+it re-acquires connection resources.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a234a30e9f312bb9bd1d105df49cf7ab9}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!prepare\_twophase@{prepare\_twophase}}
+\index{prepare\_twophase@{prepare\_twophase}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{prepare\_twophase()}{prepare\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a234a30e9f312bb9bd1d105df49cf7ab9} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+prepare\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{Any}]{xid}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept prepare_twophase() events.
+
+:param conn: :class:`_engine.Connection` object
+:param xid: two-phase XID identifier
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aa57cfb3af9296075fa4535e54f8a8d46}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!release\_savepoint@{release\_savepoint}}
+\index{release\_savepoint@{release\_savepoint}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{release\_savepoint()}{release\_savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aa57cfb3af9296075fa4535e54f8a8d46} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+release\+\_\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{str}]{name}{, }\item[{None     }]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept release_savepoint() events.
+
+:param conn: :class:`_engine.Connection` object
+:param name: specified name used for the savepoint.
+:param context: not used
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a298a7e3c63ab9a4754be793e0e2fb157}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!rollback@{rollback}}
+\index{rollback@{rollback}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a298a7e3c63ab9a4754be793e0e2fb157} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+rollback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept rollback() events, as initiated by a
+:class:`.Transaction`.
+
+Note that the :class:`_pool.Pool` also "auto-rolls back"
+a DBAPI connection upon checkin, if the ``reset_on_return``
+flag is set to its default value of ``'rollback'``.
+To intercept this
+rollback, use the :meth:`_events.PoolEvents.reset` hook.
+
+:param conn: :class:`_engine.Connection` object
+
+.. seealso::
+
+    :meth:`_events.PoolEvents.reset`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a7758b975436959c85bc931c6365443d7}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!rollback\_savepoint@{rollback\_savepoint}}
+\index{rollback\_savepoint@{rollback\_savepoint}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{rollback\_savepoint()}{rollback\_savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a7758b975436959c85bc931c6365443d7} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+rollback\+\_\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{str}]{name}{, }\item[{None     }]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept rollback_savepoint() events.
+
+:param conn: :class:`_engine.Connection` object
+:param name: specified name used for the savepoint.
+:param context: not used
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ac960775a613b565926a3848112d7f2a0}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!rollback\_twophase@{rollback\_twophase}}
+\index{rollback\_twophase@{rollback\_twophase}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{rollback\_twophase()}{rollback\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_ac960775a613b565926a3848112d7f2a0} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+rollback\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{Any}]{xid}{, }\item[{bool     }]{is\+\_\+prepared}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept rollback_twophase() events.
+
+:param conn: :class:`_engine.Connection` object
+:param xid: two-phase XID identifier
+:param is_prepared: boolean, indicates if
+ :meth:`.TwoPhaseTransaction.prepare` was called.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_adbcb9d3d6f7820ebe5a74c0ab8d8b0b3}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!savepoint@{savepoint}}
+\index{savepoint@{savepoint}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{savepoint()}{savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_adbcb9d3d6f7820ebe5a74c0ab8d8b0b3} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept savepoint() events.
+
+:param conn: :class:`_engine.Connection` object
+:param name: specified name used for the savepoint.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0e9a385a91185bb466ba252fb6310f98}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!set\_connection\_execution\_options@{set\_connection\_execution\_options}}
+\index{set\_connection\_execution\_options@{set\_connection\_execution\_options}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{set\_connection\_execution\_options()}{set\_connection\_execution\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_a0e9a385a91185bb466ba252fb6310f98} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+set\+\_\+connection\+\_\+execution\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{Dict\+[str, Any]\+     }]{opts}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept when the :meth:`_engine.Connection.execution_options`
+method is called.
+
+This method is called after the new :class:`_engine.Connection`
+has been
+produced, with the newly updated execution options collection, but
+before the :class:`.Dialect` has acted upon any of those new options.
+
+Note that this method is not called when a new
+:class:`_engine.Connection`
+is produced which is inheriting execution options from its parent
+:class:`_engine.Engine`; to intercept this condition, use the
+:meth:`_events.ConnectionEvents.engine_connect` event.
+
+:param conn: The newly copied :class:`_engine.Connection` object
+
+:param opts: dictionary of options that were passed to the
+ :meth:`_engine.Connection.execution_options` method.
+ This dictionary may be modified in place to affect the ultimate
+ options which take effect.
+
+ .. versionadded:: 2.0 the ``opts`` dictionary may be modified
+    in place.
+
+
+.. seealso::
+
+    :meth:`_events.ConnectionEvents.set_engine_execution_options`
+    - event
+    which is called when :meth:`_engine.Engine.execution_options`
+    is called.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aae3b044d7e54b63323d094947b0d8a79}\index{sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}!set\_engine\_execution\_options@{set\_engine\_execution\_options}}
+\index{set\_engine\_execution\_options@{set\_engine\_execution\_options}!sqlalchemy.engine.events.ConnectionEvents@{sqlalchemy.engine.events.ConnectionEvents}}
+\doxysubsubsection{\texorpdfstring{set\_engine\_execution\_options()}{set\_engine\_execution\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1ConnectionEvents_aae3b044d7e54b63323d094947b0d8a79} 
+ None sqlalchemy.\+engine.\+events.\+Connection\+Events.\+set\+\_\+engine\+\_\+execution\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}}]{engine}{, }\item[{Dict\+[str, Any]\+     }]{opts}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept when the :meth:`_engine.Engine.execution_options`
+method is called.
+
+The :meth:`_engine.Engine.execution_options` method produces a shallow
+copy of the :class:`_engine.Engine` which stores the new options.
+That new
+:class:`_engine.Engine` is passed here.
+A particular application of this
+method is to add a :meth:`_events.ConnectionEvents.engine_connect`
+event
+handler to the given :class:`_engine.Engine`
+which will perform some per-
+:class:`_engine.Connection` task specific to these execution options.
+
+:param conn: The newly copied :class:`_engine.Engine` object
+
+:param opts: dictionary of options that were passed to the
+ :meth:`_engine.Connection.execution_options` method.
+ This dictionary may be modified in place to affect the ultimate
+ options which take effect.
+
+ .. versionadded:: 2.0 the ``opts`` dictionary may be modified
+    in place.
+
+.. seealso::
+
+    :meth:`_events.ConnectionEvents.set_connection_execution_options`
+    - event
+    which is called when :meth:`_engine.Connection.execution_options`
+    is
+    called.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+events.\+py\end{DoxyCompactItemize}

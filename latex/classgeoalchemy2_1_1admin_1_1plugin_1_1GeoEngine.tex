@@ -1,0 +1,103 @@
+\doxysection{geoalchemy2.\+admin.\+plugin.\+Geo\+Engine Class Reference}
+\hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine}{}\label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine}\index{geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}}
+Inheritance diagram for geoalchemy2.\+admin.\+plugin.\+Geo\+Engine:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_aaa0f706dced74d3f8c20fd7e1b367e41}\label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_aaa0f706dced74d3f8c20fd7e1b367e41} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, url, kwargs)
+\item 
+\doxymbox{\hyperlink{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_a14534a84dc273504d88cec5a92240cbd}{update\+\_\+url}} (self, url)
+\item 
+\doxymbox{\hyperlink{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ae5425bcf1b199cbcd97b98943c58274a}{engine\+\_\+created}} (self, engine)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin}{sqlalchemy.\+engine.\+interfaces.\+Create\+Engine\+Plugin}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_a08aed909fc966e524c075a79b4801648}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url, Dict\+[str, Any]\+ kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_a2a2e4a6fe217657f3817425a1feb2b22}{handle\+\_\+dialect\+\_\+kwargs}} (self, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ dialect\+\_\+cls, Dict\+[str, Any]\+ dialect\+\_\+args)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_a3673c8a4810461fb160c46187841665b}{handle\+\_\+pool\+\_\+kwargs}} (self, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1Pool}{Pool}}]\+ pool\+\_\+cls, Dict\+[str, Any]\+ pool\+\_\+args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ad96818a537f85acca423b4416ff99ae5}{str\+\_\+to\+\_\+bool}} (argument)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_a0f9f70cbf4ca50626069083a08abaf7c}\label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_a0f9f70cbf4ca50626069083a08abaf7c} 
+{\bfseries params} = defaultdict(lambda:\+ defaultdict(dict))
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin}{sqlalchemy.\+engine.\+interfaces.\+Create\+Engine\+Plugin}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_abad7aba289fd6c4367869ec4e28e6454}{url}} = url
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A plugin to create `sqlalchemy.Engine` objects with specific events to handle spatial data.
+
+This plugin should only be used with the :func:`sqlalchemy.create_engine` function. This plugin
+will automatically attach the relevant event listeners to the new engine depending on its
+dialect. For some specific dialects it's even possible to pass arguments to customize the
+functions called by the listeners. These arguments have the following form:
+`geoalchemy2_<event>_<dialect>_<argument_name>`.
+For example, creating a new SQLite DB and initialize the SpatiaLite extension with only the
+WGS84 SRID can be performed this way:
+
+.. code-block:: python
+
+    db_url = "sqlite:////tmp/test_db.sqlite?geoalchemy2_connect_sqlite_init_mode=WGS84"
+    engine = sqlalchemy.create_engine(db_url, plugins=["geoalchemy2"])
+
+The names of the parameters can be found in the event listener of each dialect. Note that all
+dialects don't have listeners for all events.
+\end{DoxyVerb}
+ 
+
+\label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_doc-func-members}
+\Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ae5425bcf1b199cbcd97b98943c58274a}\index{geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}!engine\_created@{engine\_created}}
+\index{engine\_created@{engine\_created}!geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}}
+\doxysubsubsection{\texorpdfstring{engine\_created()}{engine\_created()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ae5425bcf1b199cbcd97b98943c58274a} 
+geoalchemy2.\+admin.\+plugin.\+Geo\+Engine.\+engine\+\_\+created (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{engine}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Attach event listeners after the new Engine object is created.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_abf68fb2c11b1456ac0eb379cebc13ca5}{sqlalchemy.\+engine.\+interfaces.\+Create\+Engine\+Plugin}}.
+
+\Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ad96818a537f85acca423b4416ff99ae5}\index{geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}!str\_to\_bool@{str\_to\_bool}}
+\index{str\_to\_bool@{str\_to\_bool}!geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}}
+\doxysubsubsection{\texorpdfstring{str\_to\_bool()}{str\_to\_bool()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_ad96818a537f85acca423b4416ff99ae5} 
+geoalchemy2.\+admin.\+plugin.\+Geo\+Engine.\+str\+\_\+to\+\_\+bool (\begin{DoxyParamCaption}\item[{}]{argument}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Cast argument to bool.\end{DoxyVerb}
+ \Hypertarget{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_a14534a84dc273504d88cec5a92240cbd}\index{geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}!update\_url@{update\_url}}
+\index{update\_url@{update\_url}!geoalchemy2.admin.plugin.GeoEngine@{geoalchemy2.admin.plugin.GeoEngine}}
+\doxysubsubsection{\texorpdfstring{update\_url()}{update\_url()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1admin_1_1plugin_1_1GeoEngine_a14534a84dc273504d88cec5a92240cbd} 
+geoalchemy2.\+admin.\+plugin.\+Geo\+Engine.\+update\+\_\+url (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update the URL to one that no longer includes specific parameters.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CreateEnginePlugin_af81928895aded8912f73b1c500a1f3b5}{sqlalchemy.\+engine.\+interfaces.\+Create\+Engine\+Plugin}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+geoalchemy2/\+admin/\+plugin.\+py\end{DoxyCompactItemize}

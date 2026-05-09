@@ -1,0 +1,104 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fast-\/levenshtein Directory Reference}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7}{}\label{dir_661aa695d9c4932d4cbc1f70332a6af7}\index{frontend/node\_modules/fast-\/levenshtein Directory Reference@{frontend/node\_modules/fast-\/levenshtein Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2265}{}\doxysubsection{\texorpdfstring{fast-\/levenshtein -\/ Levenshtein algorithm in Javascript}{fast-\/levenshtein -\/ Levenshtein algorithm in Javascript}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2265}
+\href{http://travis-ci.org/hiddentao/fast-levenshtein}{\texttt{}} \href{https://badge.fury.io/js/fast-levenshtein}{\texttt{}} \href{https://www.npmjs.com/package/fast-levenshtein}{\texttt{}} \href{https://twitter.com/hiddentao}{\texttt{}}
+
+An efficient Javascript implementation of the \href{http://en.wikipedia.org/wiki/Levenshtein_distance}{\texttt{Levenshtein algorithm}} with locale-\/specific collator support.\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2266}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2266}
+
+\begin{DoxyItemize}
+\item Works in node.\+js and in the browser.
+\item Better performance than other implementations by not needing to store the whole matrix (\href{http://www.codeproject.com/Articles/13525/Fast-memory-efficient-Levenshtein-algorithm}{\texttt{more info}}).
+\item Locale-\/sensitive string comparisions if needed.
+\item Comprehensive test suite and performance benchmark.
+\item Small:\+ \texorpdfstring{$<$}{<}1 KB minified and gzipped
+\end{DoxyItemize}\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2267}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2267}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2268}{}\doxysubsubsection{\texorpdfstring{node.\+js}{node.\+js}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2268}
+Install using \+[npm]\+(\href{http://npmjs.org/}{\texttt{http:\+/\+/\+npmjs.\+org/\+}}):\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ fast-\/levenshtein}
+
+\end{DoxyCode}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2269}{}\doxysubsubsection{\texorpdfstring{Browser}{Browser}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2269}
+Using bower:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ bower\ install\ fast-\/levenshtein}
+
+\end{DoxyCode}
+
+
+If you are not using any module loader system then the API will then be accessible via the \`{}window.Levenshtein\`{} object.\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2270}{}\doxysubsection{\texorpdfstring{Examples}{Examples}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2270}
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Default usage\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ levenshtein\ =\ require('fast-\/levenshtein');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ distance\ =\ levenshtein.get('back',\ 'book');\ \ \ //\ 2}
+\DoxyCodeLine{var\ distance\ =\ levenshtein.get('我愛你',\ '我叫你');\ \ \ //\ 1}
+
+\end{DoxyCode}
+
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Locale-\/sensitive string comparisons\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+
+It supports using \+[Intl.\+Collator]\+(\href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator}{\texttt{https:\+/\+/\+developer.\+mozilla.\+org/\+en-\/\+US/\+docs/\+\+Web/\+\+Java\+Script/\+\+Reference/\+\+Global\+\_\+\+Objects/\+\+Collator}}) for locale-\/sensitive string comparisons:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ levenshtein\ =\ require('fast-\/levenshtein');}
+\DoxyCodeLine{}
+\DoxyCodeLine{levenshtein.get('mikailovitch',\ 'Mikhaïlovitch',\ \{\ useCollator:\ true\});}
+\DoxyCodeLine{//\ 1}
+
+\end{DoxyCode}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2271}{}\doxysubsection{\texorpdfstring{Building and Testing}{Building and Testing}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2271}
+To build the code and run the tests:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/g\ grunt-\/cli}
+\DoxyCodeLine{\$\ npm\ install}
+\DoxyCodeLine{\$\ npm\ run\ build}
+
+\end{DoxyCode}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2272}{}\doxysubsection{\texorpdfstring{Performance}{Performance}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2272}
+\+\_\+\+Thanks to \+[Titus Wormer]\+(\href{https://github.com/wooorm}{\texttt{https:\+/\+/\+github.\+com/\+wooorm}}) for \+[encouraging me]\+(\href{https://github.com/hiddentao/fast-levenshtein/issues/1}{\texttt{https:\+/\+/\+github.\+com/\+hiddentao/\+fast-\/levenshtein/\+issues/\+1}}) to do this.\+\_\+
+
+Benchmarked against other node.\+js levenshtein distance modules (on Macbook Air 2012, Core i7, 8GB RAM):\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Running\ suite\ Implementation\ comparison\ [benchmark/speed.js]...}
+\DoxyCodeLine{>>\ levenshtein-\/edit-\/distance\ x\ 234\ ops/sec\ ±3.02\%\ (73\ runs\ sampled)}
+\DoxyCodeLine{>>\ levenshtein-\/component\ x\ 422\ ops/sec\ ±4.38\%\ (83\ runs\ sampled)}
+\DoxyCodeLine{>>\ levenshtein-\/deltas\ x\ 283\ ops/sec\ ±3.83\%\ (78\ runs\ sampled)}
+\DoxyCodeLine{>>\ natural\ x\ 255\ ops/sec\ ±0.76\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{>>\ levenshtein\ x\ 180\ ops/sec\ ±3.55\%\ (86\ runs\ sampled)}
+\DoxyCodeLine{>>\ fast-\/levenshtein\ x\ 1,792\ ops/sec\ ±2.72\%\ (95\ runs\ sampled)}
+\DoxyCodeLine{Benchmark\ done.}
+\DoxyCodeLine{Fastest\ test\ is\ fast-\/levenshtein\ at\ 4.2x\ faster\ than\ levenshtein-\/component}
+
+\end{DoxyCode}
+
+
+You can run this benchmark yourself by doing:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install}
+\DoxyCodeLine{\$\ npm\ run\ build}
+\DoxyCodeLine{\$\ npm\ run\ benchmark}
+
+\end{DoxyCode}
+\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2273}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2273}
+If you wish to submit a pull request please update and/\+or create new tests for any changes you make and ensure the grunt build passes.
+
+See \href{https://github.com/hiddentao/fast-levenshtein/blob/master/CONTRIBUTING.md}{\texttt{CONTRIBUTING.\+md}} for details.\hypertarget{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2274}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_661aa695d9c4932d4cbc1f70332a6af7_autotoc_md2274}
+MIT -\/ see \href{https://github.com/hiddentao/fast-levenshtein/blob/master/LICENSE.md}{\texttt{LICENSE.\+md}} 

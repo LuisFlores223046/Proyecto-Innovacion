@@ -1,0 +1,540 @@
+\chapter{zod-\/validation-\/error }
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3}{}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3}\index{zod-\/validation-\/error@{zod-\/validation-\/error}}
+\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5041}%
+\Hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5041}%
+
+
+Wrap zod validation errors in user-\/friendly readable messages.
+
+\href{https://github.com/causaly/zod-validation-error/actions/workflows/ci.yml}{\texttt{}} \href{https://www.npmjs.com/package/zod-validation-error}{\texttt{}}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5042}{}\doxysubsubsection{\texorpdfstring{Features}{Features}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5042}
+
+\begin{DoxyItemize}
+\item User-\/friendly readable messages, configurable via options;
+\item Maintain original issues under {\ttfamily error.\+details};
+\item Supports both {\ttfamily zod} v3 and v4.
+\end{DoxyItemize}
+
+{\bfseries{{\itshape Note:\+}}} This is the v3 version of {\ttfamily zod-\/validation-\/error}. If you are looking for zod v4 support, please click here.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5043}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5043}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ zod-\/validation-\/error}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5044}{}\doxysubsubsection{\texorpdfstring{Requirements}{Requirements}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5044}
+
+\begin{DoxyItemize}
+\item Node.\+js v.\+18+
+\item Type\+Script v.\+4.\+5+
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5045}{}\doxysection{\texorpdfstring{Quick start}{Quick start}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5045}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ fromError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ zod\ schema}
+\DoxyCodeLine{const\ zodSchema\ =\ zod.object(\{}
+\DoxyCodeLine{\ \ id:\ zod.number().int().positive(),}
+\DoxyCodeLine{\ \ email:\ zod.string().email(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ parse\ some\ invalid\ value}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ zodSchema.parse(\{}
+\DoxyCodeLine{\ \ \ \ id:\ 1,}
+\DoxyCodeLine{\ \ \ \ email:\ 'foobar',\ //\ note:\ invalid\ email}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ const\ validationError\ =\ fromError(err);}
+\DoxyCodeLine{\ \ //\ the\ error\ is\ now\ readable\ by\ the\ user}
+\DoxyCodeLine{\ \ //\ you\ may\ print\ it\ to\ console}
+\DoxyCodeLine{\ \ console.log(validationError.toString());}
+\DoxyCodeLine{\ \ //\ or\ return\ it\ as\ an\ actual\ error}
+\DoxyCodeLine{\ \ return\ validationError;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5046}{}\doxysection{\texorpdfstring{Motivation}{Motivation}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5046}
+Zod errors are difficult to consume for the end-\/user. This library wraps Zod validation errors in user-\/friendly readable messages that can be exposed to the outer world, while maintaining the original errors in an array for {\itshape dev} use.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5047}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5047}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5048}{}\doxysubsubsection{\texorpdfstring{Input (from Zod)}{Input (from Zod)}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5048}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ "{}code"{}:\ "{}too\_small"{},}
+\DoxyCodeLine{\ \ \ \ "{}inclusive"{}:\ false,}
+\DoxyCodeLine{\ \ \ \ "{}message"{}:\ "{}Number\ must\ be\ greater\ than\ 0"{},}
+\DoxyCodeLine{\ \ \ \ "{}minimum"{}:\ 0,}
+\DoxyCodeLine{\ \ \ \ "{}path"{}:\ ["{}id"{}],}
+\DoxyCodeLine{\ \ \ \ "{}type"{}:\ "{}number"{}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ "{}code"{}:\ "{}invalid\_string"{},}
+\DoxyCodeLine{\ \ \ \ "{}message"{}:\ "{}Invalid\ email"{},}
+\DoxyCodeLine{\ \ \ \ "{}path"{}:\ ["{}email"{}],}
+\DoxyCodeLine{\ \ \ \ "{}validation"{}:\ "{}email"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5049}{}\doxysubsubsection{\texorpdfstring{Output}{Output}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5049}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Validation\ error:\ Number\ must\ be\ greater\ than\ 0\ at\ "{}id"{};\ Invalid\ email\ at\ "{}email"{}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5050}{}\doxysection{\texorpdfstring{API}{API}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5050}
+
+\begin{DoxyItemize}
+\item Validation\+Error(message\+[, options]\+)Validation\+Error(message\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item create\+Message\+Builder(props)create\+Message\+Builder(props)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item error\+Maperror\+Map
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Validation\+Error(error)is\+Validation\+Error(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Validation\+Error\+Like(error)is\+Validation\+Error\+Like(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Zod\+Error\+Like(error)is\+Zod\+Error\+Like(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Error(error\+[, options]\+)from\+Error(error\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Zod\+Issue(zod\+Issue\+[, options]\+)from\+Zod\+Issue(zod\+Issue\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Zod\+Error(zod\+Error\+[, options]\+)from\+Zod\+Error(zod\+Error\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item to\+Validation\+Error(\+[options]\+) =\texorpdfstring{$>$}{>} (error) =\texorpdfstring{$>$}{>} Validation\+Errorto\+Validation\+Error(\+[options]\+) =\texorpdfstring{$>$}{>} (error) =\texorpdfstring{$>$}{>} Validation\+Error
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5051}{}\doxysubsection{\texorpdfstring{Validation\+Error}{Validation\+Error}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5051}
+Main {\ttfamily Validation\+Error} class, extending native Java\+Script {\ttfamily Error}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5052}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5052}
+
+\begin{DoxyItemize}
+\item {\ttfamily message} -\/ {\itshape string}; error message (required)
+\item {\ttfamily options} -\/ {\itshape Error\+Options}; error options as per \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error\#options}{\texttt{Java\+Script definition}} (optional)
+\begin{DoxyItemize}
+\item {\ttfamily options.\+cause} -\/ {\itshape any}; can be used to hold the original zod error (optional)
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5053}{}\doxysubsubsection{\texorpdfstring{Example 1:\+ construct new Validation\+Error with {\ttfamily message}}{Example 1:\+ construct new Validation\+Error with {\ttfamily message}}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5053}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ ValidationError\ \}\ =\ require('zod-\/validation-\/error');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ error\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{console.log(error\ instanceof\ Error);\ //\ prints\ true}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5054}{}\doxysubsubsection{\texorpdfstring{Example 2:\+ construct new Validation\+Error with {\ttfamily message} and {\ttfamily options.\+cause}}{Example 2:\+ construct new Validation\+Error with {\ttfamily message} and {\ttfamily options.\+cause}}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5054}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{const\ \{\ ValidationError\ \}\ =\ require('zod-\/validation-\/error');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ error\ =\ new\ ValidationError('foobar',\ \{}
+\DoxyCodeLine{\ \ cause:\ new\ zod.ZodError([}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ code:\ 'invalid\_string',}
+\DoxyCodeLine{\ \ \ \ \ \ message:\ 'Invalid\ email',}
+\DoxyCodeLine{\ \ \ \ \ \ path:\ ['email'],}
+\DoxyCodeLine{\ \ \ \ \ \ validation:\ 'email',}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ ]),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(error.details);\ //\ prints\ issues\ from\ zod\ error}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5055}{}\doxysubsection{\texorpdfstring{create\+Message\+Builder}{create\+Message\+Builder}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5055}
+Creates zod-\/validation-\/error\textquotesingle{}s default {\ttfamily Message\+Builder}, which is used to produce user-\/friendly error messages.
+
+Meant to be passed as an option to from\+Errorfrom\+Error, from\+Zod\+Issuefrom\+Zod\+Issue, from\+Zod\+Errorfrom\+Zod\+Error or to\+Validation\+Errorto\+Validation\+Error.
+
+You may read more on the concept of the {\ttfamily Message\+Builder} further belowbelow.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5056}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5056}
+
+\begin{DoxyItemize}
+\item {\ttfamily props} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily max\+Issues\+In\+Message} -\/ {\itshape number}; max issues to include in user-\/friendly message (optional, defaults to 99)
+\item {\ttfamily issue\+Separator} -\/ {\itshape string}; used to concatenate issues in user-\/friendly message (optional, defaults to "{};"{})
+\item {\ttfamily union\+Separator} -\/ {\itshape string}; used to concatenate union-\/issues in user-\/friendly message (optional, defaults to "{}, or"{})
+\item {\ttfamily prefix} -\/ {\itshape string} or {\itshape null}; prefix to use in user-\/friendly message (optional, defaults to "{}\+Validation error"{}). Pass {\ttfamily null} to disable prefix completely.
+\item {\ttfamily prefix\+Separator} -\/ {\itshape string}; used to concatenate prefix with rest of the user-\/friendly message (optional, defaults to "{}:\+ "{}). Not used when {\ttfamily prefix} is {\ttfamily null}.
+\item {\ttfamily include\+Path} -\/ {\itshape boolean}; used to provide control on whether to include the erroneous property name suffix or not (optional, defaults to {\ttfamily true}).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5057}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5057}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ createMessageBuilder\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ messageBuilder\ =\ createMessageBuilder(\{}
+\DoxyCodeLine{\ \ includePath:\ false,}
+\DoxyCodeLine{\ \ maxIssuesInMessage:\ 3,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5058}{}\doxysubsection{\texorpdfstring{error\+Map}{error\+Map}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5058}
+A custom error map to use with zod\textquotesingle{}s {\ttfamily set\+Error\+Map} method and get user-\/friendly messages automatically.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5059}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5059}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ errorMap\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{zod.setErrorMap(errorMap);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5060}{}\doxysubsection{\texorpdfstring{is\+Validation\+Error}{is\+Validation\+Error}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5060}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\ttfamily instanceof} comparison.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5061}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5061}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5062}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5062}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ ValidationError,\ isValidationError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ err\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isValidationError(err);\ //\ returns\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ invalidErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isValidationError(err);\ //\ returns\ false}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5063}{}\doxysubsection{\texorpdfstring{is\+Validation\+Error\+Like}{is\+Validation\+Error\+Like}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5063}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\itshape heuristics} comparison.
+
+{\itshape Why do we need heuristics since we can use a simple {\ttfamily instanceof} comparison?} Because of multi-\/version inconsistencies. For instance, it\textquotesingle{}s possible that a dependency is using an older {\ttfamily zod-\/validation-\/error} version internally. In such case, the {\ttfamily instanceof} comparison will yield invalid results because module deduplication does not apply at npm/\+yarn level and the prototype is different.
+
+tl;dr if you are uncertain then it is preferable to use {\ttfamily is\+Validation\+Error\+Like} instead of {\ttfamily is\+Validation\+Error}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5064}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5064}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5065}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5065}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{}
+\DoxyCodeLine{\ \ ValidationError,}
+\DoxyCodeLine{\ \ isValidationErrorLike,}
+\DoxyCodeLine{\}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ err\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isValidationErrorLike(err);\ //\ returns\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ invalidErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isValidationErrorLike(err);\ //\ returns\ false}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5066}{}\doxysubsection{\texorpdfstring{is\+Zod\+Error\+Like}{is\+Zod\+Error\+Like}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5066}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\itshape heuristics} comparison.
+
+{\itshape Why do we need heuristics since we can use a simple {\ttfamily instanceof} comparison?} Because of multi-\/version inconsistencies. For instance, it\textquotesingle{}s possible that a dependency is using an older {\ttfamily zod} version internally. In such case, the {\ttfamily instanceof} comparison will yield invalid results because module deduplication does not apply at npm/\+yarn level and the prototype is different.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5067}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5067}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5068}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5068}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ ValidationError,\ isZodErrorLike\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ zodValidationErr\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isZodErrorLike(zodValidationErr);\ //\ returns\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ genericErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isZodErrorLike(genericErr);\ //\ returns\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ zodErr\ =\ new\ zod.ZodError([}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ code:\ zod.ZodIssueCode.custom,}
+\DoxyCodeLine{\ \ \ \ path:\ [],}
+\DoxyCodeLine{\ \ \ \ message:\ 'foobar',}
+\DoxyCodeLine{\ \ \ \ fatal:\ true,}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{]);}
+\DoxyCodeLine{isZodErrorLike(zodErr);\ //\ returns\ true}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5069}{}\doxysubsection{\texorpdfstring{from\+Error}{from\+Error}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5069}
+Converts an error to {\ttfamily Validation\+Error}.
+
+{\itshape What is the difference between {\ttfamily from\+Error} and {\ttfamily from\+Zod\+Error}?} The {\ttfamily from\+Error} function is a less strict version of {\ttfamily from\+Zod\+Error}. It can accept an unknown error and attempt to convert it to a {\ttfamily Validation\+Error}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5070}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5070}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ {\itshape unknown}; an error (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5071}{}\doxysubsubsection{\texorpdfstring{Notes}{Notes}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5071}
+Alternatively, you may pass the following {\ttfamily options} instead of a {\ttfamily message\+Builder}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily max\+Issues\+In\+Message} -\/ {\itshape number}; max issues to include in user-\/friendly message (optional, defaults to 99)
+\item {\ttfamily issue\+Separator} -\/ {\itshape string}; used to concatenate issues in user-\/friendly message (optional, defaults to "{};"{})
+\item {\ttfamily union\+Separator} -\/ {\itshape string}; used to concatenate union-\/issues in user-\/friendly message (optional, defaults to "{}, or"{})
+\item {\ttfamily prefix} -\/ {\itshape string} or {\itshape null}; prefix to use in user-\/friendly message (optional, defaults to "{}\+Validation error"{}). Pass {\ttfamily null} to disable prefix completely.
+\item {\ttfamily prefix\+Separator} -\/ {\itshape string}; used to concatenate prefix with rest of the user-\/friendly message (optional, defaults to "{}:\+ "{}). Not used when {\ttfamily prefix} is {\ttfamily null}.
+\item {\ttfamily include\+Path} -\/ {\itshape boolean}; used to provide control on whether to include the erroneous property name suffix or not (optional, defaults to {\ttfamily true}).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+They will be passed as arguments to the create\+Message\+Buildercreate\+Message\+Builder function. The only reason they exist is to provide backwards-\/compatibility with older versions of {\ttfamily zod-\/validation-\/error}. They should however be considered deprecated and may be removed in the future.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5072}{}\doxysubsection{\texorpdfstring{from\+Zod\+Issue}{from\+Zod\+Issue}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5072}
+Converts a single zod issue to {\ttfamily Validation\+Error}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5073}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5073}
+
+\begin{DoxyItemize}
+\item {\ttfamily zod\+Issue} -\/ {\itshape zod.\+Zod\+Issue}; a Zod\+Issue instance (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5074}{}\doxysubsubsection{\texorpdfstring{Notes}{Notes}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5074}
+Alternatively, you may pass the following {\ttfamily options} instead of a {\ttfamily message\+Builder}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily issue\+Separator} -\/ {\itshape string}; used to concatenate issues in user-\/friendly message (optional, defaults to "{};"{})
+\item {\ttfamily union\+Separator} -\/ {\itshape string}; used to concatenate union-\/issues in user-\/friendly message (optional, defaults to "{}, or"{})
+\item {\ttfamily prefix} -\/ {\itshape string} or {\itshape null}; prefix to use in user-\/friendly message (optional, defaults to "{}\+Validation error"{}). Pass {\ttfamily null} to disable prefix completely.
+\item {\ttfamily prefix\+Separator} -\/ {\itshape string}; used to concatenate prefix with rest of the user-\/friendly message (optional, defaults to "{}:\+ "{}). Not used when {\ttfamily prefix} is {\ttfamily null}.
+\item {\ttfamily include\+Path} -\/ {\itshape boolean}; used to provide control on whether to include the erroneous property name suffix or not (optional, defaults to {\ttfamily true}).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+They will be passed as arguments to the create\+Message\+Buildercreate\+Message\+Builder function. The only reason they exist is to provide backwards-\/compatibility with older versions of {\ttfamily zod-\/validation-\/error}. They should however be considered deprecated and may be removed in the future.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5075}{}\doxysubsection{\texorpdfstring{from\+Zod\+Error}{from\+Zod\+Error}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5075}
+Converts zod error to {\ttfamily Validation\+Error}.
+
+{\itshape Why is the difference between {\ttfamily Zod\+Error} and {\ttfamily Zod\+Issue}?} A {\ttfamily Zod\+Error} is a collection of 1 or more {\ttfamily Zod\+Issue} instances. It\textquotesingle{}s what you get when you call {\ttfamily zod\+Schema.\+parse()}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5076}{}\doxysubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5076}
+
+\begin{DoxyItemize}
+\item {\ttfamily zod\+Error} -\/ {\itshape zod.\+Zod\+Error}; a Zod\+Error instance (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5077}{}\doxysubsubsection{\texorpdfstring{Notes}{Notes}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5077}
+Alternatively, you may pass the following {\ttfamily options} instead of a {\ttfamily message\+Builder}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily max\+Issues\+In\+Message} -\/ {\itshape number}; max issues to include in user-\/friendly message (optional, defaults to 99)
+\item {\ttfamily issue\+Separator} -\/ {\itshape string}; used to concatenate issues in user-\/friendly message (optional, defaults to "{};"{})
+\item {\ttfamily union\+Separator} -\/ {\itshape string}; used to concatenate union-\/issues in user-\/friendly message (optional, defaults to "{}, or"{})
+\item {\ttfamily prefix} -\/ {\itshape string} or {\itshape null}; prefix to use in user-\/friendly message (optional, defaults to "{}\+Validation error"{}). Pass {\ttfamily null} to disable prefix completely.
+\item {\ttfamily prefix\+Separator} -\/ {\itshape string}; used to concatenate prefix with rest of the user-\/friendly message (optional, defaults to "{}:\+ "{}). Not used when {\ttfamily prefix} is {\ttfamily null}.
+\item {\ttfamily include\+Path} -\/ {\itshape boolean}; used to provide control on whether to include the erroneous property name suffix or not (optional, defaults to {\ttfamily true}).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+They will be passed as arguments to the create\+Message\+Buildercreate\+Message\+Builder function. The only reason they exist is to provide backwards-\/compatibility with older versions of {\ttfamily zod-\/validation-\/error}. They should however be considered deprecated and may be removed in the future.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5078}{}\doxysubsection{\texorpdfstring{to\+Validation\+Error}{to\+Validation\+Error}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5078}
+A curried version of {\ttfamily from\+Zod\+Error} meant to be used for FP (Functional Programming). Note it first takes the options object if needed and returns a function that converts the {\ttfamily zod\+Error} to a {\ttfamily Validation\+Error} object
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{toValidationError(options)\ =>\ (zodError)\ =>\ ValidationError}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5079}{}\doxysubsubsection{\texorpdfstring{Example using fp-\/ts}{Example using fp-\/ts}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5079}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ Either\ from\ 'fp-\/ts/Either';}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ toValidationError,\ ValidationError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ zod\ schema}
+\DoxyCodeLine{const\ zodSchema\ =\ zod}
+\DoxyCodeLine{\ \ .object(\{}
+\DoxyCodeLine{\ \ \ \ id:\ zod.number().int().positive(),}
+\DoxyCodeLine{\ \ \ \ email:\ zod.string().email(),}
+\DoxyCodeLine{\ \ \})}
+\DoxyCodeLine{\ \ .brand<'User'>();}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ type\ User\ =\ zod.infer<typeof\ zodSchema>;}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ function\ parse(}
+\DoxyCodeLine{\ \ value:\ zod.input<typeof\ zodSchema>}
+\DoxyCodeLine{):\ Either.Either<ValidationError,\ User>\ \{}
+\DoxyCodeLine{\ \ return\ Either.tryCatch(()\ =>\ schema.parse(value),\ toValidationError());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5080}{}\doxysection{\texorpdfstring{Message\+Builder}{Message\+Builder}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5080}
+{\ttfamily zod-\/validation-\/error} can be configured with a custom {\ttfamily Message\+Builder} function in order to produce case-\/specific error messages.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5081}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5081}
+For instance, one may want to print {\ttfamily invalid\+\_\+string} errors to the console in red color.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ type\ MessageBuilder,\ fromError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{import\ chalk\ from\ 'chalk';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ custom\ MessageBuilder}
+\DoxyCodeLine{const\ myMessageBuilder:\ MessageBuilder\ =\ (issues)\ =>\ \{}
+\DoxyCodeLine{\ \ return\ (}
+\DoxyCodeLine{\ \ \ \ issues}
+\DoxyCodeLine{\ \ \ \ \ \ //\ format\ error\ message}
+\DoxyCodeLine{\ \ \ \ \ \ .map((issue)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (issue.code\ ===\ zod.ZodIssueCode.invalid\_string)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ chalk.red(issue.message);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ issue.message;}
+\DoxyCodeLine{\ \ \ \ \ \ \})}
+\DoxyCodeLine{\ \ \ \ \ \ //\ join\ as\ string\ with\ new-\/line\ character}
+\DoxyCodeLine{\ \ \ \ \ \ .join('\(\backslash\)n')}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ zod\ schema}
+\DoxyCodeLine{const\ zodSchema\ =\ zod.object(\{}
+\DoxyCodeLine{\ \ id:\ zod.number().int().positive(),}
+\DoxyCodeLine{\ \ email:\ zod.string().email(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ parse\ some\ invalid\ value}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ zodSchema.parse(\{}
+\DoxyCodeLine{\ \ \ \ id:\ 1,}
+\DoxyCodeLine{\ \ \ \ email:\ 'foobar',\ //\ note:\ invalid\ email\ value}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ const\ validationError\ =\ fromError(err,\ \{}
+\DoxyCodeLine{\ \ \ \ messageBuilder:\ myMessageBuilder,}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\ \ //\ the\ error\ is\ now\ displayed\ with\ red\ letters}
+\DoxyCodeLine{\ \ console.log(validationError.toString());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5082}{}\doxysection{\texorpdfstring{FAQ}{FAQ}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5082}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5083}{}\doxysubsection{\texorpdfstring{How to distinguish between errors}{How to distinguish between errors}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5083}
+Use the {\ttfamily is\+Validation\+Error\+Like} type guard.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5084}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5084}
+Scenario:\+ Distinguish between {\ttfamily Validation\+Error} VS generic {\ttfamily Error} in order to respond with 400 VS 500 HTTP status code respectively.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ Either\ from\ 'fp-\/ts/Either';}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ isValidationErrorLike\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ func();\ //\ throws\ Error\ -\/\ or\ -\/\ ValidationError}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ if\ (isValidationErrorLike(err))\ \{}
+\DoxyCodeLine{\ \ \ \ return\ 400;\ //\ Bad\ Data\ (this\ is\ a\ client\ error)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ 500;\ //\ Server\ Error}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5085}{}\doxysubsection{\texorpdfstring{How to use {\ttfamily Validation\+Error} outside {\ttfamily zod}}{How to use {\ttfamily Validation\+Error} outside {\ttfamily zod}}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5085}
+It\textquotesingle{}s possible to implement custom validation logic outside {\ttfamily zod} and throw a {\ttfamily Validation\+Error}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5086}{}\doxysubsubsection{\texorpdfstring{Example 1:\+ passing custom message}{Example 1:\+ passing custom message}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5086}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{import\ \{\ Buffer\ \}\ from\ 'node:buffer';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ parseBuffer(buf:\ unknown):\ Buffer\ \{}
+\DoxyCodeLine{\ \ if\ (!Buffer.isBuffer(buf))\ \{}
+\DoxyCodeLine{\ \ \ \ throw\ new\ ValidationError('Invalid\ argument;\ expected\ buffer');}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ buf;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5087}{}\doxysubsubsection{\texorpdfstring{Example 2:\+ passing custom message and original error as cause}{Example 2:\+ passing custom message and original error as cause}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5087}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ //\ do\ something\ that\ throws\ an\ error}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ throw\ new\ ValidationError('Something\ went\ deeply\ wrong',\ \{\ cause:\ err\ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5088}{}\doxysubsection{\texorpdfstring{How to use {\ttfamily Validation\+Error} with custom "{}error map"{}}{How to use {\ttfamily Validation\+Error} with custom "{}error map"{}}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5088}
+Zod supports customizing error messages by providing a custom "{}error map"{}. You may combine this with {\ttfamily zod-\/validation-\/error} to produce user-\/friendly messages.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5089}{}\doxysubsubsection{\texorpdfstring{Example 1:\+ produce user-\/friendly error messages using the {\ttfamily error\+Map} property}{Example 1:\+ produce user-\/friendly error messages using the {\ttfamily error\+Map} property}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5089}
+If all you need is to produce user-\/friendly error messages you may use the {\ttfamily error\+Map} property.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ errorMap\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{zod.setErrorMap(errorMap);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5090}{}\doxysubsubsection{\texorpdfstring{Example 2:\+ extra customization using {\ttfamily from\+Zod\+Issue}}{Example 2:\+ extra customization using {\ttfamily from\+Zod\+Issue}}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5090}
+If you need to customize some error code, you may use the {\ttfamily from\+Zod\+Issue} function.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod/v3';}
+\DoxyCodeLine{import\ \{\ fromZodIssue\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ customErrorMap:\ zod.ZodErrorMap\ =\ (issue,\ ctx)\ =>\ \{}
+\DoxyCodeLine{\ \ switch\ (issue.code)\ \{}
+\DoxyCodeLine{\ \ \ \ case\ ZodIssueCode.invalid\_type:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ message:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'Custom\ error\ message\ of\ your\ preference\ for\ invalid\_type\ errors',}
+\DoxyCodeLine{\ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ default:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ const\ validationError\ =\ fromZodIssue(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ...issue,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ fallback\ to\ the\ default\ error\ message}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ when\ issue\ does\ not\ have\ a\ message}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ message:\ issue.message\ ??\ ctx.defaultError,}
+\DoxyCodeLine{\ \ \ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ message:\ validationError.message,}
+\DoxyCodeLine{\ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{zod.setErrorMap(customErrorMap);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5091}{}\doxysubsection{\texorpdfstring{How to use {\ttfamily zod-\/validation-\/error} with {\ttfamily react-\/hook-\/form}?}{How to use {\ttfamily zod-\/validation-\/error} with {\ttfamily react-\/hook-\/form}?}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5091}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ useForm\ \}\ from\ 'react-\/hook-\/form';}
+\DoxyCodeLine{import\ \{\ zodResolver\ \}\ from\ '@hookform/resolvers/zod';}
+\DoxyCodeLine{import\ \{\ errorMap\ \}\ from\ 'zod-\/validation-\/error/v3';}
+\DoxyCodeLine{}
+\DoxyCodeLine{useForm(\{}
+\DoxyCodeLine{\ \ resolver:\ zodResolver(schema,\ \{\ errorMap\ \}),}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5092}{}\doxysubsection{\texorpdfstring{Does {\ttfamily zod-\/validation-\/error} support Common\+JS}{Does {\ttfamily zod-\/validation-\/error} support Common\+JS}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5092}
+Yes, {\ttfamily zod-\/validation-\/error} supports Common\+JS out-\/of-\/the-\/box. All you need to do is import it using {\ttfamily require}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5093}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5093}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ ValidationError\ \}\ =\ require('zod-\/validation-\/error');}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5094}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5094}
+Source code contributions are most welcome. Please open a PR, ensure the linter is satisfied and all tests pass.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5095}{}\doxysubsubsection{\texorpdfstring{We are hiring}{We are hiring}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5095}
+Causaly is building the world\textquotesingle{}s largest biomedical knowledge platform, using technologies such as Type\+Script, React and Node.\+js. Find out more about our openings at \href{https://jobs.ashbyhq.com/causaly}{\texttt{https:\+/\+/\+jobs.\+ashbyhq.\+com/\+causaly}}.\hypertarget{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5096}{}\doxysection{\texorpdfstring{License}{License}}\label{md_frontend_2node__modules_2zod-validation-error_2README_8v3_autotoc_md5096}
+MIT 

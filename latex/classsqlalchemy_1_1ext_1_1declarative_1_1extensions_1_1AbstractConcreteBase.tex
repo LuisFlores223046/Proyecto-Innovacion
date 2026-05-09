@@ -1,0 +1,169 @@
+\doxysection{sqlalchemy.\+ext.\+declarative.\+extensions.\+Abstract\+Concrete\+Base Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase}{}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase}\index{sqlalchemy.ext.declarative.extensions.AbstractConcreteBase@{sqlalchemy.ext.declarative.extensions.AbstractConcreteBase}}
+Inheritance diagram for sqlalchemy.\+ext.\+declarative.\+extensions.\+Abstract\+Concrete\+Base:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_ac74dcc22bb5a0878dfd263ce5fdab03c}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_ac74dcc22bb5a0878dfd263ce5fdab03c} 
+{\bfseries \+\_\+\+\_\+declare\+\_\+first\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1ConcreteBase}{sqlalchemy.\+ext.\+declarative.\+extensions.\+Concrete\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+declare\+\_\+first\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_a4a877533195189082a96e51901a531bd}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_a4a877533195189082a96e51901a531bd} 
+{\bfseries \+\_\+sa\+\_\+decl\+\_\+prepare\+\_\+nocascade} (cls)
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_a3c2a13f1f4b016944d30dcd9ad7d88dc}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1AbstractConcreteBase_a3c2a13f1f4b016944d30dcd9ad7d88dc} 
+{\bfseries \+\_\+sa\+\_\+raise\+\_\+deferred\+\_\+config} (cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1ConcreteBase}{sqlalchemy.\+ext.\+declarative.\+extensions.\+Concrete\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+create\+\_\+polymorphic\+\_\+union} (cls, mappers, discriminator\+\_\+name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A helper class for 'concrete' declarative mappings.
+
+:class:`.AbstractConcreteBase` will use the :func:`.polymorphic_union`
+function automatically, against all tables mapped as a subclass
+to this class.   The function is called via the
+``__declare_first__()`` function, which is essentially
+a hook for the :meth:`.before_configured` event.
+
+:class:`.AbstractConcreteBase` applies :class:`_orm.Mapper` for its
+immediately inheriting class, as would occur for any other
+declarative mapped class. However, the :class:`_orm.Mapper` is not
+mapped to any particular :class:`.Table` object.  Instead, it's
+mapped directly to the "polymorphic" selectable produced by
+:func:`.polymorphic_union`, and performs no persistence operations on its
+own.  Compare to :class:`.ConcreteBase`, which maps its
+immediately inheriting class to an actual
+:class:`.Table` that stores rows directly.
+
+.. note::
+
+    The :class:`.AbstractConcreteBase` delays the mapper creation of the
+    base class until all the subclasses have been defined,
+    as it needs to create a mapping against a selectable that will include
+    all subclass tables.  In order to achieve this, it waits for the
+    **mapper configuration event** to occur, at which point it scans
+    through all the configured subclasses and sets up a mapping that will
+    query against all subclasses at once.
+
+    While this event is normally invoked automatically, in the case of
+    :class:`.AbstractConcreteBase`, it may be necessary to invoke it
+    explicitly after **all** subclass mappings are defined, if the first
+    operation is to be a query against this base class. To do so, once all
+    the desired classes have been configured, the
+    :meth:`_orm.registry.configure` method on the :class:`_orm.registry`
+    in use can be invoked, which is available in relation to a particular
+    declarative base class::
+
+        Base.registry.configure()
+
+Example::
+
+    from sqlalchemy.orm import DeclarativeBase
+    from sqlalchemy.ext.declarative import AbstractConcreteBase
+
+    class Base(DeclarativeBase):
+        pass
+
+    class Employee(AbstractConcreteBase, Base):
+        pass
+
+    class Manager(Employee):
+        __tablename__ = 'manager'
+        employee_id = Column(Integer, primary_key=True)
+        name = Column(String(50))
+        manager_data = Column(String(40))
+
+        __mapper_args__ = {
+            'polymorphic_identity':'manager',
+            'concrete':True
+        }
+
+    Base.registry.configure()
+
+The abstract base class is handled by declarative in a special way;
+at class configuration time, it behaves like a declarative mixin
+or an ``__abstract__`` base class.   Once classes are configured
+and mappings are produced, it then gets mapped itself, but
+after all of its descendants.  This is a very unique system of mapping
+not found in any other SQLAlchemy API feature.
+
+Using this approach, we can specify columns and properties
+that will take place on mapped subclasses, in the way that
+we normally do as in :ref:`declarative_mixins`::
+
+    from sqlalchemy.ext.declarative import AbstractConcreteBase
+
+    class Company(Base):
+        __tablename__ = 'company'
+        id = Column(Integer, primary_key=True)
+
+    class Employee(AbstractConcreteBase, Base):
+        strict_attrs = True
+
+        employee_id = Column(Integer, primary_key=True)
+
+        @declared_attr
+        def company_id(cls):
+            return Column(ForeignKey('company.id'))
+
+        @declared_attr
+        def company(cls):
+            return relationship("Company")
+
+    class Manager(Employee):
+        __tablename__ = 'manager'
+
+        name = Column(String(50))
+        manager_data = Column(String(40))
+
+        __mapper_args__ = {
+            'polymorphic_identity':'manager',
+            'concrete':True
+        }
+
+    Base.registry.configure()
+
+When we make use of our mappings however, both ``Manager`` and
+``Employee`` will have an independently usable ``.company`` attribute::
+
+    session.execute(
+        select(Employee).filter(Employee.company.has(id=5))
+    )
+
+:param strict_attrs: when specified on the base class, "strict" attribute
+ mode is enabled which attempts to limit ORM mapped attributes on the
+ base class to only those that are immediately present, while still
+ preserving "polymorphic" loading behavior.
+
+ .. versionadded:: 2.0
+
+.. seealso::
+
+    :class:`.ConcreteBase`
+
+    :ref:`concrete_inheritance`
+
+    :ref:`abstract_concrete_base`
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+declarative/\+extensions.\+py\end{DoxyCompactItemize}

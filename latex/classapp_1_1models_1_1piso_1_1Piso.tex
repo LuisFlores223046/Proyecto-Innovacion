@@ -1,0 +1,62 @@
+\doxysection{app.\+models.\+piso.\+Piso Class Reference}
+\hypertarget{classapp_1_1models_1_1piso_1_1Piso}{}\label{classapp_1_1models_1_1piso_1_1Piso}\index{app.models.piso.Piso@{app.models.piso.Piso}}
+Inheritance diagram for app.\+models.\+piso.\+Piso:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1piso_1_1Piso}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_ac2e81228352e5bd61d06b6edd459bf34}\label{classapp_1_1models_1_1piso_1_1Piso_ac2e81228352e5bd61d06b6edd459bf34} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1piso_1_1Piso_a95a877f31ff152dffb062268f2fff7e0}{edificio\+\_\+id}}
+\item 
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_ab4031f1e8dabe648829921ef66ae3191}\label{classapp_1_1models_1_1piso_1_1Piso_ab4031f1e8dabe648829921ef66ae3191} 
+{\bfseries numero} = Column(String(5), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_a6050669689db96471911bbfdc6e919b5}\label{classapp_1_1models_1_1piso_1_1Piso_a6050669689db96471911bbfdc6e919b5} 
+{\bfseries edificio} = relationship("{}Edificio"{}, back\+\_\+populates="{}pisos"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_a3b66409293d661368910b433f6b856d8}\label{classapp_1_1models_1_1piso_1_1Piso_a3b66409293d661368910b433f6b856d8} 
+{\bfseries espacios} = relationship("{}Espacio"{}, back\+\_\+populates="{}piso"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Representa un nivel o planta dentro de un edificio físico.
+
+Attributes:
+    id: Identificador único del piso.
+    edificio_id: Identificador del edificio contenedor.
+    numero: Denominación del piso (ej. 'PB', 'P1').
+    edificio: Relación hacia el objeto Edificio.
+    espacios: Lista de espacios contenidos en este piso.
+\end{DoxyVerb}
+ 
+
+\label{classapp_1_1models_1_1piso_1_1Piso_doc-variable-members}
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classapp_1_1models_1_1piso_1_1Piso_a95a877f31ff152dffb062268f2fff7e0}\index{app.models.piso.Piso@{app.models.piso.Piso}!edificio\_id@{edificio\_id}}
+\index{edificio\_id@{edificio\_id}!app.models.piso.Piso@{app.models.piso.Piso}}
+\doxysubsubsection{\texorpdfstring{edificio\_id}{edificio\_id}}
+{\footnotesize\ttfamily \label{classapp_1_1models_1_1piso_1_1Piso_a95a877f31ff152dffb062268f2fff7e0} 
+app.\+models.\+piso.\+Piso.\+edificio\+\_\+id\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Column(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Integer,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ForeignKey(\textcolor{stringliteral}{"{}edificios.id"{}},\ ondelete=\textcolor{stringliteral}{"{}CASCADE"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nullable=\textcolor{keyword}{False},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+piso.\+py\end{DoxyCompactItemize}

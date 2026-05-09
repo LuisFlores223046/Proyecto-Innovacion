@@ -1,0 +1,71 @@
+\doxysection{typing\+\_\+extensions.\+deprecated Class Reference}
+\hypertarget{classtyping__extensions_1_1deprecated}{}\label{classtyping__extensions_1_1deprecated}\index{typing\_extensions.deprecated@{typing\_extensions.deprecated}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtyping__extensions_1_1deprecated_a8881d1422af848de6c2e7baca8530b1d}\label{classtyping__extensions_1_1deprecated_a8881d1422af848de6c2e7baca8530b1d} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str message, \texorpdfstring{$\ast$}{*}, typing.\+Optional\+[typing.\+Type\+[Warning]\+]\+ category=Deprecation\+Warning, int stacklevel=1)
+\item 
+\Hypertarget{classtyping__extensions_1_1deprecated_a4e28eae0cfe09f063663d8cf17635743}\label{classtyping__extensions_1_1deprecated_a4e28eae0cfe09f063663d8cf17635743} 
+\+\_\+T {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, \+\_\+T arg)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtyping__extensions_1_1deprecated_a011f896520442e86a4ba2d530d8896e1}\label{classtyping__extensions_1_1deprecated_a011f896520442e86a4ba2d530d8896e1} 
+{\bfseries message} = message
+\item 
+\Hypertarget{classtyping__extensions_1_1deprecated_a919bd87b412d55c9b89c9a3bbaf8cf89}\label{classtyping__extensions_1_1deprecated_a919bd87b412d55c9b89c9a3bbaf8cf89} 
+{\bfseries category} = category
+\item 
+\Hypertarget{classtyping__extensions_1_1deprecated_ab9422861a6ac2926a4e229f6378adefc}\label{classtyping__extensions_1_1deprecated_ab9422861a6ac2926a4e229f6378adefc} 
+{\bfseries stacklevel} = stacklevel
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Indicate that a class, function or overload is deprecated.
+
+When this decorator is applied to an object, the type checker
+will generate a diagnostic on usage of the deprecated object.
+
+Usage:
+
+    @deprecated("Use B instead")
+    class A:
+        pass
+
+    @deprecated("Use g instead")
+    def f():
+        pass
+
+    @overload
+    @deprecated("int support is deprecated")
+    def g(x: int) -> int: ...
+    @overload
+    def g(x: str) -> int: ...
+
+The warning specified by *category* will be emitted at runtime
+on use of deprecated objects. For functions, that happens on calls;
+for classes, on instantiation and on creation of subclasses.
+If the *category* is ``None``, no warning is emitted at runtime.
+The *stacklevel* determines where the
+warning is emitted. If it is ``1`` (the default), the warning
+is emitted at the direct caller of the deprecated object; if it
+is higher, it is emitted further up the stack.
+Static type checker behavior is not affected by the *category*
+and *stacklevel* arguments.
+
+The deprecation message passed to the decorator is saved in the
+``__deprecated__`` attribute on the decorated object.
+If applied to an overload, the decorator
+must be after the ``@overload`` decorator for the attribute to
+exist on the overload as returned by ``get_overloads()``.
+
+See PEP 702 for details.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

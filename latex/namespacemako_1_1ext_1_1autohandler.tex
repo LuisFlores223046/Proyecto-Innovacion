@@ -1,0 +1,34 @@
+\doxysection{mako.\+ext.\+autohandler Namespace Reference}
+\hypertarget{namespacemako_1_1ext_1_1autohandler}{}\label{namespacemako_1_1ext_1_1autohandler}\index{mako.ext.autohandler@{mako.ext.autohandler}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacemako_1_1ext_1_1autohandler_a24680b460cb0358fcf118c6ab1860fad}\label{namespacemako_1_1ext_1_1autohandler_a24680b460cb0358fcf118c6ab1860fad} 
+{\bfseries autohandler} (template, context, name="{}autohandler"{})
+\item 
+\Hypertarget{namespacemako_1_1ext_1_1autohandler_a6549b74a4ec03c397efdb4f353713f07}\label{namespacemako_1_1ext_1_1autohandler_a6549b74a4ec03c397efdb4f353713f07} 
+{\bfseries \+\_\+file\+\_\+exists} (lookup, path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}adds autohandler functionality to Mako templates.
+
+requires that the TemplateLookup class is used with templates.
+
+usage::
+
+    <%!
+        from mako.ext.autohandler import autohandler
+    %>
+    <%inherit file="${autohandler(template, context)}"/>
+
+
+or with custom autohandler filename::
+
+    <%!
+        from mako.ext.autohandler import autohandler
+    %>
+    <%inherit file="${autohandler(template, context, name='somefilename')}"/>
+\end{DoxyVerb}
+ 

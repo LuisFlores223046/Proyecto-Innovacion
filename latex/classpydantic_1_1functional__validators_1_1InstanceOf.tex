@@ -1,0 +1,50 @@
+\doxysection{pydantic.\+functional\+\_\+validators.\+Instance\+Of Class Reference}
+\hypertarget{classpydantic_1_1functional__validators_1_1InstanceOf}{}\label{classpydantic_1_1functional__validators_1_1InstanceOf}\index{pydantic.functional\_validators.InstanceOf@{pydantic.functional\_validators.InstanceOf}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1InstanceOf_a17bc07794876b1f61ecc7923674b7152}\label{classpydantic_1_1functional__validators_1_1InstanceOf_a17bc07794876b1f61ecc7923674b7152} 
+Any\+Type {\bfseries \+\_\+\+\_\+class\+\_\+getitem\+\_\+\+\_\+} (cls, Any\+Type item)
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1InstanceOf_a1b8b71a0e17328fc7066420d6cb78835}\label{classpydantic_1_1functional__validators_1_1InstanceOf_a1b8b71a0e17328fc7066420d6cb78835} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, Any source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Generic type for annotating a type that is an instance of a given class.
+
+Example:
+    ```py
+    from pydantic import BaseModel, InstanceOf
+
+    class Foo:
+        ...
+
+    class Bar(BaseModel):
+        foo: InstanceOf[Foo]
+
+    Bar(foo=Foo())
+    try:
+        Bar(foo=42)
+    except ValidationError as e:
+        print(e)
+        """
+        [
+        │   {
+        │   │   'type': 'is_instance_of',
+        │   │   'loc': ('foo',),
+        │   │   'msg': 'Input should be an instance of Foo',
+        │   │   'input': 42,
+        │   │   'ctx': {'class': 'Foo'},
+        │   │   'url': 'https://errors.pydantic.dev/0.38.0/v/is_instance_of'
+        │   }
+        ]
+        """
+    ```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+validators.\+py\end{DoxyCompactItemize}

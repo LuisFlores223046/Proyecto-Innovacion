@@ -1,0 +1,164 @@
+\doxysection{sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection}{}\label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+Inheritance diagram for sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_aa4f83bc955ecb7dbbb5b929acf2095be}\label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_aa4f83bc955ecb7dbbb5b929acf2095be} 
+No\+Return {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1Select}{Select}}\+[Tuple\+[\+\_\+T]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7d923992227fec869902b7bcae6da997}{select}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Insert}{Insert}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7b79e2ffea9ee4c708b1540e467eba62}{insert}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Update}{Update}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a03fd940970166a9d6c4a78cb07f835f6}{update}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Delete}{Delete}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a9a441ea75ea98952a94198a3884f7fdd}{delete}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3fb931ba1fba32f7773cda5d445f7622}{add\+\_\+all}} (self, Iterable\+[\+\_\+T]\+ iterator)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_aa5b43daf86b3d1ee2a2627a50495a82b}{add}} (self, \+\_\+T item)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3e963c5326dbbc0992b639aa4dad48f6}{remove}} (self, \+\_\+T item)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter}{sqlalchemy.\+orm.\+writeonly.\+Abstract\+Collection\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyAttributeImpl}{Write\+Only\+Attribute\+Impl}} attr, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[\+\_\+T]\+ state)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter}{sqlalchemy.\+orm.\+writeonly.\+Abstract\+Collection\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries instance} = instance
+\item 
+{\bfseries attr} = attr
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter}{sqlalchemy.\+orm.\+writeonly.\+Abstract\+Collection\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+add\+\_\+all\+\_\+impl} (self, Iterable\+[\+\_\+T]\+ iterator)
+\item 
+None {\bfseries \+\_\+remove\+\_\+impl} (self, \+\_\+T item)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter}{sqlalchemy.\+orm.\+writeonly.\+Abstract\+Collection\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+tuple \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter_a6ef100b9036b1ab60c2b6b225e5b9dd6}{\+\_\+where\+\_\+criteria}}
+\item 
+tuple {\bfseries \+\_\+order\+\_\+by\+\_\+clauses} = self.\+attr.\+order\+\_\+by
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1AbstractCollectionWriter}{sqlalchemy.\+orm.\+writeonly.\+Abstract\+Collection\+Writer}}}
+\begin{DoxyCompactItemize}
+\item 
+Tuple {\bfseries \+\_\+from\+\_\+obj} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}, ...]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Write-only collection which can synchronize changes into the
+attribute event system.
+
+The :class:`.WriteOnlyCollection` is used in a mapping by
+using the ``"write_only"`` lazy loading strategy with
+:func:`_orm.relationship`.     For background on this configuration,
+see :ref:`write_only_relationship`.
+
+.. versionadded:: 2.0
+
+.. seealso::
+
+    :ref:`write_only_relationship`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_aa5b43daf86b3d1ee2a2627a50495a82b}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!add@{add}}
+\index{add@{add}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_aa5b43daf86b3d1ee2a2627a50495a82b} 
+ None sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+add (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+T}]{item}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add an item to this :class:`_orm.WriteOnlyCollection`.
+
+The given item will be persisted to the database in terms of
+the parent instance's collection on the next flush.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3fb931ba1fba32f7773cda5d445f7622}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!add\_all@{add\_all}}
+\index{add\_all@{add\_all}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{add\_all()}{add\_all()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3fb931ba1fba32f7773cda5d445f7622} 
+ None sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+add\+\_\+all (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Iterable\+[\+\_\+T]\+}]{iterator}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add an iterable of items to this :class:`_orm.WriteOnlyCollection`.
+
+The given items will be persisted to the database in terms of
+the parent instance's collection on the next flush.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a9a441ea75ea98952a94198a3884f7fdd}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!delete@{delete}}
+\index{delete@{delete}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a9a441ea75ea98952a94198a3884f7fdd} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Delete}{Delete}} sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+delete (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Produce a :class:`_dml.Delete` which will refer to rows in terms
+of this instance-local :class:`_orm.WriteOnlyCollection`.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7b79e2ffea9ee4c708b1540e467eba62}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!insert@{insert}}
+\index{insert@{insert}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7b79e2ffea9ee4c708b1540e467eba62} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Insert}{Insert}} sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+insert (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}For one-to-many collections, produce a :class:`_dml.Insert` which
+will insert new rows in terms of this this instance-local
+:class:`_orm.WriteOnlyCollection`.
+
+This construct is only supported for a :class:`_orm.Relationship`
+that does **not** include the :paramref:`_orm.relationship.secondary`
+parameter.  For relationships that refer to a many-to-many table,
+use ordinary bulk insert techniques to produce new objects, then
+use :meth:`_orm.AbstractCollectionWriter.add_all` to associate them
+with the collection.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3e963c5326dbbc0992b639aa4dad48f6}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!remove@{remove}}
+\index{remove@{remove}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a3e963c5326dbbc0992b639aa4dad48f6} 
+ None sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+remove (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+T}]{item}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove an item from this :class:`_orm.WriteOnlyCollection`.
+
+The given item will be removed from the parent instance's collection on
+the next flush.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7d923992227fec869902b7bcae6da997}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!select@{select}}
+\index{select@{select}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a7d923992227fec869902b7bcae6da997} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1Select}{Select}}\+[Tuple\+[\+\_\+T]\+]\+ sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+select (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Produce a :class:`_sql.Select` construct that represents the
+rows within this instance-local :class:`_orm.WriteOnlyCollection`.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a03fd940970166a9d6c4a78cb07f835f6}\index{sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}!update@{update}}
+\index{update@{update}!sqlalchemy.orm.writeonly.WriteOnlyCollection@{sqlalchemy.orm.writeonly.WriteOnlyCollection}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection_a03fd940970166a9d6c4a78cb07f835f6} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1Update}{Update}} sqlalchemy.\+orm.\+writeonly.\+Write\+Only\+Collection.\+update (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Produce a :class:`_dml.Update` which will refer to rows in terms
+of this instance-local :class:`_orm.WriteOnlyCollection`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+writeonly.\+py\end{DoxyCompactItemize}

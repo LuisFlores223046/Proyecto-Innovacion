@@ -1,0 +1,50 @@
+\doxysection{sqlalchemy.\+engine.\+reflection.\+Object\+Kind Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind}{}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind}\index{sqlalchemy.engine.reflection.ObjectKind@{sqlalchemy.engine.reflection.ObjectKind}}
+Inheritance diagram for sqlalchemy.\+engine.\+reflection.\+Object\+Kind:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a5b1a7d130ec644d8f422c545ba50fcd7}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a5b1a7d130ec644d8f422c545ba50fcd7} 
+{\bfseries TABLE} = auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a454b43fd6ab9c2a8eee339adc94ec29a}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a454b43fd6ab9c2a8eee339adc94ec29a} 
+{\bfseries VIEW} = auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_acd9390ab49c6aa51c962b5195ea6f812}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_acd9390ab49c6aa51c962b5195ea6f812} 
+{\bfseries MATERIALIZED\+\_\+\+VIEW} = auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a375a90adca356ec9151a58d7f691c4cf}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a375a90adca356ec9151a58d7f691c4cf} 
+{\bfseries ANY\+\_\+\+VIEW} = VIEW \texorpdfstring{$\vert$}{|} MATERIALIZED\+\_\+\+VIEW
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a23de9a56433c51c35ba8c1e93841c05a}\label{classsqlalchemy_1_1engine_1_1reflection_1_1ObjectKind_a23de9a56433c51c35ba8c1e93841c05a} 
+{\bfseries ANY} = TABLE \texorpdfstring{$\vert$}{|} VIEW \texorpdfstring{$\vert$}{|} MATERIALIZED\+\_\+\+VIEW
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Enumerator that indicates which kind of object to return when calling
+the ``get_multi`` methods.
+
+This is a Flag enum, so custom combinations can be passed. For example,
+to reflect tables and plain views ``ObjectKind.TABLE | ObjectKind.VIEW``
+may be used.
+
+.. note::
+  Not all dialect may support all kind of object. If a dialect does
+  not support a particular object an empty dict is returned.
+  In case a dialect supports an object, but the requested method
+  is not applicable for the specified kind the default value
+  will be returned for each reflected object. For example reflecting
+  check constraints of view return a dict with all the views with
+  empty lists as values.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+reflection.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,106 @@
+\doxysection{pydantic.\+\_\+internal.\+\_\+dataclasses Namespace Reference}
+\hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses}{}\label{namespacepydantic_1_1__internal_1_1__dataclasses}\index{pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1StandardDataclass}{Standard\+Dataclass}}
+\item 
+class \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1PydanticDataclass}{Pydantic\+Dataclass}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{namespacepydantic_1_1__internal_1_1__dataclasses_aaa7d13f75b302cf9cf8ca2f485c069d4}{set\+\_\+dataclass\+\_\+fields}} (type\+[\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1StandardDataclass}{Standard\+Dataclass}}]\+ cls, dict\+[str, Any]\+\texorpdfstring{$\vert$}{|}None types\+\_\+namespace=None, \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}}\texorpdfstring{$\vert$}{|}None config\+\_\+wrapper=None)
+\item 
+bool \doxymbox{\hyperlink{namespacepydantic_1_1__internal_1_1__dataclasses_a4a58e41150059616bc187fa37734c7ff}{complete\+\_\+dataclass}} (type\+[Any]\+ cls, \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}} config\+\_\+wrapper, \texorpdfstring{$\ast$}{*}, bool raise\+\_\+errors=True, dict\+[str, Any]\+\texorpdfstring{$\vert$}{|}None types\+\_\+namespace)
+\item 
+Type\+Guard\+[type\+[\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1StandardDataclass}{Standard\+Dataclass}}]\+]\+ \doxymbox{\hyperlink{namespacepydantic_1_1__internal_1_1__dataclasses_a9901c64b24e3fbbc9fa99f87cde3ac78}{is\+\_\+builtin\+\_\+dataclass}} (type\+[Any]\+ \+\_\+cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses_aca4d52bf53b3d8de2c5ddaf518a0a78f}\label{namespacepydantic_1_1__internal_1_1__dataclasses_aca4d52bf53b3d8de2c5ddaf518a0a78f} 
+{\bfseries Deprecation\+Warning} = \doxymbox{\hyperlink{classpydantic_1_1warnings_1_1PydanticDeprecatedSince20}{Pydantic\+Deprecated\+Since20}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Private logic for creating pydantic dataclasses.\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1__internal_1_1__dataclasses_doc-func-members}
+\Hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses_a4a58e41150059616bc187fa37734c7ff}\index{pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}!complete\_dataclass@{complete\_dataclass}}
+\index{complete\_dataclass@{complete\_dataclass}!pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}}
+\doxysubsubsection{\texorpdfstring{complete\_dataclass()}{complete\_dataclass()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1__internal_1_1__dataclasses_a4a58e41150059616bc187fa37734c7ff} 
+ bool complete\+\_\+dataclass (\begin{DoxyParamCaption}\item[{type\+[Any]\+}]{cls}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}}}]{config\+\_\+wrapper}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{raise\+\_\+errors}{ = {\ttfamily True}, }\item[{dict\+[str, Any]\+ \texorpdfstring{$\vert$}{|} None}]{types\+\_\+namespace}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finish building a pydantic dataclass.
+
+This logic is called on a class which has already been wrapped in `dataclasses.dataclass()`.
+
+This is somewhat analogous to `pydantic._internal._model_construction.complete_model_class`.
+
+Args:
+    cls: The class.
+    config_wrapper: The config wrapper instance.
+    raise_errors: Whether to raise errors, defaults to `True`.
+    types_namespace: The types namespace.
+
+Returns:
+    `True` if building a pydantic dataclass is successfully completed, `False` otherwise.
+
+Raises:
+    PydanticUndefinedAnnotation: If `raise_error` is `True` and there is an undefined annotations.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses_a9901c64b24e3fbbc9fa99f87cde3ac78}\index{pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}!is\_builtin\_dataclass@{is\_builtin\_dataclass}}
+\index{is\_builtin\_dataclass@{is\_builtin\_dataclass}!pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}}
+\doxysubsubsection{\texorpdfstring{is\_builtin\_dataclass()}{is\_builtin\_dataclass()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1__internal_1_1__dataclasses_a9901c64b24e3fbbc9fa99f87cde3ac78} 
+ Type\+Guard\+[type\+[\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1StandardDataclass}{Standard\+Dataclass}}]\+]\+ is\+\_\+builtin\+\_\+dataclass (\begin{DoxyParamCaption}\item[{type\+[Any]\+}]{\+\_\+cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns True if a class is a stdlib dataclass and *not* a pydantic dataclass.
+
+We check that
+- `_cls` is a dataclass
+- `_cls` does not inherit from a processed pydantic dataclass (and thus have a `__pydantic_validator__`)
+- `_cls` does not have any annotations that are not dataclass fields
+e.g.
+```py
+import dataclasses
+
+import pydantic.dataclasses
+
+@dataclasses.dataclass
+class A:
+    x: int
+
+@pydantic.dataclasses.dataclass
+class B(A):
+    y: int
+```
+In this case, when we first check `B`, we make an extra check and look at the annotations ('y'),
+which won't be a superset of all the dataclass fields (only the stdlib fields i.e. 'x')
+
+Args:
+    cls: The class.
+
+Returns:
+    `True` if the class is a stdlib dataclass, `False` otherwise.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1__internal_1_1__dataclasses_aaa7d13f75b302cf9cf8ca2f485c069d4}\index{pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}!set\_dataclass\_fields@{set\_dataclass\_fields}}
+\index{set\_dataclass\_fields@{set\_dataclass\_fields}!pydantic.\_internal.\_dataclasses@{pydantic.\_internal.\_dataclasses}}
+\doxysubsubsection{\texorpdfstring{set\_dataclass\_fields()}{set\_dataclass\_fields()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1__internal_1_1__dataclasses_aaa7d13f75b302cf9cf8ca2f485c069d4} 
+ None set\+\_\+dataclass\+\_\+fields (\begin{DoxyParamCaption}\item[{type\+[\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__dataclasses_1_1StandardDataclass}{Standard\+Dataclass}}]\+}]{cls}{, }\item[{dict\+[str, Any]\+ \texorpdfstring{$\vert$}{|} None }]{types\+\_\+namespace}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}} \texorpdfstring{$\vert$}{|} None }]{config\+\_\+wrapper}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Collect and set `cls.__pydantic_fields__`.
+
+Args:
+    cls: The class.
+    types_namespace: The types namespace, defaults to `None`.
+    config_wrapper: The config wrapper instance, defaults to `None`.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,84 @@
+\doxysection{sqlalchemy.\+dialects.\+sqlite.\+base.\+TIME Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME}{}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME}\index{sqlalchemy.dialects.sqlite.base.TIME@{sqlalchemy.dialects.sqlite.base.TIME}}
+Inheritance diagram for sqlalchemy.\+dialects.\+sqlite.\+base.\+TIME:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.964912cm]{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_af3c294370ae865884117b4a7dc8c0b07}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_af3c294370ae865884117b4a7dc8c0b07} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_a8152bd0bbd5bb29d1e68d168bd46844e}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_a8152bd0bbd5bb29d1e68d168bd46844e} 
+{\bfseries bind\+\_\+processor} (self, dialect)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_a88cc3f653fc869c7274b51f9ae642a25}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1TIME_a88cc3f653fc869c7274b51f9ae642a25} 
+{\bfseries result\+\_\+processor} (self, dialect, coltype)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin}{sqlalchemy.\+dialects.\+sqlite.\+base.\+\_\+\+Date\+Time\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, storage\+\_\+format=None, regexp=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin_a9524d10d56ca45fab18ab067a4384c40}{format\+\_\+is\+\_\+text\+\_\+affinity}} (self)
+\item 
+{\bfseries adapt} (self, cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+{\bfseries literal\+\_\+processor} (self, dialect)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin}{sqlalchemy.\+dialects.\+sqlite.\+base.\+\_\+\+Date\+Time\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+reg} = None
+\item 
+{\bfseries \+\_\+storage\+\_\+format} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent a Python time object in SQLite using a string.
+
+The default string storage format is::
+
+    "%(hour)02d:%(minute)02d:%(second)02d.%(microsecond)06d"
+
+e.g.::
+
+    12:05:57.10558
+
+The incoming storage format is by default parsed using the
+Python ``time.fromisoformat()`` function.
+
+.. versionchanged:: 2.0  ``time.fromisoformat()`` is used for default
+   time string parsing.
+
+The storage format can be customized to some degree using the
+``storage_format`` and ``regexp`` parameters, such as::
+
+    import re
+    from sqlalchemy.dialects.sqlite import TIME
+
+    t = TIME(storage_format="%(hour)02d-%(minute)02d-"
+                            "%(second)02d-%(microsecond)06d",
+             regexp=re.compile("(\d+)-(\d+)-(\d+)-(?:-(\d+))?")
+    )
+
+:param storage_format: format string which will be applied to the dict
+ with keys hour, minute, second, and microsecond.
+
+:param regexp: regular expression which will be applied to incoming result
+ rows, replacing the use of ``datetime.fromisoformat()`` to parse incoming
+ strings. If the regexp contains named groups, the resulting match dict is
+ applied to the Python time() constructor as keyword arguments. Otherwise,
+ if positional groups are used, the time() constructor is called with
+ positional arguments via ``*map(int, match_obj.groups(0))``.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+sqlite/\+base.\+py\end{DoxyCompactItemize}

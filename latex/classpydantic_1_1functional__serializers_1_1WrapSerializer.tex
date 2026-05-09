@@ -1,0 +1,109 @@
+\doxysection{pydantic.\+functional\+\_\+serializers.\+Wrap\+Serializer Class Reference}
+\hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer}{}\label{classpydantic_1_1functional__serializers_1_1WrapSerializer}\index{pydantic.functional\_serializers.WrapSerializer@{pydantic.functional\_serializers.WrapSerializer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic_1_1functional__serializers_1_1WrapSerializer_a2668efdc2d1f229be58425f20c682cf2}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (self, Any source\+\_\+type, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer_a18e9683b55a04edf14f19b96f67d2290}\label{classpydantic_1_1functional__serializers_1_1WrapSerializer_a18e9683b55a04edf14f19b96f67d2290} 
+\doxymbox{\hyperlink{namespacepydantic__core_1_1core__schema}{core\+\_\+schema}} {\bfseries func} .Wrap\+Serializer\+Function
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer_a355d6e454d1883ede81f07455ec972d8}\label{classpydantic_1_1functional__serializers_1_1WrapSerializer_a355d6e454d1883ede81f07455ec972d8} 
+Any {\bfseries return\+\_\+type} = Pydantic\+Undefined
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer_a9b6074242389e16dea2d1883bb97aa5f}\label{classpydantic_1_1functional__serializers_1_1WrapSerializer_a9b6074242389e16dea2d1883bb97aa5f} 
+Literal {\bfseries when\+\_\+used} = \textquotesingle{}always\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wrap serializers receive the raw inputs along with a handler function that applies the standard serialization
+logic, and can modify the resulting value before returning it as the final output of serialization.
+
+For example, here's a scenario in which a wrap serializer transforms timezones to UTC **and** utilizes the existing `datetime` serialization logic.
+
+```python
+from datetime import datetime, timezone
+from typing import Any, Dict
+
+from typing_extensions import Annotated
+
+from pydantic import BaseModel, WrapSerializer
+
+class EventDatetime(BaseModel):
+    start: datetime
+    end: datetime
+
+def convert_to_utc(value: Any, handler, info) -> Dict[str, datetime]:
+    # Note that `helper` can actually help serialize the `value` for further custom serialization in case it's a subclass.
+    partial_result = handler(value, info)
+    if info.mode == 'json':
+        return {
+            k: datetime.fromisoformat(v).astimezone(timezone.utc)
+            for k, v in partial_result.items()
+        }
+    return {k: v.astimezone(timezone.utc) for k, v in partial_result.items()}
+
+UTCEventDatetime = Annotated[EventDatetime, WrapSerializer(convert_to_utc)]
+
+class EventModel(BaseModel):
+    event_datetime: UTCEventDatetime
+
+dt = EventDatetime(
+    start='2024-01-01T07:00:00-08:00', end='2024-01-03T20:00:00+06:00'
+)
+event = EventModel(event_datetime=dt)
+print(event.model_dump())
+'''
+{
+    'event_datetime': {
+        'start': datetime.datetime(
+            2024, 1, 1, 15, 0, tzinfo=datetime.timezone.utc
+        ),
+        'end': datetime.datetime(
+            2024, 1, 3, 14, 0, tzinfo=datetime.timezone.utc
+        ),
+    }
+}
+'''
+
+print(event.model_dump_json())
+'''
+{"event_datetime":{"start":"2024-01-01T15:00:00Z","end":"2024-01-03T14:00:00Z"}}
+'''
+```
+
+Attributes:
+    func: The serializer function to be wrapped.
+    return_type: The return type for the function. If omitted it will be inferred from the type annotation.
+    when_used: Determines when this serializer should be used. Accepts a string with values `'always'`,
+        `'unless-none'`, `'json'`, and `'json-unless-none'`. Defaults to 'always'.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1functional__serializers_1_1WrapSerializer_doc-func-members}
+\Hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1functional__serializers_1_1WrapSerializer_a2668efdc2d1f229be58425f20c682cf2}\index{pydantic.functional\_serializers.WrapSerializer@{pydantic.functional\_serializers.WrapSerializer}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic.functional\_serializers.WrapSerializer@{pydantic.functional\_serializers.WrapSerializer}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1functional__serializers_1_1WrapSerializer_a2668efdc2d1f229be58425f20c682cf2} 
+ core\+\_\+schema.\+Core\+Schema pydantic.\+functional\+\_\+serializers.\+Wrap\+Serializer.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{source\+\_\+type}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This method is used to get the Pydantic core schema of the class.
+
+Args:
+    source_type: Source type.
+    handler: Core schema handler.
+
+Returns:
+    The generated core schema of the class.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+serializers.\+py\end{DoxyCompactItemize}

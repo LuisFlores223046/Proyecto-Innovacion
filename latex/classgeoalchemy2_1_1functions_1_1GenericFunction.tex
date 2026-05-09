@@ -1,0 +1,53 @@
+\doxysection{geoalchemy2.\+functions.\+Generic\+Function Class Reference}
+\hypertarget{classgeoalchemy2_1_1functions_1_1GenericFunction}{}\label{classgeoalchemy2_1_1functions_1_1GenericFunction}\index{geoalchemy2.functions.GenericFunction@{geoalchemy2.functions.GenericFunction}}
+Inheritance diagram for geoalchemy2.\+functions.\+Generic\+Function:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeoalchemy2_1_1functions_1_1GenericFunction}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1functions_1_1GenericFunction_ac2b81e1895851510b3d286119fb0193a}\label{classgeoalchemy2_1_1functions_1_1GenericFunction_ac2b81e1895851510b3d286119fb0193a} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1functions_1_1GenericFunction_ad70ee30755b92afcd067ffe4cccee98f}\label{classgeoalchemy2_1_1functions_1_1GenericFunction_ad70ee30755b92afcd067ffe4cccee98f} 
+bool {\bfseries \+\_\+register} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The base class for GeoAlchemy functions.
+
+This class inherits from ``sqlalchemy.sql.functions.GenericFunction``, so
+functions defined by subclassing this class can be given a fixed return
+type. For example, functions like :class:`ST_Buffer` and
+:class:`ST_Envelope` have their ``type`` attributes set to
+:class:`geoalchemy2.types.Geometry`.
+
+This class allows constructs like ``Lake.geom.ST_Buffer(2)``. In that
+case the ``Function`` instance is bound to an expression (``Lake.geom``
+here), and that expression is passed to the function when the function
+is actually called.
+
+If you need to use a function that GeoAlchemy does not provide you will
+certainly want to subclass this class. For example, if you need the
+``ST_TransScale`` spatial function, which isn't (currently) natively
+supported by GeoAlchemy, you will write this::
+
+    from geoalchemy2 import Geometry
+    from geoalchemy2.functions import GenericFunction
+
+    class ST_TransScale(GenericFunction):
+        name = 'ST_TransScale'
+        type = Geometry
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+geoalchemy2/\+functions.\+py\end{DoxyCompactItemize}

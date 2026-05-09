@@ -1,0 +1,63 @@
+\doxysection{sqlalchemy.\+orm.\+attributes.\+Attribute\+Event\+Token Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}\index{sqlalchemy.orm.attributes.AttributeEventToken@{sqlalchemy.orm.attributes.AttributeEventToken}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a85dd20c432e01aa2c497dac715458c98}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a85dd20c432e01aa2c497dac715458c98} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeImpl}{Attribute\+Impl}} attribute\+\_\+impl, \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1symbol}{util.\+symbol}} op)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a203a1d89b053c5726191481852cbaa4f}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a203a1d89b053c5726191481852cbaa4f} 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a8a0dfc7d1d15a443c944b8d56044c4bb}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a8a0dfc7d1d15a443c944b8d56044c4bb} 
+{\bfseries key} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a1cafdf7a179c67ab1a3bfc2db0f5fceb}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a1cafdf7a179c67ab1a3bfc2db0f5fceb} 
+{\bfseries hasparent} (self, state)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a326141951146edccf0f49a6cfec5f14b}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a326141951146edccf0f49a6cfec5f14b} 
+{\bfseries impl} = attribute\+\_\+impl
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_ab458a68019f7850a89eaad926932bb87}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_ab458a68019f7850a89eaad926932bb87} 
+{\bfseries op} = op
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a3c1e1ab102a8c0767bae3f66f0271695}\label{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken_a3c1e1ab102a8c0767bae3f66f0271695} 
+{\bfseries parent\+\_\+token} = self.\+impl.\+parent\+\_\+token
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A token propagated throughout the course of a chain of attribute
+events.
+
+Serves as an indicator of the source of the event and also provides
+a means of controlling propagation across a chain of attribute
+operations.
+
+The :class:`.Event` object is sent as the ``initiator`` argument
+when dealing with events such as :meth:`.AttributeEvents.append`,
+:meth:`.AttributeEvents.set`,
+and :meth:`.AttributeEvents.remove`.
+
+The :class:`.Event` object is currently interpreted by the backref
+event handlers, and is used to control the propagation of operations
+across two mutually-dependent attributes.
+
+.. versionchanged:: 2.0  Changed the name from ``AttributeEvent``
+   to ``AttributeEventToken``.
+
+:attribute impl: The :class:`.AttributeImpl` which is the current event
+ initiator.
+
+:attribute op: The symbol :attr:`.OP_APPEND`, :attr:`.OP_REMOVE`,
+ :attr:`.OP_REPLACE`, or :attr:`.OP_BULK_REPLACE`, indicating the
+ source operation.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+attributes.\+py\end{DoxyCompactItemize}

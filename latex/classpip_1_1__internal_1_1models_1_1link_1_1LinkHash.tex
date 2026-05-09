@@ -1,0 +1,96 @@
+\doxysection{pip.\+\_\+internal.\+models.\+link.\+Link\+Hash Class Reference}
+\hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash}{}\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash}\index{pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_ab5f65bc8f56bb0c7792cd375989032bc}\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_ab5f65bc8f56bb0c7792cd375989032bc} 
+None {\bfseries \+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+Optional\+["{}Link\+Hash"{}]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_aa6000508e7283fcebb9d5c6598f4f54f}{find\+\_\+hash\+\_\+url\+\_\+fragment}} (cls, str url)
+\item 
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a7fc07b51732dfa238d0cfb9e6180e2b9}\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a7fc07b51732dfa238d0cfb9e6180e2b9} 
+Dict\+[str, str]\+ {\bfseries as\+\_\+dict} (self)
+\item 
+\doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1hashes_1_1Hashes}{Hashes}} \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a7ad4ea270534955d3a4e031076e8d3c7}{as\+\_\+hashes}} (self)
+\item 
+bool \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a95bfc303b2f9bd554e89861fde71d819}{is\+\_\+hash\+\_\+allowed}} (self, Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1hashes_1_1Hashes}{Hashes}}]\+ hashes)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a248d0825354df4795b6bc84aa697316e}\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a248d0825354df4795b6bc84aa697316e} 
+self.\+value\} {\bfseries name}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a24256879f4c80a2a3a6d98b920637c11}{\+\_\+hash\+\_\+url\+\_\+fragment\+\_\+re}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Links to content may have embedded hash values. This class parses those.
+
+`name` must be any member of `_SUPPORTED_HASHES`.
+
+This class can be converted to and from `ArchiveInfo`. While ArchiveInfo intends to
+be JSON-serializable to conform to PEP 610, this class contains the logic for
+parsing a hash name and value for correctness, and then checking whether that hash
+conforms to a schema with `.is_hash_allowed()`.\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_doc-func-members}
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a7ad4ea270534955d3a4e031076e8d3c7}\index{pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}!as\_hashes@{as\_hashes}}
+\index{as\_hashes@{as\_hashes}!pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}}
+\doxysubsubsection{\texorpdfstring{as\_hashes()}{as\_hashes()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a7ad4ea270534955d3a4e031076e8d3c7} 
+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1hashes_1_1Hashes}{Hashes}} pip.\+\_\+internal.\+models.\+link.\+Link\+Hash.\+as\+\_\+hashes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Hashes instance which checks only for the current hash.\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_aa6000508e7283fcebb9d5c6598f4f54f}\index{pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}!find\_hash\_url\_fragment@{find\_hash\_url\_fragment}}
+\index{find\_hash\_url\_fragment@{find\_hash\_url\_fragment}!pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}}
+\doxysubsubsection{\texorpdfstring{find\_hash\_url\_fragment()}{find\_hash\_url\_fragment()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_aa6000508e7283fcebb9d5c6598f4f54f} 
+ Optional\+["{}Link\+Hash"{}]\+ pip.\+\_\+internal.\+models.\+link.\+Link\+Hash.\+find\+\_\+hash\+\_\+url\+\_\+fragment (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Search a string for a checksum algorithm name and encoded output value.\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a95bfc303b2f9bd554e89861fde71d819}\index{pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}!is\_hash\_allowed@{is\_hash\_allowed}}
+\index{is\_hash\_allowed@{is\_hash\_allowed}!pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}}
+\doxysubsubsection{\texorpdfstring{is\_hash\_allowed()}{is\_hash\_allowed()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a95bfc303b2f9bd554e89861fde71d819} 
+ bool pip.\+\_\+internal.\+models.\+link.\+Link\+Hash.\+is\+\_\+hash\+\_\+allowed (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1hashes_1_1Hashes}{Hashes}}]\+}]{hashes}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the current hash is allowed by `hashes`.
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_doc-variable-members}
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a24256879f4c80a2a3a6d98b920637c11}\index{pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}!\_hash\_url\_fragment\_re@{\_hash\_url\_fragment\_re}}
+\index{\_hash\_url\_fragment\_re@{\_hash\_url\_fragment\_re}!pip.\_internal.models.link.LinkHash@{pip.\_internal.models.link.LinkHash}}
+\doxysubsubsection{\texorpdfstring{\_hash\_url\_fragment\_re}{\_hash\_url\_fragment\_re}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1models_1_1link_1_1LinkHash_a24256879f4c80a2a3a6d98b920637c11} 
+str pip.\+\_\+internal.\+models.\+link.\+Link\+Hash.\+\_\+hash\+\_\+url\+\_\+fragment\+\_\+re\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ NB:\ we\ do\ not\ validate\ that\ the\ second\ group\ (.*)\ is\ a\ valid\ hex}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ digest.\ Instead,\ we\ simply\ keep\ that\ string\ in\ this\ class,\ and\ then\ check\ it}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ against\ Hashes\ when\ hash-\/checking\ is\ needed.\ This\ is\ easier\ to\ debug\ than}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ proactively\ discarding\ an\ invalid\ hex\ digest,\ as\ we\ handle\ incorrect\ hashes}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ and\ malformed\ hashes\ in\ the\ same\ place.}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{r"{}[\#\&](\{choices\})=([\string^\&]*)"{}}.format(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ choices=\textcolor{stringliteral}{"{}|"{}}.join(re.escape(hash\_name)\ \textcolor{keywordflow}{for}\ hash\_name\ \textcolor{keywordflow}{in}\ \_SUPPORTED\_HASHES)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+internal/\+models/\+link.\+py\end{DoxyCompactItemize}

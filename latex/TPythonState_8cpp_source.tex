@@ -1,0 +1,381 @@
+\doxysection{TPython\+State.\+cpp}
+\hypertarget{TPythonState_8cpp_source}{}\label{TPythonState_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TPythonState.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TPythonState.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_PYTHON\_STATE\_CPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_PYTHON\_STATE\_CPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ PythonState::PythonState()}
+\DoxyCodeLine{00010\ \ \ \ \ :\ \_top\_frame()}
+\DoxyCodeLine{00011\ \#if\ GREENLET\_USE\_CFRAME}
+\DoxyCodeLine{00012\ \ \ \ \ ,cframe(nullptr)}
+\DoxyCodeLine{00013\ \ \ \ \ ,use\_tracing(0)}
+\DoxyCodeLine{00014\ \#endif}
+\DoxyCodeLine{00015\ \#if\ GREENLET\_PY312}
+\DoxyCodeLine{00016\ \ \ \ \ ,py\_recursion\_depth(0)}
+\DoxyCodeLine{00017\ \ \ \ \ ,c\_recursion\_depth(0)}
+\DoxyCodeLine{00018\ \#else}
+\DoxyCodeLine{00019\ \ \ \ \ ,recursion\_depth(0)}
+\DoxyCodeLine{00020\ \#endif}
+\DoxyCodeLine{00021\ \ \ \ \ ,trash\_delete\_nesting(0)}
+\DoxyCodeLine{00022\ \#if\ GREENLET\_PY311}
+\DoxyCodeLine{00023\ \ \ \ \ ,current\_frame(nullptr)}
+\DoxyCodeLine{00024\ \ \ \ \ ,datastack\_chunk(nullptr)}
+\DoxyCodeLine{00025\ \ \ \ \ ,datastack\_top(nullptr)}
+\DoxyCodeLine{00026\ \ \ \ \ ,datastack\_limit(nullptr)}
+\DoxyCodeLine{00027\ \#endif}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ \ The\ PyThreadState-\/>cframe\ pointer\ usually\ points\ to\ memory\ on}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ \ \ the\ stack,\ alloceted\ in\ a\ call\ into\ PyEval\_EvalFrameDefault.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ Initially,\ before\ any\ evaluation\ begins,\ it\ points\ to\ the}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ initial\ PyThreadState\ object's\ \`{}\`{}root\_cframe``\ object,\ which\ is}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ statically\ allocated\ for\ the\ lifetime\ of\ the\ thread.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ \ A\ greenlet\ can\ last\ for\ longer\ than\ a\ call\ to}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ PyEval\_EvalFrameDefault,\ so\ we\ can't\ set\ its\ \`{}\`{}cframe``\ pointer}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ to\ be\ the\ current\ \`{}\`{}PyThreadState-\/>cframe``;\ nor\ could\ we\ use}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ one\ from\ the\ greenlet\ parent\ for\ the\ same\ reason.\ Yet\ a\ further}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ no:\ we\ can't\ allocate\ one\ scoped\ to\ the\ greenlet\ and\ then}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ destroy\ it\ when\ the\ greenlet\ is\ deallocated,\ because\ inside\ the}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ interpreter\ the\ \_PyCFrame\ objects\ form\ a\ linked\ list,\ and\ that\ too}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ can\ result\ in\ accessing\ memory\ beyond\ its\ dynamic\ lifetime\ (if}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ the\ greenlet\ doesn't\ actually\ finish\ before\ it\ dies,\ its\ entry}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ could\ still\ be\ in\ the\ list).}}
+\DoxyCodeLine{00048\ \textcolor{comment}{}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ Using\ the\ \`{}\`{}root\_cframe``\ is\ problematic,\ though,\ because\ its}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ \ members\ are\ never\ modified\ by\ the\ interpreter\ and\ are\ set\ to\ 0,}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ meaning\ that\ its\ \`{}\`{}use\_tracing``\ flag\ is\ never\ updated.\ We\ don't}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ want\ to\ modify\ that\ value\ in\ the\ \`{}\`{}root\_cframe``\ ourself:\ it}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ *shouldn't*\ matter\ much\ because\ we\ should\ probably\ never\ get}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ \ back\ to\ the\ point\ where\ that's\ the\ only\ cframe\ on\ the\ stack;}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ \ even\ if\ it\ did\ matter,\ the\ major\ consequence\ of\ an\ incorrect}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ \ value\ for\ \`{}\`{}use\_tracing``\ is\ that\ if\ its\ true\ the\ interpreter}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ \ does\ some\ extra\ work\ -\/-\/-\/\ however,\ it's\ just\ good\ code\ hygiene.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ Our\ solution:\ before\ a\ greenlet\ runs,\ after\ its\ initial}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ \ creation,\ it\ uses\ the\ \`{}\`{}root\_cframe``\ just\ to\ have\ something\ to}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ put\ there.\ However,\ once\ the\ greenlet\ is\ actually\ switched\ to}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ \ \ for\ the\ first\ time,\ \`{}\`{}g\_initialstub``\ (which\ doesn't\ actually}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ \ "{}return"{}\ while\ the\ greenlet\ is\ running)\ stores\ a\ new\ \_PyCFrame\ on}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ \ its\ local\ stack,\ and\ copies\ the\ appropriate\ values\ from\ the}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ \ currently\ running\ \_PyCFrame;\ this\ is\ then\ made\ the\ \_PyCFrame\ for\ the}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ \ newly-\/minted\ greenlet.\ \`{}\`{}g\_initialstub``\ then\ proceeds\ to\ call}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \`{}\`{}glet.run()``,\ which\ results\ in\ \`{}\`{}PyEval\_...``\ adding\ the}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ \ \_PyCFrame\ to\ the\ list.\ Switches\ continue\ as\ normal.\ Finally,\ when}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ the\ greenlet\ finishes,\ the\ call\ to\ \`{}\`{}glet.run()``\ returns\ and}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ the\ \_PyCFrame\ is\ taken\ out\ of\ the\ linked\ list\ and\ the\ stack\ value}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ is\ now\ unused\ and\ free\ to\ expire.}}
+\DoxyCodeLine{00072\ \textcolor{comment}{}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ XXX:\ I\ think\ we\ can\ do\ better.\ If\ we're\ deallocing\ in\ the\ same}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ thread,\ can't\ we\ traverse\ the\ list\ and\ unlink\ our\ frame?}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ Can\ we\ just\ keep\ a\ reference\ to\ the\ thread\ state\ in\ case\ we}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ dealloc\ in\ another\ thread?\ (Is\ that\ even\ possible\ if\ we're\ still}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ \ running\ and\ haven't\ returned\ from\ g\_initialstub?)}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00079\ \ \ \ \ this-\/>cframe\ =\ \&PyThreadState\_GET()-\/>root\_cframe;}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00081\ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PythonState::may\_switch\_away()\ noexcept}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#if\ GREENLET\_PY311}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ PyThreadState\_GetFrame\ is\ probably\ going\ to\ have\ to\ allocate\ a}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ new\ frame\ object.\ That\ may\ trigger\ garbage\ collection.\ Because}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ we\ call\ this\ during\ the\ early\ phases\ of\ a\ switch\ (it\ doesn't}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ matter\ to\ which\ greenlet,\ as\ this\ has\ a\ global\ effect),\ if\ a\ GC}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ triggers\ a\ switch\ away,\ two\ things\ can\ happen,\ both\ bad:}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ -\/\ We\ might\ not\ get\ switched\ back\ to,\ halting\ forward\ progress.}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ \ \ this\ is\ pathological,\ but\ possible.}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ -\/\ We\ might\ get\ switched\ back\ to\ with\ a\ different\ set\ of}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ \ \ arguments\ or\ a\ throw\ instead\ of\ a\ switch.\ That\ would\ corrupt}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ \ \ our\ state\ (specifically,\ PyErr\_Occurred()\ and\ this-\/>args()}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ \ \ would\ no\ longer\ agree).}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ Thus,\ when\ we\ call\ this\ API,\ we\ need\ to\ have\ GC\ disabled.}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ This\ method\ serves\ as\ a\ bottleneck\ we\ call\ when\ maybe\ beginning}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ a\ switch.\ In\ this\ way,\ it\ is\ always\ safe\ -\/-\/\ no\ risk\ of\ GC\ -\/-\/\ to}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ use\ \`{}\`{}\_GetFrame()``\ whenever\ we\ need\ to,\ just\ as\ it\ was\ in}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ <=3.10\ (because\ subsequent\ calls\ will\ be\ cached\ and\ not}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ allocate\ memory).}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ GCDisabledGuard\ no\_gc;}
+\DoxyCodeLine{00107\ \ \ \ \ Py\_XDECREF(PyThreadState\_GetFrame(PyThreadState\_GET()));}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{void}\ PythonState::operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00112\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ this-\/>\_context.steal(tstate-\/>context);}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ IMPORTANT:\ \`{}\`{}cframe``\ is\ a\ pointer\ into\ the\ STACK.\ Thus,\ because}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ the\ call\ to\ \`{}\`{}slp\_switch()``\ changes\ the\ contents\ of\ the\ stack,}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ you\ cannot\ read\ from\ \`{}\`{}ts\_current-\/>cframe``\ after\ that\ call\ and}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ necessarily\ get\ the\ same\ values\ you\ get\ from\ reading\ it\ here.}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ Anything\ you\ need\ to\ restore\ from\ now\ to\ then\ must\ be\ saved\ in\ a}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ global/threadlocal\ variable\ (because\ we\ can't\ use\ stack}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ variables\ here\ either).\ For\ things\ that\ need\ to\ persist\ across}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ \ the\ switch,\ use\ \`{}will\_switch\_from`.}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00125\ \ \ \ \ this-\/>cframe\ =\ tstate-\/>cframe;}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \#if\ !GREENLET\_PY312}}
+\DoxyCodeLine{00127\ \ \ \ \ this-\/>use\_tracing\ =\ tstate-\/>cframe-\/>use\_tracing;}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#if\ GREENLET\_PY311}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00132\ \ \ \ \ this-\/>py\_recursion\_depth\ =\ tstate-\/>py\_recursion\_limit\ -\/\ tstate-\/>py\_recursion\_remaining;}
+\DoxyCodeLine{00133\ \ \ \ \ this-\/>c\_recursion\_depth\ =\ C\_RECURSION\_LIMIT\ -\/\ tstate-\/>c\_recursion\_remaining;}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \#else\ }\textcolor{comment}{//\ not\ 312}}
+\DoxyCodeLine{00135\ \ \ \ \ this-\/>recursion\_depth\ =\ tstate-\/>recursion\_limit\ -\/\ tstate-\/>recursion\_remaining;}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ GREENLET\_PY312}}
+\DoxyCodeLine{00137\ \ \ \ \ this-\/>current\_frame\ =\ tstate-\/>cframe-\/>current\_frame;}
+\DoxyCodeLine{00138\ \ \ \ \ this-\/>datastack\_chunk\ =\ tstate-\/>datastack\_chunk;}
+\DoxyCodeLine{00139\ \ \ \ \ this-\/>datastack\_top\ =\ tstate-\/>datastack\_top;}
+\DoxyCodeLine{00140\ \ \ \ \ this-\/>datastack\_limit\ =\ tstate-\/>datastack\_limit;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ PyFrameObject\ *frame\ =\ PyThreadState\_GetFrame((PyThreadState\ *)tstate);}
+\DoxyCodeLine{00143\ \ \ \ \ Py\_XDECREF(frame);\ \ \textcolor{comment}{//\ PyThreadState\_GetFrame\ gives\ us\ a\ new}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reference.}}
+\DoxyCodeLine{00145\ \ \ \ \ this-\/>\_top\_frame.steal(frame);}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00147\ \ \ \ \ this-\/>trash\_delete\_nesting\ =\ tstate-\/>trash.delete\_nesting;}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \#else\ }\textcolor{comment}{//\ not\ 312}}
+\DoxyCodeLine{00149\ \ \ \ \ this-\/>trash\_delete\_nesting\ =\ tstate-\/>trash\_delete\_nesting;}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ GREENLET\_PY312}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ Not\ 311}}
+\DoxyCodeLine{00152\ \ \ \ \ this-\/>recursion\_depth\ =\ tstate-\/>recursion\_depth;}
+\DoxyCodeLine{00153\ \ \ \ \ this-\/>\_top\_frame.steal(tstate-\/>frame);}
+\DoxyCodeLine{00154\ \ \ \ \ this-\/>trash\_delete\_nesting\ =\ tstate-\/>trash\_delete\_nesting;}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_PY311}}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00159\ \textcolor{keywordtype}{void}\ GREENLET\_NOINLINE(PythonState::unexpose\_frames)()}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>top\_frame())\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ See\ GreenletState::expose\_frames()\ and\ the\ comment\ on\ frames\_were\_exposed}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ for\ more\ information\ about\ this\ logic.}}
+\DoxyCodeLine{00167\ \ \ \ \ \_PyInterpreterFrame\ *iframe\ =\ this-\/>\_top\_frame-\/>f\_frame;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{while}\ (iframe\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \_PyInterpreterFrame\ *prev\_exposed\ =\ iframe-\/>previous;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ assert(iframe-\/>frame\_obj);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ memcpy(\&iframe-\/>previous,\ \&iframe-\/>frame\_obj-\/>\_f\_frame\_data[0],}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}\ *));}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ iframe\ =\ prev\_exposed;}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00177\ \textcolor{keywordtype}{void}\ PythonState::unexpose\_frames()}
+\DoxyCodeLine{00178\ \{\}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{keywordtype}{void}\ PythonState::operator>>(PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00182\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ tstate-\/>context\ =\ this-\/>\_context.relinquish\_ownership();}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{/*\ Incrementing\ this\ value\ invalidates\ the\ contextvars\ cache,}}
+\DoxyCodeLine{00185\ \textcolor{comment}{\ \ \ \ \ \ \ which\ would\ otherwise\ remain\ valid\ across\ switches\ */}}
+\DoxyCodeLine{00186\ \ \ \ \ tstate-\/>context\_ver++;}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00188\ \ \ \ \ tstate-\/>cframe\ =\ this-\/>cframe;}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ If\ we\ were\ tracing,\ we\ need\ to\ keep\ tracing.}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ \ There\ should\ never\ be\ the\ possibility\ of\ hitting\ the}}
+\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ \ root\_cframe\ here.\ See\ note\ above\ about\ why\ we\ can't}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ \ \ \ \ \ just\ copy\ this\ from\ \`{}\`{}origin-\/>cframe-\/>use\_tracing``.}}
+\DoxyCodeLine{00194\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \#if\ !GREENLET\_PY312}}
+\DoxyCodeLine{00196\ \ \ \ \ tstate-\/>cframe-\/>use\_tracing\ =\ this-\/>use\_tracing;}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#if\ GREENLET\_PY311}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00201\ \ \ \ \ tstate-\/>py\_recursion\_remaining\ =\ tstate-\/>py\_recursion\_limit\ -\/\ this-\/>py\_recursion\_depth;}
+\DoxyCodeLine{00202\ \ \ \ \ tstate-\/>c\_recursion\_remaining\ =\ C\_RECURSION\_LIMIT\ -\/\ this-\/>c\_recursion\_depth;}
+\DoxyCodeLine{00203\ \ \ \ \ this-\/>unexpose\_frames();}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \#else\ }\textcolor{comment}{//\ \(\backslash\)/\ 3.11}}
+\DoxyCodeLine{00205\ \ \ \ \ tstate-\/>recursion\_remaining\ =\ tstate-\/>recursion\_limit\ -\/\ this-\/>recursion\_depth;}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ GREENLET\_PY312}}
+\DoxyCodeLine{00207\ \ \ \ \ tstate-\/>cframe-\/>current\_frame\ =\ this-\/>current\_frame;}
+\DoxyCodeLine{00208\ \ \ \ \ tstate-\/>datastack\_chunk\ =\ this-\/>datastack\_chunk;}
+\DoxyCodeLine{00209\ \ \ \ \ tstate-\/>datastack\_top\ =\ this-\/>datastack\_top;}
+\DoxyCodeLine{00210\ \ \ \ \ tstate-\/>datastack\_limit\ =\ this-\/>datastack\_limit;}
+\DoxyCodeLine{00211\ \ \ \ \ this-\/>\_top\_frame.relinquish\_ownership();}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00213\ \ \ \ \ tstate-\/>trash.delete\_nesting\ =\ this-\/>trash\_delete\_nesting;}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \#else\ }\textcolor{comment}{//\ not\ 3.12}}
+\DoxyCodeLine{00215\ \ \ \ \ tstate-\/>trash\_delete\_nesting\ =\ this-\/>trash\_delete\_nesting;}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\ \ \#endif\ }\textcolor{comment}{//\ GREENLET\_PY312}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ not\ 3.11}}
+\DoxyCodeLine{00218\ \ \ \ \ tstate-\/>frame\ =\ this-\/>\_top\_frame.relinquish\_ownership();}
+\DoxyCodeLine{00219\ \ \ \ \ tstate-\/>recursion\_depth\ =\ this-\/>recursion\_depth;}
+\DoxyCodeLine{00220\ \ \ \ \ tstate-\/>trash\_delete\_nesting\ =\ this-\/>trash\_delete\_nesting;}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_PY311}}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PythonState::will\_switch\_from(PyThreadState\ *\textcolor{keyword}{const}\ origin\_tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00225\ \{}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME\ \&\&\ !GREENLET\_PY312}}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ The\ weird\ thing\ is,\ we\ don't\ actually\ save\ this\ for\ an}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ effect\ on\ the\ current\ greenlet,\ it's\ saved\ for\ an}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{//\ effect\ on\ the\ target\ greenlet.\ That\ is,\ we\ want}}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ continuity\ of\ this\ setting\ across\ the\ greenlet\ switch.}}
+\DoxyCodeLine{00231\ \ \ \ \ this-\/>use\_tracing\ =\ origin\_tstate-\/>cframe-\/>use\_tracing;}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keywordtype}{void}\ PythonState::set\_initial\_state(\textcolor{keyword}{const}\ PyThreadState*\ \textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00236\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ this-\/>\_top\_frame\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00239\ \ \ \ \ this-\/>py\_recursion\_depth\ =\ tstate-\/>py\_recursion\_limit\ -\/\ tstate-\/>py\_recursion\_remaining;}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{comment}{//\ XXX:\ TODO:\ Comment\ from\ a\ reviewer:}}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Should\ this\ be\ \`{}\`{}C\_RECURSION\_LIMIT\ -\/\ tstate-\/>c\_recursion\_remaining``?}}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//\ But\ to\ me\ it\ looks\ more\ like\ that\ might\ not\ be\ the\ right}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//\ initialization\ either?}}
+\DoxyCodeLine{00244\ \ \ \ \ this-\/>c\_recursion\_depth\ =\ tstate-\/>py\_recursion\_limit\ -\/\ tstate-\/>py\_recursion\_remaining;}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#elif\ GREENLET\_PY311}}
+\DoxyCodeLine{00246\ \ \ \ \ this-\/>recursion\_depth\ =\ tstate-\/>recursion\_limit\ -\/\ tstate-\/>recursion\_remaining;}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00248\ \ \ \ \ this-\/>recursion\_depth\ =\ tstate-\/>recursion\_depth;}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00250\ \}}
+\DoxyCodeLine{00251\ \textcolor{comment}{//\ TODO:\ Better\ state\ management\ about\ when\ we\ own\ the\ top\ frame.}}
+\DoxyCodeLine{00252\ \textcolor{keywordtype}{int}\ PythonState::tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg,\ \textcolor{keywordtype}{bool}\ own\_top\_frame)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00253\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ Py\_VISIT(this-\/>\_context.borrow());}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{if}\ (own\_top\_frame)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ Py\_VISIT(this-\/>\_top\_frame.borrow());}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{keywordtype}{void}\ PythonState::tp\_clear(\textcolor{keywordtype}{bool}\ own\_top\_frame)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00262\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ PythonStateContext::tp\_clear();}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{comment}{//\ If\ we\ get\ here\ owning\ a\ frame,}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{comment}{//\ we\ got\ dealloc'd\ without\ being\ finished.\ We\ may\ or\ may\ not\ be}}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ in\ the\ same\ thread.}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{if}\ (own\_top\_frame)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ this-\/>\_top\_frame.CLEAR();}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00273\ \textcolor{keywordtype}{void}\ PythonState::set\_new\_cframe(\_PyCFrame\&\ frame)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00274\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ frame\ =\ *PyThreadState\_GET()-\/>cframe;}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{/*\ Make\ the\ target\ greenlet\ refer\ to\ the\ stack\ value.\ */}}
+\DoxyCodeLine{00277\ \ \ \ \ this-\/>cframe\ =\ \&frame;}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ \ \ And\ restore\ the\ link\ to\ the\ previous\ frame\ so\ this\ one\ gets}}
+\DoxyCodeLine{00280\ \textcolor{comment}{\ \ \ \ \ \ unliked\ appropriately.}}
+\DoxyCodeLine{00281\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00282\ \ \ \ \ this-\/>cframe-\/>previous\ =\ \&PyThreadState\_GET()-\/>root\_cframe;}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{keyword}{const}\ PythonState::OwnedFrame\&\ PythonState::top\_frame()\ const\ noexcept}
+\DoxyCodeLine{00287\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_top\_frame;}
+\DoxyCodeLine{00289\ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \textcolor{keywordtype}{void}\ PythonState::did\_finish(PyThreadState*\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00292\ \{}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#if\ GREENLET\_PY311}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{//\ See\ https://github.com/gevent/gevent/issues/1924\ and}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{comment}{//\ https://github.com/python-\/greenlet/greenlet/issues/328.\ In}}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{//\ short,\ Python\ 3.11\ allocates\ memory\ for\ frames\ as\ a\ sort\ of}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{comment}{//\ linked\ list\ that's\ kept\ as\ part\ of\ PyThreadState\ in\ the}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}datastack\_chunk``\ member\ and\ friends.\ These\ are\ saved\ and}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ restored\ as\ part\ of\ switching\ greenlets.}}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{comment}{//\ When\ we\ initially\ switch\ to\ a\ greenlet,\ we\ set\ those\ to\ NULL.}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{comment}{//\ That\ causes\ the\ frame\ management\ code\ to\ treat\ this\ like\ a}}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{comment}{//\ brand\ new\ thread\ and\ start\ a\ fresh\ list\ of\ chunks,\ beginning}}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{comment}{//\ with\ a\ new\ "{}root"{}\ chunk.\ As\ we\ make\ calls\ in\ this\ greenlet,}}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{comment}{//\ those\ chunks\ get\ added,\ and\ as\ calls\ return,\ they\ get\ popped.}}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{comment}{//\ But\ the\ frame\ code\ (pystate.c)\ is\ careful\ to\ make\ sure\ that\ the}}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{comment}{//\ root\ chunk\ never\ gets\ popped.}}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{comment}{//\ Thus,\ when\ a\ greenlet\ exits\ for\ the\ last\ time,\ there\ will\ be\ at}}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{comment}{//\ least\ a\ single\ root\ chunk\ that\ we\ must\ be\ responsible\ for}}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{comment}{//\ deallocating.}}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{comment}{//\ The\ complex\ part\ is\ that\ these\ chunks\ are\ allocated\ and\ freed}}
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{comment}{//\ using\ \`{}\`{}\_PyObject\_VirtualAlloc``/``Free``.\ Those\ aren't\ public}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{comment}{//\ functions,\ and\ they\ aren't\ exported\ for\ linking.\ It\ so\ happens}}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{comment}{//\ that\ we\ know\ they\ are\ just\ thin\ wrappers\ around\ the\ Arena}}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{comment}{//\ allocator,\ so\ we\ can\ use\ that\ directly\ to\ deallocate\ in\ a}}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{comment}{//\ compatible\ way.}}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{comment}{//\ CAUTION:\ Check\ this\ implementation\ detail\ on\ every\ major\ version.}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{comment}{//\ It\ might\ be\ nice\ to\ be\ able\ to\ do\ this\ in\ our\ destructor,\ but}}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{comment}{//\ can\ we\ be\ sure\ that\ no\ one\ else\ is\ using\ that\ memory?\ Plus,\ as}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{comment}{//\ described\ below,\ our\ pointers\ may\ not\ even\ be\ valid\ anymore.\ As}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{comment}{//\ a\ special\ case,\ there\ is\ one\ time\ that\ we\ know\ we\ can\ do\ this,}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//\ and\ that's\ from\ the\ destructor\ of\ the\ associated\ UserGreenlet}}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{comment}{//\ (NOT\ main\ greenlet)}}
+\DoxyCodeLine{00328\ \ \ \ \ PyObjectArenaAllocator\ alloc;}
+\DoxyCodeLine{00329\ \ \ \ \ \_PyStackChunk*\ chunk\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordflow}{if}\ (tstate)\ \{}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ really\ did\ finish,\ we\ can\ never\ be\ switched\ to\ again.}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ chunk\ =\ tstate-\/>datastack\_chunk;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unfortunately,\ we\ can't\ do\ much\ sanity\ checking.\ Our}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this-\/>datastack\_chunk\ pointer\ is\ out\ of\ date\ (evaluation\ may}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ have\ popped\ down\ through\ it\ already)\ so\ we\ can't\ verify\ that}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ deallocate\ it.\ I\ don't\ think\ we\ can\ even\ check\ datastack\_top}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ the\ same\ reason.}}
+\DoxyCodeLine{00338\ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ PyObject\_GetArenaAllocator(\&alloc);}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ tstate-\/>datastack\_chunk\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ tstate-\/>datastack\_limit\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ tstate-\/>datastack\_top\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>datastack\_chunk)\ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ UserGreenlet\ (NOT\ the\ main\ greenlet!)\ is\ being\ deallocated.\ If\ we're}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ still\ holding\ a\ stack\ chunk,\ it's\ garbage\ because\ we\ know}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ can\ never\ switch\ back\ to\ let\ cPython\ clean\ it\ up.}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Because\ the\ last\ time\ we\ got\ switched\ away\ from,\ and\ we}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ haven't\ run\ since\ then,\ we\ know\ our\ chain\ is\ valid\ and\ can}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ be\ dealloced.}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ chunk\ =\ this-\/>datastack\_chunk;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ PyObject\_GetArenaAllocator(\&alloc);}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keywordflow}{if}\ (alloc.free\ \&\&\ chunk)\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ case\ the\ arena\ mechanism\ has\ been\ torn\ down\ already.}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (chunk)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \_PyStackChunk\ *prev\ =\ chunk-\/>previous;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ chunk-\/>previous\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ alloc.free(alloc.ctx,\ chunk,\ chunk-\/>size);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ chunk\ =\ prev;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ this-\/>datastack\_chunk\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00367\ \ \ \ \ this-\/>datastack\_limit\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00368\ \ \ \ \ this-\/>datastack\_top\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00370\ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \};\ \textcolor{comment}{//\ namespace\ greenlet}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_PYTHON\_STATE\_CPP}}
+
+\end{DoxyCode}

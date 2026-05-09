@@ -1,0 +1,47 @@
+\doxysection{frontend/\+node\+\_\+modules/\+callsites Directory Reference}
+\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf}{}\label{dir_838de65c77f34cd30a65801b2a7fffcf}\index{frontend/node\_modules/callsites Directory Reference@{frontend/node\_modules/callsites Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1532}{}\doxysubsection{\texorpdfstring{callsites \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/callsites.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+callsites.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/callsites}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+callsites}})}{callsites \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/callsites.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+callsites.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/callsites}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+callsites}})}}\label{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1532}
+\begin{quote}
+Get callsites from the \href{https://v8.dev/docs/stack-trace-api}{\texttt{V8 stack trace API}} \end{quote}
+\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1533}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1533}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ callsites}
+
+\end{DoxyCode}
+\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1534}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1534}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ callsites\ =\ require('callsites');}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ unicorn()\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(callsites()[0].getFileName());}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/dev/callsites/test.js'}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{unicorn();}
+
+\end{DoxyCode}
+\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1535}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1535}
+Returns an array of callsite objects with the following methods:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily get\+This}:\+ returns the value of {\ttfamily this}.
+\item {\ttfamily get\+Type\+Name}:\+ returns the type of {\ttfamily this} as a string. This is the name of the function stored in the constructor field of {\ttfamily this}, if available, otherwise the object\textquotesingle{}s {\ttfamily \+[\+[Class]\+]\+} internal property.
+\item {\ttfamily get\+Function}:\+ returns the current function.
+\item {\ttfamily get\+Function\+Name}:\+ returns the name of the current function, typically its {\ttfamily name} property. If a name property is not available an attempt will be made to try to infer a name from the function\textquotesingle{}s context.
+\item {\ttfamily get\+Method\+Name}:\+ returns the name of the property of {\ttfamily this} or one of its prototypes that holds the current function.
+\item {\ttfamily get\+File\+Name}:\+ if this function was defined in a script returns the name of the script.
+\item {\ttfamily get\+Line\+Number}:\+ if this function was defined in a script returns the current line number.
+\item {\ttfamily get\+Column\+Number}:\+ if this function was defined in a script returns the current column number
+\item {\ttfamily get\+Eval\+Origin}:\+ if this function was created using a call to {\ttfamily eval} returns a string representing the location where {\ttfamily eval} was called.
+\item {\ttfamily is\+Toplevel}:\+ is this a top-\/level invocation, that is, is this the global object?
+\item {\ttfamily is\+Eval}:\+ does this call take place in code defined by a call to {\ttfamily eval}?
+\item {\ttfamily is\+Native}:\+ is this call in native V8 code?
+\item {\ttfamily is\+Constructor}:\+ is this a constructor call?
+\end{DoxyItemize}\hypertarget{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1536}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_838de65c77f34cd30a65801b2a7fffcf_autotoc_md1536}
+MIT © \href{https://sindresorhus.com}{\texttt{Sindre Sorhus}} 

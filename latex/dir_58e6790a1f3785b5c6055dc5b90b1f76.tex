@@ -1,0 +1,453 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fraction.js Directory Reference}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76}{}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76}\index{frontend/node\_modules/fraction.js Directory Reference@{frontend/node\_modules/fraction.js Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_be6bd9229c7f04cc6f78798d5edf805b}{dist}}
+\item 
+directory \doxymbox{\hyperlink{dir_bc6502bad2a6986ce6594146b9bb7f13}{examples}}
+\item 
+directory \doxymbox{\hyperlink{dir_118268722ee453f17331abd57358ca5d}{src}}
+\item 
+directory \doxymbox{\hyperlink{dir_f197f8a15457d27a2e86775c5d2013a4}{tests}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1231}{}\doxysubsection{\texorpdfstring{Fraction.\+js -\/ ℚ in Java\+Script}{Fraction.\+js -\/ ℚ in Java\+Script}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1231}
+\href{https://npmjs.org/package/fraction.js}{\texttt{}} \href{http://opensource.org/licenses/MIT}{\texttt{}}
+
+Do you find the limitations of floating-\/point arithmetic frustrating, especially when rational and irrational numbers like π or √2 are stored within the same finite precision? This can lead to avoidable inaccuracies such as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1\ /\ 98\ *\ 98\ //\ Results\ in\ 0.9999999999999999}
+
+\end{DoxyCode}
+
+
+For applications requiring higher precision or where working with fractions is preferable, consider incorporating {\itshape Fraction.\+js} into your project.
+
+The library effectively addresses precision issues, as demonstrated below:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Fraction(1).div(98).mul(98)\ //\ Returns\ 1}
+
+\end{DoxyCode}
+
+
+{\itshape Fraction.\+js} uses a {\ttfamily Big\+Int} representation for both the numerator and denominator, ensuring minimal performance overhead while maximizing accuracy. Its design is optimized for precision, making it an ideal choice as a foundational library for other math tools, such as \href{https://github.com/rawify/Polynomial.js}{\texttt{Polynomial.\+js}} and \href{https://github.com/josdejong/mathjs}{\texttt{Math.\+js}}.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1232}{}\doxysubsection{\texorpdfstring{Convert Decimal to Fraction}{Convert Decimal to Fraction}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1232}
+One of the core features of {\itshape Fraction.\+js} is its ability to seamlessly convert decimal numbers into fractions.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ x\ =\ new\ Fraction(1.88);}
+\DoxyCodeLine{let\ res\ =\ x.toFraction(true);\ //\ Returns\ "{}1\ 22/25"{}\ as\ a\ string}
+
+\end{DoxyCode}
+
+
+This is particularly useful when you need precise fraction representations instead of dealing with the limitations of floating-\/point arithmetic. What if you allow some error tolerance?
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ x\ =\ new\ Fraction(0.33333);}
+\DoxyCodeLine{let\ res\ =\ x.simplify(0.001)\ //\ Error\ <\ 0.001}
+\DoxyCodeLine{\ \ \ \ \ \ \ .toFraction();\ //\ Returns\ "{}1/3"{}\ as\ a\ string}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1233}{}\doxysubsection{\texorpdfstring{Precision}{Precision}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1233}
+As native {\ttfamily Big\+Int} support in Java\+Script becomes more common, libraries like {\itshape Fraction.\+js} use it to handle calculations with higher precision. This improves the speed and accuracy of math operations with large numbers, providing a better solution for tasks that need more precision than floating-\/point numbers can offer.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1234}{}\doxysubsection{\texorpdfstring{Examples /\+ Motivation}{Examples /\+ Motivation}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1234}
+A simple example of using {\itshape Fraction.\+js} might look like this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ f\ =\ new\ Fraction("{}9.4'31'"{});\ //\ 9.4313131313131...}
+\DoxyCodeLine{f.mul([-\/4,\ 3]).mod("{}4.'8'"{});\ //\ 4.88888888888888...}
+
+\end{DoxyCode}
+
+
+The result can then be displayed as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(f.toFraction());\ //\ -\/4154\ /\ 1485}
+
+\end{DoxyCode}
+
+
+Additionally, you can access the internal attributes of the fraction, such as the sign (s), numerator (n), and denominator (d). Keep in mind that these values are stored as {\ttfamily Big\+Int}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Number(f.s)\ *\ Number(f.n)\ /\ Number(f.d)\ =\ -\/1\ *\ 4154\ /\ 1485\ =\ -\/2.797306...}
+
+\end{DoxyCode}
+
+
+If you attempted to calculate this manually using floating-\/point arithmetic, you\textquotesingle{}d get something like:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(9.4313131\ *\ (-\/4\ /\ 3))\ \%\ 4.888888\ =\ -\/2.797308133...}
+
+\end{DoxyCode}
+
+
+While the result is reasonably close, it’s not as accurate as the fraction-\/based approach that {\itshape Fraction.\+js} provides, especially when dealing with repeating decimals or complex operations. This highlights the value of precision that the library brings.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1235}{}\doxysubsubsection{\texorpdfstring{Laplace Probability}{Laplace Probability}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1235}
+Here\textquotesingle{}s a straightforward example of using {\itshape Fraction.\+js} to calculate probabilities. Let\textquotesingle{}s determine the probability of rolling a specific outcome on a fair die:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{P(\{3\})}}:\+ The probability of rolling a 3.
+\item {\bfseries{P(\{1, 4\})}}:\+ The probability of rolling either 1 or 4.
+\item {\bfseries{P(\{2, 4, 6\})}}:\+ The probability of rolling 2, 4, or 6.
+\end{DoxyItemize}\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1236}{}\doxysubsubsubsection{\texorpdfstring{P(\{3\}):\+}{P(\{3\}):\+}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1236}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ p\ =\ new\ Fraction([3].length,\ 6).toString();\ //\ "{}0.1(6)"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1237}{}\doxysubsubsubsection{\texorpdfstring{P(\{1, 4\}):\+}{P(\{1, 4\}):\+}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1237}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ p\ =\ new\ Fraction([1,\ 4].length,\ 6).toString();\ //\ "{}0.(3)"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1238}{}\doxysubsubsubsection{\texorpdfstring{P(\{2, 4, 6\}):\+}{P(\{2, 4, 6\}):\+}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1238}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ p\ =\ new\ Fraction([2,\ 4,\ 6].length,\ 6).toString();\ //\ "{}0.5"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1239}{}\doxysubsubsection{\texorpdfstring{Convert degrees/\+minutes/\+seconds to precise rational representation:\+}{Convert degrees/\+minutes/\+seconds to precise rational representation:\+}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1239}
+57+45/\+60+17/\+3600
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ deg\ =\ 57;\ //\ 57°}
+\DoxyCodeLine{var\ min\ =\ 45;\ //\ 45\ Minutes}
+\DoxyCodeLine{var\ sec\ =\ 17;\ //\ 17\ Seconds}
+\DoxyCodeLine{}
+\DoxyCodeLine{new\ Fraction(deg).add(min,\ 60).add(sec,\ 3600).toString()\ //\ -\/>\ 57.7547(2)}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1240}{}\doxysubsubsection{\texorpdfstring{Rational approximation of irrational numbers}{Rational approximation of irrational numbers}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1240}
+To approximate a number like {\itshape sqrt(5) -\/ 2} with a numerator and denominator, you can reformat the equation as follows:\+ {\itshape pow(n /\+ d + 2, 2) = 5}.
+
+Then the following algorithm will generate the rational number besides the binary representation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ x\ =\ "{}/"{},\ s\ =\ "{}"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ a\ =\ new\ Fraction(0),}
+\DoxyCodeLine{\ \ \ \ b\ =\ new\ Fraction(1);}
+\DoxyCodeLine{for\ (var\ n\ =\ 0;\ n\ <=\ 10;\ n++)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ var\ c\ =\ a.add(b).div(2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ console.log(n\ +\ "{}\(\backslash\)t"{}\ +\ a\ +\ "{}\(\backslash\)t"{}\ +\ b\ +\ "{}\(\backslash\)t"{}\ +\ c\ +\ "{}\(\backslash\)t"{}\ +\ x);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (c.add(2).pow(2).valueOf()\ <\ 5)\ \{}
+\DoxyCodeLine{\ \ \ \ a\ =\ c;}
+\DoxyCodeLine{\ \ \ \ x\ =\ "{}1"{};}
+\DoxyCodeLine{\ \ \}\ else\ \{}
+\DoxyCodeLine{\ \ \ \ b\ =\ c;}
+\DoxyCodeLine{\ \ \ \ x\ =\ "{}0"{};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ s+=\ x;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{console.log(s)}
+
+\end{DoxyCode}
+
+
+The result is
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{n\ \ \ a[n]\ \ \ \ \ \ \ \ b[n]\ \ \ \ \ \ \ \ c[n]\ \ \ \ \ \ \ \ \ \ \ \ x[n]}
+\DoxyCodeLine{0\ \ \ 0/1\ \ \ \ \ \ \ \ \ 1/1\ \ \ \ \ \ \ \ \ 1/2\ \ \ \ \ \ \ \ \ \ \ \ \ /}
+\DoxyCodeLine{1\ \ \ 0/1\ \ \ \ \ \ \ \ \ 1/2\ \ \ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{2\ \ \ 0/1\ \ \ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ 1/8\ \ \ \ \ \ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{3\ \ \ 1/8\ \ \ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ 3/16\ \ \ \ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{4\ \ \ 3/16\ \ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ 7/32\ \ \ \ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{5\ \ \ 7/32\ \ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ 15/64\ \ \ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{6\ \ \ 15/64\ \ \ \ \ \ \ 1/4\ \ \ \ \ \ \ \ \ 31/128\ \ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{7\ \ \ 15/64\ \ \ \ \ \ \ 31/128\ \ \ \ \ \ 61/256\ \ \ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{8\ \ \ 15/64\ \ \ \ \ \ \ 61/256\ \ \ \ \ \ 121/512\ \ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{9\ \ \ 15/64\ \ \ \ \ \ \ 121/512\ \ \ \ \ 241/1024\ \ \ \ \ \ \ \ 0}
+\DoxyCodeLine{10\ \ 241/1024\ \ \ \ 121/512\ \ \ \ \ 483/2048\ \ \ \ \ \ \ \ 1}
+
+\end{DoxyCode}
+
+
+Thus the approximation after 11 iterations of the bisection method is {\itshape 483 /\+ 2048} and the binary representation is 0.\+00111100011 (see \href{http://www.wolframalpha.com/input/?i=sqrt\%285\%29-2+binary}{\texttt{Wolfram\+Alpha}})
+
+I published another example on how to approximate PI with fraction.\+js on my \href{https://raw.org/article/rational-numbers-in-javascript/}{\texttt{blog}} (Still not the best idea to approximate irrational numbers, but it illustrates the capabilities of Fraction.\+js perfectly).\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1241}{}\doxysubsubsection{\texorpdfstring{Get the exact fractional part of a number}{Get the exact fractional part of a number}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1241}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ f\ =\ new\ Fraction("{}-\/6.(3416)"{});}
+\DoxyCodeLine{console.log(f.mod(1).abs().toFraction());\ //\ =\ 3416/9999}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1242}{}\doxysubsubsection{\texorpdfstring{Mathematical correct modulo}{Mathematical correct modulo}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1242}
+The behaviour on negative congruences is different to most modulo implementations in computer science. Even the {\itshape mod()} function of Fraction.\+js behaves in the typical way. To solve the problem of having the mathematical correct modulo with Fraction.\+js you could come up with this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ a\ =\ -\/1;}
+\DoxyCodeLine{var\ b\ =\ 10.99;}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(new\ Fraction(a)}
+\DoxyCodeLine{\ \ .mod(b));\ //\ Not\ correct,\ usual\ Modulo}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(new\ Fraction(a)}
+\DoxyCodeLine{\ \ .mod(b).add(b).mod(b));\ //\ Correct!\ Mathematical\ Modulo}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1243}{}\doxysubsection{\texorpdfstring{fmod() imprecision circumvented}{fmod() imprecision circumvented}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1243}
+It turns out that Fraction.\+js outperforms almost any fmod() implementation, including Java\+Script itself, \href{http://phpjs.org/functions/fmod/}{\texttt{php.\+js}}, C++, Python, Java and even Wolframalpha due to the fact that numbers like 0.\+05, 0.\+1, ... are infinite decimal in base 2.
+
+The equation {\itshape fmod(4.\+55, 0.\+05)} gives {\itshape 0.\+04999999999999957}, wolframalpha says {\itshape 1/\+20}. The correct answer should be {\bfseries{zero}}, as 0.\+05 divides 4.\+55 without any remainder.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1244}{}\doxysubsection{\texorpdfstring{Parser}{Parser}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1244}
+Any function (see below) as well as the constructor of the {\itshape Fraction} class parses its input and reduce it to the smallest term.
+
+You can pass either Arrays, Objects, Integers, Doubles or Strings.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1245}{}\doxysubsubsection{\texorpdfstring{Arrays /\+ Objects}{Arrays /\+ Objects}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1245}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ Fraction(numerator,\ denominator);}
+\DoxyCodeLine{new\ Fraction([numerator,\ denominator]);}
+\DoxyCodeLine{new\ Fraction(\{n:\ numerator,\ d:\ denominator\});}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1246}{}\doxysubsubsection{\texorpdfstring{Integers}{Integers}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1246}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ Fraction(123);}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1247}{}\doxysubsubsection{\texorpdfstring{Doubles}{Doubles}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1247}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ Fraction(55.4);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note:\+}} If you pass a double as it is, Fraction.\+js will perform a number analysis based on Farey Sequences. If you concern performance, cache Fraction.\+js objects and pass arrays/\+objects.
+
+The method is really precise, but too large exact numbers, like 1234567.\+9991829 will result in a wrong approximation. If you want to keep the number as it is, convert it to a string, as the string parser will not perform any further observations. If you have problems with the approximation, in the file {\ttfamily examples/\+approx.\+js} is a different approximation algorithm, which might work better in some more specific use-\/cases.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1248}{}\doxysubsubsection{\texorpdfstring{Strings}{Strings}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1248}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ Fraction("{}123.45"{});}
+\DoxyCodeLine{new\ Fraction("{}123/45"{});\ //\ A\ rational\ number\ represented\ as\ two\ decimals,\ separated\ by\ a\ slash}
+\DoxyCodeLine{new\ Fraction("{}123:45"{});\ //\ A\ rational\ number\ represented\ as\ two\ decimals,\ separated\ by\ a\ colon}
+\DoxyCodeLine{new\ Fraction("{}4\ 123/45"{});\ //\ A\ rational\ number\ represented\ as\ a\ whole\ number\ and\ a\ fraction}
+\DoxyCodeLine{new\ Fraction("{}123.'456'"{});\ //\ Note\ the\ quotes,\ see\ below!}
+\DoxyCodeLine{new\ Fraction("{}123.(456)"{});\ //\ Note\ the\ brackets,\ see\ below!}
+\DoxyCodeLine{new\ Fraction("{}123.45'6'"{});\ //\ Note\ the\ quotes,\ see\ below!}
+\DoxyCodeLine{new\ Fraction("{}123.45(6)"{});\ //\ Note\ the\ brackets,\ see\ below!}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1249}{}\doxysubsubsection{\texorpdfstring{Two arguments}{Two arguments}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1249}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{new\ Fraction(3,\ 2);\ //\ 3/2\ =\ 1.5}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1250}{}\doxysubsubsection{\texorpdfstring{Repeating decimal places}{Repeating decimal places}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1250}
+{\itshape Fraction.\+js} can easily handle repeating decimal places. For example {\itshape 1/\+3} is {\itshape 0.\+3333...}. There is only one repeating digit. As you can see in the examples above, you can pass a number like {\itshape 1/\+3} as "{}0.\textquotesingle{}3\textquotesingle{}"{} or "{}0.(3)"{}, which are synonym. There are no tests to parse something like 0.\+166666666 to 1/\+6! If you really want to handle this number, wrap around brackets on your own with the function below for example:\+ 0.\+1(66666666)
+
+Assume you want to divide 123.\+32 /\+ 33.\+6(567). \href{http://www.wolframalpha.com/input/?i=123.32+\%2F+\%2812453\%2F370\%29}{\texttt{Wolfram\+Alpha}} states that you\textquotesingle{}ll get a period of 1776 digits. {\itshape Fraction.\+js} comes to the same result. Give it a try:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ f\ =\ new\ Fraction("{}123.32"{});}
+\DoxyCodeLine{console.log("{}Bam:\ "{}\ +\ f.div("{}33.6(567)"{}));}
+
+\end{DoxyCode}
+
+
+To automatically make a number like "{}0.\+123123123"{} to something more Fraction.\+js friendly like "{}0.(123)"{}, I hacked this little brute force algorithm in a 10 minutes. Improvements are welcome...
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ formatDecimal(str)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ var\ comma,\ pre,\ offset,\ pad,\ times,\ repeat;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (-\/1\ ===\ (comma\ =\ str.indexOf("{}."{})))}
+\DoxyCodeLine{\ \ \ \ return\ str;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ pre\ =\ str.substr(0,\ comma\ +\ 1);}
+\DoxyCodeLine{\ \ str\ =\ str.substr(comma\ +\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ for\ (var\ i\ =\ 0;\ i\ <\ str.length;\ i++)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ offset\ =\ str.substr(0,\ i);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ for\ (var\ j\ =\ 0;\ j\ <\ 5;\ j++)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ pad\ =\ str.substr(i,\ j\ +\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ times\ =\ Math.ceil((str.length\ -\/\ offset.length)\ /\ pad.length);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ repeat\ =\ new\ Array(times\ +\ 1).join(pad);\ //\ Silly\ String.repeat\ hack}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (0\ ===\ (offset\ +\ repeat).indexOf(str))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ pre\ +\ offset\ +\ "{}("{}\ +\ pad\ +\ "{})"{};}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ return\ null;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ f,\ x\ =\ formatDecimal("{}13.0123123123"{});\ //\ =\ 13.0(123)}
+\DoxyCodeLine{if\ (x\ !==\ null)\ \{}
+\DoxyCodeLine{\ \ f\ =\ new\ Fraction(x);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1251}{}\doxysubsection{\texorpdfstring{Attributes}{Attributes}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1251}
+The Fraction object allows direct access to the numerator, denominator and sign attributes. It is ensured that only the sign-\/attribute holds sign information so that a sign comparison is only necessary against this attribute.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ f\ =\ new\ Fraction('-\/1/2');}
+\DoxyCodeLine{console.log(f.n);\ //\ Numerator:\ 1}
+\DoxyCodeLine{console.log(f.d);\ //\ Denominator:\ 2}
+\DoxyCodeLine{console.log(f.s);\ //\ Sign:\ -\/1}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1252}{}\doxysubsection{\texorpdfstring{Functions}{Functions}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1252}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1253}{}\doxysubsubsection{\texorpdfstring{Fraction abs()}{Fraction abs()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1253}
+Returns the actual number without any sign information\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1254}{}\doxysubsubsection{\texorpdfstring{Fraction neg()}{Fraction neg()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1254}
+Returns the actual number with flipped sign in order to get the additive inverse\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1255}{}\doxysubsubsection{\texorpdfstring{Fraction add(n)}{Fraction add(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1255}
+Returns the sum of the actual number and the parameter n\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1256}{}\doxysubsubsection{\texorpdfstring{Fraction sub(n)}{Fraction sub(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1256}
+Returns the difference of the actual number and the parameter n\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1257}{}\doxysubsubsection{\texorpdfstring{Fraction mul(n)}{Fraction mul(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1257}
+Returns the product of the actual number and the parameter n\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1258}{}\doxysubsubsection{\texorpdfstring{Fraction div(n)}{Fraction div(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1258}
+Returns the quotient of the actual number and the parameter n\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1259}{}\doxysubsubsection{\texorpdfstring{Fraction pow(exp)}{Fraction pow(exp)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1259}
+Returns the power of the actual number, raised to an possible rational exponent. If the result becomes non-\/rational the function returns {\ttfamily null}.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1260}{}\doxysubsubsection{\texorpdfstring{Fraction log(base)}{Fraction log(base)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1260}
+Returns the logarithm of the actual number to a given rational base. If the result becomes non-\/rational the function returns {\ttfamily null}.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1261}{}\doxysubsubsection{\texorpdfstring{Fraction mod(n)}{Fraction mod(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1261}
+Returns the modulus (rest of the division) of the actual object and n (this \% n). It\textquotesingle{}s a much more precise fmod()fmod() if you like. Please note that {\itshape mod()} is just like the modulo operator of most programming languages. If you want a mathematical correct modulo, see herehere.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1262}{}\doxysubsubsection{\texorpdfstring{Fraction mod()}{Fraction mod()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1262}
+Returns the modulus (rest of the division) of the actual object (numerator mod denominator)\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1263}{}\doxysubsubsection{\texorpdfstring{Fraction gcd(n)}{Fraction gcd(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1263}
+Returns the fractional greatest common divisor\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1264}{}\doxysubsubsection{\texorpdfstring{Fraction lcm(n)}{Fraction lcm(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1264}
+Returns the fractional least common multiple\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1265}{}\doxysubsubsection{\texorpdfstring{Fraction ceil(\+[places=0-\/16]\+)}{Fraction ceil(\+[places=0-\/16]\+)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1265}
+Returns the ceiling of a rational number with Math.\+ceil\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1266}{}\doxysubsubsection{\texorpdfstring{Fraction floor(\+[places=0-\/16]\+)}{Fraction floor(\+[places=0-\/16]\+)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1266}
+Returns the floor of a rational number with Math.\+floor\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1267}{}\doxysubsubsection{\texorpdfstring{Fraction round(\+[places=0-\/16]\+)}{Fraction round(\+[places=0-\/16]\+)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1267}
+Returns the rational number rounded with Math.\+round\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1268}{}\doxysubsubsection{\texorpdfstring{Fraction round\+To(multiple)}{Fraction round\+To(multiple)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1268}
+Rounds a fraction to the closest multiple of another fraction.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1269}{}\doxysubsubsection{\texorpdfstring{Fraction inverse()}{Fraction inverse()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1269}
+Returns the multiplicative inverse of the actual number (n /\+ d becomes d /\+ n) in order to get the reciprocal\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1270}{}\doxysubsubsection{\texorpdfstring{Fraction simplify(\+[eps=0.\+001]\+)}{Fraction simplify(\+[eps=0.\+001]\+)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1270}
+Simplifies the rational number under a certain error threshold. Ex. {\ttfamily 0.\+333} will be {\ttfamily 1/\+3} with {\ttfamily eps=0.\+001}\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1271}{}\doxysubsubsection{\texorpdfstring{boolean equals(n)}{boolean equals(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1271}
+Check if two rational numbers are equal\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1272}{}\doxysubsubsection{\texorpdfstring{boolean lt(n)}{boolean lt(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1272}
+Check if this rational number is less than another\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1273}{}\doxysubsubsection{\texorpdfstring{boolean lte(n)}{boolean lte(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1273}
+Check if this rational number is less than or equal another\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1274}{}\doxysubsubsection{\texorpdfstring{boolean gt(n)}{boolean gt(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1274}
+Check if this rational number is greater than another\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1275}{}\doxysubsubsection{\texorpdfstring{boolean gte(n)}{boolean gte(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1275}
+Check if this rational number is greater than or equal another\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1276}{}\doxysubsubsection{\texorpdfstring{int compare(n)}{int compare(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1276}
+Compare two numbers. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{result\ <\ 0:\ n\ is\ greater\ than\ actual\ number}
+\DoxyCodeLine{result\ >\ 0:\ n\ is\ smaller\ than\ actual\ number}
+\DoxyCodeLine{result\ =\ 0:\ n\ is\ equal\ to\ the\ actual\ number}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1277}{}\doxysubsubsection{\texorpdfstring{boolean divisible(n)}{boolean divisible(n)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1277}
+Check if two numbers are divisible (n divides this)\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1278}{}\doxysubsubsection{\texorpdfstring{double value\+Of()}{double value\+Of()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1278}
+Returns a decimal representation of the fraction\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1279}{}\doxysubsubsection{\texorpdfstring{String to\+String(\+[decimal\+Places=15]\+)}{String to\+String(\+[decimal\+Places=15]\+)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1279}
+Generates an exact string representation of the given object. For repeating decimal places, digits within repeating cycles are enclosed in parentheses, e.\+g., {\ttfamily 1/\+3 = "{}0.(3)"{}}. For other numbers, the string will include up to the specified {\ttfamily decimal\+Places} significant digits, including any trailing zeros if truncation occurs. For example, {\ttfamily 1/\+2} will be represented as {\ttfamily "{}0.\+5"{}}, without additional trailing zeros.
+
+{\bfseries{Note:\+}} Since both {\ttfamily value\+Of()} and {\ttfamily to\+String()} are provided, {\ttfamily to\+String()} will only be invoked implicitly when the object is used in a string context. For instance, when using the plus operator like {\ttfamily "{}123"{} + new Fraction}, {\ttfamily value\+Of()} will be called first, as Java\+Script attempts to combine primitives before concatenating them, with the string type taking precedence. However, {\ttfamily alert(new Fraction)} or {\ttfamily String(new Fraction)} will behave as expected. To ensure specific behavior, explicitly call either {\ttfamily to\+String()} or {\ttfamily value\+Of()}.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1280}{}\doxysubsubsection{\texorpdfstring{String to\+Latex(show\+Mixed=false)}{String to\+Latex(show\+Mixed=false)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1280}
+Generates an exact La\+TeX representation of the actual object. You can see a \href{https://raw.org/article/rational-numbers-in-javascript/}{\texttt{live demo}} on my blog.
+
+The optional boolean parameter indicates if you want to show the a mixed fraction. "{}1 1/\+3"{} instead of "{}4/\+3"{}\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1281}{}\doxysubsubsection{\texorpdfstring{String to\+Fraction(show\+Mixed=false)}{String to\+Fraction(show\+Mixed=false)}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1281}
+Gets a string representation of the fraction
+
+The optional boolean parameter indicates if you want to showa mixed fraction. "{}1 1/\+3"{} instead of "{}4/\+3"{}\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1282}{}\doxysubsubsection{\texorpdfstring{Array to\+Continued()}{Array to\+Continued()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1282}
+Gets an array of the fraction represented as a continued fraction. The first element always contains the whole part.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ f\ =\ new\ Fraction('88/33');}
+\DoxyCodeLine{var\ c\ =\ f.toContinued();\ //\ [2,\ 1,\ 2]}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1283}{}\doxysubsubsection{\texorpdfstring{Fraction clone()}{Fraction clone()}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1283}
+Creates a copy of the actual Fraction object\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1284}{}\doxysubsection{\texorpdfstring{Exceptions}{Exceptions}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1284}
+If a really hard error occurs (parsing error, division by zero), {\itshape Fraction.\+js} throws exceptions! Please make sure you handle them correctly.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1285}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1285}
+You can install {\ttfamily Fraction.\+js} via npm:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ fraction.js}
+
+\end{DoxyCode}
+
+
+Or with yarn:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yarn\ add\ fraction.js}
+
+\end{DoxyCode}
+
+
+Alternatively, download or clone the repository:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/rawify/Fraction.js}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1286}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1286}
+Include the {\ttfamily fraction.\+min.\+js} file in your project:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}path/to/fraction.min.js"{}></script>}
+\DoxyCodeLine{<script>}
+\DoxyCodeLine{\ \ var\ x\ =\ new\ Fraction("{}13/4"{});}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+
+
+Or in a Node.\+js project:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ Fraction\ =\ require('fraction.js');}
+
+\end{DoxyCode}
+
+
+or
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ Fraction\ from\ 'fraction.js';}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1287}{}\doxysubsection{\texorpdfstring{Coding Style}{Coding Style}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1287}
+As every library I publish, Fraction.\+js is also built to be as small as possible after compressing it with Google Closure Compiler in advanced mode. Thus the coding style orientates a little on maxing-\/out the compression rate. Please make sure you keep this style if you plan to extend the library.\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1288}{}\doxysubsection{\texorpdfstring{Building the library}{Building the library}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1288}
+After cloning the Git repository run:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install}
+\DoxyCodeLine{npm\ run\ build}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1289}{}\doxysubsection{\texorpdfstring{Run a test}{Run a test}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1289}
+Testing the source against the shipped test suite is as easy as
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ test}
+
+\end{DoxyCode}
+\hypertarget{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1290}{}\doxysubsection{\texorpdfstring{Copyright and Licensing}{Copyright and Licensing}}\label{dir_58e6790a1f3785b5c6055dc5b90b1f76_autotoc_md1290}
+Copyright (c) 2025, \href{https://raw.org/}{\texttt{Robert Eisele}} Licensed under the MIT license. 

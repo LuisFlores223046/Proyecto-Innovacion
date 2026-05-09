@@ -1,0 +1,191 @@
+\doxysection{frontend/\+node\+\_\+modules/\+postcss-\/import Directory Reference}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a}{}\label{dir_7712c80b57205769568a026d720cf00a}\index{frontend/node\_modules/postcss-\/import Directory Reference@{frontend/node\_modules/postcss-\/import Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_74350b78a92679f4be09a5973129dd32}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2031}{}\doxysubsection{\texorpdfstring{postcss-\/import}{postcss-\/import}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2031}
+\href{https://travis-ci.org/postcss/postcss-import}{\texttt{}} \href{https://github.com/postcss/postcss-import/blob/master/CHANGELOG.md}{\texttt{}} \href{https://postcss.org/}{\texttt{}}
+
+\begin{quote}
+\href{https://github.com/postcss/postcss}{\texttt{Post\+CSS}} plugin to transform {\ttfamily @import} rules by inlining content. \end{quote}
+
+
+This plugin can consume local files, node modules or web\+\_\+modules. To resolve path of an {\ttfamily @import} rule, it can look into root directory (by default {\ttfamily process.\+cwd()}), {\ttfamily web\+\_\+modules}, {\ttfamily node\+\_\+modules} or local modules. {\itshape When importing a module, it will look for {\ttfamily index.\+css} or file referenced in {\ttfamily package.\+json} in the {\ttfamily style} or {\ttfamily main} fields.} You can also provide manually multiples paths where to look at.
+
+{\bfseries{Notes:\+}}
+
+
+\begin{DoxyItemize}
+\item {\bfseries{This plugin should probably be used as the first plugin of your list. This way, other plugins will work on the AST as if there were only a single file to process, and will probably work as you can expect}}.
+\item This plugin works great with \href{https://github.com/postcss/postcss-url}{\texttt{postcss-\/url}} plugin, which will allow you to adjust assets {\ttfamily url()} (or even inline them) after inlining imported files.
+\item In order to optimize output, {\bfseries{this plugin will only import a file once}} on a given scope (root, media query...). Tests are made from the path \& the content of imported files (using a hash table). If this behavior is not what you want, look at {\ttfamily skip\+Duplicates} option
+\item If you are looking for {\bfseries{Glob Imports}}, you can use \href{https://github.com/dimitrinicolas/postcss-import-ext-glob}{\texttt{postcss-\/import-\/ext-\/glob}} to extend postcss-\/import.
+\item Imports which are not modified (by {\ttfamily options.\+filter} or because they are remote imports) are moved to the top of the output.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+This plugin attempts to follow the CSS {\ttfamily @import} spec\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}; {\ttfamily @import} statements must precede all other statements (besides {\ttfamily @charset}).
+\end{DoxyItemize}\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2032}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2032}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/D\ postcss-\/import}
+
+\end{DoxyCode}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2033}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2033}
+Unless your stylesheet is in the same place where you run postcss ({\ttfamily process.\+cwd()}), you will need to use {\ttfamily from} option to make relative imports work.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ dependencies}
+\DoxyCodeLine{const\ fs\ =\ require("{}fs"{})}
+\DoxyCodeLine{const\ postcss\ =\ require("{}postcss"{})}
+\DoxyCodeLine{const\ atImport\ =\ require("{}postcss-\/import"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ css\ to\ be\ processed}
+\DoxyCodeLine{const\ css\ =\ fs.readFileSync("{}css/input.css"{},\ "{}utf8"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ process\ css}
+\DoxyCodeLine{postcss()}
+\DoxyCodeLine{\ \ .use(atImport())}
+\DoxyCodeLine{\ \ .process(css,\ \{}
+\DoxyCodeLine{\ \ \ \ //\ \`{}from`\ option\ is\ needed\ here}
+\DoxyCodeLine{\ \ \ \ from:\ "{}css/input.css"{}}
+\DoxyCodeLine{\ \ \})}
+\DoxyCodeLine{\ \ .then((result)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ const\ output\ =\ result.css}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(output)}
+\DoxyCodeLine{\ \ \})}
+
+\end{DoxyCode}
+
+
+{\ttfamily css/\+input.\+css}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/*\ can\ consume\ \`{}node\_modules`,\ \`{}web\_modules`\ or\ local\ modules\ */}
+\DoxyCodeLine{@import\ "{}cssrecipes-\/defaults"{};\ /*\ ==\ @import\ "{}../node\_modules/cssrecipes-\/defaults/index.css"{};\ */}
+\DoxyCodeLine{@import\ "{}normalize.css"{};\ /*\ ==\ @import\ "{}../node\_modules/normalize.css/normalize.css"{};\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{@import\ "{}foo.css"{};\ /*\ relative\ to\ css/\ according\ to\ \`{}from`\ option\ above\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{@import\ "{}bar.css"{}\ (min-\/width:\ 25em);}
+\DoxyCodeLine{}
+\DoxyCodeLine{@import\ 'baz.css'\ layer(baz-\/layer);}
+\DoxyCodeLine{}
+\DoxyCodeLine{body\ \{}
+\DoxyCodeLine{\ \ background:\ black;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+will give you:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/*\ ...\ content\ of\ ../node\_modules/cssrecipes-\/defaults/index.css\ */}
+\DoxyCodeLine{/*\ ...\ content\ of\ ../node\_modules/normalize.css/normalize.css\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{/*\ ...\ content\ of\ css/foo.css\ */}
+\DoxyCodeLine{}
+\DoxyCodeLine{@media\ (min-\/width:\ 25em)\ \{}
+\DoxyCodeLine{/*\ ...\ content\ of\ css/bar.css\ */}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{@layer\ baz-\/layer\ \{}
+\DoxyCodeLine{/*\ ...\ content\ of\ css/baz.css\ */}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{body\ \{}
+\DoxyCodeLine{\ \ background:\ black;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Checkout the \+[tests]\+(test) for more examples.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2034}{}\doxysubsubsection{\texorpdfstring{Options}{Options}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2034}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2035}{}\doxysubsubsection{\texorpdfstring{{\ttfamily filter}}{{\ttfamily filter}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2035}
+Type:\+ {\ttfamily Function} ~\newline
+ Default:\+ {\ttfamily () =\texorpdfstring{$>$}{>} true}
+
+Only transform imports for which the test function returns {\ttfamily true}. Imports for which the test function returns {\ttfamily false} will be left as is. The function gets the path to import as an argument and should return a boolean.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2036}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily root}}{{\ttfamily root}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2036}
+Type:\+ {\ttfamily String} ~\newline
+ Default:\+ {\ttfamily process.\+cwd()} or {\itshape dirname of \href{https://github.com/postcss/postcss\#node-source}{\texttt{the postcss {\ttfamily from}}}}
+
+Define the root where to resolve path (eg:\+ place where {\ttfamily node\+\_\+modules} are). Should not be used that much. ~\newline
+ \+\_\+\+Note:\+ nested {\ttfamily @import} will additionally benefit of the relative dirname of imported files.\+\_\+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2037}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily path}}{{\ttfamily path}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2037}
+Type:\+ {\ttfamily String\texorpdfstring{$\vert$}{|}\+Array} ~\newline
+ Default:\+ {\ttfamily \+[]\+}
+
+A string or an array of paths in where to look for files.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2038}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily plugins}}{{\ttfamily plugins}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2038}
+Type:\+ {\ttfamily Array} ~\newline
+ Default:\+ {\ttfamily undefined}
+
+An array of plugins to be applied on each imported files.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2039}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily resolve}}{{\ttfamily resolve}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2039}
+Type:\+ {\ttfamily Function} ~\newline
+ Default:\+ {\ttfamily null}
+
+You can provide a custom path resolver with this option. This function gets {\ttfamily (id, basedir, import\+Options)} arguments and should return a path, an array of paths or a promise resolving to the path(s). If you do not return an absolute path, your path will be resolved to an absolute path using the default resolver. You can use \href{https://github.com/substack/node-resolve}{\texttt{resolve}} for this.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2040}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily load}}{{\ttfamily load}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2040}
+Type:\+ {\ttfamily Function} ~\newline
+ Default:\+ null
+
+You can overwrite the default loading way by setting this option. This function gets {\ttfamily (filename, import\+Options)} arguments and returns content or promised content.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2041}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily skip\+Duplicates}}{{\ttfamily skip\+Duplicates}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2041}
+Type:\+ {\ttfamily Boolean} ~\newline
+ Default:\+ {\ttfamily true}
+
+By default, similar files (based on the same content) are being skipped. It\textquotesingle{}s to optimize output and skip similar files like {\ttfamily normalize.\+css} for example. If this behavior is not what you want, just set this option to {\ttfamily false} to disable it.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2042}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily add\+Modules\+Directories}}{{\ttfamily add\+Modules\+Directories}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2042}
+Type:\+ {\ttfamily Array} ~\newline
+ Default:\+ {\ttfamily \+[]\+}
+
+An array of folder names to add to \href{https://github.com/substack/node-resolve}{\texttt{Node\textquotesingle{}s resolver}}. Values will be appended to the default resolve directories:\+ {\ttfamily \+["{}node\+\_\+modules"{}, "{}web\+\_\+modules"{}]\+}.
+
+This option is only for adding additional directories to default resolver. If you provide your own resolver via the {\ttfamily resolve} configuration option above, then this value will be ignored.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2043}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily name\+Layer}}{{\ttfamily name\+Layer}}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2043}
+Type:\+ {\ttfamily Function} Default:\+ {\ttfamily null}
+
+You can provide a custom naming function for anonymous layers ({\ttfamily @import \textquotesingle{}baz.\+css\textquotesingle{} layer;}). This function gets {\ttfamily (index, root\+Filename)} arguments and should return a unique string.
+
+This option only influences imports without a layer name. Without this option the plugin will warn on anonymous layers.\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2044}{}\doxysubsubsubsection{\texorpdfstring{Example with some options}{Example with some options}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2044}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ postcss\ =\ require("{}postcss"{})}
+\DoxyCodeLine{const\ atImport\ =\ require("{}postcss-\/import"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{postcss()}
+\DoxyCodeLine{\ \ .use(atImport(\{}
+\DoxyCodeLine{\ \ \ \ path:\ ["{}src/css"{}],}
+\DoxyCodeLine{\ \ \}))}
+\DoxyCodeLine{\ \ .process(cssString)}
+\DoxyCodeLine{\ \ .then((result)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ const\ \{\ css\ \}\ =\ result}
+\DoxyCodeLine{\ \ \})}
+
+\end{DoxyCode}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2045}{}\doxysubsection{\texorpdfstring{{\ttfamily dependency} Message Support}{{\ttfamily dependency} Message Support}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2045}
+{\ttfamily postcss-\/import} adds a message to {\ttfamily result.\+messages} for each {\ttfamily @import}. Messages are in the following format:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ type:\ 'dependency',}
+\DoxyCodeLine{\ \ file:\ absoluteFilePath,}
+\DoxyCodeLine{\ \ parent:\ fileContainingTheImport}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This is mainly for use by postcss runners that implement file watching.
+
+\DoxyHorRuler{0}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2047}{}\doxysubsection{\texorpdfstring{CONTRIBUTING}{CONTRIBUTING}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2047}
+
+\begin{DoxyItemize}
+\item ⇄ Pull requests and ★ Stars are always welcome.
+\item For bugs and feature requests, please create an issue.
+\item Pull requests must be accompanied by passing automated tests ({\ttfamily \$ npm test}).
+\end{DoxyItemize}\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2048}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2048}
+\hypertarget{dir_7712c80b57205769568a026d720cf00a_autotoc_md2049}{}\doxysubsection{\texorpdfstring{\+[License]\+(LICENSE)}{\+[License]\+(LICENSE)}}\label{dir_7712c80b57205769568a026d720cf00a_autotoc_md2049}

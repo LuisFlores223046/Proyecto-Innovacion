@@ -1,0 +1,119 @@
+\doxysection{jinja2.\+loaders.\+File\+System\+Loader Class Reference}
+\hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader}{}\label{classjinja2_1_1loaders_1_1FileSystemLoader}\index{jinja2.loaders.FileSystemLoader@{jinja2.loaders.FileSystemLoader}}
+Inheritance diagram for jinja2.\+loaders.\+File\+System\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1loaders_1_1FileSystemLoader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_ae92d352caacffbd4a5bf54f1b1300703}\label{classjinja2_1_1loaders_1_1FileSystemLoader_ae92d352caacffbd4a5bf54f1b1300703} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Union\+[str, "{}os.\+Path\+Like\+[str]\+"{}, t.\+Sequence\+[t.\+Union\+[str, "{}os.\+Path\+Like\+[str]\+"{}]\+]\+]\+ searchpath, str encoding="{}utf-\/8"{}, bool followlinks=False)
+\item 
+t.\+Tuple\+[str, str, t.\+Callable\+[\+[$\,$]\+, bool]\+]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1FileSystemLoader_aba31fbe6c9dc2c2e2bf8ad3337cd6588}{get\+\_\+source}} (self, "{}Environment"{} environment, str template)
+\item 
+t.\+List\+[str]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1FileSystemLoader_a81eb53eaf7bd2a639bffad193a8d0961}{list\+\_\+templates}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}Template"{} \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_aec17b1b1367164ea6cb8c532b8033255}{load}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ globals=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_a5718813b79ab10c9c53754e604889373}\label{classjinja2_1_1loaders_1_1FileSystemLoader_a5718813b79ab10c9c53754e604889373} 
+list {\bfseries searchpath} = \+[os.\+fspath(p) for p in searchpath]\+
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_aaa0ddbe0f92cf2372682dc2e4023cb1b}\label{classjinja2_1_1loaders_1_1FileSystemLoader_aaa0ddbe0f92cf2372682dc2e4023cb1b} 
+{\bfseries encoding} = encoding
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_a063c6c1595835fef5d14eb18e2ba2af1}\label{classjinja2_1_1loaders_1_1FileSystemLoader_a063c6c1595835fef5d14eb18e2ba2af1} 
+{\bfseries followlinks} = followlinks
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries has\+\_\+source\+\_\+access} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Load templates from a directory in the file system.
+
+The path can be relative or absolute. Relative paths are relative to
+the current working directory.
+
+.. code-block:: python
+
+    loader = FileSystemLoader("templates")
+
+A list of paths can be given. The directories will be searched in
+order, stopping at the first matching template.
+
+.. code-block:: python
+
+    loader = FileSystemLoader(["/override/templates", "/default/templates"])
+
+:param searchpath: A path, or list of paths, to the directory that
+    contains the templates.
+:param encoding: Use this encoding to read the text from template
+    files.
+:param followlinks: Follow symbolic links in the path.
+
+.. versionchanged:: 2.8
+    Added the ``followlinks`` parameter.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1loaders_1_1FileSystemLoader_doc-func-members}
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_aba31fbe6c9dc2c2e2bf8ad3337cd6588}\index{jinja2.loaders.FileSystemLoader@{jinja2.loaders.FileSystemLoader}!get\_source@{get\_source}}
+\index{get\_source@{get\_source}!jinja2.loaders.FileSystemLoader@{jinja2.loaders.FileSystemLoader}}
+\doxysubsubsection{\texorpdfstring{get\_source()}{get\_source()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1FileSystemLoader_aba31fbe6c9dc2c2e2bf8ad3337cd6588} 
+ t.\+Tuple\+[str, str, t.\+Callable\+[\+[$\,$]\+, bool]\+]\+ jinja2.\+loaders.\+File\+System\+Loader.\+get\+\_\+source (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Environment"{}}]{environment}{, }\item[{str     }]{template}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the template source, filename and reload helper for a template.
+It's passed the environment and template name and has to return a
+tuple in the form ``(source, filename, uptodate)`` or raise a
+`TemplateNotFound` error if it can't locate the template.
+
+The source part of the returned tuple must be the source of the
+template as a string. The filename should be the name of the
+file on the filesystem if it was loaded from there, otherwise
+``None``. The filename is used by Python for the tracebacks
+if no loader extension is used.
+
+The last item in the tuple is the `uptodate` function.  If auto
+reloading is enabled it's always called to check if the template
+changed.  No arguments are passed so the function must store the
+old state somewhere (for example in a closure).  If it returns `False`
+the template will be reloaded.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_a7e222ad2ab60e2cfd58c11822b0c4951}{jinja2.\+loaders.\+Base\+Loader}}.
+
+\Hypertarget{classjinja2_1_1loaders_1_1FileSystemLoader_a81eb53eaf7bd2a639bffad193a8d0961}\index{jinja2.loaders.FileSystemLoader@{jinja2.loaders.FileSystemLoader}!list\_templates@{list\_templates}}
+\index{list\_templates@{list\_templates}!jinja2.loaders.FileSystemLoader@{jinja2.loaders.FileSystemLoader}}
+\doxysubsubsection{\texorpdfstring{list\_templates()}{list\_templates()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1FileSystemLoader_a81eb53eaf7bd2a639bffad193a8d0961} 
+ t.\+List\+[str]\+ jinja2.\+loaders.\+File\+System\+Loader.\+list\+\_\+templates (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Iterates over all templates.  If the loader does not support that
+it should raise a :exc:`TypeError` which is the default behavior.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_acb576631d9b98370780cf622e2433992}{jinja2.\+loaders.\+Base\+Loader}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+loaders.\+py\end{DoxyCompactItemize}

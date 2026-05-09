@@ -1,0 +1,119 @@
+\doxysection{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{}\label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}\index{sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}}
+Inheritance diagram for sqlalchemy.\+ext.\+mutable.\+Mutable\+Base:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.187500cm]{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aac3670b34f661d84c394dcb0edb1af27}{coerce}} (cls, str key, Any value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Weak\+Key\+Dictionary\+[Any, Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a4da9d37afbc63cad3f5357e616c6363e}{\+\_\+parents}} (self)
+\item 
+Set\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aa3412eb14cbd80dea1676d537d3c0470}{\+\_\+get\+\_\+listen\+\_\+keys}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+ attribute)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a1a4c97ba0645624383c0946feae06ee8}{\+\_\+listen\+\_\+on\+\_\+attribute}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+ attribute, bool coerce, \+\_\+\+External\+Entity\+Type\+[Any]\+ parent\+\_\+cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Common base class to :class:`.Mutable`
+and :class:`.MutableComposite`.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aa3412eb14cbd80dea1676d537d3c0470}\index{sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}!\_get\_listen\_keys@{\_get\_listen\_keys}}
+\index{\_get\_listen\_keys@{\_get\_listen\_keys}!sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}}
+\doxysubsubsection{\texorpdfstring{\_get\_listen\_keys()}{\_get\_listen\_keys()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aa3412eb14cbd80dea1676d537d3c0470} 
+ Set\+[str]\+ sqlalchemy.\+ext.\+mutable.\+Mutable\+Base.\+\_\+get\+\_\+listen\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+}]{attribute}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Given a descriptor attribute, return a ``set()`` of the attribute
+keys which indicate a change in the state of this attribute.
+
+This is normally just ``set([attribute.key])``, but can be overridden
+to provide for additional keys.  E.g. a :class:`.MutableComposite`
+augments this set with the attribute keys associated with the columns
+that comprise the composite value.
+
+This collection is consulted in the case of intercepting the
+:meth:`.InstanceEvents.refresh` and
+:meth:`.InstanceEvents.refresh_flush` events, which pass along a list
+of attribute names that have been refreshed; the list is compared
+against this set to determine if action needs to be taken.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a31858af148cf3ad875c0b81a82fc49c6}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Composite}}.
+
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a1a4c97ba0645624383c0946feae06ee8}\index{sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}!\_listen\_on\_attribute@{\_listen\_on\_attribute}}
+\index{\_listen\_on\_attribute@{\_listen\_on\_attribute}!sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}}
+\doxysubsubsection{\texorpdfstring{\_listen\_on\_attribute()}{\_listen\_on\_attribute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a1a4c97ba0645624383c0946feae06ee8} 
+ None sqlalchemy.\+ext.\+mutable.\+Mutable\+Base.\+\_\+listen\+\_\+on\+\_\+attribute (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+}]{attribute}{, }\item[{bool}]{coerce}{, }\item[{\+\_\+\+External\+Entity\+Type\+[Any]\+}]{parent\+\_\+cls}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Establish this type as a mutation listener for the given
+mapped descriptor.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a4da9d37afbc63cad3f5357e616c6363e}\index{sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}!\_parents@{\_parents}}
+\index{\_parents@{\_parents}!sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}}
+\doxysubsubsection{\texorpdfstring{\_parents()}{\_parents()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a4da9d37afbc63cad3f5357e616c6363e} 
+ Weak\+Key\+Dictionary\+[Any, Any]\+ sqlalchemy.\+ext.\+mutable.\+Mutable\+Base.\+\_\+parents (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Dictionary of parent object's :class:`.InstanceState`->attribute
+name on the parent.
+
+This attribute is a so-called "memoized" property.  It initializes
+itself with a new ``weakref.WeakKeyDictionary`` the first time
+it is accessed, returning the same object upon subsequent access.
+
+.. versionchanged:: 1.4 the :class:`.InstanceState` is now used
+   as the key in the weak dictionary rather than the instance
+   itself.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aac3670b34f661d84c394dcb0edb1af27}\index{sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}!coerce@{coerce}}
+\index{coerce@{coerce}!sqlalchemy.ext.mutable.MutableBase@{sqlalchemy.ext.mutable.MutableBase}}
+\doxysubsubsection{\texorpdfstring{coerce()}{coerce()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aac3670b34f661d84c394dcb0edb1af27} 
+ Optional\+[Any]\+ sqlalchemy.\+ext.\+mutable.\+Mutable\+Base.\+coerce (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{key}{, }\item[{Any}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a value, coerce it into the target type.
+
+Can be overridden by custom subclasses to coerce incoming
+data into a particular type.
+
+By default, raises ``ValueError``.
+
+This method is called in different scenarios depending on if
+the parent class is of type :class:`.Mutable` or of type
+:class:`.MutableComposite`.  In the case of the former, it is called
+for both attribute-set operations as well as during ORM loading
+operations.  For the latter, it is only called during attribute-set
+operations; the mechanics of the :func:`.composite` construct
+handle coercion during load operations.
+
+
+:param key: string name of the ORM-mapped attribute being set.
+:param value: the incoming value.
+:return: the method should return the coerced value, or raise
+ ``ValueError`` if the coercion cannot be completed.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableDict_a28088f6916b845f40bdae90afd31f1b1}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Dict}}, \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableList_a957cafb9ee88fa8585789267381068c6}{sqlalchemy.\+ext.\+mutable.\+Mutable\+List}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableSet_a037d56c1c932d5db88742ba71ccf5380}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Set}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+mutable.\+py\end{DoxyCompactItemize}

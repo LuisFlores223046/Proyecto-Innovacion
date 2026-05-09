@@ -1,0 +1,139 @@
+\doxysection{anyio.\+\_\+core.\+\_\+synchronization.\+Condition Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition}{}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a2c605cf750cd02250332c5795ca7e0d9}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a2c605cf750cd02250332c5795ca7e0d9} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Lock}{Lock}}\texorpdfstring{$\vert$}{|}None lock=None)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a3c5c14b5a4d658e549c5bae8cc351e8f}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a3c5c14b5a4d658e549c5bae8cc351e8f} 
+None {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a351211a207ff5342a43fcb3cdd7c2776}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a351211a207ff5342a43fcb3cdd7c2776} 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a875d26890bc3686e9f6b9cc570e7844b}{acquire}} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a3ae506b17d0546bf99f31cb07bd12431}{acquire\+\_\+nowait}} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a60a86a508aae9d76658b280a0e816959}{release}} (self)
+\item 
+bool \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_ab1460044256e86c4bfb07e7452a8e5fe}{locked}} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a22c6bebacffedfc18ad061affc9c9b91}{notify}} (self, int n=1)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_acccfe2de8254631ea172016068c3f57d}{notify\+\_\+all}} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_acf72f71302060849837d006eba600692}{wait}} (self)
+\item 
+T \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a6ddee7bc6d6807947f2ef676f22796da}{wait\+\_\+for}} (self, Callable\+[\+[$\,$]\+, T]\+ predicate)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1ConditionStatistics}{Condition\+Statistics}} \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Condition_a10371018d7cdf6f0baabb8f16c3d5b44}{statistics}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a9d7a46bd4b622ef76358b050e9253c68}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a9d7a46bd4b622ef76358b050e9253c68} 
+None {\bfseries \+\_\+check\+\_\+acquired} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a4c9de1256609101aacd52baed9473a0f}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a4c9de1256609101aacd52baed9473a0f} 
+{\bfseries \+\_\+lock} = lock or \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Lock}{Lock}}()
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_afdd87368ecab2e33f63529baf7988142}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_afdd87368ecab2e33f63529baf7988142} 
+deque\+[\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Event}{Event}}]\+ {\bfseries \+\_\+waiters} = deque()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a273830a1c251fde703425451ea06464d}\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a273830a1c251fde703425451ea06464d} 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__testing_1_1TaskInfo}{Task\+Info}} {\bfseries \+\_\+owner\+\_\+task} = None
+\end{DoxyCompactItemize}
+
+
+\label{classanyio_1_1__core_1_1__synchronization_1_1Condition_doc-func-members}
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a875d26890bc3686e9f6b9cc570e7844b}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!acquire@{acquire}}
+\index{acquire@{acquire}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{acquire()}{acquire()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a875d26890bc3686e9f6b9cc570e7844b} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+acquire (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Acquire the underlying lock.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a3ae506b17d0546bf99f31cb07bd12431}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!acquire\_nowait@{acquire\_nowait}}
+\index{acquire\_nowait@{acquire\_nowait}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{acquire\_nowait()}{acquire\_nowait()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a3ae506b17d0546bf99f31cb07bd12431} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+acquire\+\_\+nowait (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Acquire the underlying lock, without blocking.
+
+:raises ~anyio.WouldBlock: if the operation would block
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_ab1460044256e86c4bfb07e7452a8e5fe}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!locked@{locked}}
+\index{locked@{locked}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{locked()}{locked()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_ab1460044256e86c4bfb07e7452a8e5fe} 
+ bool anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+locked (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the lock is set.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a22c6bebacffedfc18ad061affc9c9b91}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!notify@{notify}}
+\index{notify@{notify}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{notify()}{notify()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a22c6bebacffedfc18ad061affc9c9b91} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+notify (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Notify exactly n listeners.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_acccfe2de8254631ea172016068c3f57d}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!notify\_all@{notify\_all}}
+\index{notify\_all@{notify\_all}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{notify\_all()}{notify\_all()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_acccfe2de8254631ea172016068c3f57d} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+notify\+\_\+all (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Notify all the listeners.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a60a86a508aae9d76658b280a0e816959}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!release@{release}}
+\index{release@{release}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a60a86a508aae9d76658b280a0e816959} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+release (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Release the underlying lock.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a10371018d7cdf6f0baabb8f16c3d5b44}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!statistics@{statistics}}
+\index{statistics@{statistics}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{statistics()}{statistics()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a10371018d7cdf6f0baabb8f16c3d5b44} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1ConditionStatistics}{Condition\+Statistics}} anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+statistics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return statistics about the current state of this condition.
+
+.. versionadded:: 3.0
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_acf72f71302060849837d006eba600692}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!wait@{wait}}
+\index{wait@{wait}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_acf72f71302060849837d006eba600692} 
+ None anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+wait (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait for a notification.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1Condition_a6ddee7bc6d6807947f2ef676f22796da}\index{anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}!wait\_for@{wait\_for}}
+\index{wait\_for@{wait\_for}!anyio.\_core.\_synchronization.Condition@{anyio.\_core.\_synchronization.Condition}}
+\doxysubsubsection{\texorpdfstring{wait\_for()}{wait\_for()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__synchronization_1_1Condition_a6ddee7bc6d6807947f2ef676f22796da} 
+ T anyio.\+\_\+core.\+\_\+synchronization.\+Condition.\+wait\+\_\+for (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[$\,$]\+, T]\+}]{predicate}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait until a predicate becomes true.
+
+:param predicate: a callable that returns a truthy value when the condition is
+    met
+:return: the result of the predicate
+
+.. versionadded:: 4.11.0
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+synchronization.\+py\end{DoxyCompactItemize}

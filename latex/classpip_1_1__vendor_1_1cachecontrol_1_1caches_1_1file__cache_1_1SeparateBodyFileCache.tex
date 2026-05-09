@@ -1,0 +1,111 @@
+\doxysection{pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+Separate\+Body\+File\+Cache Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache}{}\label{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache}\index{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}}
+Inheritance diagram for pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+Separate\+Body\+File\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.019231cm]{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IO\+[bytes]\+\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a96853f5f4944aab4999b423e98ae94a7}{get\+\_\+body}} (self, str key)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a8fabbb6143c6afca2477309d3dfa7067}{set\+\_\+body}} (self, str key, bytes body)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_accd6ed34b850142f08d44adc73ce43af}{delete}} (self, str key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1__FileCacheMixin}{pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+\_\+\+File\+Cache\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str directory, bool forever=False, int filemode=0o0600, int dirmode=0o0700, type\+[Base\+File\+Lock]\+\texorpdfstring{$\vert$}{|}None lock\+\_\+class=None)
+\item 
+bytes\texorpdfstring{$\vert$}{|}None {\bfseries get} (self, str key)
+\item 
+None {\bfseries set} (self, str key, bytes value, int\texorpdfstring{$\vert$}{|}datetime\texorpdfstring{$\vert$}{|}None expires=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1cache_1_1BaseCache}{pip.\+\_\+vendor.\+cachecontrol.\+cache.\+Base\+Cache}}}
+\begin{DoxyCompactItemize}
+\item 
+bytes\texorpdfstring{$\vert$}{|}None {\bfseries get} (self, str key)
+\item 
+None {\bfseries set} (self, str key, bytes value, int\texorpdfstring{$\vert$}{|}datetime\texorpdfstring{$\vert$}{|}None expires=None)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1cache_1_1BaseCache_aed3b918393d941c531ffda7afa8968c5}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1__FileCacheMixin}{pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+\_\+\+File\+Cache\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries encode} (str x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1__FileCacheMixin}{pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+\_\+\+File\+Cache\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries directory} = directory
+\item 
+{\bfseries forever} = forever
+\item 
+{\bfseries filemode} = filemode
+\item 
+{\bfseries dirmode} = dirmode
+\item 
+{\bfseries lock\+\_\+class} = lock\+\_\+class
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1__FileCacheMixin}{pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+\_\+\+File\+Cache\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+fn} (self, str name)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1__FileCacheMixin_a887060bd54ecd995958f2e490756d05b}{\+\_\+write}} (self, str path, bytes data)
+\item 
+None {\bfseries \+\_\+delete} (self, str key, str suffix)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Memory-efficient FileCache: body is stored in a separate file, reducing
+peak memory usage.
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_doc-func-members}
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_accd6ed34b850142f08d44adc73ce43af}\index{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}!delete@{delete}}
+\index{delete@{delete}!pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_accd6ed34b850142f08d44adc73ce43af} 
+ None pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+Separate\+Body\+File\+Cache.\+delete (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1cache_1_1BaseCache}{pip.\+\_\+vendor.\+cachecontrol.\+cache.\+Base\+Cache}}.
+
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a96853f5f4944aab4999b423e98ae94a7}\index{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}!get\_body@{get\_body}}
+\index{get\_body@{get\_body}!pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}}
+\doxysubsubsection{\texorpdfstring{get\_body()}{get\_body()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a96853f5f4944aab4999b423e98ae94a7} 
+ IO\+[bytes]\+ \texorpdfstring{$\vert$}{|} None pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+Separate\+Body\+File\+Cache.\+get\+\_\+body (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the body as file-like object.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1cache_1_1SeparateBodyBaseCache_aaf62ca8f9091e69b1dff6924222e35bb}{pip.\+\_\+vendor.\+cachecontrol.\+cache.\+Separate\+Body\+Base\+Cache}}.
+
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a8fabbb6143c6afca2477309d3dfa7067}\index{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}!set\_body@{set\_body}}
+\index{set\_body@{set\_body}!pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache@{pip.\_vendor.cachecontrol.caches.file\_cache.SeparateBodyFileCache}}
+\doxysubsubsection{\texorpdfstring{set\_body()}{set\_body()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1cachecontrol_1_1caches_1_1file__cache_1_1SeparateBodyFileCache_a8fabbb6143c6afca2477309d3dfa7067} 
+ None pip.\+\_\+vendor.\+cachecontrol.\+caches.\+file\+\_\+cache.\+Separate\+Body\+File\+Cache.\+set\+\_\+body (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{key}{, }\item[{bytes}]{body}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1cachecontrol_1_1cache_1_1SeparateBodyBaseCache}{pip.\+\_\+vendor.\+cachecontrol.\+cache.\+Separate\+Body\+Base\+Cache}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+cachecontrol/\+caches/\+file\+\_\+cache.\+py\end{DoxyCompactItemize}

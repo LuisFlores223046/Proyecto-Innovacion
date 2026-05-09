@@ -1,0 +1,126 @@
+\doxysection{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Thread\+Continuous\+Scheduler Class Reference}
+\hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler}{}\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler}\index{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler@{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler}}
+Inheritance diagram for sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Thread\+Continuous\+Scheduler:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a95179766ab0d10cb3f1da8781054c684}\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a95179766ab0d10cb3f1da8781054c684} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int frequency, "{}Dict\+[str, Any]\+"{} options, "{}SDKInfo"{} sdk\+\_\+info, "{}Callable\+[\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+, None]\+"{} capture\+\_\+func)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_ab905cc79ac6734026e632908fd7960fb}{ensure\+\_\+running}} (self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a21b1ba7f51ac7a66d73e37b69f637f1c}{teardown}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler}{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Continuous\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int frequency, "{}Dict\+[str, Any]\+"{} options, "{}SDKInfo"{} sdk\+\_\+info, "{}Callable\+[\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+, None]\+"{} capture\+\_\+func)
+\item 
+bool {\bfseries is\+\_\+auto\+\_\+start\+\_\+enabled} (self)
+\item 
+"{}Union\+[\doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousProfile}{Continuous\+Profile}}, None]\+"{} {\bfseries auto\+\_\+start} (self)
+\item 
+None {\bfseries manual\+\_\+start} (self)
+\item 
+None {\bfseries manual\+\_\+stop} (self)
+\item 
+None {\bfseries pause} (self)
+\item 
+None {\bfseries reset\+\_\+buffer} (self)
+\item 
+"{}Union\+[str, None]\+"{} {\bfseries profiler\+\_\+id} (self)
+\item 
+"{}Callable\+[..., bool]\+"{} {\bfseries make\+\_\+sampler} (self)
+\item 
+None {\bfseries run} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_ad1debad29a8ebae24fb028813d33c40a}\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_ad1debad29a8ebae24fb028813d33c40a} 
+{\bfseries thread} = None
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a16bd60e501c2d6f6ff260c281cb99d80}\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a16bd60e501c2d6f6ff260c281cb99d80} 
+{\bfseries lock} = threading.\+Lock()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler}{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Continuous\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries interval} = 1.\+0 /\+ frequency
+\item 
+{\bfseries options} = options
+\item 
+{\bfseries sdk\+\_\+info} = sdk\+\_\+info
+\item 
+{\bfseries capture\+\_\+func} = capture\+\_\+func
+\item 
+str {\bfseries lifecycle} = self.\+options.\+get("{}profile\+\_\+lifecycle"{})
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler_af28ecbe91905c6d9b117e43a378b9922}{sampled}}
+\item 
+"{}Callable\+[..., bool]\+"{} {\bfseries sampler} = self.\+make\+\_\+sampler()
+\item 
+{\bfseries buffer} = None
+\item 
+{\bfseries pid} = None
+\item 
+bool {\bfseries running} = False
+\item 
+bool {\bfseries soft\+\_\+shutdown} = False
+\item 
+{\bfseries new\+\_\+profiles} = deque(maxlen=128)
+\item 
+{\bfseries active\+\_\+profiles} = set()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a5186186a20e7d8ba6bff540e10382163}\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a5186186a20e7d8ba6bff540e10382163} 
+str {\bfseries name} = "{}sentry.\+profiler.\+Thread\+Continuous\+Scheduler"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler}{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Continuous\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries mode} = "{}unknown"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This scheduler is based on running a daemon thread that will call
+the sampler at a regular interval.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_ab905cc79ac6734026e632908fd7960fb}\index{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler@{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler}!ensure\_running@{ensure\_running}}
+\index{ensure\_running@{ensure\_running}!sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler@{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler}}
+\doxysubsubsection{\texorpdfstring{ensure\_running()}{ensure\_running()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_ab905cc79ac6734026e632908fd7960fb} 
+ None sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Thread\+Continuous\+Scheduler.\+ensure\+\_\+running (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler}{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Continuous\+Scheduler}}.
+
+\Hypertarget{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a21b1ba7f51ac7a66d73e37b69f637f1c}\index{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler@{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler}!teardown@{teardown}}
+\index{teardown@{teardown}!sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler@{sentry\_sdk.profiler.continuous\_profiler.ThreadContinuousScheduler}}
+\doxysubsubsection{\texorpdfstring{teardown()}{teardown()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ThreadContinuousScheduler_a21b1ba7f51ac7a66d73e37b69f637f1c} 
+ None sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Thread\+Continuous\+Scheduler.\+teardown (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1continuous__profiler_1_1ContinuousScheduler}{sentry\+\_\+sdk.\+profiler.\+continuous\+\_\+profiler.\+Continuous\+Scheduler}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+profiler/\+continuous\+\_\+profiler.\+py\end{DoxyCompactItemize}

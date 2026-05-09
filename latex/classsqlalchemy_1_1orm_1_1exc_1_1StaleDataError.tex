@@ -1,0 +1,37 @@
+\doxysection{sqlalchemy.\+orm.\+exc.\+Stale\+Data\+Error Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1exc_1_1StaleDataError}{}\label{classsqlalchemy_1_1orm_1_1exc_1_1StaleDataError}\index{sqlalchemy.orm.exc.StaleDataError@{sqlalchemy.orm.exc.StaleDataError}}
+Inheritance diagram for sqlalchemy.\+orm.\+exc.\+Stale\+Data\+Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1orm_1_1exc_1_1StaleDataError}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An operation encountered database state that is unaccounted for.
+
+Conditions which cause this to happen include:
+
+* A flush may have attempted to update or delete rows
+  and an unexpected number of rows were matched during
+  the UPDATE or DELETE statement.   Note that when
+  version_id_col is used, rows in UPDATE or DELETE statements
+  are also matched against the current known version
+  identifier.
+
+* A mapped object with version_id_col was refreshed,
+  and the version number coming back from the database does
+  not match that of the object itself.
+
+* A object is detached from its parent object, however
+  the object was previously attached to a different parent
+  identity which was garbage collected, and a decision
+  cannot be made if the new parent was really the most
+  recent "parent".
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+exc.\+py\end{DoxyCompactItemize}

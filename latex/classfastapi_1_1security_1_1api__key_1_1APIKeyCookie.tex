@@ -1,0 +1,85 @@
+\doxysection{fastapi.\+security.\+api\+\_\+key.\+APIKey\+Cookie Class Reference}
+\hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie}{}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie}\index{fastapi.security.api\_key.APIKeyCookie@{fastapi.security.api\_key.APIKeyCookie}}
+Inheritance diagram for fastapi.\+security.\+api\+\_\+key.\+APIKey\+Cookie:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_ac8ffc5f82e9212992deaf10a98ba4788}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_ac8ffc5f82e9212992deaf10a98ba4788} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[str, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}Cookie name."{})]\+ name, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme name.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ scheme\+\_\+name=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme description.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ description=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[bool, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                By default, if the cookie is not provided, \`{}\doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie}{APIKey\+Cookie}}\`{} will                automatically cancel the request and send the client an error.                If \`{}auto\+\_\+error\`{} is set to \`{}False\`{}, when the cookie is not available,                instead of erroring out, the dependency result will be \`{}None\`{}.                This is useful when you want to have optional authentication.                It is also useful when you want to have authentication that can be                provided in one of multiple optional ways (for example, in a cookie or                in an HTTP Bearer token).                "{}"{}"{}),]\+ auto\+\_\+error=True)
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_aa5d5d5e1661f506337e14018d6770e19}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_aa5d5d5e1661f506337e14018d6770e19} 
+Optional\+[str]\+ {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} \doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a6f14deeff061f87a975c304b2c82df7e}{model}}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a382478c722bb7f6579fe4ca3ec6c465e}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a382478c722bb7f6579fe4ca3ec6c465e} 
+{\bfseries scheme\+\_\+name} = scheme\+\_\+name or self.\+\_\+\+\_\+class\+\_\+\+\_\+.\+\_\+\+\_\+name\+\_\+\+\_\+
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a94fac6f3c5b91926464597ef6428c7fa}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a94fac6f3c5b91926464597ef6428c7fa} 
+{\bfseries auto\+\_\+error} = auto\+\_\+error
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}API key authentication using a cookie.
+
+This defines the name of the cookie that should be provided in the request with
+the API key and integrates that into the OpenAPI documentation. It extracts
+the key value sent in the cookie automatically and provides it as the dependency
+result. But it doesn't define how to set that cookie.
+
+## Usage
+
+Create an instance object and use that object as the dependency in `Depends()`.
+
+The dependency result will be a string containing the key value.
+
+## Example
+
+```python
+from fastapi import Depends, FastAPI
+from fastapi.security import APIKeyCookie
+
+app = FastAPI()
+
+cookie_scheme = APIKeyCookie(name="session")
+
+
+@app.get("/items/")
+async def read_items(session: str = Depends(cookie_scheme)):
+    return {"session": session}
+```
+\end{DoxyVerb}
+ 
+
+\label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_doc-variable-members}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a6f14deeff061f87a975c304b2c82df7e}\index{fastapi.security.api\_key.APIKeyCookie@{fastapi.security.api\_key.APIKeyCookie}!model@{model}}
+\index{model@{model}!fastapi.security.api\_key.APIKeyCookie@{fastapi.security.api\_key.APIKeyCookie}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classfastapi_1_1security_1_1api__key_1_1APIKeyCookie_a6f14deeff061f87a975c304b2c82df7e} 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} fastapi.\+security.\+api\+\_\+key.\+APIKey\+Cookie.\+model}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ APIKey(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ **\{\textcolor{stringliteral}{"{}in"{}}:\ APIKeyIn.cookie\},\ \ \textcolor{comment}{\#\ type:\ ignore[arg-\/type]}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ name=name,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ description=description,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+security/\+api\+\_\+key.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,416 @@
+%!PS-Adobe-2.0 EPSF-2.0
+%%Title: ClassName
+%%Creator: Doxygen
+%%CreationDate: Time
+%%For: 
+%Magnification: 1.00
+%%Orientation: Portrait
+%%BoundingBox: 0 0 500 350.140045
+%%Pages: 0
+%%BeginSetup
+%%EndSetup
+%%EndComments
+
+% ----- variables -----
+
+/boxwidth 0 def
+/boxheight 40 def
+/fontheight 24 def
+/marginwidth 10 def
+/distx 20 def
+/disty 40 def
+/boundaspect 1.428000 def  % aspect ratio of the BoundingBox (width/height)
+/boundx 500 def
+/boundy boundx boundaspect div def
+/xspacing 0 def
+/yspacing 0 def
+/rows 25 def
+/cols 6 def
+/scalefactor 0 def
+/boxfont /Times-Roman findfont fontheight scalefont def
+
+% ----- procedures -----
+
+/dotted { [1 4] 0 setdash } def
+/dashed { [5] 0 setdash } def
+/solid  { [] 0 setdash } def
+
+/max % result = MAX(arg1,arg2)
+{
+  /a exch def
+  /b exch def
+  a b gt {a} {b} ifelse
+} def
+
+/xoffset % result = MAX(0,(scalefactor-(boxwidth*cols+distx*(cols-1)))/2)
+{
+  0 scalefactor boxwidth cols mul distx cols 1 sub mul add sub 2 div max
+} def
+
+/cw % boxwidth = MAX(boxwidth, stringwidth(arg1))
+{
+  /str exch def
+  /boxwidth boxwidth str stringwidth pop max def
+} def
+
+/box % draws a box with text 'arg1' at grid pos (arg2,arg3)
+{ gsave
+  2 setlinewidth
+  newpath
+  exch xspacing mul xoffset add
+  exch yspacing mul
+  moveto
+  boxwidth 0 rlineto 
+  0 boxheight rlineto 
+  boxwidth neg 0 rlineto 
+  0 boxheight neg rlineto 
+  closepath
+  dup stringwidth pop neg boxwidth add 2 div
+  boxheight fontheight 2 div sub 2 div
+  rmoveto show stroke
+  grestore
+} def  
+
+/mark
+{ newpath
+  exch xspacing mul xoffset add boxwidth add
+  exch yspacing mul
+  moveto
+  0 boxheight 4 div rlineto
+  boxheight neg 4 div boxheight neg 4 div rlineto
+  closepath
+  eofill
+  stroke
+} def
+
+/arrow
+{ newpath
+  moveto
+  3 -8 rlineto
+  -6 0 rlineto
+  3 8 rlineto
+  closepath
+  eofill
+  stroke
+} def
+
+/out % draws an output connector for the block at (arg1,arg2)
+{
+  newpath
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul boxheight add
+  /y exch def
+  /x exch def
+  x y moveto
+  0 disty 2 div rlineto 
+  stroke
+  1 eq { x y disty 2 div add arrow } if
+} def
+
+/in % draws an input connector for the block at (arg1,arg2)
+{
+  newpath
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul disty 2 div sub
+  /y exch def
+  /x exch def
+  x y moveto
+  0 disty 2 div rlineto
+  stroke
+  1 eq { x y disty 2 div add arrow } if
+} def
+
+/hedge
+{
+  exch xspacing mul xoffset add boxwidth 2 div add
+  exch yspacing mul boxheight 2 div sub
+  /y exch def
+  /x exch def
+  newpath
+  x y moveto
+  boxwidth 2 div distx add 0 rlineto
+  stroke
+  1 eq
+  { newpath x boxwidth 2 div distx add add y moveto
+    -8 3 rlineto
+    0 -6 rlineto
+    8 3 rlineto
+    closepath
+    eofill
+    stroke
+  } if
+} def
+
+/vedge
+{
+  /ye exch def
+  /ys exch def
+  /xs exch def
+  newpath
+  xs xspacing mul xoffset add boxwidth 2 div add dup
+  ys yspacing mul boxheight 2 div sub
+  moveto
+  ye yspacing mul boxheight 2 div sub
+  lineto
+  stroke
+} def
+
+/conn % connections the blocks from col 'arg1' to 'arg2' of row 'arg3'
+{
+  /ys exch def
+  /xe exch def
+  /xs exch def
+  newpath
+  xs xspacing mul xoffset add boxwidth 2 div add
+  ys yspacing mul disty 2 div sub
+  moveto
+  xspacing xe xs sub mul 0
+  rlineto
+  stroke
+} def
+
+% ----- main ------
+
+boxfont setfont
+1 boundaspect scale
+(jinja2.nodes.NodeType) cw
+(type) cw
+(jinja2.nodes.Node) cw
+(jinja2.nodes.Expr) cw
+(jinja2.nodes.Helper) cw
+(jinja2.nodes.Stmt) cw
+(jinja2.nodes.Template) cw
+(jinja2.nodes.BinExpr) cw
+(jinja2.nodes.Call) cw
+(jinja2.nodes.Compare) cw
+(jinja2.nodes.Concat) cw
+(jinja2.nodes.CondExpr) cw
+(jinja2.nodes.ContextReference) cw
+(jinja2.nodes.DerivedContextReference) cw
+(jinja2.nodes.EnvironmentAttribute) cw
+(jinja2.nodes.ExtensionAttribute) cw
+(jinja2.nodes.Getattr) cw
+(jinja2.nodes.Getitem) cw
+(jinja2.nodes.ImportedName) cw
+(jinja2.nodes.InternalName) cw
+(jinja2.nodes.Literal) cw
+(jinja2.nodes.MarkSafe) cw
+(jinja2.nodes.MarkSafeIfAutoescape) cw
+(jinja2.nodes.NSRef) cw
+(jinja2.nodes.Name) cw
+(jinja2.nodes.Slice) cw
+(jinja2.nodes.UnaryExpr) cw
+(jinja2.nodes._FilterTestCommon) cw
+(jinja2.nodes.Keyword) cw
+(jinja2.nodes.Operand) cw
+(jinja2.nodes.Pair) cw
+(jinja2.nodes.Assign) cw
+(jinja2.nodes.AssignBlock) cw
+(jinja2.nodes.Block) cw
+(jinja2.nodes.Break) cw
+(jinja2.nodes.CallBlock) cw
+(jinja2.nodes.Continue) cw
+(jinja2.nodes.EvalContextModifier) cw
+(jinja2.nodes.ExprStmt) cw
+(jinja2.nodes.Extends) cw
+(jinja2.nodes.FilterBlock) cw
+(jinja2.nodes.For) cw
+(jinja2.nodes.FromImport) cw
+(jinja2.nodes.If) cw
+(jinja2.nodes.Import) cw
+(jinja2.nodes.Include) cw
+(jinja2.nodes.Macro) cw
+(jinja2.nodes.Output) cw
+(jinja2.nodes.OverlayScope) cw
+(jinja2.nodes.Scope) cw
+(jinja2.nodes.With) cw
+/boxwidth boxwidth marginwidth 2 mul add def
+/xspacing boxwidth distx add def
+/yspacing boxheight disty add def
+/scalefactor 
+  boxwidth cols mul distx cols 1 sub mul add
+  boxheight rows mul disty rows 1 sub mul add boundaspect mul 
+  max def
+boundx scalefactor div boundy scalefactor div scale
+
+% ----- classes -----
+
+ (jinja2.nodes.NodeType) 3.000000 23.000000 box
+ (type) 3.000000 24.000000 box
+ (jinja2.nodes.Node) 3.000000 22.000000 box
+ (jinja2.nodes.Expr) 0.000000 21.000000 box
+ (jinja2.nodes.Helper) 2.000000 21.000000 box
+ (jinja2.nodes.Stmt) 4.000000 21.000000 box
+ (jinja2.nodes.Template) 5.000000 21.000000 box
+ (jinja2.nodes.BinExpr) 1.000000 20.000000 box
+1.000000 20.000000 mark
+ (jinja2.nodes.Call) 1.000000 19.000000 box
+ (jinja2.nodes.Compare) 1.000000 18.000000 box
+ (jinja2.nodes.Concat) 1.000000 17.000000 box
+ (jinja2.nodes.CondExpr) 1.000000 16.000000 box
+ (jinja2.nodes.ContextReference) 1.000000 15.000000 box
+ (jinja2.nodes.DerivedContextReference) 1.000000 14.000000 box
+ (jinja2.nodes.EnvironmentAttribute) 1.000000 13.000000 box
+ (jinja2.nodes.ExtensionAttribute) 1.000000 12.000000 box
+ (jinja2.nodes.Getattr) 1.000000 11.000000 box
+ (jinja2.nodes.Getitem) 1.000000 10.000000 box
+ (jinja2.nodes.ImportedName) 1.000000 9.000000 box
+ (jinja2.nodes.InternalName) 1.000000 8.000000 box
+ (jinja2.nodes.Literal) 1.000000 7.000000 box
+1.000000 7.000000 mark
+ (jinja2.nodes.MarkSafe) 1.000000 6.000000 box
+ (jinja2.nodes.MarkSafeIfAutoescape) 1.000000 5.000000 box
+ (jinja2.nodes.NSRef) 1.000000 4.000000 box
+ (jinja2.nodes.Name) 1.000000 3.000000 box
+ (jinja2.nodes.Slice) 1.000000 2.000000 box
+ (jinja2.nodes.UnaryExpr) 1.000000 1.000000 box
+1.000000 1.000000 mark
+ (jinja2.nodes._FilterTestCommon) 1.000000 0.000000 box
+1.000000 0.000000 mark
+ (jinja2.nodes.Keyword) 3.000000 20.000000 box
+ (jinja2.nodes.Operand) 3.000000 19.000000 box
+ (jinja2.nodes.Pair) 3.000000 18.000000 box
+ (jinja2.nodes.Assign) 5.000000 20.000000 box
+ (jinja2.nodes.AssignBlock) 5.000000 19.000000 box
+ (jinja2.nodes.Block) 5.000000 18.000000 box
+ (jinja2.nodes.Break) 5.000000 17.000000 box
+ (jinja2.nodes.CallBlock) 5.000000 16.000000 box
+ (jinja2.nodes.Continue) 5.000000 15.000000 box
+ (jinja2.nodes.EvalContextModifier) 5.000000 14.000000 box
+5.000000 14.000000 mark
+ (jinja2.nodes.ExprStmt) 5.000000 13.000000 box
+ (jinja2.nodes.Extends) 5.000000 12.000000 box
+ (jinja2.nodes.FilterBlock) 5.000000 11.000000 box
+ (jinja2.nodes.For) 5.000000 10.000000 box
+ (jinja2.nodes.FromImport) 5.000000 9.000000 box
+ (jinja2.nodes.If) 5.000000 8.000000 box
+ (jinja2.nodes.Import) 5.000000 7.000000 box
+ (jinja2.nodes.Include) 5.000000 6.000000 box
+ (jinja2.nodes.Macro) 5.000000 5.000000 box
+ (jinja2.nodes.Output) 5.000000 4.000000 box
+ (jinja2.nodes.OverlayScope) 5.000000 3.000000 box
+ (jinja2.nodes.Scope) 5.000000 2.000000 box
+ (jinja2.nodes.With) 5.000000 1.000000 box
+
+% ----- relations -----
+
+solid
+0 3.000000 23.000000 out
+solid
+1 3.000000 24.000000 in
+solid
+1 3.000000 22.250000 out
+solid
+0 3.000000 22.750000 in
+solid
+1 3.000000 21.250000 out
+solid
+0.000000 5.000000 22.000000 conn
+solid
+0 0.000000 21.750000 in
+solid
+1 0.000000 20.250000 out
+solid
+0 2.000000 21.750000 in
+solid
+1 2.000000 20.250000 out
+solid
+0 4.000000 21.750000 in
+solid
+1 4.000000 20.250000 out
+solid
+0 5.000000 21.750000 in
+solid
+0 0.000000 20.500000 hedge
+solid
+0 0.000000 19.500000 hedge
+solid
+0 0.000000 18.500000 hedge
+solid
+0 0.000000 17.500000 hedge
+solid
+0 0.000000 16.500000 hedge
+solid
+0 0.000000 15.500000 hedge
+solid
+0 0.000000 14.500000 hedge
+solid
+0 0.000000 13.500000 hedge
+solid
+0 0.000000 12.500000 hedge
+solid
+0 0.000000 11.500000 hedge
+solid
+0 0.000000 10.500000 hedge
+solid
+0 0.000000 9.500000 hedge
+solid
+0 0.000000 8.500000 hedge
+solid
+0 0.000000 7.500000 hedge
+solid
+0 0.000000 6.500000 hedge
+solid
+0 0.000000 5.500000 hedge
+solid
+0 0.000000 4.500000 hedge
+solid
+0 0.000000 3.500000 hedge
+solid
+0 0.000000 2.500000 hedge
+solid
+0 0.000000 1.500000 hedge
+solid
+0 0.000000 0.500000 hedge
+solid
+0.000000 21.000000 0.500000 vedge
+solid
+0 2.000000 20.500000 hedge
+solid
+0 2.000000 19.500000 hedge
+solid
+0 2.000000 18.500000 hedge
+solid
+2.000000 21.000000 18.500000 vedge
+solid
+0 4.000000 20.500000 hedge
+solid
+0 4.000000 19.500000 hedge
+solid
+0 4.000000 18.500000 hedge
+solid
+0 4.000000 17.500000 hedge
+solid
+0 4.000000 16.500000 hedge
+solid
+0 4.000000 15.500000 hedge
+solid
+0 4.000000 14.500000 hedge
+solid
+0 4.000000 13.500000 hedge
+solid
+0 4.000000 12.500000 hedge
+solid
+0 4.000000 11.500000 hedge
+solid
+0 4.000000 10.500000 hedge
+solid
+0 4.000000 9.500000 hedge
+solid
+0 4.000000 8.500000 hedge
+solid
+0 4.000000 7.500000 hedge
+solid
+0 4.000000 6.500000 hedge
+solid
+0 4.000000 5.500000 hedge
+solid
+0 4.000000 4.500000 hedge
+solid
+0 4.000000 3.500000 hedge
+solid
+0 4.000000 2.500000 hedge
+solid
+0 4.000000 1.500000 hedge
+solid
+4.000000 21.000000 1.500000 vedge

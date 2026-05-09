@@ -1,0 +1,113 @@
+\doxysection{websockets.\+extensions.\+permessage\+\_\+deflate.\+Client\+Per\+Message\+Deflate\+Factory Class Reference}
+\hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory}{}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory}\index{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}}
+Inheritance diagram for websockets.\+extensions.\+permessage\+\_\+deflate.\+Client\+Per\+Message\+Deflate\+Factory:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a30db2ceea2166f9c69702ffd1bb3f956}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bool server\+\_\+no\+\_\+context\+\_\+takeover=False, bool client\+\_\+no\+\_\+context\+\_\+takeover=False, Optional\+[int]\+ server\+\_\+max\+\_\+window\+\_\+bits=None, Optional\+[Union\+[int, bool]\+]\+ client\+\_\+max\+\_\+window\+\_\+bits=True, Optional\+[Dict\+[str, Any]\+]\+ compress\+\_\+settings=None)
+\item 
+List\+[Extension\+Parameter]\+ \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a7813022c724b5437aa07c7b512f04145}{get\+\_\+request\+\_\+params}} (self)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1PerMessageDeflate}{Per\+Message\+Deflate}} \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a17380647d9f4b6572882c5aa450b83e0}{process\+\_\+response\+\_\+params}} (self, Sequence\+[Extension\+Parameter]\+ params, Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+ accepted\+\_\+extensions)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a8615cec6abc01db3dd2738b18a054609}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a8615cec6abc01db3dd2738b18a054609} 
+{\bfseries server\+\_\+no\+\_\+context\+\_\+takeover} = server\+\_\+no\+\_\+context\+\_\+takeover
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a382bae360230058332ddd30c91521256}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a382bae360230058332ddd30c91521256} 
+{\bfseries client\+\_\+no\+\_\+context\+\_\+takeover} = client\+\_\+no\+\_\+context\+\_\+takeover
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a3688bd47c7b9778d1ef4a47810fadc25}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a3688bd47c7b9778d1ef4a47810fadc25} 
+{\bfseries server\+\_\+max\+\_\+window\+\_\+bits} = server\+\_\+max\+\_\+window\+\_\+bits
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a76edcbcab59204e300d581694465c1c5}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a76edcbcab59204e300d581694465c1c5} 
+{\bfseries client\+\_\+max\+\_\+window\+\_\+bits} = client\+\_\+max\+\_\+window\+\_\+bits
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a235721a1816df6474fe484730af80486}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a235721a1816df6474fe484730af80486} 
+{\bfseries compress\+\_\+settings} = compress\+\_\+settings
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_ab5fcd2aeaf551b93dab75e16f1eebae6}\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_ab5fcd2aeaf551b93dab75e16f1eebae6} 
+{\bfseries name} = Extension\+Name("{}permessage-\/deflate"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Client-side extension factory for the Per-Message Deflate extension.
+
+Parameters behave as described in `section 7.1 of RFC 7692`_.
+
+.. _section 7.1 of RFC 7692: https://www.rfc-editor.org/rfc/rfc7692.html#section-7.1
+
+Set them to :obj:`True` to include them in the negotiation offer without a
+value or to an integer value to include them with this value.
+
+Args:
+    server_no_context_takeover: prevent server from using context takeover.
+    client_no_context_takeover: prevent client from using context takeover.
+    server_max_window_bits: maximum size of the server's LZ77 sliding window
+        in bits, between 8 and 15.
+    client_max_window_bits: maximum size of the client's LZ77 sliding window
+        in bits, between 8 and 15, or :obj:`True` to indicate support without
+        setting a limit.
+    compress_settings: additional keyword arguments for :func:`zlib.compressobj`,
+        excluding ``wbits``.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_doc-constructors}
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a30db2ceea2166f9c69702ffd1bb3f956}\index{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a30db2ceea2166f9c69702ffd1bb3f956} 
+ None websockets.\+extensions.\+permessage\+\_\+deflate.\+Client\+Per\+Message\+Deflate\+Factory.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{server\+\_\+no\+\_\+context\+\_\+takeover}{ = {\ttfamily False}, }\item[{bool }]{client\+\_\+no\+\_\+context\+\_\+takeover}{ = {\ttfamily False}, }\item[{Optional\+[int]\+ }]{server\+\_\+max\+\_\+window\+\_\+bits}{ = {\ttfamily None}, }\item[{Optional\+[Union\+[int, bool]\+]\+ }]{client\+\_\+max\+\_\+window\+\_\+bits}{ = {\ttfamily True}, }\item[{Optional\+[Dict\+[str, Any]\+]\+ }]{compress\+\_\+settings}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Configure the Per-Message Deflate extension factory.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_doc-func-members}
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a7813022c724b5437aa07c7b512f04145}\index{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}!get\_request\_params@{get\_request\_params}}
+\index{get\_request\_params@{get\_request\_params}!websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}}
+\doxysubsubsection{\texorpdfstring{get\_request\_params()}{get\_request\_params()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a7813022c724b5437aa07c7b512f04145} 
+ List\+[Extension\+Parameter]\+ websockets.\+extensions.\+permessage\+\_\+deflate.\+Client\+Per\+Message\+Deflate\+Factory.\+get\+\_\+request\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Build request parameters.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1ClientExtensionFactory_a21991604b59d2fcb5ec0c06192279b2b}{websockets.\+extensions.\+base.\+Client\+Extension\+Factory}}.
+
+\Hypertarget{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a17380647d9f4b6572882c5aa450b83e0}\index{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}!process\_response\_params@{process\_response\_params}}
+\index{process\_response\_params@{process\_response\_params}!websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory@{websockets.extensions.permessage\_deflate.ClientPerMessageDeflateFactory}}
+\doxysubsubsection{\texorpdfstring{process\_response\_params()}{process\_response\_params()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ClientPerMessageDeflateFactory_a17380647d9f4b6572882c5aa450b83e0} 
+ \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1PerMessageDeflate}{Per\+Message\+Deflate}} websockets.\+extensions.\+permessage\+\_\+deflate.\+Client\+Per\+Message\+Deflate\+Factory.\+process\+\_\+response\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Sequence\+[Extension\+Parameter]\+}]{params}{, }\item[{Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+}]{accepted\+\_\+extensions}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process response parameters.
+
+Return an extension instance.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1ClientExtensionFactory_a7da2fd08777551f5699c151de83e3e9f}{websockets.\+extensions.\+base.\+Client\+Extension\+Factory}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+extensions/\+permessage\+\_\+deflate.\+py\end{DoxyCompactItemize}

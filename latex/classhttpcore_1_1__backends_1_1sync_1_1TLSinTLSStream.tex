@@ -1,0 +1,141 @@
+\doxysection{httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream Class Reference}
+\hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream}{}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+Inheritance diagram for httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a767fdc16570786767618a126468cff0d}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a767fdc16570786767618a126468cff0d} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, socket.\+socket sock, ssl.\+SSLContext ssl\+\_\+context, str\texorpdfstring{$\vert$}{|}None server\+\_\+hostname=None, float\texorpdfstring{$\vert$}{|}None timeout=None)
+\item 
+bytes \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_ac45a996fd375142ee6c37e31ce0035fc}{read}} (self, int max\+\_\+bytes, float\texorpdfstring{$\vert$}{|}None timeout=None)
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1efa3bfd73b0a5b3cfee56b27008087a}{write}} (self, bytes buffer, float\texorpdfstring{$\vert$}{|}None timeout=None)
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_aef6dad08aa47e766093dc67ea27c0b0a}{close}} (self)
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{Network\+Stream}} \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a36b56ada8f8878d399ec530e7659be10}{start\+\_\+tls}} (self, ssl.\+SSLContext ssl\+\_\+context, str\texorpdfstring{$\vert$}{|}None server\+\_\+hostname=None, float\texorpdfstring{$\vert$}{|}None timeout=None)
+\item 
+typing.\+Any \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1a088fc847b16bd9877c1826a9336648}{get\+\_\+extra\+\_\+info}} (self, str info)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_af9ad08becd8b82f52c6c45fe190ca3c7}{ssl\+\_\+obj}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a86fb93b2e3b8303919ebb77cf89243cf}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a86fb93b2e3b8303919ebb77cf89243cf} 
+int {\bfseries TLS\+\_\+\+RECORD\+\_\+\+SIZE} = 16384
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a400e56424c07379a7cdd153912b38adb}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a400e56424c07379a7cdd153912b38adb} 
+typing.\+Any {\bfseries \+\_\+perform\+\_\+io} (self, typing.\+Callable\+[..., typing.\+Any]\+ func)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a23ab4c39d1efba72d19b5b1973234d7e}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a23ab4c39d1efba72d19b5b1973234d7e} 
+{\bfseries \+\_\+sock} = sock
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_ac493f8226b6fcd04381c5858c87a986b}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_ac493f8226b6fcd04381c5858c87a986b} 
+{\bfseries \+\_\+incoming} = ssl.\+Memory\+BIO()
+\item 
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a9223edf6db7f0c25b45cd0af5f2bad0f}\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a9223edf6db7f0c25b45cd0af5f2bad0f} 
+{\bfseries \+\_\+outgoing} = ssl.\+Memory\+BIO()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Because the standard `SSLContext.wrap_socket` method does
+not work for `SSLSocket` objects, we need this class
+to implement TLS stream using an underlying `SSLObject`
+instance in order to support TLS on top of TLS.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_doc-func-members}
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_aef6dad08aa47e766093dc67ea27c0b0a}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!close@{close}}
+\index{close@{close}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_aef6dad08aa47e766093dc67ea27c0b0a} 
+ None httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{httpcore.\+\_\+backends.\+base.\+Network\+Stream}}.
+
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1a088fc847b16bd9877c1826a9336648}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!get\_extra\_info@{get\_extra\_info}}
+\index{get\_extra\_info@{get\_extra\_info}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{get\_extra\_info()}{get\_extra\_info()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1a088fc847b16bd9877c1826a9336648} 
+ typing.\+Any httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+get\+\_\+extra\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{info}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{httpcore.\+\_\+backends.\+base.\+Network\+Stream}}.
+
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_ac45a996fd375142ee6c37e31ce0035fc}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!read@{read}}
+\index{read@{read}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_ac45a996fd375142ee6c37e31ce0035fc} 
+ bytes httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{max\+\_\+bytes}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{httpcore.\+\_\+backends.\+base.\+Network\+Stream}}.
+
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a36b56ada8f8878d399ec530e7659be10}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!start\_tls@{start\_tls}}
+\index{start\_tls@{start\_tls}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{start\_tls()}{start\_tls()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a36b56ada8f8878d399ec530e7659be10} 
+ \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{Network\+Stream}} httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+start\+\_\+tls (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{ssl.\+SSLContext}]{ssl\+\_\+context}{, }\item[{str \texorpdfstring{$\vert$}{|} None }]{server\+\_\+hostname}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{httpcore.\+\_\+backends.\+base.\+Network\+Stream}}.
+
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1efa3bfd73b0a5b3cfee56b27008087a}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!write@{write}}
+\index{write@{write}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_a1efa3bfd73b0a5b3cfee56b27008087a} 
+ None httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{buffer}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkStream}{httpcore.\+\_\+backends.\+base.\+Network\+Stream}}.
+
+
+
+\label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_doc-variable-members}
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_af9ad08becd8b82f52c6c45fe190ca3c7}\index{httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}!ssl\_obj@{ssl\_obj}}
+\index{ssl\_obj@{ssl\_obj}!httpcore.\_backends.sync.TLSinTLSStream@{httpcore.\_backends.sync.TLSinTLSStream}}
+\doxysubsubsection{\texorpdfstring{ssl\_obj}{ssl\_obj}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__backends_1_1sync_1_1TLSinTLSStream_af9ad08becd8b82f52c6c45fe190ca3c7} 
+httpcore.\+\_\+backends.\+sync.\+TLSin\+TLSStream.\+ssl\+\_\+obj}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ssl\_context.wrap\_bio(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ incoming=self.\_incoming,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ outgoing=self.\_outgoing,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ server\_hostname=server\_hostname,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+backends/\+sync.\+py\end{DoxyCompactItemize}

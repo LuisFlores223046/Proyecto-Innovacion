@@ -1,0 +1,261 @@
+\doxysection{dns.\+btree.\+\_\+\+Node Class Reference}
+\hypertarget{classdns_1_1btree_1_1__Node}{}\label{classdns_1_1btree_1_1__Node}\index{dns.btree.\_Node@{dns.btree.\_Node}}
+Inheritance diagram for dns.\+btree.\+\_\+\+Node:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1btree_1_1__Node}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_abb546953913394b578c2f5b01ef72a16}\label{classdns_1_1btree_1_1__Node_abb546953913394b578c2f5b01ef72a16} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int t, \doxymbox{\hyperlink{classdns_1_1btree_1_1__Creator}{\+\_\+\+Creator}} creator, bool is\+\_\+leaf)
+\item 
+bool \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ae463e10f78f1bef0466d9e96d259d060}{is\+\_\+maximal}} (self)
+\item 
+bool \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ae508ec3540ca1c9f73a04464cc1fa5ac}{is\+\_\+minimal}} (self)
+\item 
+tuple\+[int, bool]\+ \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_afac67be4ee491f43a9424fa9ce553fec}{search\+\_\+in\+\_\+node}} (self, KT key)
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_a49138c1bc0878d08247e9b8919008bfc}\label{classdns_1_1btree_1_1__Node_a49138c1bc0878d08247e9b8919008bfc} 
+"{}\+\_\+\+Node\+[KT, ET]\+"{} {\bfseries maybe\+\_\+cow\+\_\+child} (self, int index)
+\item 
+ET\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a5a2a5bbaf3ed2e079b1e745c3b97003e}{get}} (self, KT key)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ac294520379c8e10780cf2b618d43fb10}{optimize\+\_\+in\+\_\+order\+\_\+insertion}} (self, int index)
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_aea03a50726e3e285120287d383539eee}\label{classdns_1_1btree_1_1__Node_aea03a50726e3e285120287d383539eee} 
+ET\texorpdfstring{$\vert$}{|}None {\bfseries insert\+\_\+nonfull} (self, ET element, bool in\+\_\+order)
+\item 
+tuple\+["{}\+\_\+\+Node\+[KT, ET]\+"{}, ET, "{}\+\_\+\+Node\+[KT, ET]\+"{}]\+ \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a25819a9279b33299aa4fa6d281668485}{split}} (self)
+\item 
+bool \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a3e621502b43ead10acbf03b4b476a1fd}{try\+\_\+left\+\_\+steal}} (self, "{}\+\_\+\+Node\+[KT, ET]\+"{} parent, int index)
+\item 
+bool \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a859aae1ebede6d22c1811f6d35277b49}{try\+\_\+right\+\_\+steal}} (self, "{}\+\_\+\+Node\+[KT, ET]\+"{} parent, int index)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a0ebd5e9068389bcf1aefe6d1f5312ebb}{adopt}} (self, "{}\+\_\+\+Node\+[KT, ET]\+"{} left, ET middle, "{}\+\_\+\+Node\+[KT, ET]\+"{} right)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ac7aac6225441f9c47cced09bb4bb9545}{merge}} (self, "{}\+\_\+\+Node\+[KT, ET]\+"{} parent, int index)
+\item 
+ET \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a08e8e500cb2e111aac9a89355723b5e4}{minimum}} (self)
+\item 
+ET \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a1f49ddb4ab252559e9bc3e597794e14b}{maximum}} (self)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_aa953711ba9c968d3725ef4409307d90a}{balance}} (self, "{}\+\_\+\+Node\+[KT, ET]\+"{} parent, int index)
+\item 
+ET\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a0537b59423e635ca82b05d23dbe9b210}{delete}} (self, KT key, Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+ parent, ET\texorpdfstring{$\vert$}{|}None exact)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a324df2bcdc6ad9c53093a9ae46b00fad}{visit\+\_\+in\+\_\+order}} (self, Callable\+[\+[ET]\+, None]\+ visit)
+\item 
+Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+ \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_a7c2c93de0651d37fe325c692852b2916}{maybe\+\_\+cow}} (self, \doxymbox{\hyperlink{classdns_1_1btree_1_1__Creator}{\+\_\+\+Creator}} creator)
+\item 
+"{}\+\_\+\+Node\+[KT, ET]\+"{} \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ad63f3c1da29837aa9d01f5803a14bb33}{clone}} (self, \doxymbox{\hyperlink{classdns_1_1btree_1_1__Creator}{\+\_\+\+Creator}} creator)
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_a780c2c6acf4209ca5ba549a3d30f729e}\label{classdns_1_1btree_1_1__Node_a780c2c6acf4209ca5ba549a3d30f729e} 
+{\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_ae6c1e09704eabe428de61e361c29d003}\label{classdns_1_1btree_1_1__Node_ae6c1e09704eabe428de61e361c29d003} 
+{\bfseries t} = t
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_a2367f790200ba741e849ffab8d5f2098}\label{classdns_1_1btree_1_1__Node_a2367f790200ba741e849ffab8d5f2098} 
+{\bfseries creator} = creator
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_a11d25c84cdc9f896fd715d8316a1080a}\label{classdns_1_1btree_1_1__Node_a11d25c84cdc9f896fd715d8316a1080a} 
+{\bfseries is\+\_\+leaf} = is\+\_\+leaf
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_add30d6e0ea214a1e11f998e4659fda73}\label{classdns_1_1btree_1_1__Node_add30d6e0ea214a1e11f998e4659fda73} 
+list {\bfseries elts} = \+[$\,$]\+
+\item 
+\Hypertarget{classdns_1_1btree_1_1__Node_a16e14a31592e0802529bed835f90f766}\label{classdns_1_1btree_1_1__Node_a16e14a31592e0802529bed835f90f766} 
+list {\bfseries children} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+, int]\+ \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_afeeaccc1b81879c1fe021a7074432784}{\+\_\+get\+\_\+node}} (self, KT key)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1btree_1_1__Node_ae49744a456548a22aca7d2dab0b65307}{\+\_\+visit\+\_\+preorder\+\_\+by\+\_\+node}} (self, Callable\+[\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+, None]\+ visit)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A Node in the BTree.
+
+A Node (leaf or internal) of the BTree.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1btree_1_1__Node_doc-func-members}
+\Hypertarget{classdns_1_1btree_1_1__Node_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1btree_1_1__Node_afeeaccc1b81879c1fe021a7074432784}\index{dns.btree.\_Node@{dns.btree.\_Node}!\_get\_node@{\_get\_node}}
+\index{\_get\_node@{\_get\_node}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{\_get\_node()}{\_get\_node()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_afeeaccc1b81879c1fe021a7074432784} 
+ Tuple\+[Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+, int]\+ dns.\+btree.\+\_\+\+Node.\+\_\+get\+\_\+node (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{KT}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get the node associated with key and its index, doing
+copy-on-write if we have to descend.
+
+Returns a tuple of the node and the index, or the tuple ``(None, 0)``
+if the key was not found.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ae49744a456548a22aca7d2dab0b65307}\index{dns.btree.\_Node@{dns.btree.\_Node}!\_visit\_preorder\_by\_node@{\_visit\_preorder\_by\_node}}
+\index{\_visit\_preorder\_by\_node@{\_visit\_preorder\_by\_node}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{\_visit\_preorder\_by\_node()}{\_visit\_preorder\_by\_node()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ae49744a456548a22aca7d2dab0b65307} 
+ None dns.\+btree.\+\_\+\+Node.\+\_\+visit\+\_\+preorder\+\_\+by\+\_\+node (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+, None]\+}]{visit}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Visit nodes in preorder.  This method is only used for testing.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a0ebd5e9068389bcf1aefe6d1f5312ebb}\index{dns.btree.\_Node@{dns.btree.\_Node}!adopt@{adopt}}
+\index{adopt@{adopt}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{adopt()}{adopt()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a0ebd5e9068389bcf1aefe6d1f5312ebb} 
+ None dns.\+btree.\+\_\+\+Node.\+adopt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{left}{, }\item[{ET}]{middle}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{right}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Adopt left, middle, and right into our Node (which must not be maximal,
+and which must not be a leaf).  In the case were we are not the new root,
+then the left child must already be in the Node.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_aa953711ba9c968d3725ef4409307d90a}\index{dns.btree.\_Node@{dns.btree.\_Node}!balance@{balance}}
+\index{balance@{balance}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{balance()}{balance()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_aa953711ba9c968d3725ef4409307d90a} 
+ None dns.\+btree.\+\_\+\+Node.\+balance (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This Node is minimal, and we want to make it non-minimal so we can delete.
+We try to steal from our siblings, and if that doesn't work we will merge
+with one of them.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ad63f3c1da29837aa9d01f5803a14bb33}\index{dns.btree.\_Node@{dns.btree.\_Node}!clone@{clone}}
+\index{clone@{clone}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ad63f3c1da29837aa9d01f5803a14bb33} 
+ "{}\+\_\+\+Node\+[KT, ET]\+"{} dns.\+btree.\+\_\+\+Node.\+clone (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classdns_1_1btree_1_1__Creator}{\+\_\+\+Creator}}}]{creator}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make a shallow-copy duplicate of this node.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a0537b59423e635ca82b05d23dbe9b210}\index{dns.btree.\_Node@{dns.btree.\_Node}!delete@{delete}}
+\index{delete@{delete}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a0537b59423e635ca82b05d23dbe9b210} 
+ ET \texorpdfstring{$\vert$}{|} None dns.\+btree.\+\_\+\+Node.\+delete (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{KT}]{key}{, }\item[{Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+}]{parent}{, }\item[{ET \texorpdfstring{$\vert$}{|} None     }]{exact}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete an element matching *key* if it exists.  If *exact* is not ``None``
+then it must be an exact match with that element.  The Node must not be
+minimal unless it is the root.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a5a2a5bbaf3ed2e079b1e745c3b97003e}\index{dns.btree.\_Node@{dns.btree.\_Node}!get@{get}}
+\index{get@{get}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a5a2a5bbaf3ed2e079b1e745c3b97003e} 
+ ET \texorpdfstring{$\vert$}{|} None dns.\+btree.\+\_\+\+Node.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{KT}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the element associated with *key* or return ``None``\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ae463e10f78f1bef0466d9e96d259d060}\index{dns.btree.\_Node@{dns.btree.\_Node}!is\_maximal@{is\_maximal}}
+\index{is\_maximal@{is\_maximal}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{is\_maximal()}{is\_maximal()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ae463e10f78f1bef0466d9e96d259d060} 
+ bool dns.\+btree.\+\_\+\+Node.\+is\+\_\+maximal (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Does this node have the maximal number of keys?\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ae508ec3540ca1c9f73a04464cc1fa5ac}\index{dns.btree.\_Node@{dns.btree.\_Node}!is\_minimal@{is\_minimal}}
+\index{is\_minimal@{is\_minimal}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{is\_minimal()}{is\_minimal()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ae508ec3540ca1c9f73a04464cc1fa5ac} 
+ bool dns.\+btree.\+\_\+\+Node.\+is\+\_\+minimal (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Does this node have the minimal number of keys?\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a1f49ddb4ab252559e9bc3e597794e14b}\index{dns.btree.\_Node@{dns.btree.\_Node}!maximum@{maximum}}
+\index{maximum@{maximum}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{maximum()}{maximum()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a1f49ddb4ab252559e9bc3e597794e14b} 
+ ET dns.\+btree.\+\_\+\+Node.\+maximum (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The greatest element in this subtree.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a7c2c93de0651d37fe325c692852b2916}\index{dns.btree.\_Node@{dns.btree.\_Node}!maybe\_cow@{maybe\_cow}}
+\index{maybe\_cow@{maybe\_cow}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{maybe\_cow()}{maybe\_cow()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a7c2c93de0651d37fe325c692852b2916} 
+ Optional\+["{}\+\_\+\+Node\+[KT, ET]\+"{}]\+ dns.\+btree.\+\_\+\+Node.\+maybe\+\_\+cow (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classdns_1_1btree_1_1__Creator}{\+\_\+\+Creator}}}]{creator}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a clone of this Node if it was not created by *creator*, or ``None``
+otherwise (i.e. copy for copy-on-write if we haven't already copied it).\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ac7aac6225441f9c47cced09bb4bb9545}\index{dns.btree.\_Node@{dns.btree.\_Node}!merge@{merge}}
+\index{merge@{merge}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ac7aac6225441f9c47cced09bb4bb9545} 
+ None dns.\+btree.\+\_\+\+Node.\+merge (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Merge this node's parent and its right sibling into this node.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a08e8e500cb2e111aac9a89355723b5e4}\index{dns.btree.\_Node@{dns.btree.\_Node}!minimum@{minimum}}
+\index{minimum@{minimum}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{minimum()}{minimum()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a08e8e500cb2e111aac9a89355723b5e4} 
+ ET dns.\+btree.\+\_\+\+Node.\+minimum (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The least element in this subtree.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_ac294520379c8e10780cf2b618d43fb10}\index{dns.btree.\_Node@{dns.btree.\_Node}!optimize\_in\_order\_insertion@{optimize\_in\_order\_insertion}}
+\index{optimize\_in\_order\_insertion@{optimize\_in\_order\_insertion}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{optimize\_in\_order\_insertion()}{optimize\_in\_order\_insertion()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_ac294520379c8e10780cf2b618d43fb10} 
+ None dns.\+btree.\+\_\+\+Node.\+optimize\+\_\+in\+\_\+order\+\_\+insertion (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Try to minimize the number of Nodes in a BTree where the insertion
+is done in-order or close to it, by stealing as much as we can from our
+right sibling.
+
+If we don't do this, then an in-order insertion will produce a BTree
+where most of the nodes are minimal.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_afac67be4ee491f43a9424fa9ce553fec}\index{dns.btree.\_Node@{dns.btree.\_Node}!search\_in\_node@{search\_in\_node}}
+\index{search\_in\_node@{search\_in\_node}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{search\_in\_node()}{search\_in\_node()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_afac67be4ee491f43a9424fa9ce553fec} 
+ tuple\+[int, bool]\+ dns.\+btree.\+\_\+\+Node.\+search\+\_\+in\+\_\+node (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{KT}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the index of the ``Element`` matching ``key`` or the index of its
+least successor.
+
+Returns a tuple of the index and an ``equal`` boolean that is ``True`` iff.
+the key was found.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a25819a9279b33299aa4fa6d281668485}\index{dns.btree.\_Node@{dns.btree.\_Node}!split@{split}}
+\index{split@{split}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a25819a9279b33299aa4fa6d281668485} 
+ tuple\+["{}\+\_\+\+Node\+[KT, ET]\+"{}, ET, "{}\+\_\+\+Node\+[KT, ET]\+"{}]\+ dns.\+btree.\+\_\+\+Node.\+split (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Split a maximal node into two minimal ones and a central element.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a3e621502b43ead10acbf03b4b476a1fd}\index{dns.btree.\_Node@{dns.btree.\_Node}!try\_left\_steal@{try\_left\_steal}}
+\index{try\_left\_steal@{try\_left\_steal}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{try\_left\_steal()}{try\_left\_steal()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a3e621502b43ead10acbf03b4b476a1fd} 
+ bool dns.\+btree.\+\_\+\+Node.\+try\+\_\+left\+\_\+steal (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Try to steal from this Node's left sibling for balancing purposes.
+
+Returns ``True`` if the theft was successful, or ``False`` if not.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a859aae1ebede6d22c1811f6d35277b49}\index{dns.btree.\_Node@{dns.btree.\_Node}!try\_right\_steal@{try\_right\_steal}}
+\index{try\_right\_steal@{try\_right\_steal}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{try\_right\_steal()}{try\_right\_steal()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a859aae1ebede6d22c1811f6d35277b49} 
+ bool dns.\+btree.\+\_\+\+Node.\+try\+\_\+right\+\_\+steal (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Node\+[KT, ET]\+"{}}]{parent}{, }\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Try to steal from this Node's right sibling for balancing purposes.
+
+Returns ``True`` if the theft was successful, or ``False`` if not.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1btree_1_1__Node_a324df2bcdc6ad9c53093a9ae46b00fad}\index{dns.btree.\_Node@{dns.btree.\_Node}!visit\_in\_order@{visit\_in\_order}}
+\index{visit\_in\_order@{visit\_in\_order}!dns.btree.\_Node@{dns.btree.\_Node}}
+\doxysubsubsection{\texorpdfstring{visit\_in\_order()}{visit\_in\_order()}}
+{\footnotesize\ttfamily \label{classdns_1_1btree_1_1__Node_a324df2bcdc6ad9c53093a9ae46b00fad} 
+ None dns.\+btree.\+\_\+\+Node.\+visit\+\_\+in\+\_\+order (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[ET]\+, None]\+}]{visit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Call *visit* on all of the elements in order.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+btree.\+py\end{DoxyCompactItemize}

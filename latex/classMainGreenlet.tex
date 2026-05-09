@@ -1,0 +1,241 @@
+\doxysection{Main\+Greenlet Class Reference}
+\hypertarget{classMainGreenlet}{}\label{classMainGreenlet}\index{MainGreenlet@{MainGreenlet}}
+Inheritance diagram for Main\+Greenlet:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMainGreenlet}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMainGreenlet_a43a80e689732fe9d34097416f30a388f}\label{classMainGreenlet_a43a80e689732fe9d34097416f30a388f} 
+{\bfseries Main\+Greenlet} (refs::\+\+Borrowed\+Main\+Greenlet::\+\+Py\+Type \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*})
+\item 
+virtual const Owned\+Object \& \doxymbox{\hyperlink{classMainGreenlet_aa775e8126628763e92fd6f1261e304d3}{run}} () const
+\item 
+\Hypertarget{classMainGreenlet_a7a906f3132d82bbfae4adadcd5c8ff34}\label{classMainGreenlet_a7a906f3132d82bbfae4adadcd5c8ff34} 
+virtual void {\bfseries run} (const refs::\+\+Borrowed\+Object nrun)
+\item 
+virtual const Owned\+Greenlet \doxymbox{\hyperlink{classMainGreenlet_a6871cb3010f309ac5930e108c9065312}{parent}} () const
+\item 
+virtual void \doxymbox{\hyperlink{classMainGreenlet_a7801f4673ca21caa47801b6932052172}{parent}} (const refs::\+\+Borrowed\+Object new\+\_\+parent)
+\item 
+virtual const refs::\+\+Borrowed\+Main\+Greenlet \doxymbox{\hyperlink{classMainGreenlet_acdbc99a3a992e11bb7645c16144dfedc}{main\+\_\+greenlet}} () const
+\item 
+virtual refs::\+\+Borrowed\+Main\+Greenlet \doxymbox{\hyperlink{classMainGreenlet_ab177d469391ade56eefa588195f9914c}{find\+\_\+main\+\_\+greenlet\+\_\+in\+\_\+lineage}} () const
+\item 
+virtual bool \doxymbox{\hyperlink{classMainGreenlet_aad43371b6fcc9413f67dae791896805b}{was\+\_\+running\+\_\+in\+\_\+dead\+\_\+thread}} () const noexcept
+\item 
+virtual \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{classMainGreenlet_ab0efcd190387c66683717460ab551e5f}{thread\+\_\+state}} () const noexcept
+\item 
+\Hypertarget{classMainGreenlet_abf3748b12de088ada39f06ff7b14e081}\label{classMainGreenlet_abf3748b12de088ada39f06ff7b14e081} 
+void {\bfseries thread\+\_\+state} (\doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*}) noexcept
+\item 
+virtual Owned\+Object \doxymbox{\hyperlink{classMainGreenlet_a5e95e7711dea73885fbfbce55034ce52}{g\+\_\+switch}} ()
+\item 
+virtual Borrowed\+Greenlet \doxymbox{\hyperlink{classMainGreenlet_a57bc491143514e50a78b2bf920a5aa62}{self}} () const noexcept
+\item 
+virtual int \doxymbox{\hyperlink{classMainGreenlet_a24c3d9a733c8823222d6467fc02e0fcd}{tp\+\_\+traverse}} (visitproc visit, void \texorpdfstring{$\ast$}{*}arg)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Greenlet} (Py\+Greenlet \texorpdfstring{$\ast$}{*}p)
+\item 
+const Owned\+Object {\bfseries context} () const
+\item 
+void {\bfseries may\+\_\+switch\+\_\+away} ()
+\item 
+void {\bfseries context} (refs::\+\+Borrowed\+Object new\+\_\+context)
+\item 
+\doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{Switching\+Args}} \& {\bfseries args} ()
+\item 
+intptr\+\_\+t {\bfseries stack\+\_\+saved} () const noexcept
+\item 
+const char \texorpdfstring{$\ast$}{*} {\bfseries stack\+\_\+start} () const noexcept
+\item 
+virtual Owned\+Object \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a05d917d256177d18c9b528db6f677f21}{throw\+\_\+\+Greenlet\+Exit\+\_\+during\+\_\+dealloc}} (const \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \&current\+\_\+thread\+\_\+state)
+\item 
+virtual void \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a857263b61620c5be3af6617dc5f2dd1f}{murder\+\_\+in\+\_\+place}} ()
+\item 
+void \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a99fad399e6996187b88ce8b304a2baba}{deactivate\+\_\+and\+\_\+free}} ()
+\item 
+void {\bfseries deallocing\+\_\+greenlet\+\_\+in\+\_\+thread} (const \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*}current\+\_\+state)
+\item 
+void {\bfseries expose\+\_\+frames} ()
+\item 
+void {\bfseries slp\+\_\+restore\+\_\+state} () noexcept
+\item 
+int {\bfseries slp\+\_\+save\+\_\+state} (char \texorpdfstring{$\ast$}{*}const stackref) noexcept
+\item 
+bool {\bfseries is\+\_\+currently\+\_\+running\+\_\+in\+\_\+some\+\_\+thread} () const
+\item 
+virtual bool {\bfseries belongs\+\_\+to\+\_\+thread} (const \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*}state) const
+\item 
+bool {\bfseries started} () const
+\item 
+bool {\bfseries active} () const
+\item 
+bool {\bfseries main} () const
+\item 
+const Python\+State::\+\+Owned\+Frame \& {\bfseries top\+\_\+frame} ()
+\item 
+virtual void {\bfseries run} (const refs::\+\+Borrowed\+Object nrun)=0
+\item 
+virtual int {\bfseries tp\+\_\+clear} ()
+\item 
+virtual bool {\bfseries force\+\_\+slp\+\_\+switch\+\_\+error} () const noexcept
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMainGreenlet_a4d5286e7c6c245ec3c8a1167d96aa1b4}\label{classMainGreenlet_a4d5286e7c6c245ec3c8a1167d96aa1b4} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries operator new} (size\+\_\+t UNUSED(count))
+\item 
+\Hypertarget{classMainGreenlet_a6a62f19d373b11e934d9574cb424746c}\label{classMainGreenlet_a6a62f19d373b11e934d9574cb424746c} 
+static void {\bfseries operator delete} (void \texorpdfstring{$\ast$}{*}ptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Greenlet} (Py\+Greenlet \texorpdfstring{$\ast$}{*}p, const \doxymbox{\hyperlink{classgreenlet_1_1StackState}{Stack\+State}} \&initial\+\_\+state)
+\item 
+void {\bfseries release\+\_\+args} ()
+\item 
+Owned\+Object \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a57a4f70f86c1f6f756d0abd61e2fd343}{on\+\_\+switchstack\+\_\+or\+\_\+initialstub\+\_\+failure}} (\doxymbox{\hyperlink{classGreenlet}{Greenlet}} \texorpdfstring{$\ast$}{*}target, const \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\+\_\+result\+\_\+t}} \&err, const bool target\+\_\+was\+\_\+me=false, const bool was\+\_\+initial\+\_\+stub=false)
+\item 
+virtual Owned\+Greenlet {\bfseries g\+\_\+switchstack\+\_\+success} () noexcept
+\item 
+void {\bfseries check\+\_\+switch\+\_\+allowed} () const
+\item 
+virtual \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\+\_\+result\+\_\+t}} \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_ae7da93ce8a1ec90a97b47ccc5cccafe3}{g\+\_\+switchstack}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}}
+\begin{DoxyCompactItemize}
+\item 
+static void {\bfseries g\+\_\+calltrace} (const Owned\+Object \&tracefunc, const \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalEventName}{greenlet::\+refs::\+\+Immortal\+Event\+Name}} \&event, const greenlet::\+refs::\+\+Borrowed\+Greenlet \&origin, const Borrowed\+Greenlet \&target)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classgreenlet_1_1ExceptionState}{Exception\+State}} {\bfseries exception\+\_\+state}
+\item 
+\doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{Switching\+Args}} {\bfseries switch\+\_\+args}
+\item 
+\doxymbox{\hyperlink{classgreenlet_1_1StackState}{Stack\+State}} {\bfseries stack\+\_\+state}
+\item 
+\doxymbox{\hyperlink{classPythonState}{Python\+State}} {\bfseries python\+\_\+state}
+\end{DoxyCompactItemize}
+
+
+\label{classMainGreenlet_doc-func-members}
+\Hypertarget{classMainGreenlet_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMainGreenlet_ab177d469391ade56eefa588195f9914c}\index{MainGreenlet@{MainGreenlet}!find\_main\_greenlet\_in\_lineage@{find\_main\_greenlet\_in\_lineage}}
+\index{find\_main\_greenlet\_in\_lineage@{find\_main\_greenlet\_in\_lineage}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{find\_main\_greenlet\_in\_lineage()}{find\_main\_greenlet\_in\_lineage()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_ab177d469391ade56eefa588195f9914c} 
+\doxymbox{\hyperlink{classBorrowedMainGreenlet}{Borrowed\+Main\+Greenlet}} greenlet::\+\+Main\+Greenlet::\+find\+\_\+main\+\_\+greenlet\+\_\+in\+\_\+lineage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_a5e95e7711dea73885fbfbce55034ce52}\index{MainGreenlet@{MainGreenlet}!g\_switch@{g\_switch}}
+\index{g\_switch@{g\_switch}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{g\_switch()}{g\_switch()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_a5e95e7711dea73885fbfbce55034ce52} 
+Owned\+Object greenlet::\+\+Main\+Greenlet::\+g\+\_\+switch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_acdbc99a3a992e11bb7645c16144dfedc}\index{MainGreenlet@{MainGreenlet}!main\_greenlet@{main\_greenlet}}
+\index{main\_greenlet@{main\_greenlet}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{main\_greenlet()}{main\_greenlet()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_acdbc99a3a992e11bb7645c16144dfedc} 
+const \doxymbox{\hyperlink{classBorrowedMainGreenlet}{Borrowed\+Main\+Greenlet}} greenlet::\+\+Main\+Greenlet::\+main\+\_\+greenlet (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_a6871cb3010f309ac5930e108c9065312}\index{MainGreenlet@{MainGreenlet}!parent@{parent}}
+\index{parent@{parent}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{parent()}{parent()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classMainGreenlet_a6871cb3010f309ac5930e108c9065312} 
+const Owned\+Greenlet greenlet::\+\+Main\+Greenlet::\+parent (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_a7801f4673ca21caa47801b6932052172}\index{MainGreenlet@{MainGreenlet}!parent@{parent}}
+\index{parent@{parent}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{parent()}{parent()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classMainGreenlet_a7801f4673ca21caa47801b6932052172} 
+void greenlet::\+\+Main\+Greenlet::\+parent (\begin{DoxyParamCaption}\item[{const refs::\+\+Borrowed\+Object}]{new\+\_\+parent}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_aa775e8126628763e92fd6f1261e304d3}\index{MainGreenlet@{MainGreenlet}!run@{run}}
+\index{run@{run}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_aa775e8126628763e92fd6f1261e304d3} 
+const Owned\+Object \& greenlet::\+\+Main\+Greenlet::\+run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_a57bc491143514e50a78b2bf920a5aa62}\index{MainGreenlet@{MainGreenlet}!self@{self}}
+\index{self@{self}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{self()}{self()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_a57bc491143514e50a78b2bf920a5aa62} 
+Borrowed\+Greenlet greenlet::\+\+Main\+Greenlet::\+self (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_ab0efcd190387c66683717460ab551e5f}\index{MainGreenlet@{MainGreenlet}!thread\_state@{thread\_state}}
+\index{thread\_state@{thread\_state}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{thread\_state()}{thread\_state()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_ab0efcd190387c66683717460ab551e5f} 
+\doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*} greenlet::\+\+Main\+Greenlet::\+thread\+\_\+state (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_a24c3d9a733c8823222d6467fc02e0fcd}\index{MainGreenlet@{MainGreenlet}!tp\_traverse@{tp\_traverse}}
+\index{tp\_traverse@{tp\_traverse}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{tp\_traverse()}{tp\_traverse()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_a24c3d9a733c8823222d6467fc02e0fcd} 
+int greenlet::\+\+Main\+Greenlet::\+tp\+\_\+traverse (\begin{DoxyParamCaption}\item[{visitproc}]{visit}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+\Hypertarget{classMainGreenlet_aad43371b6fcc9413f67dae791896805b}\index{MainGreenlet@{MainGreenlet}!was\_running\_in\_dead\_thread@{was\_running\_in\_dead\_thread}}
+\index{was\_running\_in\_dead\_thread@{was\_running\_in\_dead\_thread}!MainGreenlet@{MainGreenlet}}
+\doxysubsubsection{\texorpdfstring{was\_running\_in\_dead\_thread()}{was\_running\_in\_dead\_thread()}}
+{\footnotesize\ttfamily \label{classMainGreenlet_aad43371b6fcc9413f67dae791896805b} 
+bool greenlet::\+\+Main\+Greenlet::\+was\+\_\+running\+\_\+in\+\_\+dead\+\_\+thread (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}}.
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+greenlet/\+greenlet\+\_\+greenlet.\+hpp\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+greenlet/\+TMain\+Greenlet.\+cpp\end{DoxyCompactItemize}

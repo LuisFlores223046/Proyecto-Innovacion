@@ -1,0 +1,111 @@
+\doxysection{switch\+\_\+x86\+\_\+unix.\+h}
+\hypertarget{switch__x86__unix_8h_source}{}\label{switch__x86__unix_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x86\_unix.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x86\_unix.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 3-\/May-\/13\ \ \ Ralf\ Schmitt\ \ <ralf@systemexit.de>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ Add\ support\ for\ strange\ GCC\ caller-\/save\ decisions}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ \ \ (ported\ from\ switch\_aarch64\_gcc.h)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ 19-\/Aug-\/11\ \ Alexey\ Borzenkov\ \ <snaury@gmail.com>}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ \ \ \ Correctly\ save\ ebp,\ ebx\ and\ cw}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ 07-\/Sep-\/05\ (py-\/dev\ mailing\ list\ discussion)}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ \ \ \ removed\ 'ebx'\ from\ the\ register-\/saved.\ \ !!!!\ WARNING\ !!!!}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ \ \ \ It\ means\ that\ this\ file\ can\ no\ longer\ be\ compiled\ statically!}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ \ It\ is\ now\ only\ suitable\ as\ part\ of\ a\ dynamic\ library!}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ 24-\/Nov-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ needed\ to\ add\ another\ magic\ constant\ to\ insure}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ \ \ that\ f\ in\ slp\_eval\_frame(PyFrameObject\ *f)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ \ \ STACK\_REFPLUS\ will\ probably\ be\ 1\ in\ most\ cases.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ \ \ gets\ included\ into\ the\ saved\ stack\ area.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 17-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ after\ virtualizing\ stack\ save/restore,\ the}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ \ \ \ stack\ size\ shrunk\ a\ bit.\ Needed\ to\ introduce}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ an\ adjustment\ STACK\_MAGIC\ per\ platform.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ 15-\/Sep-\/02\ \ Gerd\ Woetzel\ \ \ \ \ \ \ <gerd.woetzel@GMD.DE>}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ \ \ \ slightly\ changed\ framework\ for\ spark}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ 31-\/Avr-\/02\ \ Armin\ Rigo\ \ \ \ \ \ \ \ \ <arigo@ulb.ac.be>}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ \ \ \ Added\ ebx,\ esi\ and\ edi\ register-\/saves.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ 01-\/Mar-\/02\ \ Samual\ M.\ Rushing\ \ <rushing@ironport.com>}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ \ \ \ \ \ Ported\ from\ i386.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{/*\ \#define\ STACK\_MAGIC\ 3\ */}}
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ the\ above\ works\ fine\ with\ gcc\ 2.96,\ but\ 2.95.3\ wants\ this\ */}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ \_\_GNUC\_\_\ >\ 4\ ||\ (\_\_GNUC\_\_\ ==\ 4\ \&\&\ \_\_GNUC\_MINOR\_\_\ >=\ 5)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ define\ ATTR\_NOCLONE\ \_\_attribute\_\_((noclone))}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ define\ ATTR\_NOCLONE}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00046\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ err;}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ *seh;}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ *ebp,\ *ebx;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ cw;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00055\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ \textcolor{stringliteral}{"{}esi"{}},\ \textcolor{stringliteral}{"{}edi"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}fstcw\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (cw));}
+\DoxyCodeLine{00057\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}movl\ \%\%ebp,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (ebp));}
+\DoxyCodeLine{00058\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}movl\ \%\%ebx,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (ebx));}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00060\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}movl\ \%\%fs:0x0,\ \%\%eax\(\backslash\)n"{}}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}movl\ \%\%eax,\ \%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}=m"{}}\ (seh)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}eax"{}});}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ \ \ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}movl\ \%\%esp,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=g"{}}\ (stackref));}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}addl\ \%0,\ \%\%esp\(\backslash\)n"{}}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}addl\ \%0,\ \%\%ebp\(\backslash\)n"{}}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}xorl\ \%\%eax,\ \%\%eax"{}}\ :\ \textcolor{stringliteral}{"{}=a"{}}\ (err));}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{00080\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}movl\ \%0,\ \%\%eax\(\backslash\)n"{}}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}movl\ \%\%eax,\ \%\%fs:0x0\(\backslash\)n"{}}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}m"{}}\ (seh)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}eax"{}});}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}movl\ \%0,\ \%\%ebx"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (ebx));}
+\DoxyCodeLine{00088\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}movl\ \%0,\ \%\%ebp"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (ebp));}
+\DoxyCodeLine{00089\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}fldcw\ \%0"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (cw));}
+\DoxyCodeLine{00090\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ \textcolor{stringliteral}{"{}esi"{}},\ \textcolor{stringliteral}{"{}edi"{}});}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ err;}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ *\ further\ self-\/processing\ support}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ *\ if\ you\ want\ to\ add\ self-\/inspection\ tools,\ place\ them}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ *\ here.\ See\ the\ x86\_msvc\ for\ the\ necessary\ defines.}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ *\ These\ features\ are\ highly\ experimental\ und\ not}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ *\ essential\ yet.}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ */}}
+
+\end{DoxyCode}

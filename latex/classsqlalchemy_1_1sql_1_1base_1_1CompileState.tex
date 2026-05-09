@@ -1,0 +1,93 @@
+\doxysection{sqlalchemy.\+sql.\+base.\+Compile\+State Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState}{}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState}\index{sqlalchemy.sql.base.CompileState@{sqlalchemy.sql.base.CompileState}}
+Inheritance diagram for sqlalchemy.\+sql.\+base.\+Compile\+State:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.384768cm]{classsqlalchemy_1_1sql_1_1base_1_1CompileState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a7b1f30eec1169e863b481722ed3feb0a}{create\+\_\+for\+\_\+statement}} (cls, statement, compiler, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a1d662375fc694dea7c2021efce74f399}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a1d662375fc694dea7c2021efce74f399} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, statement, compiler, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a4f32d4d5dfa979010738e6e02efdfa1b}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a4f32d4d5dfa979010738e6e02efdfa1b} 
+Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1CompileState}{Compile\+State}}]\+]\+ {\bfseries get\+\_\+plugin\+\_\+class} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement)
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a3857fc239917fc10ee025edb1eedd41f}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a3857fc239917fc10ee025edb1eedd41f} 
+Callable\+[\+[\+\_\+\+Fn]\+, \+\_\+\+Fn]\+ {\bfseries plugin\+\_\+for} (cls, str plugin\+\_\+name, str visit\+\_\+name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a7e41b8286602e9dd6cb95d0a74e987e9}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a7e41b8286602e9dd6cb95d0a74e987e9} 
+{\bfseries statement} = statement
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a87266da9281e335716a760f84f0512a6}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a87266da9281e335716a760f84f0512a6} 
+dict {\bfseries plugins} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_ab75f36abed14ca5d4e5a2bdac3ca3c03}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_ab75f36abed14ca5d4e5a2bdac3ca3c03} 
+Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1CompileState}{Compile\+State}}]\+]\+ {\bfseries \+\_\+get\+\_\+plugin\+\_\+class\+\_\+for\+\_\+plugin} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, str plugin\+\_\+name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a349338c39a9f71e3ad5bda65f220ceba}\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a349338c39a9f71e3ad5bda65f220ceba} 
+Optional {\bfseries \+\_\+ambiguous\+\_\+table\+\_\+name\+\_\+map} \+[\+\_\+\+Ambiguous\+Table\+Name\+Map]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Produces additional object state necessary for a statement to be
+compiled.
+
+the :class:`.CompileState` class is at the base of classes that assemble
+state for a particular statement object that is then used by the
+compiler.   This process is essentially an extension of the process that
+the SQLCompiler.visit_XYZ() method takes, however there is an emphasis
+on converting raw user intent into more organized structures rather than
+producing string output.   The top-level :class:`.CompileState` for the
+statement being executed is also accessible when the execution context
+works with invoking the statement and collecting results.
+
+The production of :class:`.CompileState` is specific to the compiler,  such
+as within the :meth:`.SQLCompiler.visit_insert`,
+:meth:`.SQLCompiler.visit_select` etc. methods.  These methods are also
+responsible for associating the :class:`.CompileState` with the
+:class:`.SQLCompiler` itself, if the statement is the "toplevel" statement,
+i.e. the outermost SQL statement that's actually being executed.
+There can be other :class:`.CompileState` objects that are not the
+toplevel, such as when a SELECT subquery or CTE-nested
+INSERT/UPDATE/DELETE is generated.
+
+.. versionadded:: 1.4
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a7b1f30eec1169e863b481722ed3feb0a}\index{sqlalchemy.sql.base.CompileState@{sqlalchemy.sql.base.CompileState}!create\_for\_statement@{create\_for\_statement}}
+\index{create\_for\_statement@{create\_for\_statement}!sqlalchemy.sql.base.CompileState@{sqlalchemy.sql.base.CompileState}}
+\doxysubsubsection{\texorpdfstring{create\_for\_statement()}{create\_for\_statement()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1CompileState_a7b1f30eec1169e863b481722ed3feb0a} 
+sqlalchemy.\+sql.\+base.\+Compile\+State.\+create\+\_\+for\+\_\+statement (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{statement}{, }\item[{}]{compiler}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1bulk__persistence_1_1BulkORMDelete_a1a392c93e332c8affbf1e708b6180089}{sqlalchemy.\+orm.\+bulk\+\_\+persistence.\+Bulk\+ORMDelete}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1bulk__persistence_1_1BulkORMInsert_a230dd69031a0eaa25713afcd83b1b987}{sqlalchemy.\+orm.\+bulk\+\_\+persistence.\+Bulk\+ORMInsert}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1bulk__persistence_1_1BulkORMUpdate_a8960a85c19d583f660ba9054ae66c89b}{sqlalchemy.\+orm.\+bulk\+\_\+persistence.\+Bulk\+ORMUpdate}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1AbstractORMCompileState_a12309960ed7d2042396ffd100c372b67}{sqlalchemy.\+orm.\+context.\+Abstract\+ORMCompile\+State}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMCompileState_a8ff4c6597311c58d41da18a1d8fa612a}{sqlalchemy.\+orm.\+context.\+ORMCompile\+State}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMFromStatementCompileState_a905afcf85698c9e41823266920c165bd}{sqlalchemy.\+orm.\+context.\+ORMFrom\+Statement\+Compile\+State}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMSelectCompileState_ab6c20bf257fbcafac906c6e5f8e3ca9e}{sqlalchemy.\+orm.\+context.\+ORMSelect\+Compile\+State}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+base.\+py\end{DoxyCompactItemize}

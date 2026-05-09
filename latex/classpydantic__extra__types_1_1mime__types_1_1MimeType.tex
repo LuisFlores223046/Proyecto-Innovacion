@@ -1,0 +1,70 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+mime\+\_\+types.\+Mime\+Type Class Reference}
+\hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType}{}\label{classpydantic__extra__types_1_1mime__types_1_1MimeType}\index{pydantic\_extra\_types.mime\_types.MimeType@{pydantic\_extra\_types.mime\_types.MimeType}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+mime\+\_\+types.\+Mime\+Type:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1mime__types_1_1MimeType}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_a326f11aef81303425e3e2f1d9b483d18}\label{classpydantic__extra__types_1_1mime__types_1_1MimeType_a326f11aef81303425e3e2f1d9b483d18} 
+\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1AfterValidatorFunctionSchema}{core\+\_\+schema.\+After\+Validator\+Function\+Schema}} {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_a3a11c8ea880236461bb31c9403b41b1f}\label{classpydantic__extra__types_1_1mime__types_1_1MimeType_a3a11c8ea880236461bb31c9403b41b1f} 
+dict\+[str, Any]\+ {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+str \doxymbox{\hyperlink{classpydantic__extra__types_1_1mime__types_1_1MimeType_ada72e8659d7db25b6eb42bfdd89f5eaf}{category}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_a7ccf5b273aec26dd45dc64d3cc30b788}\label{classpydantic__extra__types_1_1mime__types_1_1MimeType_a7ccf5b273aec26dd45dc64d3cc30b788} 
+\doxymbox{\hyperlink{classpydantic__extra__types_1_1mime__types_1_1MimeType}{Mime\+Type}} {\bfseries \+\_\+validate} (cls, str \+\_\+\+\_\+input\+\_\+value, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_afc8ec30704b74974d2ce347a27369e89}\label{classpydantic__extra__types_1_1mime__types_1_1MimeType_afc8ec30704b74974d2ce347a27369e89} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}MimeType validates MIME types based on [IANA media types](https://www.iana.org/assignments/media-types/media-types.xhtml).
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types.mime_types import MimeType
+
+
+class Response(BaseModel):
+    content_type: MimeType
+
+
+response = Response(content_type='application/json')
+print(response)
+# > content_type='application/json'
+print(response.content_type.category)
+# > application
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1mime__types_1_1MimeType_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1mime__types_1_1MimeType_ada72e8659d7db25b6eb42bfdd89f5eaf}\index{pydantic\_extra\_types.mime\_types.MimeType@{pydantic\_extra\_types.mime\_types.MimeType}!category@{category}}
+\index{category@{category}!pydantic\_extra\_types.mime\_types.MimeType@{pydantic\_extra\_types.mime\_types.MimeType}}
+\doxysubsubsection{\texorpdfstring{category()}{category()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1mime__types_1_1MimeType_ada72e8659d7db25b6eb42bfdd89f5eaf} 
+ str pydantic\+\_\+extra\+\_\+types.\+mime\+\_\+types.\+Mime\+Type.\+category (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The category of the MIME type (e.g., 'application', 'audio', 'video').\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+mime\+\_\+types.\+py\end{DoxyCompactItemize}

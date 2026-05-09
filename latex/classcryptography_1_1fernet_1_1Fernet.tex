@@ -1,0 +1,58 @@
+\doxysection{cryptography.\+fernet.\+Fernet Class Reference}
+\hypertarget{classcryptography_1_1fernet_1_1Fernet}{}\label{classcryptography_1_1fernet_1_1Fernet}\index{cryptography.fernet.Fernet@{cryptography.fernet.Fernet}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a6a8b2d941b0c5099d7ac0192d78b58f5}\label{classcryptography_1_1fernet_1_1Fernet_a6a8b2d941b0c5099d7ac0192d78b58f5} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bytes\texorpdfstring{$\vert$}{|}str key, typing.\+Any backend=None)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a3216f315195cca2c91cfae7bc9d49526}\label{classcryptography_1_1fernet_1_1Fernet_a3216f315195cca2c91cfae7bc9d49526} 
+bytes {\bfseries generate\+\_\+key} (cls)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a7dc261d932403b311a7d128885b25c0a}\label{classcryptography_1_1fernet_1_1Fernet_a7dc261d932403b311a7d128885b25c0a} 
+bytes {\bfseries encrypt} (self, bytes data)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_aaa6f87afefa24d4dacc75f4548ffa3d6}\label{classcryptography_1_1fernet_1_1Fernet_aaa6f87afefa24d4dacc75f4548ffa3d6} 
+bytes {\bfseries encrypt\+\_\+at\+\_\+time} (self, bytes data, int current\+\_\+time)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a1e18cd6cef2d33a59caa6168d4c9226f}\label{classcryptography_1_1fernet_1_1Fernet_a1e18cd6cef2d33a59caa6168d4c9226f} 
+bytes {\bfseries decrypt} (self, bytes\texorpdfstring{$\vert$}{|}str token, int\texorpdfstring{$\vert$}{|}None ttl=None)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a0a691d4cb008fc34b55fccb852035c4d}\label{classcryptography_1_1fernet_1_1Fernet_a0a691d4cb008fc34b55fccb852035c4d} 
+bytes {\bfseries decrypt\+\_\+at\+\_\+time} (self, bytes\texorpdfstring{$\vert$}{|}str token, int ttl, int current\+\_\+time)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a602473a346f9e85393ca75196abf2bd1}\label{classcryptography_1_1fernet_1_1Fernet_a602473a346f9e85393ca75196abf2bd1} 
+int {\bfseries extract\+\_\+timestamp} (self, bytes\texorpdfstring{$\vert$}{|}str token)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_ac78a618ba68461ee095e1006d6059144}\label{classcryptography_1_1fernet_1_1Fernet_ac78a618ba68461ee095e1006d6059144} 
+bytes {\bfseries \+\_\+encrypt\+\_\+from\+\_\+parts} (self, bytes data, int current\+\_\+time, bytes iv)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_aae1df82ce9c434c2416a227c3bf968f5}\label{classcryptography_1_1fernet_1_1Fernet_aae1df82ce9c434c2416a227c3bf968f5} 
+None {\bfseries \+\_\+verify\+\_\+signature} (self, bytes data)
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_abf4b72c5c7eeeb152213f8eecde4b048}\label{classcryptography_1_1fernet_1_1Fernet_abf4b72c5c7eeeb152213f8eecde4b048} 
+bytes {\bfseries \+\_\+decrypt\+\_\+data} (self, bytes data, int timestamp, tuple\+[int, int]\+\texorpdfstring{$\vert$}{|}None time\+\_\+info)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a1a364862915443a2c629c1883058a92c}\label{classcryptography_1_1fernet_1_1Fernet_a1a364862915443a2c629c1883058a92c} 
+tuple\+[int, bytes]\+ {\bfseries \+\_\+get\+\_\+unverified\+\_\+token\+\_\+data} (bytes\texorpdfstring{$\vert$}{|}str token)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_afca370bcbbd6002b92b84383b47ea9d7}\label{classcryptography_1_1fernet_1_1Fernet_afca370bcbbd6002b92b84383b47ea9d7} 
+{\bfseries \+\_\+signing\+\_\+key} = key\+[:\+16]\+
+\item 
+\Hypertarget{classcryptography_1_1fernet_1_1Fernet_a48f9ec499d8acae65419c1a2edfd3b2d}\label{classcryptography_1_1fernet_1_1Fernet_a48f9ec499d8acae65419c1a2edfd3b2d} 
+{\bfseries \+\_\+encryption\+\_\+key} = key\+[16:\+]\+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+cryptography/\+fernet.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,122 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN Class Reference}
+\hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN}{}\label{classpydantic__extra__types_1_1isbn_1_1ISBN}\index{pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1isbn_1_1ISBN}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic__extra__types_1_1isbn_1_1ISBN_aeecb67f04c3a741826137fe96a2992a6}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classpydantic__extra__types_1_1isbn_1_1ISBN_a83f277ee396ac5dff34904ec0af5cd3d}{validate\+\_\+isbn\+\_\+format}} (str value)
+\item 
+str \doxymbox{\hyperlink{classpydantic__extra__types_1_1isbn_1_1ISBN_ac4211e32410b7ff54b61b18faac07ad1}{convert\+\_\+isbn10\+\_\+to\+\_\+isbn13}} (str value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classpydantic__extra__types_1_1isbn_1_1ISBN_a2fd65cb38b8b7fd2c29be36dfdc4afbf}{\+\_\+validate}} (cls, str \+\_\+\+\_\+input\+\_\+value, Any \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_a96f1eba19468914fca02948f6e85d886}\label{classpydantic__extra__types_1_1isbn_1_1ISBN_a96f1eba19468914fca02948f6e85d886} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a ISBN and provides methods for conversion, validation, and serialization.
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types.isbn import ISBN
+
+
+class Book(BaseModel):
+    isbn: ISBN
+
+
+book = Book(isbn='8537809667')
+print(book)
+# > isbn='9788537809662'
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1isbn_1_1ISBN_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_aeecb67f04c3a741826137fe96a2992a6}\index{pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1isbn_1_1ISBN_aeecb67f04c3a741826137fe96a2992a6} 
+ core\+\_\+schema.\+Core\+Schema pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{type\+[Any]\+}]{source}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Pydantic CoreSchema with the ISBN validation.
+
+Args:
+    source: The source type to be converted.
+    handler: The handler to get the CoreSchema.
+
+Returns:
+    A Pydantic CoreSchema with the ISBN validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_a2fd65cb38b8b7fd2c29be36dfdc4afbf}\index{pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1isbn_1_1ISBN_a2fd65cb38b8b7fd2c29be36dfdc4afbf} 
+ str pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN.\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{\+\_\+\+\_\+input\+\_\+value}{, }\item[{Any}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate a ISBN from the provided str value.
+
+Args:
+    __input_value: The str value to be validated.
+    _: The source type to be converted.
+
+Returns:
+    The validated ISBN.
+
+Raises:
+    PydanticCustomError: If the ISBN is not valid.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_ac4211e32410b7ff54b61b18faac07ad1}\index{pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}!convert\_isbn10\_to\_isbn13@{convert\_isbn10\_to\_isbn13}}
+\index{convert\_isbn10\_to\_isbn13@{convert\_isbn10\_to\_isbn13}!pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}}
+\doxysubsubsection{\texorpdfstring{convert\_isbn10\_to\_isbn13()}{convert\_isbn10\_to\_isbn13()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1isbn_1_1ISBN_ac4211e32410b7ff54b61b18faac07ad1} 
+ str pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN.\+convert\+\_\+isbn10\+\_\+to\+\_\+isbn13 (\begin{DoxyParamCaption}\item[{str}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Convert an ISBN-10 to ISBN-13.
+
+Args:
+    value: The ISBN-10 value to be converted.
+
+Returns:
+    The converted ISBN or the original value if no conversion is necessary.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1isbn_1_1ISBN_a83f277ee396ac5dff34904ec0af5cd3d}\index{pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}!validate\_isbn\_format@{validate\_isbn\_format}}
+\index{validate\_isbn\_format@{validate\_isbn\_format}!pydantic\_extra\_types.isbn.ISBN@{pydantic\_extra\_types.isbn.ISBN}}
+\doxysubsubsection{\texorpdfstring{validate\_isbn\_format()}{validate\_isbn\_format()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1isbn_1_1ISBN_a83f277ee396ac5dff34904ec0af5cd3d} 
+ None pydantic\+\_\+extra\+\_\+types.\+isbn.\+ISBN.\+validate\+\_\+isbn\+\_\+format (\begin{DoxyParamCaption}\item[{str}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Validate a ISBN format from the provided str value.
+
+Args:
+    value: The str value representing the ISBN in 10 or 13 digits.
+
+Raises:
+    PydanticCustomError: If the ISBN is not valid.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+isbn.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,70 @@
+\doxysection{frontend/\+node\+\_\+modules/\+strip-\/json-\/comments Directory Reference}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763}{}\label{dir_4e481fd0c022c643e5184fcb16705763}\index{frontend/node\_modules/strip-\/json-\/comments Directory Reference@{frontend/node\_modules/strip-\/json-\/comments Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4560}{}\doxysubsection{\texorpdfstring{strip-\/json-\/comments \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/strip-json-comments.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+strip-\/json-\/comments.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/strip-json-comments}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+strip-\/json-\/comments}})}{strip-\/json-\/comments \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/strip-json-comments.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+strip-\/json-\/comments.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/strip-json-comments}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+strip-\/json-\/comments}})}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4560}
+\begin{quote}
+Strip comments from JSON. Lets you use comments in your JSON files! \end{quote}
+
+
+This is now possible:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ //\ Rainbows}
+\DoxyCodeLine{\ \ \ \ "{}unicorn"{}:\ /*\ ❤\ */\ "{}cake"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+It will replace single-\/line comments {\ttfamily /\+/\+} and multi-\/line comments {\ttfamily /\+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+} with whitespace. This allows JSON error positions to remain as close as possible to the original source.
+
+Also available as a \href{https://github.com/sindresorhus/gulp-strip-json-comments}{\texttt{Gulp}}/\+\href{https://github.com/sindresorhus/grunt-strip-json-comments}{\texttt{Grunt}}/\+\href{https://github.com/sindresorhus/broccoli-strip-json-comments}{\texttt{Broccoli}} plugin.\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4561}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4561}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ strip-\/json-\/comments}
+
+\end{DoxyCode}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4562}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4562}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ json\ =\ \`{}\{}
+\DoxyCodeLine{\ \ \ \ //\ Rainbows}
+\DoxyCodeLine{\ \ \ \ "{}unicorn"{}:\ /*\ ❤\ */\ "{}cake"{}}
+\DoxyCodeLine{\}`;}
+\DoxyCodeLine{}
+\DoxyCodeLine{JSON.parse(stripJsonComments(json));}
+\DoxyCodeLine{//=>\ \{unicorn:\ 'cake'\}}
+
+\end{DoxyCode}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4563}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4563}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4564}{}\doxysubsubsection{\texorpdfstring{strip\+Json\+Comments(json\+String, options?)}{strip\+Json\+Comments(json\+String, options?)}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4564}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4565}{}\doxysubsubsubsection{\texorpdfstring{json\+String}{json\+String}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4565}
+Type:\+ {\ttfamily string}
+
+Accepts a string with JSON and returns a string without comments.\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4566}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4566}
+Type:\+ {\ttfamily object}\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4567}{}\doxysubsubsubsubsection{\texorpdfstring{whitespace}{whitespace}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4567}
+Type:\+ {\ttfamily boolean}\textbackslash{} Default:\+ {\ttfamily true}
+
+Replace comments with whitespace instead of stripping them entirely.\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4568}{}\doxysubsection{\texorpdfstring{Benchmark}{Benchmark}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4568}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ run\ bench}
+
+\end{DoxyCode}
+\hypertarget{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4569}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_4e481fd0c022c643e5184fcb16705763_autotoc_md4569}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/strip-json-comments-cli}{\texttt{strip-\/json-\/comments-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/sindresorhus/strip-css-comments}{\texttt{strip-\/css-\/comments}} -\/ Strip comments from CSS
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-strip-json-comments?utm_source=npm-strip-json-comments&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

@@ -1,0 +1,109 @@
+\doxysection{switch\+\_\+ppc64\+\_\+aix.\+h}
+\hypertarget{switch__ppc64__aix_8h_source}{}\label{switch__ppc64__aix_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_ppc64\_aix.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_ppc64\_aix.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 16-\/Oct-\/20\ \ Jesse\ Gorzinski\ <jgorzins@us.ibm.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ \ Copied\ from\ Linux\ PPC64\ implementation}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ 04-\/Sep-\/18\ \ Alexey\ Borzenkov\ \ <snaury@gmail.com>}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ \ Workaround\ a\ gcc\ bug\ using\ manual\ save/restore\ of\ r30}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ 21-\/Mar-\/18\ \ Tulio\ Magno\ Quites\ Machado\ Filho\ \ <tuliom@linux.vnet.ibm.com>}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ \ \ \ \ \ Added\ r30\ to\ the\ list\ of\ saved\ registers\ in\ order\ to\ fully\ comply\ with}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ \ \ \ both\ ppc64\ ELFv1\ ABI\ and\ the\ ppc64le\ ELFv2\ ABI,\ that\ classify\ this}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ \ \ \ register\ as\ a\ nonvolatile\ register\ used\ for\ local\ variables.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ 21-\/Mar-\/18\ \ Laszlo\ Boszormenyi\ \ <gcs@debian.org>}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ Save\ r2\ (TOC\ pointer)\ manually.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ 10-\/Dec-\/13\ \ Ulrich\ Weigand\ \ <uweigand@de.ibm.com>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ Support\ ELFv2\ ABI.\ \ Save\ float/vector\ registers.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ 09-\/Mar-\/12\ Michael\ Ellerman\ <michael@ellerman.id.au>}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ \ \ 64-\/bit\ implementation,\ copied\ from\ 32-\/bit.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 07-\/Sep-\/05\ (py-\/dev\ mailing\ list\ discussion)}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ removed\ 'r31'\ from\ the\ register-\/saved.\ \ !!!!\ WARNING\ !!!!}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ \ \ \ It\ means\ that\ this\ file\ can\ no\ longer\ be\ compiled\ statically!}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ It\ is\ now\ only\ suitable\ as\ part\ of\ a\ dynamic\ library!}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ 14-\/Jan-\/04\ \ Bob\ Ippolito\ <bob@redivi.com>}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ \ \ \ \ \ added\ cr2-\/cr4\ to\ the\ registers\ to\ be\ saved.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ \ \ \ \ Open\ questions:\ Should\ we\ save\ FP\ registers?}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ \ \ \ What\ about\ vector\ registers?}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ \ \ \ \ \ Differences\ between\ darwin\ and\ unix?}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ 24-\/Nov-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ \ \ \ needed\ to\ add\ another\ magic\ constant\ to\ insure}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *\ \ \ \ \ \ that\ f\ in\ slp\_eval\_frame(PyFrameObject\ *f)}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ \ \ \ \ \ STACK\_REFPLUS\ will\ probably\ be\ 1\ in\ most\ cases.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *\ \ \ \ \ \ gets\ included\ into\ the\ saved\ stack\ area.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ 04-\/Oct-\/02\ \ Gustavo\ Niemeyer\ <niemeyer@conectiva.com>}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ \ \ \ \ \ Ported\ from\ MacOS\ version.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ 17-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *\ \ \ \ \ \ after\ virtualizing\ stack\ save/restore,\ the}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ \ \ \ \ \ stack\ size\ shrunk\ a\ bit.\ Needed\ to\ introduce}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ \ \ \ \ \ an\ adjustment\ STACK\_MAGIC\ per\ platform.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ 15-\/Sep-\/02\ \ Gerd\ Woetzel\ \ \ \ \ \ \ <gerd.woetzel@GMD.DE>}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ \ \ \ \ \ slightly\ changed\ framework\ for\ sparc}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ 29-\/Jun-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ \ \ \ \ \ Added\ register\ 13-\/29,\ 31\ saves.\ The\ same\ way\ as}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ \ \ \ \ \ Armin\ Rigo\ did\ for\ the\ x86\_unix\ version.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ \ \ \ \ \ This\ seems\ to\ be\ now\ fully\ functional!}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ 04-\/Mar-\/02\ \ Hye-\/Shik\ Chang\ \ <perky@fallin.lv>}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ \ \ \ \ \ Ported\ from\ i386.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ 31-\/Jul-\/12\ \ Trevor\ Bowen\ \ \ \ <trevorbowen@gmail.com>}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ \ \ \ \ \ Changed\ memory\ constraints\ to\ register\ only.}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 6}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ defined(\_\_ALTIVEC\_\_)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ALTIVEC\_REGS\ \(\backslash\)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}v20"{},\ "{}v21"{},\ "{}v22"{},\ "{}v23"{},\ "{}v24"{},\ "{}v25"{},\ "{}v26"{},\ "{}v27"{},\ \(\backslash\)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}v28"{},\ "{}v29"{},\ "{}v30"{},\ "{}v31"{},}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ ALTIVEC\_REGS}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ "{}r14"{},\ "{}r15"{},\ "{}r16"{},\ "{}r17"{},\ "{}r18"{},\ "{}r19"{},\ "{}r20"{},\ \ \(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}r21"{},\ "{}r22"{},\ "{}r23"{},\ "{}r24"{},\ "{}r25"{},\ "{}r26"{},\ "{}r27"{},\ "{}r28"{},\ "{}r29"{},\ \ \(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}r31"{},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}fr14"{},\ "{}fr15"{},\ "{}fr16"{},\ "{}fr17"{},\ "{}fr18"{},\ "{}fr19"{},\ "{}fr20"{},\ "{}fr21"{},\ \(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}fr22"{},\ "{}fr23"{},\ "{}fr24"{},\ "{}fr25"{},\ "{}fr26"{},\ "{}fr27"{},\ "{}fr28"{},\ "{}fr29"{},\ \(\backslash\)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}fr30"{},\ "{}fr31"{},\ \(\backslash\)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \ \ \ ALTIVEC\_REGS\ \(\backslash\)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \ \ \ "{}cr2"{},\ "{}cr3"{},\ "{}cr4"{}}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00075\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{int}\ err;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{long}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ *\ toc;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ *\ r30;}
+\DoxyCodeLine{00081\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00082\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}std\ 2,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (toc));}
+\DoxyCodeLine{00083\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}std\ 30,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (r30));}
+\DoxyCodeLine{00084\ \ \ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}mr\ \%0,\ 1"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref)\ :\ );}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}mr\ 11,\ \%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ 1,\ 1,\ 11\(\backslash\)n"{}}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{comment}{/*\ no\ outputs\ */}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}11"{}}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}ld\ 30,\ \%0"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (r30));}
+\DoxyCodeLine{00097\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}ld\ 2,\ \%0"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (toc));}
+\DoxyCodeLine{00098\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00099\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}li\ \%0,\ 0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (err));}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ err;}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

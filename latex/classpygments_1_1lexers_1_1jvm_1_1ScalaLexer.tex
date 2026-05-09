@@ -1,0 +1,230 @@
+\doxysection{pygments.\+lexers.\+jvm.\+Scala\+Lexer Class Reference}
+\hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer}{}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer}\index{pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}}
+Inheritance diagram for pygments.\+lexers.\+jvm.\+Scala\+Lexer:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.431373cm]{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a96fdb010f03c6e319eec52621feec343}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a96fdb010f03c6e319eec52621feec343} 
+str {\bfseries opchar} = \textquotesingle{}\+[!\+\#\%\&\texorpdfstring{$\ast$}{*}\textbackslash{}\textbackslash{}-\/\textbackslash{}\textbackslash{}/\+:\+?@\texorpdfstring{$^\wedge$}{\string^}\textquotesingle{} + uni.\+combine(\textquotesingle{}Sm\textquotesingle{}, \textquotesingle{}So\textquotesingle{}) + \textquotesingle{}]\+\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a25826ee1d4fdf8f3f3b853300251ffaf}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a25826ee1d4fdf8f3f3b853300251ffaf} 
+str {\bfseries letter} = \textquotesingle{}\+[\+\_\+\textbackslash{}\textbackslash{}\$\textquotesingle{} + uni.\+combine(\textquotesingle{}Ll\textquotesingle{}, \textquotesingle{}Lu\textquotesingle{}, \textquotesingle{}Lo\textquotesingle{}, \textquotesingle{}Nl\textquotesingle{}, \textquotesingle{}Lt\textquotesingle{}) + \textquotesingle{}]\+\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_aefd5493ce107a5f2cac342a4c483897d}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_aefd5493ce107a5f2cac342a4c483897d} 
+str {\bfseries upper\+Letter} = \textquotesingle{}\+[\textquotesingle{} + uni.\+combine(\textquotesingle{}Lu\textquotesingle{}, \textquotesingle{}Lt\textquotesingle{}) + \textquotesingle{}]\+\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a28aa60e230e0fa59cd7d471bcc7e05c4}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a28aa60e230e0fa59cd7d471bcc7e05c4} 
+str {\bfseries letter\+Or\+Digit} = f\textquotesingle{}(?:\+\{letter\}\texorpdfstring{$\vert$}{|}\+[0-\/9]\+)\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a9a323b725a54741e6bc3b0bf03cfc3da}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a9a323b725a54741e6bc3b0bf03cfc3da} 
+str {\bfseries letter\+Or\+Digit\+No\+Dollar\+Sign} = \textquotesingle{}(?:\+\{\}\texorpdfstring{$\vert$}{|}\+[0-\/9]\+)\textquotesingle{}.\doxymbox{\hyperlink{namespacepygments_a19b52d91e848e33e153e1e95043e2d6d}{format}}(letter.\+replace(\textquotesingle{}\textbackslash{}\textbackslash{}\$\textquotesingle{}, \textquotesingle{}\textquotesingle{}))
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_af3b91bfeb47eff7c7182b241feaf85a5}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_af3b91bfeb47eff7c7182b241feaf85a5} 
+str {\bfseries alpha\+Id} = f\textquotesingle{}\{letter\}+\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_abf27116e73442676b597ed3296940dda}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_abf27116e73442676b597ed3296940dda} 
+str {\bfseries simple\+Interpolated\+Variable} = f\textquotesingle{}\{letter\}\{letter\+Or\+Digit\+No\+Dollar\+Sign\}\texorpdfstring{$\ast$}{*}\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a53603b4a9520f6ccb395e037c053703a}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a53603b4a9520f6ccb395e037c053703a} 
+str {\bfseries idrest} = f\textquotesingle{}\{letter\}\{letter\+Or\+Digit\}\texorpdfstring{$\ast$}{*}(?:\+(?$<$=\+\_\+)\{opchar\}+)?\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a2ecb347af51800af8fa8b94818299f3e}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a2ecb347af51800af8fa8b94818299f3e} 
+str {\bfseries id\+Upper} = f\textquotesingle{}\{upper\+Letter\}\{letter\+Or\+Digit\}\texorpdfstring{$\ast$}{*}(?:\+(?$<$=\+\_\+)\{opchar\}+)?\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a83c6335c3fd7ba1a83703110d10b47c5}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a83c6335c3fd7ba1a83703110d10b47c5} 
+str {\bfseries plainid} = f\textquotesingle{}(?:\+\{idrest\}\texorpdfstring{$\vert$}{|}\{opchar\}+)\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_ab94fad17551e88f2b80241bc9d77f849}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_ab94fad17551e88f2b80241bc9d77f849} 
+str {\bfseries back\+Quoted\+Id} = \doxymbox{\hyperlink{namespacepygments_1_1lexers_1_1r}{r}}\textquotesingle{}\`{}\+[\texorpdfstring{$^\wedge$}{\string^}\`{}]\++\`{}\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a0d8f7495f1798e7b56b9edf5e87cd2a6}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a0d8f7495f1798e7b56b9edf5e87cd2a6} 
+str {\bfseries any\+Id} = rf\textquotesingle{}(?:\+\{plainid\}\texorpdfstring{$\vert$}{|}\{back\+Quoted\+Id\})\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_ac2ad1e59310472b584d671d9dbb3cd90}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_ac2ad1e59310472b584d671d9dbb3cd90} 
+str {\bfseries not\+Start\+Of\+Comment} = \doxymbox{\hyperlink{namespacepygments_1_1lexers_1_1r}{r}}\textquotesingle{}(?!/\+/\+\texorpdfstring{$\vert$}{|}/\+\textbackslash{}\texorpdfstring{$\ast$}{*})\textquotesingle{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a79619637a6d312e4fe9d0047c060ac1f}\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a79619637a6d312e4fe9d0047c060ac1f} 
+str {\bfseries end\+Of\+Line\+Maybe\+With\+Comment} = \doxymbox{\hyperlink{namespacepygments_1_1lexers_1_1r}{r}}\textquotesingle{}(?=\textbackslash{}s\texorpdfstring{$\ast$}{*}(/\+/\+\texorpdfstring{$\vert$}{|}\$))\textquotesingle{}
+\item 
+tuple \doxymbox{\hyperlink{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a77e9fc584c19aa9aac58a805ca8a6373}{keywords}}
+\item 
+tuple \doxymbox{\hyperlink{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a4bd325c120ee0545ab92e365a209dc58}{operators}}
+\item 
+tuple \doxymbox{\hyperlink{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a15ff418c49fa648d39538183b6c09f21}{storage\+\_\+modifiers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer}{pygments.\+lexer.\+Regex\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries flags} = re.\+MULTILINE
+\item 
+dict {\bfseries tokens} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries name} = None
+\item 
+list {\bfseries aliases} = \+[$\,$]\+
+\item 
+list {\bfseries filenames} = \+[$\,$]\+
+\item 
+list {\bfseries alias\+\_\+filenames} = \+[$\,$]\+
+\item 
+list {\bfseries mimetypes} = \+[$\,$]\+
+\item 
+int {\bfseries priority} = 0
+\item 
+{\bfseries url} = None
+\item 
+{\bfseries version\+\_\+added} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer}{pygments.\+lexer.\+Regex\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer_a56bd1a609a7e589293afd2d71637f91a}{get\+\_\+tokens\+\_\+unprocessed}} (self, text, stack=(\textquotesingle{}root\textquotesingle{},))
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ad4f2ca2ced009731f38895a0699e1067}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ad48533fea796f7164306ca3c6c0c1043}{add\+\_\+filter}} (self, filter\+\_\+, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_acb2d7eefc23ce9b9ae69e1477461533a}{analyse\+\_\+text}} (text)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_af86049e12f03e404f068b59f2e0d0ef9}{get\+\_\+tokens}} (self, text, unfiltered=False)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1LexerMeta}{pygments.\+lexer.\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (mcs, name, bases, d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a78aff20634156007820ebc7d91db4263}{process\+\_\+tokendef}} (cls, name, tokendefs=None)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_ad1718986775db465d8f0c43e169bd989}{get\+\_\+tokendefs}} (cls)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a3c5937ef31d368e49226c1f044cc8a6c}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries options} = options
+\item 
+{\bfseries stripnl} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}stripnl\textquotesingle{}, True)
+\item 
+{\bfseries stripall} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}stripall\textquotesingle{}, False)
+\item 
+{\bfseries ensurenl} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}ensurenl\textquotesingle{}, True)
+\item 
+{\bfseries tabsize} = get\+\_\+int\+\_\+opt(options, \textquotesingle{}tabsize\textquotesingle{}, 0)
+\item 
+str {\bfseries encoding} = options.\+get(\textquotesingle{}encoding\textquotesingle{}, \textquotesingle{}guess\textquotesingle{})
+\item 
+list {\bfseries filters} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries token\+\_\+variants}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ac6218da310c855d57209faf59fb3a69d}{\+\_\+preprocess\+\_\+lexer\+\_\+input}} (self, text)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a0ea8580f410a245152475da1fb74805c}{\+\_\+process\+\_\+regex}} (cls, regex, rflags, state)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a6e07c09c6030f8daefbca8950cfb01ef}{\+\_\+process\+\_\+token}} (cls, token)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a8ea4d75536df57c8bef0ee50dc0e6616}{\+\_\+process\+\_\+new\+\_\+state}} (cls, new\+\_\+state, unprocessed, processed)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_ac15a1d28ec003eeb537c44467e9ea339}{\+\_\+process\+\_\+state}} (cls, unprocessed, processed, state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+dict {\bfseries \+\_\+all\+\_\+tokens} = \{\}
+\item 
+int {\bfseries \+\_\+tmpname} = 0
+\item 
+{\bfseries \+\_\+tokens} = cls.\+process\+\_\+tokendef(\textquotesingle{}\textquotesingle{}, cls.\+get\+\_\+tokendefs())
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+example} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}For Scala source code.
+\end{DoxyVerb}
+ 
+
+\label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_doc-variable-members}
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a77e9fc584c19aa9aac58a805ca8a6373}\index{pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}!keywords@{keywords}}
+\index{keywords@{keywords}!pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}}
+\doxysubsubsection{\texorpdfstring{keywords}{keywords}}
+{\footnotesize\ttfamily \label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a77e9fc584c19aa9aac58a805ca8a6373} 
+tuple pygments.\+lexers.\+jvm.\+Scala\+Lexer.\+keywords\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'new'},\ \textcolor{stringliteral}{'return'},\ \textcolor{stringliteral}{'throw'},\ \textcolor{stringliteral}{'classOf'},\ \textcolor{stringliteral}{'isInstanceOf'},\ \textcolor{stringliteral}{'asInstanceOf'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'else'},\ \textcolor{stringliteral}{'if'},\ \textcolor{stringliteral}{'then'},\ \textcolor{stringliteral}{'do'},\ \textcolor{stringliteral}{'while'},\ \textcolor{stringliteral}{'for'},\ \textcolor{stringliteral}{'yield'},\ \textcolor{stringliteral}{'match'},\ \textcolor{stringliteral}{'case'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'catch'},\ \textcolor{stringliteral}{'finally'},\ \textcolor{stringliteral}{'try'}}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a4bd325c120ee0545ab92e365a209dc58}\index{pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}!operators@{operators}}
+\index{operators@{operators}!pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}}
+\doxysubsubsection{\texorpdfstring{operators}{operators}}
+{\footnotesize\ttfamily \label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a4bd325c120ee0545ab92e365a209dc58} 
+tuple pygments.\+lexers.\+jvm.\+Scala\+Lexer.\+operators\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<\%'},\ \textcolor{stringliteral}{'=:='},\ \textcolor{stringliteral}{'<:<'},\ \textcolor{stringliteral}{'<\%<'},\ \textcolor{stringliteral}{'>:'},\ \textcolor{stringliteral}{'<:'},\ \textcolor{stringliteral}{'='},\ \textcolor{stringliteral}{'=='},\ \textcolor{stringliteral}{'!='},\ \textcolor{stringliteral}{'<='},\ \textcolor{stringliteral}{'>='},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'<>'},\ \textcolor{stringliteral}{'<'},\ \textcolor{stringliteral}{'>'},\ \textcolor{stringliteral}{'<-\/'},\ \textcolor{stringliteral}{'←'},\ \textcolor{stringliteral}{'-\/>'},\ \textcolor{stringliteral}{'→'},\ \textcolor{stringliteral}{'=>'},\ \textcolor{stringliteral}{'⇒'},\ \textcolor{stringliteral}{'?'},\ \textcolor{stringliteral}{'@'},\ \textcolor{stringliteral}{'|'},\ \textcolor{stringliteral}{'-\/'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'+'},\ \textcolor{stringliteral}{'*'},\ \textcolor{stringliteral}{'\%'},\ \textcolor{stringliteral}{'\string~'},\ \textcolor{stringliteral}{'\(\backslash\)\(\backslash\)'}}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a15ff418c49fa648d39538183b6c09f21}\index{pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}!storage\_modifiers@{storage\_modifiers}}
+\index{storage\_modifiers@{storage\_modifiers}!pygments.lexers.jvm.ScalaLexer@{pygments.lexers.jvm.ScalaLexer}}
+\doxysubsubsection{\texorpdfstring{storage\_modifiers}{storage\_modifiers}}
+{\footnotesize\ttfamily \label{classpygments_1_1lexers_1_1jvm_1_1ScalaLexer_a15ff418c49fa648d39538183b6c09f21} 
+tuple pygments.\+lexers.\+jvm.\+Scala\+Lexer.\+storage\+\_\+modifiers\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'private'},\ \textcolor{stringliteral}{'protected'},\ \textcolor{stringliteral}{'synchronized'},\ \textcolor{stringliteral}{'@volatile'},\ \textcolor{stringliteral}{'abstract'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'final'},\ \textcolor{stringliteral}{'lazy'},\ \textcolor{stringliteral}{'sealed'},\ \textcolor{stringliteral}{'implicit'},\ \textcolor{stringliteral}{'override'},\ \textcolor{stringliteral}{'@transient'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'@native'}}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pygments/\+lexers/\+jvm.\+py\end{DoxyCompactItemize}

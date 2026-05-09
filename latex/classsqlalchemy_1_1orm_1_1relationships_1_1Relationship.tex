@@ -1,0 +1,773 @@
+\doxysection{sqlalchemy.\+orm.\+relationships.\+Relationship Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1relationships_1_1Relationship}{}\label{classsqlalchemy_1_1orm_1_1relationships_1_1Relationship}\index{sqlalchemy.orm.relationships.Relationship@{sqlalchemy.orm.relationships.Relationship}}
+Inheritance diagram for sqlalchemy.\+orm.\+relationships.\+Relationship:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.377049cm]{classsqlalchemy_1_1orm_1_1relationships_1_1Relationship}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Optional\+[\+\_\+\+Relationship\+Argument\+Type\+[\+\_\+T]\+]\+ argument=None, Optional\+[\+\_\+\+Relationship\+Secondary\+Argument]\+ secondary=None, \texorpdfstring{$\ast$}{*}, Optional\+[bool]\+ uselist=None, Optional\+[Union\+[Type\+[Collection\+[Any]\+]\+, Callable\+[\+[$\,$]\+, Collection\+[Any]\+]\+]\+]\+ collection\+\_\+class=None, Optional\+[\+\_\+\+Relationship\+Join\+Condition\+Argument]\+ primaryjoin=None, Optional\+[\+\_\+\+Relationship\+Join\+Condition\+Argument]\+ secondaryjoin=None, Optional\+[str]\+ back\+\_\+populates=None, \+\_\+\+ORMOrder\+By\+Argument order\+\_\+by=False, Optional\+[ORMBackref\+Argument]\+ backref=None, Optional\+[str]\+ overlaps=None, bool post\+\_\+update=False, str cascade="{}save-\/update, merge"{}, bool viewonly=False, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1__AttributeOptions}{\+\_\+\+Attribute\+Options}}]\+ attribute\+\_\+options=None, \+\_\+\+Lazy\+Load\+Argument\+Type lazy="{}select"{}, Union\+[Literal\+["{}all"{}]\+, bool]\+ passive\+\_\+deletes=False, bool passive\+\_\+updates=True, bool active\+\_\+history=False, bool enable\+\_\+typechecks=True, Optional\+[\+\_\+\+ORMCol\+Collection\+Argument]\+ foreign\+\_\+keys=None, Optional\+[\+\_\+\+ORMCol\+Collection\+Argument]\+ remote\+\_\+side=None, Optional\+[int]\+ join\+\_\+depth=None, Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_1_1Comparator}{Relationship\+Property.\+Comparator}}\+[Any]\+]\+]\+ comparator\+\_\+factory=None, bool single\+\_\+parent=False, bool innerjoin=False, Optional\+[bool]\+ distinct\+\_\+target\+\_\+key=None, bool load\+\_\+on\+\_\+pending=False, Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[Any]\+]\+]\+ query\+\_\+class=None, Optional\+[\+\_\+\+Info\+Type]\+ info=None, Literal\+[None, False]\+ omit\+\_\+join=None, Optional\+[bool]\+ sync\+\_\+backref=None, Optional\+[str]\+ doc=None, Literal\+[True]\+ bake\+\_\+queries=True, Literal\+[False]\+ cascade\+\_\+backrefs=False, Optional\+[\+\_\+\+Column\+Pairs]\+ \+\_\+local\+\_\+remote\+\_\+pairs=None, bool \+\_\+legacy\+\_\+inactive\+\_\+history\+\_\+style=False)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a131ebafa3b3af953d6f1ce0811c3248e}{instrument\+\_\+class}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a6a7ca61d7473bc010fa0459f490a7e84}{merge}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} session, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ source\+\_\+state, \+\_\+\+Instance\+Dict source\+\_\+dict, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ dest\+\_\+state, \+\_\+\+Instance\+Dict dest\+\_\+dict, bool load, Dict\+[Any, object]\+ \+\_\+recursive, Dict\+[\+\_\+\+Identity\+Key\+Type\+[Any]\+, object]\+ \+\_\+resolve\+\_\+conflict\+\_\+map)
+\item 
+Iterator\+[Tuple\+[Any, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+, \+\_\+\+Instance\+Dict]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a7c2fc237eb9a2baed62d7a7cdf508182}{cascade\+\_\+iterator}} (self, str type\+\_\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, \+\_\+\+Instance\+Dict dict\+\_\+, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ visited\+\_\+states, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+, bool]\+]\+ halt\+\_\+on=None)
+\item 
+\+\_\+\+Internal\+Entity\+Type\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a26a49f8171bad63f5c32ec9a2970045e}{entity}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a02dbae247db4866c9ff301ba60a4d8a1}{mapper}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_ab5e15aa7e19e18b52ea975487db3f448}{do\+\_\+init}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_ac9d002adaaf4c7e5f060a104ba9b6fb1}{declarative\+\_\+scan}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1decl__base_1_1__ClassScanMapperConfig}{\+\_\+\+Class\+Scan\+Mapper\+Config}} decl\+\_\+scan, \+\_\+\+Registry\+Type registry, Type\+[Any]\+ cls, Optional\+[str]\+ originating\+\_\+module, str key, Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1Mapped}{Mapped}}\+[Any]\+]\+]\+ mapped\+\_\+container, Optional\+[\+\_\+\+Annotation\+Scan\+Type]\+ annotation, Optional\+[\+\_\+\+Annotation\+Scan\+Type]\+ extracted\+\_\+mapped\+\_\+annotation, bool is\+\_\+dataclass\+\_\+field)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1CascadeOptions}{Cascade\+Options}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a0d013cad3098407d06cc1da35161dd09}{cascade}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a2cd4b49b57df80dab25786bbc922d930}{cascade}} (self, Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1CascadeOptions}{Cascade\+Options}}]\+ cascade)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1__IntrospectsAnnotations}{sqlalchemy.\+orm.\+interfaces.\+\_\+\+Introspects\+Annotations}}}
+\begin{DoxyCompactItemize}
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1__IntrospectsAnnotations_ab0f050868f5be5fdcfe8e3182f4e41f1}{found\+\_\+in\+\_\+pep593\+\_\+annotated}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty}{sqlalchemy.\+orm.\+interfaces.\+Strategized\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty_a1c1e998d0107b962764869206eb705af}{setup}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMCompileState}{ORMCompile\+State}} context, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1__MapperEntity}{\+\_\+\+Mapper\+Entity}} query\+\_\+entity, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1path__registry_1_1AbstractEntityRegistry}{Abstract\+Entity\+Registry}} path, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1ORMAdapter}{ORMAdapter}}]\+ adapter, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty_abe59373dc81b5eb735f25c4df7e92c6d}{create\+\_\+row\+\_\+processor}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMCompileState}{ORMCompile\+State}} context, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1__MapperEntity}{\+\_\+\+Mapper\+Entity}} query\+\_\+entity, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1path__registry_1_1AbstractEntityRegistry}{Abstract\+Entity\+Registry}} path, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+ result, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1ORMAdapter}{ORMAdapter}}]\+ adapter, \+\_\+\+Populator\+Dict populators)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty_adf49a6893787106df18ce17c03567e9c}{post\+\_\+instrument\+\_\+class}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper)
+\item 
+Callable\+[\+[\+\_\+\+TLS]\+, \+\_\+\+TLS]\+ {\bfseries strategy\+\_\+for} (cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty_afdf8fbd2415f49fbd98fda0976af25d1}{set\+\_\+parent}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ parent, bool init)
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1__AttributeOptions}{\+\_\+\+Attribute\+Options}}]\+ attribute\+\_\+options=None, bool \+\_\+assume\+\_\+readonly\+\_\+dc\+\_\+attributes=False)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty_af426004e31f3c6f38c982dc8239a1e9c}{init}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty_af57cde2371be2aa7197fc774a1fc14a9}{class\+\_\+attribute}} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1TypingOnly}{sqlalchemy.\+util.\+langhelpers.\+Typing\+Only}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1InspectionAttrInfo}{sqlalchemy.\+orm.\+base.\+Inspection\+Attr\+Info}}}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Info\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1InspectionAttrInfo_a33de4003902f27ff871a6bd8bd238bcc}{info}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots}{sqlalchemy.\+util.\+langhelpers.\+Memoized\+Slots}}}
+\begin{DoxyCompactItemize}
+\item 
+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1__DeclarativeMapped}{sqlalchemy.\+orm.\+base.\+\_\+\+Declarative\+Mapped}}}
+\begin{DoxyCompactItemize}
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1__DeclarativeMapped_a4a10b8800a3841df42f26536c99fdd38}{operate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}} op, \texorpdfstring{$\ast$}{*}Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1__DeclarativeMapped_a1b136ce057082b83a78e426eb0c1b44c}{reverse\+\_\+operate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}} op, Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1Mapped}{sqlalchemy.\+orm.\+base.\+Mapped}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, None instance, Any owner)
+\item 
+\+\_\+\+T\+\_\+co {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, object instance, Any owner)
+\item 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+, \+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, Optional\+[object]\+ instance, Any owner)
+\item 
+None {\bfseries \+\_\+\+\_\+set\+\_\+\+\_\+} (self, Any instance, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations}{SQLCore\+Operations}}\+[\+\_\+\+T\+\_\+co]\+, \+\_\+\+T\+\_\+co]\+ value)
+\item 
+None {\bfseries \+\_\+\+\_\+delete\+\_\+\+\_\+} (self, Any instance)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1SQLORMOperations}{sqlalchemy.\+orm.\+base.\+SQLORMOperations}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1PropComparator}{Prop\+Comparator}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1SQLORMOperations_aff1293ea155322f4bb45e1e4b7bcfc93}{of\+\_\+type}} (self, \+\_\+\+Entity\+Type\+[Any]\+ class\+\_\+)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1PropComparator}{Prop\+Comparator}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1SQLORMOperations_a3e3bce5ef0dac96049f3e4a7ab27837a}{and\+\_\+}} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Column\+Expression\+Argument\+[bool]\+ criteria)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1SQLORMOperations_a1fc25784dada7ac59c2a4ec21e71d79a}{any}} (self, Optional\+[\+\_\+\+Column\+Expression\+Argument\+[bool]\+]\+ criterion=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1SQLORMOperations_a047fd184df148f2f9ae96d8e52c5a55b}{has}} (self, Optional\+[\+\_\+\+Column\+Expression\+Argument\+[bool]\+]\+ criterion=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[\+\_\+\+OPT]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a362c8ca558d2db53e3d75441af73cee0}{op}} (self, str opstring, int precedence=..., bool is\+\_\+comparison=..., \texorpdfstring{$\ast$}{*}, \+\_\+\+Type\+Engine\+Argument\+[\+\_\+\+OPT]\+ return\+\_\+type, Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=None)
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a7eca3fd106f39db8eeb2274f9930d603}{op}} (self, str opstring, int precedence=..., bool is\+\_\+comparison=..., Optional\+[\+\_\+\+Type\+Engine\+Argument\+[Any]\+]\+ return\+\_\+type=..., Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=...)
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa1b195b20b9e61fe1ee6afa669dfe638}{op}} (self, str opstring, int precedence=0, bool is\+\_\+comparison=False, Optional\+[\+\_\+\+Type\+Engine\+Argument\+[Any]\+]\+ return\+\_\+type=None, Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=None)
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a9d513e64066fb2ed1f534fc63f27d904}{bool\+\_\+op}} (self, str opstring, int precedence=0, Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BooleanClauseList}{Boolean\+Clause\+List}} {\bfseries \+\_\+\+\_\+and\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BooleanClauseList}{Boolean\+Clause\+List}} {\bfseries \+\_\+\+\_\+or\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+invert\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+le\+\_\+\+\_\+} (self, Any other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a5805583ac382a7780e4bc1ee62e155f3}{is\+\_\+distinct\+\_\+from}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a7ce656a7e35de4d1c42a7518fe26c35f}{is\+\_\+not\+\_\+distinct\+\_\+from}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+gt\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+ge\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+neg\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+\+\_\+contains\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, Any index)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[int]\+ {\bfseries \+\_\+\+\_\+lshift\+\_\+\+\_\+} (\+\_\+\+SQO\+[int]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+lshift\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+lshift\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[int]\+ {\bfseries \+\_\+\+\_\+rshift\+\_\+\+\_\+} (\+\_\+\+SQO\+[int]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rshift\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rshift\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa559a89890ff6bf0f2f5d856e3d1a832}{concat}} (\+\_\+\+SQO\+[str]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a7d76b2d81e7d901a9f656cc269219e44}{concat}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a7d76b2d81e7d901a9f656cc269219e44}{concat}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a9e9b6eefe9275e6e241dbb01180dd04c}{like}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a350d662722cdedd3fc02264430295926}{ilike}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a8d51b3d61344629d471df7de5b4c2fe4}{bitwise\+\_\+xor}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a1370d9bfccb12f9e5a7527dc9948f569}{bitwise\+\_\+or}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a70e4cc5c7acf45c172474ecc42da5162}{bitwise\+\_\+and}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ad8dcdedeef574ed3abef1156ec789847}{bitwise\+\_\+not}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a208fed6188fcb7486bf3e394fcc9d30e}{bitwise\+\_\+lshift}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa15c33a1429a30fc32442c133437f7c8}{bitwise\+\_\+rshift}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_abf341991eb35db9abba9af88e92ce7c7}{in\+\_\+}} (self, Union\+[Iterable\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1InElementRole}{roles.\+In\+Element\+Role}}]\+ other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa3122ffbbd993ee0266648a6fa21d31e}{not\+\_\+in}} (self, Union\+[Iterable\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1InElementRole}{roles.\+In\+Element\+Role}}]\+ other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a9b0c9248223e40bf2e5ebd7381417351}{notin\+\_\+}} (self, Union\+[Iterable\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1InElementRole}{roles.\+In\+Element\+Role}}]\+ other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a1e602e8966940d21c2b88c859cbea98c}{not\+\_\+like}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aec26a74085d440d495bfc734b5527b3b}{notlike}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa994c63def426fb36532d3ba77f2efe7}{not\+\_\+ilike}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_af24270657faed5c568f50842316fedc8}{notilike}} (self, Any other, Optional\+[str]\+ escape=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ad8f54b244c24cc352c40533f28c8f65c}{is\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a1422a6f1be7522523871cc0de2fb526c}{is\+\_\+not}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ae640df21aab86b793fd40f854412c79b}{isnot}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa909f358375e2e1c3e803cb76aa6ebae}{startswith}} (self, Any other, Optional\+[str]\+ escape=None, bool autoescape=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a152fefa9dfbefebf98601e76744d759d}{istartswith}} (self, Any other, Optional\+[str]\+ escape=None, bool autoescape=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a4b21925a0779f074063386e7713f41b3}{endswith}} (self, Any other, Optional\+[str]\+ escape=None, bool autoescape=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_acadd2ae281344b8ce4270b21b52d9726}{iendswith}} (self, Any other, Optional\+[str]\+ escape=None, bool autoescape=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa8df94b2e000d545e0efbe52720c77ba}{contains}} (self, Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a9f1fa1d74f2887461c0523c32bd3e598}{icontains}} (self, Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a007766c10bf27bc022336ac1976e5165}{match}} (self, Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ac57ebd6a6adcd7c637d2f0802018c99c}{regexp\+\_\+match}} (self, Any pattern, Optional\+[str]\+ flags=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a677fa7dcc8471f25532683923971a5b0}{regexp\+\_\+replace}} (self, Any pattern, Any replacement, Optional\+[str]\+ flags=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a689b61cb2066f583b7c1a5dcd3057e9a}{desc}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ae657b4a816fd43fd3fba29763e3fd465}{asc}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a5c2775aa57efe3eda0456f0bc4693eb9}{nulls\+\_\+first}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a085c17630c279a05219208acb36a3e66}{nullsfirst}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a570a31f5a2f0dd6945d8262b712d634b}{nulls\+\_\+last}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aaaa62e919d4bed51f701732fbf8f2bf9}{nullslast}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1CollationClause}{Collation\+Clause}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ab399f673069c232aec736b9653ec67fc}{collate}} (self, str collation)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BinaryExpression}{Binary\+Expression}}\+[bool]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_abfffda516cd4bb6c0bd9d27e122f6138}{between}} (self, Any cleft, Any cright, bool symmetric=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1UnaryExpression}{Unary\+Expression}}\+[\+\_\+\+T\+\_\+co]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ab23b4261db9ec06d5b91eaa2cd925da9}{distinct}} (\+\_\+\+SQO\+[\+\_\+\+T\+\_\+co]\+ self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1CollectionAggregate}{Collection\+Aggregate}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a8134d4c4109e518085f6c8359b9c2746}{any\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1CollectionAggregate}{Collection\+Aggregate}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_ac11721cdcbbac58b9256c4a8815a7f0b}{all\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[str]\+ {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (\+\_\+\+SQO\+[str]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[str]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (\+\_\+\+SQO\+[str]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+sub\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+sub\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+sub\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+rsub\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rsub\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rsub\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+rmul\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rmul\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rmul\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+mod\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+mod\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+mod\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+rmod\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rmod\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rmod\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NUMERIC]\+ {\bfseries \+\_\+\+\_\+truediv\+\_\+\+\_\+} (\+\_\+\+SQO\+[int]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NT]\+ {\bfseries \+\_\+\+\_\+truediv\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+truediv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+truediv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NUMERIC]\+ {\bfseries \+\_\+\+\_\+rtruediv\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rtruediv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rtruediv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+floordiv\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+floordiv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+floordiv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[\+\_\+\+NMT]\+ {\bfseries \+\_\+\+\_\+rfloordiv\+\_\+\+\_\+} (\+\_\+\+SQO\+[\+\_\+\+NMT]\+ self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rfloordiv\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ {\bfseries \+\_\+\+\_\+rfloordiv\+\_\+\+\_\+} (self, Any other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ae9759c94b1acd4a77819952ced90adba}{\+\_\+\+\_\+lt\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ad52eba0264231e3af1aa7014eb617b6e}{\+\_\+\+\_\+le\+\_\+\+\_\+}} (self, Any other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a3e27b5e5dd1a52da0ba01d5918399737}{\+\_\+\+\_\+eq\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a24c9000163cc0c677ead16d3f446bf4e}{\+\_\+\+\_\+ne\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} {\bfseries isnot\+\_\+distinct\+\_\+from} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a1db9d2cd247f658312e249b1aeea2125}{\+\_\+\+\_\+gt\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ae394c00a11d6af13ff4ee39ed2a13698}{\+\_\+\+\_\+ge\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a395d07b0f2881e89a60a20054c35bcef}{\+\_\+\+\_\+neg\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} {\bfseries \+\_\+\+\_\+contains\+\_\+\+\_\+} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_aaad7d997f0971d3428622e57fc84147e}{\+\_\+\+\_\+getitem\+\_\+\+\_\+}} (self, Any index)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a1b02e8aaf8691824c58620599c78e5b9}{\+\_\+\+\_\+lshift\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_aef5c672d7bcfb7f5464999daf3e1435e}{\+\_\+\+\_\+rshift\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a2c20415b117bd9775aff1177e9c019e7}{\+\_\+\+\_\+radd\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_acd1549f929b1cf72579964e74bcc09dd}{\+\_\+\+\_\+rsub\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a13b3aecafc4a621ac7b1e3e4b0bcde19}{\+\_\+\+\_\+rmul\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a1971211b6ba393008772657ace0895df}{\+\_\+\+\_\+rmod\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a8efd42305467ca8f81ee92472d7fe5fa}{\+\_\+\+\_\+add\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a3142551031b731dcfe4bfcc1c1580ebc}{\+\_\+\+\_\+sub\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a968df694df40737578b0bf2560f82318}{\+\_\+\+\_\+mul\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_af221ee4ee15973eab736bb1607dc1bdc}{\+\_\+\+\_\+mod\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ac7e4ddcf6a9c80dd4f91924f316cb0e7}{\+\_\+\+\_\+truediv\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ad0f1b504301e37547cbe5187072f304f}{\+\_\+\+\_\+rtruediv\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a5f67fcebebaa6c6cf635f19deef0e9cf}{\+\_\+\+\_\+floordiv\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a8b992fc031d96d98367f39e6fab58086}{\+\_\+\+\_\+rfloordiv\+\_\+\+\_\+}} (self, Any other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{sqlalchemy.\+sql.\+operators.\+Operators}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_ad03dc178a54e17a013a4ec2384febacf}{\+\_\+\+\_\+and\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a4d986eadf2497d75bf5b475efc97f937}{\+\_\+\+\_\+or\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a56239c4ae808bc51bcf6c7e636396cbe}{\+\_\+\+\_\+invert\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1ExpressionElementRole}{sqlalchemy.\+sql.\+roles.\+Expression\+Element\+Role}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1Label}{Label}}\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1ExpressionElementRole_ac1f71ff691130a792be892325ed26022}{label}} (self, Optional\+[str]\+ name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1ORMDescriptor}{sqlalchemy.\+orm.\+base.\+ORMDescriptor}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1ORMDescriptor}{ORMDescriptor}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, Any instance, Literal\+[None]\+ owner)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations}{SQLCore\+Operations}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, Literal\+[None]\+ instance, Any owner)
+\item 
+\+\_\+\+T\+\_\+co {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, object instance, Any owner)
+\item 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1ORMDescriptor}{ORMDescriptor}}\+[\+\_\+\+T\+\_\+co]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations}{SQLCore\+Operations}}\+[\+\_\+\+T\+\_\+co]\+, \+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, object instance, Any owner)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries uselist} = uselist
+\item 
+{\bfseries argument} = argument
+\item 
+{\bfseries post\+\_\+update} = post\+\_\+update
+\item 
+{\bfseries viewonly} = viewonly
+\item 
+{\bfseries sync\+\_\+backref} = sync\+\_\+backref
+\item 
+str {\bfseries lazy} = lazy
+\item 
+{\bfseries single\+\_\+parent} = single\+\_\+parent
+\item 
+{\bfseries collection\+\_\+class} = collection\+\_\+class
+\item 
+str {\bfseries passive\+\_\+deletes} = passive\+\_\+deletes
+\item 
+{\bfseries passive\+\_\+updates} = passive\+\_\+updates
+\item 
+{\bfseries enable\+\_\+typechecks} = enable\+\_\+typechecks
+\item 
+{\bfseries query\+\_\+class} = query\+\_\+class
+\item 
+{\bfseries innerjoin} = innerjoin
+\item 
+{\bfseries distinct\+\_\+target\+\_\+key} = distinct\+\_\+target\+\_\+key
+\item 
+{\bfseries active\+\_\+history} = active\+\_\+history
+\item 
+{\bfseries join\+\_\+depth} = join\+\_\+depth
+\item 
+{\bfseries omit\+\_\+join} = omit\+\_\+join
+\item 
+{\bfseries load\+\_\+on\+\_\+pending} = load\+\_\+on\+\_\+pending
+\item 
+tuple \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a748e28b63475cb401d9fc5619b463e6e}{comparator\+\_\+factory}}
+\item 
+tuple {\bfseries strategy\+\_\+key} = (("{}lazy"{}, self.\+lazy),)
+\item 
+{\bfseries back\+\_\+populates} = back\+\_\+populates
+\item 
+{\bfseries backref} = None
+\item 
+{\bfseries direction} = other.\+direction
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_abdd604118bca53539077bf6b88f67f88}{order\+\_\+by}}
+\item 
+\+\_\+\+Internal\+Entity\+Type\+[\+\_\+T]\+ {\bfseries entity} = entity
+\item 
+\+\_\+\+Internal\+Entity\+Type\+[\+\_\+T]\+ {\bfseries target} = self.\+entity.\+persist\+\_\+selectable
+\item 
+{\bfseries synchronize\+\_\+pairs} = jc.\+synchronize\+\_\+pairs
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty}{sqlalchemy.\+orm.\+interfaces.\+Strategized\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1LoaderStrategy}{Loader\+Strategy}} {\bfseries strategy} = self.\+\_\+get\+\_\+strategy(self.\+strategy\+\_\+key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries key}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} {\bfseries primaryjoin} \+[bool]\+
+\item 
+Optional {\bfseries secondaryjoin} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+]\+
+\item 
+Optional {\bfseries secondary} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}]\+
+\item 
+Set {\bfseries remote\+\_\+side} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+]\+
+\item 
+Set {\bfseries local\+\_\+columns} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+]\+
+\item 
+Optional {\bfseries secondary\+\_\+synchronize\+\_\+pairs} \+[\+\_\+\+Column\+Pairs]\+
+\item 
+Optional {\bfseries local\+\_\+remote\+\_\+pairs} \+[\+\_\+\+Column\+Pairs]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty}{sqlalchemy.\+orm.\+interfaces.\+Strategized\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+Class\+Var {\bfseries strategy\+\_\+wildcard\+\_\+key} \+[str]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1PropComparator}{Prop\+Comparator}} {\bfseries comparator} \+[\+\_\+T]\+
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}} {\bfseries parent} \+[Any]\+
+\item 
+Optional {\bfseries doc} \+[str]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey}{sqlalchemy.\+sql.\+cache\+\_\+key.\+Has\+Cache\+Key}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries inherit\+\_\+cache} = None
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1InspectionAttr}{sqlalchemy.\+orm.\+base.\+Inspection\+Attr}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+\_\+selectable} = False
+\item 
+bool {\bfseries is\+\_\+aliased\+\_\+class} = False
+\item 
+bool {\bfseries is\+\_\+instance} = False
+\item 
+bool {\bfseries is\+\_\+mapper} = False
+\item 
+bool {\bfseries is\+\_\+bundle} = False
+\item 
+bool {\bfseries is\+\_\+property} = False
+\item 
+bool {\bfseries is\+\_\+attribute} = False
+\item 
+bool {\bfseries is\+\_\+clause\+\_\+element} = False
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1InspectionAttrExtensionType}{Inspection\+Attr\+Extension\+Type}} {\bfseries extension\+\_\+type} = Not\+Extension.\+NOT\+\_\+\+EXTENSION
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{sqlalchemy.\+log.\+Identified}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries logging\+\_\+name} = None
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}}
+\begin{DoxyCompactItemize}
+\item 
+Literal {\bfseries timetuple} = None
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} {\bfseries isnot\+\_\+distinct\+\_\+from} = \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a97db9114834cc2203c44deeb236d1972}{is\+\_\+not\+\_\+distinct\+\_\+from}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1SQLRole}{sqlalchemy.\+sql.\+roles.\+SQLRole}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries allows\+\_\+lambda} = False
+\item 
+bool {\bfseries uses\+\_\+inspection} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+warn\+\_\+for\+\_\+persistence\+\_\+only\+\_\+flags} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+with\+\_\+parent} (self, object instance, bool alias\+\_\+secondary=True, Optional\+[\+\_\+\+Entity\+Type\+[Any]\+]\+ from\+\_\+entity=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+optimized\+\_\+compare} (self, Any state, bool value\+\_\+is\+\_\+parent=False, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1__typing_1_1__CoreAdapterProto}{\+\_\+\+Core\+Adapter\+Proto}}]\+ adapt\+\_\+source=None, bool alias\+\_\+secondary=True)
+\item 
+Callable\+[\+[$\,$]\+, Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_ab4338cf6425457efb50022e5e7de8525}{\+\_\+get\+\_\+attr\+\_\+w\+\_\+warn\+\_\+on\+\_\+none}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, \+\_\+\+Instance\+Dict dict\+\_\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ column)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+ {\bfseries \+\_\+lazy\+\_\+none\+\_\+clause} (self, bool reverse\+\_\+direction=False, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1__typing_1_1__CoreAdapterProto}{\+\_\+\+Core\+Adapter\+Proto}}]\+ adapt\+\_\+source=None)
+\item 
+Sequence\+[Tuple\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[\+\_\+O]\+, \+\_\+O]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_ad533e6f798aaa7edba79c373b2aee863}{\+\_\+value\+\_\+as\+\_\+iterable}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[\+\_\+O]\+ state, \+\_\+\+Instance\+Dict dict\+\_\+, str key, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1PassiveFlag}{Passive\+Flag}} passive=Passive\+Flag.\+PASSIVE\+\_\+\+OFF)
+\item 
+bool {\bfseries \+\_\+effective\+\_\+sync\+\_\+backref} (self)
+\item 
+None {\bfseries \+\_\+add\+\_\+reverse\+\_\+property} (self, str key)
+\item 
+None {\bfseries \+\_\+setup\+\_\+registry\+\_\+dependencies} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a6a6d2df9b9a2bbca2599ea9be9230159}{\+\_\+process\+\_\+dependent\+\_\+arguments}} (self)
+\item 
+None {\bfseries \+\_\+setup\+\_\+entity} (self, Any \+\_\+\+\_\+argument=None)
+\item 
+None {\bfseries \+\_\+setup\+\_\+join\+\_\+conditions} (self)
+\item 
+Callable\+[\+[str, bool]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__class__resolver}{\+\_\+class\+\_\+resolver}}]\+ {\bfseries \+\_\+clsregistry\+\_\+resolve\+\_\+arg} (self)
+\item 
+Callable\+[\+[str]\+, Callable\+[\+[$\,$]\+, Union\+[Type\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__ModNS}{\+\_\+\+Mod\+NS}}]\+]\+]\+ {\bfseries \+\_\+clsregistry\+\_\+resolve\+\_\+name} (self)
+\item 
+Tuple\+[ Callable\+[\+[str]\+, Callable\+[\+[$\,$]\+, Union\+[Type\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__ModNS}{\+\_\+\+Mod\+NS}}]\+]\+]\+, Callable\+[\+[str, bool]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__class__resolver}{\+\_\+class\+\_\+resolver}}]\+,]\+ {\bfseries \+\_\+clsregistry\+\_\+resolvers} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a2cc0b56035ca45c938877587ad57b37d}{\+\_\+check\+\_\+conflicts}} (self)
+\item 
+None {\bfseries \+\_\+set\+\_\+cascade} (self, Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1CascadeOptions}{Cascade\+Options}}]\+ cascade\+\_\+arg)
+\item 
+None {\bfseries \+\_\+check\+\_\+cascade\+\_\+settings} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1CascadeOptions}{Cascade\+Options}} cascade)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a4bc362cc2eaaa3e1a8dad8df28c23422}{\+\_\+persists\+\_\+for}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a3681141b4aaab853645c71664901f5ec}{\+\_\+columns\+\_\+are\+\_\+mapped}} (self, \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ cols)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a080e96dc0f0a08ac707b3ec6aa14d7b4}{\+\_\+generate\+\_\+backref}} (self)
+\item 
+None {\bfseries \+\_\+post\+\_\+init} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a82f703c53d3d3406e377b40b87e0ffb8}{\+\_\+use\+\_\+get}} (self)
+\item 
+bool {\bfseries \+\_\+is\+\_\+self\+\_\+referential} (self)
+\item 
+Tuple\+[ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}]\+, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1util_1_1ClauseAdapter}{Clause\+Adapter}}]\+,]\+ {\bfseries \+\_\+create\+\_\+joins} (self, bool source\+\_\+polymorphic=False, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}]\+ source\+\_\+selectable=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1FromClause}{From\+Clause}}]\+ dest\+\_\+selectable=None, Optional\+[\+\_\+\+Internal\+Entity\+Type\+[Any]\+]\+ of\+\_\+type\+\_\+entity=None, bool alias\+\_\+secondary=False, Tuple\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[bool]\+,...]\+ extra\+\_\+criteria=())
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1__IntrospectsAnnotations}{sqlalchemy.\+orm.\+interfaces.\+\_\+\+Introspects\+Annotations}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+mapper\+\_\+property\+\_\+name} (cls)
+\item 
+No\+Return {\bfseries \+\_\+raise\+\_\+for\+\_\+required} (self, str key, Type\+[Any]\+ cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty}{sqlalchemy.\+orm.\+interfaces.\+Strategized\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[str]\+ {\bfseries \+\_\+memoized\+\_\+attr\+\_\+\+\_\+wildcard\+\_\+token} (self)
+\item 
+Tuple\+[str, Tuple\+[str]\+]\+ {\bfseries \+\_\+memoized\+\_\+attr\+\_\+\+\_\+default\+\_\+path\+\_\+loader\+\_\+key} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1strategy__options_1_1__LoadElement}{\+\_\+\+Load\+Element}}]\+ {\bfseries \+\_\+get\+\_\+context\+\_\+loader} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1ORMCompileState}{ORMCompile\+State}} context, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1path__registry_1_1AbstractEntityRegistry}{Abstract\+Entity\+Registry}} path)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1LoaderStrategy}{Loader\+Strategy}} {\bfseries \+\_\+get\+\_\+strategy} (self, \+\_\+\+Strategy\+Key key)
+\item 
+Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1LoaderStrategy}{Loader\+Strategy}}]\+ {\bfseries \+\_\+strategy\+\_\+lookup} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{Mapper\+Property}}\+[Any]\+ requesting\+\_\+property, \texorpdfstring{$\ast$}{*}Any key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Info\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty_a16f62b559b9282f2149af35b7f982cd7}{\+\_\+memoized\+\_\+attr\+\_\+info}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey}{sqlalchemy.\+sql.\+cache\+\_\+key.\+Has\+Cache\+Key}}}
+\begin{DoxyCompactItemize}
+\item 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1__CacheKeyTraversalDispatchType}{\+\_\+\+Cache\+Key\+Traversal\+Dispatch\+Type}}, Literal\+[Cache\+Const.\+NO\+\_\+\+CACHE]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey_a915335cbc2ee3b210f5b1fdda22f87db}{\+\_\+generate\+\_\+cache\+\_\+attrs}} (cls)
+\item 
+Optional\+[Tuple\+[Any,...]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey_ad93beea06d1bc649417ae6cf24128594}{\+\_\+gen\+\_\+cache\+\_\+key}} (self, anon\+\_\+map anon\+\_\+map, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+]\+ bindparams)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1CacheKey}{Cache\+Key}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey_a312f37d93e1cbe257b3498a5fc29c533}{\+\_\+generate\+\_\+cache\+\_\+key}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1CacheKey}{Cache\+Key}}]\+ {\bfseries \+\_\+generate\+\_\+cache\+\_\+key\+\_\+for\+\_\+object} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey}{Has\+Cache\+Key}} obj)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots}{sqlalchemy.\+util.\+langhelpers.\+Memoized\+Slots}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots_aafe59f7f2bf3fa09bdfc6010deeb75d9}{\+\_\+fallback\+\_\+getattr}} (self, key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{sqlalchemy.\+log.\+Identified}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+should\+\_\+log\+\_\+debug} (self)
+\item 
+bool {\bfseries \+\_\+should\+\_\+log\+\_\+info} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1Mapped}{sqlalchemy.\+orm.\+base.\+Mapped}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1Mapped}{Mapped}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+empty\+\_\+constructor} (cls, Any arg1)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Propagate\+Attrs\+Type {\bfseries \+\_\+propagate\+\_\+attrs} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{Column\+Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a227b4dfea90af89097711bdbee7e3bc8}{\+\_\+rconcat}} (self, Any other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+check\+\_\+sync\+\_\+backref} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{Relationship\+Property}}\+[Any]\+ rel\+\_\+a, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{Relationship\+Property}}\+[Any]\+ rel\+\_\+b)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_af09022902fd50df2cf35e19784f3bdb2}{\+\_\+init\+\_\+args}}
+\item 
+{\bfseries \+\_\+legacy\+\_\+inactive\+\_\+history\+\_\+style} = \+\_\+legacy\+\_\+inactive\+\_\+history\+\_\+style
+\item 
+Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{Relationship\+Property}}\+[Any]\+]\+ {\bfseries \+\_\+reverse\+\_\+property} = set()
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1util_1_1CascadeOptions}{Cascade\+Options}} {\bfseries \+\_\+cascade}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a42da90034ac5be908e602241aae4e414}{\+\_\+lazy\+\_\+strategy}}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_a9f7afce7959cbfa3ef2bc16285d4f189}{\+\_\+join\+\_\+condition}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+configure\+\_\+started} = False
+\item 
+bool {\bfseries \+\_\+configure\+\_\+finished} = False
+\item 
+bool {\bfseries \+\_\+has\+\_\+dataclass\+\_\+arguments} = True
+\item 
+{\bfseries \+\_\+attribute\+\_\+options} = attribute\+\_\+options
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey}{sqlalchemy.\+sql.\+cache\+\_\+key.\+Has\+Cache\+Key}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+generated\+\_\+cache\+\_\+key\+\_\+traversal} = NO\+\_\+\+CACHE
+\item 
+\+\# type ignore \+\# noqa E501 \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey_ab8a5806874d2f4c82885712a1291a9a3}{\+\_\+gen\+\_\+static\+\_\+annotations\+\_\+cache\+\_\+key}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{sqlalchemy.\+orm.\+relationships.\+Relationship\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+links\+\_\+to\+\_\+entity} = True
+\item 
+Sequence {\bfseries \+\_\+overlaps} \+[str]\+
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1strategies_1_1LazyLoader}{Lazy\+Loader}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty_ac9c48174c8502c8d6acd7ed14bc7988f}{\+\_\+persistence\+\_\+only}}
+\item 
+Optional {\bfseries \+\_\+dependency\+\_\+processor} = None
+\item 
+Set {\bfseries \+\_\+user\+\_\+defined\+\_\+foreign\+\_\+keys} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+]\+
+\item 
+Set {\bfseries \+\_\+calculated\+\_\+foreign\+\_\+keys} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1StrategizedProperty}{sqlalchemy.\+orm.\+interfaces.\+Strategized\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+Dict {\bfseries \+\_\+strategies} \+[\+\_\+\+Strategy\+Key, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1LoaderStrategy}{Loader\+Strategy}}]\+
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1orm_1_1collections}{collections}} {\bfseries \+\_\+all\+\_\+strategies} = collections.\+defaultdict(dict)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1MapperProperty}{sqlalchemy.\+orm.\+interfaces.\+Mapper\+Property}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+relationship} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1HasCacheKey}{sqlalchemy.\+sql.\+cache\+\_\+key.\+Has\+Cache\+Key}}}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Cache\+Key\+Traversal\+Type {\bfseries \+\_\+cache\+\_\+key\+\_\+traversal} = NO\+\_\+\+CACHE
+\item 
+bool {\bfseries \+\_\+is\+\_\+has\+\_\+cache\+\_\+key} = True
+\item 
+bool {\bfseries \+\_\+hierarchy\+\_\+supports\+\_\+caching} = True
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1InspectionAttr}{sqlalchemy.\+orm.\+base.\+Inspection\+Attr}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+internal\+\_\+proxy} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}}
+\begin{DoxyCompactItemize}
+\item 
+dict {\bfseries \+\_\+commutative} = \{eq, ne, add, mul\}
+\item 
+dict {\bfseries \+\_\+comparison} = \{eq, ne, lt, gt, ge, le\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1ExpressionElementRole}{sqlalchemy.\+sql.\+roles.\+Expression\+Element\+Role}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+role\+\_\+name} = "{}SQL \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1expression}{expression}} element"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1DDLConstraintColumnRole}{sqlalchemy.\+sql.\+roles.\+DDLConstraint\+Column\+Role}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+role\+\_\+name} = "{}String column name or column \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1expression}{expression}} for \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1ddl_1_1DDL}{DDL}} constraint"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Describes an object property that holds a single item or list
+of items that correspond to a related database table.
+
+Public constructor is the :func:`_orm.relationship` function.
+
+.. seealso::
+
+    :ref:`relationship_config_toplevel`
+
+.. versionchanged:: 2.0 Added :class:`_orm.Relationship` as a Declarative
+   compatible subclass for :class:`_orm.RelationshipProperty`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+relationships.\+py\end{DoxyCompactItemize}

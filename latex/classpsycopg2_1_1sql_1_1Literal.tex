@@ -1,0 +1,92 @@
+\doxysection{psycopg2.\+sql.\+Literal Class Reference}
+\hypertarget{classpsycopg2_1_1sql_1_1Literal}{}\label{classpsycopg2_1_1sql_1_1Literal}\index{psycopg2.sql.Literal@{psycopg2.sql.Literal}}
+Inheritance diagram for psycopg2.\+sql.\+Literal:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpsycopg2_1_1sql_1_1Literal}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Literal_a6f1536bfe03d8d255356e0943ead9f5e}{wrapped}} (self)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Literal_a02e2abdea40e68beb069c50f0527ee5c}{as\+\_\+string}} (self, context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable}{psycopg2.\+sql.\+Composable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, wrapped)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (self, n)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable}{psycopg2.\+sql.\+Composable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+wrapped} = wrapped
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A `Composable` representing an SQL value to include in a query.
+
+Usually you will want to include placeholders in the query and pass values
+as `~cursor.execute()` arguments. If however you really really need to
+include a literal value in the query you can use this object.
+
+The string returned by `!as_string()` follows the normal :ref:`adaptation
+rules <python-types-adaptation>` for Python objects.
+
+Example::
+
+    >>> s1 = sql.Literal("foo")
+    >>> s2 = sql.Literal("ba'r")
+    >>> s3 = sql.Literal(42)
+    >>> print(sql.SQL(', ').join([s1, s2, s3]).as_string(conn))
+    'foo', 'ba''r', 42
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1sql_1_1Literal_doc-func-members}
+\Hypertarget{classpsycopg2_1_1sql_1_1Literal_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1sql_1_1Literal_a02e2abdea40e68beb069c50f0527ee5c}\index{psycopg2.sql.Literal@{psycopg2.sql.Literal}!as\_string@{as\_string}}
+\index{as\_string@{as\_string}!psycopg2.sql.Literal@{psycopg2.sql.Literal}}
+\doxysubsubsection{\texorpdfstring{as\_string()}{as\_string()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Literal_a02e2abdea40e68beb069c50f0527ee5c} 
+psycopg2.\+sql.\+Literal.\+as\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the string value of the object.
+
+:param context: the context to evaluate the string into.
+:type context: `connection` or `cursor`
+
+The method is automatically invoked by `~cursor.execute()`,
+`~cursor.executemany()`, `~cursor.copy_expert()` if a `!Composable` is
+passed instead of the query string.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable_a910ee7a2d7b24ba13fb756bf946c2879}{psycopg2.\+sql.\+Composable}}.
+
+\Hypertarget{classpsycopg2_1_1sql_1_1Literal_a6f1536bfe03d8d255356e0943ead9f5e}\index{psycopg2.sql.Literal@{psycopg2.sql.Literal}!wrapped@{wrapped}}
+\index{wrapped@{wrapped}!psycopg2.sql.Literal@{psycopg2.sql.Literal}}
+\doxysubsubsection{\texorpdfstring{wrapped()}{wrapped()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Literal_a6f1536bfe03d8d255356e0943ead9f5e} 
+psycopg2.\+sql.\+Literal.\+wrapped (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The object wrapped by the `!Literal`.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+sql.\+py\end{DoxyCompactItemize}

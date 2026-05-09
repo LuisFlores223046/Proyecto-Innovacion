@@ -1,0 +1,110 @@
+\doxysection{sqlalchemy.\+orm.\+mapped\+\_\+collection.\+Key\+Func\+Dict Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict}{}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict}\index{sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}}
+Inheritance diagram for sqlalchemy.\+orm.\+mapped\+\_\+collection.\+Key\+Func\+Dict:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_ac426dbeb8235d648c2b917157047772d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \+\_\+F keyfunc, \texorpdfstring{$\ast$}{*}Any dict\+\_\+args, bool ignore\+\_\+unpopulated\+\_\+attribute=False)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_aee2736c0cfe050cf933809e667c85c4e}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_aee2736c0cfe050cf933809e667c85c4e} 
+Tuple\+[ Callable\+[\+[\+\_\+\+KT, \+\_\+\+KT]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict}{Key\+Func\+Dict}}\+[\+\_\+\+KT, \+\_\+\+KT]\+]\+, Tuple\+[Any, Union\+[Dict\+[\+\_\+\+KT, \+\_\+\+KT]\+, Dict\+[\+\_\+\+KT, \+\_\+\+KT]\+]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1CollectionAdapter}{Collection\+Adapter}}]\+,]\+ {\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a9858b79ae74fec970d758344f8ac1cda}{set}} (self, \+\_\+\+KT value, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{Attribute\+Event\+Token}}, Literal\+[None, False]\+]\+ \+\_\+sa\+\_\+initiator=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a3867f088e30eea6a2e62143201e7c057}{remove}} (self, \+\_\+\+KT value, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{Attribute\+Event\+Token}}, Literal\+[None, False]\+]\+ \+\_\+sa\+\_\+initiator=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a8734568282408af2a56bbfcda0fc8690}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a8734568282408af2a56bbfcda0fc8690} 
+{\bfseries keyfunc} = keyfunc
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a8fdd126e513041812fd1fec38dab146b}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a8fdd126e513041812fd1fec38dab146b} 
+{\bfseries ignore\+\_\+unpopulated\+\_\+attribute} = ignore\+\_\+unpopulated\+\_\+attribute
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_aa9e66905f02ce2dc693b028faf762de6}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_aa9e66905f02ce2dc693b028faf762de6} 
+"{}Key\+Func\+Dict\+[\+\_\+\+KT, \+\_\+\+KT]\+"{} {\bfseries \+\_\+unreduce} (cls, \+\_\+F keyfunc, Dict\+[\+\_\+\+KT, \+\_\+\+KT]\+ values, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1CollectionAdapter}{Collection\+Adapter}}]\+ adapter=None)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a0c6ac04aea21f3259fd1f61d1b4cf969}\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a0c6ac04aea21f3259fd1f61d1b4cf969} 
+None {\bfseries \+\_\+raise\+\_\+for\+\_\+unpopulated} (self, \+\_\+\+KT value, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{Attribute\+Event\+Token}}, Literal\+[None, False]\+]\+ initiator=None, \texorpdfstring{$\ast$}{*}, bool warn\+\_\+only)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base for ORM mapped dictionary classes.
+
+Extends the ``dict`` type with additional methods needed by SQLAlchemy ORM
+collection classes. Use of :class:`_orm.KeyFuncDict` is most directly
+by using the :func:`.attribute_keyed_dict` or
+:func:`.column_keyed_dict` class factories.
+:class:`_orm.KeyFuncDict` may also serve as the base for user-defined
+custom dictionary classes.
+
+.. versionchanged:: 2.0 Renamed :class:`.MappedCollection` to
+   :class:`.KeyFuncDict`.
+
+.. seealso::
+
+    :func:`_orm.attribute_keyed_dict`
+
+    :func:`_orm.column_keyed_dict`
+
+    :ref:`orm_dictionary_collection`
+
+    :ref:`orm_custom_collection`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_ac426dbeb8235d648c2b917157047772d}\index{sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_ac426dbeb8235d648c2b917157047772d} 
+ None sqlalchemy.\+orm.\+mapped\+\_\+collection.\+Key\+Func\+Dict.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+F}]{keyfunc}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{dict\+\_\+args}{, }\item[{bool }]{ignore\+\_\+unpopulated\+\_\+attribute}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a new collection with keying provided by keyfunc.
+
+keyfunc may be any callable that takes an object and returns an object
+for use as a dictionary key.
+
+The keyfunc will be called every time the ORM needs to add a member by
+value-only (such as when loading instances from the database) or
+remove a member.  The usual cautions about dictionary keying apply-
+``keyfunc(object)`` should return the same output for the life of the
+collection.  Keying based on mutable properties can result in
+unreachable instances "lost" in the collection.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a3867f088e30eea6a2e62143201e7c057}\index{sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}!remove@{remove}}
+\index{remove@{remove}!sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a3867f088e30eea6a2e62143201e7c057} 
+ None sqlalchemy.\+orm.\+mapped\+\_\+collection.\+Key\+Func\+Dict.\+remove (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+KT}]{value}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{Attribute\+Event\+Token}}, Literal\+[None, False]\+]\+ }]{\+\_\+sa\+\_\+initiator}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove an item by value, consulting the keyfunc for the key.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a9858b79ae74fec970d758344f8ac1cda}\index{sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}!set@{set}}
+\index{set@{set}!sqlalchemy.orm.mapped\_collection.KeyFuncDict@{sqlalchemy.orm.mapped\_collection.KeyFuncDict}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1mapped__collection_1_1KeyFuncDict_a9858b79ae74fec970d758344f8ac1cda} 
+ None sqlalchemy.\+orm.\+mapped\+\_\+collection.\+Key\+Func\+Dict.\+set (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+KT}]{value}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1AttributeEventToken}{Attribute\+Event\+Token}}, Literal\+[None, False]\+]\+ }]{\+\_\+sa\+\_\+initiator}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add an item by value, consulting the keyfunc for the key.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+mapped\+\_\+collection.\+py\end{DoxyCompactItemize}

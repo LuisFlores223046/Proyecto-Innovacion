@@ -1,0 +1,55 @@
+\doxysection{app.\+models.\+administrador.\+Administrador Class Reference}
+\hypertarget{classapp_1_1models_1_1administrador_1_1Administrador}{}\label{classapp_1_1models_1_1administrador_1_1Administrador}\index{app.models.administrador.Administrador@{app.models.administrador.Administrador}}
+Inheritance diagram for app.\+models.\+administrador.\+Administrador:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1administrador_1_1Administrador}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a9b59a763555654bcb23158ebc769b2de}\label{classapp_1_1models_1_1administrador_1_1Administrador_a9b59a763555654bcb23158ebc769b2de} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a83f13ba36fbfd6801e2b2c3ccb8749a7}\label{classapp_1_1models_1_1administrador_1_1Administrador_a83f13ba36fbfd6801e2b2c3ccb8749a7} 
+{\bfseries username} = Column(String(50), unique=True, nullable=False, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a38844c151e765f17fa037f07310672b2}\label{classapp_1_1models_1_1administrador_1_1Administrador_a38844c151e765f17fa037f07310672b2} 
+{\bfseries email} = Column(String(200), unique=True, nullable=False, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_aae02fa590fd3cdb27952c44f0b74c01f}\label{classapp_1_1models_1_1administrador_1_1Administrador_aae02fa590fd3cdb27952c44f0b74c01f} 
+{\bfseries password\+\_\+hash} = Column(String(200), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a10b93d21f810b9f27be5f998b4f270a2}\label{classapp_1_1models_1_1administrador_1_1Administrador_a10b93d21f810b9f27be5f998b4f270a2} 
+{\bfseries activo} = Column(Boolean, default=True, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_afe9c9baa1bfa1ed3d53f5a051ec08155}\label{classapp_1_1models_1_1administrador_1_1Administrador_afe9c9baa1bfa1ed3d53f5a051ec08155} 
+{\bfseries intentos\+\_\+fallidos} = Column(Integer, default=0, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a8e215484cd635516ba81bf13f80d741f}\label{classapp_1_1models_1_1administrador_1_1Administrador_a8e215484cd635516ba81bf13f80d741f} 
+{\bfseries bloqueado\+\_\+hasta} = Column(TIMESTAMP(timezone=True), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1administrador_1_1Administrador_a4e9166220c68841d00289c1f3eece76a}\label{classapp_1_1models_1_1administrador_1_1Administrador_a4e9166220c68841d00289c1f3eece76a} 
+{\bfseries creado\+\_\+en} = Column(TIMESTAMP(timezone=True), server\+\_\+default=func.\+now(), nullable=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Representa a un usuario con privilegios de gestión en el sistema.
+
+Attributes:
+    id: Identificador único.
+    username: Nombre de usuario único para inicio de sesión.
+    email: Correo electrónico de contacto.
+    password_hash: Contraseña cifrada.
+    activo: Estado del administrador.
+    intentos_fallidos: Contador para políticas de seguridad.
+    bloqueado_hasta: Fecha límite de bloqueo temporal.
+    creado_en: Fecha de registro del administrador.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+administrador.\+py\end{DoxyCompactItemize}

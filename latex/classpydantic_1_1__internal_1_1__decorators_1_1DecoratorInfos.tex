@@ -1,0 +1,67 @@
+\doxysection{pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator\+Infos Class Reference}
+\hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos}{}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos}\index{pydantic.\_internal.\_decorators.DecoratorInfos@{pydantic.\_internal.\_decorators.DecoratorInfos}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos}{Decorator\+Infos}} \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a48661763761e67993a5749629b664dae}{build}} (type\+[Any]\+ model\+\_\+dc)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_adcd2d3c7f5001bda731b4932c5494d8b}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_adcd2d3c7f5001bda731b4932c5494d8b} 
+dict {\bfseries validators} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a3eb01c34ef2aa378e1a658eb5e5980cc}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a3eb01c34ef2aa378e1a658eb5e5980cc} 
+dict {\bfseries field\+\_\+validators} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a937451fcc43adc2b22626c22d6ee4e25}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a937451fcc43adc2b22626c22d6ee4e25} 
+dict {\bfseries root\+\_\+validators} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a4f78a66473a5f1234ca459179f978438}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a4f78a66473a5f1234ca459179f978438} 
+dict {\bfseries field\+\_\+serializers} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a09315dd7d72497b04f554266c085e09c}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a09315dd7d72497b04f554266c085e09c} 
+dict {\bfseries model\+\_\+serializers} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a3afa77764eb0e7a4d5eacc38f7b6c09b}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a3afa77764eb0e7a4d5eacc38f7b6c09b} 
+dict {\bfseries model\+\_\+validators} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_afa2a0c1fd027d04eb8a1d48dceef49b3}\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_afa2a0c1fd027d04eb8a1d48dceef49b3} 
+dict {\bfseries computed\+\_\+fields} = field(default\+\_\+factory=dict)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mapping of name in the class namespace to decorator info.
+
+note that the name in the class namespace is the function or attribute name
+not the field name!
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_doc-func-members}
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a48661763761e67993a5749629b664dae}\index{pydantic.\_internal.\_decorators.DecoratorInfos@{pydantic.\_internal.\_decorators.DecoratorInfos}!build@{build}}
+\index{build@{build}!pydantic.\_internal.\_decorators.DecoratorInfos@{pydantic.\_internal.\_decorators.DecoratorInfos}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos_a48661763761e67993a5749629b664dae} 
+ \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1DecoratorInfos}{Decorator\+Infos}} pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator\+Infos.\+build (\begin{DoxyParamCaption}\item[{type\+[Any]\+}]{model\+\_\+dc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}We want to collect all DecFunc instances that exist as
+attributes in the namespace of the class (a BaseModel or dataclass)
+that called us
+But we want to collect these in the order of the bases
+So instead of getting them all from the leaf class (the class that called us),
+we traverse the bases from root (the oldest ancestor class) to leaf
+and collect all of the instances as we go, taking care to replace
+any duplicate ones with the last one we see to mimic how function overriding
+works with inheritance.
+If we do replace any functions we put the replacement into the position
+the replaced function was in; that is, we maintain the order.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+\+\_\+internal/\+\+\_\+decorators.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,229 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@jridgewell/\+gen-\/mapping Directory Reference}
+\hypertarget{dir_8bfb625b7de57230c01215642ef1db52}{}\label{dir_8bfb625b7de57230c01215642ef1db52}\index{frontend/node\_modules/"@jridgewell/gen-\/mapping Directory Reference@{frontend/node\_modules/"@jridgewell/gen-\/mapping Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_3d58ce59f9f6eeeadb7d511778477307}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md316}{}\doxysubsection{\texorpdfstring{@jridgewell/\+gen-\/mapping}{@jridgewell/\+gen-\/mapping}}\label{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md316}
+\begin{quote}
+Generate source maps \end{quote}
+
+
+{\ttfamily gen-\/mapping} allows you to generate a source map during transpilation or minification. With a source map, you\textquotesingle{}re able to trace the original location in the source file, either in Chrome\textquotesingle{}s Dev\+Tools or using a library like \href{https://github.com/jridgewell/sourcemaps/tree/main/packages/trace-mapping}{\texttt{{\ttfamily @jridgewell/\+trace-\/mapping}}}.
+
+You may already be familiar with the \href{https://www.npmjs.com/package/source-map}{\texttt{{\ttfamily source-\/map}}} package\textquotesingle{}s {\ttfamily Source\+Map\+Generator}. This provides the same {\ttfamily add\+Mapping} and {\ttfamily set\+Source\+Content} API.\hypertarget{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md317}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md317}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @jridgewell/gen-\/mapping}
+
+\end{DoxyCode}
+\hypertarget{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md318}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md318}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ GenMapping,\ addMapping,\ setSourceContent,\ toEncodedMap,\ toDecodedMap\ \}\ from\ '@jridgewell/gen-\/mapping';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ map\ =\ new\ GenMapping(\{}
+\DoxyCodeLine{\ \ file:\ 'output.js',}
+\DoxyCodeLine{\ \ sourceRoot:\ 'https://example.com/',}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{setSourceContent(map,\ 'input.js',\ \`{}function\ foo()\ \{\}`);}
+\DoxyCodeLine{}
+\DoxyCodeLine{addMapping(map,\ \{}
+\DoxyCodeLine{\ \ //\ Lines\ start\ at\ line\ 1,\ columns\ at\ column\ 0.}
+\DoxyCodeLine{\ \ generated:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\ \ source:\ 'input.js',}
+\DoxyCodeLine{\ \ original:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{addMapping(map,\ \{}
+\DoxyCodeLine{\ \ generated:\ \{\ line:\ 1,\ column:\ 9\ \},}
+\DoxyCodeLine{\ \ source:\ 'input.js',}
+\DoxyCodeLine{\ \ original:\ \{\ line:\ 1,\ column:\ 9\ \},}
+\DoxyCodeLine{\ \ name:\ 'foo',}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.deepEqual(toDecodedMap(map),\ \{}
+\DoxyCodeLine{\ \ version:\ 3,}
+\DoxyCodeLine{\ \ file:\ 'output.js',}
+\DoxyCodeLine{\ \ names:\ ['foo'],}
+\DoxyCodeLine{\ \ sourceRoot:\ 'https://example.com/',}
+\DoxyCodeLine{\ \ sources:\ ['input.js'],}
+\DoxyCodeLine{\ \ sourcesContent:\ ['function\ foo()\ \{\}'],}
+\DoxyCodeLine{\ \ mappings:\ [}
+\DoxyCodeLine{\ \ \ \ [\ [0,\ 0,\ 0,\ 0],\ [9,\ 0,\ 0,\ 9,\ 0]\ ]}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.deepEqual(toEncodedMap(map),\ \{}
+\DoxyCodeLine{\ \ version:\ 3,}
+\DoxyCodeLine{\ \ file:\ 'output.js',}
+\DoxyCodeLine{\ \ names:\ ['foo'],}
+\DoxyCodeLine{\ \ sourceRoot:\ 'https://example.com/',}
+\DoxyCodeLine{\ \ sources:\ ['input.js'],}
+\DoxyCodeLine{\ \ sourcesContent:\ ['function\ foo()\ \{\}'],}
+\DoxyCodeLine{\ \ mappings:\ 'AAAA,SAASA',}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md319}{}\doxysubsubsection{\texorpdfstring{Smaller Sourcemaps}{Smaller Sourcemaps}}\label{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md319}
+Not everything needs to be added to a sourcemap, and needless markings can cause signficantly larger file sizes. {\ttfamily gen-\/mapping} exposes {\ttfamily maybe\+Add\+Segment}/\+{\ttfamily maybe\+Add\+Mapping} APIs that will intelligently determine if this marking adds useful information. If not, the marking will be skipped.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ maybeAddMapping\ \}\ from\ '@jridgewell/gen-\/mapping';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ map\ =\ new\ GenMapping();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Adding\ a\ sourceless\ marking\ at\ the\ beginning\ of\ a\ line\ isn't\ useful.}
+\DoxyCodeLine{maybeAddMapping(map,\ \{}
+\DoxyCodeLine{\ \ generated:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Adding\ a\ new\ source\ marking\ is\ useful.}
+\DoxyCodeLine{maybeAddMapping(map,\ \{}
+\DoxyCodeLine{\ \ generated:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\ \ source:\ 'input.js',}
+\DoxyCodeLine{\ \ original:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ But\ adding\ another\ marking\ pointing\ to\ the\ exact\ same\ original\ location\ isn't,\ even\ if\ the}
+\DoxyCodeLine{//\ generated\ column\ changed.}
+\DoxyCodeLine{maybeAddMapping(map,\ \{}
+\DoxyCodeLine{\ \ generated:\ \{\ line:\ 1,\ column:\ 9\ \},}
+\DoxyCodeLine{\ \ source:\ 'input.js',}
+\DoxyCodeLine{\ \ original:\ \{\ line:\ 1,\ column:\ 0\ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.deepEqual(toEncodedMap(map),\ \{}
+\DoxyCodeLine{\ \ version:\ 3,}
+\DoxyCodeLine{\ \ names:\ [],}
+\DoxyCodeLine{\ \ sources:\ ['input.js'],}
+\DoxyCodeLine{\ \ sourcesContent:\ [null],}
+\DoxyCodeLine{\ \ mappings:\ 'AAAA',}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md320}{}\doxysubsection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{dir_8bfb625b7de57230c01215642ef1db52_autotoc_md320}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{node\ v18.0.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{amp.js.map}
+\DoxyCodeLine{Memory\ Usage:}
+\DoxyCodeLine{gen-\/mapping:\ addSegment\ \ \ \ \ \ 5852872\ bytes}
+\DoxyCodeLine{gen-\/mapping:\ addMapping\ \ \ \ \ \ 7716042\ bytes}
+\DoxyCodeLine{source-\/map-\/js\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6143250\ bytes}
+\DoxyCodeLine{source-\/map-\/0.6.1\ \ \ \ \ \ \ \ \ \ \ \ \ 6124102\ bytes}
+\DoxyCodeLine{source-\/map-\/0.8.0\ \ \ \ \ \ \ \ \ \ \ \ \ 6121173\ bytes}
+\DoxyCodeLine{Smallest\ memory\ usage\ is\ gen-\/mapping:\ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adding\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addSegment\ x\ 441\ ops/sec\ ±2.07\%\ (90\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addMapping\ x\ 350\ ops/sec\ ±2.40\%\ (86\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ addMapping\ x\ 169\ ops/sec\ ±2.42\%\ (80\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ addMapping\ x\ 167\ ops/sec\ ±2.56\%\ (80\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ addMapping\ x\ 168\ ops/sec\ ±2.52\%\ (80\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Generate\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ decoded\ output\ x\ 150,824,370\ ops/sec\ ±0.07\%\ (102\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ encoded\ output\ x\ 663\ ops/sec\ ±0.22\%\ (98\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ encoded\ output\ x\ 197\ ops/sec\ ±0.45\%\ (84\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ encoded\ output\ x\ 198\ ops/sec\ ±0.33\%\ (85\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ encoded\ output\ x\ 197\ ops/sec\ ±0.06\%\ (93\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ decoded\ output}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{***}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{babel.min.js.map}
+\DoxyCodeLine{Memory\ Usage:}
+\DoxyCodeLine{gen-\/mapping:\ addSegment\ \ \ \ \ 37578063\ bytes}
+\DoxyCodeLine{gen-\/mapping:\ addMapping\ \ \ \ \ 37212897\ bytes}
+\DoxyCodeLine{source-\/map-\/js\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 47638527\ bytes}
+\DoxyCodeLine{source-\/map-\/0.6.1\ \ \ \ \ \ \ \ \ \ \ \ 47690503\ bytes}
+\DoxyCodeLine{source-\/map-\/0.8.0\ \ \ \ \ \ \ \ \ \ \ \ 47470188\ bytes}
+\DoxyCodeLine{Smallest\ memory\ usage\ is\ gen-\/mapping:\ addMapping}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adding\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addSegment\ x\ 31.05\ ops/sec\ ±8.31\%\ (43\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addMapping\ x\ 29.83\ ops/sec\ ±7.36\%\ (51\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ addMapping\ x\ 20.73\ ops/sec\ ±6.22\%\ (38\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ addMapping\ x\ 20.03\ ops/sec\ ±10.51\%\ (38\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ addMapping\ x\ 19.30\ ops/sec\ ±8.27\%\ (37\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Generate\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ decoded\ output\ x\ 381,379,234\ ops/sec\ ±0.29\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ encoded\ output\ x\ 95.15\ ops/sec\ ±2.98\%\ (72\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ encoded\ output\ x\ 15.20\ ops/sec\ ±7.41\%\ (33\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ encoded\ output\ x\ 16.36\ ops/sec\ ±10.46\%\ (31\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ encoded\ output\ x\ 16.06\ ops/sec\ ±6.45\%\ (31\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ decoded\ output}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{***}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{preact.js.map}
+\DoxyCodeLine{Memory\ Usage:}
+\DoxyCodeLine{gen-\/mapping:\ addSegment\ \ \ \ \ \ \ 416247\ bytes}
+\DoxyCodeLine{gen-\/mapping:\ addMapping\ \ \ \ \ \ \ 419824\ bytes}
+\DoxyCodeLine{source-\/map-\/js\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1024619\ bytes}
+\DoxyCodeLine{source-\/map-\/0.6.1\ \ \ \ \ \ \ \ \ \ \ \ \ 1146004\ bytes}
+\DoxyCodeLine{source-\/map-\/0.8.0\ \ \ \ \ \ \ \ \ \ \ \ \ 1113250\ bytes}
+\DoxyCodeLine{Smallest\ memory\ usage\ is\ gen-\/mapping:\ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adding\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addSegment\ x\ 13,755\ ops/sec\ ±0.15\%\ (98\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addMapping\ x\ 13,013\ ops/sec\ ±0.11\%\ (101\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ addMapping\ x\ 4,564\ ops/sec\ ±0.21\%\ (98\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ addMapping\ x\ 4,562\ ops/sec\ ±0.11\%\ (99\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ addMapping\ x\ 4,593\ ops/sec\ ±0.11\%\ (100\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Generate\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ decoded\ output\ x\ 379,864,020\ ops/sec\ ±0.23\%\ (93\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ encoded\ output\ x\ 14,368\ ops/sec\ ±4.07\%\ (82\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ encoded\ output\ x\ 5,261\ ops/sec\ ±0.21\%\ (99\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ encoded\ output\ x\ 5,124\ ops/sec\ ±0.58\%\ (99\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ encoded\ output\ x\ 5,434\ ops/sec\ ±0.33\%\ (96\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ decoded\ output}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{***}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{react.js.map}
+\DoxyCodeLine{Memory\ Usage:}
+\DoxyCodeLine{gen-\/mapping:\ addSegment\ \ \ \ \ \ \ 975096\ bytes}
+\DoxyCodeLine{gen-\/mapping:\ addMapping\ \ \ \ \ \ 1102981\ bytes}
+\DoxyCodeLine{source-\/map-\/js\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2918836\ bytes}
+\DoxyCodeLine{source-\/map-\/0.6.1\ \ \ \ \ \ \ \ \ \ \ \ \ 2885435\ bytes}
+\DoxyCodeLine{source-\/map-\/0.8.0\ \ \ \ \ \ \ \ \ \ \ \ \ 2874336\ bytes}
+\DoxyCodeLine{Smallest\ memory\ usage\ is\ gen-\/mapping:\ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Adding\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addSegment\ x\ 4,772\ ops/sec\ ±0.15\%\ (100\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ addMapping\ x\ 4,456\ ops/sec\ ±0.13\%\ (97\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ addMapping\ x\ 1,618\ ops/sec\ ±0.24\%\ (97\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ addMapping\ x\ 1,622\ ops/sec\ ±0.12\%\ (99\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ addMapping\ x\ 1,631\ ops/sec\ ±0.12\%\ (100\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ addSegment}
+\DoxyCodeLine{}
+\DoxyCodeLine{Generate\ speed:}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ decoded\ output\ x\ 379,107,695\ ops/sec\ ±0.07\%\ (99\ runs\ sampled)}
+\DoxyCodeLine{gen-\/mapping:\ \ \ \ \ \ encoded\ output\ x\ 5,421\ ops/sec\ ±1.60\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/js:\ \ \ \ encoded\ output\ x\ 2,113\ ops/sec\ ±1.81\%\ (98\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.6.1:\ encoded\ output\ x\ 2,126\ ops/sec\ ±0.10\%\ (100\ runs\ sampled)}
+\DoxyCodeLine{source-\/map-\/0.8.0:\ encoded\ output\ x\ 2,176\ ops/sec\ ±0.39\%\ (98\ runs\ sampled)}
+\DoxyCodeLine{Fastest\ is\ gen-\/mapping:\ \ \ \ \ \ decoded\ output}
+
+\end{DoxyCode}
+ 

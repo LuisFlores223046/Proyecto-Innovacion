@@ -1,0 +1,120 @@
+\doxysection{jinja2.\+bccache.\+File\+System\+Bytecode\+Cache Class Reference}
+\hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache}{}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache}\index{jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}}
+Inheritance diagram for jinja2.\+bccache.\+File\+System\+Bytecode\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1bccache_1_1FileSystemBytecodeCache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ac01ab0c7292e233e9df1f756784c0b12}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ac01ab0c7292e233e9df1f756784c0b12} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Optional\+[str]\+ directory=None, str pattern="{}\+\_\+\+\_\+jinja2\+\_\+\%s.\+cache"{})
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_abdd8611d72101dd79b1e9d1c4e462357}{load\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a3d2a0bfb022dfb929c2964b730f2866b}{dump\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a93b8e4291d1cf7cfced445e6dbbf3007}{clear}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache}{jinja2.\+bccache.\+Bytecode\+Cache}}}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a1ce40bddff60f1a61df8b054fa5cd4b3}{get\+\_\+cache\+\_\+key}} (self, str name, t.\+Optional\+[t.\+Union\+[str]\+]\+ filename=None)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a3eabf30b7c8ef6b72ecafafea0d86c93}{get\+\_\+source\+\_\+checksum}} (self, str source)
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9f6f2505ffdb01644e0138709be1fffb}{get\+\_\+bucket}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[str]\+ filename, str source)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a61ce7c88076ceccc0409dc7e86a028ac}{set\+\_\+bucket}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ab9334b6378f4b36e9ac4875490a32510}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ab9334b6378f4b36e9ac4875490a32510} 
+{\bfseries directory} = directory
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a734ba6ad4211fd3ac1e22fbbb4987cbb}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a734ba6ad4211fd3ac1e22fbbb4987cbb} 
+{\bfseries pattern} = pattern
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a967c5aa99696259a23d04d19af69b5ad}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a967c5aa99696259a23d04d19af69b5ad} 
+str {\bfseries \+\_\+get\+\_\+default\+\_\+cache\+\_\+dir} (self)
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ac70bdfd7234a50a1442aa2f1c619f3d3}\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_ac70bdfd7234a50a1442aa2f1c619f3d3} 
+str {\bfseries \+\_\+get\+\_\+cache\+\_\+filename} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A bytecode cache that stores bytecode on the filesystem.  It accepts
+two arguments: The directory where the cache items are stored and a
+pattern string that is used to build the filename.
+
+If no directory is specified a default cache directory is selected.  On
+Windows the user's temp directory is used, on UNIX systems a directory
+is created for the user in the system temp directory.
+
+The pattern can be used to have multiple separate caches operate on the
+same directory.  The default pattern is ``'__jinja2_%s.cache'``.  ``%s``
+is replaced with the cache key.
+
+>>> bcc = FileSystemBytecodeCache('/tmp/jinja_cache', '%s.cache')
+
+This bytecode cache supports clearing of the cache using the clear method.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_doc-func-members}
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a93b8e4291d1cf7cfced445e6dbbf3007}\index{jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}!clear@{clear}}
+\index{clear@{clear}!jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a93b8e4291d1cf7cfced445e6dbbf3007} 
+ None jinja2.\+bccache.\+File\+System\+Bytecode\+Cache.\+clear (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clears the cache.  This method is not used by Jinja but should be
+implemented to allow applications to clear the bytecode cache used
+by a particular environment.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_adfccc9f4c141b0886859bb885bcf8e6a}{jinja2.\+bccache.\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a3d2a0bfb022dfb929c2964b730f2866b}\index{jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}!dump\_bytecode@{dump\_bytecode}}
+\index{dump\_bytecode@{dump\_bytecode}!jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}}
+\doxysubsubsection{\texorpdfstring{dump\_bytecode()}{dump\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a3d2a0bfb022dfb929c2964b730f2866b} 
+ None jinja2.\+bccache.\+File\+System\+Bytecode\+Cache.\+dump\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to write the bytecode
+from a bucket back to the cache.  If it unable to do so it must not
+fail silently but raise an exception.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9247d0d7453cf47dbd00cb43809479f8}{jinja2.\+bccache.\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_abdd8611d72101dd79b1e9d1c4e462357}\index{jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}!load\_bytecode@{load\_bytecode}}
+\index{load\_bytecode@{load\_bytecode}!jinja2.bccache.FileSystemBytecodeCache@{jinja2.bccache.FileSystemBytecodeCache}}
+\doxysubsubsection{\texorpdfstring{load\_bytecode()}{load\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_abdd8611d72101dd79b1e9d1c4e462357} 
+ None jinja2.\+bccache.\+File\+System\+Bytecode\+Cache.\+load\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to load bytecode into a
+bucket.  If they are not able to find code in the cache for the
+bucket, it must not do anything.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_ae145388705cf26b278492c73bbc388d9}{jinja2.\+bccache.\+Bytecode\+Cache}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+bccache.\+py\end{DoxyCompactItemize}

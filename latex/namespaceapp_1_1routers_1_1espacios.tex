@@ -1,0 +1,117 @@
+\doxysection{app.\+routers.\+espacios Namespace Reference}
+\hypertarget{namespaceapp_1_1routers_1_1espacios}{}\label{namespaceapp_1_1routers_1_1espacios}\index{app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_ab155284d76e5aaf06bf0d7dd1508da84}{buscar}} (str q, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a32ec7c599fbc6f66604dad05ee1d9f15}{abiertos\+\_\+ahora}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_af34b56869b22a10c16863f4b5ef0c2ec}{cercanos}} (float lat=Query(..., description="{}Latitud WGS84"{}), float lon=Query(..., description="{}Longitud WGS84"{}), float radio=Query(200.\+0, description="{}Radio en metros"{}), \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_ac6ea220bc5f3b664a34607ea7822b068}{listar}} (int\texorpdfstring{$\vert$}{|}None categoria\+\_\+id=None, int\texorpdfstring{$\vert$}{|}None edificio\+\_\+id=None, bool\texorpdfstring{$\vert$}{|}None activo=True, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a77e5c1ece503461b060771d1cf05cd0a}{crear}} (\doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioCreate}{Espacio\+Create}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a6630dce1903cbed890cb1300216e07bb}{detalle}} (int espacio\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a183996f0449b189987a0789153799e35}{actualizar}} (int espacio\+\_\+id, \doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioUpdate}{Espacio\+Update}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a09f660e7c84bc9b524e5e0dc4b573981}{desactivar}} (int espacio\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1espacios_a9d7ae7b43cd342d95137fa6dcd50ed71}{eventos\+\_\+espacio}} (int espacio\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1routers_1_1espacios_a79434b65d6ab1b44d63c8b3e1719a9d4}\label{namespaceapp_1_1routers_1_1espacios_a79434b65d6ab1b44d63c8b3e1719a9d4} 
+{\bfseries router} = \doxymbox{\hyperlink{classfastapi_1_1routing_1_1APIRouter}{APIRouter}}(prefix="{}/\+espacios"{}, tags=\+["{}Espacios"{}]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Rutas para espacios — orden cuidadoso de rutas estáticas antes de /{id}.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1routers_1_1espacios_doc-func-members}
+\Hypertarget{namespaceapp_1_1routers_1_1espacios_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1routers_1_1espacios_a32ec7c599fbc6f66604dad05ee1d9f15}\index{app.routers.espacios@{app.routers.espacios}!abiertos\_ahora@{abiertos\_ahora}}
+\index{abiertos\_ahora@{abiertos\_ahora}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{abiertos\_ahora()}{abiertos\_ahora()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a32ec7c599fbc6f66604dad05ee1d9f15} 
+abiertos\+\_\+ahora (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Filtra y devuelve espacios cuyo horario actual coincide con 'abierto'.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_a183996f0449b189987a0789153799e35}\index{app.routers.espacios@{app.routers.espacios}!actualizar@{actualizar}}
+\index{actualizar@{actualizar}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{actualizar()}{actualizar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a183996f0449b189987a0789153799e35} 
+actualizar (\begin{DoxyParamCaption}\item[{int}]{espacio\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioUpdate}{Espacio\+Update}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Actualiza la información técnica o descriptiva de un espacio.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_ab155284d76e5aaf06bf0d7dd1508da84}\index{app.routers.espacios@{app.routers.espacios}!buscar@{buscar}}
+\index{buscar@{buscar}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{buscar()}{buscar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_ab155284d76e5aaf06bf0d7dd1508da84} 
+buscar (\begin{DoxyParamCaption}\item[{str}]{q}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Busca espacios por coincidencia de texto en nombre o descripción.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_af34b56869b22a10c16863f4b5ef0c2ec}\index{app.routers.espacios@{app.routers.espacios}!cercanos@{cercanos}}
+\index{cercanos@{cercanos}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{cercanos()}{cercanos()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_af34b56869b22a10c16863f4b5ef0c2ec} 
+cercanos (\begin{DoxyParamCaption}\item[{float }]{lat}{ = {\ttfamily Query(...,~description="{}Latitud~WGS84"{})}, }\item[{float }]{lon}{ = {\ttfamily Query(...,~description="{}Longitud~WGS84"{})}, }\item[{float }]{radio}{ = {\ttfamily Query(200.0,~description="{}Radio~en~metros"{})}, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Busca espacios dentro de un radio geográfico desde un punto dado.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_a77e5c1ece503461b060771d1cf05cd0a}\index{app.routers.espacios@{app.routers.espacios}!crear@{crear}}
+\index{crear@{crear}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{crear()}{crear()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a77e5c1ece503461b060771d1cf05cd0a} 
+crear (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioCreate}{Espacio\+Create}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Registra un nuevo punto de interés o espacio en el mapa.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_a09f660e7c84bc9b524e5e0dc4b573981}\index{app.routers.espacios@{app.routers.espacios}!desactivar@{desactivar}}
+\index{desactivar@{desactivar}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{desactivar()}{desactivar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a09f660e7c84bc9b524e5e0dc4b573981} 
+desactivar (\begin{DoxyParamCaption}\item[{int}]{espacio\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Realiza un borrado lógico (desactivación) del espacio.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_a6630dce1903cbed890cb1300216e07bb}\index{app.routers.espacios@{app.routers.espacios}!detalle@{detalle}}
+\index{detalle@{detalle}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{detalle()}{detalle()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a6630dce1903cbed890cb1300216e07bb} 
+detalle (\begin{DoxyParamCaption}\item[{int}]{espacio\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtiene la ficha completa de un espacio, incluyendo fotos y servicios.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_a9d7ae7b43cd342d95137fa6dcd50ed71}\index{app.routers.espacios@{app.routers.espacios}!eventos\_espacio@{eventos\_espacio}}
+\index{eventos\_espacio@{eventos\_espacio}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{eventos\_espacio()}{eventos\_espacio()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_a9d7ae7b43cd342d95137fa6dcd50ed71} 
+eventos\+\_\+espacio (\begin{DoxyParamCaption}\item[{int}]{espacio\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtiene el calendario de eventos programados para un espacio puntual.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1espacios_ac6ea220bc5f3b664a34607ea7822b068}\index{app.routers.espacios@{app.routers.espacios}!listar@{listar}}
+\index{listar@{listar}!app.routers.espacios@{app.routers.espacios}}
+\doxysubsubsection{\texorpdfstring{listar()}{listar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1espacios_ac6ea220bc5f3b664a34607ea7822b068} 
+listar (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\vert$}{|} None }]{categoria\+\_\+id}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{edificio\+\_\+id}{ = {\ttfamily None}, }\item[{bool \texorpdfstring{$\vert$}{|} None }]{activo}{ = {\ttfamily True}, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtiene una lista filtrada de espacios según criterios específicos.
+
+Permite la recuperación de espacios registrados aplicando filtros opcionales
+por categoría, edificio y estado de activación, facilitando búsquedas
+segmentadas para la interfaz de usuario.
+
+Args:
+    categoria_id: Identificador único de la categoría para filtrar.
+    edificio_id: Identificador único del edificio para filtrar.
+    activo: Estado de visibilidad del espacio (por defecto True).
+    db: Sesión de la base de datos inyectada.
+
+Returns:
+    List[Espacio]: Una colección de objetos de tipo Espacio que cumplen 
+    con los criterios.
+\end{DoxyVerb}
+ 

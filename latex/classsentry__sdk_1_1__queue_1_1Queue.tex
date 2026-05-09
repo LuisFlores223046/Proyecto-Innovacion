@@ -1,0 +1,205 @@
+\doxysection{sentry\+\_\+sdk.\+\_\+queue.\+Queue Class Reference}
+\hypertarget{classsentry__sdk_1_1__queue_1_1Queue}{}\label{classsentry__sdk_1_1__queue_1_1Queue}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a7d9eee5b4711a903d2a59e4cd4682f4a}\label{classsentry__sdk_1_1__queue_1_1Queue_a7d9eee5b4711a903d2a59e4cd4682f4a} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, maxsize=0)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_a0bd0fc0b84e1f1983644bcde970181e1}{task\+\_\+done}} (self)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_abda0a8cb8481e07069fc378ddf090415}{join}} (self)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_a8a352469c79ed612a4d639e51e825ed5}{qsize}} (self)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_a3a2b1686cef1003a95b995a8c4413700}{empty}} (self)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_aabcb5482c061d7d7be4898f89718452e}{full}} (self)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_abd4a96fa2640433c3ea9a75a70262895}{put}} (self, item, block=True, timeout=None)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_ac57f624c8054b13c11a78b8097073618}{get}} (self, block=True, timeout=None)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_af24bd819fae48d6ff17b54b350082125}{put\+\_\+nowait}} (self, item)
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue_a992788a53a96ad1539ed527d3841244d}{get\+\_\+nowait}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a0df0f287ed868679c805c92aa5920bc2}\label{classsentry__sdk_1_1__queue_1_1Queue_a0df0f287ed868679c805c92aa5920bc2} 
+{\bfseries maxsize} = maxsize
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_af8953dcfb9b325252a2cd455706d5a23}\label{classsentry__sdk_1_1__queue_1_1Queue_af8953dcfb9b325252a2cd455706d5a23} 
+{\bfseries mutex} = threading.\+RLock()
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_aa4b9a7b07c3517171ce7787354612499}\label{classsentry__sdk_1_1__queue_1_1Queue_aa4b9a7b07c3517171ce7787354612499} 
+{\bfseries not\+\_\+empty} = threading.\+Condition(self.\+mutex)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a8999a27da4bb0de271b4ddfaaa9a5ccb}\label{classsentry__sdk_1_1__queue_1_1Queue_a8999a27da4bb0de271b4ddfaaa9a5ccb} 
+{\bfseries not\+\_\+full} = threading.\+Condition(self.\+mutex)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a7d59a02d6e6b2c3c8cab8a757bb65b92}\label{classsentry__sdk_1_1__queue_1_1Queue_a7d59a02d6e6b2c3c8cab8a757bb65b92} 
+{\bfseries all\+\_\+tasks\+\_\+done} = threading.\+Condition(self.\+mutex)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_aa0a6522c5966c17274c006be5f6a5fc7}\label{classsentry__sdk_1_1__queue_1_1Queue_aa0a6522c5966c17274c006be5f6a5fc7} 
+int {\bfseries unfinished\+\_\+tasks} = 0
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_ab041ac507f01a0edd92cfbeff9a5aaf4}\label{classsentry__sdk_1_1__queue_1_1Queue_ab041ac507f01a0edd92cfbeff9a5aaf4} 
+{\bfseries queue} = deque()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a76b52ed6698adf9f9194777df3573ced}\label{classsentry__sdk_1_1__queue_1_1Queue_a76b52ed6698adf9f9194777df3573ced} 
+{\bfseries \+\_\+init} (self, maxsize)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a8f354038f151a3f6a1986fe57f6e1629}\label{classsentry__sdk_1_1__queue_1_1Queue_a8f354038f151a3f6a1986fe57f6e1629} 
+{\bfseries \+\_\+qsize} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a9232e4c31ec035509e2d5ebe38a79629}\label{classsentry__sdk_1_1__queue_1_1Queue_a9232e4c31ec035509e2d5ebe38a79629} 
+{\bfseries \+\_\+put} (self, item)
+\item 
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_ad222bb2c940ea5f3d7608fe9804d1a9c}\label{classsentry__sdk_1_1__queue_1_1Queue_ad222bb2c940ea5f3d7608fe9804d1a9c} 
+{\bfseries \+\_\+get} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create a queue object with a given maximum size.
+
+If maxsize is <= 0, the queue size is infinite.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1__queue_1_1Queue_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a3a2b1686cef1003a95b995a8c4413700}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!empty@{empty}}
+\index{empty@{empty}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_a3a2b1686cef1003a95b995a8c4413700} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+empty (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the queue is empty, False otherwise (not reliable!).
+
+This method is likely to be removed at some point.  Use qsize() == 0
+as a direct substitute, but be aware that either approach risks a race
+condition where a queue can grow before the result of empty() or
+qsize() can be used.
+
+To create code that needs to wait for all queued tasks to be
+completed, the preferred technique is to use the join() method.
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_aabcb5482c061d7d7be4898f89718452e}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!full@{full}}
+\index{full@{full}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{full()}{full()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_aabcb5482c061d7d7be4898f89718452e} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+full (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the queue is full, False otherwise (not reliable!).
+
+This method is likely to be removed at some point.  Use qsize() >= n
+as a direct substitute, but be aware that either approach risks a race
+condition where a queue can shrink before the result of full() or
+qsize() can be used.
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_ac57f624c8054b13c11a78b8097073618}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!get@{get}}
+\index{get@{get}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_ac57f624c8054b13c11a78b8097073618} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{block}{ = {\ttfamily True}, }\item[{}]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove and return an item from the queue.
+
+If optional args 'block' is true and 'timeout' is None (the default),
+block if necessary until an item is available. If 'timeout' is
+a non-negative number, it blocks at most 'timeout' seconds and raises
+the EmptyError exception if no item was available within that time.
+Otherwise ('block' is false), return an item if one is immediately
+available, else raise the EmptyError exception ('timeout' is ignored
+in that case).
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a992788a53a96ad1539ed527d3841244d}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!get\_nowait@{get\_nowait}}
+\index{get\_nowait@{get\_nowait}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{get\_nowait()}{get\_nowait()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_a992788a53a96ad1539ed527d3841244d} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+get\+\_\+nowait (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove and return an item from the queue without blocking.
+
+Only get an item if one is immediately available. Otherwise
+raise the EmptyError exception.
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_abda0a8cb8481e07069fc378ddf090415}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!join@{join}}
+\index{join@{join}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{join()}{join()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_abda0a8cb8481e07069fc378ddf090415} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+join (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Blocks until all items in the Queue have been gotten and processed.
+
+The count of unfinished tasks goes up whenever an item is added to the
+queue. The count goes down whenever a consumer thread calls task_done()
+to indicate the item was retrieved and all work on it is complete.
+
+When the count of unfinished tasks drops to zero, join() unblocks.
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_abd4a96fa2640433c3ea9a75a70262895}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!put@{put}}
+\index{put@{put}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_abd4a96fa2640433c3ea9a75a70262895} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+put (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{item}{, }\item[{}]{block}{ = {\ttfamily True}, }\item[{}]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put an item into the queue.
+
+If optional args 'block' is true and 'timeout' is None (the default),
+block if necessary until a free slot is available. If 'timeout' is
+a non-negative number, it blocks at most 'timeout' seconds and raises
+the FullError exception if no free slot was available within that time.
+Otherwise ('block' is false), put an item on the queue if a free slot
+is immediately available, else raise the FullError exception ('timeout'
+is ignored in that case).
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_af24bd819fae48d6ff17b54b350082125}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!put\_nowait@{put\_nowait}}
+\index{put\_nowait@{put\_nowait}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{put\_nowait()}{put\_nowait()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_af24bd819fae48d6ff17b54b350082125} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+put\+\_\+nowait (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{item}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put an item into the queue without blocking.
+
+Only enqueue the item if a free slot is immediately available.
+Otherwise raise the FullError exception.
+\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a8a352469c79ed612a4d639e51e825ed5}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!qsize@{qsize}}
+\index{qsize@{qsize}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{qsize()}{qsize()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_a8a352469c79ed612a4d639e51e825ed5} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+qsize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the approximate size of the queue (not reliable!).\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1__queue_1_1Queue_a0bd0fc0b84e1f1983644bcde970181e1}\index{sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}!task\_done@{task\_done}}
+\index{task\_done@{task\_done}!sentry\_sdk.\_queue.Queue@{sentry\_sdk.\_queue.Queue}}
+\doxysubsubsection{\texorpdfstring{task\_done()}{task\_done()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__queue_1_1Queue_a0bd0fc0b84e1f1983644bcde970181e1} 
+sentry\+\_\+sdk.\+\_\+queue.\+Queue.\+task\+\_\+done (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Indicate that a formerly enqueued task is complete.
+
+Used by Queue consumer threads.  For each get() used to fetch a task,
+a subsequent call to task_done() tells the queue that the processing
+on the task is complete.
+
+If a join() is currently blocking, it will resume when all items
+have been processed (meaning that a task_done() call was received
+for every item that had been put() into the queue).
+
+Raises a ValueError if called more times than there were items
+placed in the queue.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+\+\_\+queue.\+py\end{DoxyCompactItemize}

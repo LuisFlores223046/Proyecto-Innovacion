@@ -1,0 +1,669 @@
+\doxysection{dns.\+dnssec Namespace Reference}
+\hypertarget{namespacedns_1_1dnssec}{}\label{namespacedns_1_1dnssec}\index{dns.dnssec@{dns.dnssec}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}
+\item 
+class \doxymbox{\hyperlink{classdns_1_1dnssec_1_1SimpleDeny}{Simple\+Deny}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1Algorithm}{Algorithm}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a2faed9545ff83d5cfa0868cd7e7b72a3}{algorithm\+\_\+from\+\_\+text}} (str text)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1dnssec_a89d85eddc0d578269a708683a533c0f0}{algorithm\+\_\+to\+\_\+text}} (\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1Algorithm}{Algorithm}}\texorpdfstring{$\vert$}{|}int value)
+\item 
+int \doxymbox{\hyperlink{namespacedns_1_1dnssec_aa6f6248efe5df0278ad98a58765f2003}{to\+\_\+timestamp}} (datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}int value)
+\item 
+int \doxymbox{\hyperlink{namespacedns_1_1dnssec_a11e6623e02abcfcf319e7601f4fe0ee6}{key\+\_\+id}} (\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDNSKEY_1_1CDNSKEY}{CDNSKEY}} key)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DS_1_1DS}{DS}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a52b4bd4a781501c1f47d0246db502b48}{make\+\_\+ds}} (\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}str name, \doxymbox{\hyperlink{classdns_1_1rdata_1_1Rdata}{dns.\+rdata.\+Rdata}} key, \doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}}\texorpdfstring{$\vert$}{|}str algorithm, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None, bool validating=False)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDS_1_1CDS}{CDS}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a8344383216c162921d4b40f862b9956f}{make\+\_\+cds}} (\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}str name, \doxymbox{\hyperlink{classdns_1_1rdata_1_1Rdata}{dns.\+rdata.\+Rdata}} key, \doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}}\texorpdfstring{$\vert$}{|}str algorithm, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None)
+\item 
+\Hypertarget{namespacedns_1_1dnssec_aad72128611e7b1aeb4a4f35691816816}\label{namespacedns_1_1dnssec_aad72128611e7b1aeb4a4f35691816816} 
+List\+[\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+find\+\_\+candidate\+\_\+keys} (Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classdns_1_1node_1_1Node}{dns.\+node.\+Node}}]\+ keys, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} rrsig)
+\item 
+\Hypertarget{namespacedns_1_1dnssec_adf1224602815ece85224a832297c16e8}\label{namespacedns_1_1dnssec_adf1224602815ece85224a832297c16e8} 
+Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ {\bfseries \+\_\+get\+\_\+rrname\+\_\+rdataset} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset)
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a0dac073c7fa43d5d0d13f241d05afa57}\label{namespacedns_1_1dnssec_a0dac073c7fa43d5d0d13f241d05afa57} 
+None {\bfseries \+\_\+validate\+\_\+signature} (bytes sig, bytes data, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} key)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1dnssec_ac996db23de442d9933b1a81f66a5af5f}{\+\_\+validate\+\_\+rrsig}} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} rrsig, Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1node_1_1Node}{dns.\+node.\+Node}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ keys, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None, float\texorpdfstring{$\vert$}{|}None now=None, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1dnssec_a0f152108d82068d50dd3ffbd8ef62588}{\+\_\+validate}} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset, \doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrsigset, Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1node_1_1Node}{dns.\+node.\+Node}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ keys, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None, float\texorpdfstring{$\vert$}{|}None now=None, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a9be0cc30bc41d099e69baa7620b27e21}{\+\_\+sign}} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset, Private\+Key private\+\_\+key, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} signer, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} dnskey, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None inception=None, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None expiration=None, int\texorpdfstring{$\vert$}{|}None lifetime=None, bool verify=False, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None, bool deterministic=True)
+\item 
+bytes \doxymbox{\hyperlink{namespacedns_1_1dnssec_a7b2d632879b025a46b94378454bf09d1}{\+\_\+make\+\_\+rrsig\+\_\+signature\+\_\+data}} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} rrsig, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a10b60d0d0f0aa460f5fcfb197fa231b7}{\+\_\+make\+\_\+dnskey}} (Public\+Key public\+\_\+key, int\texorpdfstring{$\vert$}{|}str algorithm, int flags=Flag.\+ZONE, int protocol=3)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDNSKEY_1_1CDNSKEY}{CDNSKEY}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a5bdbe2034db87cf3b5d97061ea62c616}{\+\_\+make\+\_\+cdnskey}} (Public\+Key public\+\_\+key, int\texorpdfstring{$\vert$}{|}str algorithm, int flags=Flag.\+ZONE, int protocol=3)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1dnssec_ab74ca307a78aaa50d937c836331197dc}{nsec3\+\_\+hash}} (\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}str domain, str\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}None salt, int iterations, int\texorpdfstring{$\vert$}{|}str algorithm)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a40779d0f92ca6d93c7ba5ccaca254b9f}{make\+\_\+ds\+\_\+rdataset}} (\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+ rrset, Set\+[\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}}\texorpdfstring{$\vert$}{|}str]\+ algorithms, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a111759cf5cc3e6b62b6303df4a525791}{cds\+\_\+rdataset\+\_\+to\+\_\+ds\+\_\+rdataset}} (\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} rdataset)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a15795c4992f08e8d05a37af143108ed7}{dnskey\+\_\+rdataset\+\_\+to\+\_\+cds\+\_\+rdataset}} (\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}str name, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} rdataset, \doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}}\texorpdfstring{$\vert$}{|}str algorithm, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} \doxymbox{\hyperlink{namespacedns_1_1dnssec_a8d4ec7c410081392c665d236de90476f}{dnskey\+\_\+rdataset\+\_\+to\+\_\+cdnskey\+\_\+rdataset}} (\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} rdataset)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1dnssec_adb380a6efaf035c59badf910a13ef3da}{default\+\_\+rrset\+\_\+signer}} (\doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}} txn, \doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} rrset, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} signer, List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+ ksks, List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+ zsks, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None inception=None, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None expiration=None, int\texorpdfstring{$\vert$}{|}None lifetime=None, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None origin=None, bool deterministic=True)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1dnssec_ad5efa22497692b178150f36c5244e94a}{sign\+\_\+zone}} (\doxymbox{\hyperlink{classdns_1_1zone_1_1Zone}{dns.\+zone.\+Zone}} zone, \doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}}\texorpdfstring{$\vert$}{|}None txn=None, List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+\texorpdfstring{$\vert$}{|}None keys=None, bool add\+\_\+dnskey=True, int\texorpdfstring{$\vert$}{|}None dnskey\+\_\+ttl=None, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None inception=None, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None expiration=None, int\texorpdfstring{$\vert$}{|}None lifetime=None, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1NSEC3PARAM_1_1NSEC3PARAM}{NSEC3\+PARAM}}\texorpdfstring{$\vert$}{|}None nsec3=None, RRset\+Signer\texorpdfstring{$\vert$}{|}None rrset\+\_\+signer=None, \doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}}\texorpdfstring{$\vert$}{|}None policy=None, bool deterministic=True)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1dnssec_af7a1b2026d6de27327beee537ee10487}{\+\_\+sign\+\_\+zone\+\_\+nsec}} (\doxymbox{\hyperlink{classdns_1_1zone_1_1Zone}{dns.\+zone.\+Zone}} zone, \doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}} txn, RRset\+Signer\texorpdfstring{$\vert$}{|}None rrset\+\_\+signer=None)
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a263db7015e351ce8e26b48d0cdc42cb9}\label{namespacedns_1_1dnssec_a263db7015e351ce8e26b48d0cdc42cb9} 
+{\bfseries \+\_\+need\+\_\+pyca} (\texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacedns_1_1dnssec_aef65ef2139c3a2b6abe57d5b08f227ad}{Public\+Key}}
+\item 
+\doxymbox{\hyperlink{namespacedns_1_1dnssec_a18a022ec3a38a0d4517ecbd5b31ff599}{Private\+Key}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_aea262f9197b8c0dea49e23db71e4840f}\label{namespacedns_1_1dnssec_aea262f9197b8c0dea49e23db71e4840f} 
+{\bfseries RRset\+Signer} = Callable\+[\+[\doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}}, \doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}]\+, None]\+
+\item 
+\doxymbox{\hyperlink{namespacedns_1_1dnssec_afd28fe6567692c7556439e7ca2b0d8a2}{rfc\+\_\+8624\+\_\+policy}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a8c36ff217dc82e1771abbea77f4f6602}\label{namespacedns_1_1dnssec_a8c36ff217dc82e1771abbea77f4f6602} 
+{\bfseries allow\+\_\+all\+\_\+policy} = \doxymbox{\hyperlink{classdns_1_1dnssec_1_1SimpleDeny}{Simple\+Deny}}(set(), set(), set(), set())
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a295a298124fc4693ae3b5193af9dc327}\label{namespacedns_1_1dnssec_a295a298124fc4693ae3b5193af9dc327} 
+{\bfseries default\+\_\+policy} = rfc\+\_\+8624\+\_\+policy
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a33859cd9fa8e7b7272a238b09b468fd2}\label{namespacedns_1_1dnssec_a33859cd9fa8e7b7272a238b09b468fd2} 
+None {\bfseries validate\+\_\+rrsig} = \doxymbox{\hyperlink{namespacedns_1_1dnssec_ac996db23de442d9933b1a81f66a5af5f}{\+\_\+validate\+\_\+rrsig}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a646bbd771f63cd2013d64ea4e86304c0}\label{namespacedns_1_1dnssec_a646bbd771f63cd2013d64ea4e86304c0} 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} {\bfseries sign} = \doxymbox{\hyperlink{namespacedns_1_1dnssec_a9be0cc30bc41d099e69baa7620b27e21}{\+\_\+sign}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a30921faec7258d267926c6f42cc136c1}\label{namespacedns_1_1dnssec_a30921faec7258d267926c6f42cc136c1} 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} {\bfseries make\+\_\+dnskey} = \doxymbox{\hyperlink{namespacedns_1_1dnssec_a10b60d0d0f0aa460f5fcfb197fa231b7}{\+\_\+make\+\_\+dnskey}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_ae3867fac789180cd28fa44a525c67aed}\label{namespacedns_1_1dnssec_ae3867fac789180cd28fa44a525c67aed} 
+\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDNSKEY_1_1CDNSKEY}{CDNSKEY}} {\bfseries make\+\_\+cdnskey} = \doxymbox{\hyperlink{namespacedns_1_1dnssec_a5bdbe2034db87cf3b5d97061ea62c616}{\+\_\+make\+\_\+cdnskey}}
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a405da68007e6a805ea835667cabe250f}\label{namespacedns_1_1dnssec_a405da68007e6a805ea835667cabe250f} 
+bool {\bfseries \+\_\+have\+\_\+pyca} = True
+\item 
+\Hypertarget{namespacedns_1_1dnssec_abc8389f95ed37ac979367e32e60b0ab9}\label{namespacedns_1_1dnssec_abc8389f95ed37ac979367e32e60b0ab9} 
+{\bfseries validate} = \+\_\+need\+\_\+pyca
+\item 
+\Hypertarget{namespacedns_1_1dnssec_aabbcec8afd3c4eba825bc3df4b761ac3}\label{namespacedns_1_1dnssec_aabbcec8afd3c4eba825bc3df4b761ac3} 
+{\bfseries RSAMD5} = Algorithm.\+RSAMD5
+\begin{DoxyCompactList}\small\item\em BEGIN generated \doxylink{classdns_1_1dnssectypes_1_1Algorithm}{Algorithm} constants. \end{DoxyCompactList}\item 
+\Hypertarget{namespacedns_1_1dnssec_a137912f6c789d50018fa111f96f85d94}\label{namespacedns_1_1dnssec_a137912f6c789d50018fa111f96f85d94} 
+{\bfseries DH} = Algorithm.\+DH
+\item 
+\Hypertarget{namespacedns_1_1dnssec_ace091ee3f041eb9b15662fe68e418b7e}\label{namespacedns_1_1dnssec_ace091ee3f041eb9b15662fe68e418b7e} 
+{\bfseries DSA} = Algorithm.\+DSA
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a0850dcb778a7cf591a00b534a8780020}\label{namespacedns_1_1dnssec_a0850dcb778a7cf591a00b534a8780020} 
+{\bfseries ECC} = Algorithm.\+ECC
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a45f350fdf8f9de13dc5ba33eecd5de37}\label{namespacedns_1_1dnssec_a45f350fdf8f9de13dc5ba33eecd5de37} 
+{\bfseries RSASHA1} = Algorithm.\+RSASHA1
+\item 
+\Hypertarget{namespacedns_1_1dnssec_ad829608ab4e57b7d97dc3ae7f3267ae4}\label{namespacedns_1_1dnssec_ad829608ab4e57b7d97dc3ae7f3267ae4} 
+{\bfseries DSANSEC3\+SHA1} = Algorithm.\+DSANSEC3\+SHA1
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a9e46c35523bc3a35f379a0096494e1a1}\label{namespacedns_1_1dnssec_a9e46c35523bc3a35f379a0096494e1a1} 
+{\bfseries RSASHA1\+NSEC3\+SHA1} = Algorithm.\+RSASHA1\+NSEC3\+SHA1
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a4cae30d8e50a898b7860ffbbf7c986fc}\label{namespacedns_1_1dnssec_a4cae30d8e50a898b7860ffbbf7c986fc} 
+{\bfseries RSASHA256} = Algorithm.\+RSASHA256
+\item 
+\Hypertarget{namespacedns_1_1dnssec_abb61de9aba8c6cff28c9c16a58940df4}\label{namespacedns_1_1dnssec_abb61de9aba8c6cff28c9c16a58940df4} 
+{\bfseries RSASHA512} = Algorithm.\+RSASHA512
+\item 
+\Hypertarget{namespacedns_1_1dnssec_af07d1306dc1285444096a9dc1f0c04a4}\label{namespacedns_1_1dnssec_af07d1306dc1285444096a9dc1f0c04a4} 
+{\bfseries ECCGOST} = Algorithm.\+ECCGOST
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a93ace87c748e2a3c12731abeadc475fb}\label{namespacedns_1_1dnssec_a93ace87c748e2a3c12731abeadc475fb} 
+{\bfseries ECDSAP256\+SHA256} = Algorithm.\+ECDSAP256\+SHA256
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a0d5b903a33dd2d4d31f43e031944daf4}\label{namespacedns_1_1dnssec_a0d5b903a33dd2d4d31f43e031944daf4} 
+{\bfseries ECDSAP384\+SHA384} = Algorithm.\+ECDSAP384\+SHA384
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a75c9740e2e535aa0cb064ebd9f21ef0d}\label{namespacedns_1_1dnssec_a75c9740e2e535aa0cb064ebd9f21ef0d} 
+{\bfseries ED25519} = Algorithm.\+ED25519
+\item 
+\Hypertarget{namespacedns_1_1dnssec_acaef66c5a0189745139c9a2722023d20}\label{namespacedns_1_1dnssec_acaef66c5a0189745139c9a2722023d20} 
+{\bfseries ED448} = Algorithm.\+ED448
+\item 
+\Hypertarget{namespacedns_1_1dnssec_ae876a94499738055ded84a44e4270d68}\label{namespacedns_1_1dnssec_ae876a94499738055ded84a44e4270d68} 
+{\bfseries INDIRECT} = Algorithm.\+INDIRECT
+\item 
+\Hypertarget{namespacedns_1_1dnssec_a1fb54cb1bc2b6f3babbbf3438f8f2099}\label{namespacedns_1_1dnssec_a1fb54cb1bc2b6f3babbbf3438f8f2099} 
+{\bfseries PRIVATEDNS} = Algorithm.\+PRIVATEDNS
+\item 
+\Hypertarget{namespacedns_1_1dnssec_ae78c6af78b7a9b4c46a000d2c2e2eb9e}\label{namespacedns_1_1dnssec_ae78c6af78b7a9b4c46a000d2c2e2eb9e} 
+{\bfseries PRIVATEOID} = Algorithm.\+PRIVATEOID
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Common DNSSEC-related functions and constants.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1dnssec_doc-func-members}
+\Hypertarget{namespacedns_1_1dnssec_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1dnssec_a5bdbe2034db87cf3b5d97061ea62c616}\index{dns.dnssec@{dns.dnssec}!\_make\_cdnskey@{\_make\_cdnskey}}
+\index{\_make\_cdnskey@{\_make\_cdnskey}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_make\_cdnskey()}{\_make\_cdnskey()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a5bdbe2034db87cf3b5d97061ea62c616} 
+ \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDNSKEY_1_1CDNSKEY}{CDNSKEY}} \+\_\+make\+\_\+cdnskey (\begin{DoxyParamCaption}\item[{Public\+Key}]{public\+\_\+key}{, }\item[{int \texorpdfstring{$\vert$}{|} str}]{algorithm}{, }\item[{int }]{flags}{ = {\ttfamily Flag.ZONE}, }\item[{int }]{protocol}{ = {\ttfamily 3}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert a public key to CDNSKEY Rdata
+
+*public_key*, the public key to convert, a
+``cryptography.hazmat.primitives.asymmetric`` public key class applicable
+for DNSSEC.
+
+*algorithm*, a ``str`` or ``int`` specifying the DNSKEY algorithm.
+
+*flags*: DNSKEY flags field as an integer.
+
+*protocol*: DNSKEY protocol field as an integer.
+
+Raises ``ValueError`` if the specified key algorithm parameters are not
+unsupported, ``TypeError`` if the key type is unsupported,
+`UnsupportedAlgorithm` if the algorithm is unknown and
+`AlgorithmKeyMismatch` if the algorithm does not match the key type.
+
+Return CDNSKEY ``Rdata``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a10b60d0d0f0aa460f5fcfb197fa231b7}\index{dns.dnssec@{dns.dnssec}!\_make\_dnskey@{\_make\_dnskey}}
+\index{\_make\_dnskey@{\_make\_dnskey}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_make\_dnskey()}{\_make\_dnskey()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a10b60d0d0f0aa460f5fcfb197fa231b7} 
+ \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} \+\_\+make\+\_\+dnskey (\begin{DoxyParamCaption}\item[{Public\+Key}]{public\+\_\+key}{, }\item[{int \texorpdfstring{$\vert$}{|} str}]{algorithm}{, }\item[{int }]{flags}{ = {\ttfamily Flag.ZONE}, }\item[{int }]{protocol}{ = {\ttfamily 3}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convert a public key to DNSKEY Rdata
+
+*public_key*, a ``PublicKey`` (``GenericPublicKey`` or
+``cryptography.hazmat.primitives.asymmetric``) to convert.
+
+*algorithm*, a ``str`` or ``int`` specifying the DNSKEY algorithm.
+
+*flags*: DNSKEY flags field as an integer.
+
+*protocol*: DNSKEY protocol field as an integer.
+
+Raises ``ValueError`` if the specified key algorithm parameters are not
+unsupported, ``TypeError`` if the key type is unsupported,
+`UnsupportedAlgorithm` if the algorithm is unknown and
+`AlgorithmKeyMismatch` if the algorithm does not match the key type.
+
+Return DNSKEY ``Rdata``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a7b2d632879b025a46b94378454bf09d1}\index{dns.dnssec@{dns.dnssec}!\_make\_rrsig\_signature\_data@{\_make\_rrsig\_signature\_data}}
+\index{\_make\_rrsig\_signature\_data@{\_make\_rrsig\_signature\_data}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_make\_rrsig\_signature\_data()}{\_make\_rrsig\_signature\_data()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a7b2d632879b025a46b94378454bf09d1} 
+ bytes \+\_\+make\+\_\+rrsig\+\_\+signature\+\_\+data (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrset}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}}}]{rrsig}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create signature rdata.
+
+*rrset*, the RRset to sign/validate.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*rrsig*, a ``dns.rdata.Rdata``, the signature to validate, or the
+signature template used when signing.
+
+*origin*, a ``dns.name.Name`` or ``None``, the origin to use for relative
+names.
+
+Raises ``UnsupportedAlgorithm`` if the algorithm is recognized by
+dnspython but not implemented.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a9be0cc30bc41d099e69baa7620b27e21}\index{dns.dnssec@{dns.dnssec}!\_sign@{\_sign}}
+\index{\_sign@{\_sign}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_sign()}{\_sign()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a9be0cc30bc41d099e69baa7620b27e21} 
+ \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}} \+\_\+sign (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrset}{, }\item[{Private\+Key}]{private\+\_\+key}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}}]{signer}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}}]{dnskey}{, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{inception}{ = {\ttfamily None}, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{lifetime}{ = {\ttfamily None}, }\item[{bool }]{verify}{ = {\ttfamily False}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}, }\item[{bool }]{deterministic}{ = {\ttfamily True}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Sign RRset using private key.
+
+*rrset*, the RRset to validate.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*private_key*, the private key to use for signing, a
+``cryptography.hazmat.primitives.asymmetric`` private key class applicable
+for DNSSEC.
+
+*signer*, a ``dns.name.Name``, the Signer's name.
+
+*dnskey*, a ``DNSKEY`` matching ``private_key``.
+
+*inception*, a ``datetime``, ``str``, ``int``, ``float`` or ``None``, the
+signature inception time.  If ``None``, the current time is used.  If a ``str``, the
+format is "YYYYMMDDHHMMSS" or alternatively the number of seconds since the UNIX
+epoch in text form; this is the same the RRSIG rdata's text form.
+Values of type `int` or `float` are interpreted as seconds since the UNIX epoch.
+
+*expiration*, a ``datetime``, ``str``, ``int``, ``float`` or ``None``, the signature
+expiration time.  If ``None``, the expiration time will be the inception time plus
+the value of the *lifetime* parameter.  See the description of *inception* above
+for how the various parameter types are interpreted.
+
+*lifetime*, an ``int`` or ``None``, the signature lifetime in seconds.  This
+parameter is only meaningful if *expiration* is ``None``.
+
+*verify*, a ``bool``.  If set to ``True``, the signer will verify signatures
+after they are created; the default is ``False``.
+
+*policy*, a ``dns.dnssec.Policy`` or ``None``.  If ``None``, the default policy,
+``dns.dnssec.default_policy`` is used; this policy defaults to that of RFC 8624.
+
+*origin*, a ``dns.name.Name`` or ``None``.  If ``None``, the default, then all
+names in the rrset (including its owner name) must be absolute; otherwise the
+specified origin will be used to make names absolute when signing.
+
+*deterministic*, a ``bool``. If ``True``, the default, use deterministic
+(reproducible) signatures when supported by the algorithm used for signing.
+Currently, this only affects ECDSA.
+
+Raises ``DeniedByPolicy`` if the signature is denied by policy.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_af7a1b2026d6de27327beee537ee10487}\index{dns.dnssec@{dns.dnssec}!\_sign\_zone\_nsec@{\_sign\_zone\_nsec}}
+\index{\_sign\_zone\_nsec@{\_sign\_zone\_nsec}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_sign\_zone\_nsec()}{\_sign\_zone\_nsec()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_af7a1b2026d6de27327beee537ee10487} 
+ None \+\_\+sign\+\_\+zone\+\_\+nsec (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1zone_1_1Zone}{dns.\+zone.\+Zone}}}]{zone}{, }\item[{\doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}}}]{txn}{, }\item[{RRset\+Signer \texorpdfstring{$\vert$}{|} None }]{rrset\+\_\+signer}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}NSEC zone signer\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a0f152108d82068d50dd3ffbd8ef62588}\index{dns.dnssec@{dns.dnssec}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a0f152108d82068d50dd3ffbd8ef62588} 
+ None \+\_\+validate (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrset}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrsigset}{, }\item[{Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1node_1_1Node}{dns.\+node.\+Node}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{keys}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{now}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate an RRset against a signature RRset, throwing an exception
+if none of the signatures validate.
+
+*rrset*, the RRset to validate.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*rrsigset*, the signature RRset.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*keys*, the key dictionary, used to find the DNSKEY associated
+with a given name.  The dictionary is keyed by a
+``dns.name.Name``, and has ``dns.node.Node`` or
+``dns.rdataset.Rdataset`` values.
+
+*origin*, a ``dns.name.Name``, the origin to use for relative names;
+defaults to None.
+
+*now*, an ``int`` or ``None``, the time, in seconds since the epoch, to
+use as the current time when validating.  If ``None``, the actual current
+time is used.
+
+*policy*, a ``dns.dnssec.Policy`` or ``None``.  If ``None``, the default policy,
+``dns.dnssec.default_policy`` is used; this policy defaults to that of RFC 8624.
+
+Raises ``ValidationFailure`` if the signature is expired, not yet valid,
+the public key is invalid, the algorithm is unknown, the verification
+fails, etc.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_ac996db23de442d9933b1a81f66a5af5f}\index{dns.dnssec@{dns.dnssec}!\_validate\_rrsig@{\_validate\_rrsig}}
+\index{\_validate\_rrsig@{\_validate\_rrsig}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{\_validate\_rrsig()}{\_validate\_rrsig()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_ac996db23de442d9933b1a81f66a5af5f} 
+ None \+\_\+validate\+\_\+rrsig (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrset}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1RRSIG_1_1RRSIG}{RRSIG}}}]{rrsig}{, }\item[{Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1node_1_1Node}{dns.\+node.\+Node}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{keys}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{now}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate an RRset against a single signature rdata, throwing an
+exception if validation is not successful.
+
+*rrset*, the RRset to validate.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*rrsig*, a ``dns.rdata.Rdata``, the signature to validate.
+
+*keys*, the key dictionary, used to find the DNSKEY associated
+with a given name.  The dictionary is keyed by a
+``dns.name.Name``, and has ``dns.node.Node`` or
+``dns.rdataset.Rdataset`` values.
+
+*origin*, a ``dns.name.Name`` or ``None``, the origin to use for relative
+names.
+
+*now*, a ``float`` or ``None``, the time, in seconds since the epoch, to
+use as the current time when validating.  If ``None``, the actual current
+time is used.
+
+*policy*, a ``dns.dnssec.Policy`` or ``None``.  If ``None``, the default policy,
+``dns.dnssec.default_policy`` is used; this policy defaults to that of RFC 8624.
+
+Raises ``ValidationFailure`` if the signature is expired, not yet valid,
+the public key is invalid, the algorithm is unknown, the verification
+fails, etc.
+
+Raises ``UnsupportedAlgorithm`` if the algorithm is recognized by
+dnspython but not implemented.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a2faed9545ff83d5cfa0868cd7e7b72a3}\index{dns.dnssec@{dns.dnssec}!algorithm\_from\_text@{algorithm\_from\_text}}
+\index{algorithm\_from\_text@{algorithm\_from\_text}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{algorithm\_from\_text()}{algorithm\_from\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a2faed9545ff83d5cfa0868cd7e7b72a3} 
+ \doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1Algorithm}{Algorithm}} algorithm\+\_\+from\+\_\+text (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert text into a DNSSEC algorithm value.
+
+*text*, a ``str``, the text to convert to into an algorithm value.
+
+Returns an ``int``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a89d85eddc0d578269a708683a533c0f0}\index{dns.dnssec@{dns.dnssec}!algorithm\_to\_text@{algorithm\_to\_text}}
+\index{algorithm\_to\_text@{algorithm\_to\_text}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{algorithm\_to\_text()}{algorithm\_to\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a89d85eddc0d578269a708683a533c0f0} 
+ str algorithm\+\_\+to\+\_\+text (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1Algorithm}{Algorithm}} \texorpdfstring{$\vert$}{|} int}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a DNSSEC algorithm value to text
+
+*value*, a ``dns.dnssec.Algorithm``.
+
+Returns a ``str``, the name of a DNSSEC algorithm.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a111759cf5cc3e6b62b6303df4a525791}\index{dns.dnssec@{dns.dnssec}!cds\_rdataset\_to\_ds\_rdataset@{cds\_rdataset\_to\_ds\_rdataset}}
+\index{cds\_rdataset\_to\_ds\_rdataset@{cds\_rdataset\_to\_ds\_rdataset}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{cds\_rdataset\_to\_ds\_rdataset()}{cds\_rdataset\_to\_ds\_rdataset()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a111759cf5cc3e6b62b6303df4a525791} 
+ \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} cds\+\_\+rdataset\+\_\+to\+\_\+ds\+\_\+rdataset (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}}]{rdataset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a CDS record from DS.
+
+*rdataset*, a ``dns.rdataset.Rdataset``, to create DS Rdataset for.
+
+Raises ``ValueError`` if the rdataset is not CDS.
+
+Returns a ``dns.rdataset.Rdataset``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_adb380a6efaf035c59badf910a13ef3da}\index{dns.dnssec@{dns.dnssec}!default\_rrset\_signer@{default\_rrset\_signer}}
+\index{default\_rrset\_signer@{default\_rrset\_signer}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{default\_rrset\_signer()}{default\_rrset\_signer()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_adb380a6efaf035c59badf910a13ef3da} 
+ None default\+\_\+rrset\+\_\+signer (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}}}]{txn}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}}]{rrset}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}}]{signer}{, }\item[{List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+}]{ksks}{, }\item[{List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+}]{zsks}{, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{inception}{ = {\ttfamily None}, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{lifetime}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}, }\item[{bool }]{deterministic}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Default RRset signer\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a8d4ec7c410081392c665d236de90476f}\index{dns.dnssec@{dns.dnssec}!dnskey\_rdataset\_to\_cdnskey\_rdataset@{dnskey\_rdataset\_to\_cdnskey\_rdataset}}
+\index{dnskey\_rdataset\_to\_cdnskey\_rdataset@{dnskey\_rdataset\_to\_cdnskey\_rdataset}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{dnskey\_rdataset\_to\_cdnskey\_rdataset()}{dnskey\_rdataset\_to\_cdnskey\_rdataset()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a8d4ec7c410081392c665d236de90476f} 
+ \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} dnskey\+\_\+rdataset\+\_\+to\+\_\+cdnskey\+\_\+rdataset (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}}]{rdataset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a CDNSKEY record from DNSKEY.
+
+*rdataset*, a ``dns.rdataset.Rdataset``, to create CDNSKEY Rdataset for.
+
+Returns a ``dns.rdataset.Rdataset``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a15795c4992f08e8d05a37af143108ed7}\index{dns.dnssec@{dns.dnssec}!dnskey\_rdataset\_to\_cds\_rdataset@{dnskey\_rdataset\_to\_cds\_rdataset}}
+\index{dnskey\_rdataset\_to\_cds\_rdataset@{dnskey\_rdataset\_to\_cds\_rdataset}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{dnskey\_rdataset\_to\_cds\_rdataset()}{dnskey\_rdataset\_to\_cds\_rdataset()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a15795c4992f08e8d05a37af143108ed7} 
+ \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} dnskey\+\_\+rdataset\+\_\+to\+\_\+cds\+\_\+rdataset (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} str}]{name}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}}]{rdataset}{, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}} \texorpdfstring{$\vert$}{|} str}]{algorithm}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a CDS record from DNSKEY/CDNSKEY.
+
+*name*, a ``dns.name.Name`` or ``str``, the owner name of the CDS record.
+
+*rdataset*, a ``dns.rdataset.Rdataset``, to create DS Rdataset for.
+
+*algorithm*, a ``str`` or ``int`` specifying the hash algorithm.
+The currently supported hashes are "SHA1", "SHA256", and "SHA384". Case
+does not matter for these strings.
+
+*origin*, a ``dns.name.Name`` or ``None``.  If `key` is a relative name,
+then it will be made absolute using the specified origin.
+
+Raises ``UnsupportedAlgorithm`` if the algorithm is unknown or
+``ValueError`` if the rdataset is not DNSKEY/CDNSKEY.
+
+Returns a ``dns.rdataset.Rdataset``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a11e6623e02abcfcf319e7601f4fe0ee6}\index{dns.dnssec@{dns.dnssec}!key\_id@{key\_id}}
+\index{key\_id@{key\_id}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{key\_id()}{key\_id()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a11e6623e02abcfcf319e7601f4fe0ee6} 
+ int key\+\_\+id (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDNSKEY_1_1CDNSKEY}{CDNSKEY}}}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the key id (a 16-bit number) for the specified key.
+
+*key*, a ``dns.rdtypes.ANY.DNSKEY.DNSKEY``
+
+Returns an ``int`` between 0 and 65535
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a8344383216c162921d4b40f862b9956f}\index{dns.dnssec@{dns.dnssec}!make\_cds@{make\_cds}}
+\index{make\_cds@{make\_cds}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{make\_cds()}{make\_cds()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a8344383216c162921d4b40f862b9956f} 
+ \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1CDS_1_1CDS}{CDS}} make\+\_\+cds (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} str}]{name}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdata_1_1Rdata}{dns.\+rdata.\+Rdata}}}]{key}{, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}} \texorpdfstring{$\vert$}{|} str}]{algorithm}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a CDS record for a DNSSEC key.
+
+*name*, a ``dns.name.Name`` or ``str``, the owner name of the DS record.
+
+*key*, a ``dns.rdtypes.ANY.DNSKEY.DNSKEY`` or ``dns.rdtypes.ANY.DNSKEY.CDNSKEY``,
+the key the DS is about.
+
+*algorithm*, a ``str`` or ``int`` specifying the hash algorithm.
+The currently supported hashes are "SHA1", "SHA256", and "SHA384". Case
+does not matter for these strings.
+
+*origin*, a ``dns.name.Name`` or ``None``.  If *key* is a relative name,
+then it will be made absolute using the specified origin.
+
+Raises ``UnsupportedAlgorithm`` if the algorithm is unknown.
+
+Returns a ``dns.rdtypes.ANY.DS.CDS``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a52b4bd4a781501c1f47d0246db502b48}\index{dns.dnssec@{dns.dnssec}!make\_ds@{make\_ds}}
+\index{make\_ds@{make\_ds}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{make\_ds()}{make\_ds()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a52b4bd4a781501c1f47d0246db502b48} 
+ \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DS_1_1DS}{DS}} make\+\_\+ds (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} str}]{name}{, }\item[{\doxymbox{\hyperlink{classdns_1_1rdata_1_1Rdata}{dns.\+rdata.\+Rdata}}}]{key}{, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}} \texorpdfstring{$\vert$}{|} str}]{algorithm}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}, }\item[{bool }]{validating}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a DS record for a DNSSEC key.
+
+*name*, a ``dns.name.Name`` or ``str``, the owner name of the DS record.
+
+*key*, a ``dns.rdtypes.ANY.DNSKEY.DNSKEY`` or ``dns.rdtypes.ANY.DNSKEY.CDNSKEY``,
+the key the DS is about.
+
+*algorithm*, a ``str`` or ``int`` specifying the hash algorithm.
+The currently supported hashes are "SHA1", "SHA256", and "SHA384". Case
+does not matter for these strings.
+
+*origin*, a ``dns.name.Name`` or ``None``.  If *key* is a relative name,
+then it will be made absolute using the specified origin.
+
+*policy*, a ``dns.dnssec.Policy`` or ``None``.  If ``None``, the default policy,
+``dns.dnssec.default_policy`` is used; this policy defaults to that of RFC 8624.
+
+*validating*, a ``bool``.  If ``True``, then policy is checked in
+validating mode, i.e. "Is it ok to validate using this digest algorithm?".
+Otherwise the policy is checked in creating mode, i.e. "Is it ok to create a DS with
+this digest algorithm?".
+
+Raises ``UnsupportedAlgorithm`` if the algorithm is unknown.
+
+Raises ``DeniedByPolicy`` if the algorithm is denied by policy.
+
+Returns a ``dns.rdtypes.ANY.DS.DS``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_a40779d0f92ca6d93c7ba5ccaca254b9f}\index{dns.dnssec@{dns.dnssec}!make\_ds\_rdataset@{make\_ds\_rdataset}}
+\index{make\_ds\_rdataset@{make\_ds\_rdataset}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{make\_ds\_rdataset()}{make\_ds\_rdataset()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a40779d0f92ca6d93c7ba5ccaca254b9f} 
+ \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}} make\+\_\+ds\+\_\+rdataset (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}} \texorpdfstring{$\vert$}{|} Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1rdataset_1_1Rdataset}{dns.\+rdataset.\+Rdataset}}]\+}]{rrset}{, }\item[{Set\+[\doxymbox{\hyperlink{classdns_1_1dnssectypes_1_1DSDigest}{DSDigest}} \texorpdfstring{$\vert$}{|} str]\+}]{algorithms}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None }]{origin}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a DS record from DNSKEY/CDNSKEY/CDS.
+
+*rrset*, the RRset to create DS Rdataset for.  This can be a
+``dns.rrset.RRset`` or a (``dns.name.Name``, ``dns.rdataset.Rdataset``)
+tuple.
+
+*algorithms*, a set of ``str`` or ``int`` specifying the hash algorithms.
+The currently supported hashes are "SHA1", "SHA256", and "SHA384". Case
+does not matter for these strings. If the RRset is a CDS, only digest
+algorithms matching algorithms are accepted.
+
+*origin*, a ``dns.name.Name`` or ``None``.  If `key` is a relative name,
+then it will be made absolute using the specified origin.
+
+Raises ``UnsupportedAlgorithm`` if any of the algorithms are unknown and
+``ValueError`` if the given RRset is not usable.
+
+Returns a ``dns.rdataset.Rdataset``
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_ab74ca307a78aaa50d937c836331197dc}\index{dns.dnssec@{dns.dnssec}!nsec3\_hash@{nsec3\_hash}}
+\index{nsec3\_hash@{nsec3\_hash}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{nsec3\_hash()}{nsec3\_hash()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_ab74ca307a78aaa50d937c836331197dc} 
+ str nsec3\+\_\+hash (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} str}]{domain}{, }\item[{str \texorpdfstring{$\vert$}{|} bytes \texorpdfstring{$\vert$}{|} None}]{salt}{, }\item[{int}]{iterations}{, }\item[{int \texorpdfstring{$\vert$}{|} str}]{algorithm}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculate the NSEC3 hash, according to
+https://tools.ietf.org/html/rfc5155#section-5
+
+*domain*, a ``dns.name.Name`` or ``str``, the name to hash.
+
+*salt*, a ``str``, ``bytes``, or ``None``, the hash salt.  If a
+string, it is decoded as a hex string.
+
+*iterations*, an ``int``, the number of iterations.
+
+*algorithm*, a ``str`` or ``int``, the hash algorithm.
+The only defined algorithm is SHA1.
+
+Returns a ``str``, the encoded NSEC3 hash.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_ad5efa22497692b178150f36c5244e94a}\index{dns.dnssec@{dns.dnssec}!sign\_zone@{sign\_zone}}
+\index{sign\_zone@{sign\_zone}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{sign\_zone()}{sign\_zone()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_ad5efa22497692b178150f36c5244e94a} 
+ None sign\+\_\+zone (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1zone_1_1Zone}{dns.\+zone.\+Zone}}}]{zone}{, }\item[{\doxymbox{\hyperlink{classdns_1_1transaction_1_1Transaction}{dns.\+transaction.\+Transaction}} \texorpdfstring{$\vert$}{|} None }]{txn}{ = {\ttfamily None}, }\item[{List\+[Tuple\+[Private\+Key, \doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1DNSKEY_1_1DNSKEY}{DNSKEY}}]\+]\+ \texorpdfstring{$\vert$}{|} None }]{keys}{ = {\ttfamily None}, }\item[{bool }]{add\+\_\+dnskey}{ = {\ttfamily True}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{dnskey\+\_\+ttl}{ = {\ttfamily None}, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{inception}{ = {\ttfamily None}, }\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{lifetime}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1rdtypes_1_1ANY_1_1NSEC3PARAM_1_1NSEC3PARAM}{NSEC3\+PARAM}} \texorpdfstring{$\vert$}{|} None }]{nsec3}{ = {\ttfamily None}, }\item[{RRset\+Signer \texorpdfstring{$\vert$}{|} None }]{rrset\+\_\+signer}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classdns_1_1dnssec_1_1Policy}{Policy}} \texorpdfstring{$\vert$}{|} None }]{policy}{ = {\ttfamily None}, }\item[{bool }]{deterministic}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sign zone.
+
+*zone*, a ``dns.zone.Zone``, the zone to sign.
+
+*txn*, a ``dns.transaction.Transaction``, an optional transaction to use for
+signing.
+
+*keys*, a list of (``PrivateKey``, ``DNSKEY``) tuples, to use for signing. KSK/ZSK
+roles are assigned automatically if the SEP flag is used, otherwise all RRsets are
+signed by all keys.
+
+*add_dnskey*, a ``bool``.  If ``True``, the default, all specified DNSKEYs are
+automatically added to the zone on signing.
+
+*dnskey_ttl*, a``int``, specifies the TTL for DNSKEY RRs. If not specified the TTL
+of the existing DNSKEY RRset used or the TTL of the SOA RRset.
+
+*inception*, a ``datetime``, ``str``, ``int``, ``float`` or ``None``, the signature
+inception time.  If ``None``, the current time is used.  If a ``str``, the format is
+"YYYYMMDDHHMMSS" or alternatively the number of seconds since the UNIX epoch in text
+form; this is the same the RRSIG rdata's text form. Values of type `int` or `float`
+are interpreted as seconds since the UNIX epoch.
+
+*expiration*, a ``datetime``, ``str``, ``int``, ``float`` or ``None``, the signature
+expiration time.  If ``None``, the expiration time will be the inception time plus
+the value of the *lifetime* parameter.  See the description of *inception* above for
+how the various parameter types are interpreted.
+
+*lifetime*, an ``int`` or ``None``, the signature lifetime in seconds.  This
+parameter is only meaningful if *expiration* is ``None``.
+
+*nsec3*, a ``NSEC3PARAM`` Rdata, configures signing using NSEC3. Not yet
+implemented.
+
+*rrset_signer*, a ``Callable``, an optional function for signing RRsets. The
+function requires two arguments: transaction and RRset. If the not specified,
+``dns.dnssec.default_rrset_signer`` will be used.
+
+*deterministic*, a ``bool``. If ``True``, the default, use deterministic
+(reproducible) signatures when supported by the algorithm used for signing.
+Currently, this only affects ECDSA.
+
+Returns ``None``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1dnssec_aa6f6248efe5df0278ad98a58765f2003}\index{dns.dnssec@{dns.dnssec}!to\_timestamp@{to\_timestamp}}
+\index{to\_timestamp@{to\_timestamp}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{to\_timestamp()}{to\_timestamp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_aa6f6248efe5df0278ad98a58765f2003} 
+ int to\+\_\+timestamp (\begin{DoxyParamCaption}\item[{datetime \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} float \texorpdfstring{$\vert$}{|} int}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert various format to a timestamp\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1dnssec_doc-var-members}
+\Hypertarget{namespacedns_1_1dnssec_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacedns_1_1dnssec_a18a022ec3a38a0d4517ecbd5b31ff599}\index{dns.dnssec@{dns.dnssec}!PrivateKey@{PrivateKey}}
+\index{PrivateKey@{PrivateKey}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{PrivateKey}{PrivateKey}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_a18a022ec3a38a0d4517ecbd5b31ff599} 
+dns.\+dnssec.\+Private\+Key}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Union[}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}GenericPrivateKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}rsa.RSAPrivateKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ec.EllipticCurvePrivateKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ed25519.Ed25519PrivateKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ed448.Ed448PrivateKey"{}},}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\Hypertarget{namespacedns_1_1dnssec_aef65ef2139c3a2b6abe57d5b08f227ad}\index{dns.dnssec@{dns.dnssec}!PublicKey@{PublicKey}}
+\index{PublicKey@{PublicKey}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{PublicKey}{PublicKey}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_aef65ef2139c3a2b6abe57d5b08f227ad} 
+dns.\+dnssec.\+Public\+Key}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Union[}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}GenericPublicKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}rsa.RSAPublicKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ec.EllipticCurvePublicKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ed25519.Ed25519PublicKey"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}ed448.Ed448PublicKey"{}},}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\Hypertarget{namespacedns_1_1dnssec_afd28fe6567692c7556439e7ca2b0d8a2}\index{dns.dnssec@{dns.dnssec}!rfc\_8624\_policy@{rfc\_8624\_policy}}
+\index{rfc\_8624\_policy@{rfc\_8624\_policy}!dns.dnssec@{dns.dnssec}}
+\doxysubsubsection{\texorpdfstring{rfc\_8624\_policy}{rfc\_8624\_policy}}
+{\footnotesize\ttfamily \label{namespacedns_1_1dnssec_afd28fe6567692c7556439e7ca2b0d8a2} 
+dns.\+dnssec.\+rfc\+\_\+8624\+\_\+policy}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ SimpleDeny(}
+\DoxyCodeLine{\ \ \ \ \{Algorithm.RSAMD5,\ Algorithm.DSA,\ Algorithm.DSANSEC3SHA1,\ Algorithm.ECCGOST\},}
+\DoxyCodeLine{\ \ \ \ \{Algorithm.RSAMD5,\ Algorithm.DSA,\ Algorithm.DSANSEC3SHA1\},}
+\DoxyCodeLine{\ \ \ \ \{DSDigest.NULL,\ DSDigest.SHA1,\ DSDigest.GOST\},}
+\DoxyCodeLine{\ \ \ \ \{DSDigest.NULL\},}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

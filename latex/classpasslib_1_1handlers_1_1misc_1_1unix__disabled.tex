@@ -1,0 +1,83 @@
+\doxysection{passlib.\+handlers.\+misc.\+unix\+\_\+disabled Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled}{}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled}\index{passlib.handlers.misc.unix\_disabled@{passlib.handlers.misc.unix\_disabled}}
+Inheritance diagram for passlib.\+handlers.\+misc.\+unix\+\_\+disabled:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1misc_1_1unix__disabled}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a7b4499f6d1bfb49a8c017c18dc25e348}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a7b4499f6d1bfb49a8c017c18dc25e348} 
+{\bfseries using} (cls, marker=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a5d71a17570be0645ef6084690621361b}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a5d71a17570be0645ef6084690621361b} 
+{\bfseries identify} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_af5c6353dc9862b3addfcc70fbd47a635}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_af5c6353dc9862b3addfcc70fbd47a635} 
+{\bfseries verify} (cls, secret, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a8afb89a167b9b9cdbfd3bfa71cc1cc2d}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a8afb89a167b9b9cdbfd3bfa71cc1cc2d} 
+{\bfseries hash} (cls, secret, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a8de16a00ea868a7446b4b5f83e845865}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a8de16a00ea868a7446b4b5f83e845865} 
+{\bfseries genhash} (cls, secret, config, marker=None)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a7f4e9ad7bc23dd0e7e57a2444f305bdb}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a7f4e9ad7bc23dd0e7e57a2444f305bdb} 
+{\bfseries disable} (cls, hash=None)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a794d722da6e51ce058eea178a939a612}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a794d722da6e51ce058eea178a939a612} 
+{\bfseries enable} (cls, hash)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_acb07072bafa37b6b44e99949981eabca}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_acb07072bafa37b6b44e99949981eabca} 
+str {\bfseries name} = "{}unix\+\_\+disabled"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_aeecbf43cbb4ed1b176ea8de7ce9cbfbd}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_aeecbf43cbb4ed1b176ea8de7ce9cbfbd} 
+tuple {\bfseries setting\+\_\+kwds} = ("{}marker"{},)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_ae145a7805c0df858befd16da591be314}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_ae145a7805c0df858befd16da591be314} 
+tuple {\bfseries context\+\_\+kwds} = ()
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a43e6252702652bce72f00f506e3af299}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a43e6252702652bce72f00f506e3af299} 
+{\bfseries default\+\_\+marker} = u("{}\texorpdfstring{$\ast$}{*}"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a459850ac308490a67dc3242334a61c57}\label{classpasslib_1_1handlers_1_1misc_1_1unix__disabled_a459850ac308490a67dc3242334a61c57} 
+{\bfseries \+\_\+disable\+\_\+prefixes} = tuple(str(\+\_\+\+MARKER\+\_\+\+CHARS))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class provides disabled password behavior for unix shadow files,
+and follows the :ref:`password-hash-api`.
+
+This class does not implement a hash, but instead matches the "disabled account"
+strings found in ``/etc/shadow`` on most Unix variants. "encrypting" a password
+will simply return the disabled account marker. It will reject all passwords,
+no matter the hash string. The :meth:`~passlib.ifc.PasswordHash.hash`
+method supports one optional keyword:
+
+:type marker: str
+:param marker:
+    Optional marker string which overrides the platform default
+    used to indicate a disabled account.
+
+    If not specified, this will default to ``"*"`` on BSD systems,
+    and use the Linux default ``"!"`` for all other platforms.
+    (:attr:`!unix_disabled.default_marker` will contain the default value)
+
+.. versionadded:: 1.6
+    This class was added as a replacement for the now-deprecated
+    :class:`unix_fallback` class, which had some undesirable features.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+misc.\+py\end{DoxyCompactItemize}

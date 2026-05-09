@@ -1,0 +1,70 @@
+\doxysection{pydantic.\+json\+\_\+schema.\+Skip\+Json\+Schema Class Reference}
+\hypertarget{classpydantic_1_1json__schema_1_1SkipJsonSchema}{}\label{classpydantic_1_1json__schema_1_1SkipJsonSchema}\index{pydantic.json\_schema.SkipJsonSchema@{pydantic.json\_schema.SkipJsonSchema}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1SkipJsonSchema_a392efdc5be55d87b4c3b6f922448c3c4}\label{classpydantic_1_1json__schema_1_1SkipJsonSchema_a392efdc5be55d87b4c3b6f922448c3c4} 
+Any\+Type {\bfseries \+\_\+\+\_\+class\+\_\+getitem\+\_\+\+\_\+} (cls, Any\+Type item)
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1SkipJsonSchema_aa121d2345a81be58d1d26768400c5ca7}\label{classpydantic_1_1json__schema_1_1SkipJsonSchema_aa121d2345a81be58d1d26768400c5ca7} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (self, Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1SkipJsonSchema_a5fc7ed9b25c54238e89b9624b6671156}\label{classpydantic_1_1json__schema_1_1SkipJsonSchema_a5fc7ed9b25c54238e89b9624b6671156} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/json_schema/#skipjsonschema-annotation
+
+Add this as an annotation on a field to skip generating a JSON schema for that field.
+
+Example:
+    ```py
+    from typing import Union
+
+    from pydantic import BaseModel
+    from pydantic.json_schema import SkipJsonSchema
+
+    from pprint import pprint
+
+
+    class Model(BaseModel):
+        a: Union[int, None] = None  # (1)!
+        b: Union[int, SkipJsonSchema[None]] = None  # (2)!
+        c: SkipJsonSchema[Union[int, None]] = None  # (3)!
+
+
+    pprint(Model.model_json_schema())
+    '''
+    {
+        'properties': {
+            'a': {
+                'anyOf': [
+                    {'type': 'integer'},
+                    {'type': 'null'}
+                ],
+                'default': None,
+                'title': 'A'
+            },
+            'b': {
+                'default': None,
+                'title': 'B',
+                'type': 'integer'
+            }
+        },
+        'title': 'Model',
+        'type': 'object'
+    }
+    '''
+    ```
+
+    1. The integer and null types are both included in the schema for `a`.
+    2. The integer type is the only type included in the schema for `b`.
+    3. The entirety of the `c` field is omitted from the schema.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+json\+\_\+schema.\+py\end{DoxyCompactItemize}

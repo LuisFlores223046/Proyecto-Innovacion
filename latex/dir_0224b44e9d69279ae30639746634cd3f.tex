@@ -1,0 +1,193 @@
+\doxysection{frontend/\+node\+\_\+modules/\+sucrase Directory Reference}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f}{}\label{dir_0224b44e9d69279ae30639746634cd3f}\index{frontend/node\_modules/sucrase Directory Reference@{frontend/node\_modules/sucrase Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_6ad2d9ee4d048188c816a2a4de01b53a}{dist}}
+\item 
+directory \doxymbox{\hyperlink{dir_5fb0d181796c08bdec2a17379a107065}{register}}
+\item 
+directory \doxymbox{\hyperlink{dir_f0c9184e2b5a9ee13cc17f6b012ecbf6}{ts-\/node-\/plugin}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2563}{}\doxysubsection{\texorpdfstring{Sucrase}{Sucrase}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2563}
+\href{https://github.com/alangpierce/sucrase/actions}{\texttt{}} \href{https://www.npmjs.com/package/sucrase}{\texttt{}} \href{https://packagephobia.now.sh/result?p=sucrase}{\texttt{}} \+[]\+(LICENSE) \href{https://gitter.im/sucrasejs/Lobby}{\texttt{}}\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2564}{}\doxysubsection{\texorpdfstring{\href{https://sucrase.io}{\texttt{Try it out}}}{\href{https://sucrase.io}{\texttt{Try it out}}}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2564}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2565}{}\doxysubsection{\texorpdfstring{Quick usage}{Quick usage}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2565}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yarn\ add\ -\/-\/dev\ sucrase\ \ \#\ Or\ npm\ install\ -\/-\/save-\/dev\ sucrase}
+\DoxyCodeLine{node\ -\/r\ sucrase/register\ main.ts}
+
+\end{DoxyCode}
+
+
+Using the \href{https://github.com/TypeStrong/ts-node}{\texttt{ts-\/node}} integration:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{yarn\ add\ -\/-\/dev\ sucrase\ ts-\/node\ typescript}
+\DoxyCodeLine{./node\_modules/.bin/ts-\/node\ -\/-\/transpiler\ sucrase/ts-\/node-\/plugin\ main.ts}
+
+\end{DoxyCode}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2566}{}\doxysubsection{\texorpdfstring{Project overview}{Project overview}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2566}
+Sucrase is an alternative to Babel that allows super-\/fast development builds. Instead of compiling a large range of JS features to be able to work in Internet Explorer, Sucrase assumes that you\textquotesingle{}re developing with a recent browser or recent Node.\+js version, so it focuses on compiling non-\/standard language extensions:\+ JSX, Type\+Script, and Flow. Because of this smaller scope, Sucrase can get away with an architecture that is much more performant but less extensible and maintainable. Sucrase\textquotesingle{}s parser is forked from Babel\textquotesingle{}s parser (so Sucrase is indebted to Babel and wouldn\textquotesingle{}t be possible without it) and trims it down to a focused subset of what Babel solves. If it fits your use case, hopefully Sucrase can speed up your development experience!
+
+{\bfseries{Sucrase has been extensively tested.}} It can successfully build the \href{https://benchling.com/}{\texttt{Benchling}} frontend code, \href{https://github.com/babel/babel}{\texttt{Babel}}, \href{https://github.com/facebook/react}{\texttt{React}}, \href{https://github.com/palantir/tslint}{\texttt{TSLint}}, \href{https://github.com/apollographql/apollo-client}{\texttt{Apollo client}}, and \href{https://github.com/decaffeinate/decaffeinate}{\texttt{decaffeinate}} with all tests passing, about 1 million lines of code total.
+
+{\bfseries{Sucrase is about 20x faster than Babel.}} Here\textquotesingle{}s one measurement of how Sucrase compares with other tools when compiling the Jest codebase 3 times, about 360k lines of code total:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Time\ \ \ \ \ \ \ \ \ \ \ \ Speed}
+\DoxyCodeLine{Sucrase\ \ \ \ \ 0.57\ seconds\ \ \ \ 636975\ lines\ per\ second}
+\DoxyCodeLine{swc\ \ \ \ \ \ \ \ \ 1.19\ seconds\ \ \ \ 304526\ lines\ per\ second}
+\DoxyCodeLine{esbuild\ \ \ \ \ 1.45\ seconds\ \ \ \ 248692\ lines\ per\ second}
+\DoxyCodeLine{TypeScript\ \ 8.98\ seconds\ \ \ \ 40240\ lines\ per\ second}
+\DoxyCodeLine{Babel\ \ \ \ \ \ \ 9.18\ seconds\ \ \ \ 39366\ lines\ per\ second}
+
+\end{DoxyCode}
+
+
+Details:\+ Measured on July 2022. Tools run in single-\/threaded mode without warm-\/up. See the \href{https://github.com/alangpierce/sucrase/blob/main/benchmark/benchmark.ts}{\texttt{benchmark code}} for methodology and caveats.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2567}{}\doxysubsection{\texorpdfstring{Transforms}{Transforms}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2567}
+The main configuration option in Sucrase is an array of transform names. These transforms are available:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{jsx}}:\+ Enables JSX syntax. By default, JSX is transformed to {\ttfamily React.\+create\+Class}, but may be preserved or transformed to {\ttfamily \+\_\+jsx()} by setting the {\ttfamily jsx\+Runtime} option. Also adds {\ttfamily create\+React\+Class} display names and JSX context information.
+\item {\bfseries{typescript}}:\+ Compiles Type\+Script code to Java\+Script, removing type annotations and handling features like enums. Does not check types. Sucrase transforms each file independently, so you should enable the {\ttfamily isolated\+Modules} Type\+Script flag so that the typechecker will disallow the few features like {\ttfamily const enum}s that need cross-\/file compilation. The Sucrase option {\ttfamily keep\+Unused\+Imports} can be used to disable all automatic removal of imports and exports, analogous to TS {\ttfamily verbatim\+Module\+Syntax}.
+\item {\bfseries{flow}}:\+ Removes Flow type annotations. Does not check types.
+\item {\bfseries{imports}}:\+ Transforms ES Modules ({\ttfamily import}/\+{\ttfamily export}) to Common\+JS ({\ttfamily require}/\+{\ttfamily module.\+exports}) using the same approach as Babel and Type\+Script with {\ttfamily -\/-\/es\+Module\+Interop}. If {\ttfamily preserve\+Dynamic\+Import} is specified in the Sucrase options, then dynamic {\ttfamily import} expressions are left alone, which is particularly useful in Node to load ESM-\/only libraries. If {\ttfamily preserve\+Dynamic\+Import} is not specified, {\ttfamily import} expressions are transformed into a promise-\/wrapped call to {\ttfamily require}.
+\item {\bfseries{react-\/hot-\/loader}}:\+ Performs the equivalent of the {\ttfamily react-\/hot-\/loader/\+babel} transform in the \href{https://github.com/gaearon/react-hot-loader}{\texttt{react-\/hot-\/loader}} project. This enables advanced hot reloading use cases such as editing of bound methods.
+\item {\bfseries{jest}}:\+ Hoist desired \href{https://jestjs.io/}{\texttt{jest}} method calls above imports in the same way as \href{https://github.com/facebook/jest/tree/master/packages/babel-plugin-jest-hoist}{\texttt{babel-\/plugin-\/jest-\/hoist}}. Does not validate the arguments passed to {\ttfamily jest.\+mock}, but the same rules still apply.
+\end{DoxyItemize}
+
+When the {\ttfamily imports} transform is {\itshape not} specified (i.\+e. when targeting ESM), the {\ttfamily inject\+Create\+Require\+For\+Import\+Require} option can be specified to transform TS {\ttfamily import foo = require("{}foo"{});} in a way that matches the \href{https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/\#commonjs-interoperability}{\texttt{Type\+Script 4.\+7 behavior}} with {\ttfamily module:\+ nodenext}.
+
+These newer JS features are transformed by default:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/tc39/proposal-optional-chaining}{\texttt{Optional chaining}}:\+ {\ttfamily a?.b}
+\item \href{https://github.com/tc39/proposal-nullish-coalescing}{\texttt{Nullish coalescing}}:\+ {\ttfamily a ?? b}
+\item \href{https://github.com/tc39/proposal-class-fields}{\texttt{Class fields}}:\+ {\ttfamily class C \{ x = 1; \}}. This includes static fields but not the {\ttfamily \#x} private field syntax.
+\item \href{https://github.com/tc39/proposal-numeric-separator}{\texttt{Numeric separators}}:\+ {\ttfamily const n = 1\+\_\+234;}
+\item \href{https://github.com/tc39/proposal-optional-catch-binding}{\texttt{Optional catch binding}}:\+ {\ttfamily try \{ do\+Thing(); \} catch \{ \}}.
+\end{DoxyItemize}
+
+If your target runtime supports these features, you can specify {\ttfamily disable\+ESTransforms:\+ true} so that Sucrase preserves the syntax rather than trying to transform it. Note that transpiled and standard class fields behave slightly differently; see the \href{https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html\#the-usedefineforclassfields-flag-and-the-declare-property-modifier}{\texttt{Type\+Script 3.\+7 release notes}} for details. If you use Type\+Script, you can enable the Type\+Script option {\ttfamily use\+Define\+For\+Class\+Fields} to enable error checking related to these differences.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2568}{}\doxysubsubsection{\texorpdfstring{Unsupported syntax}{Unsupported syntax}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2568}
+All JS syntax not mentioned above will "{}pass through"{} and needs to be supported by your JS runtime. For example:\+
+
+
+\begin{DoxyItemize}
+\item Decorators, private fields, {\ttfamily throw} expressions, generator arrow functions, and {\ttfamily do} expressions are all unsupported in browsers and Node (as of this writing), and Sucrase doesn\textquotesingle{}t make an attempt to transpile them.
+\item Object rest/\+spread, async functions, and async iterators are all recent features that should work fine, but might cause issues if you use older versions of tools like webpack. Big\+Int and newer regex features may or may not work, based on your tooling.
+\end{DoxyItemize}\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2569}{}\doxysubsubsection{\texorpdfstring{JSX Options}{JSX Options}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2569}
+By default, JSX is compiled to React functions in development mode. This can be configured with a few options:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{jsx\+Runtime}}:\+ A string specifying the transform mode, which can be one of three values:\+
+\begin{DoxyItemize}
+\item {\ttfamily "{}classic"{}} (default):\+ The original JSX transform that calls {\ttfamily React.\+create\+Element} by default. To configure for non-\/\+React use cases, specify:\+
+\begin{DoxyItemize}
+\item {\bfseries{jsx\+Pragma}}:\+ Element creation function, defaults to {\ttfamily React.\+create\+Element}.
+\item {\bfseries{jsx\+Fragment\+Pragma}}:\+ Fragment component, defaults to {\ttfamily React.\+Fragment}.
+\end{DoxyItemize}
+\item {\ttfamily "{}automatic"{}}:\+ The \href{https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html}{\texttt{new JSX transform}} introduced with React 17, which calls {\ttfamily jsx} functions and auto-\/adds import statements. To configure for non-\/\+React use cases, specify:\+
+\begin{DoxyItemize}
+\item {\bfseries{jsx\+Import\+Source}}:\+ Package name for auto-\/generated import statements, defaults to {\ttfamily react}.
+\end{DoxyItemize}
+\item {\ttfamily "{}preserve"{}}:\+ Don\textquotesingle{}t transform JSX, and instead emit it as-\/is in the output code.
+\end{DoxyItemize}
+\item {\bfseries{production}}:\+ If {\ttfamily true}, use production version of functions and don\textquotesingle{}t include debugging information. When using React in production mode with the automatic transform, this {\itshape must} be set to true to avoid an error about {\ttfamily jsx\+DEV} being missing.
+\end{DoxyItemize}\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2570}{}\doxysubsubsection{\texorpdfstring{Legacy Common\+JS interop}{Legacy Common\+JS interop}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2570}
+Two legacy modes can be used with the {\ttfamily imports} transform:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{enable\+Legacy\+Type\+Script\+Module\+Interop}}:\+ Use the default Type\+Script approach to Common\+JS interop instead of assuming that Type\+Script\textquotesingle{}s {\ttfamily -\/-\/es\+Module\+Interop} flag is enabled. For example, if a CJS module exports a function, legacy Type\+Script interop requires you to write {\ttfamily import \texorpdfstring{$\ast$}{*} as add from \textquotesingle{}./\+add\textquotesingle{};}, while Babel, Webpack, Node.\+js, and Type\+Script with {\ttfamily -\/-\/es\+Module\+Interop} require you to write {\ttfamily import add from \textquotesingle{}./\+add\textquotesingle{};}. As mentioned in the \href{https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html\#support-for-import-d-from-cjs-form-commonjs-modules-with---esmoduleinterop}{\texttt{docs}}, the Type\+Script team recommends you always use {\ttfamily -\/-\/es\+Module\+Interop}.
+\item {\bfseries{enable\+Legacy\+Babel5\+Module\+Interop}}:\+ Use the Babel 5 approach to Common\+JS interop, so that you can run {\ttfamily require(\textquotesingle{}./\+\+My\+Module\textquotesingle{})} instead of {\ttfamily require(\textquotesingle{}./\+\+My\+Module\textquotesingle{}).default}. Analogous to \href{https://github.com/59naga/babel-plugin-add-module-exports}{\texttt{babel-\/plugin-\/add-\/module-\/exports}}.
+\end{DoxyItemize}\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2571}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2571}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2572}{}\doxysubsubsection{\texorpdfstring{Tool integrations}{Tool integrations}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2572}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/alangpierce/sucrase/tree/main/integrations/webpack-loader}{\texttt{Webpack}}
+\item \href{https://github.com/alangpierce/sucrase/tree/main/integrations/gulp-plugin}{\texttt{Gulp}}
+\item \href{https://github.com/alangpierce/sucrase/tree/main/integrations/jest-plugin}{\texttt{Jest}}
+\item \href{https://github.com/rollup/plugins/tree/master/packages/sucrase}{\texttt{Rollup}}
+\item \href{https://github.com/stefanpenner/broccoli-sucrase}{\texttt{Broccoli}}
+\end{DoxyItemize}\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2573}{}\doxysubsubsection{\texorpdfstring{Usage in Node}{Usage in Node}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2573}
+The most robust way is to use the Sucrase plugin for \href{https://github.com/TypeStrong/ts-node}{\texttt{ts-\/node}}, which has various Node integrations and configures Sucrase via {\ttfamily tsconfig.\+json}:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ts-\/node\ -\/-\/transpiler\ sucrase/ts-\/node-\/plugin}
+
+\end{DoxyCode}
+
+
+For projects that don\textquotesingle{}t target ESM, Sucrase also has a require hook with some reasonable defaults that can be accessed in a few ways:\+
+
+
+\begin{DoxyItemize}
+\item From code:\+ {\ttfamily require("{}sucrase/\+register"{});}
+\item When invoking Node:\+ {\ttfamily node -\/r sucrase/\+register main.\+ts}
+\item As a separate binary:\+ {\ttfamily sucrase-\/node main.\+ts}
+\end{DoxyItemize}
+
+Options can be passed to the require hook via a {\ttfamily SUCRASE\+\_\+\+OPTIONS} environment variable holding a JSON string of options.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2574}{}\doxysubsubsection{\texorpdfstring{Compiling a project to JS}{Compiling a project to JS}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2574}
+For simple use cases, Sucrase comes with a {\ttfamily sucrase} CLI that mirrors your directory structure to an output directory:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sucrase\ ./srcDir\ -\/d\ ./outDir\ -\/-\/transforms\ typescript,imports}
+
+\end{DoxyCode}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2575}{}\doxysubsubsection{\texorpdfstring{Usage from code}{Usage from code}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2575}
+For any advanced use cases, Sucrase can be called from JS directly:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{transform\}\ from\ "{}sucrase"{};}
+\DoxyCodeLine{const\ compiledCode\ =\ transform(code,\ \{transforms:\ ["{}typescript"{},\ "{}imports"{}]\}).code;}
+
+\end{DoxyCode}
+\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2576}{}\doxysubsection{\texorpdfstring{What Sucrase is not}{What Sucrase is not}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2576}
+Sucrase is intended to be useful for the most common cases, but it does not aim to have nearly the scope and versatility of Babel. Some specific examples:\+
+
+
+\begin{DoxyItemize}
+\item Sucrase does not check your code for errors. Sucrase\textquotesingle{}s contract is that if you give it valid code, it will produce valid JS code. If you give it invalid code, it might produce invalid code, it might produce valid code, or it might give an error. Always use Sucrase with a linter or typechecker, which is more suited for error-\/checking.
+\item Sucrase is not pluginizable. With the current architecture, transforms need to be explicitly written to cooperate with each other, so each additional transform takes significant extra work.
+\item Sucrase is not good for prototyping language extensions and upcoming language features. Its faster architecture makes new transforms more difficult to write and more fragile.
+\item Sucrase will never produce code for old browsers like IE. Compiling code down to ES5 is much more complicated than any transformation that Sucrase needs to do.
+\item Sucrase is hesitant to implement upcoming JS features, although some of them make sense to implement for pragmatic reasons. Its main focus is on language extensions (JSX, Type\+Script, Flow) that will never be supported by JS runtimes.
+\item Like Babel, Sucrase is not a typechecker, and must process each file in isolation. For example, Type\+Script {\ttfamily const enum}s are treated as regular {\ttfamily enum}s rather than inlining across files.
+\item You should think carefully before using Sucrase in production. Sucrase is mostly beneficial in development, and in many cases, Babel or tsc will be more suitable for production builds.
+\end{DoxyItemize}
+
+See the Project Vision document for more details on the philosophy behind Sucrase.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2577}{}\doxysubsection{\texorpdfstring{Motivation}{Motivation}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2577}
+As Java\+Script implementations mature, it becomes more and more reasonable to disable Babel transforms, especially in development when you know that you\textquotesingle{}re targeting a modern runtime. You might hope that you could simplify and speed up the build step by eventually disabling Babel entirely, but this isn\textquotesingle{}t possible if you\textquotesingle{}re using a non-\/standard language extension like JSX, Type\+Script, or Flow. Unfortunately, disabling most transforms in Babel doesn\textquotesingle{}t speed it up as much as you might expect. To understand, let\textquotesingle{}s take a look at how Babel works:\+
+
+
+\begin{DoxyEnumerate}
+\item Tokenize the input source code into a token stream.
+\item Parse the token stream into an AST.
+\item Walk the AST to compute the scope information for each variable.
+\item Apply all transform plugins in a single traversal, resulting in a new AST.
+\item Print the resulting AST.
+\end{DoxyEnumerate}
+
+Only step 4 gets faster when disabling plugins, so there\textquotesingle{}s always a fixed cost to running Babel regardless of how many transforms are enabled.
+
+Sucrase bypasses most of these steps, and works like this:\+
+
+
+\begin{DoxyEnumerate}
+\item Tokenize the input source code into a token stream using a trimmed-\/down fork of the Babel parser. This fork does not produce a full AST, but still produces meaningful token metadata specifically designed for the later transforms.
+\item Scan through the tokens, computing preliminary information like all imported/\+exported names.
+\item Run the transform by doing a pass through the tokens and performing a number of careful find-\/and-\/replace operations, like replacing {\ttfamily \texorpdfstring{$<$}{<}Foo} with {\ttfamily React.\+create\+Element(Foo}.
+\end{DoxyEnumerate}
+
+Because Sucrase works on a lower level and uses a custom parser for its use case, it is much faster than Babel.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2578}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2578}
+Contributions are welcome, whether they be bug reports, PRs, docs, tests, or anything else! Please take a look through the Contributing Guide to learn how to get started.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2579}{}\doxysubsection{\texorpdfstring{License and attribution}{License and attribution}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2579}
+Sucrase is MIT-\/licensed. A large part of Sucrase is based on a fork of the \href{https://github.com/babel/babel/tree/main/packages/babel-parser}{\texttt{Babel parser}}, which is also MIT-\/licensed.\hypertarget{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2580}{}\doxysubsection{\texorpdfstring{Why the name?}{Why the name?}}\label{dir_0224b44e9d69279ae30639746634cd3f_autotoc_md2580}
+Sucrase is an enzyme that processes sugar. Get it? 

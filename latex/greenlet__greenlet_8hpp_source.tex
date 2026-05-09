@@ -1,0 +1,748 @@
+\doxysection{greenlet\+\_\+greenlet.\+hpp}
+\hypertarget{greenlet__greenlet_8hpp_source}{}\label{greenlet__greenlet_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_greenlet.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_greenlet.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_GREENLET\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_GREENLET\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ Declarations\ of\ the\ core\ data\ structures.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PY\_SSIZE\_T\_CLEAN}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}greenlet\_compiler\_compat.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}greenlet\_refs.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}greenlet\_cpython\_compat.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}greenlet\_allocator.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{using\ }greenlet::refs::OwnedObject;}
+\DoxyCodeLine{00016\ \textcolor{keyword}{using\ }greenlet::refs::OwnedGreenlet;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ }greenlet::refs::OwnedMainGreenlet;}
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ }greenlet::refs::BorrowedGreenlet;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x30B00A6}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ define\ \_PyCFrame\ CFrame}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ define\ \_PyInterpreterFrame\ \_interpreter\_frame}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ include\ "{}internal/pycore\_frame.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ XXX:\ TODO:\ Work\ to\ remove\ all\ virtual\ functions}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ for\ speed\ of\ calling\ and\ size\ of\ objects\ (no\ vtable).}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ One\ pattern\ is\ the\ Curiously\ Recurring\ Template}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{class\ }ExceptionState}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(ExceptionState);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Even\ though\ these\ are\ borrowed\ objects,\ we\ actually\ own}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ them,\ when\ they're\ not\ null.}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ XXX:\ Express\ that\ in\ the\ API.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \_PyErr\_StackItem*\ exc\_info;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \_PyErr\_StackItem\ exc\_state;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ExceptionState();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator>>(PyThreadState*\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ tp\_clear()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ tstate,\ T\&\ exc);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1PythonStateContext}{PythonStateContext}}}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ greenlet::refs::OwnedContext\ \_context;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ greenlet::refs::OwnedContext\&\ context()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_context;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ greenlet::refs::OwnedContext\&\ context()}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_context;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ tp\_clear()}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_context.CLEAR();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ PyObject*\ context(T*\ tstate)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tstate-\/>context;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ context(T*\ tstate,\ PyObject*\ new\_context)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ tstate-\/>context\ =\ new\_context;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ tstate-\/>context\_ver++;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{SwitchingArgs}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{class\ }PythonState\ :\ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{classgreenlet_1_1PythonStateContext}{PythonStateContext}}}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedReference}{greenlet::refs::OwnedReference<struct\ \_frame>}}\ OwnedFrame;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(PythonState);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ own\ this\ if\ we're\ suspended\ (although\ currently\ we\ don't}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tp\_traverse\ into\ it;\ that's\ a\ TODO).\ If\ we're\ running,\ it's}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ empty.\ If\ we\ get\ deallocated\ and\ *still*\ have\ a\ frame,\ it}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ won't\ be\ reachable\ from\ the\ place\ that\ normally\ decref's}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ it,\ so\ we\ need\ to\ do\ it\ (hence\ owning\ it).}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ OwnedFrame\ \_top\_frame;}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \_PyCFrame*\ cframe;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ use\_tracing;}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#if\ GREENLET\_PY312}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ py\_recursion\_depth;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ c\_recursion\_depth;}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ recursion\_depth;}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ trash\_delete\_nesting;}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#if\ GREENLET\_PY311}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \_PyInterpreterFrame*\ current\_frame;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \_PyStackChunk*\ datastack\_chunk;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ PyObject**\ datastack\_top;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ PyObject**\ datastack\_limit;}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ PyInterpreterFrame\ list\ on\ 3.12+\ contains\ some\ entries\ that\ are}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ on\ the\ C\ stack,\ which\ can't\ be\ directly\ accessed\ while\ a\ greenlet\ is}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ suspended.\ In\ order\ to\ keep\ greenlet\ gr\_frame\ introspection\ working,}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ adjust\ stack\ switching\ to\ rewrite\ the\ interpreter\ frame\ list}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ skip\ these\ C-\/stack\ frames;\ we\ call\ this\ "{}exposing"{}\ the\ greenlet's}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ frames\ because\ it\ makes\ them\ valid\ to\ work\ with\ in\ Python.\ Then\ when}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ greenlet\ is\ resumed\ we\ need\ to\ remember\ to\ reverse\ the\ operation}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ did.\ The\ C-\/stack\ frames\ are\ "{}entry\ frames"{}\ which\ are\ a\ low-\/level}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ interpreter\ detail;\ they're\ not\ needed\ for\ introspection,\ but\ do}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ need\ to\ be\ present\ for\ the\ eval\ loop\ to\ work.}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unexpose\_frames();}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ PythonState();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ can\ use\ this\ for\ testing\ whether\ we\ have\ a\ frame}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ not.\ It\ returns\ const\ so\ they\ can't\ modify\ it.}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedFrame\&\ top\_frame()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ operator>>(PyThreadState*\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg,\ \textcolor{keywordtype}{bool}\ visit\_top\_frame)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ tp\_clear(\textcolor{keywordtype}{bool}\ own\_top\_frame)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_initial\_state(\textcolor{keyword}{const}\ PyThreadState*\ \textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#if\ GREENLET\_USE\_CFRAME}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_new\_cframe(\_PyCFrame\&\ frame)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ may\_switch\_away()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ will\_switch\_from(PyThreadState\ *\textcolor{keyword}{const}\ origin\_tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ did\_finish(PyThreadState*\ tstate)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00153\ \ \ \ \ \};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ By\ having\ only\ plain\ C\ (POD)\ members,\ no\ virtual\ functions}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ bases,\ we\ get\ a\ trivial\ assignment\ operator\ generated}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ us.\ However,\ that's\ not\ safe\ since\ we\ do\ manage\ memory.}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ So\ we\ declare\ an\ assignment\ operator\ that\ only\ works\ if\ we}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ don't\ have\ any\ memory\ allocated.\ (We\ don't\ use}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::shared\_ptr\ for\ reference\ counting\ just\ to\ keep\ this}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ object\ small)}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ \_stack\_start;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ stack\_stop;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ stack\_copy;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ intptr\_t\ \_stack\_saved;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}*\ stack\_prev;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ copy\_stack\_to\_heap\_up\_to(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ stop)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ free\_stack\_copy()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState}}(\textcolor{keywordtype}{void}*\ mark,\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ current);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState}}();}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{\string~StackState}}();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ other);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ operator=(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ other);}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ copy\_heap\_to\_stack(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ current)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ copy\_stack\_to\_heap(\textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ stackref,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ current)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ started()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ main()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ active()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_active()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ set\_inactive()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ intptr\_t\ stack\_saved()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\ stack\_start()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\ make\_main()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#ifdef\ GREENLET\_USE\_STDIO}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ s);}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ in\ [dest,\ dest\ +\ n)\ with\ the\ values\ that\ would\ be\ at}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [src,\ src\ +\ n)\ while\ this\ greenlet\ is\ running.\ This\ is\ like\ memcpy}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ except\ that\ if\ the\ greenlet\ is\ suspended\ it\ accounts\ for\ the\ portion}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ the\ greenlet's\ stack\ that\ was\ spilled\ to\ the\ heap.\ \`{}src`\ may}}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ be\ on\ this\ greenlet's\ stack,\ or\ on\ the\ heap,\ but\ not\ on\ a\ different}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ greenlet's\ stack.}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ copy\_from\_stack(\textcolor{keywordtype}{void}*\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ src,\ \textcolor{keywordtype}{size\_t}\ n)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00207\ \ \ \ \ \};}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#ifdef\ GREENLET\_USE\_STDIO}}
+\DoxyCodeLine{00209\ \ \ \ \ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\&\ s);}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{class\ }SwitchingArgs}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ G\_NO\_ASSIGNMENT\_OF\_CLS(SwitchingArgs);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ args\ and\ kwargs\ are\ both\ false\ (NULL),\ this\ is\ a\ *throw*,\ not\ a}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ switch.\ PyErr\_...\ must\ have\ been\ called\ already.}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ OwnedObject\ \_args;}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ OwnedObject\ \_kwargs;}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ SwitchingArgs()}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ SwitchingArgs(\textcolor{keyword}{const}\ OwnedObject\&\ args,\ \textcolor{keyword}{const}\ OwnedObject\&\ kwargs)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \_args(args),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_kwargs(kwargs)}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ SwitchingArgs(\textcolor{keyword}{const}\ SwitchingArgs\&\ other)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \_args(other.\_args),}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_kwargs(other.\_kwargs)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedObject\&\ args()}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_args;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedObject\&\ kwargs()}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_kwargs;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ SwitchingArgs\&\ \doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs_a445f2bb98a4a44173ed62777b69b4272}{operator<<=}}(SwitchingArgs\&\ other)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ !=\ \&other)\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_args\ =\ other.\_args;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_kwargs\ =\ other.\_kwargs;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ other.CLEAR();}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ SwitchingArgs\&\ \doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs_acd5c1d568d85d435521e2f7408b5a1b1}{operator<<=}}(PyObject*\ args)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_args\ =\ OwnedObject::consuming(args);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_kwargs.CLEAR();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ SwitchingArgs\&\ \doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs_a654e6968aa1b2c08c9c514a4d32ec328}{operator<<=}}(OwnedObject\&\ args)}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\&args\ !=\ \&this-\/>\_args);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_args\ =\ args;}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_kwargs.CLEAR();}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ args.CLEAR();}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ bool()\ const\ noexcept}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_args\ ||\ this-\/>\_kwargs;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ CLEAR()}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_args.CLEAR();}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_kwargs.CLEAR();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ as\_str()\ const\ noexcept}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyUnicode\_AsUTF8(}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OwnedObject::consuming(}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyUnicode\_FromFormat(}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}SwitchingArgs(args=\%R,\ kwargs=\%R)"{}},}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_args.borrow(),}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_kwargs.borrow()}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).borrow()}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \};}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}};}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1UserGreenlet}{UserGreenlet}};}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1MainGreenlet}{MainGreenlet}};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keyword}{class\ }Greenlet}
+\DoxyCodeLine{00314\ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(Greenlet);}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ XXX:\ Work\ to\ remove\ these.}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }ThreadState;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }UserGreenlet;}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }MainGreenlet;}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ ExceptionState\ exception\_state;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ SwitchingArgs\ switch\_args;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ StackState\ stack\_state;}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1PythonState}{PythonState}}\ python\_state;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ Greenlet(PyGreenlet*\ p,\ \textcolor{keyword}{const}\ StackState\&\ initial\_state);}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ Greenlet(PyGreenlet*\ p);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Greenlet();}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedObject\ context()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ MUST\ call\ this\ \_very\_\ early\ in\ the\ switching\ process\ to}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ prepare\ anything\ that\ may\ need\ prepared.\ This\ might\ perform}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ garbage\ collections\ or\ otherwise\ run\ arbitrary\ Python\ code.}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ One\ specific\ use\ of\ it\ is\ for\ Python\ 3.11+,\ preventing}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ running\ arbitrary\ code\ at\ unsafe\ times.\ See}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PythonState::may\_switch\_away().}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ may\_switch\_away()}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>python\_state.may\_switch\_away();}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ context(refs::BorrowedObject\ new\_context);}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ SwitchingArgs\&\ args()}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>switch\_args;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ refs::BorrowedMainGreenlet\ main\_greenlet()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ intptr\_t\ stack\_saved()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_state.stack\_saved();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ used\ by\ the\ macro\ SLP\_SAVE\_STATE\ to\ compute\ the}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ difference\ in\ stack\ sizes.\ It\ might\ be\ nice\ to\ handle\ the}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ computation\ ourself,\ but\ the\ type\ of\ the\ result}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ varies\ by\ platform,\ so\ doing\ it\ in\ the\ macro\ is\ the}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ simplest\ way.}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ stack\_start()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_state.stack\_start();}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedObject\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a05d917d256177d18c9b528db6f677f21}{throw\_GreenletExit\_during\_dealloc}}(\textcolor{keyword}{const}\ ThreadState\&\ current\_thread\_state);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedObject\ g\_switch()\ =\ 0;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a857263b61620c5be3af6617dc5f2dd1f}{murder\_in\_place}}();}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a99fad399e6996187b88ce8b304a2baba}{deactivate\_and\_free}}();}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Called\ when\ some\ thread\ wants\ to\ deallocate\ a\ greenlet}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ object.}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ thread\ may\ or\ may\ not\ be\ the\ same\ thread\ the\ greenlet}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ was\ running\ in.}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ thread\ state\ will\ be\ null\ if\ the\ thread\ the\ greenlet}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ was\ running\ in\ was\ known\ to\ have\ exited.}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ deallocing\_greenlet\_in\_thread(\textcolor{keyword}{const}\ ThreadState*\ current\_state);}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Must\ be\ called\ on\ 3.12+\ before\ exposing\ a\ suspended\ greenlet's}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ frames\ to\ user\ code.\ This\ rewrites\ the\ linked\ list\ of\ interpreter}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ frames\ to\ skip\ the\ ones\ that\ are\ being\ stored\ on\ the\ C\ stack\ (which}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ can't\ be\ safely\ accessed\ while\ the\ greenlet\ is\ suspended\ because}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ that\ stack\ space\ might\ be\ hosting\ a\ different\ greenlet),\ and}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sets\ PythonState::frames\_were\_exposed\ so\ we\ remember\ to\ restore}}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ original\ list\ before\ resuming\ the\ greenlet.\ The\ C-\/stack\ frames}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ are\ a\ low-\/level\ interpreter\ implementation\ detail;\ while\ they're}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ important\ to\ the\ bytecode\ eval\ loop,\ they're\ superfluous\ for}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ introspection\ purposes.}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ expose\_frames();}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Figure\ out\ how\ to\ make\ these\ non-\/public.}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ slp\_restore\_state()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ slp\_save\_state(\textcolor{keywordtype}{char}\ *\textcolor{keyword}{const}\ stackref)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_currently\_running\_in\_some\_thread()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ belongs\_to\_thread(\textcolor{keyword}{const}\ ThreadState*\ state)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ started()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00419\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_state.started();}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ active()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00423\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_state.active();}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ main()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00427\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_state.main();}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ refs::BorrowedMainGreenlet\ find\_main\_greenlet\_in\_lineage()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedGreenlet\ parent()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parent(\textcolor{keyword}{const}\ refs::BorrowedObject\ new\_parent)\ =\ 0;}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ PythonState::OwnedFrame\&\ top\_frame()}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>python\_state.top\_frame();}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedObject\&\ run()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ run(\textcolor{keyword}{const}\ refs::BorrowedObject\ nrun)\ =\ 0;}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ tp\_clear();}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ thread\ state\ that\ the\ greenlet\ is\ running\ in,\ or}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ null\ if\ the\ greenlet\ is\ not\ running\ or\ the\ thread\ is\ known}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ have\ exited.}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ ThreadState*\ thread\_state()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ =\ 0;}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ true\ if\ the\ greenlet\ is\ known\ to\ have\ been\ running}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (active)\ in\ a\ thread\ that\ has\ now\ exited.}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ was\_running\_in\_dead\_thread()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ =\ 0;}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ a\ borrowed\ greenlet\ that\ is\ the\ Python\ object}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ object\ represents.}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ BorrowedGreenlet\ self()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}\ =\ 0;}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ testing.\ If\ this\ returns\ true,\ we\ should\ pretend\ that}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ slp\_switch()\ failed.}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ force\_slp\_switch\_error()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ release\_args();}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ functions\ that\ must\ not\ be\ inlined\ are\ declared\ virtual.}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ also\ mark\ them\ as\ protected,\ not\ private,\ so\ that\ the}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ compiler\ is\ forced\ to\ call\ them\ through\ a\ function\ pointer.}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (A\ sufficiently\ smart\ compiler\ could\ directly\ call\ a\ private}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ virtual\ function\ since\ it\ can\ never\ be\ overridden\ in\ a}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ subclass).}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Also\ TODO:\ Switch\ away\ from\ integer\ error\ codes\ and\ to\ enums,}}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ throw\ exceptions\ when\ possible.}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }switchstack\_result\_t}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ status;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ Greenlet*\ the\_new\_current\_greenlet;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedGreenlet\ origin\_greenlet;}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t()}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ status(0),}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\_new\_current\_greenlet(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t(\textcolor{keywordtype}{int}\ err)}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ status(err),}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\_new\_current\_greenlet(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t(\textcolor{keywordtype}{int}\ err,\ Greenlet*\ state,\ OwnedGreenlet\&\ origin)}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ status(err),}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\_new\_current\_greenlet(state),}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin\_greenlet(origin)}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t(\textcolor{keywordtype}{int}\ err,\ Greenlet*\ state,\ \textcolor{keyword}{const}\ BorrowedGreenlet\&\ origin)}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ status(err),}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\_new\_current\_greenlet(state),}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin\_greenlet(origin)}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t(\textcolor{keyword}{const}\ switchstack\_result\_t\&\ other)}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ status(other.status),}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\_new\_current\_greenlet(other.the\_new\_current\_greenlet),}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin\_greenlet(other.origin\_greenlet)}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ switchstack\_result\_t\&\ operator=(\textcolor{keyword}{const}\ switchstack\_result\_t\&\ other)}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>status\ =\ other.status;}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>the\_new\_current\_greenlet\ =\ other.the\_new\_current\_greenlet;}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>origin\_greenlet\ =\ other.origin\_greenlet;}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ OwnedObject\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_a57a4f70f86c1f6f756d0abd61e2fd343}{on\_switchstack\_or\_initialstub\_failure}}(}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ Greenlet*\ target,}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}\&\ err,}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ target\_was\_me=\textcolor{keyword}{false},}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ was\_initial\_stub=\textcolor{keyword}{false});}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ previous\ greenlet\ we\ just\ switched\ away\ from.}}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedGreenlet\ g\_switchstack\_success()\ noexcept;}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ the\ preconditions\ for\ switching\ to\ this\ greenlet;\ if\ they}}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ aren't\ met,\ throws\ PyErrOccurred.\ Most\ callers\ will\ want\ to}}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ catch\ this\ and\ clear\ the\ arguments}}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ inline\ \textcolor{keywordtype}{void}\ check\_switch\_allowed()\ const;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ class\ GreenletStartedWhileInPython\ :\ public\ std::runtime\_error}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ GreenletStartedWhileInPython()\ :\ std::runtime\_error(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Made\ virtual\ to\ facilitate\ subclassing\ UserGreenlet\ for\ testing.}}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_ae7da93ce8a1ec90a97b47ccc5cccafe3}{g\_switchstack}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \textcolor{keyword}{class\ }TracingGuard}
+\DoxyCodeLine{00582\ \{}
+\DoxyCodeLine{00583\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00584\ \ \ \ \ PyThreadState*\ tstate;}
+\DoxyCodeLine{00585\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00586\ \ \ \ \ TracingGuard()}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ :\ tstate(PyThreadState\_GET())}
+\DoxyCodeLine{00588\ \ \ \ \ \{}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ PyThreadState\_EnterTracing(this-\/>tstate);}
+\DoxyCodeLine{00590\ \ \ \ \ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \string~TracingGuard()}
+\DoxyCodeLine{00593\ \ \ \ \ \{}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ PyThreadState\_LeaveTracing(this-\/>tstate);}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ this-\/>tstate\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00596\ \ \ \ \ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ CallTraceFunction(\textcolor{keyword}{const}\ OwnedObject\&\ tracefunc,}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalEventName}{greenlet::refs::ImmortalEventName}}\&\ event,}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BorrowedGreenlet\&\ origin,}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BorrowedGreenlet\&\ target)}
+\DoxyCodeLine{00602\ \ \ \ \ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ This\ calls\ tracefunc(event,\ (origin,\ target)).\ Add\ a\ shortcut}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ function\ for\ that\ that's\ specialized\ to\ avoid\ the\ Py\_BuildValue}}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ string\ parsing,\ or\ start\ with\ just\ using\ "{}ON"{}\ format\ with\ PyTuple\_Pack(2,}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ origin,\ target).\ That\ seems\ like\ what\ the\ N\ format\ is\ meant}}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for.}}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ XXX:\ Why\ does\ event\ not\ automatically\ cast\ back\ to\ a\ PyObject?}}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ tries\ to\ call\ the\ "{}deleted\ constructor\ ImmortalEventName}}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ const"{}\ instead.}}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ assert(tracefunc);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ assert(event);}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ assert(origin);}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ assert(target);}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1NewReference}{greenlet::refs::NewReference}}\ retval(}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\_CallFunction(}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tracefunc.borrow(),}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}O(OO)"{}},}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ event.borrow(),}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ origin.borrow(),}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target.borrow()}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!retval)\ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ PyErrOccurred::from\_current();}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \};}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ g\_calltrace(\textcolor{keyword}{const}\ OwnedObject\&\ tracefunc,}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalEventName}{greenlet::refs::ImmortalEventName}}\&\ event,}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ greenlet::refs::BorrowedGreenlet\&\ origin,}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BorrowedGreenlet\&\ target);}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ OwnedObject\ g\_switch\_finish(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}\&\ err);}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \ \ \ \ \};}
+\DoxyCodeLine{00638\ }
+\DoxyCodeLine{00639\ \ \ \ \ \textcolor{keyword}{class\ }UserGreenlet\ :\ \textcolor{keyword}{public}\ Greenlet}
+\DoxyCodeLine{00640\ \ \ \ \ \{}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{structgreenlet_1_1PythonAllocator}{greenlet::PythonAllocator<UserGreenlet>}}\ allocator;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ BorrowedGreenlet\ \_self;}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ OwnedMainGreenlet\ \_main\_greenlet;}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ OwnedObject\ \_run\_callable;}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ OwnedGreenlet\ \_parent;}
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{operator}\ \textcolor{keyword}{new}(\textcolor{keywordtype}{size\_t}\ UNUSED(count));}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{delete}(\textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ UserGreenlet(PyGreenlet*\ p,\ BorrowedGreenlet\ the\_parent);}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~UserGreenlet();}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedMainGreenlet}{refs::BorrowedMainGreenlet}}\ find\_main\_greenlet\_in\_lineage()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ was\_running\_in\_dead\_thread()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ ThreadState*\ thread\_state()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedObject\ g\_switch();}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedObject\&\ run()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00659\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>started()\ ||\ !this-\/>\_run\_callable)\ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1AttributeError}{AttributeError}}(\textcolor{stringliteral}{"{}run"{}});}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_run\_callable;}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ run(\textcolor{keyword}{const}\ refs::BorrowedObject\ nrun);}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedGreenlet\ parent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parent(\textcolor{keyword}{const}\ refs::BorrowedObject\ new\_parent);}
+\DoxyCodeLine{00669\ }
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedMainGreenlet}{refs::BorrowedMainGreenlet}}\ main\_greenlet()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ BorrowedGreenlet\ self()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{classgreenlet_1_1UserGreenlet_ad4774e0bec6dedd1d1b76180a0aaac64}{murder\_in\_place}}();}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ belongs\_to\_thread(\textcolor{keyword}{const}\ ThreadState*\ state)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ tp\_clear();}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }ParentIsCurrentGuard}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedGreenlet\ oldparent;}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ UserGreenlet*\ \doxymbox{\hyperlink{namespacegreenlet}{greenlet}};}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(ParentIsCurrentGuard);}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ ParentIsCurrentGuard(UserGreenlet*\ p,\ \textcolor{keyword}{const}\ ThreadState\&\ thread\_state);}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \string~ParentIsCurrentGuard();}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedObject\ \doxymbox{\hyperlink{classgreenlet_1_1UserGreenlet_a279a877f329608b0c3805aef84d0dbbe}{throw\_GreenletExit\_during\_dealloc}}(\textcolor{keyword}{const}\ ThreadState\&\ current\_thread\_state);}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}\ g\_initialstub(\textcolor{keywordtype}{void}*\ mark);}
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ function\ isn't\ meant\ to\ return.}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ accepts\ raw\ pointers\ and\ the\ ownership\ of\ them\ at\ the}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ same\ time.\ The\ caller\ should\ use\ \`{}\`{}inner\_bootstrap(origin.relinquish\_ownership())``.}}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ inner\_bootstrap(PyGreenlet*\ origin\_greenlet,\ PyObject*\ run);}
+\DoxyCodeLine{00695\ \ \ \ \ \};}
+\DoxyCodeLine{00696\ }
+\DoxyCodeLine{00697\ \ \ \ \ \textcolor{keyword}{class\ }BrokenGreenlet\ :\ \textcolor{keyword}{public}\ UserGreenlet}
+\DoxyCodeLine{00698\ \ \ \ \ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{structgreenlet_1_1PythonAllocator}{greenlet::PythonAllocator<BrokenGreenlet>}}\ allocator;}
+\DoxyCodeLine{00701\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_force\_switch\_error\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \_force\_slp\_switch\_error\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{operator}\ \textcolor{keyword}{new}(\textcolor{keywordtype}{size\_t}\ UNUSED(count));}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{delete}(\textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ BrokenGreenlet(PyGreenlet*\ p,\ BorrowedGreenlet\ the\_parent)}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ :\ UserGreenlet(p,\ the\_parent)}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~BrokenGreenlet()}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}\ \doxymbox{\hyperlink{classgreenlet_1_1BrokenGreenlet_aaa62040330a7fe07f3bfe78599c18e62}{g\_switchstack}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ force\_slp\_switch\_error()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \};}
+\DoxyCodeLine{00717\ }
+\DoxyCodeLine{00718\ \ \ \ \ \textcolor{keyword}{class\ }MainGreenlet\ :\ \textcolor{keyword}{public}\ Greenlet}
+\DoxyCodeLine{00719\ \ \ \ \ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{structgreenlet_1_1PythonAllocator}{greenlet::PythonAllocator<MainGreenlet>}}\ allocator;}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedMainGreenlet}{refs::BorrowedMainGreenlet}}\ \_self;}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ ThreadState*\ \_thread\_state;}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(MainGreenlet);}
+\DoxyCodeLine{00725\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{operator}\ \textcolor{keyword}{new}(\textcolor{keywordtype}{size\_t}\ UNUSED(count));}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{delete}(\textcolor{keywordtype}{void}*\ ptr);}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ MainGreenlet(refs::BorrowedMainGreenlet::PyType*,\ ThreadState*);}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~MainGreenlet();}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ }
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedObject\&\ run()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ run(\textcolor{keyword}{const}\ refs::BorrowedObject\ nrun);}
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OwnedGreenlet\ parent()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ parent(\textcolor{keyword}{const}\ refs::BorrowedObject\ new\_parent);}
+\DoxyCodeLine{00738\ }
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedMainGreenlet}{refs::BorrowedMainGreenlet}}\ main\_greenlet()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedMainGreenlet}{refs::BorrowedMainGreenlet}}\ find\_main\_greenlet\_in\_lineage()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ was\_running\_in\_dead\_thread()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ ThreadState*\ thread\_state()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ thread\_state(ThreadState*)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ OwnedObject\ g\_switch();}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ BorrowedGreenlet\ self()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg);}
+\DoxyCodeLine{00748\ \ \ \ \ \};}
+\DoxyCodeLine{00749\ }
+\DoxyCodeLine{00750\ \ \ \ \ \textcolor{comment}{//\ Instantiate\ one\ on\ the\ stack\ to\ save\ the\ GC\ state,}}
+\DoxyCodeLine{00751\ \ \ \ \ \textcolor{comment}{//\ and\ then\ disable\ GC.\ When\ it\ goes\ out\ of\ scope,\ GC\ will\ be}}
+\DoxyCodeLine{00752\ \ \ \ \ \textcolor{comment}{//\ restored\ to\ its\ original\ state.\ Sadly,\ these\ APIs\ are\ only}}
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{comment}{//\ available\ on\ 3.10+;\ luckily,\ we\ only\ need\ them\ on\ 3.11+.}}
+\DoxyCodeLine{00754\ \textcolor{preprocessor}{\#if\ GREENLET\_PY310}}
+\DoxyCodeLine{00755\ \ \ \ \ \textcolor{keyword}{class\ }GCDisabledGuard}
+\DoxyCodeLine{00756\ \ \ \ \ \{}
+\DoxyCodeLine{00757\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ was\_enabled\ =\ 0;}
+\DoxyCodeLine{00759\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ GCDisabledGuard()}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ :\ was\_enabled(PyGC\_IsEnabled())}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ PyGC\_Disable();}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \string~GCDisabledGuard()}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>was\_enabled)\ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyGC\_Enable();}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00772\ \ \ \ \ \};}
+\DoxyCodeLine{00773\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00775\ \ \ \ \ OwnedObject\&\ \doxymbox{\hyperlink{namespacegreenlet_ab412614ff9a9cf65204d07fa56659936}{operator<<=}}(OwnedObject\&\ lhs,\ greenlet::SwitchingArgs\&\ rhs)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00777\ \ \ \ \ \textcolor{comment}{//TODO:\ Greenlet::g\_switch()\ should\ call\ this\ automatically\ on\ its}}
+\DoxyCodeLine{00778\ \ \ \ \ \textcolor{comment}{//return\ value.\ As\ it\ is,\ the\ module\ code\ is\ calling\ it.}}
+\DoxyCodeLine{00779\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ OwnedObject}
+\DoxyCodeLine{00780\ \ \ \ \ single\_result(\textcolor{keyword}{const}\ OwnedObject\&\ results)}
+\DoxyCodeLine{00781\ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (results}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ PyTuple\_Check(results.borrow())}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ PyTuple\_GET\_SIZE(results.borrow())\ ==\ 1)\ \{}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ result\ =\ PyTuple\_GET\_ITEM(results.borrow(),\ 0);}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ assert(result);}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::owning(result);}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ results;}
+\DoxyCodeLine{00790\ \ \ \ \ \}}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ }
+\DoxyCodeLine{00793\ \ \ \ \ \textcolor{keyword}{static}\ OwnedObject}
+\DoxyCodeLine{00794\ \ \ \ \ g\_handle\_exit(\textcolor{keyword}{const}\ OwnedObject\&\ greenlet\_result);}
+\DoxyCodeLine{00795\ }
+\DoxyCodeLine{00796\ }
+\DoxyCodeLine{00797\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00798\ \ \ \ \ \textcolor{keywordtype}{void}\ operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ lhs,\ T\&\ rhs)}
+\DoxyCodeLine{00799\ \ \ \ \ \{}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ rhs.operator<<(lhs);}
+\DoxyCodeLine{00801\ \ \ \ \ \}}
+\DoxyCodeLine{00802\ }
+\DoxyCodeLine{00803\ \}\ \textcolor{comment}{//\ namespace\ greenlet\ ;}}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

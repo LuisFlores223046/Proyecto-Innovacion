@@ -1,0 +1,85 @@
+\doxysection{sqlalchemy.\+pool.\+base.\+Connection\+Pool\+Entry Class Reference}
+\hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry}{}\label{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry}\index{sqlalchemy.pool.base.ConnectionPoolEntry@{sqlalchemy.pool.base.ConnectionPoolEntry}}
+Inheritance diagram for sqlalchemy.\+pool.\+base.\+Connection\+Pool\+Entry:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a62cdb05dcdf42a06993801ed71f1087e}{in\+\_\+use}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a368329c650cc5e9a3b3cfb903556927f}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection}{sqlalchemy.\+pool.\+base.\+Manages\+Connection}}}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Info\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a0b8d40546a4c8cfab56543e368942c63}{info}} (self)
+\item 
+Optional\+[\+\_\+\+Info\+Type]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a54429276055de7a7cb069b98f8e8485c}{record\+\_\+info}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ad98fc194d70786f4012132f8c8236134}{invalidate}} (self, Optional\+[Base\+Exception]\+ e=None, bool soft=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection}{sqlalchemy.\+pool.\+base.\+Manages\+Connection}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries dbapi\+\_\+connection} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+
+\item 
+Optional {\bfseries driver\+\_\+connection} \+[Any]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Interface for the object that maintains an individual database
+connection on behalf of a :class:`_pool.Pool` instance.
+
+The :class:`.ConnectionPoolEntry` object represents the long term
+maintainance of a particular connection for a pool, including expiring or
+invalidating that connection to have it replaced with a new one, which will
+continue to be maintained by that same :class:`.ConnectionPoolEntry`
+instance. Compared to :class:`.PoolProxiedConnection`, which is the
+short-term, per-checkout connection manager, this object lasts for the
+lifespan of a particular "slot" within a connection pool.
+
+The :class:`.ConnectionPoolEntry` object is mostly visible to public-facing
+API code when it is delivered to connection pool event hooks, such as
+:meth:`_events.PoolEvents.connect` and :meth:`_events.PoolEvents.checkout`.
+
+.. versionadded:: 2.0  :class:`.ConnectionPoolEntry` provides the public
+   facing interface for the :class:`._ConnectionRecord` internal class.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a368329c650cc5e9a3b3cfb903556927f}\index{sqlalchemy.pool.base.ConnectionPoolEntry@{sqlalchemy.pool.base.ConnectionPoolEntry}!close@{close}}
+\index{close@{close}!sqlalchemy.pool.base.ConnectionPoolEntry@{sqlalchemy.pool.base.ConnectionPoolEntry}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a368329c650cc5e9a3b3cfb903556927f} 
+ None sqlalchemy.\+pool.\+base.\+Connection\+Pool\+Entry.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the DBAPI connection managed by this connection pool entry.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionRecord_a6892560afda7b58394a6dcec2731ee9f}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Record}}.
+
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a62cdb05dcdf42a06993801ed71f1087e}\index{sqlalchemy.pool.base.ConnectionPoolEntry@{sqlalchemy.pool.base.ConnectionPoolEntry}!in\_use@{in\_use}}
+\index{in\_use@{in\_use}!sqlalchemy.pool.base.ConnectionPoolEntry@{sqlalchemy.pool.base.ConnectionPoolEntry}}
+\doxysubsubsection{\texorpdfstring{in\_use()}{in\_use()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry_a62cdb05dcdf42a06993801ed71f1087e} 
+ bool sqlalchemy.\+pool.\+base.\+Connection\+Pool\+Entry.\+in\+\_\+use (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True the connection is currently checked out\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionRecord_a2af65913f8c6dddec1543e5612deccf0}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Record}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+pool/\+base.\+py\end{DoxyCompactItemize}

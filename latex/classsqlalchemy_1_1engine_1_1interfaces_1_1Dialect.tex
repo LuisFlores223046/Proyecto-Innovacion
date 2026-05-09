@@ -1,0 +1,1958 @@
+\doxysection{sqlalchemy.\+engine.\+interfaces.\+Dialect Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+Inheritance diagram for sqlalchemy.\+engine.\+interfaces.\+Dialect:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.960549cm]{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Module\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae096b335a170bfb99606402e5bee2c74}{loaded\+\_\+dbapi}} (self)
+\item 
+Connect\+Args\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac17c3e80219095db566f3bc77ce9189e}{create\+\_\+connect\+\_\+args}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url)
+\item 
+Module\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a417857da41a52bba237ce53f663a6d62}{import\+\_\+dbapi}} (cls)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae34643eca744fcb4db54860c0dc58ae5}{type\+\_\+descriptor}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ typeobj)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9d0740e4bee2d710a375b93b4582227d}{initialize}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection)
+\item 
+List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedColumn}{Reflected\+Column}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a47c25b5d5fafce2fa6a0dc9794bcb5a6}{get\+\_\+columns}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedColumn}{Reflected\+Column}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad81cb7ae9c3cd3855a8f9cb415cdd007}{get\+\_\+multi\+\_\+columns}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedPrimaryKeyConstraint}{Reflected\+Primary\+Key\+Constraint}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a866ab408ea6fb87e2996c3e9774dbd0b}{get\+\_\+pk\+\_\+constraint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedPrimaryKeyConstraint}{Reflected\+Primary\+Key\+Constraint}}]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad008da4984b3c48a4a0534ca45bc0f97}{get\+\_\+multi\+\_\+pk\+\_\+constraint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedForeignKeyConstraint}{Reflected\+Foreign\+Key\+Constraint}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a82da4bda7f0b45259186a121c1a72952}{get\+\_\+foreign\+\_\+keys}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedForeignKeyConstraint}{Reflected\+Foreign\+Key\+Constraint}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a12258f81df04f909cf9ba51fd3a7af66}{get\+\_\+multi\+\_\+foreign\+\_\+keys}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a90057a4acc617ec1e45748df1c931717}{get\+\_\+table\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_accd7701ed25a406e17fd2d481697aaac}{get\+\_\+temp\+\_\+table\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a732b5b6b5b780005151995a9e67c8a4d}{get\+\_\+view\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a137549bb4c79e2d5932378a14627b712}{get\+\_\+materialized\+\_\+view\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1ef54ba944cd264683758a15ce40a36f}{get\+\_\+sequence\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af0ff6f4e985fcab223c81fff498203bb}{get\+\_\+temp\+\_\+view\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a36b6f9a473320a4d2d403ffce26e6356}{get\+\_\+schema\+\_\+names}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+str \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af1a47fb696e63ae324780fc43a3b6b80}{get\+\_\+view\+\_\+definition}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str view\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedIndex}{Reflected\+Index}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0ac481ad3f66b83549eff7498a6358e7}{get\+\_\+indexes}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedIndex}{Reflected\+Index}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa48e9f084649c46b61d5da72487ecfaa}{get\+\_\+multi\+\_\+indexes}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedUniqueConstraint}{Reflected\+Unique\+Constraint}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5d44dd7e9ee28e3df25597bdbae0a7bb}{get\+\_\+unique\+\_\+constraints}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedUniqueConstraint}{Reflected\+Unique\+Constraint}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3f8bac8792c4d3b1a03239996e5f6629}{get\+\_\+multi\+\_\+unique\+\_\+constraints}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedCheckConstraint}{Reflected\+Check\+Constraint}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ada51fd6dad9c5a6b194f6298fccd613d}{get\+\_\+check\+\_\+constraints}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedCheckConstraint}{Reflected\+Check\+Constraint}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac4b2d9bc4ca6e0ab68665d674c46bbbe}{get\+\_\+multi\+\_\+check\+\_\+constraints}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a58959d271517a981eb6137dfd6ddee8c}{get\+\_\+table\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, Dict\+[str, Any]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a76060382b711f1be9d45ea0e5d21e812}{get\+\_\+multi\+\_\+table\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedTableComment}{Reflected\+Table\+Comment}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3bcea3ba59111eadab9f9ca92074c9a3}{get\+\_\+table\+\_\+comment}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Iterable\+[Tuple\+[Table\+Key, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedTableComment}{Reflected\+Table\+Comment}}]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a269c2e65144f5c7415d8d0cf98bb0b84}{get\+\_\+multi\+\_\+table\+\_\+comment}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Optional\+[str]\+ schema=None, Optional\+[Collection\+[str]\+]\+ filter\+\_\+names=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+str \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a6a13df0c526efa08863cd5fa4055f419}{normalize\+\_\+name}} (self, str name)
+\item 
+str \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2d9a53a777422e933ab1391930c41eeb}{denormalize\+\_\+name}} (self, str name)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa27810845a860a76e098cee263164321}{has\+\_\+table}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a56a00cb59fbed5f82d7e85e0a83d1521}{has\+\_\+index}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str table\+\_\+name, str index\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af08ab86d2f50ad668c98a4367755f6e0}{has\+\_\+sequence}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str sequence\+\_\+name, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2c1eb6ed4f8c4a102135462292e31277}{has\+\_\+schema}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str schema\+\_\+name, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1c9f2a19530cd1f580be3ec852f3d8eb}{do\+\_\+begin}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a685dc07df5609be6eb46f1da0d741bbb}{do\+\_\+rollback}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3adf39cacec6168f1ef453c8125d2c25}{do\+\_\+commit}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a42a9b4972743d37993260ab17b6aa647}{do\+\_\+terminate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a02607f330c1c0de4ef05490bd9381ea0}{do\+\_\+close}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a73fe7bce4ed03176e46f6cd5a3e11da2}{do\+\_\+ping}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a40a201025bd31893dea8eed649fd54de}{do\+\_\+set\+\_\+input\+\_\+sizes}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, \+\_\+\+Generic\+Set\+Input\+Sizes\+Type list\+\_\+of\+\_\+tuples, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_acbacf1cceef62e411d0af55d26a061a5}{create\+\_\+xid}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cd563d3b77797ff1f68573d7823cc2d}{do\+\_\+savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae3961117ed7c27c0e0e6f004c8db1edf}{do\+\_\+rollback\+\_\+to\+\_\+savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a49941b83b67edcfe21d59e77c9e07837}{do\+\_\+release\+\_\+savepoint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4aacd5c543631b77377f4dd62cb039e6}{do\+\_\+begin\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Any xid)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a224695bb7534f6bb7daf3e9c70b5e405}{do\+\_\+prepare\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Any xid)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a89a9e087c76a728483938e6c9d10fdd2}{do\+\_\+rollback\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Any xid, bool is\+\_\+prepared=True, bool recover=False)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a388c9b7f4d77525d00f4987c0f267497}{do\+\_\+commit\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Any xid, bool is\+\_\+prepared=True, bool recover=False)
+\item 
+List\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7244c590ac07252754c53044ef8c5a79}{do\+\_\+recover\+\_\+twophase}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4d0414412d6b650ade7225311b8f60c8}{do\+\_\+executemany}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIMulti\+Execute\+Params parameters, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ context=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a91aabfa54b47239de17cee3ced4fb55a}{do\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, Optional\+[\+\_\+\+DBAPISingle\+Execute\+Params]\+ parameters, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ context=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a467cb27febf787c0f3953e66d03ee57d}{do\+\_\+execute\+\_\+no\+\_\+params}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ context=None)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cf7aa86595aa127b208715a08ac868c}{is\+\_\+disconnect}} (self, Exception e, Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+]\+ connection, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}]\+ cursor)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7ccf2564a19895db7b12d3c077a667a9}{connect}} (self, \texorpdfstring{$\ast$}{*}Any cargs, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any cparams)
+\item 
+Optional\+[Callable\+[\+[Any]\+, Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae5ca76161603e09334f198d80e3f77cf}{on\+\_\+connect\+\_\+url}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url)
+\item 
+Optional\+[Callable\+[\+[Any]\+, Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7595b90dd2168d710e3c2b6e64749297}{on\+\_\+connect}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8374978088a2275065d40f85e6a488b0}{reset\+\_\+isolation\+\_\+level}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0f4cdce324bc510c4f23a6e689c65f41}{set\+\_\+isolation\+\_\+level}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection, Isolation\+Level level)
+\item 
+Isolation\+Level \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0a7157dc0c269d1a7cc103cd7323bfbf}{get\+\_\+isolation\+\_\+level}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+Isolation\+Level \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ab682f8db821a5a9543baf811452b044a}{get\+\_\+default\+\_\+isolation\+\_\+level}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn)
+\item 
+List\+[Isolation\+Level]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5e5cc99709d07eaf997b954243ca56e4}{get\+\_\+isolation\+\_\+level\+\_\+values}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn)
+\item 
+Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a43f4716964f16306f053fdb6a8d6a30e}{get\+\_\+dialect\+\_\+cls}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url)
+\item 
+Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae8cc7f0bf417dafa4b6821d72ef15d89}{get\+\_\+async\+\_\+dialect\+\_\+cls}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9ea88178769bbe7f6bef4bcbf8d7e994}{load\+\_\+provisioning}} (cls)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae532631d29dc2f4d721f9cea5c36ae86}{engine\+\_\+created}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}} engine)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abd0691b3c6dcaa96d1e94d2aa6d21d82}{get\+\_\+driver\+\_\+connection}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} connection)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8b1a08c3089ca031004338c4c2326426}{set\+\_\+engine\+\_\+execution\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}} engine, Core\+Execute\+Options\+Parameter opts)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a81ad7d9639b679a7e58898124a6b3dfe}{set\+\_\+connection\+\_\+execution\+\_\+options}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, Core\+Execute\+Options\+Parameter opts)
+\item 
+Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1Pool}{Pool}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac6b320b44a23df890e48846446ffb904}{get\+\_\+dialect\+\_\+pool\+\_\+class}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}} url)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a46828c8c089c6c56d8a8cc5b176bef46}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a46828c8c089c6c56d8a8cc5b176bef46} 
+{\bfseries CACHE\+\_\+\+HIT} = Cache\+Stats.\+CACHE\+\_\+\+HIT
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a73d6de8ecccc8067a722a37aec04db57}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a73d6de8ecccc8067a722a37aec04db57} 
+{\bfseries CACHE\+\_\+\+MISS} = Cache\+Stats.\+CACHE\+\_\+\+MISS
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0615540bcd58ca82a58c8940e118d45b}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0615540bcd58ca82a58c8940e118d45b} 
+{\bfseries CACHING\+\_\+\+DISABLED} = Cache\+Stats.\+CACHING\+\_\+\+DISABLED
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ab053c34d026573c5c3cd86c64729705f}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ab053c34d026573c5c3cd86c64729705f} 
+{\bfseries NO\+\_\+\+CACHE\+\_\+\+KEY} = Cache\+Stats.\+NO\+\_\+\+CACHE\+\_\+\+KEY
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0e91573dd56ffd4d4c1310bd27351f8a}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0e91573dd56ffd4d4c1310bd27351f8a} 
+{\bfseries NO\+\_\+\+DIALECT\+\_\+\+SUPPORT} = Cache\+Stats.\+NO\+\_\+\+DIALECT\+\_\+\+SUPPORT
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad72dc1796f740c7b47698b2f3612ca1c}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad72dc1796f740c7b47698b2f3612ca1c} 
+Optional {\bfseries dbapi} \+[Module\+Type]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abddbe93d5ac82e0559de775e2482b304}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abddbe93d5ac82e0559de775e2482b304} 
+Type {\bfseries statement\+\_\+compiler} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1SQLCompiler}{SQLCompiler}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a189d4107e6c0dc1e2d387efbe936200b}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a189d4107e6c0dc1e2d387efbe936200b} 
+Type {\bfseries ddl\+\_\+compiler} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1DDLCompiler}{DDLCompiler}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0cfa485cc015db9cd3c54b1a6b7df95a}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0cfa485cc015db9cd3c54b1a6b7df95a} 
+Class\+Var {\bfseries type\+\_\+compiler\+\_\+cls} \+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1TypeCompiler}{Type\+Compiler}}]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1095b1e51b3ac53699145581f391b34b}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1095b1e51b3ac53699145581f391b34b} 
+Type {\bfseries preparer} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1IdentifierPreparer}{Identifier\+Preparer}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a10832dff3cc22bf56581928506f32f0c}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a10832dff3cc22bf56581928506f32f0c} 
+Optional {\bfseries server\+\_\+version\+\_\+info} \+[Tuple\+[Any, ...]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a59648449b9fd41228a13a078d6217890}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a59648449b9fd41228a13a078d6217890} 
+Optional {\bfseries default\+\_\+schema\+\_\+name} \+[str]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7936efe8186790a6ff163314a673a699}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7936efe8186790a6ff163314a673a699} 
+Optional {\bfseries default\+\_\+isolation\+\_\+level} \+[Isolation\+Level]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af0add36f48eb33805991baf48281b908}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af0add36f48eb33805991baf48281b908} 
+Type {\bfseries execution\+\_\+ctx\+\_\+cls} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+
+\item 
+Union \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a24c9bb601f68191dcf17357f490777d6}{execute\+\_\+sequence\+\_\+format}}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a08ac6b125f9ff8b36fc502163376244f}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a08ac6b125f9ff8b36fc502163376244f} 
+str {\bfseries default\+\_\+metavalue\+\_\+token} = "{}DEFAULT"{}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae187ee7994ccb0e44910d3329629a406}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae187ee7994ccb0e44910d3329629a406} 
+Mutable\+Mapping {\bfseries colspecs} \+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a495db855b66ed1bce9251f41d93b5e8f}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a495db855b66ed1bce9251f41d93b5e8f} 
+Optional {\bfseries construct\+\_\+arguments} = None
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a99b4a007badc17c2cfffffc4f5b6155b}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a99b4a007badc17c2cfffffc4f5b6155b} 
+tuple {\bfseries reflection\+\_\+options} = ()
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a19c69d369430303dffcd80fe27ddff01}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a19c69d369430303dffcd80fe27ddff01} 
+Mapping {\bfseries dbapi\+\_\+exception\+\_\+translation\+\_\+map} = util.\+EMPTY\+\_\+\+DICT
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a016f0d00d4476719f87e199714883504}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a016f0d00d4476719f87e199714883504} 
+bool {\bfseries supports\+\_\+statement\+\_\+cache} = True
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7338b4f0b384e727e8b96355924fb667}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7338b4f0b384e727e8b96355924fb667} 
+bool {\bfseries bind\+\_\+typing} = Bind\+Typing.\+NONE
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9848cbefda34456f8f9b40e9f981b0b6}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9848cbefda34456f8f9b40e9f981b0b6} 
+Mapping {\bfseries engine\+\_\+config\+\_\+types} \+[str, Any]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a69ef88124656bb66d1b177ccd1a5f03f}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a69ef88124656bb66d1b177ccd1a5f03f} 
+Optional {\bfseries label\+\_\+length} \+[int]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0fe7660d86af4e5a1d53a275c52c1556}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0fe7660d86af4e5a1d53a275c52c1556} 
+Optional {\bfseries include\+\_\+set\+\_\+input\+\_\+sizes} \+[Set\+[Any]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af304040a1268a48de0ff4c80495d25b9}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af304040a1268a48de0ff4c80495d25b9} 
+Optional {\bfseries exclude\+\_\+set\+\_\+input\+\_\+sizes} \+[Set\+[Any]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1EventTarget}{sqlalchemy.\+event.\+registry.\+Event\+Target}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1dispatcher}{dispatcher}} {\bfseries dispatch} \+[Any]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8dde52a25d01f61f40ab40f963e73e94}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8dde52a25d01f61f40ab40f963e73e94} 
+Optional\+[\+\_\+\+Listener\+Fn\+Type]\+ {\bfseries \+\_\+builtin\+\_\+onconnect} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a81066f9f1e81a60b7c90c0baa7e6f6ef}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a81066f9f1e81a60b7c90c0baa7e6f6ef} 
+bool {\bfseries \+\_\+overrides\+\_\+default} (self, str method\+\_\+name)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa8896c9d2c0aaff337685af88c6d1723}{\+\_\+get\+\_\+server\+\_\+version\+\_\+info}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection)
+\item 
+str \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae9ea2afe712b706e3bd1b326336e949d}{\+\_\+get\+\_\+default\+\_\+schema\+\_\+name}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a08a02527910dfd850d5e55962e159398}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a08a02527910dfd850d5e55962e159398} 
+bool {\bfseries \+\_\+do\+\_\+ping\+\_\+w\+\_\+event} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+connection)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__InsertManyValuesBatch}{\+\_\+\+Insert\+Many\+Values\+Batch}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a391d16f1463a8515ba2bba7710c272ff}{\+\_\+deliver\+\_\+insertmanyvalues\+\_\+batches}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIMulti\+Execute\+Params parameters, Optional\+[\+\_\+\+Generic\+Set\+Input\+Sizes\+Type]\+ generic\+\_\+setinputsizes, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_afe3b96cc4443f05091cacb5b103b528f}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_afe3b96cc4443f05091cacb5b103b528f} 
+None {\bfseries \+\_\+assert\+\_\+and\+\_\+set\+\_\+isolation\+\_\+level} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn, Isolation\+Level level)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a542750922dc877d59d533f1944cd8034}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a542750922dc877d59d533f1944cd8034} 
+Optional {\bfseries \+\_\+on\+\_\+connect\+\_\+isolation\+\_\+level} \+[Isolation\+Level]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_afba5544a70de9656112bfe0f7f4f7b9d}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_afba5544a70de9656112bfe0f7f4f7b9d} 
+bool {\bfseries \+\_\+has\+\_\+events} = False
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abccfeeb410348566ecbe32057dd95faf}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abccfeeb410348566ecbe32057dd95faf} 
+Mutable\+Mapping {\bfseries \+\_\+type\+\_\+memos} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1__TypeMemoDict}{\+\_\+\+Type\+Memo\+Dict}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Define the behavior of a specific database and DB-API combination.
+
+Any aspect of metadata definition, SQL query generation,
+execution, result-set handling, or anything else which varies
+between databases is defined under the general category of the
+Dialect.  The Dialect acts as a factory for other
+database-specific object implementations including
+ExecutionContext, Compiled, DefaultGenerator, and TypeEngine.
+
+.. note:: Third party dialects should not subclass :class:`.Dialect`
+   directly.  Instead, subclass :class:`.default.DefaultDialect` or
+   descendant class.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a391d16f1463a8515ba2bba7710c272ff}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!\_deliver\_insertmanyvalues\_batches@{\_deliver\_insertmanyvalues\_batches}}
+\index{\_deliver\_insertmanyvalues\_batches@{\_deliver\_insertmanyvalues\_batches}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{\_deliver\_insertmanyvalues\_batches()}{\_deliver\_insertmanyvalues\_batches()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a391d16f1463a8515ba2bba7710c272ff} 
+ Iterator\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__InsertManyValuesBatch}{\+\_\+\+Insert\+Many\+Values\+Batch}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+\_\+deliver\+\_\+insertmanyvalues\+\_\+batches (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIMulti\+Execute\+Params}]{parameters}{, }\item[{Optional\+[\+\_\+\+Generic\+Set\+Input\+Sizes\+Type]\+}]{generic\+\_\+setinputsizes}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}}]{context}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}convert executemany parameters for an INSERT into an iterator
+of statement/single execute values, used by the insertmanyvalues
+feature.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aa43f4995f663ee1f59947c735983f46c}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae9ea2afe712b706e3bd1b326336e949d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!\_get\_default\_schema\_name@{\_get\_default\_schema\_name}}
+\index{\_get\_default\_schema\_name@{\_get\_default\_schema\_name}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{\_get\_default\_schema\_name()}{\_get\_default\_schema\_name()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae9ea2afe712b706e3bd1b326336e949d} 
+ str sqlalchemy.\+engine.\+interfaces.\+Dialect.\+\_\+get\+\_\+default\+\_\+schema\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Return the string name of the currently selected schema from
+the given connection.
+
+This is used by the default implementation to populate the
+"default_schema_name" attribute and is called exactly
+once upon first connect.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a4cd496b36b13b53898f7f1ba1215ad89}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_aab28b6663d726bd5dcf43b331690cc07}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a3343d95038753c6db3e52cfe734afb6b}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a07117f5322371ffc961dc3736e80b348}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a11b4fca7b4341755a7690b71d5ae0a1d}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa8896c9d2c0aaff337685af88c6d1723}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!\_get\_server\_version\_info@{\_get\_server\_version\_info}}
+\index{\_get\_server\_version\_info@{\_get\_server\_version\_info}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{\_get\_server\_version\_info()}{\_get\_server\_version\_info()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa8896c9d2c0aaff337685af88c6d1723} 
+ Any sqlalchemy.\+engine.\+interfaces.\+Dialect.\+\_\+get\+\_\+server\+\_\+version\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Retrieve the server version info from the given connection.
+
+This is used by the default implementation to populate the
+"server_version_info" attribute and is called exactly
+once upon first connect.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_af27b475acb45dca31683bb7e6ed96970}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_ab3c1547ec2343249555e20b0bbc10779}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSDialect__pyodbc_abdc32d643987fd6b133d8bfc87cb90e6}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a056096d90ab275d84ee9c3884f4d4f24}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1MySQLDialect__pyodbc_a3182993992c146fa124558cffdde0aed}{sqlalchemy.\+dialects.\+mysql.\+pyodbc.\+My\+SQLDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_ada90ecdc9d6d3a69fbb4142a00151b2d}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aad6fc5bb3c66d312a2083d36bde6555b}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_adfc0d82eef9065d44f6e1ff5937b1c02}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7ccf2564a19895db7b12d3c077a667a9}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!connect@{connect}}
+\index{connect@{connect}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7ccf2564a19895db7b12d3c077a667a9} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} sqlalchemy.\+engine.\+interfaces.\+Dialect.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{cargs}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{cparams}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish a connection using this dialect's DBAPI.
+
+The default implementation of this method is::
+
+    def connect(self, *cargs, **cparams):
+        return self.dbapi.connect(*cargs, **cparams)
+
+The ``*cargs, **cparams`` parameters are generated directly
+from this dialect's :meth:`.Dialect.create_connect_args` method.
+
+This method may be used for dialects that need to perform programmatic
+per-connection steps when a new connection is procured from the
+DBAPI.
+
+
+:param \*cargs: positional parameters returned from the
+ :meth:`.Dialect.create_connect_args` method
+
+:param \*\*cparams: keyword parameters returned from the
+ :meth:`.Dialect.create_connect_args` method.
+
+:return: a DBAPI connection, typically from the :pep:`249` module
+ level ``.connect()`` function.
+
+.. seealso::
+
+    :meth:`.Dialect.create_connect_args`
+
+    :meth:`.Dialect.on_connect`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a9c91179b9ed8cd5867bc54ce2827fb9e}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac17c3e80219095db566f3bc77ce9189e}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!create\_connect\_args@{create\_connect\_args}}
+\index{create\_connect\_args@{create\_connect\_args}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{create\_connect\_args()}{create\_connect\_args()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac17c3e80219095db566f3bc77ce9189e} 
+ Connect\+Args\+Type sqlalchemy.\+engine.\+interfaces.\+Dialect.\+create\+\_\+connect\+\_\+args (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}}}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Build DB-API compatible connection arguments.
+
+Given a :class:`.URL` object, returns a tuple
+consisting of a ``(*args, **kwargs)`` suitable to send directly
+to the dbapi's connect function.   The arguments are sent to the
+:meth:`.Dialect.connect` method which then runs the DBAPI-level
+``connect()`` function.
+
+The method typically makes use of the
+:meth:`.URL.translate_connect_args`
+method in order to generate a dictionary of options.
+
+The default implementation is::
+
+    def create_connect_args(self, url):
+        opts = url.translate_connect_args()
+        opts.update(url.query)
+        return ([], opts)
+
+:param url: a :class:`.URL` object
+
+:return: a tuple of ``(*args, **kwargs)`` which will be passed to the
+ :meth:`.Dialect.connect` method.
+
+.. seealso::
+
+    :meth:`.URL.translate_connect_args`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1aioodbc_1_1aiodbcConnector_aab7c9d2c52e0cab0a823adb94a6192dc}{sqlalchemy.\+connectors.\+aioodbc.\+aiodbc\+Connector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_aaa34e34e0d3432c13589b225ee30688b}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_a8bdd642fe97c90f3848d30ebce99cba5}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql_a783a6583ab468030223187943f3b1116}{sqlalchemy.\+dialects.\+mysql.\+aiomysql.\+My\+SQLDialect\+\_\+aiomysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1asyncmy_1_1MySQLDialect__asyncmy_ab24f99474a5b8de7376118f2762177d6}{sqlalchemy.\+dialects.\+mysql.\+asyncmy.\+My\+SQLDialect\+\_\+asyncmy}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a32d3044665991d6a4739c944df7a0fb3}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqlconnector_1_1MySQLDialect__mysqlconnector_a040fa8b3bfaf2f3f456b906dc90def3c}{sqlalchemy.\+dialects.\+mysql.\+mysqlconnector.\+My\+SQLDialect\+\_\+mysqlconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a19383b214c8c6f415334ebe7619a1251}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pymysql_1_1MySQLDialect__pymysql_aca64b7aef6e7aeea3277f0772afc5299}{sqlalchemy.\+dialects.\+mysql.\+pymysql.\+My\+SQLDialect\+\_\+pymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a2a5c89615190332ecc0842efc004c0a3}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1__psycopg__common_1_1__PGDialect__common__psycopg_a51f7468baa09f2c21ea1211c3052fe9f}{sqlalchemy.\+dialects.\+postgresql.\+\_\+psycopg\+\_\+common.\+\_\+\+PGDialect\+\_\+common\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_aa18a557e60c0b5028f203588fb0f62ac}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a5f4fef5fbfaf8b6e420d8d19e0f60c09}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_a269d1c9ad6affde715206e693e7ec847}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlcipher_1_1SQLiteDialect__pysqlcipher_aa942030d0c7a8fa4164203a9db05536d}{sqlalchemy.\+dialects.\+sqlite.\+pysqlcipher.\+SQLite\+Dialect\+\_\+pysqlcipher}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1__SQLiteDialect__pysqlite__numeric_a31f6563a6b5de2ecb221650d22107b29}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+\_\+\+SQLite\+Dialect\+\_\+pysqlite\+\_\+numeric}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_a7f0ad5eaa5d413b428d0ce748b5a340a}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a04ab5dcd4b1bb275dca6e26e34f241cf}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_acbacf1cceef62e411d0af55d26a061a5}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!create\_xid@{create\_xid}}
+\index{create\_xid@{create\_xid}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{create\_xid()}{create\_xid()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_acbacf1cceef62e411d0af55d26a061a5} 
+ Any sqlalchemy.\+engine.\+interfaces.\+Dialect.\+create\+\_\+xid (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a two-phase transaction ID.
+
+This id will be passed to do_begin_twophase(),
+do_rollback_twophase(), do_commit_twophase().  Its format is
+unspecified.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a69f3f82f580f5645800f4092a0230b53}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a1889a86a4bdc70d0c91f1f7986361fe9}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2d9a53a777422e933ab1391930c41eeb}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!denormalize\_name@{denormalize\_name}}
+\index{denormalize\_name@{denormalize\_name}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{denormalize\_name()}{denormalize\_name()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2d9a53a777422e933ab1391930c41eeb} 
+ str sqlalchemy.\+engine.\+interfaces.\+Dialect.\+denormalize\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}convert the given name to a case insensitive identifier
+for the backend if it is an all-lowercase name.
+
+This method is only used if the dialect defines
+requires_name_normalize=True.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a5861404d6eb63031b4323d0db956291d}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1c9f2a19530cd1f580be3ec852f3d8eb}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_begin@{do\_begin}}
+\index{do\_begin@{do\_begin}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_begin()}{do\_begin()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1c9f2a19530cd1f580be3ec852f3d8eb} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+begin (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``connection.begin()``, given a
+DB-API connection.
+
+The DBAPI has no dedicated "begin" method and it is expected
+that transactions are implicit.  This hook is provided for those
+DBAPIs that might need additional help in this area.
+
+:param dbapi_connection: a DBAPI connection, typically
+ proxied within a :class:`.ConnectionFairy`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_abfabea170b352d312f7ba530ec86e9bd}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4aacd5c543631b77377f4dd62cb039e6}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_begin\_twophase@{do\_begin\_twophase}}
+\index{do\_begin\_twophase@{do\_begin\_twophase}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_begin\_twophase()}{do\_begin\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4aacd5c543631b77377f4dd62cb039e6} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+begin\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Any}]{xid}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Begin a two phase transaction on the given connection.
+
+:param connection: a :class:`_engine.Connection`.
+:param xid: xid
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_acc2531218577e6b0ace650a8ba5856b0}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a3ae6ed14aeb268199d154967ffbf2cc8}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a0ae6ddc5197a57951d44f08b5e056c3d}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aadbf972d08eee482c9daf82ee843bfdf}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a5fcc44b1bab83e16a4c7e767c5b719e8}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_afcd543624bb466fc1baf991feeb4a1ab}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a02607f330c1c0de4ef05490bd9381ea0}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_close@{do\_close}}
+\index{do\_close@{do\_close}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_close()}{do\_close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a02607f330c1c0de4ef05490bd9381ea0} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``connection.close()``, given a DBAPI
+connection.
+
+This hook is called by the :class:`_pool.Pool`
+when a connection has been
+detached from the pool, or is being returned beyond the normal
+capacity of the pool.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aaf055906a97a9e4b4a6095346a5e07c2}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3adf39cacec6168f1ef453c8125d2c25}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_commit@{do\_commit}}
+\index{do\_commit@{do\_commit}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_commit()}{do\_commit()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3adf39cacec6168f1ef453c8125d2c25} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+commit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``connection.commit()``, given a
+DB-API connection.
+
+:param dbapi_connection: a DBAPI connection, typically
+ proxied within a :class:`.ConnectionFairy`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a1c45bb2faf18f79441ea9b2660cfdc95}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a388c9b7f4d77525d00f4987c0f267497}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_commit\_twophase@{do\_commit\_twophase}}
+\index{do\_commit\_twophase@{do\_commit\_twophase}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_commit\_twophase()}{do\_commit\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a388c9b7f4d77525d00f4987c0f267497} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+commit\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Any}]{xid}{, }\item[{bool }]{is\+\_\+prepared}{ = {\ttfamily True}, }\item[{bool }]{recover}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Commit a two phase transaction on the given connection.
+
+
+:param connection: a :class:`_engine.Connection`.
+:param xid: xid
+:param is_prepared: whether or not
+ :meth:`.TwoPhaseTransaction.prepare` was called.
+:param recover: if the recover flag was passed.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a45be52c3acf06bb73b71324785139d2b}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a2ae0cb10a15c6d7da5d37b12c97fa8f3}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a0e820b32dc688470c325dc06b4d6fb8c}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a1a05104ad98d8f392349657d494bce96}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a9f2e5aa363be49ee16c9dec18e8a3dcb}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_adc6f9ae38d4d4b5f7707d4dd3bd313a9}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_a61b88063547064950091c33c4a50133b}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a91aabfa54b47239de17cee3ced4fb55a}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_execute@{do\_execute}}
+\index{do\_execute@{do\_execute}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_execute()}{do\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a91aabfa54b47239de17cee3ced4fb55a} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{Optional\+[\+\_\+\+DBAPISingle\+Execute\+Params]\+}]{parameters}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ }]{context}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``cursor.execute(statement,
+parameters)``.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a635ee569645d9bbc82e4f17907037aee}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a467cb27febf787c0f3953e66d03ee57d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_execute\_no\_params@{do\_execute\_no\_params}}
+\index{do\_execute\_no\_params@{do\_execute\_no\_params}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_execute\_no\_params()}{do\_execute\_no\_params()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a467cb27febf787c0f3953e66d03ee57d} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+execute\+\_\+no\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ }]{context}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``cursor.execute(statement)``.
+
+The parameter collection should not be sent.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a2ca1c728c79efdcd03824e3a13666129}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4d0414412d6b650ade7225311b8f60c8}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_executemany@{do\_executemany}}
+\index{do\_executemany@{do\_executemany}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_executemany()}{do\_executemany()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a4d0414412d6b650ade7225311b8f60c8} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+executemany (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIMulti\+Execute\+Params}]{parameters}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}]\+ }]{context}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``cursor.executemany(statement,
+parameters)``.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSDialect__pyodbc_a334b55ffa7c4071a8ca4426e11a09eba}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a7becb1b20271f9f8ae2cfde2875ffb08}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_ab4369ce000e47f0d3df499822fe2c9d3}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_a0d58d8a123cadf38fd6e1dc908b87f76}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_ad40354dffcd7a7f0aa8bca899e11cfee}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a73fe7bce4ed03176e46f6cd5a3e11da2}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_ping@{do\_ping}}
+\index{do\_ping@{do\_ping}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_ping()}{do\_ping()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a73fe7bce4ed03176e46f6cd5a3e11da2} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+ping (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}ping the DBAPI connection and return True if the connection is
+usable.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqlconnector_1_1MySQLDialect__mysqlconnector_a0adc56ab61271b98313b2ec964c66229}{sqlalchemy.\+dialects.\+mysql.\+mysqlconnector.\+My\+SQLDialect\+\_\+mysqlconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a005306a82ea302e33b49d9f873c191ae}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pymysql_1_1MySQLDialect__pymysql_a7a26df6792ffa9828f9d9845ffdb9b41}{sqlalchemy.\+dialects.\+mysql.\+pymysql.\+My\+SQLDialect\+\_\+pymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1__psycopg__common_1_1__PGDialect__common__psycopg_af69d0d372b239b6041201bcab31ad675}{sqlalchemy.\+dialects.\+postgresql.\+\_\+psycopg\+\_\+common.\+\_\+\+PGDialect\+\_\+common\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_a2f1af52a3b97bcbd308d284ac0009f77}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aa10758e2b9555bdb88d6eeb557628cf6}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a224695bb7534f6bb7daf3e9c70b5e405}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_prepare\_twophase@{do\_prepare\_twophase}}
+\index{do\_prepare\_twophase@{do\_prepare\_twophase}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_prepare\_twophase()}{do\_prepare\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a224695bb7534f6bb7daf3e9c70b5e405} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+prepare\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Any}]{xid}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Prepare a two phase transaction on the given connection.
+
+:param connection: a :class:`_engine.Connection`.
+:param xid: xid
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_ae0fcca048e26cbecc82bef4047c03639}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_aab13ddd45124a9773ea1df31b0f29dde}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a750c6f0a2edb63c4d35f33fac87e976c}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_ac8a3a3a656c2aa65d3056e7d99d124ae}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a912af76a0c2ecb5b36736e3c2074e19a}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_ae1758dfbd1785aa8f9cd9e54e27e4089}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7244c590ac07252754c53044ef8c5a79}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_recover\_twophase@{do\_recover\_twophase}}
+\index{do\_recover\_twophase@{do\_recover\_twophase}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_recover\_twophase()}{do\_recover\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7244c590ac07252754c53044ef8c5a79} 
+ List\+[Any]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+recover\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Recover list of uncommitted prepared two phase transaction
+identifiers on the given connection.
+
+:param connection: a :class:`_engine.Connection`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_ab4d9f57d40148e682b0e8311861cbca2}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_acb17535ecb9b328f919e45ac88559961}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a99e4d0400e0e0e009bfd116acbac6481}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_adf48237ffa4d8d9e95d443c6e0031048}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a49941b83b67edcfe21d59e77c9e07837}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_release\_savepoint@{do\_release\_savepoint}}
+\index{do\_release\_savepoint@{do\_release\_savepoint}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_release\_savepoint()}{do\_release\_savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a49941b83b67edcfe21d59e77c9e07837} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+release\+\_\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Release the named savepoint on a connection.
+
+:param connection: a :class:`_engine.Connection`.
+:param name: savepoint name.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a5d9a1877dfe483c56465d59226afce94}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a6e966ec0869fd5436a9e1bf58f231148}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a28f91ac366e2ccbb33e78a9c13890bec}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a685dc07df5609be6eb46f1da0d741bbb}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_rollback@{do\_rollback}}
+\index{do\_rollback@{do\_rollback}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_rollback()}{do\_rollback()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a685dc07df5609be6eb46f1da0d741bbb} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+rollback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``connection.rollback()``, given
+a DB-API connection.
+
+:param dbapi_connection: a DBAPI connection, typically
+ proxied within a :class:`.ConnectionFairy`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_ac8528468d2943ffa989cc31beb7c5a0a}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aeceef87dfa220b2fd28c8ac16141d29b}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae3961117ed7c27c0e0e6f004c8db1edf}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_rollback\_to\_savepoint@{do\_rollback\_to\_savepoint}}
+\index{do\_rollback\_to\_savepoint@{do\_rollback\_to\_savepoint}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_rollback\_to\_savepoint()}{do\_rollback\_to\_savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae3961117ed7c27c0e0e6f004c8db1edf} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+rollback\+\_\+to\+\_\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str     }]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Rollback a connection to the named savepoint.
+
+:param connection: a :class:`_engine.Connection`.
+:param name: savepoint name.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_acbf06b19ddd5c0974b82144ac2a965af}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a89a9e087c76a728483938e6c9d10fdd2}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_rollback\_twophase@{do\_rollback\_twophase}}
+\index{do\_rollback\_twophase@{do\_rollback\_twophase}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_rollback\_twophase()}{do\_rollback\_twophase()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a89a9e087c76a728483938e6c9d10fdd2} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+rollback\+\_\+twophase (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Any}]{xid}{, }\item[{bool }]{is\+\_\+prepared}{ = {\ttfamily True}, }\item[{bool }]{recover}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Rollback a two phase transaction on the given connection.
+
+:param connection: a :class:`_engine.Connection`.
+:param xid: xid
+:param is_prepared: whether or not
+ :meth:`.TwoPhaseTransaction.prepare` was called.
+:param recover: if the recover flag was passed.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a0fdb5407d83f7c9f42b0939454d197a4}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a7eb80a75fbc3f10c3188c6446cc10522}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a19cb680d6ea31a32f99d9565a5402136}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a78c83f81cb0ac1d4d501f986776c698e}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a0e70df68a883d3ae4d6cc535a57cf27e}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_aa22a2a429c2fb312458affe4107dae30}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_afe6d92d5bddd922f5268e652cabe9c42}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cd563d3b77797ff1f68573d7823cc2d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_savepoint@{do\_savepoint}}
+\index{do\_savepoint@{do\_savepoint}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_savepoint()}{do\_savepoint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cd563d3b77797ff1f68573d7823cc2d} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+savepoint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a savepoint with the given name.
+
+:param connection: a :class:`_engine.Connection`.
+:param name: savepoint name.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_ae6540fc9accf20af2ec0dc3932c2f193}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a45128f3eed845addf3cbce1cb48746ba}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a40a201025bd31893dea8eed649fd54de}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_set\_input\_sizes@{do\_set\_input\_sizes}}
+\index{do\_set\_input\_sizes@{do\_set\_input\_sizes}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_set\_input\_sizes()}{do\_set\_input\_sizes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a40a201025bd31893dea8eed649fd54de} 
+ Any sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+set\+\_\+input\+\_\+sizes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{\+\_\+\+Generic\+Set\+Input\+Sizes\+Type}]{list\+\_\+of\+\_\+tuples}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}invoke the cursor.setinputsizes() method with appropriate arguments
+
+This hook is called if the :attr:`.Dialect.bind_typing` attribute is
+set to the
+:attr:`.BindTyping.SETINPUTSIZES` value.
+Parameter data is passed in a list of tuples (paramname, dbtype,
+sqltype), where ``paramname`` is the key of the parameter in the
+statement, ``dbtype`` is the DBAPI datatype and ``sqltype`` is the
+SQLAlchemy type. The order of tuples is in the correct parameter order.
+
+.. versionadded:: 1.4
+
+.. versionchanged:: 2.0  - setinputsizes mode is now enabled by
+   setting :attr:`.Dialect.bind_typing` to
+   :attr:`.BindTyping.SETINPUTSIZES`.  Dialects which accept
+   a ``use_setinputsizes`` parameter should set this value
+   appropriately.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_a9485897e7b36fc5437dab14d11f41a4a}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a3f682c592ed96587eff661d8d9644d4c}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a42a9b4972743d37993260ab17b6aa647}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!do\_terminate@{do\_terminate}}
+\index{do\_terminate@{do\_terminate}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{do\_terminate()}{do\_terminate()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a42a9b4972743d37993260ab17b6aa647} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+do\+\_\+terminate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide an implementation of ``connection.close()`` that tries as
+much as possible to not block, given a DBAPI
+connection.
+
+In the vast majority of cases this just calls .close(), however
+for some asyncio dialects may call upon different API features.
+
+This hook is called by the :class:`_pool.Pool`
+when a connection is being recycled or has been invalidated.
+
+.. versionadded:: 1.4.41
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql_aade8bdf7f1e43b4025c3b28230cea316}{sqlalchemy.\+dialects.\+mysql.\+aiomysql.\+My\+SQLDialect\+\_\+aiomysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1asyncmy_1_1MySQLDialect__asyncmy_ae7a50d1e5d4ae2a08cf9e882977d2a2e}{sqlalchemy.\+dialects.\+mysql.\+asyncmy.\+My\+SQLDialect\+\_\+asyncmy}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_a89c4c53c8a45c6a45678b24dab372375}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_afa009e18d1657270b31bd122f2681765}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae532631d29dc2f4d721f9cea5c36ae86}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!engine\_created@{engine\_created}}
+\index{engine\_created@{engine\_created}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{engine\_created()}{engine\_created()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae532631d29dc2f4d721f9cea5c36ae86} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+engine\+\_\+created (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}}]{engine}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A convenience hook called before returning the final
+:class:`_engine.Engine`.
+
+If the dialect returned a different class from the
+:meth:`.get_dialect_cls`
+method, then the hook is called on both classes, first on
+the dialect class returned by the :meth:`.get_dialect_cls` method and
+then on the class on which the method was called.
+
+The hook should be used by dialects and/or wrappers to apply special
+events to the engine or its components.   In particular, it allows
+a dialect-wrapping class to apply dialect-level events.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae8cc7f0bf417dafa4b6821d72ef15d89}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_async\_dialect\_cls@{get\_async\_dialect\_cls}}
+\index{get\_async\_dialect\_cls@{get\_async\_dialect\_cls}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_async\_dialect\_cls()}{get\_async\_dialect\_cls()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae8cc7f0bf417dafa4b6821d72ef15d89} 
+ Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+async\+\_\+dialect\+\_\+cls (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}}}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a URL, return the :class:`.Dialect` that will be used by
+an async engine.
+
+By default this is an alias of :meth:`.Dialect.get_dialect_cls` and
+just returns the cls. It may be used if a dialect provides
+both a sync and async version under the same name, like the
+``psycopg`` driver.
+
+.. versionadded:: 2
+
+.. seealso::
+
+    :meth:`.Dialect.get_dialect_cls`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_ae6ec2ca4f2e553d46ccf36dec2064f33}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ada51fd6dad9c5a6b194f6298fccd613d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_check\_constraints@{get\_check\_constraints}}
+\index{get\_check\_constraints@{get\_check\_constraints}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_check\_constraints()}{get\_check\_constraints()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ada51fd6dad9c5a6b194f6298fccd613d} 
+ List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedCheckConstraint}{Reflected\+Check\+Constraint}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+check\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about check constraints in ``table_name``.
+
+Given a string ``table_name`` and an optional string ``schema``, return
+check constraint information as a list of dicts corresponding
+to the :class:`.ReflectedCheckConstraint` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_check_constraints`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_acd220015ccd5a39e7d272933a2b9cc75}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a47c25b5d5fafce2fa6a0dc9794bcb5a6}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_columns@{get\_columns}}
+\index{get\_columns@{get\_columns}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_columns()}{get\_columns()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a47c25b5d5fafce2fa6a0dc9794bcb5a6} 
+ List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedColumn}{Reflected\+Column}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+columns (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about columns in ``table_name``.
+
+Given a :class:`_engine.Connection`, a string
+``table_name``, and an optional string ``schema``, return column
+information as a list of dictionaries
+corresponding to the :class:`.ReflectedColumn` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_columns`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a15f5bf112f3d29b935d54578b33041ad}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ab682f8db821a5a9543baf811452b044a}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_default\_isolation\_level@{get\_default\_isolation\_level}}
+\index{get\_default\_isolation\_level@{get\_default\_isolation\_level}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_default\_isolation\_level()}{get\_default\_isolation\_level()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ab682f8db821a5a9543baf811452b044a} 
+ Isolation\+Level sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+default\+\_\+isolation\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a DBAPI connection, return its isolation level, or
+a default isolation level if one cannot be retrieved.
+
+This method may only raise NotImplementedError and
+**must not raise any other exception**, as it is used implicitly upon
+first connect.
+
+The method **must return a value** for a dialect that supports
+isolation level settings, as this level is what will be reverted
+towards when a per-connection isolation level change is made.
+
+The method defaults to using the :meth:`.Dialect.get_isolation_level`
+method unless overridden by a dialect.
+
+.. versionadded:: 1.3.22
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_af152a23174b1905d396cf86a968eec68}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_adea0d0783bf5b34f0a48199ec8916a0e}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a43f4716964f16306f053fdb6a8d6a30e}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_dialect\_cls@{get\_dialect\_cls}}
+\index{get\_dialect\_cls@{get\_dialect\_cls}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_dialect\_cls()}{get\_dialect\_cls()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a43f4716964f16306f053fdb6a8d6a30e} 
+ Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+dialect\+\_\+cls (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}}}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a URL, return the :class:`.Dialect` that will be used.
+
+This is a hook that allows an external plugin to provide functionality
+around an existing dialect, by allowing the plugin to be loaded
+from the url based on an entrypoint, and then the plugin returns
+the actual dialect to be used.
+
+By default this just returns the cls.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac6b320b44a23df890e48846446ffb904}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_dialect\_pool\_class@{get\_dialect\_pool\_class}}
+\index{get\_dialect\_pool\_class@{get\_dialect\_pool\_class}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_dialect\_pool\_class()}{get\_dialect\_pool\_class()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac6b320b44a23df890e48846446ffb904} 
+ Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1Pool}{Pool}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+dialect\+\_\+pool\+\_\+class (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}}}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return a Pool class to use for a given URL\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_afd7c5d3f1925a95c6fcd865210a35320}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abd0691b3c6dcaa96d1e94d2aa6d21d82}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_driver\_connection@{get\_driver\_connection}}
+\index{get\_driver\_connection@{get\_driver\_connection}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_driver\_connection()}{get\_driver\_connection()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_abd0691b3c6dcaa96d1e94d2aa6d21d82} 
+ Any sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+driver\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the connection object as returned by the external driver
+package.
+
+For normal dialects that use a DBAPI compliant driver this call
+will just return the ``connection`` passed as argument.
+For dialects that instead adapt a non DBAPI compliant driver, like
+when adapting an asyncio driver, this call will return the
+connection-like object as returned by the driver.
+
+.. versionadded:: 1.4.24
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1aioodbc_1_1aiodbcConnector_ad71392970c151ff016b96f5d26978aac}{sqlalchemy.\+connectors.\+aioodbc.\+aiodbc\+Connector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql_a62ca8366786fe7bc28cb1e7732a5fabb}{sqlalchemy.\+dialects.\+mysql.\+aiomysql.\+My\+SQLDialect\+\_\+aiomysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1asyncmy_1_1MySQLDialect__asyncmy_a87822410045fd3d75f06405a4d4643c4}{sqlalchemy.\+dialects.\+mysql.\+asyncmy.\+My\+SQLDialect\+\_\+asyncmy}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_abd6c3cc1506e0950599d64949ceea2e9}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialectAsync__psycopg_a2e6eb1e73f9f895a980376cdfb2ee136}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+Async\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteDialect__aiosqlite_a3c22d130d56b30af28fbc6c1c5839470}{sqlalchemy.\+dialects.\+sqlite.\+aiosqlite.\+SQLite\+Dialect\+\_\+aiosqlite}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a3981e8dfa3098b8e039033e50afa4bc7}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a82da4bda7f0b45259186a121c1a72952}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_foreign\_keys@{get\_foreign\_keys}}
+\index{get\_foreign\_keys@{get\_foreign\_keys}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_foreign\_keys()}{get\_foreign\_keys()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a82da4bda7f0b45259186a121c1a72952} 
+ List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedForeignKeyConstraint}{Reflected\+Foreign\+Key\+Constraint}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+foreign\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about foreign_keys in ``table_name``.
+
+Given a :class:`_engine.Connection`, a string
+``table_name``, and an optional string ``schema``, return foreign
+key information as a list of dicts corresponding to the
+:class:`.ReflectedForeignKeyConstraint` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_foreign_keys`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a6df502aaf066c8619655d2a365f7fc61}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0ac481ad3f66b83549eff7498a6358e7}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_indexes@{get\_indexes}}
+\index{get\_indexes@{get\_indexes}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_indexes()}{get\_indexes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0ac481ad3f66b83549eff7498a6358e7} 
+ List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedIndex}{Reflected\+Index}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+indexes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about indexes in ``table_name``.
+
+Given a :class:`_engine.Connection`, a string
+``table_name`` and an optional string ``schema``, return index
+information as a list of dictionaries corresponding to the
+:class:`.ReflectedIndex` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_indexes`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a3ce88b9c54f352af60b06bad30642f93}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0a7157dc0c269d1a7cc103cd7323bfbf}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_isolation\_level@{get\_isolation\_level}}
+\index{get\_isolation\_level@{get\_isolation\_level}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_isolation\_level()}{get\_isolation\_level()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0a7157dc0c269d1a7cc103cd7323bfbf} 
+ Isolation\+Level sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+isolation\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a DBAPI connection, return its isolation level.
+
+When working with a :class:`_engine.Connection` object,
+the corresponding
+DBAPI connection may be procured using the
+:attr:`_engine.Connection.connection` accessor.
+
+Note that this is a dialect-level method which is used as part
+of the implementation of the :class:`_engine.Connection` and
+:class:`_engine.Engine` isolation level facilities;
+these APIs should be preferred for most typical use cases.
+
+
+.. seealso::
+
+    :meth:`_engine.Connection.get_isolation_level`
+    - view current level
+
+    :attr:`_engine.Connection.default_isolation_level`
+    - view default level
+
+    :paramref:`.Connection.execution_options.isolation_level` -
+    set per :class:`_engine.Connection` isolation level
+
+    :paramref:`_sa.create_engine.isolation_level` -
+    set per :class:`_engine.Engine` isolation level
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a8a9f455985fbb565330fe7b78412a8b5}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a9ebfa27e5060857eeb85cf631b04d1e5}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a4e64efe0945ee48dac9e52ad6a166cc7}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a0b93abf94a72a3a4da8d8e1353345660}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_a5946828b73151264ae1c87be441d8f26}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a08740883c811e74b54c35f14ae428275}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5e5cc99709d07eaf997b954243ca56e4}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_isolation\_level\_values@{get\_isolation\_level\_values}}
+\index{get\_isolation\_level\_values@{get\_isolation\_level\_values}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_isolation\_level\_values()}{get\_isolation\_level\_values()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5e5cc99709d07eaf997b954243ca56e4} 
+ List\+[Isolation\+Level]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+isolation\+\_\+level\+\_\+values (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return a sequence of string isolation level names that are accepted
+by this dialect.
+
+The available names should use the following conventions:
+
+* use UPPERCASE names.   isolation level methods will accept lowercase
+  names but these are normalized into UPPERCASE before being passed
+  along to the dialect.
+* separate words should be separated by spaces, not underscores, e.g.
+  ``REPEATABLE READ``.  isolation level names will have underscores
+  converted to spaces before being passed along to the dialect.
+* The names for the four standard isolation names to the extent that
+  they are supported by the backend should be ``READ UNCOMMITTED``
+  ``READ COMMITTED``, ``REPEATABLE READ``, ``SERIALIZABLE``
+* if the dialect supports an autocommit option it should be provided
+  using the isolation level name ``AUTOCOMMIT``.
+* Other isolation modes may also be present, provided that they
+  are named in UPPERCASE and use spaces not underscores.
+
+This function is used so that the default dialect can check that
+a given isolation level parameter is valid, else raises an
+:class:`_exc.ArgumentError`.
+
+A DBAPI connection is passed to the method, in the unlikely event that
+the dialect needs to interrogate the connection itself to determine
+this list, however it is expected that most backends will return
+a hardcoded list of values.  If the dialect supports "AUTOCOMMIT",
+that value should also be present in the sequence returned.
+
+The method raises ``NotImplementedError`` by default.  If a dialect
+does not implement this method, then the default dialect will not
+perform any checking on a given isolation level value before passing
+it onto the :meth:`.Dialect.set_isolation_level` method.  This is
+to allow backwards-compatibility with third party dialects that may
+not yet be implementing this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_a2c782d3cb659d5a9614ca9aa95dd6171}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a26db27ef6486270b27b521771eaa9056}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_a3a25fac32f62670a893e1d35f290e3c6}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_acf83e1edfa1e02c1b4a45008b00944e6}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a8b758d8fffab22acb098332a81567f9c}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_abd16cc52bd97948f5c74b7e7cef3ffe1}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ad069ebf388c901c0ec2cc619f39ca60b}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_af37cde3cc5389d231b1fa0b9424156c3}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1__psycopg__common_1_1__PGDialect__common__psycopg_aa8dddb8e3f81223a1bdafb7963e7dcc9}{sqlalchemy.\+dialects.\+postgresql.\+\_\+psycopg\+\_\+common.\+\_\+\+PGDialect\+\_\+common\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_a56e898d2074a22dd91c8b830f65d1ac6}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a533f5d7c55eff7058290b0ff3dc93d1a}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a4bb0e1c6fca0f2237261b25c1338a686}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a6ad5658d2449448b20914c8f839b0e06}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a137549bb4c79e2d5932378a14627b712}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_materialized\_view\_names@{get\_materialized\_view\_names}}
+\index{get\_materialized\_view\_names@{get\_materialized\_view\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_materialized\_view\_names()}{get\_materialized\_view\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a137549bb4c79e2d5932378a14627b712} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+materialized\+\_\+view\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of all materialized view names available in the
+database.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_materialized_view_names`.
+
+:param schema: schema name to query, if not the default schema.
+
+ .. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a1b5ab790f1c16bdfb28c06dfb7bc0cbe}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac4b2d9bc4ca6e0ab68665d674c46bbbe}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_check\_constraints@{get\_multi\_check\_constraints}}
+\index{get\_multi\_check\_constraints@{get\_multi\_check\_constraints}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_check\_constraints()}{get\_multi\_check\_constraints()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ac4b2d9bc4ca6e0ab68665d674c46bbbe} 
+ Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedCheckConstraint}{Reflected\+Check\+Constraint}}]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+check\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about check constraints in all tables
+in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_multi_check_constraints`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a1fba42ebd5addebc1ad41e44e9d6db86}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aab3cd90243c83b298d737f0d597a6b86}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a256af89bddb9fdb8a4473055e684727a}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad81cb7ae9c3cd3855a8f9cb415cdd007}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_columns@{get\_multi\_columns}}
+\index{get\_multi\_columns@{get\_multi\_columns}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_columns()}{get\_multi\_columns()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad81cb7ae9c3cd3855a8f9cb415cdd007} 
+ Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedColumn}{Reflected\+Column}}]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+columns (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about columns in all tables in the
+given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_multi_columns`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ab8922ee10401eefad61e3ab2f5409a99}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a18661711625730080c141281b0a37d75}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a75e9583d24adfeae90e729237f61b159}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a12258f81df04f909cf9ba51fd3a7af66}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_foreign\_keys@{get\_multi\_foreign\_keys}}
+\index{get\_multi\_foreign\_keys@{get\_multi\_foreign\_keys}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_foreign\_keys()}{get\_multi\_foreign\_keys()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a12258f81df04f909cf9ba51fd3a7af66} 
+ Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedForeignKeyConstraint}{Reflected\+Foreign\+Key\+Constraint}}]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+foreign\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about foreign_keys in all tables
+in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_multi_foreign_keys`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a1d441abf0f18e437fad087a613fdae2b}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_afacd1b65ebc3383eafe520b1b42099d0}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a345fd31c7077ff29b3266f19c4392b09}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa48e9f084649c46b61d5da72487ecfaa}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_indexes@{get\_multi\_indexes}}
+\index{get\_multi\_indexes@{get\_multi\_indexes}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_indexes()}{get\_multi\_indexes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa48e9f084649c46b61d5da72487ecfaa} 
+ Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedIndex}{Reflected\+Index}}]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+indexes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about indexes in in all tables
+in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_multi_indexes`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a50cc51b96c581cdb8cf348e3459cd7b1}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a66654a3d9d07e480197fa11d476e5baa}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a8acd92445d9518fc0c402cf1fa4a4f0e}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad008da4984b3c48a4a0534ca45bc0f97}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_pk\_constraint@{get\_multi\_pk\_constraint}}
+\index{get\_multi\_pk\_constraint@{get\_multi\_pk\_constraint}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_pk\_constraint()}{get\_multi\_pk\_constraint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ad008da4984b3c48a4a0534ca45bc0f97} 
+ Iterable\+[Tuple\+[Table\+Key, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedPrimaryKeyConstraint}{Reflected\+Primary\+Key\+Constraint}}]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+pk\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about primary key constraints in
+all tables in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_multi_pk_constraint`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a933c315df59edccab073721d0040cfa2}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a91fe7e479e50b2b04bb5e7a09b99218e}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aca5d6be58d2a0f7659bc776b8439a1b9}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a269c2e65144f5c7415d8d0cf98bb0b84}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_table\_comment@{get\_multi\_table\_comment}}
+\index{get\_multi\_table\_comment@{get\_multi\_table\_comment}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_table\_comment()}{get\_multi\_table\_comment()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a269c2e65144f5c7415d8d0cf98bb0b84} 
+ Iterable\+[Tuple\+[Table\+Key, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedTableComment}{Reflected\+Table\+Comment}}]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+table\+\_\+comment (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about the table comment in all tables
+in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_multi_table_comment`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_adfabba6fdbfa214e7be2ce02a67a32c7}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a0e5678a558a2f40844bdefb0b01d1b49}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a2e638706b826a32d3c6d328fe18523fc}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a76060382b711f1be9d45ea0e5d21e812}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_table\_options@{get\_multi\_table\_options}}
+\index{get\_multi\_table\_options@{get\_multi\_table\_options}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_table\_options()}{get\_multi\_table\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a76060382b711f1be9d45ea0e5d21e812} 
+ Iterable\+[Tuple\+[Table\+Key, Dict\+[str, Any]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+table\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a dictionary of options specified when the tables in the
+given schema were created.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_multi_table_options`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a22377ba8c18b3e366ee2be758750b731}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a18ac251945a94f86ecfa535b87fac6bb}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3f8bac8792c4d3b1a03239996e5f6629}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_multi\_unique\_constraints@{get\_multi\_unique\_constraints}}
+\index{get\_multi\_unique\_constraints@{get\_multi\_unique\_constraints}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_multi\_unique\_constraints()}{get\_multi\_unique\_constraints()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3f8bac8792c4d3b1a03239996e5f6629} 
+ Iterable\+[Tuple\+[Table\+Key, List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedUniqueConstraint}{Reflected\+Unique\+Constraint}}]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+multi\+\_\+unique\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[Collection\+[str]\+]\+ }]{filter\+\_\+names}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about unique constraints in all tables
+in the given ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_multi_unique_constraints`.
+
+.. note:: The :class:`_engine.DefaultDialect` provides a default
+  implementation that will call the single table method for
+  each object returned by :meth:`Dialect.get_table_names`,
+  :meth:`Dialect.get_view_names` or
+  :meth:`Dialect.get_materialized_view_names` depending on the
+  provided ``kind``. Dialects that want to support a faster
+  implementation should implement this method.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_aeb5e6e58608f128a321b537f494070c2}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a455acae1eb7e021ca6311184ec54fe88}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a9c7625f292e8d502a0f3e57349421fe3}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a866ab408ea6fb87e2996c3e9774dbd0b}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_pk\_constraint@{get\_pk\_constraint}}
+\index{get\_pk\_constraint@{get\_pk\_constraint}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_pk\_constraint()}{get\_pk\_constraint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a866ab408ea6fb87e2996c3e9774dbd0b} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedPrimaryKeyConstraint}{Reflected\+Primary\+Key\+Constraint}} sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+pk\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about the primary key constraint on
+table_name`.
+
+Given a :class:`_engine.Connection`, a string
+``table_name``, and an optional string ``schema``, return primary
+key information as a dictionary corresponding to the
+:class:`.ReflectedPrimaryKeyConstraint` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_pk_constraint`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a680f146773aea050e162f48265dea01c}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a36b6f9a473320a4d2d403ffce26e6356}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_schema\_names@{get\_schema\_names}}
+\index{get\_schema\_names@{get\_schema\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_schema\_names()}{get\_schema\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a36b6f9a473320a4d2d403ffce26e6356} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+schema\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of all schema names available in the database.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_schema_names`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a4395765f1ced9da189c5d5e6d84e93aa}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a2d7f7292bbda5da27381e2932ab997b6}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_afc7e91c2fa88d29381ba7cc9b67f7ea3}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a7003b5ef4a5d121eeaf607402036977a}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a91aa015c06f71d403ea089007dc6eacc}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1ef54ba944cd264683758a15ce40a36f}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_sequence\_names@{get\_sequence\_names}}
+\index{get\_sequence\_names@{get\_sequence\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_sequence\_names()}{get\_sequence\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a1ef54ba944cd264683758a15ce40a36f} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+sequence\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of all sequence names available in the database.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_sequence_names`.
+
+:param schema: schema name to query, if not the default schema.
+
+.. versionadded:: 1.4
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a85e08956beb818936267731fe87d9e47}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a5b3d5deb29ee88a7c4aa16dc48e27bb9}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ae02f7c66082c0ed9ff2a4db560b86338}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aeef1e9cf96e181916b964b2c28bc1544}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3bcea3ba59111eadab9f9ca92074c9a3}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_table\_comment@{get\_table\_comment}}
+\index{get\_table\_comment@{get\_table\_comment}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_table\_comment()}{get\_table\_comment()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a3bcea3ba59111eadab9f9ca92074c9a3} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedTableComment}{Reflected\+Table\+Comment}} sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+table\+\_\+comment (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the "comment" for the table identified by ``table_name``.
+
+Given a string ``table_name`` and an optional string ``schema``, return
+table comment information as a dictionary corresponding to the
+:class:`.ReflectedTableComment` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_table_comment`.
+
+:raise: ``NotImplementedError`` for dialects that don't support
+ comments.
+
+.. versionadded:: 1.2
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a6267632489bddcf1b9aa6dca53906176}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a90057a4acc617ec1e45748df1c931717}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_table\_names@{get\_table\_names}}
+\index{get\_table\_names@{get\_table\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_table\_names()}{get\_table\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a90057a4acc617ec1e45748df1c931717} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+table\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of table names for ``schema``.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_table_names`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_ae45b6aa7d5aafeaf402d8ef8e92634c5}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a19813a350dad8f62764bd5e442f263d8}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a58959d271517a981eb6137dfd6ddee8c}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_table\_options@{get\_table\_options}}
+\index{get\_table\_options@{get\_table\_options}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_table\_options()}{get\_table\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a58959d271517a981eb6137dfd6ddee8c} 
+ Dict\+[str, Any]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+table\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a dictionary of options specified when ``table_name``
+was created.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_table_options`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a967d716317894d9d9a5fe2c5db4d41f1}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_accd7701ed25a406e17fd2d481697aaac}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_temp\_table\_names@{get\_temp\_table\_names}}
+\index{get\_temp\_table\_names@{get\_temp\_table\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_temp\_table\_names()}{get\_temp\_table\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_accd7701ed25a406e17fd2d481697aaac} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+temp\+\_\+table\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of temporary table names on the given connection,
+if supported by the underlying backend.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_temp_table_names`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a4afcaa8852177f7673aaa60aec082237}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af0ff6f4e985fcab223c81fff498203bb}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_temp\_view\_names@{get\_temp\_view\_names}}
+\index{get\_temp\_view\_names@{get\_temp\_view\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_temp\_view\_names()}{get\_temp\_view\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af0ff6f4e985fcab223c81fff498203bb} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+temp\+\_\+view\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of temporary view names on the given connection,
+if supported by the underlying backend.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_temp_view_names`.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5d44dd7e9ee28e3df25597bdbae0a7bb}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_unique\_constraints@{get\_unique\_constraints}}
+\index{get\_unique\_constraints@{get\_unique\_constraints}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_unique\_constraints()}{get\_unique\_constraints()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a5d44dd7e9ee28e3df25597bdbae0a7bb} 
+ List\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ReflectedUniqueConstraint}{Reflected\+Unique\+Constraint}}]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+unique\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return information about unique constraints in ``table_name``.
+
+Given a string ``table_name`` and an optional string ``schema``, return
+unique constraint information as a list of dicts corresponding
+to the :class:`.ReflectedUniqueConstraint` dictionary.
+
+This is an internal dialect method. Applications should use
+:meth:`.Inspector.get_unique_constraints`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ad218d0fbb2f773db16fe564fe9927c27}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af1a47fb696e63ae324780fc43a3b6b80}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_view\_definition@{get\_view\_definition}}
+\index{get\_view\_definition@{get\_view\_definition}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_view\_definition()}{get\_view\_definition()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af1a47fb696e63ae324780fc43a3b6b80} 
+ str sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+view\+\_\+definition (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{view\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return plain or materialized view definition.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_view_definition`.
+
+Given a :class:`_engine.Connection`, a string
+``view_name``, and an optional string ``schema``, return the view
+definition.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_ae64508d6130114a8a0ed32caf14d2894}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_ac453345c52b224ce8d37caa9bcc770ea}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a35cd4f822f21488419184190bb41a0f1}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_ac8c4b48f6114150f4cbf529991bdfa63}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a2fa9c6d7f3ba52c2c2145b1901e2fd84}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a732b5b6b5b780005151995a9e67c8a4d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!get\_view\_names@{get\_view\_names}}
+\index{get\_view\_names@{get\_view\_names}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{get\_view\_names()}{get\_view\_names()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a732b5b6b5b780005151995a9e67c8a4d} 
+ List\+[str]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+get\+\_\+view\+\_\+names (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of all non-materialized view names available in the
+database.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.get_view_names`.
+
+:param schema: schema name to query, if not the default schema.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ab7131c2b2858072f9a9f5c480fd49196}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a56a00cb59fbed5f82d7e85e0a83d1521}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!has\_index@{has\_index}}
+\index{has\_index@{has\_index}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{has\_index()}{has\_index()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a56a00cb59fbed5f82d7e85e0a83d1521} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+has\+\_\+index (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{str}]{index\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check the existence of a particular index name in the database.
+
+Given a :class:`_engine.Connection` object, a string
+``table_name`` and string index name, return ``True`` if an index of
+the given name on the given table exists, ``False`` otherwise.
+
+The :class:`.DefaultDialect` implements this in terms of the
+:meth:`.Dialect.has_table` and :meth:`.Dialect.get_indexes` methods,
+however dialects can implement a more performant version.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.has_index`.
+
+.. versionadded:: 1.4
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a00a80bde2b5dbc37bfd14bbedd765e91}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2c1eb6ed4f8c4a102135462292e31277}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!has\_schema@{has\_schema}}
+\index{has\_schema@{has\_schema}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{has\_schema()}{has\_schema()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a2c1eb6ed4f8c4a102135462292e31277} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+has\+\_\+schema (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{schema\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check the existence of a particular schema name in the database.
+
+Given a :class:`_engine.Connection` object, a string
+``schema_name``, return ``True`` if a schema of the
+given exists, ``False`` otherwise.
+
+The :class:`.DefaultDialect` implements this by checking
+the presence of ``schema_name`` among the schemas returned by
+:meth:`.Dialect.get_schema_names`,
+however dialects can implement a more performant version.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.has_schema`.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aa8acdf29a54986eb0b3cb4f9d418e788}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a965cd7c1433f6c9a98a37a97aadb13bf}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af08ab86d2f50ad668c98a4367755f6e0}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!has\_sequence@{has\_sequence}}
+\index{has\_sequence@{has\_sequence}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{has\_sequence()}{has\_sequence()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_af08ab86d2f50ad668c98a4367755f6e0} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+has\+\_\+sequence (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{sequence\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check the existence of a particular sequence in the database.
+
+Given a :class:`_engine.Connection` object and a string
+`sequence_name`, return ``True`` if the given sequence exists in
+the database, ``False`` otherwise.
+
+This is an internal dialect method. Applications should use
+:meth:`_engine.Inspector.has_sequence`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a84f98fb3359e81d30443b8d844ab7fbc}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a4213d91c6980077ee6bfd626e3aff36d}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_ad7d7d53f3ad1fd0280f3ed501b85ec56}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_aea61443bcea1f38cc8f87b4696503409}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa27810845a860a76e098cee263164321}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!has\_table@{has\_table}}
+\index{has\_table@{has\_table}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{has\_table()}{has\_table()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_aa27810845a860a76e098cee263164321} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+has\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}For internal dialect use, check the existence of a particular table
+or view in the database.
+
+Given a :class:`_engine.Connection` object, a string table_name and
+optional schema name, return True if the given table exists in the
+database, False otherwise.
+
+This method serves as the underlying implementation of the
+public facing :meth:`.Inspector.has_table` method, and is also used
+internally to implement the "checkfirst" behavior for methods like
+:meth:`_schema.Table.create` and :meth:`_schema.MetaData.create_all`.
+
+.. note:: This method is used internally by SQLAlchemy, and is
+   published so that third-party dialects may provide an
+   implementation. It is **not** the public API for checking for table
+   presence. Please use the :meth:`.Inspector.has_table` method.
+
+.. versionchanged:: 2.0:: :meth:`_engine.Dialect.has_table` now
+   formally supports checking for additional table-like objects:
+
+   * any type of views (plain or materialized)
+   * temporary tables of any kind
+
+   Previously, these two checks were not formally specified and
+   different dialects would vary in their behavior.   The dialect
+   testing suite now includes tests for all of these object types,
+   and dialects to the degree that the backing database supports views
+   or temporary tables should seek to support locating these objects
+   for full compliance.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a44d2a503a7195f588881384b078bf40e}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_ae9150c657d3e0b5c77c696fe15504d4f}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a2ccd6de410e189b2b0681f54ebfc5ad4}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a85f812b22857d8bbb3d41fc56885aaac}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_aa22af3f2129eafe593c5ad9080d99ac6}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a417857da41a52bba237ce53f663a6d62}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!import\_dbapi@{import\_dbapi}}
+\index{import\_dbapi@{import\_dbapi}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{import\_dbapi()}{import\_dbapi()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a417857da41a52bba237ce53f663a6d62} 
+ Module\+Type sqlalchemy.\+engine.\+interfaces.\+Dialect.\+import\+\_\+dbapi (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Import the DBAPI module that is used by this dialect.
+
+The Python module object returned here will be assigned as an
+instance variable to a constructed dialect under the name
+``.dbapi``.
+
+.. versionchanged:: 2.0  The :meth:`.Dialect.import_dbapi` class
+   method is renamed from the previous method ``.Dialect.dbapi()``,
+   which would be replaced at dialect instantiation time by the
+   DBAPI module itself, thus using the same name in two different ways.
+   If a ``.Dialect.dbapi()`` classmethod is present on a third-party
+   dialect, it will be used and a deprecation warning will be emitted.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1aioodbc_1_1aiodbcConnector_ad529d57dcf8f28a177b81657fc813942}{sqlalchemy.\+connectors.\+aioodbc.\+aiodbc\+Connector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_ac99ded7e72447345f8cfde020c4d9cf8}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_a28e87bf181216566c86371ea782f0761}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql_a280d266687c8c3380c90c937fdc3ee3b}{sqlalchemy.\+dialects.\+mysql.\+aiomysql.\+My\+SQLDialect\+\_\+aiomysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1asyncmy_1_1MySQLDialect__asyncmy_af69c033e747a6270269646ccbbfb1ff7}{sqlalchemy.\+dialects.\+mysql.\+asyncmy.\+My\+SQLDialect\+\_\+asyncmy}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1cymysql_1_1MySQLDialect__cymysql_af02f65fb008a29332e1e7478fde508b6}{sqlalchemy.\+dialects.\+mysql.\+cymysql.\+My\+SQLDialect\+\_\+cymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_ab73a339a49ab8267d03bd7ad5acd2d45}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqlconnector_1_1MySQLDialect__mysqlconnector_a0f8d231b4cc60298295dba437543aa71}{sqlalchemy.\+dialects.\+mysql.\+mysqlconnector.\+My\+SQLDialect\+\_\+mysqlconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a804f9525c04adce96e25d272826d0f5c}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pymysql_1_1MySQLDialect__pymysql_a196db9603d81ab0ed964f3ed1b35ebe3}{sqlalchemy.\+dialects.\+mysql.\+pymysql.\+My\+SQLDialect\+\_\+pymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a8911fa561431457794618189e8be7ac6}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_a81a4dffc6fa315b9f05d4c7ed2b00278}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a5bc3ff3cdb1b81a2b23c2360fcf0c22a}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_a8a570c1947a3adc45cacc95bfadc2118}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialectAsync__psycopg_a6c24b067980f3f06a861e26d83d79894}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+Async\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_ac4c83cbfd8cb4fe870752a2a8fb0e18f}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2cffi_1_1PGDialect__psycopg2cffi_adcde4b3382fce089454f7848d5767680}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2cffi.\+PGDialect\+\_\+psycopg2cffi}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteDialect__aiosqlite_ac4597ce9aa43540983460ab9b5baa70b}{sqlalchemy.\+dialects.\+sqlite.\+aiosqlite.\+SQLite\+Dialect\+\_\+aiosqlite}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlcipher_1_1SQLiteDialect__pysqlcipher_a07f2b7478f22dd395d664a684c54f51c}{sqlalchemy.\+dialects.\+sqlite.\+pysqlcipher.\+SQLite\+Dialect\+\_\+pysqlcipher}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_abbda1734e8497db61b4edefdefd8cd8a}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9d0740e4bee2d710a375b93b4582227d}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!initialize@{initialize}}
+\index{initialize@{initialize}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9d0740e4bee2d710a375b93b4582227d} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+initialize (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called during strategized creation of the dialect with a
+connection.
+
+Allows dialects to configure options based on server version info or
+other properties.
+
+The connection passed here is a SQLAlchemy Connection object,
+with full capabilities.
+
+The initialize() method of the base dialect should be called via
+super().
+
+.. note:: as of SQLAlchemy 1.4, this method is called **before**
+   any :meth:`_engine.Dialect.on_connect` hooks are called.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_ab754c5752cd8ae5e3610c1870501d440}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a9dc660b2fb41402d30ec887ce16f8d5a}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleDialect_a0b42ccc272ec532cefaa5f19bc0abbca}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Dialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_a528b32e18c6452370b55ebd31a0f4253}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_a5d246d5c35f6f1973e369b7a312609a1}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_ac25a39bf43c02442f87f639d85e3c7ed}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_ad91563c06978704e066f57e716c0865f}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a72413456fd94ad67c7bab0070d3bf919}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cf7aa86595aa127b208715a08ac868c}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!is\_disconnect@{is\_disconnect}}
+\index{is\_disconnect@{is\_disconnect}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{is\_disconnect()}{is\_disconnect()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9cf7aa86595aa127b208715a08ac868c} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Dialect.\+is\+\_\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Exception}]{e}{, }\item[{Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+]\+}]{connection}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}]\+}]{cursor}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the given DB-API error indicates an invalid
+connection\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_ae958757421ed06a2d43072bb6cf2f3a5}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_a3bc4873319fb3d878b51c9da5ef4be98}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSDialect__pyodbc_adfde81cc022bc8bfd8f9cc58cb5a8f5a}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql_a781f6631691cdc946ce3fb66014d5a74}{sqlalchemy.\+dialects.\+mysql.\+aiomysql.\+My\+SQLDialect\+\_\+aiomysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1asyncmy_1_1MySQLDialect__asyncmy_a82aeb0e063c5a13df078e4ea8f59d33c}{sqlalchemy.\+dialects.\+mysql.\+asyncmy.\+My\+SQLDialect\+\_\+asyncmy}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_aa0a1c8ad3481225fe7fc27b4f018638c}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1cymysql_1_1MySQLDialect__cymysql_a329a016b972a09123141f81597ac939e}{sqlalchemy.\+dialects.\+mysql.\+cymysql.\+My\+SQLDialect\+\_\+cymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_ae4908bf018154ee3176d5c2c04a25024}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqlconnector_1_1MySQLDialect__mysqlconnector_a075360a0d97aa059603ecc532a714f36}{sqlalchemy.\+dialects.\+mysql.\+mysqlconnector.\+My\+SQLDialect\+\_\+mysqlconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pymysql_1_1MySQLDialect__pymysql_aedce43aa8c78ae7319f17c3d81a51951}{sqlalchemy.\+dialects.\+mysql.\+pymysql.\+My\+SQLDialect\+\_\+pymysql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_abe3be9356017e8db83c4a8cc27144371}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_a8b95b41f73de0fed25df5b72c21eb338}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_ae2b6e8d7078e62c524f8c3ac2f082300}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_adc40d0484a7715ce48f4165a358c7fc2}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_aeb01c0bab2becbbecfd02d11fc832235}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteDialect__aiosqlite_a6037b566d52305efa0596afbcecddb6b}{sqlalchemy.\+dialects.\+sqlite.\+aiosqlite.\+SQLite\+Dialect\+\_\+aiosqlite}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_a7c4e694f49efe03a23fc24d9b029972e}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aeb4869fe7ee65abe9320d2a267a4fac6}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9ea88178769bbe7f6bef4bcbf8d7e994}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!load\_provisioning@{load\_provisioning}}
+\index{load\_provisioning@{load\_provisioning}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{load\_provisioning()}{load\_provisioning()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a9ea88178769bbe7f6bef4bcbf8d7e994} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+load\+\_\+provisioning (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}set up the provision.py module for this dialect.
+
+For dialects that include a provision.py module that sets up
+provisioning followers, this method should initiate that process.
+
+A typical implementation would be::
+
+    @classmethod
+    def load_provisioning(cls):
+        __import__("mydialect.provision")
+
+The default method assumes a module named ``provision.py`` inside
+the owning package of the current dialect, based on the ``__module__``
+attribute::
+
+    @classmethod
+    def load_provisioning(cls):
+        package = ".".join(cls.__module__.split(".")[0:-1])
+        try:
+            __import__(package + ".provision")
+        except ImportError:
+            pass
+
+.. versionadded:: 1.3.14
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_affe62b3823e464d7be90cfc9350c6843}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae096b335a170bfb99606402e5bee2c74}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!loaded\_dbapi@{loaded\_dbapi}}
+\index{loaded\_dbapi@{loaded\_dbapi}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{loaded\_dbapi()}{loaded\_dbapi()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae096b335a170bfb99606402e5bee2c74} 
+ Module\+Type sqlalchemy.\+engine.\+interfaces.\+Dialect.\+loaded\+\_\+dbapi (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}same as .dbapi, but is never None; will raise an error if no
+DBAPI was set up.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_ac58acac43ba64b53cca091cf702510ee}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a6a13df0c526efa08863cd5fa4055f419}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!normalize\_name@{normalize\_name}}
+\index{normalize\_name@{normalize\_name}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{normalize\_name()}{normalize\_name()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a6a13df0c526efa08863cd5fa4055f419} 
+ str sqlalchemy.\+engine.\+interfaces.\+Dialect.\+normalize\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}convert the given name to lowercase if it is detected as
+case insensitive.
+
+This method is only used if the dialect defines
+requires_name_normalize=True.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a7b20549d8ac029827304583e5b0e645c}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7595b90dd2168d710e3c2b6e64749297}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!on\_connect@{on\_connect}}
+\index{on\_connect@{on\_connect}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{on\_connect()}{on\_connect()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a7595b90dd2168d710e3c2b6e64749297} 
+ Optional\+[Callable\+[\+[Any]\+, Any]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+on\+\_\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return a callable which sets up a newly created DBAPI connection.
+
+The callable should accept a single argument "conn" which is the
+DBAPI connection itself.  The inner callable has no
+return value.
+
+E.g.::
+
+    class MyDialect(default.DefaultDialect):
+        # ...
+
+        def on_connect(self):
+            def do_on_connect(connection):
+                connection.execute("SET SPECIAL FLAGS etc")
+
+            return do_on_connect
+
+This is used to set dialect-wide per-connection options such as
+isolation modes, Unicode modes, etc.
+
+The "do_on_connect" callable is invoked by using the
+:meth:`_events.PoolEvents.connect` event
+hook, then unwrapping the DBAPI connection and passing it into the
+callable.
+
+.. versionchanged:: 1.4 the on_connect hook is no longer called twice
+   for the first connection of a dialect.  The on_connect hook is still
+   called before the :meth:`_engine.Dialect.initialize` method however.
+
+.. versionchanged:: 1.4.3 the on_connect hook is invoked from a new
+   method on_connect_url that passes the URL that was used to create
+   the connect args.   Dialects can implement on_connect_url instead
+   of on_connect if they need the URL object that was used for the
+   connection in order to get additional context.
+
+If None is returned, no event listener is generated.
+
+:return: a callable that accepts a single DBAPI connection as an
+ argument, or None.
+
+.. seealso::
+
+    :meth:`.Dialect.connect` - allows the DBAPI ``connect()`` sequence
+    itself to be controlled.
+
+    :meth:`.Dialect.on_connect_url` - supersedes
+    :meth:`.Dialect.on_connect` to also receive the
+    :class:`_engine.URL` object in context.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSDialect__pyodbc_a61312d42ac36f129a2e7e83e32297b08}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a89f887bcbc53bc8bb5934b051fa20686}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1MySQLDialect__pyodbc_aac0b1dd2f7f27b8b01f0cf1a18fcbf36}{sqlalchemy.\+dialects.\+mysql.\+pyodbc.\+My\+SQLDialect\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_ae680e86854719ea8a8540fc4306ab2f4}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_ac4250070efe5fa26bd3436018b55d3f0}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a011398f4ec068aa4641ea0253270cd8a}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_a0850b560752f258a8af3dba3d9aea9b2}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_a81b921ca6b1aea8339db4c37c3b05ceb}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_a446ed3da791dc9bec3a73da90a451418}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a8bd36fc913048f95c3fe820c030501f0}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae5ca76161603e09334f198d80e3f77cf}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!on\_connect\_url@{on\_connect\_url}}
+\index{on\_connect\_url@{on\_connect\_url}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{on\_connect\_url()}{on\_connect\_url()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae5ca76161603e09334f198d80e3f77cf} 
+ Optional\+[Callable\+[\+[Any]\+, Any]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+on\+\_\+connect\+\_\+url (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1url_1_1URL}{URL}}}]{url}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return a callable which sets up a newly created DBAPI connection.
+
+This method is a new hook that supersedes the
+:meth:`_engine.Dialect.on_connect` method when implemented by a
+dialect.   When not implemented by a dialect, it invokes the
+:meth:`_engine.Dialect.on_connect` method directly to maintain
+compatibility with existing dialects.   There is no deprecation
+for :meth:`_engine.Dialect.on_connect` expected.
+
+The callable should accept a single argument "conn" which is the
+DBAPI connection itself.  The inner callable has no
+return value.
+
+E.g.::
+
+    class MyDialect(default.DefaultDialect):
+        # ...
+
+        def on_connect_url(self, url):
+            def do_on_connect(connection):
+                connection.execute("SET SPECIAL FLAGS etc")
+
+            return do_on_connect
+
+This is used to set dialect-wide per-connection options such as
+isolation modes, Unicode modes, etc.
+
+This method differs from :meth:`_engine.Dialect.on_connect` in that
+it is passed the :class:`_engine.URL` object that's relevant to the
+connect args.  Normally the only way to get this is from the
+:meth:`_engine.Dialect.on_connect` hook is to look on the
+:class:`_engine.Engine` itself, however this URL object may have been
+replaced by plugins.
+
+.. note::
+
+    The default implementation of
+    :meth:`_engine.Dialect.on_connect_url` is to invoke the
+    :meth:`_engine.Dialect.on_connect` method. Therefore if a dialect
+    implements this method, the :meth:`_engine.Dialect.on_connect`
+    method **will not be called** unless the overriding dialect calls
+    it directly from here.
+
+.. versionadded:: 1.4.3 added :meth:`_engine.Dialect.on_connect_url`
+   which normally calls into :meth:`_engine.Dialect.on_connect`.
+
+:param url: a :class:`_engine.URL` object representing the
+ :class:`_engine.URL` that was passed to the
+ :meth:`_engine.Dialect.create_connect_args` method.
+
+:return: a callable that accepts a single DBAPI connection as an
+ argument, or None.
+
+.. seealso::
+
+    :meth:`_engine.Dialect.on_connect`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlcipher_1_1SQLiteDialect__pysqlcipher_a16d8eca76dce6d8e76d5216a8cd19216}{sqlalchemy.\+dialects.\+sqlite.\+pysqlcipher.\+SQLite\+Dialect\+\_\+pysqlcipher}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8374978088a2275065d40f85e6a488b0}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!reset\_isolation\_level@{reset\_isolation\_level}}
+\index{reset\_isolation\_level@{reset\_isolation\_level}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{reset\_isolation\_level()}{reset\_isolation\_level()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8374978088a2275065d40f85e6a488b0} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+reset\+\_\+isolation\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a DBAPI connection, revert its isolation to the default.
+
+Note that this is a dialect-level method which is used as part
+of the implementation of the :class:`_engine.Connection` and
+:class:`_engine.Engine`
+isolation level facilities; these APIs should be preferred for
+most typical use cases.
+
+.. seealso::
+
+    :meth:`_engine.Connection.get_isolation_level`
+    - view current level
+
+    :attr:`_engine.Connection.default_isolation_level`
+    - view default level
+
+    :paramref:`.Connection.execution_options.isolation_level` -
+    set per :class:`_engine.Connection` isolation level
+
+    :paramref:`_sa.create_engine.isolation_level` -
+    set per :class:`_engine.Engine` isolation level
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_ac60dddaece981dc013a09e2a28f98ef3}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a81ad7d9639b679a7e58898124a6b3dfe}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!set\_connection\_execution\_options@{set\_connection\_execution\_options}}
+\index{set\_connection\_execution\_options@{set\_connection\_execution\_options}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{set\_connection\_execution\_options()}{set\_connection\_execution\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a81ad7d9639b679a7e58898124a6b3dfe} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+set\+\_\+connection\+\_\+execution\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{Core\+Execute\+Options\+Parameter     }]{opts}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish execution options for a given connection.
+
+This is implemented by :class:`.DefaultDialect` in order to implement
+the :paramref:`_engine.Connection.execution_options.isolation_level`
+execution option.  Dialects can intercept various execution options
+which may need to modify state on a particular DBAPI connection.
+
+.. versionadded:: 1.4
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_aac517f7ce67a9760cac3b09306387046}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8b1a08c3089ca031004338c4c2326426}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!set\_engine\_execution\_options@{set\_engine\_execution\_options}}
+\index{set\_engine\_execution\_options@{set\_engine\_execution\_options}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{set\_engine\_execution\_options()}{set\_engine\_execution\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a8b1a08c3089ca031004338c4c2326426} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+set\+\_\+engine\+\_\+execution\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}}]{engine}{, }\item[{Core\+Execute\+Options\+Parameter     }]{opts}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish execution options for a given engine.
+
+This is implemented by :class:`.DefaultDialect` to establish
+event hooks for new :class:`.Connection` instances created
+by the given :class:`.Engine` which will then invoke the
+:meth:`.Dialect.set_connection_execution_options` method for that
+connection.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_ad2509d1ccc19712c55c8c51222885daf}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0f4cdce324bc510c4f23a6e689c65f41}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!set\_isolation\_level@{set\_isolation\_level}}
+\index{set\_isolation\_level@{set\_isolation\_level}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{set\_isolation\_level()}{set\_isolation\_level()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a0f4cdce324bc510c4f23a6e689c65f41} 
+ None sqlalchemy.\+engine.\+interfaces.\+Dialect.\+set\+\_\+isolation\+\_\+level (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+connection}{, }\item[{Isolation\+Level     }]{level}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a DBAPI connection, set its isolation level.
+
+Note that this is a dialect-level method which is used as part
+of the implementation of the :class:`_engine.Connection` and
+:class:`_engine.Engine`
+isolation level facilities; these APIs should be preferred for
+most typical use cases.
+
+If the dialect also implements the
+:meth:`.Dialect.get_isolation_level_values` method, then the given
+level is guaranteed to be one of the string names within that sequence,
+and the method will not need to anticipate a lookup failure.
+
+.. seealso::
+
+    :meth:`_engine.Connection.get_isolation_level`
+    - view current level
+
+    :attr:`_engine.Connection.default_isolation_level`
+    - view default level
+
+    :paramref:`.Connection.execution_options.isolation_level` -
+    set per :class:`_engine.Connection` isolation level
+
+    :paramref:`_sa.create_engine.isolation_level` -
+    set per :class:`_engine.Engine` isolation level
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1connectors_1_1pyodbc_1_1PyODBCConnector_a7147d28a98496f8f409f23ff892d3603}{sqlalchemy.\+connectors.\+pyodbc.\+Py\+ODBCConnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSDialect_a229bd617b238319c5b8ef8fb605946ef}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pymssql_1_1MSDialect__pymssql_a445b6719fec597658af706b2611ceefe}{sqlalchemy.\+dialects.\+mssql.\+pymssql.\+MSDialect\+\_\+pymssql}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLDialect_a25dc935e9b1f958d844526234bcd3e36}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLDialect__mariadbconnector_a92d66d7bac5d0c05efbb3ef354ed5b86}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLDialect\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb_a756a3b22ff688eca58f6bd0897f412ad}{sqlalchemy.\+dialects.\+mysql.\+mysqldb.\+My\+SQLDialect\+\_\+mysqldb}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleDialect__cx__oracle_ae528955dad9bed47bfc302f69c677c12}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Dialect\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGDialect__asyncpg_af73cff63cbbe9c6d01358f8d50a46585}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGDialect\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect_ae92ecb3ee9bb30840919d930a991e161}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDialect}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGDialect__pg8000_a3fa9b4ece3606d49eca72adb0c12bfac}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGDialect\+\_\+pg8000}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg_1_1PGDialect__psycopg_a89dd156f7f5259f50f2dfe592825c726}{sqlalchemy.\+dialects.\+postgresql.\+psycopg.\+PGDialect\+\_\+psycopg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGDialect__psycopg2_a016cdfd99ae6eca7b57057fabd4407e5}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGDialect\+\_\+psycopg2}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1SQLiteDialect_a50feddb35945ae6052c2d83ac6916318}{sqlalchemy.\+dialects.\+sqlite.\+base.\+SQLite\+Dialect}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1pysqlite_1_1SQLiteDialect__pysqlite_ab429ebcd9c6db08b98d7dbfbe66602b9}{sqlalchemy.\+dialects.\+sqlite.\+pysqlite.\+SQLite\+Dialect\+\_\+pysqlite}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae34643eca744fcb4db54860c0dc58ae5}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!type\_descriptor@{type\_descriptor}}
+\index{type\_descriptor@{type\_descriptor}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{type\_descriptor()}{type\_descriptor()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_ae34643eca744fcb4db54860c0dc58ae5} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ sqlalchemy.\+engine.\+interfaces.\+Dialect.\+type\+\_\+descriptor (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+}]{typeobj}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Transform a generic type to a dialect-specific type.
+
+Dialect classes will usually use the
+:func:`_types.adapt_type` function in the types module to
+accomplish this.
+
+The returned result is cached *per dialect class* so can
+contain no dialect-instance state.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultDialect_a4b0596c32ee624771907bc64bad8ae89}{sqlalchemy.\+engine.\+default.\+Default\+Dialect}}.
+
+
+
+\label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a24c9bb601f68191dcf17357f490777d6}\index{sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}!execute\_sequence\_format@{execute\_sequence\_format}}
+\index{execute\_sequence\_format@{execute\_sequence\_format}!sqlalchemy.engine.interfaces.Dialect@{sqlalchemy.engine.interfaces.Dialect}}
+\doxysubsubsection{\texorpdfstring{execute\_sequence\_format}{execute\_sequence\_format}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect_a24c9bb601f68191dcf17357f490777d6} 
+Union sqlalchemy.\+engine.\+interfaces.\+Dialect.\+execute\+\_\+sequence\+\_\+format\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Type[Tuple[Any,\ ...]],\ Type[Tuple[List[Any]]]}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+interfaces.\+py\end{DoxyCompactItemize}

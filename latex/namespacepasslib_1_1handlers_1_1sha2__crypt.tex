@@ -1,0 +1,123 @@
+\doxysection{passlib.\+handlers.\+sha2\+\_\+crypt Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt}{}\label{namespacepasslib_1_1handlers_1_1sha2__crypt}\index{passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1sha2__crypt_1_1__SHA2__Common}{\+\_\+\+SHA2\+\_\+\+Common}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1sha2__crypt_1_1sha256__crypt}{sha256\+\_\+crypt}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1sha2__crypt_1_1sha512__crypt}{sha512\+\_\+crypt}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1sha2__crypt_a1b9fe7adccaac0cc4cbbb1470c57a636}{\+\_\+raw\+\_\+sha2\+\_\+crypt}} (pwd, salt, rounds, use\+\_\+512=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a9989bb809d2b3a62c5097093dbaa924f}\label{namespacepasslib_1_1handlers_1_1sha2__crypt_a9989bb809d2b3a62c5097093dbaa924f} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a95f0dcf4599f6c308a9f57e8e44d8532}\label{namespacepasslib_1_1handlers_1_1sha2__crypt_a95f0dcf4599f6c308a9f57e8e44d8532} 
+str {\bfseries \+\_\+\+BNULL} = b\textquotesingle{}\textbackslash{}x00\textquotesingle{}
+\item 
+tuple \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1sha2__crypt_a11162dc720053b746705b9291322b308}{\+\_\+c\+\_\+digest\+\_\+offsets}}
+\begin{DoxyCompactList}\small\item\em perms\+\_\+order = "{}p,pp,ps,psp,sp,spp"{}.split("{},"{}) def offset(i):\+ key = (("{}p"{} if i \% 2 else "{}"{}) + ("{}s"{} if i \% 3 else "{}"{}) + ("{}p"{} if i \% 7 else "{}"{}) + ("{}"{} if i \% 2 else "{}p"{})) return perms\+\_\+order.\+index(key) \+\_\+c\+\_\+digest\+\_\+offsets = \+[(offset(i), offset(i+1)) for i in range(0,42,2)]\+ \end{DoxyCompactList}\item 
+tuple \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1sha2__crypt_ab6282792f182ba4fc9bcbd64c15d1805}{\+\_\+256\+\_\+transpose\+\_\+map}}
+\item 
+tuple \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1sha2__crypt_a5382023af9d577ad03947dbac768cd19}{\+\_\+512\+\_\+transpose\+\_\+map}}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_ad0a481e4d6b7d8b204e2ffaaeacca4f1}\label{namespacepasslib_1_1handlers_1_1sha2__crypt_ad0a481e4d6b7d8b204e2ffaaeacca4f1} 
+{\bfseries \+\_\+\+UROUNDS} = u("{}rounds="{})
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_add6f7c3f502fc467ed26798f4dddcc23}\label{namespacepasslib_1_1handlers_1_1sha2__crypt_add6f7c3f502fc467ed26798f4dddcc23} 
+{\bfseries \+\_\+\+UDOLLAR} = u("{}\$"{})
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a4f87d9d3c4d74c0a50116429d9ca52e6}\label{namespacepasslib_1_1handlers_1_1sha2__crypt_a4f87d9d3c4d74c0a50116429d9ca52e6} 
+{\bfseries \+\_\+\+UZERO} = u("{}0"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.sha2_crypt - SHA256-Crypt / SHA512-Crypt\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1sha2__crypt_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a1b9fe7adccaac0cc4cbbb1470c57a636}\index{passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}!\_raw\_sha2\_crypt@{\_raw\_sha2\_crypt}}
+\index{\_raw\_sha2\_crypt@{\_raw\_sha2\_crypt}!passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_raw\_sha2\_crypt()}{\_raw\_sha2\_crypt()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1sha2__crypt_a1b9fe7adccaac0cc4cbbb1470c57a636} 
+\+\_\+raw\+\_\+sha2\+\_\+crypt (\begin{DoxyParamCaption}\item[{}]{pwd}{, }\item[{}]{salt}{, }\item[{}]{rounds}{, }\item[{}]{use\+\_\+512}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}perform raw sha256-crypt / sha512-crypt
+
+this function provides a pure-python implementation of the internals
+for the SHA256-Crypt and SHA512-Crypt algorithms; it doesn't
+handle any of the parsing/validation of the hash strings themselves.
+
+:arg pwd: password chars/bytes to hash
+:arg salt: salt chars to use
+:arg rounds: linear rounds cost
+:arg use_512: use sha512-crypt instead of sha256-crypt mode
+
+:returns:
+    encoded checksum chars
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1sha2__crypt_doc-var-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_ab6282792f182ba4fc9bcbd64c15d1805}\index{passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}!\_256\_transpose\_map@{\_256\_transpose\_map}}
+\index{\_256\_transpose\_map@{\_256\_transpose\_map}!passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_256\_transpose\_map}{\_256\_transpose\_map}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1sha2__crypt_ab6282792f182ba4fc9bcbd64c15d1805} 
+tuple passlib.\+handlers.\+sha2\+\_\+crypt.\+\_\+256\+\_\+transpose\+\_\+map\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ 20,\ 10,\ \ 0,\ 11,\ \ 1,\ 21,\ \ 2,\ 22,\ 12,\ 23,\ 13,\ \ 3,\ 14,\ \ 4,\ 24,\ \ 5,}
+\DoxyCodeLine{\ \ \ \ 25,\ 15,\ 26,\ 16,\ \ 6,\ 17,\ \ 7,\ 27,\ \ 8,\ 28,\ 18,\ 29,\ 19,\ \ 9,\ 30,\ 31,}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a5382023af9d577ad03947dbac768cd19}\index{passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}!\_512\_transpose\_map@{\_512\_transpose\_map}}
+\index{\_512\_transpose\_map@{\_512\_transpose\_map}!passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_512\_transpose\_map}{\_512\_transpose\_map}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1sha2__crypt_a5382023af9d577ad03947dbac768cd19} 
+tuple passlib.\+handlers.\+sha2\+\_\+crypt.\+\_\+512\+\_\+transpose\+\_\+map\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ 42,\ 21,\ \ 0,\ \ 1,\ 43,\ 22,\ 23,\ \ 2,\ 44,\ 45,\ 24,\ \ 3,\ \ 4,\ 46,\ 25,\ 26,}
+\DoxyCodeLine{\ \ \ \ \ 5,\ 47,\ 48,\ 27,\ \ 6,\ \ 7,\ 49,\ 28,\ 29,\ \ 8,\ 50,\ 51,\ 30,\ \ 9,\ 10,\ 52,}
+\DoxyCodeLine{\ \ \ \ 31,\ 32,\ 11,\ 53,\ 54,\ 33,\ 12,\ 13,\ 55,\ 34,\ 35,\ 14,\ 56,\ 57,\ 36,\ 15,}
+\DoxyCodeLine{\ \ \ \ 16,\ 58,\ 37,\ 38,\ 17,\ 59,\ 60,\ 39,\ 18,\ 19,\ 61,\ 40,\ 41,\ 20,\ 62,\ 63,}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacepasslib_1_1handlers_1_1sha2__crypt_a11162dc720053b746705b9291322b308}\index{passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}!\_c\_digest\_offsets@{\_c\_digest\_offsets}}
+\index{\_c\_digest\_offsets@{\_c\_digest\_offsets}!passlib.handlers.sha2\_crypt@{passlib.handlers.sha2\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_c\_digest\_offsets}{\_c\_digest\_offsets}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1sha2__crypt_a11162dc720053b746705b9291322b308} 
+tuple passlib.\+handlers.\+sha2\+\_\+crypt.\+\_\+c\+\_\+digest\+\_\+offsets\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ (0,\ 3),\ (5,\ 1),\ (5,\ 3),\ (1,\ 2),\ (5,\ 1),\ (5,\ 3),\ (1,\ 3),}
+\DoxyCodeLine{\ \ \ \ (4,\ 1),\ (5,\ 3),\ (1,\ 3),\ (5,\ 0),\ (5,\ 3),\ (1,\ 3),\ (5,\ 1),}
+\DoxyCodeLine{\ \ \ \ (4,\ 3),\ (1,\ 3),\ (5,\ 1),\ (5,\ 2),\ (1,\ 3),\ (5,\ 1),\ (5,\ 3),}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+perms\+\_\+order = "{}p,pp,ps,psp,sp,spp"{}.split("{},"{}) def offset(i):\+ key = (("{}p"{} if i \% 2 else "{}"{}) + ("{}s"{} if i \% 3 else "{}"{}) + ("{}p"{} if i \% 7 else "{}"{}) + ("{}"{} if i \% 2 else "{}p"{})) return perms\+\_\+order.\+index(key) \+\_\+c\+\_\+digest\+\_\+offsets = \+[(offset(i), offset(i+1)) for i in range(0,42,2)]\+ 
+

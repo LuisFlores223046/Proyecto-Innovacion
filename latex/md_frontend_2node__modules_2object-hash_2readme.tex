@@ -1,0 +1,173 @@
+\chapter{object-\/hash }
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme}{}\label{md_frontend_2node__modules_2object-hash_2readme}\index{object-\/hash@{object-\/hash}}
+\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1985}%
+\Hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1985}%
+
+
+Generate hashes from objects and values in node and the browser. Uses node.\+js crypto module for hashing. Supports SHA1 and many others (depending on the platform) as well as custom streams (e.\+g. CRC32).
+
+\href{https://www.npmjs.com/package/object-hash}{\texttt{}}
+
+\href{https://secure.travis-ci.org/puleos/object-hash?branch=master}{\texttt{}} \href{https://coveralls.io/github/puleos/object-hash?branch=master}{\texttt{}}
+
+
+\begin{DoxyItemize}
+\item Hash values of any type.
+\item Supports a keys only option for grouping similar objects with different values.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ hash\ =\ require('object-\/hash');}
+\DoxyCodeLine{}
+\DoxyCodeLine{hash(\{foo:\ 'bar'\})\ //\ =>\ '67b69634f9880a282c14a0f0cb7ba20cf5d677e9'}
+\DoxyCodeLine{hash([1,\ 2,\ 2.718,\ 3.14159])\ //\ =>\ '136b9b88375971dff9f1af09d7356e3e04281951'}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1986}{}\doxysection{\texorpdfstring{Versioning Disclaimer}{Versioning Disclaimer}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1986}
+Starting with version {\ttfamily 1.\+1.\+8} (released April 2017), new versions will consider the exact returned hash part of the API contract, i.\+e. changes that will affect hash values will be considered {\ttfamily semver-\/major}. Previous versions may violate that expectation.
+
+For more information, see \href{https://github.com/puleos/object-hash/issues/30}{\texttt{this discussion}}.\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1987}{}\doxysection{\texorpdfstring{hash(value, options)}{hash(value, options)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1987}
+Generate a hash from any object or type. Defaults to sha1 with hex encoding.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily algorithm} hash algo to be used:\+ \textquotesingle{}sha1\textquotesingle{}, \textquotesingle{}md5\textquotesingle{}, \textquotesingle{}passthrough\textquotesingle{}. default:\+ sha1
+\begin{DoxyItemize}
+\item This supports the algorithms returned by {\ttfamily crypto.\+get\+Hashes()}. Note that the default of SHA-\/1 is not considered secure, and a stronger algorithm should be used if a cryptographical hash is desired.
+\item This also supports the {\ttfamily passthrough} algorith, which will return the information that would otherwise have been hashed.
+\end{DoxyItemize}
+\item {\ttfamily exclude\+Values} \{true\texorpdfstring{$\vert$}{|}false\} hash object keys, values ignored. default:\+ false
+\item {\ttfamily encoding} hash encoding, supports \textquotesingle{}buffer\textquotesingle{}, \textquotesingle{}hex\textquotesingle{}, \textquotesingle{}binary\textquotesingle{}, \textquotesingle{}base64\textquotesingle{}. default:\+ hex
+\item {\ttfamily ignore\+Unknown} \{true\texorpdfstring{$\vert$}{|}\texorpdfstring{$\ast$}{*}false\} ignore unknown object types. default:\+ false
+\item {\ttfamily replacer} optional function that replaces values before hashing. default:\+ accept all values
+\item {\ttfamily respect\+Function\+Properties} \{true\texorpdfstring{$\vert$}{|}false\} Whether properties on functions are considered when hashing. default:\+ true
+\item {\ttfamily respect\+Function\+Names} \{true\texorpdfstring{$\vert$}{|}false\} consider {\ttfamily name} property of functions for hashing. default:\+ true
+\item {\ttfamily respect\+Type} \{true\texorpdfstring{$\vert$}{|}false\} Whether special type attributes ({\ttfamily .prototype}, {\ttfamily .\+\_\+\+\_\+proto\+\_\+\+\_\+}, {\ttfamily .constructor}) are hashed. default:\+ true
+\item {\ttfamily unordered\+Arrays} \{true\texorpdfstring{$\vert$}{|}false\} Sort all arrays before hashing. Note that this affects {\itshape all} collections, i.\+e. including typed arrays, Sets, Maps, etc. default:\+ false
+\item {\ttfamily unordered\+Sets} \{true\texorpdfstring{$\vert$}{|}false\} Sort {\ttfamily Set} and {\ttfamily Map} instances before hashing, i.\+e. make {\ttfamily hash(new Set(\+[1, 2]\+)) == hash(new Set(\+[2, 1]\+))} return {\ttfamily true}. default:\+ true
+\item {\ttfamily unordered\+Objects} \{true\texorpdfstring{$\vert$}{|}false\} Sort objects before hashing, i.\+e. make {\ttfamily hash(\{ x:\+ 1, y:\+ 2 \}) === hash(\{ y:\+ 2, x:\+ 1 \})}. default:\+ true
+\item {\ttfamily exclude\+Keys} optional function for excluding specific key(s) from hashing, if true is returned then exclude from hash. default:\+ include all keys
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1988}{}\doxysection{\texorpdfstring{hash.\+sha1(value)}{hash.\+sha1(value)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1988}
+Hash using the sha1 algorithm.
+
+Note that SHA-\/1 is not considered secure, and a stronger algorithm should be used if a cryptographical hash is desired.
+
+{\itshape Sugar method, equivalent to} {\ttfamily hash(value, \{algorithm:\+ \textquotesingle{}sha1\textquotesingle{}\})}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1989}{}\doxysection{\texorpdfstring{hash.\+keys(value)}{hash.\+keys(value)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1989}
+Hash object keys using the sha1 algorithm, values ignored.
+
+{\itshape Sugar method, equivalent to} {\ttfamily hash(value, \{exclude\+Values:\+ true\})}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1990}{}\doxysection{\texorpdfstring{hash.\+MD5(value)}{hash.\+MD5(value)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1990}
+Hash using the md5 algorithm.
+
+Note that the MD5 algorithm is not considered secure, and a stronger algorithm should be used if a cryptographical hash is desired.
+
+{\itshape Sugar method, equivalent to} {\ttfamily hash(value, \{algorithm:\+ \textquotesingle{}md5\textquotesingle{}\})}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1991}{}\doxysection{\texorpdfstring{hash.\+keys\+MD5(value)}{hash.\+keys\+MD5(value)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1991}
+Hash object keys using the md5 algorithm, values ignored.
+
+Note that the MD5 algorithm is not considered secure, and a stronger algorithm should be used if a cryptographical hash is desired.
+
+{\itshape Sugar method, equivalent to} {\ttfamily hash(value, \{algorithm:\+ \textquotesingle{}md5\textquotesingle{}, exclude\+Values:\+ true\})}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1992}{}\doxysection{\texorpdfstring{hash.\+write\+To\+Stream(value, \+[options,]\+ stream)}{hash.\+write\+To\+Stream(value, \+[options,]\+ stream)}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1992}
+Write the information that would otherwise have been hashed to a stream, e.\+g.:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{hash.writeToStream(\{foo:\ 'bar',\ a:\ 42\},\ \{respectType:\ false\},\ process.stdout)}
+\DoxyCodeLine{//\ =>\ e.g.\ 'object:a:number:42foo:string:bar'}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1993}{}\doxysection{\texorpdfstring{Installation}{Installation}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1993}
+node:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ object-\/hash}
+
+\end{DoxyCode}
+
+
+browser:\+ \texorpdfstring{$\ast$}{*}/\+dist/\+object\+\_\+hash.js\texorpdfstring{$\ast$}{*}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}object\_hash.js"{}\ type="{}text/javascript"{}></script>}
+\DoxyCodeLine{}
+\DoxyCodeLine{<script>}
+\DoxyCodeLine{\ \ var\ hash\ =\ objectHash.sha1(\{foo:'bar'\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ console.log(hash);\ //\ e003c89cdf35cdf46d8239b4692436364b7259f9}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1994}{}\doxysection{\texorpdfstring{Example usage}{Example usage}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1994}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ hash\ =\ require('object-\/hash');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ peter\ =\ \{\ name:\ 'Peter',\ stapler:\ false,\ friends:\ ['Joanna',\ 'Michael',\ 'Samir']\ \};}
+\DoxyCodeLine{var\ michael\ =\ \{\ name:\ 'Michael',\ stapler:\ false,\ friends:\ ['Peter',\ 'Samir']\ \};}
+\DoxyCodeLine{var\ bob\ =\ \{\ name:\ 'Bob',\ stapler:\ true,\ friends:\ []\ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{/***}
+\DoxyCodeLine{\ *\ sha1\ hex\ encoding\ (default)}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{hash(peter);}
+\DoxyCodeLine{//\ 14fa461bf4b98155e82adc86532938553b4d33a9}
+\DoxyCodeLine{hash(michael);}
+\DoxyCodeLine{//\ 4b2b30e27699979ce46714253bc2213010db039c}
+\DoxyCodeLine{hash(bob);}
+\DoxyCodeLine{//\ 38d96106bc8ef3d8bd369b99bb6972702c9826d5}
+\DoxyCodeLine{}
+\DoxyCodeLine{/***}
+\DoxyCodeLine{\ *\ hash\ object\ keys,\ values\ ignored}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{hash(peter,\ \{\ excludeValues:\ true\ \});}
+\DoxyCodeLine{//\ 48f370a772c7496f6c9d2e6d92e920c87dd00a5c}
+\DoxyCodeLine{hash(michael,\ \{\ excludeValues:\ true\ \});}
+\DoxyCodeLine{//\ 48f370a772c7496f6c9d2e6d92e920c87dd00a5c}
+\DoxyCodeLine{hash.keys(bob);}
+\DoxyCodeLine{//\ 48f370a772c7496f6c9d2e6d92e920c87dd00a5c}
+\DoxyCodeLine{}
+\DoxyCodeLine{/***}
+\DoxyCodeLine{\ *\ hash\ object,\ ignore\ specific\ key(s)}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{hash(peter,\ \{\ excludeKeys:\ function(key)\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (\ key\ ===\ 'friends')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ true;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ return\ false;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ 66b7d7e64871aa9fda1bdc8e88a28df797648d80}
+\DoxyCodeLine{}
+\DoxyCodeLine{/***}
+\DoxyCodeLine{\ *\ md5\ base64\ encoding}
+\DoxyCodeLine{\ */}
+\DoxyCodeLine{hash(peter,\ \{\ algorithm:\ 'md5',\ encoding:\ 'base64'\ \});}
+\DoxyCodeLine{//\ 6rkWaaDiG3NynWw4svGH7g==}
+\DoxyCodeLine{hash(michael,\ \{\ algorithm:\ 'md5',\ encoding:\ 'base64'\ \});}
+\DoxyCodeLine{//\ djXaWpuWVJeOF8Sb6SFFNg==}
+\DoxyCodeLine{hash(bob,\ \{\ algorithm:\ 'md5',\ encoding:\ 'base64'\ \});}
+\DoxyCodeLine{//\ lFzkw/IJ8/12jZI0rQeS3w==}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1995}{}\doxysection{\texorpdfstring{Legacy Browser Support}{Legacy Browser Support}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1995}
+IE \texorpdfstring{$<$}{<}= 8 and Opera \texorpdfstring{$<$}{<}= 11 support dropped in version 0.\+3.\+0. If you require legacy browser support you must either use an ES5 shim or use version 0.\+2.\+5 of this module.\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1996}{}\doxysection{\texorpdfstring{Development}{Development}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1996}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ -\/session}
+\DoxyCodeLine{git\ clone\ https://github.com/puleos/object-\/hash}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1997}{}\doxysection{\texorpdfstring{Node Docker Wrapper}{Node Docker Wrapper}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1997}
+If you want to stand this up in a docker container, you should take at look at the \href{https://github.com/bean5/node-object-hash}{\texttt{}} project.\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1998}{}\doxysubsection{\texorpdfstring{gulp tasks}{gulp tasks}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1998}
+
+\begin{DoxyItemize}
+\item {\ttfamily gulp watch} (default) watch files, test and lint on change/\+add
+\item {\ttfamily gulp test} unit tests
+\item {\ttfamily gulp karma} browser unit tests
+\item {\ttfamily gulp lint} jshint
+\item {\ttfamily gulp dist} create browser version in /\+dist
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1999}{}\doxysection{\texorpdfstring{License}{License}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md1999}
+MIT\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md2000}{}\doxysection{\texorpdfstring{Changelog}{Changelog}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md2000}
+\hypertarget{md_frontend_2node__modules_2object-hash_2readme_autotoc_md2001}{}\doxysubsection{\texorpdfstring{v2.\+0.\+0}{v2.\+0.\+0}}\label{md_frontend_2node__modules_2object-hash_2readme_autotoc_md2001}
+Only Node.\+js versions {\ttfamily \texorpdfstring{$>$}{>}= 6.\+0.\+0} are being tested in CI now. No other breaking changes were introduced. 

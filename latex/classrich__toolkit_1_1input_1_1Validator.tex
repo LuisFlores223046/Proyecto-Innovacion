@@ -1,0 +1,61 @@
+\doxysection{rich\+\_\+toolkit.\+input.\+Validator Class Reference}
+\hypertarget{classrich__toolkit_1_1input_1_1Validator}{}\label{classrich__toolkit_1_1input_1_1Validator}\index{rich\_toolkit.input.Validator@{rich\_toolkit.input.Validator}}
+Inheritance diagram for rich\+\_\+toolkit.\+input.\+Validator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrich__toolkit_1_1input_1_1Validator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Any \doxymbox{\hyperlink{classrich__toolkit_1_1input_1_1Validator_abe7ad0f938f438a97d612fcc4e4e6261}{validate\+\_\+python}} (self, Any value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Protocol for validators that can validate input values.
+
+Any object with a validate_python method can be used as a validator.
+This includes Pydantic's TypeAdapter or custom validators.
+
+Example with Pydantic TypeAdapter:
+    >>> from pydantic import TypeAdapter
+    >>> validator = TypeAdapter(int)
+    >>> input_field = Input(validator=validator)
+
+Example with custom validator:
+    >>> class MyValidator:
+    ...     def validate_python(self, value):
+    ...         if not value.startswith("x"):
+    ...             raise ValueError("Must start with x")
+    ...         return value
+    >>> input_field = Input(validator=MyValidator())
+\end{DoxyVerb}
+ 
+
+\label{classrich__toolkit_1_1input_1_1Validator_doc-func-members}
+\Hypertarget{classrich__toolkit_1_1input_1_1Validator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrich__toolkit_1_1input_1_1Validator_abe7ad0f938f438a97d612fcc4e4e6261}\index{rich\_toolkit.input.Validator@{rich\_toolkit.input.Validator}!validate\_python@{validate\_python}}
+\index{validate\_python@{validate\_python}!rich\_toolkit.input.Validator@{rich\_toolkit.input.Validator}}
+\doxysubsubsection{\texorpdfstring{validate\_python()}{validate\_python()}}
+{\footnotesize\ttfamily \label{classrich__toolkit_1_1input_1_1Validator_abe7ad0f938f438a97d612fcc4e4e6261} 
+ Any rich\+\_\+toolkit.\+input.\+Validator.\+validate\+\_\+python (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate a Python value and return the validated result.
+
+Args:
+    value: The value to validate
+
+Returns:
+    The validated value
+
+Raises:
+    ValidationError: If validation fails
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rich\+\_\+toolkit/\+input.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\doxysection{sqlalchemy.\+sql.\+elements.\+conv Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1elements_1_1conv}{}\label{classsqlalchemy_1_1sql_1_1elements_1_1conv}\index{sqlalchemy.sql.elements.conv@{sqlalchemy.sql.elements.conv}}
+Inheritance diagram for sqlalchemy.\+sql.\+elements.\+conv:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsqlalchemy_1_1sql_1_1elements_1_1conv}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1__truncated__label}{sqlalchemy.\+sql.\+elements.\+\_\+truncated\+\_\+label}}}
+\begin{DoxyCompactItemize}
+\item 
+Any {\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, str value, Optional\+[bool]\+ quote=None)
+\item 
+Any {\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+str {\bfseries apply\+\_\+map} (self, Mapping\+[str, Any]\+ map\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{sqlalchemy.\+sql.\+elements.\+quoted\+\_\+name}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}} {\bfseries construct} (cls, str value, Optional\+[bool]\+ quote)
+\item 
+None {\bfseries construct} (cls, None value, Optional\+[bool]\+ quote)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+ {\bfseries construct} (cls, Optional\+[str]\+ value, Optional\+[bool]\+ quote)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}} {\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, str value, Optional\+[bool]\+ quote)
+\item 
+{\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots}{sqlalchemy.\+util.\+langhelpers.\+Memoized\+Slots}}}
+\begin{DoxyCompactItemize}
+\item 
+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str key)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{sqlalchemy.\+sql.\+elements.\+quoted\+\_\+name}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries quote} \+[bool]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{sqlalchemy.\+sql.\+elements.\+quoted\+\_\+name}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+memoized\+\_\+method\+\_\+lower} (self)
+\item 
+{\bfseries \+\_\+memoized\+\_\+method\+\_\+upper} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots}{sqlalchemy.\+util.\+langhelpers.\+Memoized\+Slots}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1MemoizedSlots_aafe59f7f2bf3fa09bdfc6010deeb75d9}{\+\_\+fallback\+\_\+getattr}} (self, key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mark a string indicating that a name has already been converted
+by a naming convention.
+
+This is a string subclass that indicates a name that should not be
+subject to any further naming conventions.
+
+E.g. when we create a :class:`.Constraint` using a naming convention
+as follows::
+
+    m = MetaData(naming_convention={
+        "ck": "ck_%(table_name)s_%(constraint_name)s"
+    })
+    t = Table('t', m, Column('x', Integer),
+                    CheckConstraint('x > 5', name='x5'))
+
+The name of the above constraint will be rendered as ``"ck_t_x5"``.
+That is, the existing name ``x5`` is used in the naming convention as the
+``constraint_name`` token.
+
+In some situations, such as in migration scripts, we may be rendering
+the above :class:`.CheckConstraint` with a name that's already been
+converted.  In order to make sure the name isn't double-modified, the
+new name is applied using the :func:`_schema.conv` marker.  We can
+use this explicitly as follows::
+
+
+    m = MetaData(naming_convention={
+        "ck": "ck_%(table_name)s_%(constraint_name)s"
+    })
+    t = Table('t', m, Column('x', Integer),
+                    CheckConstraint('x > 5', name=conv('ck_t_x5')))
+
+Where above, the :func:`_schema.conv` marker indicates that the constraint
+name here is final, and the name will render as ``"ck_t_x5"`` and not
+``"ck_t_ck_t_x5"``
+
+.. seealso::
+
+    :ref:`constraint_naming_conventions`
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+elements.\+py\end{DoxyCompactItemize}

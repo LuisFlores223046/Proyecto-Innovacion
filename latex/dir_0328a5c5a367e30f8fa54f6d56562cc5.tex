@@ -1,0 +1,79 @@
+\doxysection{frontend/\+node\+\_\+modules/\+mz Directory Reference}
+\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5}{}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5}\index{frontend/node\_modules/mz Directory Reference@{frontend/node\_modules/mz Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1957}{}\doxysubsection{\texorpdfstring{MZ -\/ Modernize node.\+js}{MZ -\/ Modernize node.\+js}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1957}
+\href{https://npmjs.org/package/mz}{\texttt{}} \href{https://travis-ci.org/normalize/mz}{\texttt{}} \href{https://coveralls.io/r/normalize/mz?branch=master}{\texttt{}} \href{https://david-dm.org/normalize/mz}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npmjs.org/package/mz}{\texttt{}}
+
+Modernize node.\+js to current ECMAScript specifications! node.\+js will not update their API to ES6+ \href{https://github.com/joyent/node/issues/7549}{\texttt{for a while}}. This library is a wrapper for various aspects of node.\+js\textquotesingle{} API.\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1958}{}\doxysubsection{\texorpdfstring{Installation and Usage}{Installation and Usage}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1958}
+Set {\ttfamily mz} as a dependency and install it.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ mz}
+
+\end{DoxyCode}
+
+
+Then prefix the relevant {\ttfamily require()}s with {\ttfamily mz/\+}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ fs\ =\ require('mz/fs')}
+\DoxyCodeLine{}
+\DoxyCodeLine{fs.exists(\_\_filename).then(function\ (exists)\ \{}
+\DoxyCodeLine{\ \ if\ (exists)\ //\ do\ something}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+With ES2017, this will allow you to use async functions cleanly with node\textquotesingle{}s core API:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ fs\ =\ require('mz/fs')}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ doSomething\ ()\ \{}
+\DoxyCodeLine{\ \ if\ (await\ fs.exists(\_\_filename))\ //\ do\ something}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1959}{}\doxysubsection{\texorpdfstring{Promisification}{Promisification}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1959}
+Many node methods are converted into promises. Any properties that are deprecated or aren\textquotesingle{}t asynchronous will simply be proxied. The modules wrapped are:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily child\+\_\+process}
+\item {\ttfamily crypto}
+\item {\ttfamily \doxylink{namespacedns}{dns}}
+\item {\ttfamily fs} (uses {\ttfamily graceful-\/fs} if available)
+\item {\ttfamily readline}
+\item {\ttfamily zlib}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ exec\ =\ require('mz/child\_process').exec}
+\DoxyCodeLine{}
+\DoxyCodeLine{exec('node\ -\/-\/version').then(function\ (stdout)\ \{}
+\DoxyCodeLine{\ \ console.log(stdout)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1960}{}\doxysubsection{\texorpdfstring{Promise Engine}{Promise Engine}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1960}
+{\ttfamily mz} uses \href{https://github.com/kevinbeaty/any-promise}{\texttt{{\ttfamily any-\/promise}}}.\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1961}{}\doxysubsection{\texorpdfstring{FAQ}{FAQ}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1961}
+\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1962}{}\doxysubsubsection{\texorpdfstring{Can I use this in production?}{Can I use this in production?}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1962}
+Yes, Node 4.\+x ships with stable promises support. For older engines, you should probably install your own promise implementation and register it with {\ttfamily require(\textquotesingle{}any-\/promise/\+register\textquotesingle{})(\textquotesingle{}bluebird\textquotesingle{})}.\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1963}{}\doxysubsubsection{\texorpdfstring{Will this make my app faster?}{Will this make my app faster?}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1963}
+Nope, probably slower actually.\hypertarget{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1964}{}\doxysubsubsection{\texorpdfstring{Can I add more features?}{Can I add more features?}}\label{dir_0328a5c5a367e30f8fa54f6d56562cc5_autotoc_md1964}
+Sure. Open an issue.
+
+Currently, the plans are to eventually support:\+
+
+
+\begin{DoxyItemize}
+\item New APIs in node.\+js that are not available in older versions of node
+\item ECMAScript7 Streams 
+\end{DoxyItemize}

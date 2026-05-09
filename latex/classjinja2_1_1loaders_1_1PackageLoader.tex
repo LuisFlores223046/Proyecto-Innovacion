@@ -1,0 +1,137 @@
+\doxysection{jinja2.\+loaders.\+Package\+Loader Class Reference}
+\hypertarget{classjinja2_1_1loaders_1_1PackageLoader}{}\label{classjinja2_1_1loaders_1_1PackageLoader}\index{jinja2.loaders.PackageLoader@{jinja2.loaders.PackageLoader}}
+Inheritance diagram for jinja2.\+loaders.\+Package\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1loaders_1_1PackageLoader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a664f8c20fcf721983bdc348dd9d55dc6}\label{classjinja2_1_1loaders_1_1PackageLoader_a664f8c20fcf721983bdc348dd9d55dc6} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str package\+\_\+name, "{}str"{} package\+\_\+path="{}templates"{}, str encoding="{}utf-\/8"{})
+\item 
+t.\+Tuple\+[str, str, t.\+Optional\+[t.\+Callable\+[\+[$\,$]\+, bool]\+]\+]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1PackageLoader_ab52d5cc60a0a00de39e658b54a7f5c4a}{get\+\_\+source}} (self, "{}Environment"{} environment, str template)
+\item 
+t.\+List\+[str]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1PackageLoader_a2c80a6c546f7e18e031ddaf9d5228f49}{list\+\_\+templates}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}Template"{} \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_aec17b1b1367164ea6cb8c532b8033255}{load}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ globals=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a6e222a8b3f3a0defa0305342b1654014}\label{classjinja2_1_1loaders_1_1PackageLoader_a6e222a8b3f3a0defa0305342b1654014} 
+{\bfseries package\+\_\+path} = package\+\_\+path
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a13db71f3c5d2f559bedc6e76d80aea48}\label{classjinja2_1_1loaders_1_1PackageLoader_a13db71f3c5d2f559bedc6e76d80aea48} 
+{\bfseries package\+\_\+name} = package\+\_\+name
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_aa6f698448f3ebafc935025aad53d6409}\label{classjinja2_1_1loaders_1_1PackageLoader_aa6f698448f3ebafc935025aad53d6409} 
+{\bfseries encoding} = encoding
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a6786618f5f544f0b377c2e70590648ea}\label{classjinja2_1_1loaders_1_1PackageLoader_a6786618f5f544f0b377c2e70590648ea} 
+{\bfseries \+\_\+loader} = loader
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a76c27d93c9f1bce0ccc0dfa3d8a3bd56}\label{classjinja2_1_1loaders_1_1PackageLoader_a76c27d93c9f1bce0ccc0dfa3d8a3bd56} 
+{\bfseries \+\_\+archive} = None
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a1a5932f24faebb8258441f0da300bf3c}\label{classjinja2_1_1loaders_1_1PackageLoader_a1a5932f24faebb8258441f0da300bf3c} 
+{\bfseries \+\_\+template\+\_\+root} = template\+\_\+root
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries has\+\_\+source\+\_\+access} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Load templates from a directory in a Python package.
+
+:param package_name: Import name of the package that contains the
+    template directory.
+:param package_path: Directory within the imported package that
+    contains the templates.
+:param encoding: Encoding of template files.
+
+The following example looks up templates in the ``pages`` directory
+within the ``project.ui`` package.
+
+.. code-block:: python
+
+    loader = PackageLoader("project.ui", "pages")
+
+Only packages installed as directories (standard pip behavior) or
+zip/egg files (less common) are supported. The Python API for
+introspecting data in packages is too limited to support other
+installation methods the way this loader requires.
+
+There is limited support for :pep:`420` namespace packages. The
+template directory is assumed to only be in one namespace
+contributor. Zip files contributing to a namespace are not
+supported.
+
+.. versionchanged:: 3.0
+    No longer uses ``setuptools`` as a dependency.
+
+.. versionchanged:: 3.0
+    Limited PEP 420 namespace package support.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1loaders_1_1PackageLoader_doc-func-members}
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_ab52d5cc60a0a00de39e658b54a7f5c4a}\index{jinja2.loaders.PackageLoader@{jinja2.loaders.PackageLoader}!get\_source@{get\_source}}
+\index{get\_source@{get\_source}!jinja2.loaders.PackageLoader@{jinja2.loaders.PackageLoader}}
+\doxysubsubsection{\texorpdfstring{get\_source()}{get\_source()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1PackageLoader_ab52d5cc60a0a00de39e658b54a7f5c4a} 
+ t.\+Tuple\+[str, str, t.\+Optional\+[t.\+Callable\+[\+[$\,$]\+, bool]\+]\+]\+ jinja2.\+loaders.\+Package\+Loader.\+get\+\_\+source (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Environment"{}}]{environment}{, }\item[{str     }]{template}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the template source, filename and reload helper for a template.
+It's passed the environment and template name and has to return a
+tuple in the form ``(source, filename, uptodate)`` or raise a
+`TemplateNotFound` error if it can't locate the template.
+
+The source part of the returned tuple must be the source of the
+template as a string. The filename should be the name of the
+file on the filesystem if it was loaded from there, otherwise
+``None``. The filename is used by Python for the tracebacks
+if no loader extension is used.
+
+The last item in the tuple is the `uptodate` function.  If auto
+reloading is enabled it's always called to check if the template
+changed.  No arguments are passed so the function must store the
+old state somewhere (for example in a closure).  If it returns `False`
+the template will be reloaded.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_a7e222ad2ab60e2cfd58c11822b0c4951}{jinja2.\+loaders.\+Base\+Loader}}.
+
+\Hypertarget{classjinja2_1_1loaders_1_1PackageLoader_a2c80a6c546f7e18e031ddaf9d5228f49}\index{jinja2.loaders.PackageLoader@{jinja2.loaders.PackageLoader}!list\_templates@{list\_templates}}
+\index{list\_templates@{list\_templates}!jinja2.loaders.PackageLoader@{jinja2.loaders.PackageLoader}}
+\doxysubsubsection{\texorpdfstring{list\_templates()}{list\_templates()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1PackageLoader_a2c80a6c546f7e18e031ddaf9d5228f49} 
+ t.\+List\+[str]\+ jinja2.\+loaders.\+Package\+Loader.\+list\+\_\+templates (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Iterates over all templates.  If the loader does not support that
+it should raise a :exc:`TypeError` which is the default behavior.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_acb576631d9b98370780cf622e2433992}{jinja2.\+loaders.\+Base\+Loader}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+loaders.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\doxysection{frontend/\+node\+\_\+modules/\+pirates Directory Reference}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003}{}\label{dir_5f324879c4875ccc529f842393b18003}\index{frontend/node\_modules/pirates Directory Reference@{frontend/node\_modules/pirates Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_ff7ca87eb63c43cbd99fcc40150c3b3f}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2023}{}\doxysubsection{\texorpdfstring{Pirates \+[!\+[Coverage]\+\+[codecov-\/badge]\+]\+\+[codecov-\/link]\+}{Pirates \+[!\+[Coverage]\+\+[codecov-\/badge]\+]\+\+[codecov-\/link]\+}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2023}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2024}{}\doxysubsubsection{\texorpdfstring{Properly hijack require}{Properly hijack require}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2024}
+This library allows to add custom require hooks, which do not interfere with other require hooks.
+
+This library only works with common\+JS.\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2025}{}\doxysubsection{\texorpdfstring{Why?}{Why?}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2025}
+Two reasons:\+
+\begin{DoxyEnumerate}
+\item Babel and istanbul were breaking each other.
+\item Everyone seemed to re-\/invent the wheel on this, and everyone wanted a solution that was DRY, simple, easy to use, and made everything Just Work™, while allowing multiple require hooks, in a fashion similar to calling {\ttfamily super}.
+\end{DoxyEnumerate}
+
+For some context, see \href{https://github.com/babel/babel/pull/3062}{\texttt{the Babel issue thread}} which started this all, then \href{https://github.com/bcoe/nyc/issues/70}{\texttt{the nyc issue thread}}, where discussion was moved (as we began to discuss just using the code nyc had developed), and finally to \href{https://github.com/danez/pirates/issues/1}{\texttt{\#1}} where discussion was finally moved.\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2026}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2026}
+\begin{DoxyVerb}npm install --save pirates
+\end{DoxyVerb}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2027}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2027}
+Using pirates is really easy:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ my-\/module/register.js}
+\DoxyCodeLine{const\ addHook\ =\ require('pirates').addHook;}
+\DoxyCodeLine{//\ Or\ if\ you\ use\ ES\ modules}
+\DoxyCodeLine{//\ import\ \{\ addHook\ \}\ from\ 'pirates';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ matcher(filename)\ \{}
+\DoxyCodeLine{\ \ //\ Here,\ you\ can\ inspect\ the\ filename\ to\ determine\ if\ it\ should\ be\ hooked\ or}
+\DoxyCodeLine{\ \ //\ not.\ Just\ return\ a\ truthy/falsey.\ Files\ in\ node\_modules\ are\ automatically\ ignored,}
+\DoxyCodeLine{\ \ //\ unless\ otherwise\ specified\ in\ options\ (see\ below).}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ TODO:\ Implement\ your\ logic\ here}
+\DoxyCodeLine{\ \ return\ true;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ revert\ =\ addHook(}
+\DoxyCodeLine{\ \ (code,\ filename)\ =>\ code.replace('@@foo',\ 'console.log(\(\backslash\)'foo\(\backslash\)');'),}
+\DoxyCodeLine{\ \ \{\ exts:\ ['.js'],\ matcher\ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ And\ later,\ if\ you\ want\ to\ un-\/hook\ require,\ you\ can\ just\ do:}
+\DoxyCodeLine{revert();}
+
+\end{DoxyCode}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2028}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2028}
+\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2029}{}\doxysubsubsection{\texorpdfstring{pirates.\+add\+Hook(hook, \+[opts=\{ \+[matcher:\+ true]\+, \+[exts:\+ \+[\textquotesingle{}.js\textquotesingle{}]\+]\+, \+[ignore\+Node\+Modules:\+ true]\+ \}]\+);}{pirates.\+add\+Hook(hook, \+[opts=\{ \+[matcher:\+ true]\+, \+[exts:\+ \+[\textquotesingle{}.js\textquotesingle{}]\+]\+, \+[ignore\+Node\+Modules:\+ true]\+ \}]\+);}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2029}
+Add a require hook. {\ttfamily hook} must be a function that takes {\ttfamily (code, filename)}, and returns the modified code. {\ttfamily opts} is an optional options object. Available options are:\+ {\ttfamily matcher}, which is a function that accepts a filename, and returns a truthy value if the file should be hooked (defaults to a function that always returns true), falsey if otherwise; {\ttfamily exts}, which is an array of extensions to hook, they should begin with {\ttfamily .} (defaults to {\ttfamily \+[\textquotesingle{}.js\textquotesingle{}]\+}); {\ttfamily ignore\+Node\+Modules}, if true, any file in a {\ttfamily node\+\_\+modules} folder wont be hooked (the matcher also wont be called), if false, then the matcher will be called for any files in {\ttfamily node\+\_\+modules} (defaults to true).\hypertarget{dir_5f324879c4875ccc529f842393b18003_autotoc_md2030}{}\doxysubsection{\texorpdfstring{Projects that use Pirates}{Projects that use Pirates}}\label{dir_5f324879c4875ccc529f842393b18003_autotoc_md2030}
+See the \href{https://github.com/danez/pirates/wiki/Projects-using-Pirates}{\texttt{wiki page}}. If you add Pirates to your project, (And you should! It works best if everyone uses it. Then we can have a happy world full of happy require hooks!), please add yourself to the wiki. 

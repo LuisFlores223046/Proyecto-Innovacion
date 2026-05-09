@@ -1,0 +1,152 @@
+\doxysection{frontend/\+node\+\_\+modules/\+estraverse Directory Reference}
+\hypertarget{dir_3d813a7d54324b7c323084142495f50e}{}\label{dir_3d813a7d54324b7c323084142495f50e}\index{frontend/node\_modules/estraverse Directory Reference@{frontend/node\_modules/estraverse Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2116}{}\doxysubsection{\texorpdfstring{Estraverse \+[!\+[Build Status]\+(\href{https://secure.travis-ci.org/estools/estraverse.svg}{\texttt{https:\+/\+/\+secure.\+travis-\/ci.\+org/\+estools/\+estraverse.\+svg}})]\+(\href{http://travis-ci.org/estools/estraverse}{\texttt{http:\+/\+/\+travis-\/ci.\+org/\+estools/\+estraverse}})}{Estraverse \+[!\+[Build Status]\+(\href{https://secure.travis-ci.org/estools/estraverse.svg}{\texttt{https:\+/\+/\+secure.\+travis-\/ci.\+org/\+estools/\+estraverse.\+svg}})]\+(\href{http://travis-ci.org/estools/estraverse}{\texttt{http:\+/\+/\+travis-\/ci.\+org/\+estools/\+estraverse}})}}\label{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2116}
+Estraverse (\href{http://github.com/estools/estraverse}{\texttt{estraverse}}) is \href{http://www.ecma-international.org/publications/standards/Ecma-262.htm}{\texttt{ECMAScript}} traversal functions from \href{http://github.com/estools/esmangle}{\texttt{esmangle project}}.\hypertarget{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2117}{}\doxysubsubsection{\texorpdfstring{Documentation}{Documentation}}\label{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2117}
+You can find usage docs at \href{https://github.com/estools/estraverse/wiki/Usage}{\texttt{wiki page}}.\hypertarget{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2118}{}\doxysubsubsection{\texorpdfstring{Example Usage}{Example Usage}}\label{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2118}
+The following code will output all variables declared at the root of a file.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{estraverse.traverse(ast,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node,\ parent)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (node.type\ ==\ 'FunctionExpression'\ ||\ node.type\ ==\ 'FunctionDeclaration')}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ estraverse.VisitorOption.Skip;}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ leave:\ function\ (node,\ parent)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (node.type\ ==\ 'VariableDeclarator')}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ console.log(node.id.name);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+We can use {\ttfamily this.\+skip}, {\ttfamily this.\+remove} and {\ttfamily this.\+break} functions instead of using Skip, Remove and Break.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{estraverse.traverse(ast,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.break();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+And estraverse provides {\ttfamily estraverse.\+replace} function. When returning node from {\ttfamily enter}/\+{\ttfamily leave}, current node is replaced with it.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{result\ =\ estraverse.replace(tree,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Replace\ it\ with\ replaced.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (node.type\ ===\ 'Literal')}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ replaced;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+By passing {\ttfamily visitor.\+keys} mapping, we can extend estraverse traversing functionality.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ tree\ contains\ a\ user-\/defined\ \`{}TestExpression`\ node.}
+\DoxyCodeLine{var\ tree\ =\ \{}
+\DoxyCodeLine{\ \ \ \ type:\ 'TestExpression',}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'argument'\ is\ the\ property\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ argument:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ type:\ 'Literal',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 20}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'extended'\ is\ the\ property\ not\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ extended:\ true}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{estraverse.traverse(tree,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node)\ \{\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Extending\ the\ existing\ traversing\ rules.}
+\DoxyCodeLine{\ \ \ \ keys:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ TargetNodeName:\ [\ 'keys',\ 'containing',\ 'the',\ 'other',\ '**node**'\ ]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TestExpression:\ ['argument']}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+By passing {\ttfamily visitor.\+fallback} option, we can control the behavior when encountering unknown nodes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ tree\ contains\ a\ user-\/defined\ \`{}TestExpression`\ node.}
+\DoxyCodeLine{var\ tree\ =\ \{}
+\DoxyCodeLine{\ \ \ \ type:\ 'TestExpression',}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'argument'\ is\ the\ property\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ argument:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ type:\ 'Literal',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 20}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'extended'\ is\ the\ property\ not\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ extended:\ true}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{estraverse.traverse(tree,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node)\ \{\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Iterating\ the\ child\ **nodes**\ of\ unknown\ nodes.}
+\DoxyCodeLine{\ \ \ \ fallback:\ 'iteration'}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+When {\ttfamily visitor.\+fallback} is a function, we can determine which keys to visit on each node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ tree\ contains\ a\ user-\/defined\ \`{}TestExpression`\ node.}
+\DoxyCodeLine{var\ tree\ =\ \{}
+\DoxyCodeLine{\ \ \ \ type:\ 'TestExpression',}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'argument'\ is\ the\ property\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ argument:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ type:\ 'Literal',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 20}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'extended'\ is\ the\ property\ not\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ extended:\ true}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{estraverse.traverse(tree,\ \{}
+\DoxyCodeLine{\ \ \ \ enter:\ function\ (node)\ \{\ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Skip\ the\ \`{}argument`\ property\ of\ each\ node}
+\DoxyCodeLine{\ \ \ \ fallback:\ function(node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Object.keys(node).filter(function(key)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ key\ !==\ 'argument';}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2119}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_3d813a7d54324b7c323084142495f50e_autotoc_md2119}
+Copyright (C) 2012-\/2016 \href{http://github.com/Constellation}{\texttt{Yusuke Suzuki}} (twitter:\+ \href{http://twitter.com/Constellation}{\texttt{@Constellation}}) and other contributors.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\+
+
+
+\begin{DoxyItemize}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/\+or other materials provided with the distribution.
+\end{DoxyItemize}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL $<$\+COPYRIGHT HOLDER$>$ BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 

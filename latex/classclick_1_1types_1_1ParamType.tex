@@ -1,0 +1,184 @@
+\doxysection{click.\+types.\+Param\+Type Class Reference}
+\hypertarget{classclick_1_1types_1_1ParamType}{}\label{classclick_1_1types_1_1ParamType}\index{click.types.ParamType@{click.types.ParamType}}
+Inheritance diagram for click.\+types.\+Param\+Type:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classclick_1_1types_1_1ParamType}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+dict\+[str, t.\+Any]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_aa61d95bae6a1199881c46bf5788c61c3}{to\+\_\+info\+\_\+dict}} (self)
+\item 
+\Hypertarget{classclick_1_1types_1_1ParamType_a8a9a070c53666457cd02341b3a1da4d1}\label{classclick_1_1types_1_1ParamType_a8a9a070c53666457cd02341b3a1da4d1} 
+t.\+Any {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, t.\+Any value, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param=None, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None)
+\item 
+str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_acabcc865e7e1273b07152acb4a47f5e5}{get\+\_\+metavar}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} ctx)
+\item 
+str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_af55c50ecee5eecfe52532f7ad571c770}{get\+\_\+missing\+\_\+message}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx)
+\item 
+t.\+Any \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_a31fdfa396ce7c9ee6361bf7193493a87}{convert}} (self, t.\+Any value, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx)
+\item 
+cabc.\+Sequence\+[str]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_a10fe2d2b116b42fcaa109da1df760ee9}{split\+\_\+envvar\+\_\+value}} (self, str rv)
+\item 
+t.\+No\+Return \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_afcc2ce5b635b9f193b47cb62d7fec024}{fail}} (self, str message, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param=None, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None)
+\item 
+list\+[\doxymbox{\hyperlink{classclick_1_1shell__completion_1_1CompletionItem}{Completion\+Item}}]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_af9b01d9709d700384a232a6172be8ed5}{shell\+\_\+complete}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} ctx, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, str incomplete)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1types_1_1ParamType_aa3cca3ee75b343aaa15d1f5941055f1f}\label{classclick_1_1types_1_1ParamType_aa3cca3ee75b343aaa15d1f5941055f1f} 
+t {\bfseries is\+\_\+composite} = False
+\item 
+\Hypertarget{classclick_1_1types_1_1ParamType_a0d5295f71efeb10a1541cea88db5d58f}\label{classclick_1_1types_1_1ParamType_a0d5295f71efeb10a1541cea88db5d58f} 
+t {\bfseries arity} = 1
+\item 
+\Hypertarget{classclick_1_1types_1_1ParamType_a06246ae019eb11dcfe765bc968de78fe}\label{classclick_1_1types_1_1ParamType_a06246ae019eb11dcfe765bc968de78fe} 
+t {\bfseries envvar\+\_\+list\+\_\+splitter} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents the type of a parameter. Validates and converts values
+from the command line or Python into the correct type.
+
+To implement a custom type, subclass and implement at least the
+following:
+
+-   The :attr:`name` class attribute must be set.
+-   Calling an instance of the type with ``None`` must return
+    ``None``. This is already implemented by default.
+-   :meth:`convert` must convert string values to the correct type.
+-   :meth:`convert` must accept values that are already the correct
+    type.
+-   It must be able to convert a value if the ``ctx`` and ``param``
+    arguments are ``None``. This can occur when converting prompt
+    input.
+\end{DoxyVerb}
+ 
+
+\label{classclick_1_1types_1_1ParamType_doc-func-members}
+\Hypertarget{classclick_1_1types_1_1ParamType_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclick_1_1types_1_1ParamType_a31fdfa396ce7c9ee6361bf7193493a87}\index{click.types.ParamType@{click.types.ParamType}!convert@{convert}}
+\index{convert@{convert}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_a31fdfa396ce7c9ee6361bf7193493a87} 
+ t.\+Any click.\+types.\+Param\+Type.\+convert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{t.\+Any}]{value}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} \texorpdfstring{$\vert$}{|} None}]{param}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} \texorpdfstring{$\vert$}{|} None     }]{ctx}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert the value to the correct type. This is not called if
+the value is ``None`` (the missing value).
+
+This must accept string values from the command line, as well as
+values that are already the correct type. It may also convert
+other compatible types.
+
+The ``param`` and ``ctx`` arguments may be ``None`` in certain
+situations, such as when converting prompt input.
+
+If the value cannot be converted, call :meth:`fail` with a
+descriptive message.
+
+:param value: The value to convert.
+:param param: The parameter that is using this type to convert
+    its value. May be ``None``.
+:param ctx: The current context that arrived at this value. May
+    be ``None``.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classclick_1_1types_1_1__NumberParamTypeBase_a44d101a2fef6684064a5912201347c58}{click.\+types.\+\_\+\+Number\+Param\+Type\+Base}}, \doxymbox{\hyperlink{classclick_1_1types_1_1__NumberRangeBase_ad79221ab7cee509d0a4e1036b584e2bc}{click.\+types.\+\_\+\+Number\+Range\+Base}}, \doxymbox{\hyperlink{classclick_1_1types_1_1BoolParamType_a6ad3d74ae90cdd8982dd07913452a1fb}{click.\+types.\+Bool\+Param\+Type}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Choice_a185d06a5ee62fb1ecb194eae42e45692}{click.\+types.\+Choice}}, \doxymbox{\hyperlink{classclick_1_1types_1_1DateTime_afccf292df91449add91a40693c30f158}{click.\+types.\+Date\+Time}}, \doxymbox{\hyperlink{classclick_1_1types_1_1File_a1cd80f9e718b416e0c2410f575be19ed}{click.\+types.\+File}}, \doxymbox{\hyperlink{classclick_1_1types_1_1FuncParamType_affa55055f24245a6b6d52e45edff0d8a}{click.\+types.\+Func\+Param\+Type}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Path_a4229a86074726462dd416d0fcda2939f}{click.\+types.\+Path}}, \doxymbox{\hyperlink{classclick_1_1types_1_1StringParamType_a9cc2205d8d5da118119fdc57840f903e}{click.\+types.\+String\+Param\+Type}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Tuple_a16c63980f72bf711d25e13e4b05b116e}{click.\+types.\+Tuple}}, \doxymbox{\hyperlink{classclick_1_1types_1_1UnprocessedParamType_a78b5d8174dd2a643388fdda6fe348e3c}{click.\+types.\+Unprocessed\+Param\+Type}}, and \doxymbox{\hyperlink{classclick_1_1types_1_1UUIDParameterType_aae13c401953592a1af3e3e94988adffa}{click.\+types.\+UUIDParameter\+Type}}.
+
+\Hypertarget{classclick_1_1types_1_1ParamType_afcc2ce5b635b9f193b47cb62d7fec024}\index{click.types.ParamType@{click.types.ParamType}!fail@{fail}}
+\index{fail@{fail}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{fail()}{fail()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_afcc2ce5b635b9f193b47cb62d7fec024} 
+ t.\+No\+Return click.\+types.\+Param\+Type.\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} \texorpdfstring{$\vert$}{|} None }]{param}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} \texorpdfstring{$\vert$}{|} None }]{ctx}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper method to fail with an invalid value message.\end{DoxyVerb}
+ \Hypertarget{classclick_1_1types_1_1ParamType_acabcc865e7e1273b07152acb4a47f5e5}\index{click.types.ParamType@{click.types.ParamType}!get\_metavar@{get\_metavar}}
+\index{get\_metavar@{get\_metavar}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{get\_metavar()}{get\_metavar()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_acabcc865e7e1273b07152acb4a47f5e5} 
+ str \texorpdfstring{$\vert$}{|} None click.\+types.\+Param\+Type.\+get\+\_\+metavar (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}}]{param}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}}]{ctx}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the metavar default for this param if it provides one.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classclick_1_1types_1_1Choice_a1ccaf24b14597c813676f94468e842e4}{click.\+types.\+Choice}}, and \doxymbox{\hyperlink{classclick_1_1types_1_1DateTime_ae6ba6a661d50ada65852f7997c8ee2ea}{click.\+types.\+Date\+Time}}.
+
+\Hypertarget{classclick_1_1types_1_1ParamType_af55c50ecee5eecfe52532f7ad571c770}\index{click.types.ParamType@{click.types.ParamType}!get\_missing\_message@{get\_missing\_message}}
+\index{get\_missing\_message@{get\_missing\_message}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{get\_missing\_message()}{get\_missing\_message()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_af55c50ecee5eecfe52532f7ad571c770} 
+ str \texorpdfstring{$\vert$}{|} None click.\+types.\+Param\+Type.\+get\+\_\+missing\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}}]{param}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} \texorpdfstring{$\vert$}{|} None}]{ctx}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Optionally might return extra information about a missing
+parameter.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classclick_1_1types_1_1Choice_a7d3a149875e06fb2511dab9b7121fc90}{click.\+types.\+Choice}}.
+
+\Hypertarget{classclick_1_1types_1_1ParamType_af9b01d9709d700384a232a6172be8ed5}\index{click.types.ParamType@{click.types.ParamType}!shell\_complete@{shell\_complete}}
+\index{shell\_complete@{shell\_complete}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{shell\_complete()}{shell\_complete()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_af9b01d9709d700384a232a6172be8ed5} 
+ list\+[\doxymbox{\hyperlink{classclick_1_1shell__completion_1_1CompletionItem}{Completion\+Item}}]\+ click.\+types.\+Param\+Type.\+shell\+\_\+complete (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}}]{ctx}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}}]{param}{, }\item[{str     }]{incomplete}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of
+:class:`~click.shell_completion.CompletionItem` objects for the
+incomplete value. Most types do not provide completions, but
+some do, and this allows custom types to provide custom
+completions as well.
+
+:param ctx: Invocation context for this command.
+:param param: The parameter that is requesting completion.
+:param incomplete: Value being completed. May be empty.
+
+.. versionadded:: 8.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classclick_1_1types_1_1Choice_a62e4be4a275ff109b911698d6bd96abf}{click.\+types.\+Choice}}, \doxymbox{\hyperlink{classclick_1_1types_1_1File_a0832984c2075ba25da00210dffa4d4ac}{click.\+types.\+File}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Path_a6ed5e48fd8116ec2ad4b1645c8a5cdb1}{click.\+types.\+Path}}, and \doxymbox{\hyperlink{classtyper_1_1models_1_1TyperPath_a5204cd50c2691b9c4cd44f1ebb0a4dc2}{typer.\+models.\+Typer\+Path}}.
+
+\Hypertarget{classclick_1_1types_1_1ParamType_a10fe2d2b116b42fcaa109da1df760ee9}\index{click.types.ParamType@{click.types.ParamType}!split\_envvar\_value@{split\_envvar\_value}}
+\index{split\_envvar\_value@{split\_envvar\_value}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{split\_envvar\_value()}{split\_envvar\_value()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_a10fe2d2b116b42fcaa109da1df760ee9} 
+ cabc.\+Sequence\+[str]\+ click.\+types.\+Param\+Type.\+split\+\_\+envvar\+\_\+value (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{rv}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a value from an environment variable this splits it up
+into small chunks depending on the defined envvar list splitter.
+
+If the splitter is set to `None`, which means that whitespace splits,
+then leading and trailing whitespace is ignored.  Otherwise, leading
+and trailing splitters usually lead to empty items being included.
+\end{DoxyVerb}
+ \Hypertarget{classclick_1_1types_1_1ParamType_aa61d95bae6a1199881c46bf5788c61c3}\index{click.types.ParamType@{click.types.ParamType}!to\_info\_dict@{to\_info\_dict}}
+\index{to\_info\_dict@{to\_info\_dict}!click.types.ParamType@{click.types.ParamType}}
+\doxysubsubsection{\texorpdfstring{to\_info\_dict()}{to\_info\_dict()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1ParamType_aa61d95bae6a1199881c46bf5788c61c3} 
+ dict\+[str, t.\+Any]\+ click.\+types.\+Param\+Type.\+to\+\_\+info\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Gather information that could be useful for a tool generating
+user-facing documentation.
+
+Use :meth:`click.Context.to_info_dict` to traverse the entire
+CLI structure.
+
+.. versionadded:: 8.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classclick_1_1types_1_1__NumberRangeBase_a7a1d17e10f2334cba7fdefa85853d4e7}{click.\+types.\+\_\+\+Number\+Range\+Base}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Choice_a85e88bd9d2cebc683af8016458107ca8}{click.\+types.\+Choice}}, \doxymbox{\hyperlink{classclick_1_1types_1_1DateTime_ab61b7d2503fed816fd34f209b9e990b8}{click.\+types.\+Date\+Time}}, \doxymbox{\hyperlink{classclick_1_1types_1_1File_a7a937fa6dd39a2a99d000ddc45a3392c}{click.\+types.\+File}}, \doxymbox{\hyperlink{classclick_1_1types_1_1FuncParamType_ae4cdff278caa34d9dbffc9f898c4cf8a}{click.\+types.\+Func\+Param\+Type}}, \doxymbox{\hyperlink{classclick_1_1types_1_1Path_a82af16dca327e22adcc96ea90ddee722}{click.\+types.\+Path}}, and \doxymbox{\hyperlink{classclick_1_1types_1_1Tuple_a53818e537c9eb309f2a5b1137d8cff14}{click.\+types.\+Tuple}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+click/\+types.\+py\end{DoxyCompactItemize}

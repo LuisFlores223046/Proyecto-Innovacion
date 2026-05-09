@@ -1,0 +1,114 @@
+\doxysection{pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Adjacent\+Temp\+Directory Class Reference}
+\hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory}{}\label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory}\index{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory@{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory}}
+Inheritance diagram for pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Adjacent\+Temp\+Directory:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a9cdb443d6625af94756fc574a6fb453a}\label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a9cdb443d6625af94756fc574a6fb453a} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str original, Optional\+[bool]\+ delete=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1TempDirectory}{pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Temp\+Directory}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Optional\+[str]\+ path=None, Union\+[bool, None, \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1__Default}{\+\_\+\+Default}}]\+ delete=\+\_\+default, str kind="{}temp"{}, bool globally\+\_\+managed=False, bool ignore\+\_\+cleanup\+\_\+errors=True)
+\item 
+str {\bfseries path} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\+\_\+T {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (\+\_\+T self)
+\item 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Any exc, Any value, Any tb)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1TempDirectory_a0b5c2f5d00e1a02d89e9231960bb1598}{cleanup}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_afec831e8f80d0162660d0e8a8509080f}\label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_afec831e8f80d0162660d0e8a8509080f} 
+{\bfseries original} = original.\+rstrip("{}/\+\textbackslash{}\textbackslash{}"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1TempDirectory}{pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Temp\+Directory}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries delete} = delete
+\item 
+{\bfseries kind} = kind
+\item 
+{\bfseries ignore\+\_\+cleanup\+\_\+errors} = ignore\+\_\+cleanup\+\_\+errors
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a7e8d25f15903fb8d220465e1f7b2f137}\label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a7e8d25f15903fb8d220465e1f7b2f137} 
+str {\bfseries LEADING\+\_\+\+CHARS} = "{}-\/\texorpdfstring{$\sim$}{\string~}.=\%0123456789"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Generator\+[str, None, None]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a2589ef04c1e00294ca029890a036c638}{\+\_\+generate\+\_\+names}} (cls, str name)
+\item 
+str \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_ae6b339ec2dd45257d8aebe3559ef14f4}{\+\_\+create}} (self, str kind)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1TempDirectory}{pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Temp\+Directory}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+path} = path
+\item 
+bool {\bfseries \+\_\+deleted} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Helper class that creates a temporary directory adjacent to a real one.
+
+Attributes:
+    original
+        The original directory to create a temp directory for.
+    path
+        After calling create() or entering, contains the full
+        path to the temporary directory.
+    delete
+        Whether the directory should be deleted when exiting
+        (when used as a contextmanager)
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_doc-func-members}
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_ae6b339ec2dd45257d8aebe3559ef14f4}\index{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory@{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory}!\_create@{\_create}}
+\index{\_create@{\_create}!pip.\_internal.utils.temp\_dir.AdjacentTempDirectory@{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory}}
+\doxysubsubsection{\texorpdfstring{\_create()}{\_create()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_ae6b339ec2dd45257d8aebe3559ef14f4} 
+ str pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Adjacent\+Temp\+Directory.\+\_\+create (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{kind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create a temporary directory and store its path in self.path\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1TempDirectory_a1fd37ecb0a9ac0b50ac7417acaca45a8}{pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Temp\+Directory}}.
+
+\Hypertarget{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a2589ef04c1e00294ca029890a036c638}\index{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory@{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory}!\_generate\_names@{\_generate\_names}}
+\index{\_generate\_names@{\_generate\_names}!pip.\_internal.utils.temp\_dir.AdjacentTempDirectory@{pip.\_internal.utils.temp\_dir.AdjacentTempDirectory}}
+\doxysubsubsection{\texorpdfstring{\_generate\_names()}{\_generate\_names()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1utils_1_1temp__dir_1_1AdjacentTempDirectory_a2589ef04c1e00294ca029890a036c638} 
+ Generator\+[str, None, None]\+ pip.\+\_\+internal.\+utils.\+temp\+\_\+dir.\+Adjacent\+Temp\+Directory.\+\_\+generate\+\_\+names (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Generates a series of temporary names.
+
+The algorithm replaces the leading characters in the name
+with ones that are valid filesystem characters, but are not
+valid package names (for both Python and pip definitions of
+package).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+internal/\+utils/\+temp\+\_\+dir.\+py\end{DoxyCompactItemize}

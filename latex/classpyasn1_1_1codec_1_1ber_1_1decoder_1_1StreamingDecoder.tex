@@ -1,0 +1,119 @@
+\doxysection{pyasn1.\+codec.\+ber.\+decoder.\+Streaming\+Decoder Class Reference}
+\hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder}{}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder}\index{pyasn1.codec.ber.decoder.StreamingDecoder@{pyasn1.codec.ber.decoder.StreamingDecoder}}
+Inheritance diagram for pyasn1.\+codec.\+ber.\+decoder.\+Streaming\+Decoder:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a0b5bb7e9da3c17106b46b877f40fc6a1}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a0b5bb7e9da3c17106b46b877f40fc6a1} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, substrate, asn1\+Spec=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a34d20fb5143af5f9364c9209dac3883b}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a34d20fb5143af5f9364c9209dac3883b} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_ad9e7fae2b7532b7472b90584ba921f75}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_ad9e7fae2b7532b7472b90584ba921f75} 
+{\bfseries SINGLE\+\_\+\+ITEM\+\_\+\+DECODER} = \doxymbox{\hyperlink{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1SingleItemDecoder}{Single\+Item\+Decoder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_afa3eddb80fe4c05bf41ae743b9976732}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_afa3eddb80fe4c05bf41ae743b9976732} 
+{\bfseries \+\_\+single\+Item\+Decoder} = self.\+SINGLE\+\_\+\+ITEM\+\_\+\+DECODER(\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_ac67936c354ea0ad3a8fa6b96762d11cd}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_ac67936c354ea0ad3a8fa6b96762d11cd} 
+{\bfseries \+\_\+substrate} = as\+Seekable\+Stream(substrate)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a6fca67043d269cd75ae982048f8bca65}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a6fca67043d269cd75ae982048f8bca65} 
+{\bfseries \+\_\+asn1\+Spec} = asn1\+Spec
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a30e19d3694d5de50c4b4a44b287442be}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder_a30e19d3694d5de50c4b4a44b287442be} 
+{\bfseries \+\_\+options} = options
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create an iterator that turns BER/CER/DER byte stream into ASN.1 objects.
+
+On each iteration, consume whatever BER/CER/DER serialization is
+available in the `substrate` stream-like object and turns it into
+one or more, possibly nested, ASN.1 objects.
+
+Parameters
+----------
+substrate: :py:class:`file`, :py:class:`io.BytesIO`
+    BER/CER/DER serialization in form of a byte stream
+
+Keyword Args
+------------
+asn1Spec: :py:class:`~pyasn1.type.base.PyAsn1Item`
+    A pyasn1 type object to act as a template guiding the decoder.
+    Depending on the ASN.1 structure being decoded, `asn1Spec` may
+    or may not be required. One of the reasons why `asn1Spec` may
+    me required is that ASN.1 structure is encoded in the *IMPLICIT*
+    tagging mode.
+
+Yields
+------
+: :py:class:`~pyasn1.type.base.PyAsn1Item`, :py:class:`~pyasn1.error.SubstrateUnderrunError`
+    Decoded ASN.1 object (possibly, nested) or
+    :py:class:`~pyasn1.error.SubstrateUnderrunError` object indicating
+    insufficient BER/CER/DER serialization on input to fully recover ASN.1
+    objects from it.
+    
+    In the latter case the caller is advised to ensure some more data in
+    the input stream, then call the iterator again. The decoder will resume
+    the decoding process using the newly arrived data.
+
+    The `context` property of :py:class:`~pyasn1.error.SubstrateUnderrunError`
+    object might hold a reference to the partially populated ASN.1 object
+    being reconstructed.
+
+Raises
+------
+~pyasn1.error.PyAsn1Error, ~pyasn1.error.EndOfStreamError
+    `PyAsn1Error` on deserialization error, `EndOfStreamError` on
+     premature stream closure.
+
+Examples
+--------
+Decode BER serialisation without ASN.1 schema
+
+.. code-block:: pycon
+
+    >>> stream = io.BytesIO(
+    ...    b'0\t\x02\x01\x01\x02\x01\x02\x02\x01\x03')
+    >>>
+    >>> for asn1Object in StreamingDecoder(stream):
+    ...     print(asn1Object)
+    >>>
+    SequenceOf:
+     1 2 3
+
+Decode BER serialisation with ASN.1 schema
+
+.. code-block:: pycon
+
+    >>> stream = io.BytesIO(
+    ...    b'0\t\x02\x01\x01\x02\x01\x02\x02\x01\x03')
+    >>>
+    >>> schema = SequenceOf(componentType=Integer())
+    >>>
+    >>> decoder = StreamingDecoder(stream, asn1Spec=schema)
+    >>> for asn1Object in decoder:
+    ...     print(asn1Object)
+    >>>
+    SequenceOf:
+     1 2 3
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+codec/\+ber/\+decoder.\+py\end{DoxyCompactItemize}

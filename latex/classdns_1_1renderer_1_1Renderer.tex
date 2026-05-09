@@ -1,0 +1,275 @@
+\doxysection{dns.\+renderer.\+Renderer Class Reference}
+\hypertarget{classdns_1_1renderer_1_1Renderer}{}\label{classdns_1_1renderer_1_1Renderer}\index{dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_ad4c51eadb0c58f720dcff2f17e9aaf25}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, id=None, flags=0, max\+\_\+size=65535, origin=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a2ac1cd9831ffcc261dcbbef13cc22191}{add\+\_\+question}} (self, qname, rdtype, rdclass=dns.\+rdataclass.\+IN)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a48cf72e106bd1ff92af90c97dbc12deb}{add\+\_\+rrset}} (self, section, rrset, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_affe516cc1fbe8d96efec9afdc8db6852}{add\+\_\+rdataset}} (self, section, name, rdataset, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a193828c80d6c7ea0498f61fb35976b6a}{add\+\_\+opt}} (self, opt, pad=0, opt\+\_\+size=0, tsig\+\_\+size=0)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_ab6dd27c8ace44f77d980efa778be4dda}{add\+\_\+edns}} (self, edns, ednsflags, payload, options=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a0367dfef8e739aed5fbca8b0f97e1706}{add\+\_\+tsig}} (self, keyname, secret, fudge, id, tsig\+\_\+error, other\+\_\+data, request\+\_\+mac, algorithm=dns.\+tsig.\+default\+\_\+algorithm)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_ac313a238e0360fe99e8ae9c2c853e75e}{add\+\_\+multi\+\_\+tsig}} (self, ctx, keyname, secret, fudge, id, tsig\+\_\+error, other\+\_\+data, request\+\_\+mac, algorithm=dns.\+tsig.\+default\+\_\+algorithm)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a6f1a06b83b12fd5cf01a2ec9bd610091}{write\+\_\+header}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a7d565d198f52062f4357c50e5fb7fec6}{get\+\_\+wire}} (self)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_aa3e21d69c3f70d08e7c7c54a78e90216}{reserve}} (self, int size)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a85afe173df3071846073ee8882525685}{release\+\_\+reserved}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_acce44cecc3720989d3b16d88a5662989}\label{classdns_1_1renderer_1_1Renderer_acce44cecc3720989d3b16d88a5662989} 
+{\bfseries output} = io.\+Bytes\+IO()
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a142cd3d8d1d9af9b75ffa212250e8c91}\label{classdns_1_1renderer_1_1Renderer_a142cd3d8d1d9af9b75ffa212250e8c91} 
+{\bfseries id} = random.\+randint(0, 65535)
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a4fac09e2a3eca922925b813f06ea7eec}\label{classdns_1_1renderer_1_1Renderer_a4fac09e2a3eca922925b813f06ea7eec} 
+{\bfseries flags} = flags
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a542ab7af26d8dae12615655c5b597716}\label{classdns_1_1renderer_1_1Renderer_a542ab7af26d8dae12615655c5b597716} 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a1388d3f6a67730e1c2f59fd709bb54f6}\label{classdns_1_1renderer_1_1Renderer_a1388d3f6a67730e1c2f59fd709bb54f6} 
+{\bfseries origin} = origin
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_aa8af5fbefc0a909bf18a332e1642d066}\label{classdns_1_1renderer_1_1Renderer_aa8af5fbefc0a909bf18a332e1642d066} 
+dict {\bfseries compress} = \{\}
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_ad321c8ea53870acf703da4d43dcd4c83}\label{classdns_1_1renderer_1_1Renderer_ad321c8ea53870acf703da4d43dcd4c83} 
+{\bfseries section} = QUESTION
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a8ec5009853e72081919b5a4ee92568b0}\label{classdns_1_1renderer_1_1Renderer_a8ec5009853e72081919b5a4ee92568b0} 
+list {\bfseries counts} = \+[0, 0, 0, 0]\+
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a8502d203a4a33c862a569b5e0b0e8b35}\label{classdns_1_1renderer_1_1Renderer_a8502d203a4a33c862a569b5e0b0e8b35} 
+str {\bfseries mac} = "{}"{}
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_ae9692321111eea5e8aac7526c21fd66a}\label{classdns_1_1renderer_1_1Renderer_ae9692321111eea5e8aac7526c21fd66a} 
+int {\bfseries reserved} = 0
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_ad22b05ba101be7070a7464f748e66a48}\label{classdns_1_1renderer_1_1Renderer_ad22b05ba101be7070a7464f748e66a48} 
+bool {\bfseries was\+\_\+padded} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_a14d3a2acd1412de5eb96ae000e71612a}{\+\_\+rollback}} (self, where)
+\item 
+\doxymbox{\hyperlink{classdns_1_1renderer_1_1Renderer_adeee2598a8bc5a10a70c2d9ebe1c79e9}{\+\_\+set\+\_\+section}} (self, section)
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_af707680496907561c0ca3469be7b41f3}\label{classdns_1_1renderer_1_1Renderer_af707680496907561c0ca3469be7b41f3} 
+{\bfseries \+\_\+track\+\_\+size} (self)
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a4f183f7ecbc2fcb1323e2d18594eff4c}\label{classdns_1_1renderer_1_1Renderer_a4f183f7ecbc2fcb1323e2d18594eff4c} 
+{\bfseries \+\_\+temporarily\+\_\+seek\+\_\+to} (self, where)
+\item 
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a3f70d9fca275cd0c696b5d75277af156}\label{classdns_1_1renderer_1_1Renderer_a3f70d9fca275cd0c696b5d75277af156} 
+{\bfseries \+\_\+write\+\_\+tsig} (self, tsig, keyname)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Helper class for building DNS wire-format messages.
+
+Most applications can use the higher-level L{dns.message.Message}
+class and its to_wire() method to generate wire-format messages.
+This class is for those applications which need finer control
+over the generation of messages.
+
+Typical use::
+
+    r = dns.renderer.Renderer(id=1, flags=0x80, max_size=512)
+    r.add_question(qname, qtype, qclass)
+    r.add_rrset(dns.renderer.ANSWER, rrset_1)
+    r.add_rrset(dns.renderer.ANSWER, rrset_2)
+    r.add_rrset(dns.renderer.AUTHORITY, ns_rrset)
+    r.add_rrset(dns.renderer.ADDITIONAL, ad_rrset_1)
+    r.add_rrset(dns.renderer.ADDITIONAL, ad_rrset_2)
+    r.add_edns(0, 0, 4096)
+    r.write_header()
+    r.add_tsig(keyname, secret, 300, 1, 0, '', request_mac)
+    wire = r.get_wire()
+
+If padding is going to be used, then the OPT record MUST be
+written after everything else in the additional section except for
+the TSIG (if any).
+
+output, an io.BytesIO, where rendering is written
+
+id: the message id
+
+flags: the message flags
+
+max_size: the maximum size of the message
+
+origin: the origin to use when rendering relative names
+
+compress: the compression table
+
+section: an int, the section currently being rendered
+
+counts: list of the number of RRs in each section
+
+mac: the MAC of the rendered message (if TSIG was used)
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1renderer_1_1Renderer_doc-constructors}
+\Hypertarget{classdns_1_1renderer_1_1Renderer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdns_1_1renderer_1_1Renderer_ad4c51eadb0c58f720dcff2f17e9aaf25}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_ad4c51eadb0c58f720dcff2f17e9aaf25} 
+dns.\+renderer.\+Renderer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{id}{ = {\ttfamily None}, }\item[{}]{flags}{ = {\ttfamily 0}, }\item[{}]{max\+\_\+size}{ = {\ttfamily 65535}, }\item[{}]{origin}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize a new renderer.\end{DoxyVerb}
+ 
+
+\label{classdns_1_1renderer_1_1Renderer_doc-func-members}
+\Hypertarget{classdns_1_1renderer_1_1Renderer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1renderer_1_1Renderer_a14d3a2acd1412de5eb96ae000e71612a}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!\_rollback@{\_rollback}}
+\index{\_rollback@{\_rollback}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{\_rollback()}{\_rollback()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a14d3a2acd1412de5eb96ae000e71612a} 
+dns.\+renderer.\+Renderer.\+\_\+rollback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{where}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Truncate the output buffer at offset *where*, and remove any
+compression table entries that pointed beyond the truncation
+point.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_adeee2598a8bc5a10a70c2d9ebe1c79e9}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!\_set\_section@{\_set\_section}}
+\index{\_set\_section@{\_set\_section}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{\_set\_section()}{\_set\_section()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_adeee2598a8bc5a10a70c2d9ebe1c79e9} 
+dns.\+renderer.\+Renderer.\+\_\+set\+\_\+section (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Set the renderer's current section.
+
+Sections must be rendered order: QUESTION, ANSWER, AUTHORITY,
+ADDITIONAL.  Sections may be empty.
+
+Raises dns.exception.FormError if an attempt was made to set
+a section value less than the current section.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_ab6dd27c8ace44f77d980efa778be4dda}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_edns@{add\_edns}}
+\index{add\_edns@{add\_edns}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_edns()}{add\_edns()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_ab6dd27c8ace44f77d980efa778be4dda} 
+dns.\+renderer.\+Renderer.\+add\+\_\+edns (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{edns}{, }\item[{}]{ednsflags}{, }\item[{}]{payload}{, }\item[{}]{options}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add an EDNS OPT record to the message.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_ac313a238e0360fe99e8ae9c2c853e75e}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_multi\_tsig@{add\_multi\_tsig}}
+\index{add\_multi\_tsig@{add\_multi\_tsig}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_multi\_tsig()}{add\_multi\_tsig()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_ac313a238e0360fe99e8ae9c2c853e75e} 
+dns.\+renderer.\+Renderer.\+add\+\_\+multi\+\_\+tsig (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{ctx}{, }\item[{}]{keyname}{, }\item[{}]{secret}{, }\item[{}]{fudge}{, }\item[{}]{id}{, }\item[{}]{tsig\+\_\+error}{, }\item[{}]{other\+\_\+data}{, }\item[{}]{request\+\_\+mac}{, }\item[{}]{algorithm}{ = {\ttfamily dns.tsig.default\+\_\+algorithm}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a TSIG signature to the message. Unlike add_tsig(), this can be
+used for a series of consecutive DNS envelopes, e.g. for a zone
+transfer over TCP [RFC2845, 4.4].
+
+For the first message in the sequence, give ctx=None. For each
+subsequent message, give the ctx that was returned from the
+add_multi_tsig() call for the previous message.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a193828c80d6c7ea0498f61fb35976b6a}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_opt@{add\_opt}}
+\index{add\_opt@{add\_opt}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_opt()}{add\_opt()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a193828c80d6c7ea0498f61fb35976b6a} 
+dns.\+renderer.\+Renderer.\+add\+\_\+opt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{opt}{, }\item[{}]{pad}{ = {\ttfamily 0}, }\item[{}]{opt\+\_\+size}{ = {\ttfamily 0}, }\item[{}]{tsig\+\_\+size}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add *opt* to the additional section, applying padding if desired.  The
+padding will take the specified precomputed OPT size and TSIG size into
+account.
+
+Note that we don't have reliable way of knowing how big a GSS-TSIG digest
+might be, so we we might not get an even multiple of the pad in that case.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a2ac1cd9831ffcc261dcbbef13cc22191}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_question@{add\_question}}
+\index{add\_question@{add\_question}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_question()}{add\_question()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a2ac1cd9831ffcc261dcbbef13cc22191} 
+dns.\+renderer.\+Renderer.\+add\+\_\+question (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{qname}{, }\item[{}]{rdtype}{, }\item[{}]{rdclass}{ = {\ttfamily dns.rdataclass.IN}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a question to the message.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_affe516cc1fbe8d96efec9afdc8db6852}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_rdataset@{add\_rdataset}}
+\index{add\_rdataset@{add\_rdataset}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_rdataset()}{add\_rdataset()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_affe516cc1fbe8d96efec9afdc8db6852} 
+dns.\+renderer.\+Renderer.\+add\+\_\+rdataset (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section}{, }\item[{}]{name}{, }\item[{}]{rdataset}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add the rdataset to the specified section, using the specified
+name as the owner name.
+
+Any keyword arguments are passed on to the rdataset's to_wire()
+routine.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a48cf72e106bd1ff92af90c97dbc12deb}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_rrset@{add\_rrset}}
+\index{add\_rrset@{add\_rrset}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_rrset()}{add\_rrset()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a48cf72e106bd1ff92af90c97dbc12deb} 
+dns.\+renderer.\+Renderer.\+add\+\_\+rrset (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section}{, }\item[{}]{rrset}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add the rrset to the specified section.
+
+Any keyword arguments are passed on to the rdataset's to_wire()
+routine.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a0367dfef8e739aed5fbca8b0f97e1706}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!add\_tsig@{add\_tsig}}
+\index{add\_tsig@{add\_tsig}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{add\_tsig()}{add\_tsig()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a0367dfef8e739aed5fbca8b0f97e1706} 
+dns.\+renderer.\+Renderer.\+add\+\_\+tsig (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{keyname}{, }\item[{}]{secret}{, }\item[{}]{fudge}{, }\item[{}]{id}{, }\item[{}]{tsig\+\_\+error}{, }\item[{}]{other\+\_\+data}{, }\item[{}]{request\+\_\+mac}{, }\item[{}]{algorithm}{ = {\ttfamily dns.tsig.default\+\_\+algorithm}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a TSIG signature to the message.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a7d565d198f52062f4357c50e5fb7fec6}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!get\_wire@{get\_wire}}
+\index{get\_wire@{get\_wire}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{get\_wire()}{get\_wire()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a7d565d198f52062f4357c50e5fb7fec6} 
+dns.\+renderer.\+Renderer.\+get\+\_\+wire (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the wire format message.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a85afe173df3071846073ee8882525685}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!release\_reserved@{release\_reserved}}
+\index{release\_reserved@{release\_reserved}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{release\_reserved()}{release\_reserved()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a85afe173df3071846073ee8882525685} 
+ None dns.\+renderer.\+Renderer.\+release\+\_\+reserved (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Release the reserved bytes.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_aa3e21d69c3f70d08e7c7c54a78e90216}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!reserve@{reserve}}
+\index{reserve@{reserve}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_aa3e21d69c3f70d08e7c7c54a78e90216} 
+ None dns.\+renderer.\+Renderer.\+reserve (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reserve *size* bytes.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1renderer_1_1Renderer_a6f1a06b83b12fd5cf01a2ec9bd610091}\index{dns.renderer.Renderer@{dns.renderer.Renderer}!write\_header@{write\_header}}
+\index{write\_header@{write\_header}!dns.renderer.Renderer@{dns.renderer.Renderer}}
+\doxysubsubsection{\texorpdfstring{write\_header()}{write\_header()}}
+{\footnotesize\ttfamily \label{classdns_1_1renderer_1_1Renderer_a6f1a06b83b12fd5cf01a2ec9bd610091} 
+dns.\+renderer.\+Renderer.\+write\+\_\+header (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write the DNS message header.
+
+Writing the DNS message header is done after all sections
+have been rendered, but before the optional TSIG signature
+is added.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+renderer.\+py\end{DoxyCompactItemize}

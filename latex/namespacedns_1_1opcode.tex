@@ -1,0 +1,115 @@
+\doxysection{dns.\+opcode Namespace Reference}
+\hypertarget{namespacedns_1_1opcode}{}\label{namespacedns_1_1opcode}\index{dns.opcode@{dns.opcode}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}}
+\item 
+class \doxymbox{\hyperlink{classdns_1_1opcode_1_1UnknownOpcode}{Unknown\+Opcode}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} \doxymbox{\hyperlink{namespacedns_1_1opcode_a91668496a346b4fb4dc68cf9e290a70b}{from\+\_\+text}} (str text)
+\item 
+\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} \doxymbox{\hyperlink{namespacedns_1_1opcode_a78149f87ace81abdb70b8bf405455c21}{from\+\_\+flags}} (int flags)
+\item 
+int \doxymbox{\hyperlink{namespacedns_1_1opcode_a2776ca02532a5755edbe0499b5ec1172}{to\+\_\+flags}} (\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} value)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1opcode_a18305f67d992c921f5679e87040b863d}{to\+\_\+text}} (\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} value)
+\item 
+bool \doxymbox{\hyperlink{namespacedns_1_1opcode_a51694dc3cb037dab780a6f85494b2fa4}{is\+\_\+update}} (int flags)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedns_1_1opcode_a89c9ebf278bca64cd1d0781215b1420d}\label{namespacedns_1_1opcode_a89c9ebf278bca64cd1d0781215b1420d} 
+{\bfseries QUERY} = Opcode.\+QUERY
+\begin{DoxyCompactList}\small\item\em BEGIN generated \doxylink{classdns_1_1opcode_1_1Opcode}{Opcode} constants. \end{DoxyCompactList}\item 
+\Hypertarget{namespacedns_1_1opcode_aa573dc5e0aa5f2f94c6a4165a59a696b}\label{namespacedns_1_1opcode_aa573dc5e0aa5f2f94c6a4165a59a696b} 
+{\bfseries IQUERY} = Opcode.\+IQUERY
+\item 
+\Hypertarget{namespacedns_1_1opcode_ac852d859f27f8f9721872814f285cbc4}\label{namespacedns_1_1opcode_ac852d859f27f8f9721872814f285cbc4} 
+{\bfseries STATUS} = Opcode.\+STATUS
+\item 
+\Hypertarget{namespacedns_1_1opcode_ac4a30f3865ff8de18c702faf0c162ef5}\label{namespacedns_1_1opcode_ac4a30f3865ff8de18c702faf0c162ef5} 
+{\bfseries NOTIFY} = Opcode.\+NOTIFY
+\item 
+\Hypertarget{namespacedns_1_1opcode_a0a1362d205970a753c0c8addb4682c78}\label{namespacedns_1_1opcode_a0a1362d205970a753c0c8addb4682c78} 
+{\bfseries UPDATE} = Opcode.\+UPDATE
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}DNS Opcodes.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1opcode_doc-func-members}
+\Hypertarget{namespacedns_1_1opcode_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1opcode_a78149f87ace81abdb70b8bf405455c21}\index{dns.opcode@{dns.opcode}!from\_flags@{from\_flags}}
+\index{from\_flags@{from\_flags}!dns.opcode@{dns.opcode}}
+\doxysubsubsection{\texorpdfstring{from\_flags()}{from\_flags()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1opcode_a78149f87ace81abdb70b8bf405455c21} 
+ \doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} from\+\_\+flags (\begin{DoxyParamCaption}\item[{int}]{flags}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract an opcode from DNS message flags.
+
+*flags*, an ``int``, the DNS flags.
+
+Returns an ``int``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1opcode_a91668496a346b4fb4dc68cf9e290a70b}\index{dns.opcode@{dns.opcode}!from\_text@{from\_text}}
+\index{from\_text@{from\_text}!dns.opcode@{dns.opcode}}
+\doxysubsubsection{\texorpdfstring{from\_text()}{from\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1opcode_a91668496a346b4fb4dc68cf9e290a70b} 
+ \doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}} from\+\_\+text (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert text into an opcode.
+
+*text*, a ``str``, the textual opcode
+
+Raises ``dns.opcode.UnknownOpcode`` if the opcode is unknown.
+
+Returns an ``int``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1opcode_a51694dc3cb037dab780a6f85494b2fa4}\index{dns.opcode@{dns.opcode}!is\_update@{is\_update}}
+\index{is\_update@{is\_update}!dns.opcode@{dns.opcode}}
+\doxysubsubsection{\texorpdfstring{is\_update()}{is\_update()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1opcode_a51694dc3cb037dab780a6f85494b2fa4} 
+ bool is\+\_\+update (\begin{DoxyParamCaption}\item[{int}]{flags}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Is the opcode in flags UPDATE?
+
+*flags*, an ``int``, the DNS message flags.
+
+Returns a ``bool``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1opcode_a2776ca02532a5755edbe0499b5ec1172}\index{dns.opcode@{dns.opcode}!to\_flags@{to\_flags}}
+\index{to\_flags@{to\_flags}!dns.opcode@{dns.opcode}}
+\doxysubsubsection{\texorpdfstring{to\_flags()}{to\_flags()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1opcode_a2776ca02532a5755edbe0499b5ec1172} 
+ int to\+\_\+flags (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}}}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert an opcode to a value suitable for ORing into DNS message
+flags.
+
+*value*, an ``int``, the DNS opcode value.
+
+Returns an ``int``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1opcode_a18305f67d992c921f5679e87040b863d}\index{dns.opcode@{dns.opcode}!to\_text@{to\_text}}
+\index{to\_text@{to\_text}!dns.opcode@{dns.opcode}}
+\doxysubsubsection{\texorpdfstring{to\_text()}{to\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1opcode_a18305f67d992c921f5679e87040b863d} 
+ str to\+\_\+text (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1opcode_1_1Opcode}{Opcode}}}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert an opcode to text.
+
+*value*, an ``int`` the opcode value,
+
+Raises ``dns.opcode.UnknownOpcode`` if the opcode is unknown.
+
+Returns a ``str``.
+\end{DoxyVerb}
+ 

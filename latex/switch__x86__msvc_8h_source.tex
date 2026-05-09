@@ -1,0 +1,259 @@
+\doxysection{switch\+\_\+x86\+\_\+msvc.\+h}
+\hypertarget{switch__x86__msvc_8h_source}{}\label{switch__x86__msvc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x86\_msvc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x86\_msvc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 24-\/Nov-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ \ needed\ to\ add\ another\ magic\ constant\ to\ insure}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ \ \ \ that\ f\ in\ slp\_eval\_frame(PyFrameObject\ *f)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ \ STACK\_REFPLUS\ will\ probably\ be\ 1\ in\ most\ cases.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ \ \ \ gets\ included\ into\ the\ saved\ stack\ area.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ 26-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ \ \ \ again\ as\ a\ result\ of\ virtualized\ stack\ access,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ \ \ \ the\ compiler\ used\ less\ registers.\ Needed\ to}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ \ explicit\ mention\ registers\ in\ order\ to\ get\ them\ saved.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ Thanks\ to\ Jeff\ Senn\ for\ pointing\ this\ out\ and\ help.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ 17-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ \ \ after\ virtualizing\ stack\ save/restore,\ the}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ \ \ stack\ size\ shrunk\ a\ bit.\ Needed\ to\ introduce}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ \ \ an\ adjustment\ STACK\_MAGIC\ per\ platform.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 15-\/Sep-\/02\ \ Gerd\ Woetzel\ \ \ \ \ \ \ <gerd.woetzel@GMD.DE>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ slightly\ changed\ framework\ for\ sparc}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ 01-\/Mar-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ Initial\ final\ version\ after\ lots\ of\ iterations\ for\ i386.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ alloca\ \_alloca}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/*\ Some\ magic\ to\ quell\ warnings\ and\ keep\ slp\_switch()\ from\ crashing\ when\ built}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ with\ VC90.\ Disable\ global\ optimizations,\ and\ the\ warning:\ frame\ pointer}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ register\ 'ebp'\ modified\ by\ inline\ assembly\ code.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ We\ used\ to\ just\ disable\ global\ optimizations\ ("{}g"{})\ but\ upstream\ stackless}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ Python,\ as\ well\ as\ stackman,\ turn\ off\ all\ optimizations.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{}}
+\DoxyCodeLine{00040\ \textcolor{comment}{References:}}
+\DoxyCodeLine{00041\ \textcolor{comment}{https://github.com/stackless-\/dev/stackman/blob/dbc72fe5207a2055e658c819fdeab9731dee78b9/stackman/platforms/switch\_x86\_msvc.h}}
+\DoxyCodeLine{00042\ \textcolor{comment}{https://github.com/stackless-\/dev/stackless/blob/main-\/slp/Stackless/platf/switch\_x86\_msvc.h}}
+\DoxyCodeLine{00043\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ WIN32\_LEAN\_AND\_MEAN}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#pragma\ optimize("{}"{},\ off)\ }\textcolor{comment}{/*\ so\ that\ autos\ are\ stored\ on\ the\ stack\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#pragma\ warning(disable:4731)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#pragma\ warning(disable:4733)\ }\textcolor{comment}{/*\ disable\ warning\ about\ modifying\ FS[0]\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ GREENLET\_NEEDS\_EXCEPTION\_STATE\_SAVED}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_GExceptionRegistration\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{struct\ }\_GExceptionRegistration*\ prev;}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}*\ handler\_f;}
+\DoxyCodeLine{00130\ \}\ GExceptionRegistration;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00133\ slp\_set\_exception\_state(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *\textcolor{keyword}{const}\ seh\_state)}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Because\ the\ stack\ from\ from\ which\ we\ do\ this\ is\ ALSO\ a\ handler,\ and}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ that\ one\ we\ want\ to\ keep,\ we\ need\ to\ relink\ the\ current\ SEH\ handler}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ frame\ to\ point\ to\ this\ one,\ cutting\ out\ the\ middle\ men,\ as\ it\ were.}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ Entering\ a\ try\ block\ doesn't\ change\ the\ SEH\ frame,\ but\ entering\ a}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ function\ containing\ a\ try\ block\ does.}}
+\DoxyCodeLine{00141\ \ \ \ \ GExceptionRegistration*\ current\_seh\_state\ =\ (GExceptionRegistration*)\_\_readfsdword(FIELD\_OFFSET(NT\_TIB,\ ExceptionList));}
+\DoxyCodeLine{00142\ \ \ \ \ current\_seh\_state-\/>prev\ =\ (GExceptionRegistration*)seh\_state;}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{static}\ GExceptionRegistration*}
+\DoxyCodeLine{00147\ x86\_slp\_get\_third\_oldest\_handler()}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ GExceptionRegistration*\ a\ =\ NULL;\ \textcolor{comment}{/*\ Closest\ to\ the\ top\ */}}
+\DoxyCodeLine{00150\ \ \ \ \ GExceptionRegistration*\ b\ =\ NULL;\ \textcolor{comment}{/*\ second\ */}}
+\DoxyCodeLine{00151\ \ \ \ \ GExceptionRegistration*\ c\ =\ NULL;}
+\DoxyCodeLine{00152\ \ \ \ \ GExceptionRegistration*\ seh\_state\ =\ (GExceptionRegistration*)\_\_readfsdword(FIELD\_OFFSET(NT\_TIB,\ ExceptionList));}
+\DoxyCodeLine{00153\ \ \ \ \ a\ =\ b\ =\ c\ =\ seh\_state;}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{while}\ (seh\_state\ \&\&\ seh\_state\ !=\ (GExceptionRegistration*)0xFFFFFFFF)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\textcolor{keywordtype}{void}*)seh\_state-\/>prev\ <\ (\textcolor{keywordtype}{void}*)100)\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)tERROR:\ Broken\ SEH\ chain.\(\backslash\)n"{}});}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ a\ =\ b;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ b\ =\ c;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ c\ =\ seh\_state;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ seh\_state\ =\ seh\_state-\/>prev;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ a\ ?\ a\ :\ (b\ ?\ b\ :\ c);}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}*}
+\DoxyCodeLine{00171\ slp\_get\_exception\_state()}
+\DoxyCodeLine{00172\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{//\ XXX:\ There\ appear\ to\ be\ three\ SEH\ handlers\ on\ the\ stack\ already\ at\ the}}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ start\ of\ the\ thread.\ Is\ that\ a\ guarantee?\ Almost\ certainly\ not.\ Yet\ in}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ all\ observed\ cases\ it\ has\ been\ three.\ This\ is\ consistent\ with}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//\ faulthandler\ off\ or\ on,\ and\ optimizations\ off\ or\ on.\ It\ may\ not\ be}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//\ consistent\ with\ other\ operating\ system\ versions,\ though:\ we\ only\ have}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ CI\ on\ one\ or\ two\ versions\ (don't\ ask\ what\ there\ are).}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//\ In\ theory\ we\ could\ capture\ the\ number\ of\ handlers\ on\ the\ chain\ when}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ PyInit\_\_greenlet\ is\ called:\ there\ are\ probably\ only\ the\ default}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ handlers\ at\ that\ point\ (unless\ we're\ embedded\ and\ people\ have\ used}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ \_\_try/\_\_except\ or\ a\ C++\ handler)?}}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ x86\_slp\_get\_third\_oldest\_handler();}
+\DoxyCodeLine{00184\ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00187\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{/*\ MASM\ syntax\ is\ typically\ reversed\ from\ other\ assemblers.}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ It\ is\ usually\ <instruction>\ <destination>\ <source>}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{/*\ store\ the\ structured\ exception\ state\ for\ this\ stack\ */}}
+\DoxyCodeLine{00194\ \ \ \ \ DWORD\ seh\_state\ =\ \_\_readfsdword(FIELD\_OFFSET(NT\_TIB,\ ExceptionList));}
+\DoxyCodeLine{00195\ \ \ \ \ \_\_asm\ mov\ stackref,\ esp;}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{/*\ modify\ EBX,\ ESI\ and\ EDI\ in\ order\ to\ get\ them\ preserved\ */}}
+\DoxyCodeLine{00197\ \ \ \ \ \_\_asm\ mov\ ebx,\ ebx;}
+\DoxyCodeLine{00198\ \ \ \ \ \_\_asm\ xchg\ esi,\ edi;}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \_\_asm\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ mov\ \ \ \ \ eax,\ stsizediff}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \ \ \ \ esp,\ eax}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ add\ \ \ \ \ ebp,\ eax}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \_\_writefsdword(FIELD\_OFFSET(NT\_TIB,\ ExceptionList),\ seh\_state);}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00210\ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{comment}{/*\ re-\/enable\ ebp\ warning\ and\ global\ optimizations.\ */}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#pragma\ optimize("{}"{},\ on)}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#pragma\ warning(default:4731)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#pragma\ warning(default:4733)\ }\textcolor{comment}{/*\ disable\ warning\ about\ modifying\ FS[0]\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ *\ further\ self-\/processing\ support}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{/*\ we\ have\ IsBadReadPtr\ available,\ so\ we\ can\ peek\ at\ objects\ */}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ STACKLESS\_SPY}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#ifdef\ GREENLET\_DEBUG}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#define\ CANNOT\_READ\_MEM(p,\ bytes)\ IsBadReadPtr(p,\ bytes)}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ IS\_ON\_STACK(\textcolor{keywordtype}{void}*p)}
+\DoxyCodeLine{00232\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{int}\ stackref;}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{int}\ stackbase\ =\ ((int)\&stackref)\ \&\ 0xfffff000;}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})p\ >=\ stackbase\ \&\&\ (int)p\ <\ stackbase\ +\ 0x00100000;}
+\DoxyCodeLine{00236\ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00239\ x86\_slp\_show\_seh\_chain()}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ GExceptionRegistration*\ seh\_state\ =\ (GExceptionRegistration*)\_\_readfsdword(FIELD\_OFFSET(NT\_TIB,\ ExceptionList));}
+\DoxyCodeLine{00242\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}======\ SEH\ Chain\ ======\(\backslash\)n"{}});}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{while}\ (seh\_state\ \&\&\ seh\_state\ !=\ (GExceptionRegistration*)0xFFFFFFFF)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)tSEH\_chain\ addr:\ \%p\ handler:\ \%p\ prev:\ \%p\(\backslash\)n"{}},}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seh\_state,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seh\_state-\/>handler\_f,\ seh\_state-\/>prev);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((\textcolor{keywordtype}{void}*)seh\_state-\/>prev\ <\ (\textcolor{keywordtype}{void}*)100)\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)tERROR:\ Broken\ chain.\(\backslash\)n"{}});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ seh\_state\ =\ seh\_state-\/>prev;}
+\DoxyCodeLine{00252\ \ \ \ \ \}}
+\DoxyCodeLine{00253\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}======\ End\ SEH\ Chain\ ======\(\backslash\)n"{}});}
+\DoxyCodeLine{00254\ \ \ \ \ fflush(NULL);}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{comment}{//addVectoredExceptionHandler\ constants:}}
+\DoxyCodeLine{00259\ \textcolor{comment}{//CALL\_FIRST\ means\ call\ this\ exception\ handler\ first;}}
+\DoxyCodeLine{00260\ \textcolor{comment}{//CALL\_LAST\ means\ call\ this\ exception\ handler\ last}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#define\ CALL\_FIRST\ 1}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\#define\ CALL\_LAST\ 0}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ LONG\ WINAPI}
+\DoxyCodeLine{00265\ GreenletVectorHandler(PEXCEPTION\_POINTERS\ ExceptionInfo)}
+\DoxyCodeLine{00266\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{comment}{//\ We\ get\ one\ of\ these\ for\ every\ C++\ exception,\ with\ code}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{//\ E06D7363}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ This\ is\ a\ special\ value\ that\ means\ "{}C++\ exception\ from\ MSVC"{}}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ https://devblogs.microsoft.com/oldnewthing/20100730-\/00/?p=13273}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{//\ Install\ in\ the\ module\ init\ function\ with:}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{comment}{//\ AddVectoredExceptionHandler(CALL\_FIRST,\ GreenletVectorHandler);}}
+\DoxyCodeLine{00274\ \ \ \ \ PEXCEPTION\_RECORD\ ExceptionRecord\ =\ ExceptionInfo-\/>ExceptionRecord;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ fprintf(stderr,}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}GOT\ VECTORED\ EXCEPTION:\(\backslash\)n"{}}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)tExceptionCode\ \ \ :\ \%p\(\backslash\)n"{}}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)tExceptionFlags\ \ :\ \%p\(\backslash\)n"{}}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)tExceptionAddr\ \ \ :\ \%p\(\backslash\)n"{}}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)tNumberparams\ \ \ \ :\ \%ld\(\backslash\)n"{}},}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ ExceptionRecord-\/>ExceptionCode,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ ExceptionRecord-\/>ExceptionFlags,}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ ExceptionRecord-\/>ExceptionAddress,}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ ExceptionRecord-\/>NumberParameters}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 1)\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_NONCONTINUABLE\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 2)\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_UNWINDING\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 4)\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_EXIT\_UNWIND\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00295\ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 8)\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_STACK\_INVALID\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 0x10)\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_NESTED\_CALL\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00301\ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 0x20)\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_TARGET\_UNWIND\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00304\ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>ExceptionFlags\ \&\ 0x40)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)tEH\_COLLIDED\_UNWIND\(\backslash\)n"{}}\ );}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00309\ \ \ \ \ fflush(NULL);}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordflow}{for}(DWORD\ i\ =\ 0;\ i\ <\ ExceptionRecord-\/>NumberParameters;\ i++)\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)t\(\backslash\)t\(\backslash\)tParam\ \%ld:\ \%lX\(\backslash\)n"{}},\ i,\ ExceptionRecord-\/>ExceptionInformation[i]);}
+\DoxyCodeLine{00312\ \ \ \ \ \}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \textcolor{keywordflow}{if}\ (ExceptionRecord-\/>NumberParameters\ ==\ 3)\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\(\backslash\)tAbout\ to\ traverse\ SEH\ chain\(\backslash\)n"{}});}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C++\ Exception\ records\ have\ 3\ params.}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ x86\_slp\_show\_seh\_chain();}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordflow}{return}\ EXCEPTION\_CONTINUE\_SEARCH;}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

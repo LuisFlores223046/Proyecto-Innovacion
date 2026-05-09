@@ -1,0 +1,29 @@
+\doxysection{pydantic.\+functional\+\_\+validators.\+Skip\+Validation Class Reference}
+\hypertarget{classpydantic_1_1functional__validators_1_1SkipValidation}{}\label{classpydantic_1_1functional__validators_1_1SkipValidation}\index{pydantic.functional\_validators.SkipValidation@{pydantic.functional\_validators.SkipValidation}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1SkipValidation_a3be9783b066fe3691e774a76851599d8}\label{classpydantic_1_1functional__validators_1_1SkipValidation_a3be9783b066fe3691e774a76851599d8} 
+Any {\bfseries \+\_\+\+\_\+class\+\_\+getitem\+\_\+\+\_\+} (cls, Any item)
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1SkipValidation_a5334089d2a1234077dea82874f67a038}\label{classpydantic_1_1functional__validators_1_1SkipValidation_a5334089d2a1234077dea82874f67a038} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, Any source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}If this is applied as an annotation (e.g., via `x: Annotated[int, SkipValidation]`), validation will be
+    skipped. You can also use `SkipValidation[int]` as a shorthand for `Annotated[int, SkipValidation]`.
+
+This can be useful if you want to use a type annotation for documentation/IDE/type-checking purposes,
+and know that it is safe to skip validation for one or more of the fields.
+
+Because this converts the validation schema to `any_schema`, subsequent annotation-applied transformations
+may not have the expected effects. Therefore, when used, this annotation should generally be the final
+annotation applied to a type.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+validators.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,479 @@
+\doxysection{frontend/\+node\+\_\+modules/\+zod-\/validation-\/error Directory Reference}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383}{}\label{dir_7c23b38b092287efdd07467f9383a383}\index{frontend/node\_modules/zod-\/validation-\/error Directory Reference@{frontend/node\_modules/zod-\/validation-\/error Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_8272b9895e254309bf3412026f3d2a5a}{v3}}
+\item 
+directory \doxymbox{\hyperlink{dir_09b62e23c46646bc3167c5f09b06efd5}{v4}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4983}{}\doxysubsection{\texorpdfstring{zod-\/validation-\/error}{zod-\/validation-\/error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4983}
+Wrap zod validation errors in user-\/friendly readable messages.
+
+\href{https://github.com/causaly/zod-validation-error/actions/workflows/ci.yml}{\texttt{}} \href{https://www.npmjs.com/package/zod-validation-error}{\texttt{}}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4984}{}\doxysubsubsubsection{\texorpdfstring{Features}{Features}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4984}
+
+\begin{DoxyItemize}
+\item User-\/friendly readable error messages with extensive configuration options;
+\item Preserves original error details accessible via {\ttfamily error.\+details};
+\item Provides a custom error map for better user-\/friendly messages;
+\item Supports both Zod v3 and v4.
+\end{DoxyItemize}
+
+{\bfseries{{\itshape Note:\+}}} This version of {\ttfamily zod-\/validation-\/error} works with zod v4. If you are looking for zod v3 support, please refer to the \doxysectlink{md_frontend_2node__modules_2zod-validation-error_2README_8v3}{v3 documentation}{0}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4985}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4985}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ zod-\/validation-\/error}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4986}{}\doxysubsubsubsection{\texorpdfstring{Requirements}{Requirements}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4986}
+
+\begin{DoxyItemize}
+\item Node.\+js v.\+18+
+\item Type\+Script v.\+4.\+5+
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4987}{}\doxysubsection{\texorpdfstring{Quick start}{Quick start}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4987}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ fromError,\ createErrorMap\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ configure\ zod\ to\ use\ zod-\/validation-\/error's\ error\ map}
+\DoxyCodeLine{//\ this\ is\ optional,\ you\ may\ also\ use\ your\ own\ custom\ error\ map\ or\ zod's\ native\ error\ map}
+\DoxyCodeLine{//\ we\ recommend\ using\ zod-\/validation-\/error's\ error\ map\ for\ better\ user-\/friendly\ messages}
+\DoxyCodeLine{//\ see\ https://zod.dev/error-\/customization\ for\ further\ details}
+\DoxyCodeLine{zod.config(\{}
+\DoxyCodeLine{\ \ customError:\ createErrorMap(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ zod\ schema}
+\DoxyCodeLine{const\ zodSchema\ =\ zod.object(\{}
+\DoxyCodeLine{\ \ id:\ zod.int().positive(),}
+\DoxyCodeLine{\ \ email:\ zod.email(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ parse\ some\ invalid\ value}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ zodSchema.parse(\{}
+\DoxyCodeLine{\ \ \ \ id:\ 1,}
+\DoxyCodeLine{\ \ \ \ email:\ 'coyote@acme',\ //\ note:\ invalid\ email}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ const\ validationError\ =\ fromError(err);}
+\DoxyCodeLine{\ \ //\ the\ error\ is\ now\ readable\ by\ the\ user}
+\DoxyCodeLine{\ \ //\ you\ may\ print\ it\ to\ console}
+\DoxyCodeLine{\ \ console.log(validationError.toString());}
+\DoxyCodeLine{\ \ //\ or\ return\ it\ as\ an\ actual\ error}
+\DoxyCodeLine{\ \ return\ validationError;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4988}{}\doxysubsection{\texorpdfstring{Motivation}{Motivation}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4988}
+Zod errors are difficult to consume for the end-\/user. This library wraps Zod validation errors in user-\/friendly readable messages that can be exposed to the outer world, while maintaining the original errors in an array for {\itshape dev} use.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4989}{}\doxysubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4989}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4990}{}\doxysubsubsubsection{\texorpdfstring{Input (from Zod)}{Input (from Zod)}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4990}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ "{}origin"{}:\ "{}number"{},}
+\DoxyCodeLine{\ \ \ \ "{}code"{}:\ "{}too\_small"{},}
+\DoxyCodeLine{\ \ \ \ "{}minimum"{}:\ 0,}
+\DoxyCodeLine{\ \ \ \ "{}inclusive"{}:\ false,}
+\DoxyCodeLine{\ \ \ \ "{}path"{}:\ ["{}id"{}],}
+\DoxyCodeLine{\ \ \ \ "{}message"{}:\ "{}Number\ must\ be\ greater\ than\ 0\ at\ \(\backslash\)"{}id\(\backslash\)"{}"{}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ "{}origin"{}:\ "{}string"{},}
+\DoxyCodeLine{\ \ \ \ "{}code"{}:\ "{}invalid\_format"{},}
+\DoxyCodeLine{\ \ \ \ "{}format"{}:\ "{}email"{},}
+\DoxyCodeLine{\ \ \ \ "{}pattern"{}:\ "{}/\string^(?!\(\backslash\)\(\backslash\).)(?!.*\(\backslash\)\(\backslash\).\(\backslash\)\(\backslash\).)([A-\/Za-\/z0-\/9\_'+\(\backslash\)\(\backslash\)-\/\(\backslash\)\(\backslash\).]*)[A-\/Za-\/z0-\/9\_+-\/]@([A-\/Za-\/z0-\/9][A-\/Za-\/z0-\/9\(\backslash\)\(\backslash\)-\/]*\(\backslash\)\(\backslash\).)+[A-\/Za-\/z]\{2,\}\$/"{},}
+\DoxyCodeLine{\ \ \ \ "{}path"{}:\ ["{}email"{}],}
+\DoxyCodeLine{\ \ \ \ "{}message"{}:\ "{}Invalid\ email\ at\ \(\backslash\)"{}email\(\backslash\)"{}"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4991}{}\doxysubsubsubsection{\texorpdfstring{Output}{Output}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4991}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Validation\ error:\ Number\ must\ be\ greater\ than\ 0\ at\ "{}id"{};\ Invalid\ email\ at\ "{}email"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4992}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4992}
+
+\begin{DoxyItemize}
+\item Validation\+Error(message\+[, options]\+)Validation\+Error(message\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item create\+Error\+Map(options)create\+Error\+Map(options)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item create\+Message\+Builder(options)create\+Message\+Builder(options)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Validation\+Error(error)is\+Validation\+Error(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Validation\+Error\+Like(error)is\+Validation\+Error\+Like(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item is\+Zod\+Error\+Like(error)is\+Zod\+Error\+Like(error)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Error(error\+[, options]\+)from\+Error(error\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Zod\+Issue(zod\+Issue\+[, options]\+)from\+Zod\+Issue(zod\+Issue\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item from\+Zod\+Error(zod\+Error\+[, options]\+)from\+Zod\+Error(zod\+Error\+[, options]\+)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item to\+Validation\+Error(\+[options]\+) =\texorpdfstring{$>$}{>} (error) =\texorpdfstring{$>$}{>} Validation\+Errorto\+Validation\+Error(\+[options]\+) =\texorpdfstring{$>$}{>} (error) =\texorpdfstring{$>$}{>} Validation\+Error
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4993}{}\doxysubsubsection{\texorpdfstring{Validation\+Error}{Validation\+Error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4993}
+Main {\ttfamily Validation\+Error} class, extending Java\+Script\textquotesingle{}s native {\ttfamily Error}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4994}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4994}
+
+\begin{DoxyItemize}
+\item {\ttfamily message} -\/ {\itshape string}; error message (required)
+\item {\ttfamily options} -\/ {\itshape Error\+Options}; error options as per \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/Error\#options}{\texttt{Java\+Script definition}} (optional)
+\begin{DoxyItemize}
+\item {\ttfamily options.\+cause} -\/ {\itshape any}; can be used to hold the original zod error (optional)
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4995}{}\doxysubsubsubsection{\texorpdfstring{Example 1:\+ construct new Validation\+Error with {\ttfamily message}}{Example 1:\+ construct new Validation\+Error with {\ttfamily message}}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4995}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ error\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{console.log(error\ instanceof\ Error);\ //\ prints\ true}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4996}{}\doxysubsubsubsection{\texorpdfstring{Example 2:\+ construct new Validation\+Error with {\ttfamily message} and {\ttfamily options.\+cause}}{Example 2:\+ construct new Validation\+Error with {\ttfamily message} and {\ttfamily options.\+cause}}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4996}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ error\ =\ new\ ValidationError('foobar',\ \{}
+\DoxyCodeLine{\ \ cause:\ new\ zod.ZodError([}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ origin:\ 'number',}
+\DoxyCodeLine{\ \ \ \ \ \ code:\ 'too\_small',}
+\DoxyCodeLine{\ \ \ \ \ \ minimum:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ inclusive:\ false,}
+\DoxyCodeLine{\ \ \ \ \ \ path:\ ['id'],}
+\DoxyCodeLine{\ \ \ \ \ \ message:\ 'Number\ must\ be\ greater\ than\ 0\ at\ "{}id"{}',}
+\DoxyCodeLine{\ \ \ \ \ \ input:\ -\/1,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ ]),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(error.details);\ //\ prints\ issues\ from\ zod\ error}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4997}{}\doxysubsubsection{\texorpdfstring{create\+Error\+Map}{create\+Error\+Map}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4997}
+Creates zod-\/validation-\/error\textquotesingle{}s {\ttfamily error\+Map}, which is used to format issues into user-\/friendly error messages.
+
+We think that zod\textquotesingle{}s native error map is not user-\/friendly enough, so we provide our own implementation that formats issues into human-\/readable messages.
+
+Note:\+ zod-\/validation-\/error\textquotesingle{}s {\ttfamily error\+Map} is an error\+Map like all others and thus can also be used directly with {\ttfamily zod} (see \href{https://zod.dev/error-customization}{\texttt{https:\+/\+/\+zod.\+dev/\+error-\/customization}} for further details), e.\+g.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4998}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4998}
+
+\begin{DoxyItemize}
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4999}{}\doxysubsubsubsubsection{\texorpdfstring{create\+Error\+Map Options}{create\+Error\+Map Options}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md4999}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Name  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Type  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Description  \\
+{\ttfamily display\+Invalid\+Format\+Details}  &\SetCell{c}{\ttfamily boolean}  &Indicates whether to display invalid format details (e.\+g. regexp pattern) in the error message (optional, defaults to {\ttfamily false})  \\
+{\ttfamily max\+Allowed\+Values\+To\+Display}  &\SetCell{c}{\ttfamily number}  &Max number of allowed values to display (optional, defaults to {\ttfamily 10}). Allowed values beyond this limit will be hidden.  \\
+{\ttfamily allowed\+Values\+Separator}  &\SetCell{c}{\ttfamily string}  &Used to concatenate allowed values in the message (optional, defaults to {\ttfamily "{}, "{}})  \\
+{\ttfamily allowed\+Values\+Last\+Separator}  &\SetCell{c}{\ttfamily string \textbackslash{}\texorpdfstring{$\vert$}{|} undefined}  &Used to concatenate last allowed value in the message (optional, defaults to {\ttfamily "{} or "{}}). Set to {\ttfamily undefined} to disable.  \\
+{\ttfamily wrap\+Allowed\+Values\+In\+Quote}  &\SetCell{c}{\ttfamily boolean}  &Indicates whether to wrap allowed values in quotes (optional, defaults to {\ttfamily true}). Note that this only applies to string values.  \\
+{\ttfamily max\+Unrecognized\+Keys\+To\+Display}  &\SetCell{c}{\ttfamily number}  &Max number of unrecognized keys to display in the error message (optional, defaults to {\ttfamily 5})  \\
+{\ttfamily unrecognized\+Keys\+Separator}  &\SetCell{c}{\ttfamily string}  &Used to concatenate unrecognized keys in the message (optional, defaults to {\ttfamily "{}, "{}})  \\
+{\ttfamily unrecognized\+Keys\+Last\+Separator}  &\SetCell{c}{\ttfamily string \textbackslash{}\texorpdfstring{$\vert$}{|} undefined}  &Used to concatenate the last unrecognized key in message (optional, defaults to {\ttfamily "{} and "{}}). Set to {\ttfamily undefined} to disable.  \\
+{\ttfamily wrap\+Unrecognized\+Keys\+In\+Quote}  &\SetCell{c}{\ttfamily boolean}  &Indicates whether to wrap unrecognized keys in quotes (optional, defaults to {\ttfamily true}). Note that this only applies to string keys.  \\
+{\ttfamily date\+Localization}  &\SetCell{c}{\ttfamily boolean \textbackslash{}\texorpdfstring{$\vert$}{|} Intl.\+Locales\+Argument}  &Indicates whether to localize date values (optional, defaults to {\ttfamily true}). If set to {\ttfamily true}, it will use the default locale of the environment. You can also pass {\ttfamily Intl.\+Locales\+Argument} to specify a custom locale.  \\
+{\ttfamily number\+Localization}  &\SetCell{c}{\ttfamily boolean \textbackslash{}\texorpdfstring{$\vert$}{|} Intl.\+Locales\+Argument}  &Indicates whether to localize numeric values (optional, defaults to {\ttfamily true}). If set to {\ttfamily true}, it will use the default locale of the environment. You can also pass {\ttfamily Intl.\+Locales\+Argument} to specify a custom locale.  \\
+\end{DoxyTable}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5000}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5000}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ createErrorMap\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{zod.config(\{}
+\DoxyCodeLine{\ \ customError:\ createErrorMap(\{}
+\DoxyCodeLine{\ \ \ \ //\ default\ values\ are\ used\ when\ not\ specified}
+\DoxyCodeLine{\ \ \ \ displayInvalidFormatDetails:\ true,}
+\DoxyCodeLine{\ \ \}),}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5001}{}\doxysubsubsection{\texorpdfstring{create\+Message\+Builder}{create\+Message\+Builder}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5001}
+Creates zod-\/validation-\/error\textquotesingle{}s default {\ttfamily Message\+Builder}, which is used to produce user-\/friendly error messages.
+
+Meant to be passed as an option to from\+Errorfrom\+Error, from\+Zod\+Issuefrom\+Zod\+Issue, from\+Zod\+Errorfrom\+Zod\+Error or to\+Validation\+Errorto\+Validation\+Error.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5002}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5002}
+
+\begin{DoxyItemize}
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5003}{}\doxysubsubsubsubsection{\texorpdfstring{create\+Message\+Builder Options}{create\+Message\+Builder Options}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5003}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Name  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Type  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Description  \\
+{\ttfamily max\+Issues\+In\+Message}  &\SetCell{c}{\ttfamily number}  &Max issues to include in user-\/friendly message (optional, defaults to {\ttfamily 99})  \\
+{\ttfamily issue\+Separator}  &\SetCell{c}{\ttfamily string}  &Used to concatenate issues in user-\/friendly message (optional, defaults to {\ttfamily "{};"{}})  \\
+{\ttfamily union\+Separator}  &\SetCell{c}{\ttfamily string}  &Used to concatenate union-\/issues in user-\/friendly message (optional, defaults to {\ttfamily "{} or "{}})  \\
+{\ttfamily prefix}  &\SetCell{c}{\ttfamily string \textbackslash{}\texorpdfstring{$\vert$}{|} undefined}  &Prefix to use in user-\/friendly message (optional, defaults to {\ttfamily "{}Validation error"{}}). Pass {\ttfamily undefined} to disable prefix completely.  \\
+{\ttfamily prefix\+Separator}  &\SetCell{c}{\ttfamily string}  &Used to concatenate prefix with rest of the user-\/friendly message (optional, defaults to {\ttfamily "{}:\+ "{}}). Not used when {\ttfamily prefix} is {\ttfamily undefined}.  \\
+{\ttfamily include\+Path}  &\SetCell{c}{\ttfamily boolean}  &Indicates whether to include the erroneous property key in the error message (optional, defaults to {\ttfamily true})  \\
+{\ttfamily force\+Title\+Case}  &\SetCell{c}{\ttfamily boolean}  &Indicates whether to convert individual issue messages to title case (optional, defaults to {\ttfamily true}).  \\
+\end{DoxyTable}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5004}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5004}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ createMessageBuilder\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ messageBuilder\ =\ createMessageBuilder(\{}
+\DoxyCodeLine{\ \ maxIssuesInMessage:\ 3,}
+\DoxyCodeLine{\ \ includePath:\ false,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5005}{}\doxysubsubsection{\texorpdfstring{is\+Validation\+Error}{is\+Validation\+Error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5005}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\ttfamily instanceof} comparison.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5006}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5006}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5007}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5007}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ ValidationError,\ isValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ err\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isValidationError(err);\ //\ returns\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ invalidErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isValidationError(err);\ //\ returns\ false}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5008}{}\doxysubsubsection{\texorpdfstring{is\+Validation\+Error\+Like}{is\+Validation\+Error\+Like}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5008}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\itshape heuristics} comparison.
+
+{\itshape Why do we need heuristics since we can use a simple {\ttfamily instanceof} comparison?} Because of multi-\/version inconsistencies. For instance, it\textquotesingle{}s possible that a dependency is using an older {\ttfamily zod-\/validation-\/error} version internally. In such case, the {\ttfamily instanceof} comparison will yield invalid results because module deduplication does not apply at npm/\+yarn level and the prototype is different.
+
+tl;dr if you are uncertain then it is preferable to use {\ttfamily is\+Validation\+Error\+Like} instead of {\ttfamily is\+Validation\+Error}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5009}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5009}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5010}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5010}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError,\ isValidationErrorLike\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ err\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isValidationErrorLike(err);\ //\ returns\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ invalidErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isValidationErrorLike(err);\ //\ returns\ false}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5011}{}\doxysubsubsection{\texorpdfstring{is\+Zod\+Error\+Like}{is\+Zod\+Error\+Like}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5011}
+A \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#using-type-predicates}{\texttt{type guard}} utility function, based on {\itshape heuristics} comparison.
+
+{\itshape Why do we need heuristics since we can use a simple {\ttfamily instanceof} comparison?} Because of multi-\/version inconsistencies. For instance, it\textquotesingle{}s possible that a dependency is using an older {\ttfamily zod} version internally. In such case, the {\ttfamily instanceof} comparison will yield invalid results because module deduplication does not apply at npm/\+yarn level and the prototype is different.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5012}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5012}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ error instance (required)
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5013}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5013}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ ValidationError,\ isZodErrorLike\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ zodValidationErr\ =\ new\ ValidationError('foobar');}
+\DoxyCodeLine{isZodErrorLike(zodValidationErr);\ //\ returns\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ genericErr\ =\ new\ Error('foobar');}
+\DoxyCodeLine{isZodErrorLike(genericErr);\ //\ returns\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ zodErr\ =\ new\ zod.ZodError([}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ origin:\ 'number',}
+\DoxyCodeLine{\ \ \ \ code:\ 'too\_small',}
+\DoxyCodeLine{\ \ \ \ minimum:\ 0,}
+\DoxyCodeLine{\ \ \ \ inclusive:\ false,}
+\DoxyCodeLine{\ \ \ \ path:\ ['id'],}
+\DoxyCodeLine{\ \ \ \ message:\ 'Number\ must\ be\ greater\ than\ 0\ at\ "{}id"{}',}
+\DoxyCodeLine{\ \ \ \ input:\ -\/1,}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{]);}
+\DoxyCodeLine{isZodErrorLike(zodErr);\ //\ returns\ true}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5014}{}\doxysubsubsection{\texorpdfstring{from\+Error}{from\+Error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5014}
+Converts an error to {\ttfamily Validation\+Error}.
+
+{\itshape What is the difference between {\ttfamily from\+Error} and {\ttfamily from\+Zod\+Error}?} The {\ttfamily from\+Error} function is a less strict version of {\ttfamily from\+Zod\+Error}. It can accept an unknown error and attempt to convert it to a {\ttfamily Validation\+Error}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5015}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5015}
+
+\begin{DoxyItemize}
+\item {\ttfamily error} -\/ {\itshape unknown}; an error (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5016}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5016}
+Alternatively, you may pass create\+Message\+Builder optionscreate\+Message\+Builder options directly as {\ttfamily options}. These will be used as arguments to create the {\ttfamily Message\+Builder} instance internally.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5017}{}\doxysubsubsection{\texorpdfstring{from\+Zod\+Issue}{from\+Zod\+Issue}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5017}
+Converts a single zod issue to {\ttfamily Validation\+Error}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5018}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5018}
+
+\begin{DoxyItemize}
+\item {\ttfamily zod\+Issue} -\/ {\itshape zod.\+Zod\+Issue}; a Zod\+Issue instance (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5019}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5019}
+Alternatively, you may pass create\+Message\+Builder optionscreate\+Message\+Builder options directly as {\ttfamily options}. These will be used as arguments to create the {\ttfamily Message\+Builder} instance internally.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5020}{}\doxysubsubsection{\texorpdfstring{from\+Zod\+Error}{from\+Zod\+Error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5020}
+Converts zod error to {\ttfamily Validation\+Error}.
+
+{\itshape Why is the difference between {\ttfamily Zod\+Error} and {\ttfamily Zod\+Issue}?} A {\ttfamily Zod\+Error} is a collection of 1 or more {\ttfamily Zod\+Issue} instances. It\textquotesingle{}s what you get when you call {\ttfamily zod\+Schema.\+parse()}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5021}{}\doxysubsubsubsection{\texorpdfstring{Arguments}{Arguments}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5021}
+
+\begin{DoxyItemize}
+\item {\ttfamily zod\+Error} -\/ {\itshape zod.\+Zod\+Error}; a Zod\+Error instance (required)
+\item {\ttfamily options} -\/ {\itshape Object}; formatting options (optional)
+\begin{DoxyItemize}
+\item {\ttfamily message\+Builder} -\/ {\itshape Message\+Builder}; a function that accepts an array of {\ttfamily zod.\+Zod\+Issue} objects and returns a user-\/friendly error message in the form of a {\ttfamily string} (optional).
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5022}{}\doxysubsubsubsection{\texorpdfstring{Notes}{Notes}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5022}
+Alternatively, you may pass create\+Message\+Builder optionscreate\+Message\+Builder options directly as {\ttfamily options}. These will be used as arguments to create the {\ttfamily Message\+Builder} instance internally.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5023}{}\doxysubsubsection{\texorpdfstring{to\+Validation\+Error}{to\+Validation\+Error}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5023}
+A curried version of {\ttfamily from\+Zod\+Error} meant to be used for FP (Functional Programming). Note it first takes the options object if needed and returns a function that converts the {\ttfamily zod\+Error} to a {\ttfamily Validation\+Error} object
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{toValidationError(options)\ =>\ (zodError)\ =>\ ValidationError}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5024}{}\doxysubsubsubsection{\texorpdfstring{Example using fp-\/ts}{Example using fp-\/ts}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5024}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ Either\ from\ 'fp-\/ts/Either';}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ toValidationError,\ ValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ zod\ schema}
+\DoxyCodeLine{const\ zodSchema\ =\ zod}
+\DoxyCodeLine{\ \ .object(\{}
+\DoxyCodeLine{\ \ \ \ id:\ zod.int().positive(),}
+\DoxyCodeLine{\ \ \ \ email:\ zod.email(),}
+\DoxyCodeLine{\ \ \})}
+\DoxyCodeLine{\ \ .brand<'User'>();}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ type\ User\ =\ zod.infer<typeof\ zodSchema>;}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ function\ parse(}
+\DoxyCodeLine{\ \ value:\ zod.input<typeof\ zodSchema>}
+\DoxyCodeLine{):\ Either.Either<ValidationError,\ User>\ \{}
+\DoxyCodeLine{\ \ return\ Either.tryCatch(()\ =>\ schema.parse(value),\ toValidationError());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5025}{}\doxysubsection{\texorpdfstring{FAQ}{FAQ}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5025}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5026}{}\doxysubsubsection{\texorpdfstring{What is the difference between zod-\/validation-\/error and zod\textquotesingle{}s own \href{https://zod.dev/error-formatting\#zprettifyerror}{\texttt{prettify\+Error}}?}{What is the difference between zod-\/validation-\/error and zod\textquotesingle{}s own \href{https://zod.dev/error-formatting\#zprettifyerror}{\texttt{prettify\+Error}}?}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5026}
+While both libraries aim to provide a human-\/readable string representation of a zod error, they differ in several ways...
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{End-\/user focus}}:\+ zod-\/validation-\/error provides opinionated, user-\/friendly error messages designed to be displayed directly to end-\/users in forms or API responses.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\bfseries{Customization options}}:\+ zod-\/validation-\/error offers extensive configuration for message formatting, such as controlling path inclusion, allowed values display, localization, and more.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\bfseries{Error handling}}:\+ zod-\/validation-\/error maintains the original error details while providing a clean, consistent interface through the Validation\+Error class.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item {\bfseries{Integration flexibility}}:\+ Beyond just formatting, zod-\/validation-\/error provides utility functions for error detection and conversion that work well in various architectural patterns, e.\+g. functional programming.
+\end{DoxyEnumerate}
+
+Disclaimer:\+ as per this \href{https://github.com/causaly/zod-validation-error/issues/455\#issuecomment-2811895152}{\texttt{comment}}, we have no intention to antagonize zod. In fact, we are happy to decommission this module assuming it\textquotesingle{}s in the best interest of the community. As of now, it seems that there\textquotesingle{}s room for both {\ttfamily zod-\/validation-\/error} and {\ttfamily prettify\+Error}, also based on Colin Mc\+Donnell\textquotesingle{}s \href{https://github.com/causaly/zod-validation-error/issues/455\#issuecomment-2814466019}{\texttt{response}}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5027}{}\doxysubsubsection{\texorpdfstring{Do I need to use {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map?}{Do I need to use {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map?}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5027}
+No, you can use zod\textquotesingle{}s native error map if you prefer. However, we recommend using {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map for better user-\/friendly messages.
+
+You may also use your own custom error map if you have specific requirements, e.\+g. internationalization.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5028}{}\doxysubsubsection{\texorpdfstring{Where can I see how {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map formatting works?}{Where can I see how {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map formatting works?}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5028}
+The easiest way to understand how {\ttfamily zod-\/validation-\/error}\textquotesingle{}s error map works is to look at the \href{./lib/v4/errorMap/errorMap.test.ts}{\texttt{tests}}. They cover various scenarios and demonstrate how the error map formats issues into user-\/friendly messages.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5029}{}\doxysubsubsection{\texorpdfstring{How to distinguish between errors}{How to distinguish between errors}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5029}
+Use the {\ttfamily is\+Validation\+Error\+Like} type guard.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5030}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5030}
+Scenario:\+ Distinguish between {\ttfamily Validation\+Error} VS generic {\ttfamily Error} in order to respond with 400 VS 500 HTTP status code respectively.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ isValidationErrorLike\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ func();\ //\ throws\ Error\ -\/\ or\ -\/\ ValidationError}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ if\ (isValidationErrorLike(err))\ \{}
+\DoxyCodeLine{\ \ \ \ return\ 400;\ //\ Bad\ Data\ (this\ is\ a\ client\ error)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ 500;\ //\ Server\ Error}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5031}{}\doxysubsubsection{\texorpdfstring{How to use {\ttfamily Validation\+Error} outside {\ttfamily zod}}{How to use {\ttfamily Validation\+Error} outside {\ttfamily zod}}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5031}
+It\textquotesingle{}s possible to implement custom validation logic outside {\ttfamily zod} and throw a {\ttfamily Validation\+Error}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5032}{}\doxysubsubsubsection{\texorpdfstring{Example 1:\+ passing custom message}{Example 1:\+ passing custom message}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5032}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{import\ \{\ Buffer\ \}\ from\ 'node:buffer';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ parseBuffer(buf:\ unknown):\ Buffer\ \{}
+\DoxyCodeLine{\ \ if\ (!Buffer.isBuffer(buf))\ \{}
+\DoxyCodeLine{\ \ \ \ throw\ new\ ValidationError('Invalid\ argument;\ expected\ buffer');}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ buf;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5033}{}\doxysubsubsubsection{\texorpdfstring{Example 2:\+ passing custom message and original error as cause}{Example 2:\+ passing custom message and original error as cause}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5033}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ValidationError\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ //\ do\ something\ that\ throws\ an\ error}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ throw\ new\ ValidationError('Something\ went\ deeply\ wrong',\ \{\ cause:\ err\ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5034}{}\doxysubsubsection{\texorpdfstring{How to use {\ttfamily Validation\+Error} with custom "{}error map"{}}{How to use {\ttfamily Validation\+Error} with custom "{}error map"{}}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5034}
+Zod supports customizing error messages by providing a custom "{}error map"{}. You may combine this with {\ttfamily zod-\/validation-\/error} to produce user-\/friendly messages.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5035}{}\doxysubsubsubsection{\texorpdfstring{Example:\+ produce user-\/friendly error messages using the {\ttfamily custom\+Error} property}{Example:\+ produce user-\/friendly error messages using the {\ttfamily custom\+Error} property}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5035}
+If all you need is to produce user-\/friendly error messages you may use the {\ttfamily custom\+Error} property.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ z\ as\ zod\ \}\ from\ 'zod';}
+\DoxyCodeLine{import\ \{\ createErrorMap\ \}\ from\ 'zod-\/validation-\/error';}
+\DoxyCodeLine{}
+\DoxyCodeLine{zod.config(\{}
+\DoxyCodeLine{\ \ customError:\ createErrorMap(\{}
+\DoxyCodeLine{\ \ \ \ includePath:\ true,}
+\DoxyCodeLine{\ \ \}),}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+{\ttfamily zod-\/validation-\/error} will respect the {\ttfamily custom\+Error} property when it is set, no further configuration is needed.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5036}{}\doxysubsubsection{\texorpdfstring{Does {\ttfamily zod-\/validation-\/error} support Common\+JS}{Does {\ttfamily zod-\/validation-\/error} support Common\+JS}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5036}
+Yes, {\ttfamily zod-\/validation-\/error} supports Common\+JS out-\/of-\/the-\/box. All you need to do is import it using {\ttfamily require}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5037}{}\doxysubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5037}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ ValidationError\ \}\ =\ require('zod-\/validation-\/error');}
+
+\end{DoxyCode}
+\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5038}{}\doxysubsection{\texorpdfstring{Contribute}{Contribute}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5038}
+Source code contributions are most welcome. Please open a PR, ensure the linter is satisfied and all tests pass.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5039}{}\doxysubsubsubsection{\texorpdfstring{We are hiring}{We are hiring}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5039}
+Causaly is building the world\textquotesingle{}s largest biomedical knowledge platform, using technologies such as Type\+Script, React and Node.\+js. Find out more about our openings at \href{https://jobs.ashbyhq.com/causaly}{\texttt{https:\+/\+/\+jobs.\+ashbyhq.\+com/\+causaly}}.\hypertarget{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5040}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_7c23b38b092287efdd07467f9383a383_autotoc_md5040}
+MIT 

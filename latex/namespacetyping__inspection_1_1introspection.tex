@@ -1,0 +1,205 @@
+\doxysection{typing\+\_\+inspection.\+introspection Namespace Reference}
+\hypertarget{namespacetyping__inspection_1_1introspection}{}\label{namespacetyping__inspection_1_1introspection}\index{typing\_inspection.introspection@{typing\_inspection.introspection}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1AnnotationSource}{Annotation\+Source}}
+\item 
+class \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1ForbiddenQualifier}{Forbidden\+Qualifier}}
+\item 
+class \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1__UnknownTypeEnum}{\+\_\+\+Unknown\+Type\+Enum}}
+\item 
+class \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1InspectedAnnotation}{Inspected\+Annotation}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespacetyping__inspection_1_1introspection_a4c79b1039e4c504d628d14957e0fd130}{is\+\_\+union\+\_\+origin}} (Any obj)
+\item 
+None \doxymbox{\hyperlink{namespacetyping__inspection_1_1introspection_a0ef0ed1376c25191ce5baeebb9872532}{\+\_\+literal\+\_\+type\+\_\+check}} (Any value)
+\item 
+Generator\+[Any]\+ \doxymbox{\hyperlink{namespacetyping__inspection_1_1introspection_a43f9117935b1d76abde265e2f8385e64}{get\+\_\+literal\+\_\+values}} (Any annotation, \texorpdfstring{$\ast$}{*}, bool type\+\_\+check=False, Literal\+[\textquotesingle{}skip\textquotesingle{}, \textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ unpack\+\_\+type\+\_\+aliases=\textquotesingle{}eager\textquotesingle{})
+\item 
+\doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1InspectedAnnotation}{Inspected\+Annotation}} \doxymbox{\hyperlink{namespacetyping__inspection_1_1introspection_a130c9962a0a540a49dca10a55885ca5d}{inspect\+\_\+annotation}} (Any annotation, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1AnnotationSource}{Annotation\+Source}} annotation\+\_\+source, Literal\+[\textquotesingle{}skip\textquotesingle{}, \textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ unpack\+\_\+type\+\_\+aliases=\textquotesingle{}skip\textquotesingle{})
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_a218998eb33429865920332248169712c}\label{namespacetyping__inspection_1_1introspection_a218998eb33429865920332248169712c} 
+tuple\+[Any, list\+[Any]\+]\+ {\bfseries \+\_\+unpack\+\_\+annotated\+\_\+inner} (Any annotation, Literal\+[\textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ unpack\+\_\+type\+\_\+aliases, bool check\+\_\+annotated)
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_a524eb56d25e2c38e3269d0e9d03348cd}\label{namespacetyping__inspection_1_1introspection_a524eb56d25e2c38e3269d0e9d03348cd} 
+tuple\+[Any, list\+[Any]\+]\+ {\bfseries \+\_\+unpack\+\_\+annotated} (Any annotation, \texorpdfstring{$\ast$}{*}, Literal\+[\textquotesingle{}skip\textquotesingle{}, \textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ unpack\+\_\+type\+\_\+aliases=\textquotesingle{}eager\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_af086094fef7bb22ede65f88a8492ecaa}\label{namespacetyping__inspection_1_1introspection_af086094fef7bb22ede65f88a8492ecaa} 
+Type\+Alias {\bfseries Qualifier} = Literal\+[\textquotesingle{}required\textquotesingle{}, \textquotesingle{}not\+\_\+required\textquotesingle{}, \textquotesingle{}read\+\_\+only\textquotesingle{}, \textquotesingle{}class\+\_\+var\textquotesingle{}, \textquotesingle{}init\+\_\+var\textquotesingle{}, \textquotesingle{}final\textquotesingle{}]\+
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_a156c31ee675b75324a3274a590ef9ec4}\label{namespacetyping__inspection_1_1introspection_a156c31ee675b75324a3274a590ef9ec4} 
+set {\bfseries \+\_\+all\+\_\+qualifiers} = set(get\+\_\+args(Qualifier))
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_a0807c9abd8d95c099a96e58eadf3e7cb}\label{namespacetyping__inspection_1_1introspection_a0807c9abd8d95c099a96e58eadf3e7cb} 
+{\bfseries UNKNOWN} = \+\_\+\+Unknown\+Type\+Enum.\+UNKNOWN
+\item 
+\Hypertarget{namespacetyping__inspection_1_1introspection_a99d297204dee9aa7a35beb14cfbe41b7}\label{namespacetyping__inspection_1_1introspection_a99d297204dee9aa7a35beb14cfbe41b7} 
+Type\+Alias {\bfseries \+\_\+\+Unkown\+Type} = Literal\+[\+\_\+\+Unknown\+Type\+Enum.\+UNKNOWN]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}High-level introspection utilities, used to inspect type annotations.\end{DoxyVerb}
+ 
+
+\label{namespacetyping__inspection_1_1introspection_doc-func-members}
+\Hypertarget{namespacetyping__inspection_1_1introspection_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetyping__inspection_1_1introspection_a0ef0ed1376c25191ce5baeebb9872532}\index{typing\_inspection.introspection@{typing\_inspection.introspection}!\_literal\_type\_check@{\_literal\_type\_check}}
+\index{\_literal\_type\_check@{\_literal\_type\_check}!typing\_inspection.introspection@{typing\_inspection.introspection}}
+\doxysubsubsection{\texorpdfstring{\_literal\_type\_check()}{\_literal\_type\_check()}}
+{\footnotesize\ttfamily \label{namespacetyping__inspection_1_1introspection_a0ef0ed1376c25191ce5baeebb9872532} 
+ None \+\_\+literal\+\_\+type\+\_\+check (\begin{DoxyParamCaption}\item[{Any}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Type check the provided literal value against the legal parameters.\end{DoxyVerb}
+ \Hypertarget{namespacetyping__inspection_1_1introspection_a43f9117935b1d76abde265e2f8385e64}\index{typing\_inspection.introspection@{typing\_inspection.introspection}!get\_literal\_values@{get\_literal\_values}}
+\index{get\_literal\_values@{get\_literal\_values}!typing\_inspection.introspection@{typing\_inspection.introspection}}
+\doxysubsubsection{\texorpdfstring{get\_literal\_values()}{get\_literal\_values()}}
+{\footnotesize\ttfamily \label{namespacetyping__inspection_1_1introspection_a43f9117935b1d76abde265e2f8385e64} 
+ Generator\+[Any]\+ get\+\_\+literal\+\_\+values (\begin{DoxyParamCaption}\item[{Any}]{annotation}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{type\+\_\+check}{ = {\ttfamily False}, }\item[{Literal\+[\textquotesingle{}skip\textquotesingle{}, \textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ }]{unpack\+\_\+type\+\_\+aliases}{ = {\ttfamily \textquotesingle{}eager\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Yield the values contained in the provided [`Literal`][typing.Literal] [special form][].
+
+Args:
+    annotation: The [`Literal`][typing.Literal] [special form][] to unpack.
+    type_check: Whether to check if the literal values are [legal parameters][literal-legal-parameters].
+        Raises a [`TypeError`][] otherwise.
+    unpack_type_aliases: What to do when encountering [PEP 695](https://peps.python.org/pep-0695/)
+        [type aliases][type-aliases]. Can be one of:
+
+        - `'skip'`: Do not try to parse type aliases. Note that this can lead to incorrect results:
+          ```pycon
+          >>> type MyAlias = Literal[1, 2]
+          >>> list(get_literal_values(Literal[MyAlias, 3], unpack_type_aliases="skip"))
+          [MyAlias, 3]
+          ```
+
+        - `'lenient'`: Try to parse type aliases, and fallback to `'skip'` if the type alias can't be inspected
+          (because of an undefined forward reference).
+
+        - `'eager'`: Parse type aliases and raise any encountered [`NameError`][] exceptions (the default):
+          ```pycon
+          >>> type MyAlias = Literal[1, 2]
+          >>> list(get_literal_values(Literal[MyAlias, 3], unpack_type_aliases="eager"))
+          [1, 2, 3]
+          ```
+
+Note:
+    While `None` is [equivalent to][none] `type(None)`, the runtime implementation of [`Literal`][typing.Literal]
+    does not de-duplicate them. This function makes sure this de-duplication is applied:
+
+    ```pycon
+    >>> list(get_literal_values(Literal[NoneType, None]))
+    [None]
+    ```
+
+Example:
+    ```pycon
+    >>> type Ints = Literal[1, 2]
+    >>> list(get_literal_values(Literal[1, Ints], unpack_type_alias="skip"))
+    ["a", Ints]
+    >>> list(get_literal_values(Literal[1, Ints]))
+    [1, 2]
+    >>> list(get_literal_values(Literal[1.0], type_check=True))
+    Traceback (most recent call last):
+    ...
+    TypeError: 1.0 is not a valid literal value, must be one of: int, bytes, str, Enum, None.
+    ```
+\end{DoxyVerb}
+ \Hypertarget{namespacetyping__inspection_1_1introspection_a130c9962a0a540a49dca10a55885ca5d}\index{typing\_inspection.introspection@{typing\_inspection.introspection}!inspect\_annotation@{inspect\_annotation}}
+\index{inspect\_annotation@{inspect\_annotation}!typing\_inspection.introspection@{typing\_inspection.introspection}}
+\doxysubsubsection{\texorpdfstring{inspect\_annotation()}{inspect\_annotation()}}
+{\footnotesize\ttfamily \label{namespacetyping__inspection_1_1introspection_a130c9962a0a540a49dca10a55885ca5d} 
+ \doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1InspectedAnnotation}{Inspected\+Annotation}} inspect\+\_\+annotation (\begin{DoxyParamCaption}\item[{Any}]{annotation}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{\doxymbox{\hyperlink{classtyping__inspection_1_1introspection_1_1AnnotationSource}{Annotation\+Source}}}]{annotation\+\_\+source}{, }\item[{Literal\+[\textquotesingle{}skip\textquotesingle{}, \textquotesingle{}lenient\textquotesingle{}, \textquotesingle{}eager\textquotesingle{}]\+ }]{unpack\+\_\+type\+\_\+aliases}{ = {\ttfamily \textquotesingle{}skip\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inspect an [annotation expression][], extracting any [type qualifier][] and metadata.
+
+An [annotation expression][] is a [type expression][] optionally surrounded by one or more
+[type qualifiers][type qualifier] or by [`Annotated`][typing.Annotated]. This function will:
+
+- Unwrap the type expression, keeping track of the type qualifiers.
+- Unwrap [`Annotated`][typing.Annotated] forms, keeping track of the annotated metadata.
+
+Args:
+    annotation: The annotation expression to be inspected.
+    annotation_source: The source of the annotation. Depending on the source (e.g. a class), different type
+        qualifiers may be (dis)allowed. To allow any type qualifier, use
+        [`AnnotationSource.ANY`][typing_inspection.introspection.AnnotationSource.ANY].
+    unpack_type_aliases: What to do when encountering [PEP 695](https://peps.python.org/pep-0695/)
+        [type aliases][type-aliases]. Can be one of:
+
+        - `'skip'`: Do not try to parse type aliases (the default):
+          ```pycon
+          >>> type MyInt = Annotated[int, 'meta']
+          >>> inspect_annotation(MyInt, annotation_source=AnnotationSource.BARE, unpack_type_aliases='skip')
+          InspectedAnnotation(type=MyInt, qualifiers={}, metadata=[])
+          ```
+
+        - `'lenient'`: Try to parse type aliases, and fallback to `'skip'` if the type alias
+          can't be inspected (because of an undefined forward reference):
+          ```pycon
+          >>> type MyInt = Annotated[Undefined, 'meta']
+          >>> inspect_annotation(MyInt, annotation_source=AnnotationSource.BARE, unpack_type_aliases='lenient')
+          InspectedAnnotation(type=MyInt, qualifiers={}, metadata=[])
+          >>> Undefined = int
+          >>> inspect_annotation(MyInt, annotation_source=AnnotationSource.BARE, unpack_type_aliases='lenient')
+          InspectedAnnotation(type=int, qualifiers={}, metadata=['meta'])
+          ```
+
+        - `'eager'`: Parse type aliases and raise any encountered [`NameError`][] exceptions.
+
+Returns:
+    The result of the inspected annotation, where the type expression, used qualifiers and metadata is stored.
+
+Example:
+    ```pycon
+    >>> inspect_annotation(
+    ...     Final[Annotated[ClassVar[Annotated[int, 'meta_1']], 'meta_2']],
+    ...     annotation_source=AnnotationSource.CLASS,
+    ... )
+    ...
+    InspectedAnnotation(type=int, qualifiers={'class_var', 'final'}, metadata=['meta_1', 'meta_2'])
+    ```
+\end{DoxyVerb}
+ \Hypertarget{namespacetyping__inspection_1_1introspection_a4c79b1039e4c504d628d14957e0fd130}\index{typing\_inspection.introspection@{typing\_inspection.introspection}!is\_union\_origin@{is\_union\_origin}}
+\index{is\_union\_origin@{is\_union\_origin}!typing\_inspection.introspection@{typing\_inspection.introspection}}
+\doxysubsubsection{\texorpdfstring{is\_union\_origin()}{is\_union\_origin()}}
+{\footnotesize\ttfamily \label{namespacetyping__inspection_1_1introspection_a4c79b1039e4c504d628d14957e0fd130} 
+bool is\+\_\+union\+\_\+origin (\begin{DoxyParamCaption}\item[{Any}]{obj}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return whether the provided origin is the union form.
+
+```pycon
+>>> is_union_origin(typing.Union)
+True
+>>> is_union_origin(get_origin(int | str))
+True
+>>> is_union_origin(types.UnionType)
+True
+```
+
+!!! note
+    Since Python 3.14, both `Union[<t1>, <t2>, ...]` and `<t1> | <t2> | ...` forms create instances
+    of the same [`typing.Union`][] class. As such, it is recommended to not use this function
+    anymore (provided that you only support Python 3.14 or greater), and instead use the
+    [`typing_objects.is_union()`][typing_inspection.typing_objects.is_union] function directly:
+
+    ```python
+    from typing import Union, get_origin
+
+    from typing_inspection import typing_objects
+
+    typ = int | str  # Or Union[int, str]
+    origin = get_origin(typ)
+    if typing_objects.is_union(origin):
+        ...
+    ```
+\end{DoxyVerb}
+ 

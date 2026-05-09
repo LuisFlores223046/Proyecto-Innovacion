@@ -1,0 +1,48 @@
+\doxysection{dns.\+message.\+Chaining\+Result Class Reference}
+\hypertarget{classdns_1_1message_1_1ChainingResult}{}\label{classdns_1_1message_1_1ChainingResult}\index{dns.message.ChainingResult@{dns.message.ChainingResult}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1message_1_1ChainingResult_aa8f1ab610ea531e8b52d5b041a777324}\label{classdns_1_1message_1_1ChainingResult_aa8f1ab610ea531e8b52d5b041a777324} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} canonical\+\_\+name, \doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}\texorpdfstring{$\vert$}{|}None answer, int minimum\+\_\+ttl, List\+[\doxymbox{\hyperlink{classdns_1_1rrset_1_1RRset}{dns.\+rrset.\+RRset}}]\+ cnames)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1message_1_1ChainingResult_a5d7366af3fa539bad259c3b93ef20d20}\label{classdns_1_1message_1_1ChainingResult_a5d7366af3fa539bad259c3b93ef20d20} 
+{\bfseries canonical\+\_\+name} = canonical\+\_\+name
+\item 
+\Hypertarget{classdns_1_1message_1_1ChainingResult_a305aed572e332b4bc9f4af9b1b7d8ddd}\label{classdns_1_1message_1_1ChainingResult_a305aed572e332b4bc9f4af9b1b7d8ddd} 
+{\bfseries answer} = answer
+\item 
+\Hypertarget{classdns_1_1message_1_1ChainingResult_ae1220116b206543a6c454239a5b23d17}\label{classdns_1_1message_1_1ChainingResult_ae1220116b206543a6c454239a5b23d17} 
+{\bfseries minimum\+\_\+ttl} = minimum\+\_\+ttl
+\item 
+\Hypertarget{classdns_1_1message_1_1ChainingResult_ad1ecf103258d6c160542b5b212846e23}\label{classdns_1_1message_1_1ChainingResult_ad1ecf103258d6c160542b5b212846e23} 
+{\bfseries cnames} = cnames
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The result of a call to dns.message.QueryMessage.resolve_chaining().
+
+The ``answer`` attribute is the answer RRSet, or ``None`` if it doesn't
+exist.
+
+The ``canonical_name`` attribute is the canonical name after all
+chaining has been applied (this is the same name as ``rrset.name`` in cases
+where rrset is not ``None``).
+
+The ``minimum_ttl`` attribute is the minimum TTL, i.e. the TTL to
+use if caching the data.  It is the smallest of all the CNAME TTLs
+and either the answer TTL if it exists or the SOA TTL and SOA
+minimum values for negative answers.
+
+The ``cnames`` attribute is a list of all the CNAME RRSets followed to
+get to the canonical name.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+message.\+py\end{DoxyCompactItemize}

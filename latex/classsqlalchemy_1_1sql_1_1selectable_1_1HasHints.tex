@@ -1,0 +1,138 @@
+\doxysection{sqlalchemy.\+sql.\+selectable.\+Has\+Hints Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints}{}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints}\index{sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}}
+Inheritance diagram for sqlalchemy.\+sql.\+selectable.\+Has\+Hints:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.944444cm]{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a7513c428cc56a6a4bfdb4a0ca52bb6e7}{with\+\_\+statement\+\_\+hint}} (self, str text, str dialect\+\_\+name="{}\texorpdfstring{$\ast$}{*}"{})
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ad0bea828a331dc0254c2bec9e90852e8}{with\+\_\+hint}} (self, \+\_\+\+From\+Clause\+Argument selectable, str text, str dialect\+\_\+name="{}\texorpdfstring{$\ast$}{*}"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a859f7d184cebbbaee97522282d9e72be}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a859f7d184cebbbaee97522282d9e72be} 
+Self {\bfseries \+\_\+with\+\_\+hint} (self, Optional\+[\+\_\+\+From\+Clause\+Argument]\+ selectable, str text, str dialect\+\_\+name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a23f2d1126fa5508c19a35a14380cabe0}{\+\_\+hints}}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ae90937777b8b687f5e8ce6622f53fcc4}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ae90937777b8b687f5e8ce6622f53fcc4} 
+tuple {\bfseries \+\_\+statement\+\_\+hints} = ()
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ae96281b3e3f90f87b258e6664bd6549f}{\+\_\+has\+\_\+hints\+\_\+traverse\+\_\+internals}}
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ad0bea828a331dc0254c2bec9e90852e8}\index{sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}!with\_hint@{with\_hint}}
+\index{with\_hint@{with\_hint}!sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}}
+\doxysubsubsection{\texorpdfstring{with\_hint()}{with\_hint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ad0bea828a331dc0254c2bec9e90852e8} 
+ Self sqlalchemy.\+sql.\+selectable.\+Has\+Hints.\+with\+\_\+hint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+From\+Clause\+Argument}]{selectable}{, }\item[{str}]{text}{, }\item[{str }]{dialect\+\_\+name}{ = {\ttfamily "{}\texorpdfstring{$\ast$}{*}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add an indexing or other executional context hint for the given
+    selectable to this :class:`_expression.Select` or other selectable
+    object.
+
+    The text of the hint is rendered in the appropriate
+    location for the database backend in use, relative
+    to the given :class:`_schema.Table` or :class:`_expression.Alias`
+    passed as the
+    ``selectable`` argument. The dialect implementation
+    typically uses Python string substitution syntax
+    with the token ``%(name)s`` to render the name of
+    the table or alias. E.g. when using Oracle, the
+    following::
+
+        select(mytable).\
+            with_hint(mytable, "index(%(name)s ix_mytable)")
+
+    Would render SQL as::
+
+        select /*+ index(mytable ix_mytable) */ ... from mytable
+
+    The ``dialect_name`` option will limit the rendering of a particular
+    hint to a particular backend. Such as, to add hints for both Oracle
+    and Sybase simultaneously::
+
+        select(mytable).\
+            with_hint(mytable, "index(%(name)s ix_mytable)", 'oracle').\
+            with_hint(mytable, "WITH INDEX ix_mytable", 'mssql')
+
+    .. seealso::
+
+        :meth:`_expression.Select.with_statement_hint`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a7513c428cc56a6a4bfdb4a0ca52bb6e7}\index{sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}!with\_statement\_hint@{with\_statement\_hint}}
+\index{with\_statement\_hint@{with\_statement\_hint}!sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}}
+\doxysubsubsection{\texorpdfstring{with\_statement\_hint()}{with\_statement\_hint()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a7513c428cc56a6a4bfdb4a0ca52bb6e7} 
+ Self sqlalchemy.\+sql.\+selectable.\+Has\+Hints.\+with\+\_\+statement\+\_\+hint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{, }\item[{str }]{dialect\+\_\+name}{ = {\ttfamily "{}\texorpdfstring{$\ast$}{*}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a statement hint to this :class:`_expression.Select` or
+other selectable object.
+
+This method is similar to :meth:`_expression.Select.with_hint`
+except that
+it does not require an individual table, and instead applies to the
+statement as a whole.
+
+Hints here are specific to the backend database and may include
+directives such as isolation levels, file directives, fetch directives,
+etc.
+
+.. seealso::
+
+    :meth:`_expression.Select.with_hint`
+
+    :meth:`_expression.Select.prefix_with` - generic SELECT prefixing
+    which also can suit some database-specific HINT syntaxes such as
+    MySQL optimizer hints
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ae96281b3e3f90f87b258e6664bd6549f}\index{sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}!\_has\_hints\_traverse\_internals@{\_has\_hints\_traverse\_internals}}
+\index{\_has\_hints\_traverse\_internals@{\_has\_hints\_traverse\_internals}!sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}}
+\doxysubsubsection{\texorpdfstring{\_has\_hints\_traverse\_internals}{\_has\_hints\_traverse\_internals}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_ae96281b3e3f90f87b258e6664bd6549f} 
+list sqlalchemy.\+sql.\+selectable.\+Has\+Hints.\+\_\+has\+\_\+hints\+\_\+traverse\+\_\+internals\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}\_statement\_hints"{}},\ InternalTraversal.dp\_statement\_hint\_list),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}\_hints"{}},\ InternalTraversal.dp\_table\_hint\_list),}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a23f2d1126fa5508c19a35a14380cabe0}\index{sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}!\_hints@{\_hints}}
+\index{\_hints@{\_hints}!sqlalchemy.sql.selectable.HasHints@{sqlalchemy.sql.selectable.HasHints}}
+\doxysubsubsection{\texorpdfstring{\_hints}{\_hints}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasHints_a23f2d1126fa5508c19a35a14380cabe0} 
+tuple sqlalchemy.\+sql.\+selectable.\+Has\+Hints.\+\_\+hints\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ util.immutabledict()}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+selectable.\+py\end{DoxyCompactItemize}

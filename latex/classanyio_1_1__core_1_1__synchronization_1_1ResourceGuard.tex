@@ -1,0 +1,45 @@
+\doxysection{anyio.\+\_\+core.\+\_\+synchronization.\+Resource\+Guard Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard}{}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard}\index{anyio.\_core.\_synchronization.ResourceGuard@{anyio.\_core.\_synchronization.ResourceGuard}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a8a01ed714571f41b131d68bb014bda28}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a8a01ed714571f41b131d68bb014bda28} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str action="{}using"{})
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_af857d42d7bc7c3448bc8737e12487860}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_af857d42d7bc7c3448bc8737e12487860} 
+None {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a26231f90d8ea0dc21244c795396ad111}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a26231f90d8ea0dc21244c795396ad111} 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a95d7bcc29ae27495ad0fcf0c3a01cd96}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a95d7bcc29ae27495ad0fcf0c3a01cd96} 
+str {\bfseries action} = action
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a93297f3957635f7bf6d897ae0eb7a5c9}\label{classanyio_1_1__core_1_1__synchronization_1_1ResourceGuard_a93297f3957635f7bf6d897ae0eb7a5c9} 
+bool {\bfseries \+\_\+guarded} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A context manager for ensuring that a resource is only used by a single task at a
+time.
+
+Entering this context manager while the previous has not exited it yet will trigger
+:exc:`BusyResourceError`.
+
+:param action: the action to guard against (visible in the :exc:`BusyResourceError`
+    when triggered, e.g. "Another task is already {action} this resource")
+
+.. versionadded:: 4.1
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+synchronization.\+py\end{DoxyCompactItemize}

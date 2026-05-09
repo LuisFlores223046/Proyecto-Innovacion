@@ -1,0 +1,68 @@
+\doxysection{jinja2.\+visitor.\+Node\+Transformer Class Reference}
+\hypertarget{classjinja2_1_1visitor_1_1NodeTransformer}{}\label{classjinja2_1_1visitor_1_1NodeTransformer}\index{jinja2.visitor.NodeTransformer@{jinja2.visitor.NodeTransformer}}
+Inheritance diagram for jinja2.\+visitor.\+Node\+Transformer:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classjinja2_1_1visitor_1_1NodeTransformer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeTransformer_a508dde6856298458dc79732fa6cd6edd}{generic\+\_\+visit}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\item 
+t.\+List\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}]\+ \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeTransformer_a8ba9377d53492af432cdf4fd80169d36}{visit\+\_\+list}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor}{jinja2.\+visitor.\+Node\+Visitor}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}t.\+Optional\+[\doxymbox{\hyperlink{classjinja2_1_1visitor_1_1VisitCallable}{Visit\+Callable}}]\+"{} \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_a48f14e449d8a76b3abe49109a6a1aef9}{get\+\_\+visitor}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node)
+\item 
+t.\+Any \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_ac46313d5a7f643dd6b516f67e7a0e3cb}{visit}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Walks the abstract syntax tree and allows modifications of nodes.
+
+The `NodeTransformer` will walk the AST and use the return value of the
+visitor functions to replace or remove the old node.  If the return
+value of the visitor function is `None` the node will be removed
+from the previous location otherwise it's replaced with the return
+value.  The return value may be the original node in which case no
+replacement takes place.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1visitor_1_1NodeTransformer_doc-func-members}
+\Hypertarget{classjinja2_1_1visitor_1_1NodeTransformer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1visitor_1_1NodeTransformer_a508dde6856298458dc79732fa6cd6edd}\index{jinja2.visitor.NodeTransformer@{jinja2.visitor.NodeTransformer}!generic\_visit@{generic\_visit}}
+\index{generic\_visit@{generic\_visit}!jinja2.visitor.NodeTransformer@{jinja2.visitor.NodeTransformer}}
+\doxysubsubsection{\texorpdfstring{generic\_visit()}{generic\_visit()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1visitor_1_1NodeTransformer_a508dde6856298458dc79732fa6cd6edd} 
+ \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} jinja2.\+visitor.\+Node\+Transformer.\+generic\+\_\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}}]{node}{, }\item[{\texorpdfstring{$\ast$}{*}t.\+Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called if no explicit visitor function exists for a node.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_a9020040a2124eaa206bd1505642fa9fa}{jinja2.\+visitor.\+Node\+Visitor}}.
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classjinja2_1_1optimizer_1_1Optimizer_abcfac0d346c036c692b55a107534c137}{jinja2.\+optimizer.\+Optimizer}}.
+
+\Hypertarget{classjinja2_1_1visitor_1_1NodeTransformer_a8ba9377d53492af432cdf4fd80169d36}\index{jinja2.visitor.NodeTransformer@{jinja2.visitor.NodeTransformer}!visit\_list@{visit\_list}}
+\index{visit\_list@{visit\_list}!jinja2.visitor.NodeTransformer@{jinja2.visitor.NodeTransformer}}
+\doxysubsubsection{\texorpdfstring{visit\_list()}{visit\_list()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1visitor_1_1NodeTransformer_a8ba9377d53492af432cdf4fd80169d36} 
+ t.\+List\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}]\+ jinja2.\+visitor.\+Node\+Transformer.\+visit\+\_\+list (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}}]{node}{, }\item[{\texorpdfstring{$\ast$}{*}t.\+Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}As transformers may return lists in some places this method
+can be used to enforce a list as return value.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+visitor.\+py\end{DoxyCompactItemize}

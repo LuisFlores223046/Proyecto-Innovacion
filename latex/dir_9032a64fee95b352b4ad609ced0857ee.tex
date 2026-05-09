@@ -1,0 +1,61 @@
+\doxysection{frontend/\+node\+\_\+modules/\+parent-\/module Directory Reference}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee}{}\label{dir_9032a64fee95b352b4ad609ced0857ee}\index{frontend/node\_modules/parent-\/module Directory Reference@{frontend/node\_modules/parent-\/module Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3742}{}\doxysubsection{\texorpdfstring{parent-\/module \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/parent-module.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+parent-\/module.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/parent-module}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+parent-\/module}})}{parent-\/module \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/parent-module.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+parent-\/module.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/parent-module}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+parent-\/module}})}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3742}
+\begin{quote}
+Get the path of the parent module \end{quote}
+
+
+Node.\+js exposes {\ttfamily module.\+parent}, but it only gives you the first cached parent, which is not necessarily the actual parent.\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3743}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3743}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ parent-\/module}
+
+\end{DoxyCode}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3744}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3744}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ bar.js}
+\DoxyCodeLine{const\ parentModule\ =\ require('parent-\/module');}
+\DoxyCodeLine{}
+\DoxyCodeLine{module.exports\ =\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(parentModule());}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/dev/unicorn/foo.js'}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.js}
+\DoxyCodeLine{const\ bar\ =\ require('./bar');}
+\DoxyCodeLine{}
+\DoxyCodeLine{bar();}
+
+\end{DoxyCode}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3745}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3745}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3746}{}\doxysubsubsection{\texorpdfstring{parent\+Module(\+[filepath]\+)}{parent\+Module(\+[filepath]\+)}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3746}
+By default, it will return the path of the immediate parent.\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3747}{}\doxysubsubsubsection{\texorpdfstring{filepath}{filepath}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3747}
+Type:\+ {\ttfamily string}~\newline
+ Default:\+ \href{https://nodejs.org/api/globals.html\#globals_filename}{\texttt{{\ttfamily \+\_\+\+\_\+filename}}}
+
+Filepath of the module of which to get the parent path.
+
+Useful if you want it to work \href{https://github.com/sindresorhus/parent-module/tree/master/fixtures/filepath}{\texttt{multiple module levels down}}.\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3748}{}\doxysubsection{\texorpdfstring{Tip}{Tip}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3748}
+Combine it with \href{https://github.com/sindresorhus/read-pkg-up}{\texttt{{\ttfamily read-\/pkg-\/up}}} to read the package.\+json of the parent module.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ path\ =\ require('path');}
+\DoxyCodeLine{const\ readPkgUp\ =\ require('read-\/pkg-\/up');}
+\DoxyCodeLine{const\ parentModule\ =\ require('parent-\/module');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(readPkgUp.sync(\{cwd:\ path.dirname(parentModule())\}).pkg);}
+\DoxyCodeLine{//=>\ \{name:\ 'chalk',\ version:\ '1.0.0',\ …\}}
+
+\end{DoxyCode}
+\hypertarget{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3749}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_9032a64fee95b352b4ad609ced0857ee_autotoc_md3749}
+MIT © \href{https://sindresorhus.com}{\texttt{Sindre Sorhus}} 

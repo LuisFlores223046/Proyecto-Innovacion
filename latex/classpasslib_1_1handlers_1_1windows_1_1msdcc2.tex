@@ -1,0 +1,86 @@
+\doxysection{passlib.\+handlers.\+windows.\+msdcc2 Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2}{}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2}\index{passlib.handlers.windows.msdcc2@{passlib.handlers.windows.msdcc2}}
+Inheritance diagram for passlib.\+handlers.\+windows.\+msdcc2:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1windows_1_1msdcc2}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a319da98c72ca1f18cf3a1975689538bd}{raw}} (cls, secret, user)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a2ecc0b060181e92ff5a22a6ff3c1598d}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a2ecc0b060181e92ff5a22a6ff3c1598d} 
+{\bfseries user}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_adaa7e746741ef348a2266707b37e75f8}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_adaa7e746741ef348a2266707b37e75f8} 
+str {\bfseries name} = "{}msdcc2"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a75ad4d93aae1c3b142c040a793556faf}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a75ad4d93aae1c3b142c040a793556faf} 
+{\bfseries checksum\+\_\+chars} = uh.\+HEX\+\_\+\+CHARS
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a4afbc2bde27ee3d314ed124224acde2a}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a4afbc2bde27ee3d314ed124224acde2a} 
+int {\bfseries checksum\+\_\+size} = 32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a65e41388b8338e4d7da21d2af492defb}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a65e41388b8338e4d7da21d2af492defb} 
+{\bfseries \+\_\+norm\+\_\+hash} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_adbf6a3f3de9dbd5765fd07af9bed8504}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_adbf6a3f3de9dbd5765fd07af9bed8504} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements version 2 of Microsoft's Domain Cached Credentials
+password hash, and follows the :ref:`password-hash-api`.
+
+It has a fixed number of rounds, and uses the associated
+username as the salt.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`, :meth:`~passlib.ifc.PasswordHash.genhash`, and :meth:`~passlib.ifc.PasswordHash.verify` methods
+have the following extra keyword:
+
+:type user: str
+:param user:
+    String containing name of user account this password is associated with.
+    This is required to properly calculate the hash.
+
+    This keyword is case-insensitive, and should contain just the username
+    (e.g. ``Administrator``, not ``SOMEDOMAIN\\Administrator``).
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a319da98c72ca1f18cf3a1975689538bd}\index{passlib.handlers.windows.msdcc2@{passlib.handlers.windows.msdcc2}!raw@{raw}}
+\index{raw@{raw}!passlib.handlers.windows.msdcc2@{passlib.handlers.windows.msdcc2}}
+\doxysubsubsection{\texorpdfstring{raw()}{raw()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1windows_1_1msdcc2_a319da98c72ca1f18cf3a1975689538bd} 
+passlib.\+handlers.\+windows.\+msdcc2.\+raw (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{secret}{, }\item[{}]{user}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}encode password using msdcc v2 algorithm
+
+:type secret: unicode or utf-8 bytes
+:arg secret: secret
+
+:type user: str
+:arg user: username to use as salt
+
+:returns: returns string of raw bytes
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+windows.\+py\end{DoxyCompactItemize}

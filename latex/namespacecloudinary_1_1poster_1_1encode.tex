@@ -1,0 +1,163 @@
+\doxysection{cloudinary.\+poster.\+encode Namespace Reference}
+\hypertarget{namespacecloudinary_1_1poster_1_1encode}{}\label{namespacecloudinary_1_1poster_1_1encode}\index{cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1encode_1_1MultipartParam}{Multipart\+Param}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1encode_1_1multipart__yielder}{multipart\+\_\+yielder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_ad63bf7b173b72a1e08ba61f1bb097504}{gen\+\_\+boundary}} ()
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a4a46520cbeb97ec55dbcc7998aadf125}{encode\+\_\+and\+\_\+quote}} (data)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_ae2e640611f70491d72f5b6da5c70f5d2}{\+\_\+strify}} (s)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a9bd7b810c3eedd717cbfa9fa324b43f5}{encode\+\_\+string}} (boundary, name, value)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a8c203039e5a2ada2aa84a9216e7b986e}{encode\+\_\+file\+\_\+header}} (boundary, paramname, filesize, filename=None, filetype=None)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a59ac9825fa607997c079e29beff47830}{get\+\_\+body\+\_\+size}} (params, boundary)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a9f07dde8aea858e48b73275ee31e67d2}{get\+\_\+headers}} (params, boundary)
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1encode_a97edd819fbd3e62b10c8ffbaaf467c95}{multipart\+\_\+encode}} (params, boundary=None, cb=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacecloudinary_1_1poster_1_1encode_ae5a02258ecdde27e4c752d350f531ade}\label{namespacecloudinary_1_1poster_1_1encode_ae5a02258ecdde27e4c752d350f531ade} 
+{\bfseries Unsupported\+Operation} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}multipart/form-data encoding module
+
+This module provides functions that faciliate encoding name/value pairs
+as multipart/form-data suitable for a HTTP POST or PUT request.
+
+multipart/form-data is the standard way to upload files over HTTP\end{DoxyVerb}
+ 
+
+\label{namespacecloudinary_1_1poster_1_1encode_doc-func-members}
+\Hypertarget{namespacecloudinary_1_1poster_1_1encode_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecloudinary_1_1poster_1_1encode_ae2e640611f70491d72f5b6da5c70f5d2}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!\_strify@{\_strify}}
+\index{\_strify@{\_strify}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{\_strify()}{\_strify()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_ae2e640611f70491d72f5b6da5c70f5d2} 
+\+\_\+strify (\begin{DoxyParamCaption}\item[{s}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}If s is a unicode string, encode it to UTF-8 and return the results,
+otherwise return str(s), or None if s is None\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a4a46520cbeb97ec55dbcc7998aadf125}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!encode\_and\_quote@{encode\_and\_quote}}
+\index{encode\_and\_quote@{encode\_and\_quote}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{encode\_and\_quote()}{encode\_and\_quote()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a4a46520cbeb97ec55dbcc7998aadf125} 
+encode\+\_\+and\+\_\+quote (\begin{DoxyParamCaption}\item[{data}]{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}If ``data`` is unicode, return quote_plus(data.encode("utf-8")) otherwise return quote_plus(data)\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a8c203039e5a2ada2aa84a9216e7b986e}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!encode\_file\_header@{encode\_file\_header}}
+\index{encode\_file\_header@{encode\_file\_header}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{encode\_file\_header()}{encode\_file\_header()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a8c203039e5a2ada2aa84a9216e7b986e} 
+encode\+\_\+file\+\_\+header (\begin{DoxyParamCaption}\item[{}]{boundary}{, }\item[{}]{paramname}{, }\item[{}]{filesize}{, }\item[{}]{filename}{ = {\ttfamily None}, }\item[{}]{filetype}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the leading data for a multipart/form-data field that contains
+file data.
+
+``boundary`` is the boundary string used throughout a single request to
+separate variables.
+
+``paramname`` is the name of the variable in this request.
+
+``filesize`` is the size of the file data.
+
+``filename`` if specified is the filename to give to this field.  This
+field is only useful to the server for determining the original filename.
+
+``filetype`` if specified is the MIME type of this file.
+
+The actual file data should be sent after this header has been sent.
+\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a9bd7b810c3eedd717cbfa9fa324b43f5}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!encode\_string@{encode\_string}}
+\index{encode\_string@{encode\_string}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{encode\_string()}{encode\_string()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a9bd7b810c3eedd717cbfa9fa324b43f5} 
+encode\+\_\+string (\begin{DoxyParamCaption}\item[{}]{boundary}{, }\item[{}]{name}{, }\item[{}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns ``name`` and ``value`` encoded as a multipart/form-data
+variable.  ``boundary`` is the boundary string used throughout
+a single request to separate variables.\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_ad63bf7b173b72a1e08ba61f1bb097504}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!gen\_boundary@{gen\_boundary}}
+\index{gen\_boundary@{gen\_boundary}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{gen\_boundary()}{gen\_boundary()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_ad63bf7b173b72a1e08ba61f1bb097504} 
+gen\+\_\+boundary (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a random string to use as the boundary for a message\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a59ac9825fa607997c079e29beff47830}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!get\_body\_size@{get\_body\_size}}
+\index{get\_body\_size@{get\_body\_size}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{get\_body\_size()}{get\_body\_size()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a59ac9825fa607997c079e29beff47830} 
+get\+\_\+body\+\_\+size (\begin{DoxyParamCaption}\item[{}]{params}{, }\item[{}]{boundary}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the number of bytes that the multipart/form-data encoding
+of ``params`` will be.\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a9f07dde8aea858e48b73275ee31e67d2}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!get\_headers@{get\_headers}}
+\index{get\_headers@{get\_headers}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{get\_headers()}{get\_headers()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a9f07dde8aea858e48b73275ee31e67d2} 
+get\+\_\+headers (\begin{DoxyParamCaption}\item[{}]{params}{, }\item[{}]{boundary}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a dictionary with Content-Type and Content-Length headers
+for the multipart/form-data encoding of ``params``.\end{DoxyVerb}
+ \Hypertarget{namespacecloudinary_1_1poster_1_1encode_a97edd819fbd3e62b10c8ffbaaf467c95}\index{cloudinary.poster.encode@{cloudinary.poster.encode}!multipart\_encode@{multipart\_encode}}
+\index{multipart\_encode@{multipart\_encode}!cloudinary.poster.encode@{cloudinary.poster.encode}}
+\doxysubsubsection{\texorpdfstring{multipart\_encode()}{multipart\_encode()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1encode_a97edd819fbd3e62b10c8ffbaaf467c95} 
+multipart\+\_\+encode (\begin{DoxyParamCaption}\item[{}]{params}{, }\item[{}]{boundary}{ = {\ttfamily None}, }\item[{}]{cb}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode ``params`` as multipart/form-data.
+
+``params`` should be a sequence of (name, value) pairs or MultipartParam
+objects, or a mapping of names to values.
+Values are either strings parameter values, or file-like objects to use as
+the parameter value.  The file-like objects must support .read() and either
+.fileno() or both .seek() and .tell().
+
+If ``boundary`` is set, then it as used as the MIME boundary.  Otherwise
+a randomly generated boundary will be used.  In either case, if the
+boundary string appears in the parameter values a ValueError will be
+raised.
+
+If ``cb`` is set, it should be a callback which will get called as blocks
+of data are encoded.  It will be called with (param, current, total),
+indicating the current parameter being encoded, the current amount encoded,
+and the total amount to encode.
+
+Returns a tuple of `datagen`, `headers`, where `datagen` is a
+generator that will yield blocks of data that make up the encoded
+parameters, and `headers` is a dictionary with the assoicated
+Content-Type and Content-Length headers.
+
+Examples:
+
+>>> datagen, headers = multipart_encode( [("key", "value1"), ("key", "value2")] )
+>>> s = "".join(datagen)
+>>> assert "value2" in s and "value1" in s
+
+>>> p = MultipartParam("key", "value2")
+>>> datagen, headers = multipart_encode( [("key", "value1"), p] )
+>>> s = "".join(datagen)
+>>> assert "value2" in s and "value1" in s
+
+>>> datagen, headers = multipart_encode( {"key": "value1"} )
+>>> s = "".join(datagen)
+>>> assert "value2" not in s and "value1" in s
+\end{DoxyVerb}
+ 

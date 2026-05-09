@@ -1,0 +1,53 @@
+\doxysection{sqlalchemy.\+dialects.\+mysql.\+pyodbc Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1pyodbc}{}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1pyodbc}\index{sqlalchemy.dialects.mysql.pyodbc@{sqlalchemy.dialects.mysql.pyodbc}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1__pyodbcTIME}{\+\_\+pyodbc\+TIME}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1MySQLExecutionContext__pyodbc}{My\+SQLExecution\+Context\+\_\+pyodbc}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1MySQLDialect__pyodbc}{My\+SQLDialect\+\_\+pyodbc}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_ae7995d7e692d8d72f7a113364c2679ac}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_ae7995d7e692d8d72f7a113364c2679ac} 
+{\bfseries dialect} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1pyodbc_1_1MySQLDialect__pyodbc}{My\+SQLDialect\+\_\+pyodbc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: mysql+pyodbc
+    :name: PyODBC
+    :dbapi: pyodbc
+    :connectstring: mysql+pyodbc://<username>:<password>@<dsnname>
+    :url: https://pypi.org/project/pyodbc/
+
+.. note::
+
+    The PyODBC for MySQL dialect is **not tested as part of
+    SQLAlchemy's continuous integration**.
+    The recommended MySQL dialects are mysqlclient and PyMySQL.
+    However, if you want to use the mysql+pyodbc dialect and require
+    full support for ``utf8mb4`` characters (including supplementary
+    characters like emoji) be sure to use a current release of
+    MySQL Connector/ODBC and specify the "ANSI" (**not** "Unicode")
+    version of the driver in your DSN or connection string.
+
+Pass through exact pyodbc connection string::
+
+    import urllib
+    connection_string = (
+        'DRIVER=MySQL ODBC 8.0 ANSI Driver;'
+        'SERVER=localhost;'
+        'PORT=3307;'
+        'DATABASE=mydb;'
+        'UID=root;'
+        'PWD=(whatever);'
+        'charset=utf8mb4;'
+    )
+    params = urllib.parse.quote_plus(connection_string)
+    connection_uri = "mysql+pyodbc:///?odbc_connect=%s" % params
+\end{DoxyVerb}
+ 

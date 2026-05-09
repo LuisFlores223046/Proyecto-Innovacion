@@ -1,0 +1,106 @@
+\doxysection{pip.\+\_\+internal.\+metadata.\+importlib.\+\_\+envs.\+\_\+\+Distribution\+Finder Class Reference}
+\hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder}{}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder}\index{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_af8c70c00b48e32546f0ef30a592798dc}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_af8c70c00b48e32546f0ef30a592798dc} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a04f1bc30a1250caeb06c114fbbdeda33}{find}} (self, str location)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_ad3e09bc74d9e788d3d71afecb51b5d33}{find\+\_\+linked}} (self, str location)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a0d5625167a26251a8bd9cf190773d74b}{find\+\_\+eggs}} (self, str location)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_ad13433382fb38b6519d1bd05f16d868c}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_ad13433382fb38b6519d1bd05f16d868c} 
+{\bfseries Found\+Result} = Tuple\+[importlib.\+metadata.\+Distribution, Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__compat_1_1BasePath}{Base\+Path}}]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Iterator\+[Found\+Result]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a24fb06e61a80948be13e53e01f138f01}{\+\_\+find\+\_\+impl}} (self, str location)
+\item 
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_aa16347df946980d34058432be3d2d498}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_aa16347df946980d34058432be3d2d498} 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ {\bfseries \+\_\+find\+\_\+eggs\+\_\+in\+\_\+dir} (self, str location)
+\item 
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a1fcafa630abecdd34d431f1ffd75831b}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a1fcafa630abecdd34d431f1ffd75831b} 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ {\bfseries \+\_\+find\+\_\+eggs\+\_\+in\+\_\+zip} (self, str location)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a4a7eb86c9fa52357a0daa23565a9cfa7}\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a4a7eb86c9fa52357a0daa23565a9cfa7} 
+Set\+[Normalized\+Name]\+ {\bfseries \+\_\+found\+\_\+names} = set()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Finder to locate distributions.
+
+The main purpose of this class is to memoize found distributions' names, so
+only one distribution is returned for each package name. At lot of pip code
+assumes this (because it is setuptools's behavior), and not doing the same
+can potentially cause a distribution in lower precedence path to override a
+higher precedence one if the caller is not careful.
+
+Eventually we probably want to make it possible to see lower precedence
+installations as well. It's useful feature, after all.
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_doc-func-members}
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a24fb06e61a80948be13e53e01f138f01}\index{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}!\_find\_impl@{\_find\_impl}}
+\index{\_find\_impl@{\_find\_impl}!pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}}
+\doxysubsubsection{\texorpdfstring{\_find\_impl()}{\_find\_impl()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a24fb06e61a80948be13e53e01f138f01} 
+ Iterator\+[Found\+Result]\+ pip.\+\_\+internal.\+metadata.\+importlib.\+\_\+envs.\+\_\+\+Distribution\+Finder.\+\_\+find\+\_\+impl (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{location}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Find distributions in a location.\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a04f1bc30a1250caeb06c114fbbdeda33}\index{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}!find@{find}}
+\index{find@{find}!pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a04f1bc30a1250caeb06c114fbbdeda33} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ pip.\+\_\+internal.\+metadata.\+importlib.\+\_\+envs.\+\_\+\+Distribution\+Finder.\+find (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{location}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find distributions in a location.
+
+The path can be either a directory, or a ZIP archive.
+\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a0d5625167a26251a8bd9cf190773d74b}\index{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}!find\_eggs@{find\_eggs}}
+\index{find\_eggs@{find\_eggs}!pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}}
+\doxysubsubsection{\texorpdfstring{find\_eggs()}{find\_eggs()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_a0d5625167a26251a8bd9cf190773d74b} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ pip.\+\_\+internal.\+metadata.\+importlib.\+\_\+envs.\+\_\+\+Distribution\+Finder.\+find\+\_\+eggs (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{location}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find eggs in a location.
+
+This actually uses the old *pkg_resources* backend. We likely want to
+deprecate this so we can eventually remove the *pkg_resources*
+dependency entirely. Before that, this should first emit a deprecation
+warning for some versions when using the fallback since importing
+*pkg_resources* is slow for those who don't need it.
+\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_ad3e09bc74d9e788d3d71afecb51b5d33}\index{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}!find\_linked@{find\_linked}}
+\index{find\_linked@{find\_linked}!pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder@{pip.\_internal.metadata.importlib.\_envs.\_DistributionFinder}}
+\doxysubsubsection{\texorpdfstring{find\_linked()}{find\_linked()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1metadata_1_1importlib_1_1__envs_1_1__DistributionFinder_ad3e09bc74d9e788d3d71afecb51b5d33} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}}]\+ pip.\+\_\+internal.\+metadata.\+importlib.\+\_\+envs.\+\_\+\+Distribution\+Finder.\+find\+\_\+linked (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{location}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read location in egg-link files and return distributions in there.
+
+The path should be a directory; otherwise this returns nothing. This
+follows how setuptools does this for compatibility. The first non-empty
+line in the egg-link is read as a path (resolved against the egg-link's
+containing directory if relative). Distributions found at that linked
+location are returned.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+internal/\+metadata/\+importlib/\+\+\_\+envs.\+py\end{DoxyCompactItemize}

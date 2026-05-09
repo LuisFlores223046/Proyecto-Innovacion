@@ -1,0 +1,60 @@
+\doxysection{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential}{}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential}\index{pip.\_vendor.tenacity.wait.wait\_exponential@{pip.\_vendor.tenacity.wait.wait\_exponential}}
+Inheritance diagram for pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a403406b27d7f7483fe15f1b53754b934}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a403406b27d7f7483fe15f1b53754b934} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, typing.\+Union\+[int, float]\+ multiplier=1, \+\_\+utils.\+time\+\_\+unit\+\_\+type max=\+\_\+utils.\+MAX\+\_\+\+WAIT, typing.\+Union\+[int, float]\+ exp\+\_\+base=2, \+\_\+utils.\+time\+\_\+unit\+\_\+type min=0)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a07e7d7e159cb1df84b88f273864b5c4e}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a07e7d7e159cb1df84b88f273864b5c4e} 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__base}{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+base}}}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\item 
+"{}wait\+\_\+combine"{} {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\item 
+typing.\+Union\+["{}wait\+\_\+combine"{}, "{}wait\+\_\+base"{}]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_aad2e12fc1f18347de41ac288fa9d55f4}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_aad2e12fc1f18347de41ac288fa9d55f4} 
+{\bfseries multiplier} = multiplier
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_ae41e1cde724cc3efb75190fd8d02b403}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_ae41e1cde724cc3efb75190fd8d02b403} 
+{\bfseries min} = \+\_\+utils.\+to\+\_\+seconds(min)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a684008195b1733ae7520a10d8183fe9b}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_a684008195b1733ae7520a10d8183fe9b} 
+{\bfseries max} = \+\_\+utils.\+to\+\_\+seconds(max)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_af64e5448868f6376b326c38a958f3c34}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential_af64e5448868f6376b326c38a958f3c34} 
+{\bfseries exp\+\_\+base} = exp\+\_\+base
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wait strategy that applies exponential backoff.
+
+It allows for a customized multiplier and an ability to restrict the
+upper and lower limits to some maximum and minimum value.
+
+The intervals are fixed (i.e. there is no jitter), so this strategy is
+suitable for balancing retries against latency when a required resource is
+unavailable for an unknown duration, but *not* suitable for resolving
+contention between multiple processes for a shared resource. Use
+wait_random_exponential for the latter case.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+tenacity/\+wait.\+py\end{DoxyCompactItemize}

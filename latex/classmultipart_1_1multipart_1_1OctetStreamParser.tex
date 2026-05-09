@@ -1,0 +1,120 @@
+\doxysection{multipart.\+multipart.\+Octet\+Stream\+Parser Class Reference}
+\hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser}{}\label{classmultipart_1_1multipart_1_1OctetStreamParser}\index{multipart.multipart.OctetStreamParser@{multipart.multipart.OctetStreamParser}}
+Inheritance diagram for multipart.\+multipart.\+Octet\+Stream\+Parser:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmultipart_1_1multipart_1_1OctetStreamParser}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_a666aeede787e36db2e18209a4e19e68a}\label{classmultipart_1_1multipart_1_1OctetStreamParser_a666aeede787e36db2e18209a4e19e68a} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1OctetStreamCallbacks}{Octet\+Stream\+Callbacks}} callbacks=\{\}, max\+\_\+size=float("{}inf"{}))
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1OctetStreamParser_a85b7432d3fa110bffda5ecb78de6bf65}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1OctetStreamParser_a2412c29066c03ec4698b00aa313bbea0}{finalize}} (self)
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_aa9b96daff3f82d72cb6f2babd4d804dd}\label{classmultipart_1_1multipart_1_1OctetStreamParser_aa9b96daff3f82d72cb6f2babd4d804dd} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser}{multipart.\+multipart.\+Base\+Parser}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser_a848700c93f3cfff210859147d70d02a1}{callback}} (self, str name, data=None, start=None, end=None)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser_a43c7d675ecaea97d26e84fd9e2cf8caa}{set\+\_\+callback}} (self, str name, new\+\_\+func)
+\item 
+{\bfseries close} (self)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_abaec6f44c2f1c53c481144f749403f8a}\label{classmultipart_1_1multipart_1_1OctetStreamParser_abaec6f44c2f1c53c481144f749403f8a} 
+{\bfseries callbacks} = callbacks
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_ae22099b247669a94826b178fca9cb02b}\label{classmultipart_1_1multipart_1_1OctetStreamParser_ae22099b247669a94826b178fca9cb02b} 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser}{multipart.\+multipart.\+Base\+Parser}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_a3d71e27cee62ebb68ca00d5cbc441190}\label{classmultipart_1_1multipart_1_1OctetStreamParser_a3d71e27cee62ebb68ca00d5cbc441190} 
+bool {\bfseries \+\_\+started} = False
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_abd77c29f6908d650be4b541b378ac763}\label{classmultipart_1_1multipart_1_1OctetStreamParser_abd77c29f6908d650be4b541b378ac763} 
+int {\bfseries \+\_\+current\+\_\+size} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This parser parses an octet-stream request body and calls callbacks when
+incoming data is received.  Callbacks are as follows:
+
+.. list-table::
+   :widths: 15 10 30
+   :header-rows: 1
+
+   * - Callback Name
+     - Parameters
+     - Description
+   * - on_start
+     - None
+     - Called when the first data is parsed.
+   * - on_data
+     - data, start, end
+     - Called for each data chunk that is parsed.
+   * - on_end
+     - None
+     - Called when the parser is finished parsing all data.
+
+:param callbacks: A dictionary of callbacks.  See the documentation for
+                  :class:`BaseParser`.
+
+:param max_size: The maximum size of body to parse.  Defaults to infinity -
+                 i.e. unbounded.
+\end{DoxyVerb}
+ 
+
+\label{classmultipart_1_1multipart_1_1OctetStreamParser_doc-func-members}
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_a2412c29066c03ec4698b00aa313bbea0}\index{multipart.multipart.OctetStreamParser@{multipart.multipart.OctetStreamParser}!finalize@{finalize}}
+\index{finalize@{finalize}!multipart.multipart.OctetStreamParser@{multipart.multipart.OctetStreamParser}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1OctetStreamParser_a2412c29066c03ec4698b00aa313bbea0} 
+ None multipart.\+multipart.\+Octet\+Stream\+Parser.\+finalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finalize this parser, which signals to that we are finished parsing,
+and sends the on_end callback.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser}{multipart.\+multipart.\+Base\+Parser}}.
+
+\Hypertarget{classmultipart_1_1multipart_1_1OctetStreamParser_a85b7432d3fa110bffda5ecb78de6bf65}\index{multipart.multipart.OctetStreamParser@{multipart.multipart.OctetStreamParser}!write@{write}}
+\index{write@{write}!multipart.multipart.OctetStreamParser@{multipart.multipart.OctetStreamParser}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1OctetStreamParser_a85b7432d3fa110bffda5ecb78de6bf65} 
+multipart.\+multipart.\+Octet\+Stream\+Parser.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write some data to the parser, which will perform size verification,
+and then pass the data to the underlying callback.
+
+:param data: a bytestring
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+multipart/\+multipart.\+py\end{DoxyCompactItemize}

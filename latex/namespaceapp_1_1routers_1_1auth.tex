@@ -1,0 +1,103 @@
+\doxysection{app.\+routers.\+auth Namespace Reference}
+\hypertarget{namespaceapp_1_1routers_1_1auth}{}\label{namespaceapp_1_1routers_1_1auth}\index{app.routers.auth@{app.routers.auth}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1auth_a6fdb496b07757cd8b822bbe939d8aaf2}{login}} (\doxymbox{\hyperlink{classapp_1_1schemas_1_1administrador_1_1LoginIn}{Login\+In}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1auth_ad1eed5caf6002ef6491e92b4e79dd78d}{crear\+\_\+admin}} (\doxymbox{\hyperlink{classapp_1_1schemas_1_1administrador_1_1AdminCreate}{Admin\+Create}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1auth_a70fbcad66f06dacef9b2c6d4eb54054d}{listar\+\_\+admins}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1auth_a4557207c7babc75387d0c48e51649c66}{perfil}} (\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} admin=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1auth_a5eeed23550db3532f083cc3fc4dc5d2e}{eliminar\+\_\+admin}} (int admin\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} admin\+\_\+actual=Depends(get\+\_\+current\+\_\+admin))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1routers_1_1auth_a597c021df1116baca9bebc8157ba9adc}\label{namespaceapp_1_1routers_1_1auth_a597c021df1116baca9bebc8157ba9adc} 
+{\bfseries router} = \doxymbox{\hyperlink{classfastapi_1_1routing_1_1APIRouter}{APIRouter}}(prefix="{}/\+auth"{}, tags=\+["{}Autenticación"{}]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Rutas de autenticación.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1routers_1_1auth_doc-func-members}
+\Hypertarget{namespaceapp_1_1routers_1_1auth_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1routers_1_1auth_ad1eed5caf6002ef6491e92b4e79dd78d}\index{app.routers.auth@{app.routers.auth}!crear\_admin@{crear\_admin}}
+\index{crear\_admin@{crear\_admin}!app.routers.auth@{app.routers.auth}}
+\doxysubsubsection{\texorpdfstring{crear\_admin()}{crear\_admin()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1auth_ad1eed5caf6002ef6491e92b4e79dd78d} 
+crear\+\_\+admin (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1administrador_1_1AdminCreate}{Admin\+Create}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Registra un nuevo administrador en el sistema.
+
+Args:
+    datos: Información del nuevo administrador.
+    db: Sesión de base de datos.
+    _: Dependencia que asegura que solo un admin actual cree otros.
+
+Returns:
+    Administrador: El objeto administrador creado.
+
+Raises:
+    HTTPException: 409 si el username o email ya existen.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1auth_a5eeed23550db3532f083cc3fc4dc5d2e}\index{app.routers.auth@{app.routers.auth}!eliminar\_admin@{eliminar\_admin}}
+\index{eliminar\_admin@{eliminar\_admin}!app.routers.auth@{app.routers.auth}}
+\doxysubsubsection{\texorpdfstring{eliminar\_admin()}{eliminar\_admin()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1auth_a5eeed23550db3532f083cc3fc4dc5d2e} 
+eliminar\+\_\+admin (\begin{DoxyParamCaption}\item[{int}]{admin\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{admin\+\_\+actual}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Elimina permanentemente un administrador del sistema.
+
+Args:
+    admin_id: ID del administrador a eliminar.
+    db: Sesión de base de datos.
+    admin_actual: Instancia del admin que realiza la petición.
+
+Returns:
+    Administrador: El objeto eliminado.
+
+Raises:
+    HTTPException: 400 si se intenta eliminar a sí mismo o al último admin.
+    HTTPException: 404 si el admin no existe.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1auth_a70fbcad66f06dacef9b2c6d4eb54054d}\index{app.routers.auth@{app.routers.auth}!listar\_admins@{listar\_admins}}
+\index{listar\_admins@{listar\_admins}!app.routers.auth@{app.routers.auth}}
+\doxysubsubsection{\texorpdfstring{listar\_admins()}{listar\_admins()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1auth_a70fbcad66f06dacef9b2c6d4eb54054d} 
+listar\+\_\+admins (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtiene la lista completa de administradores registrados.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1auth_a6fdb496b07757cd8b822bbe939d8aaf2}\index{app.routers.auth@{app.routers.auth}!login@{login}}
+\index{login@{login}!app.routers.auth@{app.routers.auth}}
+\doxysubsubsection{\texorpdfstring{login()}{login()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1auth_a6fdb496b07757cd8b822bbe939d8aaf2} 
+login (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1administrador_1_1LoginIn}{Login\+In}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verifica credenciales y genera un token JWT de sesión.
+
+Args:
+    datos: Esquema con nombre de usuario y contraseña.
+    db: Sesión de base de datos inyectada.
+
+Returns:
+    TokenOut: Objeto conteniendo el access_token generado.
+
+Raises:
+    HTTPException: 401 si las credenciales son inválidas.
+    HTTPException: 403 si la cuenta está bloqueada por intentos fallidos.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1auth_a4557207c7babc75387d0c48e51649c66}\index{app.routers.auth@{app.routers.auth}!perfil@{perfil}}
+\index{perfil@{perfil}!app.routers.auth@{app.routers.auth}}
+\doxysubsubsection{\texorpdfstring{perfil()}{perfil()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1auth_a4557207c7babc75387d0c48e51649c66} 
+perfil (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{admin}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtiene la información del administrador actualmente autenticado.\end{DoxyVerb}
+ 

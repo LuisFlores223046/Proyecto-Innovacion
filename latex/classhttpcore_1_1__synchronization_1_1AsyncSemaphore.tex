@@ -1,0 +1,79 @@
+\doxysection{httpcore.\+\_\+synchronization.\+Async\+Semaphore Class Reference}
+\hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore}{}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore}\index{httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a089f9346b1a5771ca0de50eba8b7ce9e}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a089f9346b1a5771ca0de50eba8b7ce9e} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int bound)
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a6bf3d293f7d1909a28a7cb2cdad0acce}{setup}} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a36698b3cbd8961104b9f6dc9df58c57c}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a36698b3cbd8961104b9f6dc9df58c57c} 
+None {\bfseries acquire} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a4f64239e882eae4b9471fc2548603f5a}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a4f64239e882eae4b9471fc2548603f5a} 
+None {\bfseries release} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a92779787586191ddd0139b7955b6fc92}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a92779787586191ddd0139b7955b6fc92} 
+{\bfseries \+\_\+bound} = bound
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a3edce117fed3833628ca48bd26c04e40}\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a3edce117fed3833628ca48bd26c04e40} 
+str {\bfseries \+\_\+backend} = "{}"{}
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_aabe95da4a2dd183fbccdd9ec91e0d568}{\+\_\+trio\+\_\+semaphore}}
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a96fa6628f8885c0fdbefda27a4783099}{\+\_\+anyio\+\_\+semaphore}}
+\end{DoxyCompactItemize}
+
+
+\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_doc-func-members}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a6bf3d293f7d1909a28a7cb2cdad0acce}\index{httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}!setup@{setup}}
+\index{setup@{setup}!httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a6bf3d293f7d1909a28a7cb2cdad0acce} 
+ None httpcore.\+\_\+synchronization.\+Async\+Semaphore.\+setup (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Detect if we're running under 'asyncio' or 'trio' and create
+a semaphore with the correct implementation.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_doc-variable-members}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a96fa6628f8885c0fdbefda27a4783099}\index{httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}!\_anyio\_semaphore@{\_anyio\_semaphore}}
+\index{\_anyio\_semaphore@{\_anyio\_semaphore}!httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}}
+\doxysubsubsection{\texorpdfstring{\_anyio\_semaphore}{\_anyio\_semaphore}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_a96fa6628f8885c0fdbefda27a4783099} 
+httpcore.\+\_\+synchronization.\+Async\+Semaphore.\+\_\+anyio\+\_\+semaphore\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Semaphore}{anyio.Semaphore}}(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ initial\_value=self.\_bound,\ max\_value=self.\_bound}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_aabe95da4a2dd183fbccdd9ec91e0d568}\index{httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}!\_trio\_semaphore@{\_trio\_semaphore}}
+\index{\_trio\_semaphore@{\_trio\_semaphore}!httpcore.\_synchronization.AsyncSemaphore@{httpcore.\_synchronization.AsyncSemaphore}}
+\doxysubsubsection{\texorpdfstring{\_trio\_semaphore}{\_trio\_semaphore}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__synchronization_1_1AsyncSemaphore_aabe95da4a2dd183fbccdd9ec91e0d568} 
+httpcore.\+\_\+synchronization.\+Async\+Semaphore.\+\_\+trio\+\_\+semaphore\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ trio.Semaphore(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ initial\_value=self.\_bound,\ max\_value=self.\_bound}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+synchronization.\+py\end{DoxyCompactItemize}

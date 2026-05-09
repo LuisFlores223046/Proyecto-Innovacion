@@ -1,0 +1,119 @@
+\doxysection{psycopg2.\+sql.\+Identifier Class Reference}
+\hypertarget{classpsycopg2_1_1sql_1_1Identifier}{}\label{classpsycopg2_1_1sql_1_1Identifier}\index{psycopg2.sql.Identifier@{psycopg2.sql.Identifier}}
+Inheritance diagram for psycopg2.\+sql.\+Identifier:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpsycopg2_1_1sql_1_1Identifier}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Identifier_adf433b0f3bf9b1c47986611e97039b5f}\label{classpsycopg2_1_1sql_1_1Identifier_adf433b0f3bf9b1c47986611e97039b5f} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}strings)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Identifier_acdad130a6736c0fd56b96fd280066bd9}{strings}} (self)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Identifier_a790d1d275ba47923ea878efcdcadce86}{string}} (self)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Identifier_a44172cef55481c0df6b02d75815a4eb4}\label{classpsycopg2_1_1sql_1_1Identifier_a44172cef55481c0df6b02d75815a4eb4} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Identifier_aeda79c4e3d40fce4e361aa0004a2a9da}{as\+\_\+string}} (self, context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable}{psycopg2.\+sql.\+Composable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, wrapped)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (self, n)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable}{psycopg2.\+sql.\+Composable}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+wrapped} = wrapped
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A `Composable` representing an SQL identifier or a dot-separated sequence.
+
+Identifiers usually represent names of database objects, such as tables or
+fields. PostgreSQL identifiers follow `different rules`__ than SQL string
+literals for escaping (e.g. they use double quotes instead of single).
+
+.. __: https://www.postgresql.org/docs/current/static/sql-syntax-lexical.html# \
+    SQL-SYNTAX-IDENTIFIERS
+
+Example::
+
+    >>> t1 = sql.Identifier("foo")
+    >>> t2 = sql.Identifier("ba'r")
+    >>> t3 = sql.Identifier('ba"z')
+    >>> print(sql.SQL(', ').join([t1, t2, t3]).as_string(conn))
+    "foo", "ba'r", "ba""z"
+
+Multiple strings can be passed to the object to represent a qualified name,
+i.e. a dot-separated sequence of identifiers.
+
+Example::
+
+    >>> query = sql.SQL("select {} from {}").format(
+    ...     sql.Identifier("table", "field"),
+    ...     sql.Identifier("schema", "table"))
+    >>> print(query.as_string(conn))
+    select "table"."field" from "schema"."table"
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1sql_1_1Identifier_doc-func-members}
+\Hypertarget{classpsycopg2_1_1sql_1_1Identifier_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1sql_1_1Identifier_aeda79c4e3d40fce4e361aa0004a2a9da}\index{psycopg2.sql.Identifier@{psycopg2.sql.Identifier}!as\_string@{as\_string}}
+\index{as\_string@{as\_string}!psycopg2.sql.Identifier@{psycopg2.sql.Identifier}}
+\doxysubsubsection{\texorpdfstring{as\_string()}{as\_string()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Identifier_aeda79c4e3d40fce4e361aa0004a2a9da} 
+psycopg2.\+sql.\+Identifier.\+as\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the string value of the object.
+
+:param context: the context to evaluate the string into.
+:type context: `connection` or `cursor`
+
+The method is automatically invoked by `~cursor.execute()`,
+`~cursor.executemany()`, `~cursor.copy_expert()` if a `!Composable` is
+passed instead of the query string.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable_a910ee7a2d7b24ba13fb756bf946c2879}{psycopg2.\+sql.\+Composable}}.
+
+\Hypertarget{classpsycopg2_1_1sql_1_1Identifier_a790d1d275ba47923ea878efcdcadce86}\index{psycopg2.sql.Identifier@{psycopg2.sql.Identifier}!string@{string}}
+\index{string@{string}!psycopg2.sql.Identifier@{psycopg2.sql.Identifier}}
+\doxysubsubsection{\texorpdfstring{string()}{string()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Identifier_a790d1d275ba47923ea878efcdcadce86} 
+psycopg2.\+sql.\+Identifier.\+string (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The string wrapped by the `Identifier`.
+\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1sql_1_1Identifier_acdad130a6736c0fd56b96fd280066bd9}\index{psycopg2.sql.Identifier@{psycopg2.sql.Identifier}!strings@{strings}}
+\index{strings@{strings}!psycopg2.sql.Identifier@{psycopg2.sql.Identifier}}
+\doxysubsubsection{\texorpdfstring{strings()}{strings()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Identifier_acdad130a6736c0fd56b96fd280066bd9} 
+psycopg2.\+sql.\+Identifier.\+strings (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A tuple with the strings wrapped by the `Identifier`.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+sql.\+py\end{DoxyCompactItemize}

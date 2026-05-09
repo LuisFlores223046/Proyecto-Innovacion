@@ -1,0 +1,239 @@
+\doxysection{httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool Class Reference}
+\hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool}{}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+Inheritance diagram for httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.857143cm]{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a4f5d7727a9bba61c54373fb2ede072f7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, ssl.\+SSLContext\texorpdfstring{$\vert$}{|}None ssl\+\_\+context=None, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Proxy}{Proxy}}\texorpdfstring{$\vert$}{|}None proxy=None, int\texorpdfstring{$\vert$}{|}None max\+\_\+connections=10, int\texorpdfstring{$\vert$}{|}None max\+\_\+keepalive\+\_\+connections=None, float\texorpdfstring{$\vert$}{|}None keepalive\+\_\+expiry=None, bool http1=True, bool http2=False, int retries=0, str\texorpdfstring{$\vert$}{|}None local\+\_\+address=None, str\texorpdfstring{$\vert$}{|}None uds=None, \doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkBackend}{Network\+Backend}}\texorpdfstring{$\vert$}{|}None network\+\_\+backend=None, typing.\+Iterable\+[SOCKET\+\_\+\+OPTION]\+\texorpdfstring{$\vert$}{|}None socket\+\_\+options=None)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a2317f1a8e9b4508eb004bc4698bb95fd}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a2317f1a8e9b4508eb004bc4698bb95fd} 
+\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}} {\bfseries create\+\_\+connection} (self, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Origin}{Origin}} origin)
+\item 
+list\+[\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}}]\+ \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a278528781d09cf50411230dd14acfdc2}{connections}} (self)
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}} \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a5048e029d027ab65be1a1b225983a5cf}{handle\+\_\+request}} (self, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Request}{Request}} request)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a96b5e8bd0d3c5527e55279ab27458d06}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a96b5e8bd0d3c5527e55279ab27458d06} 
+None {\bfseries close} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a0f68d86ae9f03d4815576701e6e50c0f}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a0f68d86ae9f03d4815576701e6e50c0f} 
+\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool}{Connection\+Pool}} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a6737ced60e0baf58fad2093dfc474d46}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a6737ced60e0baf58fad2093dfc474d46} 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type=None, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+value=None, types.\+Traceback\+Type\texorpdfstring{$\vert$}{|}None traceback=None)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a166487fe8416a76ca303564501e6da74}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a166487fe8416a76ca303564501e6da74} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1RequestInterface}{httpcore.\+\_\+sync.\+interfaces.\+Request\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}} {\bfseries request} (self, bytes\texorpdfstring{$\vert$}{|}str method, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL}{URL}}\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}str url, \texorpdfstring{$\ast$}{*}, Header\+Types headers=None, bytes\texorpdfstring{$\vert$}{|}typing.\+Iterator\+[bytes]\+\texorpdfstring{$\vert$}{|}None content=None, Extensions\texorpdfstring{$\vert$}{|}None extensions=None)
+\item 
+typing.\+Iterator\+[\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}}]\+ {\bfseries stream} (self, bytes\texorpdfstring{$\vert$}{|}str method, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL}{URL}}\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}str url, \texorpdfstring{$\ast$}{*}, Header\+Types headers=None, bytes\texorpdfstring{$\vert$}{|}typing.\+Iterator\+[bytes]\+\texorpdfstring{$\vert$}{|}None content=None, Extensions\texorpdfstring{$\vert$}{|}None extensions=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+list\+[\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}}]\+ \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a7dd50e0a118450a63f30c7cc59601125}{\+\_\+assign\+\_\+requests\+\_\+to\+\_\+connections}} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a6e9b723af9c77d2e24350197196c9820}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a6e9b723af9c77d2e24350197196c9820} 
+None {\bfseries \+\_\+close\+\_\+connections} (self, list\+[\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}}]\+ closing)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_ab01053100b0b6fb471584b7753c28a84}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_ab01053100b0b6fb471584b7753c28a84} 
+{\bfseries \+\_\+ssl\+\_\+context} = ssl\+\_\+context
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_aa0c95a2ce7630367900adb096286b00a}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_aa0c95a2ce7630367900adb096286b00a} 
+{\bfseries \+\_\+proxy} = proxy
+\item 
+tuple \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a8de622f4b7980adba1c747ece3e392e5}{\+\_\+max\+\_\+connections}}
+\item 
+tuple \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a9ce024341b61b003a9f4c27041c84633}{\+\_\+max\+\_\+keepalive\+\_\+connections}}
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a2326ff30ec284eef316d1f3e652b6014}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a2326ff30ec284eef316d1f3e652b6014} 
+{\bfseries \+\_\+keepalive\+\_\+expiry} = keepalive\+\_\+expiry
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a9c2b68a1e49afa1cac9975e5d38436cc}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a9c2b68a1e49afa1cac9975e5d38436cc} 
+{\bfseries \+\_\+http1} = http1
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_af1cdd81a4e2fd993fd87ce4f64a86b86}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_af1cdd81a4e2fd993fd87ce4f64a86b86} 
+{\bfseries \+\_\+http2} = http2
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_afc1935891c547a5bbd7d0507e7a26a7d}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_afc1935891c547a5bbd7d0507e7a26a7d} 
+{\bfseries \+\_\+retries} = retries
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a15d14fa8d74f6a48ecf5fe4bd19b80f3}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a15d14fa8d74f6a48ecf5fe4bd19b80f3} 
+{\bfseries \+\_\+local\+\_\+address} = local\+\_\+address
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a7bcf3a9f599ee7a57c25ee01be8e9bc2}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a7bcf3a9f599ee7a57c25ee01be8e9bc2} 
+{\bfseries \+\_\+uds} = uds
+\item 
+tuple \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_aef55ebf34a1b27193e4a02bc8f13859b}{\+\_\+network\+\_\+backend}}
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a69f2be861a3863e5be0dddc6ddef94de}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a69f2be861a3863e5be0dddc6ddef94de} 
+{\bfseries \+\_\+socket\+\_\+options} = socket\+\_\+options
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_ac54eecd6cab868c9a159bf5701e6fcfb}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_ac54eecd6cab868c9a159bf5701e6fcfb} 
+list {\bfseries \+\_\+connections} = \+[$\,$]\+
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a01eee921bff95de1e0cb73e81c08563c}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a01eee921bff95de1e0cb73e81c08563c} 
+list {\bfseries \+\_\+requests} = \+[$\,$]\+
+\item 
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a0f2601e68dfe6a5278d923f0b9cf16c3}\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a0f2601e68dfe6a5278d923f0b9cf16c3} 
+{\bfseries \+\_\+optional\+\_\+thread\+\_\+lock} = \doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1ThreadLock}{Thread\+Lock}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A connection pool for making HTTP requests.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-constructors}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a4f5d7727a9bba61c54373fb2ede072f7}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a4f5d7727a9bba61c54373fb2ede072f7} 
+ None httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{ssl.\+SSLContext \texorpdfstring{$\vert$}{|} None }]{ssl\+\_\+context}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Proxy}{Proxy}} \texorpdfstring{$\vert$}{|} None }]{proxy}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{max\+\_\+connections}{ = {\ttfamily 10}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{max\+\_\+keepalive\+\_\+connections}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{keepalive\+\_\+expiry}{ = {\ttfamily None}, }\item[{bool }]{http1}{ = {\ttfamily True}, }\item[{bool }]{http2}{ = {\ttfamily False}, }\item[{int }]{retries}{ = {\ttfamily 0}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{local\+\_\+address}{ = {\ttfamily None}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{uds}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classhttpcore_1_1__backends_1_1base_1_1NetworkBackend}{Network\+Backend}} \texorpdfstring{$\vert$}{|} None }]{network\+\_\+backend}{ = {\ttfamily None}, }\item[{typing.\+Iterable\+[SOCKET\+\_\+\+OPTION]\+ \texorpdfstring{$\vert$}{|} None }]{socket\+\_\+options}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A connection pool for making HTTP requests.
+
+Parameters:
+    ssl_context: An SSL context to use for verifying connections.
+        If not specified, the default `httpcore.default_ssl_context()`
+        will be used.
+    max_connections: The maximum number of concurrent HTTP connections that
+        the pool should allow. Any attempt to send a request on a pool that
+        would exceed this amount will block until a connection is available.
+    max_keepalive_connections: The maximum number of idle HTTP connections
+        that will be maintained in the pool.
+    keepalive_expiry: The duration in seconds that an idle HTTP connection
+        may be maintained for before being expired from the pool.
+    http1: A boolean indicating if HTTP/1.1 requests should be supported
+        by the connection pool. Defaults to True.
+    http2: A boolean indicating if HTTP/2 requests should be supported by
+        the connection pool. Defaults to False.
+    retries: The maximum number of retries when trying to establish a
+        connection.
+    local_address: Local address to connect from. Can also be used to connect
+        using a particular address family. Using `local_address="0.0.0.0"`
+        will connect using an `AF_INET` address (IPv4), while using
+        `local_address="::"` will connect using an `AF_INET6` address (IPv6).
+    uds: Path to a Unix Domain Socket to use instead of TCP sockets.
+    network_backend: A backend instance to use for handling network I/O.
+    socket_options: Socket options that have to be included
+     in the TCP socket when the connection was established.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-func-members}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a7dd50e0a118450a63f30c7cc59601125}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!\_assign\_requests\_to\_connections@{\_assign\_requests\_to\_connections}}
+\index{\_assign\_requests\_to\_connections@{\_assign\_requests\_to\_connections}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_assign\_requests\_to\_connections()}{\_assign\_requests\_to\_connections()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a7dd50e0a118450a63f30c7cc59601125} 
+ list\+[\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}}]\+ httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+\_\+assign\+\_\+requests\+\_\+to\+\_\+connections (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Manage the state of the connection pool, assigning incoming
+requests to connections as available.
+
+Called whenever a new request is added or removed from the pool.
+
+Any closing connections are returned, allowing the I/O for closing
+those connections to be handled seperately.
+\end{DoxyVerb}
+ \Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a278528781d09cf50411230dd14acfdc2}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!connections@{connections}}
+\index{connections@{connections}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{connections()}{connections()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a278528781d09cf50411230dd14acfdc2} 
+ list\+[\doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1ConnectionInterface}{Connection\+Interface}}]\+ httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+connections (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a list of the connections currently in the pool.
+
+For example:
+
+```python
+>>> pool.connections
+[
+    <HTTPConnection ['https://example.com:443', HTTP/1.1, ACTIVE, Request Count: 6]>,
+    <HTTPConnection ['https://example.com:443', HTTP/1.1, IDLE, Request Count: 9]> ,
+    <HTTPConnection ['http://example.com:80', HTTP/1.1, IDLE, Request Count: 1]>,
+]
+```
+\end{DoxyVerb}
+ \Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a5048e029d027ab65be1a1b225983a5cf}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!handle\_request@{handle\_request}}
+\index{handle\_request@{handle\_request}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{handle\_request()}{handle\_request()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a5048e029d027ab65be1a1b225983a5cf} 
+ \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}} httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send an HTTP request, and return an HTTP response.
+
+This is the core implementation that is called into by `.request()` or `.stream()`.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1interfaces_1_1RequestInterface}{httpcore.\+\_\+sync.\+interfaces.\+Request\+Interface}}.
+
+
+
+\label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-variable-members}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a8de622f4b7980adba1c747ece3e392e5}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!\_max\_connections@{\_max\_connections}}
+\index{\_max\_connections@{\_max\_connections}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_max\_connections}{\_max\_connections}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a8de622f4b7980adba1c747ece3e392e5} 
+tuple httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+\_\+max\+\_\+connections\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ sys.maxsize\ \textcolor{keywordflow}{if}\ max\_connections\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}\ \textcolor{keywordflow}{else}\ max\_connections}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a9ce024341b61b003a9f4c27041c84633}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!\_max\_keepalive\_connections@{\_max\_keepalive\_connections}}
+\index{\_max\_keepalive\_connections@{\_max\_keepalive\_connections}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_max\_keepalive\_connections}{\_max\_keepalive\_connections}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_a9ce024341b61b003a9f4c27041c84633} 
+tuple httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+\_\+max\+\_\+keepalive\+\_\+connections\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ sys.maxsize}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ max\_keepalive\_connections\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ max\_keepalive\_connections}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_aef55ebf34a1b27193e4a02bc8f13859b}\index{httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}!\_network\_backend@{\_network\_backend}}
+\index{\_network\_backend@{\_network\_backend}!httpcore.\_sync.connection\_pool.ConnectionPool@{httpcore.\_sync.connection\_pool.ConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_network\_backend}{\_network\_backend}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__sync_1_1connection__pool_1_1ConnectionPool_aef55ebf34a1b27193e4a02bc8f13859b} 
+tuple httpcore.\+\_\+sync.\+connection\+\_\+pool.\+Connection\+Pool.\+\_\+network\+\_\+backend\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ SyncBackend()\ \textcolor{keywordflow}{if}\ network\_backend\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}\ \textcolor{keywordflow}{else}\ network\_backend}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+sync/\+connection\+\_\+pool.\+py\end{DoxyCompactItemize}

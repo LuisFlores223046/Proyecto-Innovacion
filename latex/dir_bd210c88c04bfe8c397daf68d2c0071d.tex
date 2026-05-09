@@ -1,0 +1,39 @@
+\doxysection{frontend/\+node\+\_\+modules/\+esquery Directory Reference}
+\hypertarget{dir_bd210c88c04bfe8c397daf68d2c0071d}{}\label{dir_bd210c88c04bfe8c397daf68d2c0071d}\index{frontend/node\_modules/esquery Directory Reference@{frontend/node\_modules/esquery Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_f81dbf64a0c692b25158e005eca728b1}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+ESQuery is a library for querying the AST output by Esprima for patterns of syntax using a CSS style selector system. Check out the demo:\+
+
+\href{https://estools.github.io/esquery/}{\texttt{demo}}
+
+The following selectors are supported:\+
+\begin{DoxyItemize}
+\item AST node type:\+ {\ttfamily For\+Statement}
+\item \href{http://dev.w3.org/csswg/selectors4/\#universal-selector}{\texttt{wildcard}}:\+ {\ttfamily \texorpdfstring{$\ast$}{*}}
+\item \href{http://dev.w3.org/csswg/selectors4/\#attribute-selectors}{\texttt{attribute existence}}:\+ {\ttfamily \+[attr]\+}
+\item \href{http://dev.w3.org/csswg/selectors4/\#attribute-selectors}{\texttt{attribute value}}:\+ {\ttfamily \+[attr="{}foo"{}]\+} or {\ttfamily \+[attr=123]\+}
+\item attribute regex:\+ {\ttfamily \+[attr=/\+foo.\texorpdfstring{$\ast$}{*}/\+]\+} or (with flags) {\ttfamily \+[attr=/\+foo.\texorpdfstring{$\ast$}{*}/\+is]\+}
+\item attribute conditions:\+ {\ttfamily \+[attr!="{}foo"{}]\+}, {\ttfamily \+[attr\texorpdfstring{$>$}{>}2]\+}, {\ttfamily \+[attr\texorpdfstring{$<$}{<}3]\+}, {\ttfamily \+[attr\texorpdfstring{$>$}{>}=2]\+}, or {\ttfamily \+[attr\texorpdfstring{$<$}{<}=3]\+}
+\item nested attribute:\+ {\ttfamily \+[attr.\+level2="{}foo"{}]\+}
+\item field:\+ {\ttfamily Function\+Declaration \texorpdfstring{$>$}{>} Identifier.\+id}
+\item \href{http://dev.w3.org/csswg/selectors4/\#the-first-child-pseudo}{\texttt{First}} or \href{http://dev.w3.org/csswg/selectors4/\#the-last-child-pseudo}{\texttt{last}} child:\+ {\ttfamily :\+first-\/child} or {\ttfamily :\+last-\/child}
+\item \href{http://dev.w3.org/csswg/selectors4/\#the-nth-child-pseudo}{\texttt{nth-\/child}} (no ax+b support):\+ {\ttfamily :\+nth-\/child(2)}
+\item \href{http://dev.w3.org/csswg/selectors4/\#the-nth-last-child-pseudo}{\texttt{nth-\/last-\/child}} (no ax+b support):\+ {\ttfamily :\+nth-\/last-\/child(1)}
+\item \href{http://dev.w3.org/csswg/selectors4/\#descendant-combinators}{\texttt{descendant}}:\+ {\ttfamily ancestor descendant}
+\item \href{http://dev.w3.org/csswg/selectors4/\#child-combinators}{\texttt{child}}:\+ {\ttfamily parent \texorpdfstring{$>$}{>} child}
+\item \href{http://dev.w3.org/csswg/selectors4/\#general-sibling-combinators}{\texttt{following sibling}}:\+ {\ttfamily node \texorpdfstring{$\sim$}{\string~} sibling}
+\item \href{http://dev.w3.org/csswg/selectors4/\#adjacent-sibling-combinators}{\texttt{adjacent sibling}}:\+ {\ttfamily node + adjacent}
+\item \href{http://dev.w3.org/csswg/selectors4/\#negation-pseudo}{\texttt{negation}}:\+ {\ttfamily :\+not(\+For\+Statement)}
+\item \href{https://drafts.csswg.org/selectors-4/\#has-pseudo}{\texttt{has}}:\+ {\ttfamily :\+has(\+For\+Statement)}, {\ttfamily :\+has(\texorpdfstring{$>$}{>} For\+Statement)}
+\item \href{http://dev.w3.org/csswg/selectors4/\#matches}{\texttt{matches-\/any}}:\+ {\ttfamily :\+is(\+[attr]\+ \texorpdfstring{$>$}{>} :\+first-\/child, :\+last-\/child)}
+\item \href{http://dev.w3.org/csswg/selectors4/\#subject}{\texttt{subject indicator}}:\+ {\ttfamily !\+If\+Statement \texorpdfstring{$>$}{>} \+[name="{}foo"{}]\+}
+\item class of AST node:\+ {\ttfamily :\+statement}, {\ttfamily :\+expression}, {\ttfamily :\+declaration}, {\ttfamily :\+function}, or {\ttfamily :\+pattern}
+\end{DoxyItemize}
+
+\href{https://travis-ci.org/estools/esquery}{\texttt{}} 

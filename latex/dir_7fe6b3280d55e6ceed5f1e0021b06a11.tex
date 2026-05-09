@@ -1,0 +1,67 @@
+\doxysection{frontend/\+node\+\_\+modules/\+flatted/\+golang Directory Reference}
+\hypertarget{dir_7fe6b3280d55e6ceed5f1e0021b06a11}{}\label{dir_7fe6b3280d55e6ceed5f1e0021b06a11}\index{frontend/node\_modules/flatted/golang Directory Reference@{frontend/node\_modules/flatted/golang Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2408}{}\doxysubsection{\texorpdfstring{flatted (Go)}{flatted (Go)}}\label{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2408}
+A super light and fast circular JSON parser.\hypertarget{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2409}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2409}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{package\ main}
+\DoxyCodeLine{}
+\DoxyCodeLine{import\ (}
+\DoxyCodeLine{\ \ \ \ "{}fmt"{}}
+\DoxyCodeLine{\ \ \ \ "{}github.com/WebReflection/flatted/golang/pkg/flatted"{}}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ Group\ struct\ \{}
+\DoxyCodeLine{\ \ \ \ Name\ string\ \`{}json:"{}name"{}`}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ User\ struct\ \{}
+\DoxyCodeLine{\ \ \ \ Name\ \ \ string\ \`{}json:"{}name"{}`}
+\DoxyCodeLine{\ \ \ \ Friend\ *User\ \ \`{}json:"{}friend"{}`}
+\DoxyCodeLine{\ \ \ \ Group\ \ *Group\ \`{}json:"{}group"{}`}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{func\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ group\ :=\ \&Group\{Name:\ "{}Developers"{}\}}
+\DoxyCodeLine{\ \ \ \ alice\ :=\ \&User\{Name:\ "{}Alice"{},\ Group:\ group\}}
+\DoxyCodeLine{\ \ \ \ bob\ :=\ \&User\{Name:\ "{}Bob"{},\ Group:\ group\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ alice.Friend\ =\ bob}
+\DoxyCodeLine{\ \ \ \ bob.Friend\ =\ alice\ //\ Circular\ reference}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Stringify\ Alice}
+\DoxyCodeLine{\ \ \ \ s,\ \_\ :=\ flatted.Stringify(alice)}
+\DoxyCodeLine{\ \ \ \ fmt.Println(s)}
+\DoxyCodeLine{\ \ \ \ //\ Output:\ [\{"{}name"{}:"{}Alice"{},"{}friend"{}:"{}1"{},"{}group"{}:"{}2"{}\},\{"{}name"{}:"{}Bob"{},"{}friend"{}:"{}0"{},"{}group"{}:"{}2"{}\},\{"{}name"{}:"{}Developers"{}\}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Flattening\ in\ action:}
+\DoxyCodeLine{\ \ \ \ //\ Index\ "{}0"{}\ is\ Alice,\ Index\ "{}1"{}\ is\ Bob,\ Index\ "{}2"{}\ is\ the\ shared\ Group.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Parse\ back\ into\ a\ generic\ map\ structure}
+\DoxyCodeLine{\ \ \ \ res,\ \_\ :=\ flatted.Parse(s)}
+\DoxyCodeLine{\ \ \ \ aliceMap\ :=\ res.(map[string]any)}
+\DoxyCodeLine{\ \ \ \ fmt.Println(aliceMap["{}name"{}])\ //\ Alice}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2410}{}\doxysubsection{\texorpdfstring{CLI}{CLI}}\label{dir_7fe6b3280d55e6ceed5f1e0021b06a11_autotoc_md2410}
+Build the binary using the provided Makefile:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make\ build}
+
+\end{DoxyCode}
+
+
+Then use it to parse flatted JSON from stdin:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{echo\ '[\{"{}a"{}:"{}1"{}\},"{}b"{}]'\ |\ ./flatted}
+
+\end{DoxyCode}
+ 

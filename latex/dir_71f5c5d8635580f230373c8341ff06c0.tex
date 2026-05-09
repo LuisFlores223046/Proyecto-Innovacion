@@ -1,0 +1,50 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+eslintrc/\+node\+\_\+modules/\+globals Directory Reference}
+\hypertarget{dir_71f5c5d8635580f230373c8341ff06c0}{}\label{dir_71f5c5d8635580f230373c8341ff06c0}\index{frontend/node\_modules/"@eslint/eslintrc/node\_modules/globals Directory Reference@{frontend/node\_modules/"@eslint/eslintrc/node\_modules/globals Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md236}{}\doxysubsection{\texorpdfstring{globals}{globals}}\label{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md236}
+\begin{quote}
+Global identifiers from different Java\+Script environments \end{quote}
+
+
+It\textquotesingle{}s just a \href{globals.json}{\texttt{JSON file}}, so use it in any environment.
+
+This package is used by ESLint.
+
+{\bfseries{This package \href{https://github.com/sindresorhus/globals/issues/82}{\texttt{no longer accepts}} new environments. If you need it for ESLint, just \href{http://eslint.org/docs/developer-guide/working-with-plugins\#environments-in-plugins}{\texttt{create a plugin}}.}}\hypertarget{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md237}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md237}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ globals}
+
+\end{DoxyCode}
+\hypertarget{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md238}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_71f5c5d8635580f230373c8341ff06c0_autotoc_md238}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ globals\ =\ require('globals');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(globals.browser);}
+\DoxyCodeLine{/*}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ addEventListener:\ false,}
+\DoxyCodeLine{\ \ \ \ applicationCache:\ false,}
+\DoxyCodeLine{\ \ \ \ ArrayBuffer:\ false,}
+\DoxyCodeLine{\ \ \ \ atob:\ false,}
+\DoxyCodeLine{\ \ \ \ …}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{*/}
+
+\end{DoxyCode}
+
+
+Each global is given a value of {\ttfamily true} or {\ttfamily false}. A value of {\ttfamily true} indicates that the variable may be overwritten. A value of {\ttfamily false} indicates that the variable should be considered read-\/only. This information is used by static analysis tools to flag incorrect behavior. We assume all variables should be {\ttfamily false} unless we hear otherwise.
+
+For Node.\+js this package provides two sets of globals:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily globals.\+node\+Builtin}:\+ Globals available to all code running in Node.\+js. These will usually be available as properties on the {\ttfamily global} object and include {\ttfamily process}, {\ttfamily Buffer}, but not Common\+JS arguments like {\ttfamily require}. See:\+ \href{https://nodejs.org/api/globals.html}{\texttt{https:\+/\+/\+nodejs.\+org/\+api/\+globals.\+html}}
+\item {\ttfamily globals.\+node}:\+ A combination of the globals from {\ttfamily node\+Builtin} plus all Common\+JS arguments ("{}\+Common\+JS module scope"{}). See:\+ \href{https://nodejs.org/api/modules.html\#modules_the_module_scope}{\texttt{https:\+/\+/\+nodejs.\+org/\+api/\+modules.\+html\+\#modules\+\_\+the\+\_\+module\+\_\+scope}}
+\end{DoxyItemize}
+
+When analyzing code that is known to run outside of a Common\+JS wrapper, for example, Java\+Script modules, {\ttfamily node\+Builtin} can find accidental Common\+JS references. 

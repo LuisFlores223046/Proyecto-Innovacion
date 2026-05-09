@@ -1,0 +1,154 @@
+\doxysection{frontend/\+node\+\_\+modules/\+eslint-\/plugin-\/react-\/hooks Directory Reference}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8}{}\label{dir_f9033f6804d3ec860e7aedeec487d6b8}\index{frontend/node\_modules/eslint-\/plugin-\/react-\/hooks Directory Reference@{frontend/node\_modules/eslint-\/plugin-\/react-\/hooks Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_fa3e0166ee99b37d3fcbfd16f03659ab}{cjs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2007}{}\doxysubsection{\texorpdfstring{\`{}eslint-\/plugin-\/react-\/hooks\`{}}{\`{}eslint-\/plugin-\/react-\/hooks\`{}}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2007}
+The official ESLint plugin for \href{https://react.dev}{\texttt{React}} which enforces the \href{https://react.dev/reference/eslint-plugin-react-hooks}{\texttt{Rules of React}} and other best practices.\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2008}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2008}
+Assuming you already have ESLint installed, run:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ npm}
+\DoxyCodeLine{npm\ install\ eslint-\/plugin-\/react-\/hooks\ -\/-\/save-\/dev}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ yarn}
+\DoxyCodeLine{yarn\ add\ eslint-\/plugin-\/react-\/hooks\ -\/-\/dev}
+
+\end{DoxyCode}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2009}{}\doxysubsubsection{\texorpdfstring{Flat Config (eslint.\+config.\+js\texorpdfstring{$\vert$}{|}ts)}{Flat Config (eslint.\+config.\+js\texorpdfstring{$\vert$}{|}ts)}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2009}
+Add the {\ttfamily recommended} config for all recommended rules:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ reactHooks\ from\ 'eslint-\/plugin-\/react-\/hooks';}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ 'eslint/config';}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ reactHooks.configs.flat.recommended,}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+
+
+If you want to try bleeding edge experimental compiler rules, use {\ttfamily recommended-\/latest}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ reactHooks\ from\ 'eslint-\/plugin-\/react-\/hooks';}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ 'eslint/config';}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ reactHooks.configs.flat['recommended-\/latest'],}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2010}{}\doxysubsubsection{\texorpdfstring{Legacy Config (.eslintrc)}{Legacy Config (.eslintrc)}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2010}
+If you are still using ESLint below 9.\+0.\+0, the {\ttfamily recommended} preset can also be used to enable all recommended rules.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}extends"{}:\ ["{}plugin:react-\/hooks/recommended"{}],}
+\DoxyCodeLine{\ \ //\ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2011}{}\doxysubsubsection{\texorpdfstring{Custom Configuration}{Custom Configuration}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2011}
+If you want more fine-\/grained configuration, you can instead choose to enable specific rules. However, we strongly encourage using the recommended presets — see above — so that you will automatically receive new recommended rules as we add them in future versions of the plugin.\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2012}{}\doxysubsubsubsection{\texorpdfstring{Flat Config (eslint.\+config.\+js\texorpdfstring{$\vert$}{|}ts)}{Flat Config (eslint.\+config.\+js\texorpdfstring{$\vert$}{|}ts)}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2012}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ reactHooks\ from\ 'eslint-\/plugin-\/react-\/hooks';}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ files:\ ['**/*.\{js,jsx\}'],}
+\DoxyCodeLine{\ \ \ \ plugins:\ \{\ 'react-\/hooks':\ reactHooks\ \},}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Core\ hooks\ rules}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/rules-\/of-\/hooks':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/exhaustive-\/deps':\ 'warn',}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ React\ Compiler\ rules}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/config':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/error-\/boundaries':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/component-\/hook-\/factories':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/gating':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/globals':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/immutability':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/preserve-\/manual-\/memoization':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/purity':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/refs':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/set-\/state-\/in-\/effect':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/set-\/state-\/in-\/render':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/static-\/components':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/unsupported-\/syntax':\ 'warn',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/use-\/memo':\ 'error',}
+\DoxyCodeLine{\ \ \ \ \ \ 'react-\/hooks/incompatible-\/library':\ 'warn',}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2013}{}\doxysubsubsubsection{\texorpdfstring{Legacy Config (.eslintrc)}{Legacy Config (.eslintrc)}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2013}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}plugins"{}:\ [}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks"{}}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\ \ "{}rules"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \ \ //\ Core\ hooks\ rules}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/rules-\/of-\/hooks"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/exhaustive-\/deps"{}:\ "{}warn"{},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ React\ Compiler\ rules}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/config"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/error-\/boundaries"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/component-\/hook-\/factories"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/gating"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/globals"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/immutability"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/preserve-\/manual-\/memoization"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/purity"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/refs"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/set-\/state-\/in-\/effect"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/set-\/state-\/in-\/render"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/static-\/components"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/unsupported-\/syntax"{}:\ "{}warn"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/use-\/memo"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/incompatible-\/library"{}:\ "{}warn"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2014}{}\doxysubsection{\texorpdfstring{Advanced Configuration}{Advanced Configuration}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2014}
+{\ttfamily exhaustive-\/deps} can be configured to validate dependencies of custom Hooks with the {\ttfamily additional\+Hooks} option. This option accepts a regex to match the names of custom Hooks that have dependencies.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \ \ "{}react-\/hooks/exhaustive-\/deps"{}:\ ["{}warn"{},\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ additionalHooks:\ "{}(useMyCustomHook|useMyOtherCustomHook)"{}}
+\DoxyCodeLine{\ \ \ \ \}]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+We suggest to use this option {\bfseries{very sparingly, if at all}}. Generally saying, we recommend most custom Hooks to not use the dependencies argument, and instead provide a higher-\/level API that is more focused around a specific use case.\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2015}{}\doxysubsection{\texorpdfstring{Valid and Invalid Examples}{Valid and Invalid Examples}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2015}
+Please refer to the \href{https://react.dev/reference/rules/rules-of-hooks}{\texttt{Rules of Hooks}} documentation to learn more about this rule.\hypertarget{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2016}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_f9033f6804d3ec860e7aedeec487d6b8_autotoc_md2016}
+MIT 

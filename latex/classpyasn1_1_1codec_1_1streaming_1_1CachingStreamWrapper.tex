@@ -1,0 +1,80 @@
+\doxysection{pyasn1.\+codec.\+streaming.\+Caching\+Stream\+Wrapper Class Reference}
+\hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper}{}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper}\index{pyasn1.codec.streaming.CachingStreamWrapper@{pyasn1.codec.streaming.CachingStreamWrapper}}
+Inheritance diagram for pyasn1.\+codec.\+streaming.\+Caching\+Stream\+Wrapper:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a86285ae8d0b72050ee47596a4a6b89fd}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a86285ae8d0b72050ee47596a4a6b89fd} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, raw)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_acb598cee7112ae4146010b222593bd9a}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_acb598cee7112ae4146010b222593bd9a} 
+{\bfseries peek} (self, n)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9e599529b037a4d1d76262d25b52f4e7}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9e599529b037a4d1d76262d25b52f4e7} 
+{\bfseries seekable} (self)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a7eced8f406807ec4596d8d94543dc7d5}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a7eced8f406807ec4596d8d94543dc7d5} 
+{\bfseries seek} (self, n=-\/1, whence=os.\+SEEK\+\_\+\+SET)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_ac4db610f868a51839854eb5fd5902003}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_ac4db610f868a51839854eb5fd5902003} 
+{\bfseries read} (self, n=-\/1)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_ac0682ab2c49ea59bdb6c8d9364b0c07d}{marked\+Position}} (self)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a4afa73bf5e19e00d5c44554704c33a2a}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a4afa73bf5e19e00d5c44554704c33a2a} 
+{\bfseries marked\+Position} (self, value)
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9bd4413183afe3ff85e6bd5e020560bd}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9bd4413183afe3ff85e6bd5e020560bd} 
+{\bfseries tell} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9229932406ec5f06e339b4c90ccd1925}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a9229932406ec5f06e339b4c90ccd1925} 
+{\bfseries \+\_\+raw} = raw
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a4f8416e1dd34c9464a2373e547d6a385}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a4f8416e1dd34c9464a2373e547d6a385} 
+{\bfseries \+\_\+cache} = io.\+Bytes\+IO()
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a2629cd0aab2eefc029edec040c93448e}\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_a2629cd0aab2eefc029edec040c93448e} 
+int {\bfseries \+\_\+marked\+Position} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wrapper around non-seekable streams.
+
+Note that the implementation is tied to the decoder,
+not checking for dangerous arguments for the sake
+of performance.
+
+The read bytes are kept in an internal cache until
+setting _markedPosition which may reset the cache.
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_doc-func-members}
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_ac0682ab2c49ea59bdb6c8d9364b0c07d}\index{pyasn1.codec.streaming.CachingStreamWrapper@{pyasn1.codec.streaming.CachingStreamWrapper}!markedPosition@{markedPosition}}
+\index{markedPosition@{markedPosition}!pyasn1.codec.streaming.CachingStreamWrapper@{pyasn1.codec.streaming.CachingStreamWrapper}}
+\doxysubsubsection{\texorpdfstring{markedPosition()}{markedPosition()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1codec_1_1streaming_1_1CachingStreamWrapper_ac0682ab2c49ea59bdb6c8d9364b0c07d} 
+pyasn1.\+codec.\+streaming.\+Caching\+Stream\+Wrapper.\+marked\+Position (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Position where the currently processed element starts.
+
+This is used for back-tracking in SingleItemDecoder.__call__
+and (indefLen)ValueDecoder and should not be used for other purposes.
+The client is not supposed to ever seek before this position.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+codec/\+streaming.\+py\end{DoxyCompactItemize}

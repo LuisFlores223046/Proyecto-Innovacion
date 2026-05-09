@@ -1,0 +1,85 @@
+\doxysection{watchfiles.\+filters.\+Python\+Filter Class Reference}
+\hypertarget{classwatchfiles_1_1filters_1_1PythonFilter}{}\label{classwatchfiles_1_1filters_1_1PythonFilter}\index{watchfiles.filters.PythonFilter@{watchfiles.filters.PythonFilter}}
+Inheritance diagram for watchfiles.\+filters.\+Python\+Filter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classwatchfiles_1_1filters_1_1PythonFilter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1PythonFilter_a02aacdaaa23feee730ce763604602afb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[Union\+[str, Path]\+]\+]\+ ignore\+\_\+paths=None, Sequence\+[str]\+ extra\+\_\+extensions=())
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1PythonFilter_a90c7ed70ed7e07b81bcdcf39ddb2b551}\label{classwatchfiles_1_1filters_1_1PythonFilter_a90c7ed70ed7e07b81bcdcf39ddb2b551} 
+bool {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, \textquotesingle{}\doxymbox{\hyperlink{classwatchfiles_1_1main_1_1Change}{Change}}\textquotesingle{} change, str path)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1DefaultFilter}{watchfiles.\+filters.\+Default\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1DefaultFilter_a981e3e442fca7a683d7b5d4e60f5a220}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[str]\+]\+ ignore\+\_\+dirs=None, Optional\+[Sequence\+[str]\+]\+ ignore\+\_\+entity\+\_\+patterns=None, Optional\+[Sequence\+[Union\+[str, Path]\+]\+]\+ ignore\+\_\+paths=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1BaseFilter}{watchfiles.\+filters.\+Base\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+bool \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1BaseFilter_a85e288f0bf4cb6b333d4a90be1030c2d}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, \textquotesingle{}\doxymbox{\hyperlink{classwatchfiles_1_1main_1_1Change}{Change}}\textquotesingle{} change, str path)
+\item 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1PythonFilter_a60e150e28d1c4645e3832177c044c92e}\label{classwatchfiles_1_1filters_1_1PythonFilter_a60e150e28d1c4645e3832177c044c92e} 
+tuple {\bfseries extensions} = (\textquotesingle{}.py\textquotesingle{}, \textquotesingle{}.pyx\textquotesingle{}, \textquotesingle{}.pyd\textquotesingle{}) + tuple(extra\+\_\+extensions)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1BaseFilter}{watchfiles.\+filters.\+Base\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+tuple {\bfseries ignore\+\_\+dirs} = ()
+\item 
+tuple {\bfseries ignore\+\_\+entity\+\_\+patterns} = ()
+\item 
+tuple {\bfseries ignore\+\_\+paths} = ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1BaseFilter}{watchfiles.\+filters.\+Base\+Filter}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+ignore\+\_\+dirs} = set(self.\+ignore\+\_\+dirs)
+\item 
+{\bfseries \+\_\+ignore\+\_\+entity\+\_\+regexes} = tuple(re.\+compile(r) for r in self.\+ignore\+\_\+entity\+\_\+patterns)
+\item 
+{\bfseries \+\_\+ignore\+\_\+paths} = tuple(map(str, self.\+ignore\+\_\+paths))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A filter for Python files, since this class inherits from [`DefaultFilter`][watchfiles.DefaultFilter]
+it will ignore files and directories that you might commonly want to ignore as well as filtering out
+all changes except in Python files (files with extensions `('.py', '.pyx', '.pyd')`).
+\end{DoxyVerb}
+ 
+
+\label{classwatchfiles_1_1filters_1_1PythonFilter_doc-constructors}
+\Hypertarget{classwatchfiles_1_1filters_1_1PythonFilter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classwatchfiles_1_1filters_1_1PythonFilter_a02aacdaaa23feee730ce763604602afb}\index{watchfiles.filters.PythonFilter@{watchfiles.filters.PythonFilter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!watchfiles.filters.PythonFilter@{watchfiles.filters.PythonFilter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classwatchfiles_1_1filters_1_1PythonFilter_a02aacdaaa23feee730ce763604602afb} 
+ None watchfiles.\+filters.\+Python\+Filter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[Sequence\+[Union\+[str, Path]\+]\+]\+ }]{ignore\+\_\+paths}{ = {\ttfamily None}, }\item[{Sequence\+[str]\+ }]{extra\+\_\+extensions}{ = {\ttfamily ()}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Args:
+    ignore_paths: The paths to ignore, see [`BaseFilter`][watchfiles.BaseFilter].
+    extra_extensions: extra extensions to ignore.
+
+`ignore_paths` and `extra_extensions` can be passed as arguments partly to support [CLI](../cli.md) usage where
+`--ignore-paths` and `--extensions` can be passed as arguments.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+watchfiles/\+filters.\+py\end{DoxyCompactItemize}

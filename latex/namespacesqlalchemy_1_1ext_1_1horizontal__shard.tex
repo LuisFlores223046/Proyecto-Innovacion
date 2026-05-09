@@ -1,0 +1,49 @@
+\doxysection{sqlalchemy.\+ext.\+horizontal\+\_\+shard Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1ext_1_1horizontal__shard}{}\label{namespacesqlalchemy_1_1ext_1_1horizontal__shard}\index{sqlalchemy.ext.horizontal\_shard@{sqlalchemy.ext.horizontal\_shard}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardChooser}{Shard\+Chooser}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1IdentityChooser}{Identity\+Chooser}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedQuery}{Sharded\+Query}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession}{Sharded\+Session}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1set__shard__id}{set\+\_\+shard\+\_\+id}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1horizontal__shard_a3d80d76a23eed53f23405ea8b70716c7}\label{namespacesqlalchemy_1_1ext_1_1horizontal__shard_a3d80d76a23eed53f23405ea8b70716c7} 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[\+\_\+T]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1IteratorResult}{Iterator\+Result}}\+[\+\_\+\+TP]\+]\+ {\bfseries execute\+\_\+and\+\_\+instances} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1ORMExecuteState}{ORMExecute\+State}} orm\+\_\+context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1horizontal__shard_aa67f50d9cf9007c9fbecef42156a3ed3}\label{namespacesqlalchemy_1_1ext_1_1horizontal__shard_aa67f50d9cf9007c9fbecef42156a3ed3} 
+{\bfseries \+\_\+T} = Type\+Var("{}\+\_\+\+T"{}, bound=Any)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1horizontal__shard_a7a62be7ddb59e7bd6bcd2baf8c7d044b}\label{namespacesqlalchemy_1_1ext_1_1horizontal__shard_a7a62be7ddb59e7bd6bcd2baf8c7d044b} 
+{\bfseries Shard\+Identifier} = str
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Horizontal sharding support.
+
+Defines a rudimental 'horizontal sharding' system which allows a Session to
+distribute queries and persistence operations across multiple databases.
+
+For a usage example, see the :ref:`examples_sharding` example included in
+the source distribution.
+
+.. deepalchemy:: The horizontal sharding extension is an advanced feature,
+   involving a complex statement -> database interaction as well as
+   use of semi-public APIs for non-trivial cases.   Simpler approaches to
+   refering to multiple database "shards", most commonly using a distinct
+   :class:`_orm.Session` per "shard", should always be considered first
+   before using this more complex and less-production-tested system.
+\end{DoxyVerb}
+ 

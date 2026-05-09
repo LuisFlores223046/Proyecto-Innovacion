@@ -1,0 +1,108 @@
+\doxysection{dns.\+transaction.\+Transaction\+Manager Class Reference}
+\hypertarget{classdns_1_1transaction_1_1TransactionManager}{}\label{classdns_1_1transaction_1_1TransactionManager}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+Inheritance diagram for dns.\+transaction.\+Transaction\+Manager:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classdns_1_1transaction_1_1TransactionManager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+"{}Transaction"{} \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager_acd0c494a5ed65726c0cb2e1cb373943d}{reader}} (self)
+\item 
+"{}Transaction"{} \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager_a32d26bd81e82545905e09bab2f940ae3}{writer}} (self, bool replacement=False)
+\item 
+Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None, bool, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None]\+ \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager_a349b22d6740a9773ed12f28fd905d5db}{origin\+\_\+information}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1rdataclass_1_1RdataClass}{dns.\+rdataclass.\+Rdata\+Class}} \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager_afee2a668eb17685e07cc9a65791e7a8d}{get\+\_\+class}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager_a6f45bb160e197860a61f95efccfeb480}{from\+\_\+wire\+\_\+origin}} (self)
+\end{DoxyCompactItemize}
+
+
+\label{classdns_1_1transaction_1_1TransactionManager_doc-func-members}
+\Hypertarget{classdns_1_1transaction_1_1TransactionManager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1transaction_1_1TransactionManager_a6f45bb160e197860a61f95efccfeb480}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}!from\_wire\_origin@{from\_wire\_origin}}
+\index{from\_wire\_origin@{from\_wire\_origin}!dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+\doxysubsubsection{\texorpdfstring{from\_wire\_origin()}{from\_wire\_origin()}}
+{\footnotesize\ttfamily \label{classdns_1_1transaction_1_1TransactionManager_a6f45bb160e197860a61f95efccfeb480} 
+ \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None dns.\+transaction.\+Transaction\+Manager.\+from\+\_\+wire\+\_\+origin (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Origin to use in from_wire() calls.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1transaction_1_1TransactionManager_afee2a668eb17685e07cc9a65791e7a8d}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}!get\_class@{get\_class}}
+\index{get\_class@{get\_class}!dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+\doxysubsubsection{\texorpdfstring{get\_class()}{get\_class()}}
+{\footnotesize\ttfamily \label{classdns_1_1transaction_1_1TransactionManager_afee2a668eb17685e07cc9a65791e7a8d} 
+ \doxymbox{\hyperlink{classdns_1_1rdataclass_1_1RdataClass}{dns.\+rdataclass.\+Rdata\+Class}} dns.\+transaction.\+Transaction\+Manager.\+get\+\_\+class (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The class of the transaction manager.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classdns_1_1zone_1_1Zone_a178cd29772db778b0d2f2ab47122a436}{dns.\+zone.\+Zone}}, and \doxymbox{\hyperlink{classdns_1_1zonefile_1_1RRSetsReaderManager_aee67e3f6e4e7ff5a35d6138a66d044fa}{dns.\+zonefile.\+RRSets\+Reader\+Manager}}.
+
+\Hypertarget{classdns_1_1transaction_1_1TransactionManager_a349b22d6740a9773ed12f28fd905d5db}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}!origin\_information@{origin\_information}}
+\index{origin\_information@{origin\_information}!dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+\doxysubsubsection{\texorpdfstring{origin\_information()}{origin\_information()}}
+{\footnotesize\ttfamily \label{classdns_1_1transaction_1_1TransactionManager_a349b22d6740a9773ed12f28fd905d5db} 
+ Tuple\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None, bool, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \texorpdfstring{$\vert$}{|} None]\+ dns.\+transaction.\+Transaction\+Manager.\+origin\+\_\+information (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a tuple
+
+    (absolute_origin, relativize, effective_origin)
+
+giving the absolute name of the default origin for any
+relative domain names, the "effective origin", and whether
+names should be relativized.  The "effective origin" is the
+absolute origin if relativize is False, and the empty name if
+relativize is true.  (The effective origin is provided even
+though it can be computed from the absolute_origin and
+relativize setting because it avoids a lot of code
+duplication.)
+
+If the returned names are `None`, then no origin information is
+available.
+
+This information is used by code working with transactions to
+allow it to coordinate relativization.  The transaction code
+itself takes what it gets (i.e. does not change name
+relativity).
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classdns_1_1zone_1_1Zone_a57bd5b28a68b238a7aa9ea3cdd8e1514}{dns.\+zone.\+Zone}}, and \doxymbox{\hyperlink{classdns_1_1zonefile_1_1RRSetsReaderManager_a68730efdb7c0b1d8b933c49bde2c5dc3}{dns.\+zonefile.\+RRSets\+Reader\+Manager}}.
+
+\Hypertarget{classdns_1_1transaction_1_1TransactionManager_acd0c494a5ed65726c0cb2e1cb373943d}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}!reader@{reader}}
+\index{reader@{reader}!dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+\doxysubsubsection{\texorpdfstring{reader()}{reader()}}
+{\footnotesize\ttfamily \label{classdns_1_1transaction_1_1TransactionManager_acd0c494a5ed65726c0cb2e1cb373943d} 
+ "{}Transaction"{} dns.\+transaction.\+Transaction\+Manager.\+reader (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Begin a read-only transaction.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classdns_1_1versioned_1_1Zone_a1b8ecf7bea1c2ee1dec2d6d8484afc6d}{dns.\+versioned.\+Zone}}, \doxymbox{\hyperlink{classdns_1_1zone_1_1Zone_a5ab2166527f84703118b30e295f63dc6}{dns.\+zone.\+Zone}}, and \doxymbox{\hyperlink{classdns_1_1zonefile_1_1RRSetsReaderManager_abe792dc46c56eca26637212266c9fcd5}{dns.\+zonefile.\+RRSets\+Reader\+Manager}}.
+
+\Hypertarget{classdns_1_1transaction_1_1TransactionManager_a32d26bd81e82545905e09bab2f940ae3}\index{dns.transaction.TransactionManager@{dns.transaction.TransactionManager}!writer@{writer}}
+\index{writer@{writer}!dns.transaction.TransactionManager@{dns.transaction.TransactionManager}}
+\doxysubsubsection{\texorpdfstring{writer()}{writer()}}
+{\footnotesize\ttfamily \label{classdns_1_1transaction_1_1TransactionManager_a32d26bd81e82545905e09bab2f940ae3} 
+ "{}Transaction"{} dns.\+transaction.\+Transaction\+Manager.\+writer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{replacement}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Begin a writable transaction.
+
+*replacement*, a ``bool``.  If `True`, the content of the
+transaction completely replaces any prior content.  If False,
+the default, then the content of the transaction updates the
+existing content.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classdns_1_1versioned_1_1Zone_ae20c12bb5899760b842ddef3ddbbb7f4}{dns.\+versioned.\+Zone}}, \doxymbox{\hyperlink{classdns_1_1zone_1_1Zone_a0ca107685e782b343f2e701d11a18887}{dns.\+zone.\+Zone}}, and \doxymbox{\hyperlink{classdns_1_1zonefile_1_1RRSetsReaderManager_ad7eba81c0b8da92966b9bb061fbdbb92}{dns.\+zonefile.\+RRSets\+Reader\+Manager}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+transaction.\+py\end{DoxyCompactItemize}

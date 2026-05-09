@@ -1,0 +1,88 @@
+\doxysection{passlib.\+handlers.\+md5\+\_\+crypt Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt}{}\label{namespacepasslib_1_1handlers_1_1md5__crypt}\index{passlib.handlers.md5\_crypt@{passlib.handlers.md5\_crypt}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1md5__crypt_1_1__MD5__Common}{\+\_\+\+MD5\+\_\+\+Common}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1md5__crypt_1_1md5__crypt}{md5\+\_\+crypt}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1md5__crypt_1_1apr__md5__crypt}{apr\+\_\+md5\+\_\+crypt}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1md5__crypt_aecc3c35993ed71fca9175fcbde70a6bb}{\+\_\+raw\+\_\+md5\+\_\+crypt}} (pwd, salt, use\+\_\+apr=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_a3aa6fbe1a82dc7ec8c66be1b4464b179}\label{namespacepasslib_1_1handlers_1_1md5__crypt_a3aa6fbe1a82dc7ec8c66be1b4464b179} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_a1cdf9c592b4c557ba1742c0cd0664efc}\label{namespacepasslib_1_1handlers_1_1md5__crypt_a1cdf9c592b4c557ba1742c0cd0664efc} 
+str {\bfseries \+\_\+\+BNULL} = b"{}\textbackslash{}x00"{}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_aa377df181193fbeda7da6b1820e27681}\label{namespacepasslib_1_1handlers_1_1md5__crypt_aa377df181193fbeda7da6b1820e27681} 
+str {\bfseries \+\_\+\+MD5\+\_\+\+MAGIC} = b"{}\$1\$"{}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_a33f004edbc89570281d0efe8c8b9ffae}\label{namespacepasslib_1_1handlers_1_1md5__crypt_a33f004edbc89570281d0efe8c8b9ffae} 
+str {\bfseries \+\_\+\+APR\+\_\+\+MAGIC} = b"{}\$apr1\$"{}
+\item 
+tuple \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1md5__crypt_ab1a6e1f7ad2984522b418f8a5412ed2d}{\+\_\+c\+\_\+digest\+\_\+offsets}}
+\begin{DoxyCompactList}\small\item\em perms\+\_\+order = "{}p,pp,ps,psp,sp,spp"{}.split("{},"{}) def offset(i):\+ key = (("{}p"{} if i \% 2 else "{}"{}) + ("{}s"{} if i \% 3 else "{}"{}) + ("{}p"{} if i \% 7 else "{}"{}) + ("{}"{} if i \% 2 else "{}p"{})) return perms\+\_\+order.\+index(key) \+\_\+c\+\_\+digest\+\_\+offsets = \+[(offset(i), offset(i+1)) for i in range(0,42,2)]\+ \end{DoxyCompactList}\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_ac2bdabbeb811dde720dd012c8afe8870}\label{namespacepasslib_1_1handlers_1_1md5__crypt_ac2bdabbeb811dde720dd012c8afe8870} 
+tuple {\bfseries \+\_\+transpose\+\_\+map} = (12, 6, 0, 13, 7, 1, 14, 8, 2, 15, 9, 3, 5, 10, 4, 11)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.md5_crypt - md5-crypt algorithm\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1md5__crypt_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_aecc3c35993ed71fca9175fcbde70a6bb}\index{passlib.handlers.md5\_crypt@{passlib.handlers.md5\_crypt}!\_raw\_md5\_crypt@{\_raw\_md5\_crypt}}
+\index{\_raw\_md5\_crypt@{\_raw\_md5\_crypt}!passlib.handlers.md5\_crypt@{passlib.handlers.md5\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_raw\_md5\_crypt()}{\_raw\_md5\_crypt()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1md5__crypt_aecc3c35993ed71fca9175fcbde70a6bb} 
+\+\_\+raw\+\_\+md5\+\_\+crypt (\begin{DoxyParamCaption}\item[{}]{pwd}{, }\item[{}]{salt}{, }\item[{}]{use\+\_\+apr}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}perform raw md5-crypt calculation
+
+this function provides a pure-python implementation of the internals
+for the MD5-Crypt algorithms; it doesn't handle any of the
+parsing/validation of the hash strings themselves.
+
+:arg pwd: password chars/bytes to hash
+:arg salt: salt chars to use
+:arg use_apr: use apache variant
+
+:returns:
+    encoded checksum chars
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1md5__crypt_doc-var-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1md5__crypt_ab1a6e1f7ad2984522b418f8a5412ed2d}\index{passlib.handlers.md5\_crypt@{passlib.handlers.md5\_crypt}!\_c\_digest\_offsets@{\_c\_digest\_offsets}}
+\index{\_c\_digest\_offsets@{\_c\_digest\_offsets}!passlib.handlers.md5\_crypt@{passlib.handlers.md5\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_c\_digest\_offsets}{\_c\_digest\_offsets}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1md5__crypt_ab1a6e1f7ad2984522b418f8a5412ed2d} 
+tuple passlib.\+handlers.\+md5\+\_\+crypt.\+\_\+c\+\_\+digest\+\_\+offsets\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ (0,\ 3),\ (5,\ 1),\ (5,\ 3),\ (1,\ 2),\ (5,\ 1),\ (5,\ 3),\ (1,\ 3),}
+\DoxyCodeLine{\ \ \ \ (4,\ 1),\ (5,\ 3),\ (1,\ 3),\ (5,\ 0),\ (5,\ 3),\ (1,\ 3),\ (5,\ 1),}
+\DoxyCodeLine{\ \ \ \ (4,\ 3),\ (1,\ 3),\ (5,\ 1),\ (5,\ 2),\ (1,\ 3),\ (5,\ 1),\ (5,\ 3),}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+perms\+\_\+order = "{}p,pp,ps,psp,sp,spp"{}.split("{},"{}) def offset(i):\+ key = (("{}p"{} if i \% 2 else "{}"{}) + ("{}s"{} if i \% 3 else "{}"{}) + ("{}p"{} if i \% 7 else "{}"{}) + ("{}"{} if i \% 2 else "{}p"{})) return perms\+\_\+order.\+index(key) \+\_\+c\+\_\+digest\+\_\+offsets = \+[(offset(i), offset(i+1)) for i in range(0,42,2)]\+ 
+

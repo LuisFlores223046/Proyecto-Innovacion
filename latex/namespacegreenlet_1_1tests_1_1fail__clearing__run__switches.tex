@@ -1,0 +1,42 @@
+\doxysection{greenlet.\+tests.\+fail\+\_\+clearing\+\_\+run\+\_\+switches Namespace Reference}
+\hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches}{}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches}\index{greenlet.tests.fail\_clearing\_run\_switches@{greenlet.tests.fail\_clearing\_run\_switches}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1tests_1_1fail__clearing__run__switches_1_1RunCallable}{Run\+Callable}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1tests_1_1fail__clearing__run__switches_1_1G}{G}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a6eadfab66d8f19530a509bc1bb59d383}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a6eadfab66d8f19530a509bc1bb59d383} 
+{\bfseries run\+\_\+func} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_acefbb5552903f138680d226a41bf4672}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_acefbb5552903f138680d226a41bf4672} 
+{\bfseries g} = None
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a602af298314f9262cce990ddb6719f3d}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a602af298314f9262cce990ddb6719f3d} 
+{\bfseries main} = greenlet.\+getcurrent()
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a160832534f1cbe3774fdb68e1fa42a9b}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a160832534f1cbe3774fdb68e1fa42a9b} 
+list {\bfseries results} = \+[$\,$]\+
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a39efa1aaa604c1dbb0a54cc944cddf5f}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_a39efa1aaa604c1dbb0a54cc944cddf5f} 
+{\bfseries x} = g.\+switch()
+\item 
+\Hypertarget{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_ab69bca99f2924f4c4e3903717f77401a}\label{namespacegreenlet_1_1tests_1_1fail__clearing__run__switches_ab69bca99f2924f4c4e3903717f77401a} 
+{\bfseries flush}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}If we have a run callable passed to the constructor or set as an
+attribute, but we don't actually use that (because ``__getattribute__``
+or the like interferes), then when we clear callable before beginning
+to run, there's an opportunity for Python code to run.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,53 @@
+\doxysection{alembic.\+util.\+sqla\+\_\+compat.\+\_\+textual\+\_\+index\+\_\+element Class Reference}
+\hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element}{}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element}\index{alembic.util.sqla\_compat.\_textual\_index\_element@{alembic.util.sqla\_compat.\_textual\_index\_element}}
+Inheritance diagram for alembic.\+util.\+sqla\+\_\+compat.\+\_\+textual\+\_\+index\+\_\+element:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_abd521482429f13356b2b28bdcc3b1482}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_abd521482429f13356b2b28bdcc3b1482} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Table table, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1TextClause}{Text\+Clause}} text)
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_aae64af763a767f8e8adf4c6b1f5da641}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_aae64af763a767f8e8adf4c6b1f5da641} 
+{\bfseries get\+\_\+children} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a40433a99cda2933e2fa90d185cc430ab}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a40433a99cda2933e2fa90d185cc430ab} 
+{\bfseries table} = table
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a5a5d92e22a7a5cc522363d71b3a73667}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a5a5d92e22a7a5cc522363d71b3a73667} 
+{\bfseries text} = text
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a3b2a4a580145fc306f50199ad94d69f5}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a3b2a4a580145fc306f50199ad94d69f5} 
+{\bfseries key} = text.\+text
+\item 
+\Hypertarget{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a4d547955059c5d362968db2e06ba65d3}\label{classalembic_1_1util_1_1sqla__compat_1_1__textual__index__element_a4d547955059c5d362968db2e06ba65d3} 
+{\bfseries fake\+\_\+column} = \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{schema.\+Column}}(self.\+text.\+text, sqltypes.\+NULLTYPE)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wrap around a sqlalchemy text() construct in such a way that
+we appear like a column-oriented SQL expression to an Index
+construct.
+
+The issue here is that currently the Postgresql dialect, the biggest
+recipient of functional indexes, keys all the index expressions to
+the corresponding column expressions when rendering CREATE INDEX,
+so the Index we create here needs to have a .columns collection that
+is the same length as the .expressions collection.  Ultimately
+SQLAlchemy should support text() expressions in indexes.
+
+See SQLAlchemy issue 3174.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+util/\+sqla\+\_\+compat.\+py\end{DoxyCompactItemize}

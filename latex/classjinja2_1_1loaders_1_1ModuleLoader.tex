@@ -1,0 +1,84 @@
+\doxysection{jinja2.\+loaders.\+Module\+Loader Class Reference}
+\hypertarget{classjinja2_1_1loaders_1_1ModuleLoader}{}\label{classjinja2_1_1loaders_1_1ModuleLoader}\index{jinja2.loaders.ModuleLoader@{jinja2.loaders.ModuleLoader}}
+Inheritance diagram for jinja2.\+loaders.\+Module\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1loaders_1_1ModuleLoader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_a6d747d1c7b3316d5a9f837923fa957ec}\label{classjinja2_1_1loaders_1_1ModuleLoader_a6d747d1c7b3316d5a9f837923fa957ec} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Union\+[str, "{}os.\+Path\+Like\+[str]\+"{}, t.\+Sequence\+[t.\+Union\+[str, "{}os.\+Path\+Like\+[str]\+"{}]\+]\+]\+ path)
+\item 
+"{}Template"{} \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1ModuleLoader_a913e99703f585ed056c899e8df19849f}{load}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ globals=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+t.\+Tuple\+[str, t.\+Optional\+[str]\+, t.\+Optional\+[t.\+Callable\+[\+[$\,$]\+, bool]\+]\+]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_a7e222ad2ab60e2cfd58c11822b0c4951}{get\+\_\+source}} (self, "{}Environment"{} environment, str template)
+\item 
+t.\+List\+[str]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_acb576631d9b98370780cf622e2433992}{list\+\_\+templates}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_acd07970a8c72190d53ae1ff7d5c3a451}\label{classjinja2_1_1loaders_1_1ModuleLoader_acd07970a8c72190d53ae1ff7d5c3a451} 
+str {\bfseries get\+\_\+template\+\_\+key} (str name)
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_a310f26a977d4d7fd23de1cc352f5fc4c}\label{classjinja2_1_1loaders_1_1ModuleLoader_a310f26a977d4d7fd23de1cc352f5fc4c} 
+str {\bfseries get\+\_\+module\+\_\+filename} (str name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_a51fa0b315ae129053465c2b2cee1f29a}\label{classjinja2_1_1loaders_1_1ModuleLoader_a51fa0b315ae129053465c2b2cee1f29a} 
+{\bfseries module} = mod
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_aa225859fbc68c5a2a431cf1b5bd1d6a2}\label{classjinja2_1_1loaders_1_1ModuleLoader_aa225859fbc68c5a2a431cf1b5bd1d6a2} 
+{\bfseries package\+\_\+name} = package\+\_\+name
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries has\+\_\+source\+\_\+access} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This loader loads templates from precompiled templates.
+
+Example usage:
+
+>>> loader = ModuleLoader('/path/to/compiled/templates')
+
+Templates can be precompiled with :meth:`Environment.compile_templates`.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1loaders_1_1ModuleLoader_doc-func-members}
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1loaders_1_1ModuleLoader_a913e99703f585ed056c899e8df19849f}\index{jinja2.loaders.ModuleLoader@{jinja2.loaders.ModuleLoader}!load@{load}}
+\index{load@{load}!jinja2.loaders.ModuleLoader@{jinja2.loaders.ModuleLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1ModuleLoader_a913e99703f585ed056c899e8df19849f} 
+ "{}Template"{} jinja2.\+loaders.\+Module\+Loader.\+load (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Environment"{}}]{environment}{, }\item[{str}]{name}{, }\item[{t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ }]{globals}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loads a template.  This method looks up the template in the cache
+or loads one by calling :meth:`get_source`.  Subclasses should not
+override this method as loaders working on collections of other
+loaders (such as :class:`PrefixLoader` or :class:`ChoiceLoader`)
+will not call this method but `get_source` directly.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_aec17b1b1367164ea6cb8c532b8033255}{jinja2.\+loaders.\+Base\+Loader}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+loaders.\+py\end{DoxyCompactItemize}

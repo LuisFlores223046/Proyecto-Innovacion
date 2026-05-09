@@ -1,0 +1,71 @@
+\doxysection{httpx.\+\_\+transports.\+base.\+Base\+Transport Class Reference}
+\hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport}{}\label{classhttpx_1_1__transports_1_1base_1_1BaseTransport}\index{httpx.\_transports.base.BaseTransport@{httpx.\_transports.base.BaseTransport}}
+Inheritance diagram for httpx.\+\_\+transports.\+base.\+Base\+Transport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.721312cm]{classhttpx_1_1__transports_1_1base_1_1BaseTransport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport_a433088ba831d26bc5eb171748f1d0608}\label{classhttpx_1_1__transports_1_1base_1_1BaseTransport_a433088ba831d26bc5eb171748f1d0608} 
+T {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (T self)
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport_ae1e3f213652d29d97aded29b578eec13}\label{classhttpx_1_1__transports_1_1base_1_1BaseTransport_ae1e3f213652d29d97aded29b578eec13} 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type=None, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+value=None, Traceback\+Type\texorpdfstring{$\vert$}{|}None traceback=None)
+\item 
+\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}} \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1base_1_1BaseTransport_a8f95138a8eb3f1ca31eb1a4096f1d105}{handle\+\_\+request}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport_afc22e9b6a48a4a9b90bd1bcb511345f9}\label{classhttpx_1_1__transports_1_1base_1_1BaseTransport_afc22e9b6a48a4a9b90bd1bcb511345f9} 
+None {\bfseries close} (self)
+\end{DoxyCompactItemize}
+
+
+\label{classhttpx_1_1__transports_1_1base_1_1BaseTransport_doc-func-members}
+\Hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__transports_1_1base_1_1BaseTransport_a8f95138a8eb3f1ca31eb1a4096f1d105}\index{httpx.\_transports.base.BaseTransport@{httpx.\_transports.base.BaseTransport}!handle\_request@{handle\_request}}
+\index{handle\_request@{handle\_request}!httpx.\_transports.base.BaseTransport@{httpx.\_transports.base.BaseTransport}}
+\doxysubsubsection{\texorpdfstring{handle\_request()}{handle\_request()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__transports_1_1base_1_1BaseTransport_a8f95138a8eb3f1ca31eb1a4096f1d105} 
+ \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}} httpx.\+\_\+transports.\+base.\+Base\+Transport.\+handle\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a single HTTP request and return a response.
+
+Developers shouldn't typically ever need to call into this API directly,
+since the Client class provides all the higher level user-facing API
+niceties.
+
+In order to properly release any network resources, the response
+stream should *either* be consumed immediately, with a call to
+`response.stream.read()`, or else the `handle_request` call should
+be followed with a try/finally block to ensuring the stream is
+always closed.
+
+Example usage:
+
+    with httpx.HTTPTransport() as transport:
+        req = httpx.Request(
+            method=b"GET",
+            url=(b"https", b"www.example.com", 443, b"/"),
+            headers=[(b"Host", b"www.example.com")],
+        )
+        resp = transport.handle_request(req)
+        body = resp.stream.read()
+        print(resp.status_code, resp.headers, body)
+
+
+Takes a `Request` instance as the only argument.
+
+Returns a `Response` instance.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1default_1_1HTTPTransport_ab0a32d74cf4c869f9a8b5f6e53089a16}{httpx.\+\_\+transports.\+default.\+HTTPTransport}}, \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1mock_1_1MockTransport_ac95e045d35803c10f651bf883032c666}{httpx.\+\_\+transports.\+mock.\+Mock\+Transport}}, \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1wsgi_1_1WSGITransport_afa20391cb1563017705c58071e259299}{httpx.\+\_\+transports.\+wsgi.\+WSGITransport}}, and \doxymbox{\hyperlink{classstarlette_1_1testclient_1_1__TestClientTransport_afc94c4420927d4ae95c1cd04222f205b}{starlette.\+testclient.\+\_\+\+Test\+Client\+Transport}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+transports/\+base.\+py\end{DoxyCompactItemize}

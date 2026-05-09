@@ -1,0 +1,88 @@
+\doxysection{app.\+models.\+espacio.\+Espacio Class Reference}
+\hypertarget{classapp_1_1models_1_1espacio_1_1Espacio}{}\label{classapp_1_1models_1_1espacio_1_1Espacio}\index{app.models.espacio.Espacio@{app.models.espacio.Espacio}}
+Inheritance diagram for app.\+models.\+espacio.\+Espacio:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1espacio_1_1Espacio}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a3d23efc3bf1387467fcda89839d58e19}\label{classapp_1_1models_1_1espacio_1_1Espacio_a3d23efc3bf1387467fcda89839d58e19} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_aa4679bbaabf59b319fa70525bc8ab178}\label{classapp_1_1models_1_1espacio_1_1Espacio_aa4679bbaabf59b319fa70525bc8ab178} 
+{\bfseries codigo} = Column(String(20), unique=True, nullable=False, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a4e9dc5a3fd971d9f0204492bda3a0ba8}\label{classapp_1_1models_1_1espacio_1_1Espacio_a4e9dc5a3fd971d9f0204492bda3a0ba8} 
+{\bfseries nombre} = Column(String(200), nullable=False, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a9ff4977b4df6776c8e43b9e024cf8271}\label{classapp_1_1models_1_1espacio_1_1Espacio_a9ff4977b4df6776c8e43b9e024cf8271} 
+{\bfseries categoria\+\_\+id} = Column(Integer, Foreign\+Key("{}categorias.\+id"{}), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a0825a1b77d547e7ddbe6d42e2ec7caa2}\label{classapp_1_1models_1_1espacio_1_1Espacio_a0825a1b77d547e7ddbe6d42e2ec7caa2} 
+{\bfseries piso\+\_\+id} = Column(Integer, Foreign\+Key("{}pisos.\+id"{}), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_ac10bf138115bc4799da2b18d5f2f433d}\label{classapp_1_1models_1_1espacio_1_1Espacio_ac10bf138115bc4799da2b18d5f2f433d} 
+{\bfseries latitud} = Column(Numeric(10, 7), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_ac3d96cebf10c8e1c703ad4e38c7983f5}\label{classapp_1_1models_1_1espacio_1_1Espacio_ac3d96cebf10c8e1c703ad4e38c7983f5} 
+{\bfseries longitud} = Column(Numeric(10, 7), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a3c4dc63154a9597c90b6247c55377d29}\label{classapp_1_1models_1_1espacio_1_1Espacio_a3c4dc63154a9597c90b6247c55377d29} 
+{\bfseries activo} = Column(Boolean, default=True, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a5e4a70c14251afb4fb8518658e511b7f}\label{classapp_1_1models_1_1espacio_1_1Espacio_a5e4a70c14251afb4fb8518658e511b7f} 
+{\bfseries notas} = Column(Text, nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a37dabe7f35e0a9f688862faacd0ecb90}\label{classapp_1_1models_1_1espacio_1_1Espacio_a37dabe7f35e0a9f688862faacd0ecb90} 
+{\bfseries creado\+\_\+en} = Column(TIMESTAMP(timezone=True), server\+\_\+default=func.\+now(), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a11f6bd85a03aee837cc8049b76806741}\label{classapp_1_1models_1_1espacio_1_1Espacio_a11f6bd85a03aee837cc8049b76806741} 
+{\bfseries actualizado\+\_\+en} = Column(TIMESTAMP(timezone=True), server\+\_\+default=func.\+now(), onupdate=func.\+now(), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a0636ec0f1cff51f202f37c3e5a6cae7b}\label{classapp_1_1models_1_1espacio_1_1Espacio_a0636ec0f1cff51f202f37c3e5a6cae7b} 
+{\bfseries categoria} = relationship("{}Categoria"{}, back\+\_\+populates="{}espacios"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a97f05d6c02bf867cf3a5dd988289683e}\label{classapp_1_1models_1_1espacio_1_1Espacio_a97f05d6c02bf867cf3a5dd988289683e} 
+{\bfseries piso} = relationship("{}Piso"{}, back\+\_\+populates="{}espacios"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a3451593f904e467a769c72675af96856}\label{classapp_1_1models_1_1espacio_1_1Espacio_a3451593f904e467a769c72675af96856} 
+{\bfseries horarios} = relationship("{}Horario"{}, back\+\_\+populates="{}espacio"{}, cascade="{}all, delete-\/orphan"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a798d32b4508bfeebc2e7b08eae48ef7d}\label{classapp_1_1models_1_1espacio_1_1Espacio_a798d32b4508bfeebc2e7b08eae48ef7d} 
+{\bfseries contactos} = relationship("{}Contacto"{}, back\+\_\+populates="{}espacio"{}, cascade="{}all, delete-\/orphan"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a5cc5c4e400e7e75b3afd9ed35e234f83}\label{classapp_1_1models_1_1espacio_1_1Espacio_a5cc5c4e400e7e75b3afd9ed35e234f83} 
+{\bfseries servicios} = relationship("{}Servicio\+Espacio"{}, back\+\_\+populates="{}espacio"{}, cascade="{}all, delete-\/orphan"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_a37b0e52c4f33774de8ead5f06fe4186e}\label{classapp_1_1models_1_1espacio_1_1Espacio_a37b0e52c4f33774de8ead5f06fe4186e} 
+{\bfseries fotos} = relationship("{}Foto\+Espacio"{}, back\+\_\+populates="{}espacio"{}, cascade="{}all, delete-\/orphan"{})
+\item 
+\Hypertarget{classapp_1_1models_1_1espacio_1_1Espacio_afc1f686f8c62bb374f8408917b84a829}\label{classapp_1_1models_1_1espacio_1_1Espacio_afc1f686f8c62bb374f8408917b84a829} 
+{\bfseries eventos} = relationship("{}Evento"{}, back\+\_\+populates="{}espacio"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Representa un punto de interés, oficina o lugar específico en el mapa.
+
+Attributes:
+    id: Identificador único.
+    codigo: Código único asignado al espacio.
+    nombre: Nombre descriptivo del lugar.
+    categoria_id: FK hacia la categoría del espacio.
+    piso_id: FK hacia el piso donde se ubica el espacio.
+    latitud: Coordenada de latitud específica.
+    longitud: Coordenada de longitud específica.
+    activo: Define si el espacio es visible para los usuarios.
+    notas: Información interna o aclaraciones adicionales.
+    creado_en: Timestamp de creación.
+    actualizado_en: Timestamp de la última modificación.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+espacio.\+py\end{DoxyCompactItemize}

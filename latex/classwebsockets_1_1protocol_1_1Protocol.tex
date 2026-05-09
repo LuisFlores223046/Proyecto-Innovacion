@@ -1,0 +1,460 @@
+\doxysection{websockets.\+protocol.\+Protocol Class Reference}
+\hypertarget{classwebsockets_1_1protocol_1_1Protocol}{}\label{classwebsockets_1_1protocol_1_1Protocol}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+Inheritance diagram for websockets.\+protocol.\+Protocol:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classwebsockets_1_1protocol_1_1Protocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ad428d34fd6a15b6bdab85cf17d283cee}\label{classwebsockets_1_1protocol_1_1Protocol_ad428d34fd6a15b6bdab85cf17d283cee} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Side}{Side}} side, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} state=OPEN, Optional\+[int]\+ max\+\_\+size=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}20, Optional\+[Logger\+Like]\+ logger=None)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a760171786643aa4f90ea90670a6ec301}{state}} (self)
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a2f9f2a65c29ecd518b9d12cada60276a}\label{classwebsockets_1_1protocol_1_1Protocol_a2f9f2a65c29ecd518b9d12cada60276a} 
+None {\bfseries state} (self, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} state)
+\item 
+Optional\+[int]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a6d75ac1acff9bbe2d19a40f2711d585e}{close\+\_\+code}} (self)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a952417585a56cba78a0878dc96436b6c}{close\+\_\+reason}} (self)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1exceptions_1_1ConnectionClosed}{Connection\+Closed}} \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a474c4a2d3d92476c9a81c67f86686430}{close\+\_\+exc}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aba13b11895dec3053f2fb5bcf7436e75}{receive\+\_\+data}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aa5b6b70865237efff07bd75aa898e78d}{receive\+\_\+eof}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a1ba895e0129a5c67cf038578e2a72398}{send\+\_\+continuation}} (self, bytes data, bool fin)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_afe7f4e71ca990383164c5726f4b1ede7}{send\+\_\+text}} (self, bytes data, bool fin=True)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a85783ca54eb2d0de3510ad6ec6e23bb0}{send\+\_\+binary}} (self, bytes data, bool fin=True)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a73c8b6597fc2baa781707def17b3313f}{send\+\_\+close}} (self, Optional\+[int]\+ code=None, str reason="{}"{})
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_ad5ec46f569c3771bab1a4c81fec90a53}{send\+\_\+ping}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a5cb03d49e347124a8cdf61ae08d99de9}{send\+\_\+pong}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a713e2ec03bae3423fb279a58c6c9c29c}{fail}} (self, int code, str reason="{}"{})
+\item 
+List\+[Event]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a8b0a2683eacfb92a6c2c623e6957d0a7}{events\+\_\+received}} (self)
+\item 
+List\+[bytes]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a3a0c7270b47448e3bcfbe108d2b79ebc}{data\+\_\+to\+\_\+send}} (self)
+\item 
+bool \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_acc1cc961273791eb31a48540bc8a9e65}{close\+\_\+expected}} (self)
+\item 
+Generator\+[None, None, None]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aed46fe98c9396f9ee20b9dad6465c243}{parse}} (self)
+\item 
+Generator\+[None, None, None]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a740b58eed1c139cf2cdf71c06f6cc288}{discard}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a1d002a3eff8c5d46cc6275ed9cf6a931}{recv\+\_\+frame}} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}} frame)
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_aa9c724fc012fc86617780b6255e1979b}\label{classwebsockets_1_1protocol_1_1Protocol_aa9c724fc012fc86617780b6255e1979b} 
+None {\bfseries send\+\_\+frame} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}} frame)
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a52c93a12106e79c63d23bfe4a59c9991}\label{classwebsockets_1_1protocol_1_1Protocol_a52c93a12106e79c63d23bfe4a59c9991} 
+None {\bfseries send\+\_\+eof} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a7fe8485be90b83983d65ca73baf7d8ab}\label{classwebsockets_1_1protocol_1_1Protocol_a7fe8485be90b83983d65ca73baf7d8ab} 
+uuid.\+UUID {\bfseries id} = uuid.\+uuid4()
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ad959721e9e90568e639bf95e78cea4fe}\label{classwebsockets_1_1protocol_1_1Protocol_ad959721e9e90568e639bf95e78cea4fe} 
+Logger\+Like {\bfseries logger} = logger
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a21bcc32c7ef7f5487842ccaf1c170e63}\label{classwebsockets_1_1protocol_1_1Protocol_a21bcc32c7ef7f5487842ccaf1c170e63} 
+Logger\+Like {\bfseries debug} = logger.\+is\+Enabled\+For(logging.\+DEBUG)
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a42cd169078bc9d63e8c29620d10bfd2e}\label{classwebsockets_1_1protocol_1_1Protocol_a42cd169078bc9d63e8c29620d10bfd2e} 
+{\bfseries side} = side
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a7bff4e777857f097340e1394a7c43be3}\label{classwebsockets_1_1protocol_1_1Protocol_a7bff4e777857f097340e1394a7c43be3} 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} {\bfseries state} = state
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ac649f2fb7572a44dbc828290d2ecd8b3}\label{classwebsockets_1_1protocol_1_1Protocol_ac649f2fb7572a44dbc828290d2ecd8b3} 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a62f61b8535a663ba691acafdd5b5a122}\label{classwebsockets_1_1protocol_1_1Protocol_a62f61b8535a663ba691acafdd5b5a122} 
+Optional\+[int]\+ {\bfseries cur\+\_\+size} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_adf14aec4a8f4c594f4079eef7a5098fe}\label{classwebsockets_1_1protocol_1_1Protocol_adf14aec4a8f4c594f4079eef7a5098fe} 
+bool {\bfseries expect\+\_\+continuation\+\_\+frame} = False
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ae2f9f2bbbef7f24da21caba0bbdb2e8a}\label{classwebsockets_1_1protocol_1_1Protocol_ae2f9f2bbbef7f24da21caba0bbdb2e8a} 
+Optional\+[Origin]\+ {\bfseries origin} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a72f2be17961a2cb02f59f28173b45134}\label{classwebsockets_1_1protocol_1_1Protocol_a72f2be17961a2cb02f59f28173b45134} 
+list {\bfseries extensions} = \+[$\,$]\+
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_af35cbb44cd3758e97978bc60bb6eecb4}\label{classwebsockets_1_1protocol_1_1Protocol_af35cbb44cd3758e97978bc60bb6eecb4} 
+Optional\+[Subprotocol]\+ {\bfseries subprotocol} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_aae1ff1333a6a6ef4823f467ad4743824}\label{classwebsockets_1_1protocol_1_1Protocol_aae1ff1333a6a6ef4823f467ad4743824} 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+rcvd} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ab7460239d2e16607dc5c294f1b369437}\label{classwebsockets_1_1protocol_1_1Protocol_ab7460239d2e16607dc5c294f1b369437} 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+sent} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a52b21b1b8c980c1eb65839668a46526b}\label{classwebsockets_1_1protocol_1_1Protocol_a52b21b1b8c980c1eb65839668a46526b} 
+Optional\+[bool]\+ {\bfseries close\+\_\+rcvd\+\_\+then\+\_\+sent} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_afa9cc2800f2d738ba6395d10f9608c13}\label{classwebsockets_1_1protocol_1_1Protocol_afa9cc2800f2d738ba6395d10f9608c13} 
+Optional\+[Exception]\+ {\bfseries handshake\+\_\+exc} = None
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a4dd197ece27c3f9627472af08bdfd38a}\label{classwebsockets_1_1protocol_1_1Protocol_a4dd197ece27c3f9627472af08bdfd38a} 
+bool {\bfseries eof\+\_\+sent} = False
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a1a87bdfcd4bf2522307e88760db2fc93}\label{classwebsockets_1_1protocol_1_1Protocol_a1a87bdfcd4bf2522307e88760db2fc93} 
+{\bfseries reader} = \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader}{Stream\+Reader}}()
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a94cb76137d6ee71ae6a3058ccdc187c3}\label{classwebsockets_1_1protocol_1_1Protocol_a94cb76137d6ee71ae6a3058ccdc187c3} 
+list {\bfseries events} = \+[$\,$]\+
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a1098f19382ad82c54166407f60ce5334}\label{classwebsockets_1_1protocol_1_1Protocol_a1098f19382ad82c54166407f60ce5334} 
+list {\bfseries writes} = \+[$\,$]\+
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a7fb4293cdb376d8eb2d93e2ba97a2af1}\label{classwebsockets_1_1protocol_1_1Protocol_a7fb4293cdb376d8eb2d93e2ba97a2af1} 
+Generator\+[None, None, None]\+ {\bfseries parser} = self.\+parse()
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a9218060e0f94907632da26befd5f20d1}\label{classwebsockets_1_1protocol_1_1Protocol_a9218060e0f94907632da26befd5f20d1} 
+Optional\+[Exception]\+ {\bfseries parser\+\_\+exc} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a527de565bcb1628a76461fd39b0470bd}\label{classwebsockets_1_1protocol_1_1Protocol_a527de565bcb1628a76461fd39b0470bd} 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} {\bfseries \+\_\+state} = state
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Sans-I/O implementation of a WebSocket connection.
+
+Args:
+    side: :attr:`~Side.CLIENT` or :attr:`~Side.SERVER`.
+    state: initial state of the WebSocket connection.
+    max_size: maximum size of incoming messages in bytes;
+        :obj:`None` disables the limit.
+    logger: logger for this connection; depending on ``side``,
+        defaults to ``logging.getLogger("websockets.client")``
+        or ``logging.getLogger("websockets.server")``;
+        see the :doc:`logging guide <../../topics/logging>` for details.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1protocol_1_1Protocol_doc-func-members}
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a6d75ac1acff9bbe2d19a40f2711d585e}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!close\_code@{close\_code}}
+\index{close\_code@{close\_code}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{close\_code()}{close\_code()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a6d75ac1acff9bbe2d19a40f2711d585e} 
+ Optional\+[int]\+ websockets.\+protocol.\+Protocol.\+close\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}`WebSocket close code`_.
+
+.. _WebSocket close code:
+    https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.5
+
+:obj:`None` if the connection isn't closed yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a474c4a2d3d92476c9a81c67f86686430}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!close\_exc@{close\_exc}}
+\index{close\_exc@{close\_exc}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{close\_exc()}{close\_exc()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a474c4a2d3d92476c9a81c67f86686430} 
+ \doxymbox{\hyperlink{classwebsockets_1_1exceptions_1_1ConnectionClosed}{Connection\+Closed}} websockets.\+protocol.\+Protocol.\+close\+\_\+exc (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Exception to raise when trying to interact with a closed connection.
+
+Don't raise this exception while the connection :attr:`state`
+is :attr:`~websockets.protocol.State.CLOSING`; wait until
+it's :attr:`~websockets.protocol.State.CLOSED`.
+
+Indeed, the exception includes the close code and reason, which are
+known only once the connection is closed.
+
+Raises:
+    AssertionError: if the connection isn't closed yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_acc1cc961273791eb31a48540bc8a9e65}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!close\_expected@{close\_expected}}
+\index{close\_expected@{close\_expected}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{close\_expected()}{close\_expected()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_acc1cc961273791eb31a48540bc8a9e65} 
+ bool websockets.\+protocol.\+Protocol.\+close\+\_\+expected (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tell if the TCP connection is expected to close soon.
+
+Call this method immediately after any of the ``receive_*()``,
+``send_close()``, or :meth:`fail` methods.
+
+If it returns :obj:`True`, schedule closing the TCP connection after a
+short timeout if the other side hasn't already closed it.
+
+Returns:
+    bool: Whether the TCP connection is expected to close soon.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a952417585a56cba78a0878dc96436b6c}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!close\_reason@{close\_reason}}
+\index{close\_reason@{close\_reason}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{close\_reason()}{close\_reason()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a952417585a56cba78a0878dc96436b6c} 
+ Optional\+[str]\+ websockets.\+protocol.\+Protocol.\+close\+\_\+reason (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}`WebSocket close reason`_.
+
+.. _WebSocket close reason:
+    https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6
+
+:obj:`None` if the connection isn't closed yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a3a0c7270b47448e3bcfbe108d2b79ebc}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!data\_to\_send@{data\_to\_send}}
+\index{data\_to\_send@{data\_to\_send}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{data\_to\_send()}{data\_to\_send()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a3a0c7270b47448e3bcfbe108d2b79ebc} 
+ List\+[bytes]\+ websockets.\+protocol.\+Protocol.\+data\+\_\+to\+\_\+send (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Obtain data to send to the network.
+
+Call this method immediately after any of the ``receive_*()``,
+``send_*()``, or :meth:`fail` methods.
+
+Write resulting data to the connection.
+
+The empty bytestring :data:`~websockets.protocol.SEND_EOF` signals
+the end of the data stream. When you receive it, half-close the TCP
+connection.
+
+Returns:
+    List[bytes]: Data to write to the connection.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a740b58eed1c139cf2cdf71c06f6cc288}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!discard@{discard}}
+\index{discard@{discard}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{discard()}{discard()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a740b58eed1c139cf2cdf71c06f6cc288} 
+ Generator\+[None, None, None]\+ websockets.\+protocol.\+Protocol.\+discard (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Discard incoming data.
+
+This coroutine replaces :meth:`parse`:
+
+- after receiving a close frame, during a normal closure (1.4);
+- after sending a close frame, during an abnormal closure (7.1.7).
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a8b0a2683eacfb92a6c2c623e6957d0a7}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!events\_received@{events\_received}}
+\index{events\_received@{events\_received}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{events\_received()}{events\_received()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a8b0a2683eacfb92a6c2c623e6957d0a7} 
+ List\+[Event]\+ websockets.\+protocol.\+Protocol.\+events\+\_\+received (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fetch events generated from data received from the network.
+
+Call this method immediately after any of the ``receive_*()`` methods.
+
+Process resulting events, likely by passing them to the application.
+
+Returns:
+    List[Event]: Events read from the connection.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a713e2ec03bae3423fb279a58c6c9c29c}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!fail@{fail}}
+\index{fail@{fail}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{fail()}{fail()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a713e2ec03bae3423fb279a58c6c9c29c} 
+ None websockets.\+protocol.\+Protocol.\+fail (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{code}{, }\item[{str }]{reason}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}`Fail the WebSocket connection`_.
+
+.. _Fail the WebSocket connection:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-7.1.7
+
+Parameters:
+    code: close code
+    reason: close reason
+
+Raises:
+    ProtocolError: if the code isn't valid.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_aed46fe98c9396f9ee20b9dad6465c243}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!parse@{parse}}
+\index{parse@{parse}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_aed46fe98c9396f9ee20b9dad6465c243} 
+ Generator\+[None, None, None]\+ websockets.\+protocol.\+Protocol.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse incoming data into frames.
+
+:meth:`receive_data` and :meth:`receive_eof` run this generator
+coroutine until it needs more data or reaches EOF.
+
+:meth:`parse` never raises an exception. Instead, it sets the
+:attr:`parser_exc` and yields control.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classwebsockets_1_1client_1_1ClientProtocol_adab7bb19237a404e1f9ce21d4eb7b34b}{websockets.\+client.\+Client\+Protocol}}, and \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_aa30bbc4e3d05a53aeba1f9dd5021f6f7}{websockets.\+server.\+Server\+Protocol}}.
+
+\Hypertarget{classwebsockets_1_1protocol_1_1Protocol_aba13b11895dec3053f2fb5bcf7436e75}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!receive\_data@{receive\_data}}
+\index{receive\_data@{receive\_data}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{receive\_data()}{receive\_data()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_aba13b11895dec3053f2fb5bcf7436e75} 
+ None websockets.\+protocol.\+Protocol.\+receive\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data from the network.
+
+After calling this method:
+
+- You must call :meth:`data_to_send` and send this data to the network.
+- You should call :meth:`events_received` and process resulting events.
+
+Raises:
+    EOFError: if :meth:`receive_eof` was called earlier.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_aa5b6b70865237efff07bd75aa898e78d}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!receive\_eof@{receive\_eof}}
+\index{receive\_eof@{receive\_eof}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{receive\_eof()}{receive\_eof()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_aa5b6b70865237efff07bd75aa898e78d} 
+ None websockets.\+protocol.\+Protocol.\+receive\+\_\+eof (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive the end of the data stream from the network.
+
+After calling this method:
+
+- You must call :meth:`data_to_send` and send this data to the network;
+  it will return ``[b""]``, signaling the end of the stream, or ``[]``.
+- You aren't expected to call :meth:`events_received`; it won't return
+  any new events.
+
+Raises:
+    EOFError: if :meth:`receive_eof` was called earlier.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a1d002a3eff8c5d46cc6275ed9cf6a931}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!recv\_frame@{recv\_frame}}
+\index{recv\_frame@{recv\_frame}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{recv\_frame()}{recv\_frame()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a1d002a3eff8c5d46cc6275ed9cf6a931} 
+ None websockets.\+protocol.\+Protocol.\+recv\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}}}]{frame}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process an incoming frame.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a85783ca54eb2d0de3510ad6ec6e23bb0}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_binary@{send\_binary}}
+\index{send\_binary@{send\_binary}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_binary()}{send\_binary()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a85783ca54eb2d0de3510ad6ec6e23bb0} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+binary (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{bool }]{fin}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Binary frame`_.
+
+.. _Binary frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.6
+
+Parameters:
+    data: payload containing arbitrary binary data.
+    fin: FIN bit; set it to :obj:`False` if this is the first frame of
+        a fragmented message.
+
+Raises:
+    ProtocolError: if a fragmented message is in progress.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a73c8b6597fc2baa781707def17b3313f}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_close@{send\_close}}
+\index{send\_close@{send\_close}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_close()}{send\_close()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a73c8b6597fc2baa781707def17b3313f} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[int]\+ }]{code}{ = {\ttfamily None}, }\item[{str }]{reason}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Close frame`_.
+
+.. _Close frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.1
+
+Parameters:
+    code: close code.
+    reason: close reason.
+
+Raises:
+    ProtocolError: if a fragmented message is being sent, if the code
+        isn't valid, or if a reason is provided without a code
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a1ba895e0129a5c67cf038578e2a72398}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_continuation@{send\_continuation}}
+\index{send\_continuation@{send\_continuation}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_continuation()}{send\_continuation()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a1ba895e0129a5c67cf038578e2a72398} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+continuation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{bool}]{fin}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Continuation frame`_.
+
+.. _Continuation frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.6
+
+Parameters:
+    data: payload containing the same kind of data
+        as the initial frame.
+    fin: FIN bit; set it to :obj:`True` if this is the last frame
+        of a fragmented message and to :obj:`False` otherwise.
+
+Raises:
+    ProtocolError: if a fragmented message isn't in progress.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_ad5ec46f569c3771bab1a4c81fec90a53}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_ping@{send\_ping}}
+\index{send\_ping@{send\_ping}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_ping()}{send\_ping()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_ad5ec46f569c3771bab1a4c81fec90a53} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+ping (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Ping frame`_.
+
+.. _Ping frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.2
+
+Parameters:
+    data: payload containing arbitrary binary data.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a5cb03d49e347124a8cdf61ae08d99de9}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_pong@{send\_pong}}
+\index{send\_pong@{send\_pong}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_pong()}{send\_pong()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a5cb03d49e347124a8cdf61ae08d99de9} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+pong (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Pong frame`_.
+
+.. _Pong frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.5.3
+
+Parameters:
+    data: payload containing arbitrary binary data.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_afe7f4e71ca990383164c5726f4b1ede7}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!send\_text@{send\_text}}
+\index{send\_text@{send\_text}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{send\_text()}{send\_text()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_afe7f4e71ca990383164c5726f4b1ede7} 
+ None websockets.\+protocol.\+Protocol.\+send\+\_\+text (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{bool }]{fin}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a `Text frame`_.
+
+.. _Text frame:
+    https://datatracker.ietf.org/doc/html/rfc6455#section-5.6
+
+Parameters:
+    data: payload containing text encoded with UTF-8.
+    fin: FIN bit; set it to :obj:`False` if this is the first frame of
+        a fragmented message.
+
+Raises:
+    ProtocolError: if a fragmented message is in progress.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1protocol_1_1Protocol_a760171786643aa4f90ea90670a6ec301}\index{websockets.protocol.Protocol@{websockets.protocol.Protocol}!state@{state}}
+\index{state@{state}!websockets.protocol.Protocol@{websockets.protocol.Protocol}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1protocol_1_1Protocol_a760171786643aa4f90ea90670a6ec301} 
+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} websockets.\+protocol.\+Protocol.\+state (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}WebSocket connection state.
+
+Defined in 4.1, 4.2, 7.1.3, and 7.1.4 of :rfc:`6455`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+protocol.\+py\end{DoxyCompactItemize}

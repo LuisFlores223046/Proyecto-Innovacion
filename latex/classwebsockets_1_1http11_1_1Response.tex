@@ -1,0 +1,83 @@
+\doxysection{websockets.\+http11.\+Response Class Reference}
+\hypertarget{classwebsockets_1_1http11_1_1Response}{}\label{classwebsockets_1_1http11_1_1Response}\index{websockets.http11.Response@{websockets.http11.Response}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1http11_1_1Response_aa6299b1c149cfcd04a43657934f0a4fa}\label{classwebsockets_1_1http11_1_1Response_aa6299b1c149cfcd04a43657934f0a4fa} 
+Optional\+[Exception]\+ {\bfseries exception} (self)
+\item 
+Generator\+[None, None, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+ \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response_af58d574b85fdd136449a2aca1e425eeb}{parse}} (cls, Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+ read\+\_\+line, Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+ read\+\_\+exact, Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+ read\+\_\+to\+\_\+eof)
+\item 
+bytes \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response_ae40d04d9597d8c4c2e7205770f0d2ec5}{serialize}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1http11_1_1Response_a889cc1889ef69400b74c314a9107d783}\label{classwebsockets_1_1http11_1_1Response_a889cc1889ef69400b74c314a9107d783} 
+datastructures {\bfseries headers} .\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}}
+\item 
+\Hypertarget{classwebsockets_1_1http11_1_1Response_a5ea95c3ab0d6766a73bec2fdc0c15493}\label{classwebsockets_1_1http11_1_1Response_a5ea95c3ab0d6766a73bec2fdc0c15493} 
+Optional {\bfseries body} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1http11_1_1Response_a4e08149e38540fa8507f26e4dec76103}\label{classwebsockets_1_1http11_1_1Response_a4e08149e38540fa8507f26e4dec76103} 
+Optional {\bfseries \+\_\+exception} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}WebSocket handshake response.
+
+Attributes:
+    status_code: Response code.
+    reason_phrase: Response reason.
+    headers: Response headers.
+    body: Response body, if any.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1http11_1_1Response_doc-func-members}
+\Hypertarget{classwebsockets_1_1http11_1_1Response_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1http11_1_1Response_af58d574b85fdd136449a2aca1e425eeb}\index{websockets.http11.Response@{websockets.http11.Response}!parse@{parse}}
+\index{parse@{parse}!websockets.http11.Response@{websockets.http11.Response}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1http11_1_1Response_af58d574b85fdd136449a2aca1e425eeb} 
+ Generator\+[None, None, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+ websockets.\+http11.\+Response.\+parse (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+}]{read\+\_\+line}{, }\item[{Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+}]{read\+\_\+exact}{, }\item[{Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+}]{read\+\_\+to\+\_\+eof}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a WebSocket handshake response.
+
+This is a generator-based coroutine.
+
+The reason phrase and headers are expected to contain only ASCII
+characters. Other characters are represented with surrogate escapes.
+
+Args:
+    read_line: generator-based coroutine that reads a LF-terminated
+        line or raises an exception if there isn't enough data.
+    read_exact: generator-based coroutine that reads the requested
+        bytes or raises an exception if there isn't enough data.
+    read_to_eof: generator-based coroutine that reads until the end
+        of the stream.
+
+Raises:
+    EOFError: if the connection is closed without a full HTTP response.
+    SecurityError: if the response exceeds a security limit.
+    LookupError: if the response isn't well formatted.
+    ValueError: if the response isn't well formatted.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1http11_1_1Response_ae40d04d9597d8c4c2e7205770f0d2ec5}\index{websockets.http11.Response@{websockets.http11.Response}!serialize@{serialize}}
+\index{serialize@{serialize}!websockets.http11.Response@{websockets.http11.Response}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1http11_1_1Response_ae40d04d9597d8c4c2e7205770f0d2ec5} 
+ bytes websockets.\+http11.\+Response.\+serialize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Serialize a WebSocket handshake response.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+http11.\+py\end{DoxyCompactItemize}

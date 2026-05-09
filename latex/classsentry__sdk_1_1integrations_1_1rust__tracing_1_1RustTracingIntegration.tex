@@ -1,0 +1,96 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+rust\+\_\+tracing.\+Rust\+Tracing\+Integration Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration}{}\label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration}\index{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration@{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+rust\+\_\+tracing.\+Rust\+Tracing\+Integration:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_ad63c593e76037b5da921adfea423752f}\label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_ad63c593e76037b5da921adfea423752f} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str identifier, "{}Callable\+[\+[\doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingLayer}{Rust\+Tracing\+Layer}}]\+, None]\+"{} initializer, "{}"{}"{}Callable\+[            \+[Dict\+[str, Any]\+]\+, \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1EventTypeMapping}{Event\+Type\+Mapping}}        ]\+"{}"{}"{} event\+\_\+type\+\_\+mapping=default\+\_\+event\+\_\+type\+\_\+mapping, "{}Callable\+[\+[Dict\+[str, Any]\+]\+, bool]\+"{} span\+\_\+filter=default\+\_\+span\+\_\+filter, "{}Optional\+[bool]\+"{} include\+\_\+tracing\+\_\+fields=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a60252f59d5622a95627f6bb75c168abe}{setup\+\_\+once\+\_\+with\+\_\+options}} (self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_ac0f3cdcf232618fec64607cef9694df1}{setup\+\_\+once}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_a2ccafa2d0ffebb39ba060c9b4b62f1a0}{tracing\+\_\+layer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries install} = None
+\item 
+str {\bfseries identifier} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Ingests tracing data from a Rust native extension's `tracing` instrumentation.
+
+If a project uses more than one Rust native extension, each one will need
+its own instance of `RustTracingIntegration` with an initializer function
+specific to that extension.
+
+Since all of the setup for this integration requires instance-specific state
+which is not available in `setup_once()`, setup instead happens in `__init__()`.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_ac0f3cdcf232618fec64607cef9694df1}\index{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration@{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration}!setup\_once@{setup\_once}}
+\index{setup\_once@{setup\_once}!sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration@{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once()}{setup\_once()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_ac0f3cdcf232618fec64607cef9694df1} 
+ None sentry\+\_\+sdk.\+integrations.\+rust\+\_\+tracing.\+Rust\+Tracing\+Integration.\+setup\+\_\+once (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Initialize the integration.
+
+This function is only called once, ever. Configuration is not available
+at this point, so the only thing to do here is to hook into exception
+handlers, and perhaps do monkeypatches.
+
+Inside those hooks `Integration.current` can be used to access the
+instance again.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a577a498f9be92552175a5565d5c11312}{sentry\+\_\+sdk.\+integrations.\+Integration}}.
+
+
+
+\label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_doc-variable-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_a2ccafa2d0ffebb39ba060c9b4b62f1a0}\index{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration@{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration}!tracing\_layer@{tracing\_layer}}
+\index{tracing\_layer@{tracing\_layer}!sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration@{sentry\_sdk.integrations.rust\_tracing.RustTracingIntegration}}
+\doxysubsubsection{\texorpdfstring{tracing\_layer}{tracing\_layer}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration_a2ccafa2d0ffebb39ba060c9b4b62f1a0} 
+sentry\+\_\+sdk.\+integrations.\+rust\+\_\+tracing.\+Rust\+Tracing\+Integration.\+tracing\+\_\+layer}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ RustTracingLayer(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ origin,\ event\_type\_mapping,\ span\_filter,\ include\_tracing\_fields}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+rust\+\_\+tracing.\+py\end{DoxyCompactItemize}

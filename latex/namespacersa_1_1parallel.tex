@@ -1,0 +1,58 @@
+\doxysection{rsa.\+parallel Namespace Reference}
+\hypertarget{namespacersa_1_1parallel}{}\label{namespacersa_1_1parallel}\index{rsa.parallel@{rsa.parallel}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1parallel_a1e6da43d0b530378f22c27c720d42266}\label{namespacersa_1_1parallel_a1e6da43d0b530378f22c27c720d42266} 
+None {\bfseries \+\_\+find\+\_\+prime} (int nbits, Connection pipe)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1parallel_a3422d78b6d693a8c002ca44f9677aa19}{getprime}} (int nbits, int poolsize)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1parallel_a4a55fd31ae16530ea58f4f3fc6d2492e}\label{namespacersa_1_1parallel_a4a55fd31ae16530ea58f4f3fc6d2492e} 
+{\bfseries failures}
+\item 
+\Hypertarget{namespacersa_1_1parallel_adfd401edb86ca81e54ef8c7791e7d83c}\label{namespacersa_1_1parallel_adfd401edb86ca81e54ef8c7791e7d83c} 
+{\bfseries tests}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions for parallel computation on multiple cores.
+
+Introduced in Python-RSA 3.1.
+
+.. note::
+
+    Requires Python 2.6 or newer.
+\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1parallel_doc-func-members}
+\Hypertarget{namespacersa_1_1parallel_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1parallel_a3422d78b6d693a8c002ca44f9677aa19}\index{rsa.parallel@{rsa.parallel}!getprime@{getprime}}
+\index{getprime@{getprime}!rsa.parallel@{rsa.parallel}}
+\doxysubsubsection{\texorpdfstring{getprime()}{getprime()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1parallel_a3422d78b6d693a8c002ca44f9677aa19} 
+ int getprime (\begin{DoxyParamCaption}\item[{int}]{nbits}{, }\item[{int}]{poolsize}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a prime number that can be stored in 'nbits' bits.
+
+Works in multiple threads at the same time.
+
+>>> p = getprime(128, 3)
+>>> rsa.prime.is_prime(p-1)
+False
+>>> rsa.prime.is_prime(p)
+True
+>>> rsa.prime.is_prime(p+1)
+False
+
+>>> from rsa import common
+>>> common.bit_size(p) == 128
+True
+\end{DoxyVerb}
+ 

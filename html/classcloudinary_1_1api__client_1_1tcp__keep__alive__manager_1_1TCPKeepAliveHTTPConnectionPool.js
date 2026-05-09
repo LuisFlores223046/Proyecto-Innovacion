@@ -1,0 +1,4 @@
+var classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveHTTPConnectionPool =
+[
+    [ "_validate_conn", "classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveHTTPConnectionPool.html#abc436a24dab3bb266a491ba778e75bdd", null ]
+];

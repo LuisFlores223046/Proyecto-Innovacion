@@ -1,0 +1,140 @@
+\doxysection{dns.\+resolver.\+LRUCache Class Reference}
+\hypertarget{classdns_1_1resolver_1_1LRUCache}{}\label{classdns_1_1resolver_1_1LRUCache}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+Inheritance diagram for dns.\+resolver.\+LRUCache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1resolver_1_1LRUCache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCache_afec3a4ccf92530a5bfb8bd14d5e0dac6}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int max\+\_\+size=100000)
+\item 
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_a7d40f539d224b026089536bc064e56fe}\label{classdns_1_1resolver_1_1LRUCache_a7d40f539d224b026089536bc064e56fe} 
+None {\bfseries set\+\_\+max\+\_\+size} (self, int max\+\_\+size)
+\item 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}}\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCache_a56615e6399d684727d1883339a763e17}{get}} (self, Cache\+Key key)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCache_ae89dfe6775598d2610da361edb80a9b7}{get\+\_\+hits\+\_\+for\+\_\+key}} (self, Cache\+Key key)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCache_a5d39f42cae0339376e7f893231bf147f}{put}} (self, Cache\+Key key, \doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}} value)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCache_a9e166a4c0cfab3cf662b3ee13ad87891}{flush}} (self, Cache\+Key\texorpdfstring{$\vert$}{|}None key=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase}{dns.\+resolver.\+Cache\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_a290e885748a0651f7c36da075ab488bb}{reset\+\_\+statistics}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_afd9f4a90d13f722ff1ccb7284985d16d}{hits}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_ac0d171d6beb7bafe6db4a67c579e715f}{misses}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}} \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_af4c65e043752d8cadb14e85cb0b6f91d}{get\+\_\+statistics\+\_\+snapshot}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_a3d2f7963287cc6c1167e7f202bae81cc}\label{classdns_1_1resolver_1_1LRUCache_a3d2f7963287cc6c1167e7f202bae81cc} 
+dict {\bfseries data} = \{\}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_a4ee3d627d707e59824e7e1390cf51ffb}\label{classdns_1_1resolver_1_1LRUCache_a4ee3d627d707e59824e7e1390cf51ffb} 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCacheNode}{LRUCache\+Node}} {\bfseries sentinel} = \doxymbox{\hyperlink{classdns_1_1resolver_1_1LRUCacheNode}{LRUCache\+Node}}(None, None)
+\item 
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_a8351b20c0a00598219556b0ac255c86e}\label{classdns_1_1resolver_1_1LRUCache_a8351b20c0a00598219556b0ac255c86e} 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase}{dns.\+resolver.\+Cache\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries lock} = threading.\+Lock()
+\item 
+{\bfseries statistics} = \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Thread-safe, bounded, least-recently-used DNS answer cache.
+
+This cache is better than the simple cache (above) if you're
+running a web crawler or other process that does a lot of
+resolutions.  The LRUCache has a maximum number of nodes, and when
+it is full, the least-recently used node is removed to make space
+for a new one.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1resolver_1_1LRUCache_doc-constructors}
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_afec3a4ccf92530a5bfb8bd14d5e0dac6}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1LRUCache_afec3a4ccf92530a5bfb8bd14d5e0dac6} 
+ None dns.\+resolver.\+LRUCache.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+size}{ = {\ttfamily 100000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}*max_size*, an ``int``, is the maximum number of nodes to cache;
+it must be greater than 0.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1resolver_1_1LRUCache_doc-func-members}
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1resolver_1_1LRUCache_a9e166a4c0cfab3cf662b3ee13ad87891}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}!flush@{flush}}
+\index{flush@{flush}!dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1LRUCache_a9e166a4c0cfab3cf662b3ee13ad87891} 
+ None dns.\+resolver.\+LRUCache.\+flush (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key \texorpdfstring{$\vert$}{|} None }]{key}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Flush the cache.
+
+If *key* is not ``None``, only that item is flushed.  Otherwise the entire cache
+is flushed.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1LRUCache_a56615e6399d684727d1883339a763e17}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}!get@{get}}
+\index{get@{get}!dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1LRUCache_a56615e6399d684727d1883339a763e17} 
+ \doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}} \texorpdfstring{$\vert$}{|} None dns.\+resolver.\+LRUCache.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the answer associated with *key*.
+
+Returns None if no answer is cached for the key.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+
+Returns a ``dns.resolver.Answer`` or ``None``.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1LRUCache_ae89dfe6775598d2610da361edb80a9b7}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}!get\_hits\_for\_key@{get\_hits\_for\_key}}
+\index{get\_hits\_for\_key@{get\_hits\_for\_key}!dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+\doxysubsubsection{\texorpdfstring{get\_hits\_for\_key()}{get\_hits\_for\_key()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1LRUCache_ae89dfe6775598d2610da361edb80a9b7} 
+ int dns.\+resolver.\+LRUCache.\+get\+\_\+hits\+\_\+for\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the number of cache hits associated with the specified key.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1LRUCache_a5d39f42cae0339376e7f893231bf147f}\index{dns.resolver.LRUCache@{dns.resolver.LRUCache}!put@{put}}
+\index{put@{put}!dns.resolver.LRUCache@{dns.resolver.LRUCache}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1LRUCache_a5d39f42cae0339376e7f893231bf147f} 
+ None dns.\+resolver.\+LRUCache.\+put (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key}]{key}{, }\item[{\doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}}}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Associate key and value in the cache.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+
+*value*, a ``dns.resolver.Answer``, the answer.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+resolver.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,20 @@
+\doxysection{uvicorn.\+middleware.\+proxy\+\_\+headers Namespace Reference}
+\hypertarget{namespaceuvicorn_1_1middleware_1_1proxy__headers}{}\label{namespaceuvicorn_1_1middleware_1_1proxy__headers}\index{uvicorn.middleware.proxy\_headers@{uvicorn.middleware.proxy\_headers}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classuvicorn_1_1middleware_1_1proxy__headers_1_1ProxyHeadersMiddleware}{Proxy\+Headers\+Middleware}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This middleware can be used when a known proxy is fronting the application,
+and is trusted to be properly setting the `X-Forwarded-Proto` and
+`X-Forwarded-For` headers with the connecting client information.
+
+Modifies the `client` and `scheme` information so that they reference
+the connecting client, rather that the connecting proxy.
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#Proxies
+\end{DoxyVerb}
+ 

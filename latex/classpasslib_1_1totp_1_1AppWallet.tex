@@ -1,0 +1,257 @@
+\doxysection{passlib.\+totp.\+App\+Wallet Class Reference}
+\hypertarget{classpasslib_1_1totp_1_1AppWallet}{}\label{classpasslib_1_1totp_1_1AppWallet}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+Inheritance diagram for passlib.\+totp.\+App\+Wallet:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1totp_1_1AppWallet}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_a8c65942c5b9493498a0bafea11cdb17f}\label{classpasslib_1_1totp_1_1AppWallet_a8c65942c5b9493498a0bafea11cdb17f} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, secrets=None, default\+\_\+tag=None, encrypt\+\_\+cost=None, secrets\+\_\+path=None)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_a4df16cb2bff582013350cd270cfdb5c8}{has\+\_\+secrets}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_a01257c0b9a8daed9910b352f5426fdf1}{get\+\_\+secret}} (self, tag)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_adb8b2db6bde8e97c09850c8c9c6bcb27}{encrypt\+\_\+key}} (self, key)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_af1d45c074da9cfd2a82061a9fe1e9946}{decrypt\+\_\+key}} (self, enckey)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_a3f4d150c21b8bf29919f1be01e18a9bb}\label{classpasslib_1_1totp_1_1AppWallet_a3f4d150c21b8bf29919f1be01e18a9bb} 
+int {\bfseries salt\+\_\+size} = 12
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_a23e98d1fce88695b2e6a22635b5b1192}\label{classpasslib_1_1totp_1_1AppWallet_a23e98d1fce88695b2e6a22635b5b1192} 
+int {\bfseries encrypt\+\_\+cost} = 14
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_aa70cb7a0d27abeba982afdbd43d14f43}\label{classpasslib_1_1totp_1_1AppWallet_aa70cb7a0d27abeba982afdbd43d14f43} 
+{\bfseries default\+\_\+tag} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_a5a64f28a8185ae18c7d5df3ecada4058}{\+\_\+parse\+\_\+secrets}} (self, source)
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_ae7dd496ae11edb033e9ae75bb5f1f27f}\label{classpasslib_1_1totp_1_1AppWallet_ae7dd496ae11edb033e9ae75bb5f1f27f} 
+{\bfseries \+\_\+parse\+\_\+secret\+\_\+pair} (self, tag, value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet_aa6624bf2ad2c59465fc7ee792b436a64}{\+\_\+cipher\+\_\+aes\+\_\+key}} (value, secret, salt, cost, decrypt=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_a8458d46fd11c16c1c629091b0ee105bd}\label{classpasslib_1_1totp_1_1AppWallet_a8458d46fd11c16c1c629091b0ee105bd} 
+{\bfseries \+\_\+secrets} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class stores application-wide secrets that can be used
+to encrypt & decrypt TOTP keys for storage.
+It's mostly an internal detail, applications usually just need
+to pass ``secrets`` or ``secrets_path`` to :meth:`TOTP.using`.
+
+.. seealso::
+
+    :ref:`totp-storing-instances` for more details on this workflow.
+
+Arguments
+=========
+:param secrets:
+    Dict of application secrets to use when encrypting/decrypting
+    stored TOTP keys.  This should include a secret to use when encrypting
+    new keys, but may contain additional older secrets to decrypt
+    existing stored keys.
+
+    The dict should map tags -> secrets, so that each secret is identified
+    by a unique tag.  This tag will be stored along with the encrypted
+    key in order to determine which secret should be used for decryption.
+    Tag should be string that starts with regex range ``[a-z0-9]``,
+    and the remaining characters must be in ``[a-z0-9_.-]``.
+
+    It is recommended to use something like a incremental counter
+    ("1", "2", ...), an ISO date ("2016-01-01", "2016-05-16", ...), 
+    or a timestamp ("19803495", "19813495", ...) when assigning tags.
+
+    This mapping be provided in three formats:
+
+    * A python dict mapping tag -> secret
+    * A JSON-formatted string containing the dict
+    * A multiline string with the format ``"tag: value\\ntag: value\\n..."``
+
+    (This last format is mainly useful when loading from a text file via **secrets_path**)
+
+    .. seealso:: :func:`generate_secret` to create a secret with sufficient entropy
+
+:param secrets_path:
+    Alternately, callers can specify a separate file where the
+    application-wide secrets are stored, using either of the string
+    formats described in **secrets**.
+
+:param default_tag:
+    Specifies which tag in **secrets** should be used as the default
+    for encrypting new keys. If omitted, the tags will be sorted,
+    and the largest tag used as the default.
+
+    if all tags are numeric, they will be sorted numerically;
+    otherwise they will be sorted alphabetically.
+    this permits tags to be assigned numerically,
+    or e.g. using ``YYYY-MM-DD`` dates.
+
+:param encrypt_cost:
+    Optional time-cost factor for key encryption.
+    This value corresponds to log2() of the number of PBKDF2
+    rounds used.
+
+.. warning::
+
+    The application secret(s) should be stored in a secure location by
+    your application, and each secret should contain a large amount
+    of entropy (to prevent brute-force attacks if the encrypted keys
+    are leaked).
+
+    :func:`generate_secret` is provided as a convenience helper
+    to generate a new application secret of suitable size.
+
+    Best practice is to load these values from a file via **secrets_path**,
+    and then have your application give up permission to read this file
+    once it's running.
+
+Public Methods
+==============
+.. autoattribute:: has_secrets
+.. autoattribute:: default_tag
+
+Semi-Private Methods
+====================
+The following methods are used internally by the :class:`TOTP`
+class in order to encrypt & decrypt keys using the provided application
+secrets.  They will generally not be publically useful, and may have their
+API changed periodically.
+
+.. automethod:: get_secret
+.. automethod:: encrypt_key
+.. automethod:: decrypt_key
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1totp_1_1AppWallet_doc-func-members}
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1totp_1_1AppWallet_aa6624bf2ad2c59465fc7ee792b436a64}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!\_cipher\_aes\_key@{\_cipher\_aes\_key}}
+\index{\_cipher\_aes\_key@{\_cipher\_aes\_key}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{\_cipher\_aes\_key()}{\_cipher\_aes\_key()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_aa6624bf2ad2c59465fc7ee792b436a64} 
+passlib.\+totp.\+App\+Wallet.\+\_\+cipher\+\_\+aes\+\_\+key (\begin{DoxyParamCaption}\item[{}]{value}{, }\item[{}]{secret}{, }\item[{}]{salt}{, }\item[{}]{cost}{, }\item[{}]{decrypt}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Internal helper for :meth:`encrypt_key` --
+handles lowlevel encryption/decryption.
+
+Algorithm details:
+
+This function uses PBKDF2-HMAC-SHA256 to generate a 32-byte AES key
+and a 16-byte IV from the application secret & random salt.
+It then uses AES-256-CTR to encrypt/decrypt the TOTP key.
+
+CTR mode was chosen over CBC because the main attack scenario here
+is that the attacker has stolen the database, and is trying to decrypt a TOTP key
+(the plaintext value here).  To make it hard for them, we want every password
+to decrypt to a potentially valid key -- thus need to avoid any authentication
+or padding oracle attacks.  While some random padding construction could be devised
+to make this work for CBC mode, a stream cipher mode is just plain simpler.
+OFB/CFB modes would also work here, but seeing as they have malleability
+and cyclic issues (though remote and barely relevant here),
+CTR was picked as the best overall choice.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1AppWallet_a5a64f28a8185ae18c7d5df3ecada4058}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!\_parse\_secrets@{\_parse\_secrets}}
+\index{\_parse\_secrets@{\_parse\_secrets}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{\_parse\_secrets()}{\_parse\_secrets()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_a5a64f28a8185ae18c7d5df3ecada4058} 
+passlib.\+totp.\+App\+Wallet.\+\_\+parse\+\_\+secrets (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{source}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}parse 'secrets' parameter
+
+:returns:
+    Dict[tag:str, secret:bytes]
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1AppWallet_af1d45c074da9cfd2a82061a9fe1e9946}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!decrypt\_key@{decrypt\_key}}
+\index{decrypt\_key@{decrypt\_key}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{decrypt\_key()}{decrypt\_key()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_af1d45c074da9cfd2a82061a9fe1e9946} 
+passlib.\+totp.\+App\+Wallet.\+decrypt\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{enckey}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper used to decrypt TOTP keys from storage format.
+Consults configured secrets to decrypt key.
+
+:param source:
+    source object, as returned by :meth:`encrypt_key`.
+
+:returns:
+    ``(key, needs_recrypt)`` --
+
+    **key** will be the decrypted key, as bytes.
+
+    **needs_recrypt** will be a boolean flag indicating
+    whether encryption cost or default tag is too old,
+    and henace that key needs re-encrypting before storing.
+
+.. note::
+
+    This function requires installation of the external
+    `cryptography <https://cryptography.io>`_ package.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1AppWallet_adb8b2db6bde8e97c09850c8c9c6bcb27}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!encrypt\_key@{encrypt\_key}}
+\index{encrypt\_key@{encrypt\_key}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{encrypt\_key()}{encrypt\_key()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_adb8b2db6bde8e97c09850c8c9c6bcb27} 
+passlib.\+totp.\+App\+Wallet.\+encrypt\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper used to encrypt TOTP keys for storage.
+
+:param key:
+    TOTP key to encrypt, as raw bytes.
+
+:returns:
+    dict containing encrypted TOTP key & configuration parameters.
+    this format should be treated as opaque, and potentially subject
+    to change, though it is designed to be easily serialized/deserialized
+    (e.g. via JSON).
+
+.. note::
+
+    This function requires installation of the external
+    `cryptography <https://cryptography.io>`_ package.
+
+To give some algorithm details:  This function uses AES-256-CTR to encrypt
+the provided data.  It takes the application secret and randomly generated salt,
+and uses PBKDF2-HMAC-SHA256 to combine them and generate the AES key & IV.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1AppWallet_a01257c0b9a8daed9910b352f5426fdf1}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!get\_secret@{get\_secret}}
+\index{get\_secret@{get\_secret}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{get\_secret()}{get\_secret()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_a01257c0b9a8daed9910b352f5426fdf1} 
+passlib.\+totp.\+App\+Wallet.\+get\+\_\+secret (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{tag}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}resolve a secret tag to the secret (as bytes).
+throws a KeyError if not found.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1AppWallet_a4df16cb2bff582013350cd270cfdb5c8}\index{passlib.totp.AppWallet@{passlib.totp.AppWallet}!has\_secrets@{has\_secrets}}
+\index{has\_secrets@{has\_secrets}!passlib.totp.AppWallet@{passlib.totp.AppWallet}}
+\doxysubsubsection{\texorpdfstring{has\_secrets()}{has\_secrets()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1AppWallet_a4df16cb2bff582013350cd270cfdb5c8} 
+passlib.\+totp.\+App\+Wallet.\+has\+\_\+secrets (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}whether at least one application secret is present\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+totp.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,76 @@
+\doxysection{mako.\+\_\+ast\+\_\+util.\+Node\+Transformer Class Reference}
+\hypertarget{classmako_1_1__ast__util_1_1NodeTransformer}{}\label{classmako_1_1__ast__util_1_1NodeTransformer}\index{mako.\_ast\_util.NodeTransformer@{mako.\_ast\_util.NodeTransformer}}
+Inheritance diagram for mako.\+\_\+ast\+\_\+util.\+Node\+Transformer:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmako_1_1__ast__util_1_1NodeTransformer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeTransformer_af74426af269eb5827bdc5ba0893d464f}{generic\+\_\+visit}} (self, node)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor}{mako.\+\_\+ast\+\_\+util.\+Node\+Visitor}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_a9c4b9ef50701928faaa80b3323264906}{get\+\_\+visitor}} (self, node)
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_ad6b7d503a24991ca5b73847a9f701a70}{visit}} (self, node)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Walks the abstract syntax tree and allows modifications of nodes.
+
+The `NodeTransformer` will walk the AST and use the return value of the
+visitor functions to replace or remove the old node.  If the return
+value of the visitor function is `None` the node will be removed
+from the previous location otherwise it's replaced with the return
+value.  The return value may be the original node in which case no
+replacement takes place.
+
+Here an example transformer that rewrites all `foo` to `data['foo']`::
+
+    class RewriteName(NodeTransformer):
+
+        def visit_Name(self, node):
+            return copy_location(Subscript(
+                value=Name(id='data', ctx=Load()),
+                slice=Index(value=Str(s=node.id)),
+                ctx=node.ctx
+            ), node)
+
+Keep in mind that if the node you're operating on has child nodes
+you must either transform the child nodes yourself or call the generic
+visit function for the node first.
+
+Nodes that were part of a collection of statements (that applies to
+all statement nodes) may also return a list of nodes rather than just
+a single node.
+
+Usually you use the transformer like this::
+
+    node = YourTransformer().visit(node)
+\end{DoxyVerb}
+ 
+
+\label{classmako_1_1__ast__util_1_1NodeTransformer_doc-func-members}
+\Hypertarget{classmako_1_1__ast__util_1_1NodeTransformer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmako_1_1__ast__util_1_1NodeTransformer_af74426af269eb5827bdc5ba0893d464f}\index{mako.\_ast\_util.NodeTransformer@{mako.\_ast\_util.NodeTransformer}!generic\_visit@{generic\_visit}}
+\index{generic\_visit@{generic\_visit}!mako.\_ast\_util.NodeTransformer@{mako.\_ast\_util.NodeTransformer}}
+\doxysubsubsection{\texorpdfstring{generic\_visit()}{generic\_visit()}}
+{\footnotesize\ttfamily \label{classmako_1_1__ast__util_1_1NodeTransformer_af74426af269eb5827bdc5ba0893d464f} 
+mako.\+\_\+ast\+\_\+util.\+Node\+Transformer.\+generic\+\_\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called if no explicit visitor function exists for a node.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_a8df47413bb2e548e687da89e3f0245bc}{mako.\+\_\+ast\+\_\+util.\+Node\+Visitor}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+mako/\+\+\_\+ast\+\_\+util.\+py\end{DoxyCompactItemize}

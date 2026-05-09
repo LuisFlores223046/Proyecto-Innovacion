@@ -1,0 +1,95 @@
+\doxysection{jinja2.\+loaders.\+Dict\+Loader Class Reference}
+\hypertarget{classjinja2_1_1loaders_1_1DictLoader}{}\label{classjinja2_1_1loaders_1_1DictLoader}\index{jinja2.loaders.DictLoader@{jinja2.loaders.DictLoader}}
+Inheritance diagram for jinja2.\+loaders.\+Dict\+Loader:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1loaders_1_1DictLoader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1DictLoader_ad3f67c63b900fce368274756553ee458}\label{classjinja2_1_1loaders_1_1DictLoader_ad3f67c63b900fce368274756553ee458} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Mapping\+[str, str]\+ mapping)
+\item 
+t.\+Tuple\+[str, None, t.\+Callable\+[\+[$\,$]\+, bool]\+]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1DictLoader_acdd8253765c2a14f81e07bed523b520a}{get\+\_\+source}} (self, "{}Environment"{} environment, str template)
+\item 
+t.\+List\+[str]\+ \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1DictLoader_ab61da2f2154eb2ce12af8668b0dafc94}{list\+\_\+templates}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}Template"{} \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_aec17b1b1367164ea6cb8c532b8033255}{load}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ globals=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1loaders_1_1DictLoader_a326a319dc198c5826606005853208547}\label{classjinja2_1_1loaders_1_1DictLoader_a326a319dc198c5826606005853208547} 
+{\bfseries mapping} = mapping
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader}{jinja2.\+loaders.\+Base\+Loader}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries has\+\_\+source\+\_\+access} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Loads a template from a Python dict mapping template names to
+template source.  This loader is useful for unittesting:
+
+>>> loader = DictLoader({'index.html': 'source here'})
+
+Because auto reloading is rarely useful this is disabled by default.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1loaders_1_1DictLoader_doc-func-members}
+\Hypertarget{classjinja2_1_1loaders_1_1DictLoader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1loaders_1_1DictLoader_acdd8253765c2a14f81e07bed523b520a}\index{jinja2.loaders.DictLoader@{jinja2.loaders.DictLoader}!get\_source@{get\_source}}
+\index{get\_source@{get\_source}!jinja2.loaders.DictLoader@{jinja2.loaders.DictLoader}}
+\doxysubsubsection{\texorpdfstring{get\_source()}{get\_source()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1DictLoader_acdd8253765c2a14f81e07bed523b520a} 
+ t.\+Tuple\+[str, None, t.\+Callable\+[\+[$\,$]\+, bool]\+]\+ jinja2.\+loaders.\+Dict\+Loader.\+get\+\_\+source (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Environment"{}}]{environment}{, }\item[{str     }]{template}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the template source, filename and reload helper for a template.
+It's passed the environment and template name and has to return a
+tuple in the form ``(source, filename, uptodate)`` or raise a
+`TemplateNotFound` error if it can't locate the template.
+
+The source part of the returned tuple must be the source of the
+template as a string. The filename should be the name of the
+file on the filesystem if it was loaded from there, otherwise
+``None``. The filename is used by Python for the tracebacks
+if no loader extension is used.
+
+The last item in the tuple is the `uptodate` function.  If auto
+reloading is enabled it's always called to check if the template
+changed.  No arguments are passed so the function must store the
+old state somewhere (for example in a closure).  If it returns `False`
+the template will be reloaded.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_a7e222ad2ab60e2cfd58c11822b0c4951}{jinja2.\+loaders.\+Base\+Loader}}.
+
+\Hypertarget{classjinja2_1_1loaders_1_1DictLoader_ab61da2f2154eb2ce12af8668b0dafc94}\index{jinja2.loaders.DictLoader@{jinja2.loaders.DictLoader}!list\_templates@{list\_templates}}
+\index{list\_templates@{list\_templates}!jinja2.loaders.DictLoader@{jinja2.loaders.DictLoader}}
+\doxysubsubsection{\texorpdfstring{list\_templates()}{list\_templates()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1loaders_1_1DictLoader_ab61da2f2154eb2ce12af8668b0dafc94} 
+ t.\+List\+[str]\+ jinja2.\+loaders.\+Dict\+Loader.\+list\+\_\+templates (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Iterates over all templates.  If the loader does not support that
+it should raise a :exc:`TypeError` which is the default behavior.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1loaders_1_1BaseLoader_acb576631d9b98370780cf622e2433992}{jinja2.\+loaders.\+Base\+Loader}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+loaders.\+py\end{DoxyCompactItemize}

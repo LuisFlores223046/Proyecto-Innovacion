@@ -1,0 +1,60 @@
+\doxysection{passlib.\+handlers.\+digests Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1digests}{}\label{namespacepasslib_1_1handlers_1_1digests}\index{passlib.handlers.digests@{passlib.handlers.digests}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1digests_1_1HexDigestHash}{Hex\+Digest\+Hash}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1digests_1_1htdigest}{htdigest}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}} (digest, module=\+\_\+\+\_\+name\+\_\+\+\_\+, django\+\_\+name=None, required=True)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_ae692498ca85e79b0db85f17449bf9cc7}\label{namespacepasslib_1_1handlers_1_1digests_ae692498ca85e79b0db85f17449bf9cc7} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_af484dd08a4a1fc9dc2aa01c1ca53045b}\label{namespacepasslib_1_1handlers_1_1digests_af484dd08a4a1fc9dc2aa01c1ca53045b} 
+{\bfseries hex\+\_\+md4} = \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}}("{}md4"{}, required=False)
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_ab7f49338a3af1b58f225286cae2c8c39}\label{namespacepasslib_1_1handlers_1_1digests_ab7f49338a3af1b58f225286cae2c8c39} 
+{\bfseries hex\+\_\+md5} = \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}}("{}md5"{}, django\+\_\+name="{}unsalted\+\_\+md5"{}, required=False)
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_ab49f15ebd5e69359976585983b75117e}\label{namespacepasslib_1_1handlers_1_1digests_ab49f15ebd5e69359976585983b75117e} 
+{\bfseries hex\+\_\+sha1} = \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}}("{}sha1"{}, required=False)
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_aa96fcad425d7ef1b33edc6c4097cc425}\label{namespacepasslib_1_1handlers_1_1digests_aa96fcad425d7ef1b33edc6c4097cc425} 
+{\bfseries hex\+\_\+sha256} = \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}}("{}sha256"{})
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_a466e9b850b7a51410b8941d0a04cb2fa}\label{namespacepasslib_1_1handlers_1_1digests_a466e9b850b7a51410b8941d0a04cb2fa} 
+{\bfseries hex\+\_\+sha512} = \doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}{create\+\_\+hex\+\_\+hash}}("{}sha512"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.digests - plain hash digests
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1digests_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2}\index{passlib.handlers.digests@{passlib.handlers.digests}!create\_hex\_hash@{create\_hex\_hash}}
+\index{create\_hex\_hash@{create\_hex\_hash}!passlib.handlers.digests@{passlib.handlers.digests}}
+\doxysubsubsection{\texorpdfstring{create\_hex\_hash()}{create\_hex\_hash()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1digests_a698165b95cd86c7411d74837d4baf5a2} 
+create\+\_\+hex\+\_\+hash (\begin{DoxyParamCaption}\item[{}]{digest}{, }\item[{}]{module}{ = {\ttfamily \+\_\+\+\_\+name\+\_\+\+\_\+}, }\item[{}]{django\+\_\+name}{ = {\ttfamily None}, }\item[{}]{required}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create hex-encoded unsalted hasher for specified digest algorithm.
+
+.. versionchanged:: 1.7.3
+    If called with unknown/supported digest, won't throw error immediately,
+    but instead return a dummy hasher that will throw error when called.
+
+    set ``required=True`` to restore old behavior.
+\end{DoxyVerb}
+ 

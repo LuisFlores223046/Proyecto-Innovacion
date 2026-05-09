@@ -1,0 +1,158 @@
+\doxysection{sqlalchemy.\+dialects.\+mysql.\+dml.\+Insert Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert}{}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert}\index{sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}}
+Inheritance diagram for sqlalchemy.\+dialects.\+mysql.\+dml.\+Insert:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1ReadOnlyColumnCollection}{Read\+Only\+Column\+Collection}}\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1KeyedColumnElement}{Keyed\+Column\+Element}}\+[Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a53c0306fb62c7ccc4726e753d008d7c6}{inserted}} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a467e6eb9f0c5314ed8e1dbfde76606fd}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a467e6eb9f0c5314ed8e1dbfde76606fd} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1NamedFromClause}{Named\+From\+Clause}} {\bfseries inserted\+\_\+alias} (self)
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a75f38ed80c8ba948656cbabb026943ef}{on\+\_\+duplicate\+\_\+key\+\_\+update}} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Update\+Arg args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a863287e3ad425fccb106ee452e385132}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a863287e3ad425fccb106ee452e385132} 
+{\bfseries table}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a76753491bf160732a70db70c1e8c9876}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a76753491bf160732a70db70c1e8c9876} 
+str {\bfseries stringify\+\_\+dialect} = "{}mysql"{}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a876359a34ebb0902b82a82f35ca8ca12}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a876359a34ebb0902b82a82f35ca8ca12} 
+bool {\bfseries inherit\+\_\+cache} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a8e918c3c275616ef11a96b15b1f882bd}{\+\_\+post\+\_\+values\+\_\+clause}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}MySQL-specific implementation of INSERT.
+
+Adds methods for MySQL-specific syntaxes such as ON DUPLICATE KEY UPDATE.
+
+The :class:`~.mysql.Insert` object is created using the
+:func:`sqlalchemy.dialects.mysql.insert` function.
+
+.. versionadded:: 1.2
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a53c0306fb62c7ccc4726e753d008d7c6}\index{sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}!inserted@{inserted}}
+\index{inserted@{inserted}!sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}}
+\doxysubsubsection{\texorpdfstring{inserted()}{inserted()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a53c0306fb62c7ccc4726e753d008d7c6} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1ReadOnlyColumnCollection}{Read\+Only\+Column\+Collection}}\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1KeyedColumnElement}{Keyed\+Column\+Element}}\+[Any]\+]\+ sqlalchemy.\+dialects.\+mysql.\+dml.\+Insert.\+inserted (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide the "inserted" namespace for an ON DUPLICATE KEY UPDATE
+statement
+
+MySQL's ON DUPLICATE KEY UPDATE clause allows reference to the row
+that would be inserted, via a special function called ``VALUES()``.
+This attribute provides all columns in this row to be referenceable
+such that they will render within a ``VALUES()`` function inside the
+ON DUPLICATE KEY UPDATE clause.    The attribute is named ``.inserted``
+so as not to conflict with the existing
+:meth:`_expression.Insert.values` method.
+
+.. tip::  The :attr:`_mysql.Insert.inserted` attribute is an instance
+    of :class:`_expression.ColumnCollection`, which provides an
+    interface the same as that of the :attr:`_schema.Table.c`
+    collection described at :ref:`metadata_tables_and_columns`.
+    With this collection, ordinary names are accessible like attributes
+    (e.g. ``stmt.inserted.some_column``), but special names and
+    dictionary method names should be accessed using indexed access,
+    such as ``stmt.inserted["column name"]`` or
+    ``stmt.inserted["values"]``.  See the docstring for
+    :class:`_expression.ColumnCollection` for further examples.
+
+.. seealso::
+
+    :ref:`mysql_insert_on_duplicate_key_update` - example of how
+    to use :attr:`_expression.Insert.inserted`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a75f38ed80c8ba948656cbabb026943ef}\index{sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}!on\_duplicate\_key\_update@{on\_duplicate\_key\_update}}
+\index{on\_duplicate\_key\_update@{on\_duplicate\_key\_update}!sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}}
+\doxysubsubsection{\texorpdfstring{on\_duplicate\_key\_update()}{on\_duplicate\_key\_update()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a75f38ed80c8ba948656cbabb026943ef} 
+ Self sqlalchemy.\+dialects.\+mysql.\+dml.\+Insert.\+on\+\_\+duplicate\+\_\+key\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\+\_\+\+Update\+Arg}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Specifies the ON DUPLICATE KEY UPDATE clause.
+
+:param \**kw:  Column keys linked to UPDATE values.  The
+ values may be any SQL expression or supported literal Python
+ values.
+
+.. warning:: This dictionary does **not** take into account
+   Python-specified default UPDATE values or generation functions,
+   e.g. those specified using :paramref:`_schema.Column.onupdate`.
+   These values will not be exercised for an ON DUPLICATE KEY UPDATE
+   style of UPDATE, unless values are manually specified here.
+
+:param \*args: As an alternative to passing key/value parameters,
+ a dictionary or list of 2-tuples can be passed as a single positional
+ argument.
+
+ Passing a single dictionary is equivalent to the keyword argument
+ form::
+
+    insert().on_duplicate_key_update({"name": "some name"})
+
+ Passing a list of 2-tuples indicates that the parameter assignments
+ in the UPDATE clause should be ordered as sent, in a manner similar
+ to that described for the :class:`_expression.Update`
+ construct overall
+ in :ref:`tutorial_parameter_ordered_updates`::
+
+    insert().on_duplicate_key_update(
+        [("name", "some name"), ("value", "some value")])
+
+ .. versionchanged:: 1.3 parameters can be specified as a dictionary
+    or list of 2-tuples; the latter form provides for parameter
+    ordering.
+
+
+.. versionadded:: 1.2
+
+.. seealso::
+
+    :ref:`mysql_insert_on_duplicate_key_update`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a8e918c3c275616ef11a96b15b1f882bd}\index{sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}!\_post\_values\_clause@{\_post\_values\_clause}}
+\index{\_post\_values\_clause@{\_post\_values\_clause}!sqlalchemy.dialects.mysql.dml.Insert@{sqlalchemy.dialects.mysql.dml.Insert}}
+\doxysubsubsection{\texorpdfstring{\_post\_values\_clause}{\_post\_values\_clause}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1mysql_1_1dml_1_1Insert_a8e918c3c275616ef11a96b15b1f882bd} 
+sqlalchemy.\+dialects.\+mysql.\+dml.\+Insert.\+\_\+post\+\_\+values\+\_\+clause\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ OnDuplicateClause(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.inserted\_alias,\ values}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+mysql/\+dml.\+py\end{DoxyCompactItemize}

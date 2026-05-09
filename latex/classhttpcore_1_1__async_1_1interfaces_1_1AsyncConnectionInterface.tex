@@ -1,0 +1,113 @@
+\doxysection{httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface Class Reference}
+\hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface}{}\label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface}\index{httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}}
+Inheritance diagram for httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.784314cm]{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a34fec090a614f2bdf90031575dbd1056}\label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a34fec090a614f2bdf90031575dbd1056} 
+None {\bfseries aclose} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_aa4f25473ad3a9bfe02409c575e7d48ca}\label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_aa4f25473ad3a9bfe02409c575e7d48ca} 
+str {\bfseries info} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a2c36c81acff2a4edf850dc88e6e7daeb}\label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a2c36c81acff2a4edf850dc88e6e7daeb} 
+bool {\bfseries can\+\_\+handle\+\_\+request} (self, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Origin}{Origin}} origin)
+\item 
+bool \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_ae0e14982d45f27588312577482350e6a}{is\+\_\+available}} (self)
+\item 
+bool \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_aab3cbf74a19a73eb4310b01b0f94f426}{has\+\_\+expired}} (self)
+\item 
+bool \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a4aa1c76883905dbd4d40d2379c715776}{is\+\_\+idle}} (self)
+\item 
+bool \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a05b50ae4b899ca0346890c6bebc2e27e}{is\+\_\+closed}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncRequestInterface}{httpcore.\+\_\+async.\+interfaces.\+Async\+Request\+Interface}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}} {\bfseries request} (self, bytes\texorpdfstring{$\vert$}{|}str method, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL}{URL}}\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}str url, \texorpdfstring{$\ast$}{*}, Header\+Types headers=None, bytes\texorpdfstring{$\vert$}{|}typing.\+Async\+Iterator\+[bytes]\+\texorpdfstring{$\vert$}{|}None content=None, Extensions\texorpdfstring{$\vert$}{|}None extensions=None)
+\item 
+typing.\+Async\+Iterator\+[\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}}]\+ {\bfseries stream} (self, bytes\texorpdfstring{$\vert$}{|}str method, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL}{URL}}\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}str url, \texorpdfstring{$\ast$}{*}, Header\+Types headers=None, bytes\texorpdfstring{$\vert$}{|}typing.\+Async\+Iterator\+[bytes]\+\texorpdfstring{$\vert$}{|}None content=None, Extensions\texorpdfstring{$\vert$}{|}None extensions=None)
+\item 
+\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{Response}} \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1interfaces_1_1AsyncRequestInterface_ae04c0cabbad635665dd325e9df9b89a0}{handle\+\_\+async\+\_\+request}} (self, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+
+
+\label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_doc-func-members}
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_aab3cbf74a19a73eb4310b01b0f94f426}\index{httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}!has\_expired@{has\_expired}}
+\index{has\_expired@{has\_expired}!httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}}
+\doxysubsubsection{\texorpdfstring{has\_expired()}{has\_expired()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_aab3cbf74a19a73eb4310b01b0f94f426} 
+ bool httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface.\+has\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return `True` if the connection is in a state where it should be closed.
+
+This either means that the connection is idle and it has passed the
+expiry time on its keep-alive, or that server has sent an EOF.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1connection_1_1AsyncHTTPConnection_af736daccd62d86bf2a2e39c385a2bee4}{httpcore.\+\_\+async.\+connection.\+Async\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http11_1_1AsyncHTTP11Connection_a703970a74f2a27095b396d1656c24ba2}{httpcore.\+\_\+async.\+http11.\+Async\+HTTP11\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http2_1_1AsyncHTTP2Connection_a0d8ede10bd061ace2d302d62b41fb1f8}{httpcore.\+\_\+async.\+http2.\+Async\+HTTP2\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncForwardHTTPConnection_afc631e83c9b27671daa5edf2928fa320}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Forward\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncTunnelHTTPConnection_a02fb2fab71bf05ddad617b95edd39314}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Tunnel\+HTTPConnection}}, and \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1socks__proxy_1_1AsyncSocks5Connection_a0d464533e9da9e9bb93abc5e48e8e56d}{httpcore.\+\_\+async.\+socks\+\_\+proxy.\+Async\+Socks5\+Connection}}.
+
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_ae0e14982d45f27588312577482350e6a}\index{httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}!is\_available@{is\_available}}
+\index{is\_available@{is\_available}!httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}}
+\doxysubsubsection{\texorpdfstring{is\_available()}{is\_available()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_ae0e14982d45f27588312577482350e6a} 
+ bool httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface.\+is\+\_\+available (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return `True` if the connection is currently able to accept an
+outgoing request.
+
+An HTTP/1.1 connection will only be available if it is currently idle.
+
+An HTTP/2 connection will be available so long as the stream ID space is
+not yet exhausted, and the connection is not in an error state.
+
+While the connection is being established we may not yet know if it is going
+to result in an HTTP/1.1 or HTTP/2 connection. The connection should be
+treated as being available, but might ultimately raise `NewConnectionRequired`
+required exceptions if multiple requests are attempted over a connection
+that ends up being established as HTTP/1.1.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1connection_1_1AsyncHTTPConnection_aa30bcbe01679da9b3312d259134fa8fb}{httpcore.\+\_\+async.\+connection.\+Async\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http11_1_1AsyncHTTP11Connection_aa9d00f99434a16e5d33b7ff97f59e472}{httpcore.\+\_\+async.\+http11.\+Async\+HTTP11\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http2_1_1AsyncHTTP2Connection_aa0b98daba98c3bd9541ca271b0a519b5}{httpcore.\+\_\+async.\+http2.\+Async\+HTTP2\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncForwardHTTPConnection_ad3669f3c6c56c07f94d4108e7adbe8fa}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Forward\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncTunnelHTTPConnection_aab529d1e447d6bb5fb4cda35bf042f33}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Tunnel\+HTTPConnection}}, and \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1socks__proxy_1_1AsyncSocks5Connection_a9806c6a13b55a6897cdc3087f19b20a9}{httpcore.\+\_\+async.\+socks\+\_\+proxy.\+Async\+Socks5\+Connection}}.
+
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a05b50ae4b899ca0346890c6bebc2e27e}\index{httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a05b50ae4b899ca0346890c6bebc2e27e} 
+ bool httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return `True` if the connection has been closed.
+
+Used when a response is closed to determine if the connection may be
+returned to the connection pool or not.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1connection_1_1AsyncHTTPConnection_ae7c45fe03089e434820ee842639a70e8}{httpcore.\+\_\+async.\+connection.\+Async\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http11_1_1AsyncHTTP11Connection_a87aead0b3b80acd273484974ff86b1d0}{httpcore.\+\_\+async.\+http11.\+Async\+HTTP11\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http2_1_1AsyncHTTP2Connection_a7b32eaa66e045efdc9f667849a0f4582}{httpcore.\+\_\+async.\+http2.\+Async\+HTTP2\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncForwardHTTPConnection_a1180e4e5a894fb07da9b26c09729834c}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Forward\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncTunnelHTTPConnection_a5edc31a6129eb23c5c5bfc66bf084849}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Tunnel\+HTTPConnection}}, and \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1socks__proxy_1_1AsyncSocks5Connection_a03f663cbd042fc6a659b9cc5bc06f80b}{httpcore.\+\_\+async.\+socks\+\_\+proxy.\+Async\+Socks5\+Connection}}.
+
+\Hypertarget{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a4aa1c76883905dbd4d40d2379c715776}\index{httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}!is\_idle@{is\_idle}}
+\index{is\_idle@{is\_idle}!httpcore.\_async.interfaces.AsyncConnectionInterface@{httpcore.\_async.interfaces.AsyncConnectionInterface}}
+\doxysubsubsection{\texorpdfstring{is\_idle()}{is\_idle()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__async_1_1interfaces_1_1AsyncConnectionInterface_a4aa1c76883905dbd4d40d2379c715776} 
+ bool httpcore.\+\_\+async.\+interfaces.\+Async\+Connection\+Interface.\+is\+\_\+idle (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return `True` if the connection is currently idle.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1connection_1_1AsyncHTTPConnection_a1162637e465dc7c52b42eb80a7807a0d}{httpcore.\+\_\+async.\+connection.\+Async\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http11_1_1AsyncHTTP11Connection_a8e27d8f45eae79836586f9f133685f03}{httpcore.\+\_\+async.\+http11.\+Async\+HTTP11\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http2_1_1AsyncHTTP2Connection_ab0d14de9aa1f0b4d4e4ebca23df27713}{httpcore.\+\_\+async.\+http2.\+Async\+HTTP2\+Connection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncForwardHTTPConnection_a6d47865ffc86e5d25d7b7f92104167b2}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Forward\+HTTPConnection}}, \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1http__proxy_1_1AsyncTunnelHTTPConnection_aab0f4afbee1f44817d301a7cb2cdcad3}{httpcore.\+\_\+async.\+http\+\_\+proxy.\+Async\+Tunnel\+HTTPConnection}}, and \doxymbox{\hyperlink{classhttpcore_1_1__async_1_1socks__proxy_1_1AsyncSocks5Connection_a8744ea80056d55b1334e0ad502b2607f}{httpcore.\+\_\+async.\+socks\+\_\+proxy.\+Async\+Socks5\+Connection}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+async/\+interfaces.\+py\end{DoxyCompactItemize}

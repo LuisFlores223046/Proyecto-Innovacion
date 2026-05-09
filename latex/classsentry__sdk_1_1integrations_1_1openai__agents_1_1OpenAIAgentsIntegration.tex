@@ -1,0 +1,82 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+openai\+\_\+agents.\+Open\+AIAgents\+Integration Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration}{}\label{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration}\index{sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration@{sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+openai\+\_\+agents.\+Open\+AIAgents\+Integration:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration_aba884128b758ff5ab39c1796d09692fe}{setup\+\_\+once}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a60252f59d5622a95627f6bb75c168abe}{setup\+\_\+once\+\_\+with\+\_\+options}} (self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries install} = None
+\item 
+str {\bfseries identifier} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}NOTE: With version 0.8.0, the class methods below have been refactored to functions.
+- `AgentRunner._get_model()` -> `agents.run_internal.turn_preparation.get_model()`
+- `AgentRunner._get_all_tools()` -> `agents.run_internal.turn_preparation.get_all_tools()`
+- `AgentRunner._run_single_turn()` -> `agents.run_internal.run_loop.run_single_turn()`
+- `RunImpl.execute_handoffs()` -> `agents.run_internal.turn_resolution.execute_handoffs()`
+- `RunImpl.execute_final_output()` -> `agents.run_internal.turn_resolution.execute_final_output()`
+
+Typical interaction with the library:
+1. The user creates an Agent instance with configuration, including system instructions sent to every Responses API call.
+2. The user passes the agent instance to a Runner with `run()` and `run_streamed()` methods. The latter can be used to incrementally receive progress.
+    - `Runner.run()` and `Runner.run_streamed()` are thin wrappers for `DEFAULT_AGENT_RUNNER.run()` and `DEFAULT_AGENT_RUNNER.run_streamed()`.
+    - `DEFAULT_AGENT_RUNNER.run()` and `DEFAULT_AGENT_RUNNER.run_streamed()` are patched in `_patch_runner()` with `_create_run_wrapper()` and `_create_run_streamed_wrapper()`, respectively.
+3. In a loop, the agent repeatedly calls the Responses API, maintaining a conversation history that includes previous messages and tool results, which is passed to each call.
+    - A Model instance is created at the start of the loop by calling the `Runner._get_model()`. We patch the Model instance using `patches._get_model()`.
+    - Available tools are also deteremined at the start of the loop, with `Runner._get_all_tools()`. We patch Tool instances by iterating through the returned tools in `patches._get_all_tools()`.
+    - In each loop iteration, `run_single_turn()` or `run_single_turn_streamed()` is responsible for calling the Responses API, patched with `patches._run_single_turn()` and `patches._run_single_turn_streamed()`.
+4. On loop termination, `RunImpl.execute_final_output()` is called. The function is patched with `patches._execute_final_output()`.
+
+Local tools are run based on the return value from the Responses API as a post-API call step in the above loop.
+Hosted MCP Tools are run as part of the Responses API call, and involve OpenAI reaching out to an external MCP server.
+An agent can handoff to another agent, also directed by the return value of the Responses API and run post-API call in the loop.
+Handoffs are a way to switch agent-wide configuration.
+- Handoffs are executed by calling `RunImpl.execute_handoffs()`. The method is patched with `patches._execute_handoffs()`
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration_aba884128b758ff5ab39c1796d09692fe}\index{sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration@{sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration}!setup\_once@{setup\_once}}
+\index{setup\_once@{setup\_once}!sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration@{sentry\_sdk.integrations.openai\_agents.OpenAIAgentsIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once()}{setup\_once()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1openai__agents_1_1OpenAIAgentsIntegration_aba884128b758ff5ab39c1796d09692fe} 
+ None sentry\+\_\+sdk.\+integrations.\+openai\+\_\+agents.\+Open\+AIAgents\+Integration.\+setup\+\_\+once (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Initialize the integration.
+
+This function is only called once, ever. Configuration is not available
+at this point, so the only thing to do here is to hook into exception
+handlers, and perhaps do monkeypatches.
+
+Inside those hooks `Integration.current` can be used to access the
+instance again.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a577a498f9be92552175a5565d5c11312}{sentry\+\_\+sdk.\+integrations.\+Integration}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+openai\+\_\+agents/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}

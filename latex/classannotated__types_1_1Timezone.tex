@@ -1,0 +1,33 @@
+\doxysection{annotated\+\_\+types.\+Timezone Class Reference}
+\hypertarget{classannotated__types_1_1Timezone}{}\label{classannotated__types_1_1Timezone}\index{annotated\_types.Timezone@{annotated\_types.Timezone}}
+Inheritance diagram for annotated\+\_\+types.\+Timezone:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classannotated__types_1_1Timezone}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classannotated__types_1_1Timezone_abb654fb5a309abeeac2224ba043a91cf}\label{classannotated__types_1_1Timezone_abb654fb5a309abeeac2224ba043a91cf} 
+Union {\bfseries tz} \+[str, tzinfo, Ellipsis\+Type, None]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Timezone(tz=...) requires a datetime to be aware (or ``tz=None``, naive).
+
+``Annotated[datetime, Timezone(None)]`` must be a naive datetime.
+``Timezone[...]`` (the ellipsis literal) expresses that the datetime must be
+tz-aware but any timezone is allowed.
+
+You may also pass a specific timezone string or tzinfo object such as
+``Timezone(timezone.utc)`` or ``Timezone("Africa/Abidjan")`` to express that
+you only allow a specific timezone, though we note that this is often
+a symptom of poor design.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+annotated\+\_\+types/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}

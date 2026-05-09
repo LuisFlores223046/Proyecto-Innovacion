@@ -1,0 +1,163 @@
+\doxysection{sqlalchemy.\+ext.\+asyncio.\+session.\+Async\+Attrs Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs}{}\label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs}\index{sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_1_1__AsyncAttrGetitem}{\+\_\+\+Async\+Attr\+Getitem}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_1_1__AsyncAttrGetitem}{Async\+Attrs.\+\_\+\+Async\+Attr\+Getitem}} \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a42e599dd3b30ebd34dbe5c7d1bf3755b}{awaitable\+\_\+attrs}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a8dbdf8d8932b9609163296e126d626f6}\label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a8dbdf8d8932b9609163296e126d626f6} 
+list {\bfseries classmethods} = \+["{}object\+\_\+session"{}, "{}identity\+\_\+key"{}]\+,
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_ace42f9fc9537f6fbec510dc013423654}{methods}}
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a5878acfe2543d1931dd217ed4da1727d}{attributes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin class which provides an awaitable accessor for all attributes.
+
+E.g.::
+
+    from __future__ import annotations
+
+    from typing import List
+
+    from sqlalchemy import ForeignKey
+    from sqlalchemy import func
+    from sqlalchemy.ext.asyncio import AsyncAttrs
+    from sqlalchemy.orm import DeclarativeBase
+    from sqlalchemy.orm import Mapped
+    from sqlalchemy.orm import mapped_column
+    from sqlalchemy.orm import relationship
+
+
+    class Base(AsyncAttrs, DeclarativeBase):
+        pass
+
+
+    class A(Base):
+        __tablename__ = "a"
+
+        id: Mapped[int] = mapped_column(primary_key=True)
+        data: Mapped[str]
+        bs: Mapped[List[B]] = relationship()
+
+
+    class B(Base):
+        __tablename__ = "b"
+        id: Mapped[int] = mapped_column(primary_key=True)
+        a_id: Mapped[int] = mapped_column(ForeignKey("a.id"))
+        data: Mapped[str]
+
+In the above example, the :class:`_asyncio.AsyncAttrs` mixin is applied to
+the declarative ``Base`` class where it takes effect for all subclasses.
+This mixin adds a single new attribute
+:attr:`_asyncio.AsyncAttrs.awaitable_attrs` to all classes, which will
+yield the value of any attribute as an awaitable. This allows attributes
+which may be subject to lazy loading or deferred / unexpiry loading to be
+accessed such that IO can still be emitted::
+
+    a1 = (await async_session.scalars(select(A).where(A.id == 5))).one()
+
+    # use the lazy loader on ``a1.bs`` via the ``.awaitable_attrs``
+    # interface, so that it may be awaited
+    for b1 in await a1.awaitable_attrs.bs:
+        print(b1)
+
+The :attr:`_asyncio.AsyncAttrs.awaitable_attrs` performs a call against the
+attribute that is approximately equivalent to using the
+:meth:`_asyncio.AsyncSession.run_sync` method, e.g.::
+
+    for b1 in await async_session.run_sync(lambda sess: a1.bs):
+        print(b1)
+
+.. versionadded:: 2.0.13
+
+.. seealso::
+
+    :ref:`asyncio_orm_avoid_lazyloads`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a42e599dd3b30ebd34dbe5c7d1bf3755b}\index{sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}!awaitable\_attrs@{awaitable\_attrs}}
+\index{awaitable\_attrs@{awaitable\_attrs}!sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}}
+\doxysubsubsection{\texorpdfstring{awaitable\_attrs()}{awaitable\_attrs()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a42e599dd3b30ebd34dbe5c7d1bf3755b} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_1_1__AsyncAttrGetitem}{Async\+Attrs.\+\_\+\+Async\+Attr\+Getitem}} sqlalchemy.\+ext.\+asyncio.\+session.\+Async\+Attrs.\+awaitable\+\_\+attrs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}provide a namespace of all attributes on this object wrapped
+as awaitables.
+
+e.g.::
+
+
+    a1 = (await async_session.scalars(select(A).where(A.id == 5))).one()
+
+    some_attribute = await a1.awaitable_attrs.some_deferred_attribute
+    some_collection = await a1.awaitable_attrs.some_collection
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a5878acfe2543d1931dd217ed4da1727d}\index{sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}!attributes@{attributes}}
+\index{attributes@{attributes}!sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}}
+\doxysubsubsection{\texorpdfstring{attributes}{attributes}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_a5878acfe2543d1931dd217ed4da1727d} 
+list sqlalchemy.\+ext.\+asyncio.\+session.\+Async\+Attrs.\+attributes\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}dirty"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}deleted"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}new"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}identity\_map"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}is\_active"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}autoflush"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}no\_autoflush"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}info"{}},}
+\DoxyCodeLine{\ \ \ \ ],}
+
+\end{DoxyCode}
+\Hypertarget{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_ace42f9fc9537f6fbec510dc013423654}\index{sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}!methods@{methods}}
+\index{methods@{methods}!sqlalchemy.ext.asyncio.session.AsyncAttrs@{sqlalchemy.ext.asyncio.session.AsyncAttrs}}
+\doxysubsubsection{\texorpdfstring{methods}{methods}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1asyncio_1_1session_1_1AsyncAttrs_ace42f9fc9537f6fbec510dc013423654} 
+list sqlalchemy.\+ext.\+asyncio.\+session.\+Async\+Attrs.\+methods\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\_\_contains\_\_"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\_\_iter\_\_"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\_all"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}expire"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}expire\_all"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}expunge"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}expunge\_all"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}is\_modified"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}in\_transaction"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}in\_nested\_transaction"{}},}
+\DoxyCodeLine{\ \ \ \ ],}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+asyncio/\+session.\+py\end{DoxyCompactItemize}

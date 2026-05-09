@@ -1,0 +1,114 @@
+\doxysection{frontend/\+node\+\_\+modules/\+natural-\/compare Directory Reference}
+\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2}{}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2}\index{frontend/node\_modules/natural-\/compare Directory Reference@{frontend/node\_modules/natural-\/compare Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}@version    1.4.0
+@date       2015-10-26
+@stability  3 - Stable
+\end{DoxyVerb}
+\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3626}{}\doxysubsection{\texorpdfstring{Natural Compare -- \href{https://travis-ci.org/litejs/natural-compare-lite}{\texttt{}} \href{https://coveralls.io/r/litejs/natural-compare-lite}{\texttt{}}}{Natural Compare -- \href{https://travis-ci.org/litejs/natural-compare-lite}{\texttt{}} \href{https://coveralls.io/r/litejs/natural-compare-lite}{\texttt{}}}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3626}
+Compare strings containing a mix of letters and numbers in the way a human being would in sort order. This is described as a "{}natural ordering"{}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Standard\ sorting:\ \ \ Natural\ order\ sorting:}
+\DoxyCodeLine{\ \ \ \ img1.png\ \ \ \ \ \ \ \ \ \ \ \ img1.png}
+\DoxyCodeLine{\ \ \ \ img10.png\ \ \ \ \ \ \ \ \ \ \ img2.png}
+\DoxyCodeLine{\ \ \ \ img12.png\ \ \ \ \ \ \ \ \ \ \ img10.png}
+\DoxyCodeLine{\ \ \ \ img2.png\ \ \ \ \ \ \ \ \ \ \ \ img12.png}
+
+\end{DoxyCode}
+
+
+String.\+natural\+Compare returns a number indicating whether a reference string comes before or after or is the same as the given string in sort order. Use it with builtin sort() function.\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3627}{}\doxysubsubsubsection{\texorpdfstring{Installation}{Installation}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3627}
+
+\begin{DoxyItemize}
+\item In browser
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src=min.natural-\/compare.js></script>}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item In node.\+js:\+ {\ttfamily npm install natural-\/compare-\/lite}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require("{}natural-\/compare-\/lite"{})}
+
+\end{DoxyCode}
+\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3628}{}\doxysubsubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3628}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Simple\ case\ sensitive\ example}
+\DoxyCodeLine{var\ a\ =\ ["{}z1.doc"{},\ "{}z10.doc"{},\ "{}z17.doc"{},\ "{}z2.doc"{},\ "{}z23.doc"{},\ "{}z3.doc"{}];}
+\DoxyCodeLine{a.sort(String.naturalCompare);}
+\DoxyCodeLine{//\ ["{}z1.doc"{},\ "{}z2.doc"{},\ "{}z3.doc"{},\ "{}z10.doc"{},\ "{}z17.doc"{},\ "{}z23.doc"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Use\ wrapper\ function\ for\ case\ insensitivity}
+\DoxyCodeLine{a.sort(function(a,\ b)\{}
+\DoxyCodeLine{\ \ return\ String.naturalCompare(a.toLowerCase(),\ b.toLowerCase());}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ In\ most\ cases\ we\ want\ to\ sort\ an\ array\ of\ objects}
+\DoxyCodeLine{var\ a\ =\ [\ \{"{}street"{}:"{}350\ 5th\ Ave"{},\ "{}room"{}:"{}A-\/1021"{}\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ,\ \{"{}street"{}:"{}350\ 5th\ Ave"{},\ "{}room"{}:"{}A-\/21046-\/b"{}\}\ ];}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ sort\ by\ street,\ then\ by\ room}
+\DoxyCodeLine{a.sort(function(a,\ b)\{}
+\DoxyCodeLine{\ \ return\ String.naturalCompare(a.street,\ b.street)\ ||\ String.naturalCompare(a.room,\ b.room);}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ When\ text\ transformation\ is\ needed\ (eg\ toLowerCase()),}
+\DoxyCodeLine{//\ it\ is\ best\ for\ performance\ to\ keep}
+\DoxyCodeLine{//\ transformed\ key\ in\ that\ object.}
+\DoxyCodeLine{//\ There\ are\ no\ need\ to\ do\ text\ transformation}
+\DoxyCodeLine{//\ on\ each\ comparision\ when\ sorting.}
+\DoxyCodeLine{var\ a\ =\ [\ \{"{}make"{}:"{}Audi"{},\ "{}model"{}:"{}A6"{}\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ,\ \{"{}make"{}:"{}Kia"{},\ \ "{}model"{}:"{}Rio"{}\}\ ];}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ sort\ by\ make,\ then\ by\ model}
+\DoxyCodeLine{a.map(function(car)\{}
+\DoxyCodeLine{\ \ car.sort\_key\ =\ (car.make\ +\ "{}\ "{}\ +\ car.model).toLowerCase();}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{a.sort(function(a,\ b)\{}
+\DoxyCodeLine{\ \ return\ String.naturalCompare(a.sort\_key,\ b.sort\_key);}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Works well with dates in ISO format eg "{}\+Rev 2012-\/07-\/26.\+doc"{}.
+\end{DoxyItemize}\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3629}{}\doxysubsubsubsection{\texorpdfstring{Custom alphabet}{Custom alphabet}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3629}
+It is possible to configure a custom alphabet to achieve a desired order.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Estonian\ alphabet}
+\DoxyCodeLine{String.alphabet\ =\ "{}ABDEFGHIJKLMNOPRSŠZŽTUVÕÄÖÜXYabdefghijklmnoprsšzžtuvõäöüxy"{}}
+\DoxyCodeLine{["{}t"{},\ "{}z"{},\ "{}x"{},\ "{}õ"{}].sort(String.naturalCompare)}
+\DoxyCodeLine{//\ ["{}z"{},\ "{}t"{},\ "{}õ"{},\ "{}x"{}]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Russian\ alphabet}
+\DoxyCodeLine{String.alphabet\ =\ "{}АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"{}}
+\DoxyCodeLine{["{}Ё"{},\ "{}А"{},\ "{}Б"{}].sort(String.naturalCompare)}
+\DoxyCodeLine{//\ ["{}А"{},\ "{}Б"{},\ "{}Ё"{}]}
+
+\end{DoxyCode}
+\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3630}{}\doxysubsubsection{\texorpdfstring{External links}{External links}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3630}
+
+\begin{DoxyItemize}
+\item \+[Git\+Hub repo]\+\+[\href{https://github.com/litejs/natural-compare-lite}{\texttt{https:\+/\+/\+github.\+com/\+litejs/\+natural-\/compare-\/lite}}]\+
+\item \href{http://jsperf.com/natural-sort-2/12}{\texttt{jsperf test}}
+\end{DoxyItemize}\hypertarget{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3631}{}\doxysubsubsection{\texorpdfstring{Licence}{Licence}}\label{dir_cbb33b9d4ff864cf8c0fe9bd528876e2_autotoc_md3631}
+Copyright (c) 2012-\/2015 Lauri Rooden \texorpdfstring{$<$}{<}\href{mailto:lauri@rooden.ee}{\texttt{lauri@rooden.\+ee}}\texorpdfstring{$>$}{>} ~\newline
+ \href{http://lauri.rooden.ee/mit-license.txt}{\texttt{The MIT License}} 

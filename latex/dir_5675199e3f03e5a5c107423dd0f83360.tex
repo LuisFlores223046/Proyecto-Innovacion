@@ -1,0 +1,135 @@
+\doxysection{frontend/\+node\+\_\+modules/\+readdirp Directory Reference}
+\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360}{}\label{dir_5675199e3f03e5a5c107423dd0f83360}\index{frontend/node\_modules/readdirp Directory Reference@{frontend/node\_modules/readdirp Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2512}{}\doxysubsection{\texorpdfstring{readdirp \+[!\+[Weekly downloads]\+(\href{https://img.shields.io/npm/dw/readdirp.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dw/\+readdirp.\+svg}})]\+(\href{https://github.com/paulmillr/readdirp}{\texttt{https:\+/\+/\+github.\+com/\+paulmillr/\+readdirp}})}{readdirp \+[!\+[Weekly downloads]\+(\href{https://img.shields.io/npm/dw/readdirp.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dw/\+readdirp.\+svg}})]\+(\href{https://github.com/paulmillr/readdirp}{\texttt{https:\+/\+/\+github.\+com/\+paulmillr/\+readdirp}})}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2512}
+Recursive version of \href{https://nodejs.org/api/fs.html\#fs_fs_readdir_path_options_callback}{\texttt{fs.\+readdir}}. Exposes a {\bfseries{stream API}} and a {\bfseries{promise API}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ readdirp}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ readdirp\ =\ require('readdirp');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Use\ streams\ to\ achieve\ small\ RAM\ \&\ CPU\ footprint.}
+\DoxyCodeLine{//\ 1)\ Streams\ example\ with\ for-\/await.}
+\DoxyCodeLine{for\ await\ (const\ entry\ of\ readdirp('.'))\ \{}
+\DoxyCodeLine{\ \ const\ \{path\}\ =\ entry;}
+\DoxyCodeLine{\ \ console.log(`\$\{JSON.stringify(\{path\})\}`);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 2)\ Streams\ example,\ non\ for-\/await.}
+\DoxyCodeLine{//\ Print\ out\ all\ JS\ files\ along\ with\ their\ size\ within\ the\ current\ folder\ \&\ subfolders.}
+\DoxyCodeLine{readdirp('.',\ \{fileFilter:\ '*.js',\ alwaysStat:\ true\})}
+\DoxyCodeLine{\ \ .on('data',\ (entry)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ const\ \{path,\ stats:\ \{size\}\}\ =\ entry;}
+\DoxyCodeLine{\ \ \ \ console.log(`\$\{JSON.stringify(\{path,\ size\})\}`);}
+\DoxyCodeLine{\ \ \})}
+\DoxyCodeLine{\ \ //\ Optionally\ call\ stream.destroy()\ in\ \`{}warn()`\ in\ order\ to\ abort\ and\ cause\ 'close'\ to\ be\ emitted}
+\DoxyCodeLine{\ \ .on('warn',\ error\ =>\ console.error('non-\/fatal\ error',\ error))}
+\DoxyCodeLine{\ \ .on('error',\ error\ =>\ console.error('fatal\ error',\ error))}
+\DoxyCodeLine{\ \ .on('end',\ ()\ =>\ console.log('done'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 3)\ Promise\ example.\ More\ RAM\ and\ CPU\ than\ streams\ /\ for-\/await.}
+\DoxyCodeLine{const\ files\ =\ await\ readdirp.promise('.');}
+\DoxyCodeLine{console.log(files.map(file\ =>\ file.path));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Other\ options.}
+\DoxyCodeLine{readdirp('test',\ \{}
+\DoxyCodeLine{\ \ fileFilter:\ '*.js',}
+\DoxyCodeLine{\ \ directoryFilter:\ ['!.git',\ '!*modules']}
+\DoxyCodeLine{\ \ //\ directoryFilter:\ (di)\ =>\ di.basename.length\ ===\ 9}
+\DoxyCodeLine{\ \ type:\ 'files\_directories',}
+\DoxyCodeLine{\ \ depth:\ 1}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+For more examples, check out {\ttfamily examples} directory.\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2513}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2513}
+{\ttfamily const stream = readdirp(root\+[, options]\+)} — {\bfseries{Stream API}}
+
+
+\begin{DoxyItemize}
+\item Reads given root recursively and returns a {\ttfamily stream} of entry infosentry infos
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Optionally can be used like {\ttfamily for await (const entry of stream)} with node.\+js 10+ ({\ttfamily async\+Iterator}).
+\item {\ttfamily on(\textquotesingle{}data\textquotesingle{}, (entry) =\texorpdfstring{$>$}{>} \{\})} entry infoentry info
+\end{DoxyItemize}for every file /\+ dir.
+\begin{DoxyItemize}
+\item {\ttfamily on(\textquotesingle{}warn\textquotesingle{}, (error) =\texorpdfstring{$>$}{>} \{\})} non-\/fatal {\ttfamily Error} that prevents a file /\+ dir from being processed. Example:\+ inaccessible to the user.
+\item {\ttfamily on(\textquotesingle{}error\textquotesingle{}, (error) =\texorpdfstring{$>$}{>} \{\})} fatal {\ttfamily Error} which also ends the stream. Example:\+ illegal options where passed.
+\item {\ttfamily on(\textquotesingle{}end\textquotesingle{})} — we are done. Called when all entries were found and no more will be emitted.
+\item {\ttfamily on(\textquotesingle{}close\textquotesingle{})} — stream is destroyed via {\ttfamily stream.\+destroy()}. Could be useful if you want to manually abort even on a non fatal error. At that point the stream is no longer {\ttfamily readable} and no more entries, warning or errors are emitted
+\item To learn more about streams, consult the very detailed \href{https://nodejs.org/api/stream.html}{\texttt{nodejs streams documentation}} or the \href{https://github.com/substack/stream-handbook}{\texttt{stream-\/handbook}}
+\end{DoxyItemize}
+
+{\ttfamily const entries = await readdirp.\+promise(root\+[, options]\+)} — {\bfseries{Promise API}}. Returns a list of entry infosentry infos.
+
+First argument is awalys {\ttfamily root}, path in which to start reading and recursing into subdirectories.\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2514}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2514}
+
+\begin{DoxyItemize}
+\item {\ttfamily file\+Filter:\+ \+["{}\texorpdfstring{$\ast$}{*}.js"{}]\+}:\+ filter to include or exclude files. A {\ttfamily Function}, Glob string or Array of glob strings.
+\begin{DoxyItemize}
+\item {\bfseries{Function}}:\+ a function that takes an entry info as a parameter and returns true to include or false to exclude the entry
+\item {\bfseries{Glob string}}:\+ a string (e.\+g., {\ttfamily \texorpdfstring{$\ast$}{*}.js}) which is matched using \href{https://github.com/micromatch/picomatch}{\texttt{picomatch}}, so go there for more information. Globstars ({\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}) are not supported since specifying a recursive pattern for an already recursive function doesn\textquotesingle{}t make sense. Negated globs (as explained in the minimatch documentation) are allowed, e.\+g., {\ttfamily !\texorpdfstring{$\ast$}{*}.txt} matches everything but text files.
+\item {\bfseries{Array of glob strings}}:\+ either need to be all inclusive or all exclusive (negated) patterns otherwise an error is thrown. {\ttfamily \+[\textquotesingle{}\texorpdfstring{$\ast$}{*}.json\textquotesingle{}, \textquotesingle{}\texorpdfstring{$\ast$}{*}.js\textquotesingle{}]\+} includes all Java\+Script and Json files. {\ttfamily \+[\textquotesingle{}!.git\textquotesingle{}, \textquotesingle{}!node\+\_\+modules\textquotesingle{}]\+} includes all directories except the \textquotesingle{}.git\textquotesingle{} and \textquotesingle{}node\+\_\+modules\textquotesingle{}.
+\item Directories that do not pass a filter will not be recursed into.
+\end{DoxyItemize}
+\item {\ttfamily directory\+Filter:\+ \+[\textquotesingle{}!.git\textquotesingle{}]\+}:\+ filter to include/\+exclude directories found and to recurse into. Directories that do not pass a filter will not be recursed into.
+\item {\ttfamily depth:\+ 5}:\+ depth at which to stop recursing even if more subdirectories are found
+\item {\ttfamily type:\+ \textquotesingle{}files\textquotesingle{}}:\+ determines if data events on the stream should be emitted for {\ttfamily \textquotesingle{}files\textquotesingle{}} (default), {\ttfamily \textquotesingle{}directories\textquotesingle{}}, {\ttfamily \textquotesingle{}files\+\_\+directories\textquotesingle{}}, or {\ttfamily \textquotesingle{}all\textquotesingle{}}. Setting to {\ttfamily \textquotesingle{}all\textquotesingle{}} will also include entries for other types of file descriptors like character devices, unix sockets and named pipes.
+\item {\ttfamily always\+Stat:\+ false}:\+ always return {\ttfamily stats} property for every file. Default is {\ttfamily false}, readdirp will return {\ttfamily Dirent} entries. Setting it to {\ttfamily true} can double readdir execution time -\/ use it only when you need file {\ttfamily size}, {\ttfamily mtime} etc. Cannot be enabled on node \texorpdfstring{$<$}{<}10.\+10.\+0.
+\item {\ttfamily lstat:\+ false}:\+ include symlink entries in the stream along with files. When {\ttfamily true}, {\ttfamily fs.\+lstat} would be used instead of {\ttfamily fs.\+stat}
+\end{DoxyItemize}\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2515}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Entry\+Info}}{{\ttfamily Entry\+Info}}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2515}
+Has the following properties:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily path:\+ \textquotesingle{}assets/\+javascripts/\+react.\+js\textquotesingle{}}:\+ path to the file/\+directory (relative to given root)
+\item {\ttfamily full\+Path:\+ \textquotesingle{}/\+\+Users/\+dev/\+projects/\+app/\+assets/\+javascripts/\+react.js\textquotesingle{}}:\+ full path to the file/\+directory found
+\item {\ttfamily basename:\+ \textquotesingle{}react.\+js\textquotesingle{}}:\+ name of the file/\+directory
+\item {\ttfamily dirent:\+ fs.\+Dirent}:\+ built-\/in \href{https://nodejs.org/api/fs.html\#fs_class_fs_dirent}{\texttt{dir entry object}} -\/ only with {\ttfamily always\+Stat:\+ false}
+\item {\ttfamily stats:\+ fs.\+Stats}:\+ built in \href{https://nodejs.org/api/fs.html\#fs_class_fs_stats}{\texttt{stat object}} -\/ only with {\ttfamily always\+Stat:\+ true}
+\end{DoxyItemize}\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2516}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2516}
+
+\begin{DoxyItemize}
+\item 3.\+5 (Oct 13, 2020) disallows recursive directory-\/based symlinks. Before, it could have entered infinite loop.
+\item 3.\+4 (Mar 19, 2020) adds support for directory-\/based symlinks.
+\item 3.\+3 (Dec 6, 2019) stabilizes RAM consumption and enables perf management with {\ttfamily high\+Water\+Mark} option. Fixes race conditions related to {\ttfamily for-\/await} looping.
+\item 3.\+2 (Oct 14, 2019) improves performance by 250\% and makes streams implementation more idiomatic.
+\item 3.\+1 (Jul 7, 2019) brings {\ttfamily bigint} support to {\ttfamily stat} output on Windows. This is backwards-\/incompatible for some cases. Be careful. It you use it incorrectly, you\textquotesingle{}ll see "{}\+Type\+Error:\+ Cannot mix Big\+Int and other types, use explicit conversions"{}.
+\item 3.\+0 brings huge performance improvements and stream backpressure support.
+\item Upgrading 2.\+x to 3.\+x:\+
+\begin{DoxyItemize}
+\item Signature changed from {\ttfamily readdirp(options)} to {\ttfamily readdirp(root, options)}
+\item Replaced callback API with promise API.
+\item Renamed {\ttfamily entry\+Type} option to {\ttfamily type}
+\item Renamed {\ttfamily entry\+Type:\+ \textquotesingle{}both\textquotesingle{}} to {\ttfamily \textquotesingle{}files\+\_\+directories\textquotesingle{}}
+\item {\ttfamily Entry\+Info}
+\begin{DoxyItemize}
+\item Renamed {\ttfamily stat} to {\ttfamily stats}
+\begin{DoxyItemize}
+\item Emitted only when {\ttfamily always\+Stat:\+ true}
+\item {\ttfamily dirent} is emitted instead of {\ttfamily stats} by default with {\ttfamily always\+Stat:\+ false}
+\end{DoxyItemize}
+\item Renamed {\ttfamily name} to {\ttfamily basename}
+\item Removed {\ttfamily parent\+Dir} and {\ttfamily full\+Parent\+Dir} properties
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Supported node.\+js versions:\+
+\begin{DoxyItemize}
+\item 3.\+x:\+ node 8+
+\item 2.\+x:\+ node 0.\+6+
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2517}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_5675199e3f03e5a5c107423dd0f83360_autotoc_md2517}
+Copyright (c) 2012-\/2019 Thorsten Lorenz, Paul Miller (\href{https://paulmillr.com}{\texttt{https:\+/\+/\+paulmillr.\+com}})
+
+MIT License, see \+[LICENSE]\+(LICENSE) file. 

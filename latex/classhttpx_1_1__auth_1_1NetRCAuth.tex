@@ -1,0 +1,88 @@
+\doxysection{httpx.\+\_\+auth.\+Net\+RCAuth Class Reference}
+\hypertarget{classhttpx_1_1__auth_1_1NetRCAuth}{}\label{classhttpx_1_1__auth_1_1NetRCAuth}\index{httpx.\_auth.NetRCAuth@{httpx.\_auth.NetRCAuth}}
+Inheritance diagram for httpx.\+\_\+auth.\+Net\+RCAuth:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpx_1_1__auth_1_1NetRCAuth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1NetRCAuth_ad56cb9d8c7a41723c80c9708fb6ae4b2}\label{classhttpx_1_1__auth_1_1NetRCAuth_ad56cb9d8c7a41723c80c9708fb6ae4b2} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str\texorpdfstring{$\vert$}{|}None file=None)
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1NetRCAuth_ae06e8f9583602754c21832eedc8c9617}{auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_ac8e4533e21789a47bb38d7261b9c7cab}{sync\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\item 
+typing.\+Async\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a4f242babe9e3b3cd6d9045162db2aca4}{async\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1NetRCAuth_a46955b6684102471f26802f811b18051}\label{classhttpx_1_1__auth_1_1NetRCAuth_a46955b6684102471f26802f811b18051} 
+str {\bfseries \+\_\+build\+\_\+auth\+\_\+header} (self, str\texorpdfstring{$\vert$}{|}bytes username, str\texorpdfstring{$\vert$}{|}bytes password)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1NetRCAuth_a39fa8cdbb220320a63049a23ae2bd56e}\label{classhttpx_1_1__auth_1_1NetRCAuth_a39fa8cdbb220320a63049a23ae2bd56e} 
+{\bfseries \+\_\+netrc\+\_\+info} = netrc.\+netrc(file)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries requires\+\_\+request\+\_\+body} = False
+\item 
+bool {\bfseries requires\+\_\+response\+\_\+body} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Use a 'netrc' file to lookup basic auth credentials based on the url host.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__auth_1_1NetRCAuth_doc-func-members}
+\Hypertarget{classhttpx_1_1__auth_1_1NetRCAuth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__auth_1_1NetRCAuth_ae06e8f9583602754c21832eedc8c9617}\index{httpx.\_auth.NetRCAuth@{httpx.\_auth.NetRCAuth}!auth\_flow@{auth\_flow}}
+\index{auth\_flow@{auth\_flow}!httpx.\_auth.NetRCAuth@{httpx.\_auth.NetRCAuth}}
+\doxysubsubsection{\texorpdfstring{auth\_flow()}{auth\_flow()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__auth_1_1NetRCAuth_ae06e8f9583602754c21832eedc8c9617} 
+ typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ httpx.\+\_\+auth.\+Net\+RCAuth.\+auth\+\_\+flow (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute the authentication flow.
+
+To dispatch a request, `yield` it:
+
+```
+yield request
+```
+
+The client will `.send()` the response back into the flow generator. You can
+access it like so:
+
+```
+response = yield request
+```
+
+A `return` (or reaching the end of the generator) will result in the
+client returning the last response obtained from the server.
+
+You can dispatch as many requests as is necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a2ff3aabb4549b3f076574aff075fd30d}{httpx.\+\_\+auth.\+Auth}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+auth.\+py\end{DoxyCompactItemize}

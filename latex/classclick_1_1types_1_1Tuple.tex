@@ -1,0 +1,134 @@
+\doxysection{click.\+types.\+Tuple Class Reference}
+\hypertarget{classclick_1_1types_1_1Tuple}{}\label{classclick_1_1types_1_1Tuple}\index{click.types.Tuple@{click.types.Tuple}}
+Inheritance diagram for click.\+types.\+Tuple:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classclick_1_1types_1_1Tuple}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1types_1_1Tuple_a8fd2da49a7a988838db83ba7cc6d8aff}\label{classclick_1_1types_1_1Tuple_a8fd2da49a7a988838db83ba7cc6d8aff} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, cabc.\+Sequence\+[type\+[t.\+Any]\+\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classclick_1_1types_1_1ParamType}{Param\+Type}}]\+ types)
+\item 
+dict\+[str, t.\+Any]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1Tuple_a53818e537c9eb309f2a5b1137d8cff14}{to\+\_\+info\+\_\+dict}} (self)
+\item 
+\Hypertarget{classclick_1_1types_1_1Tuple_a2ad52243cc9430c9b437a65e0913da32}\label{classclick_1_1types_1_1Tuple_a2ad52243cc9430c9b437a65e0913da32} 
+str {\bfseries name} (self)
+\item 
+int \doxymbox{\hyperlink{classclick_1_1types_1_1Tuple_aaf9f6a275fabaa578cdce1df09ed1a3c}{arity}} (self)
+\item 
+t.\+Any \doxymbox{\hyperlink{classclick_1_1types_1_1Tuple_a16c63980f72bf711d25e13e4b05b116e}{convert}} (self, t.\+Any value, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType}{click.\+types.\+Param\+Type}}}
+\begin{DoxyCompactItemize}
+\item 
+t.\+Any {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, t.\+Any value, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param=None, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None)
+\item 
+str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_acabcc865e7e1273b07152acb4a47f5e5}{get\+\_\+metavar}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} ctx)
+\item 
+str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_af55c50ecee5eecfe52532f7ad571c770}{get\+\_\+missing\+\_\+message}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx)
+\item 
+cabc.\+Sequence\+[str]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_a10fe2d2b116b42fcaa109da1df760ee9}{split\+\_\+envvar\+\_\+value}} (self, str rv)
+\item 
+t.\+No\+Return \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_afcc2ce5b635b9f193b47cb62d7fec024}{fail}} (self, str message, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param=None, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None)
+\item 
+list\+[\doxymbox{\hyperlink{classclick_1_1shell__completion_1_1CompletionItem}{Completion\+Item}}]\+ \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_af9b01d9709d700384a232a6172be8ed5}{shell\+\_\+complete}} (self, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} ctx, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} param, str incomplete)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1types_1_1Tuple_a6a02ed696a6c63340fb35cb8780c516b}\label{classclick_1_1types_1_1Tuple_a6a02ed696a6c63340fb35cb8780c516b} 
+list {\bfseries types} = \+[convert\+\_\+type(ty) for ty in types]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType}{click.\+types.\+Param\+Type}}}
+\begin{DoxyCompactItemize}
+\item 
+t {\bfseries is\+\_\+composite} = False
+\item 
+t {\bfseries envvar\+\_\+list\+\_\+splitter} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The default behavior of Click is to apply a type on a value directly.
+This works well in most cases, except for when `nargs` is set to a fixed
+count and different types should be used for different items.  In this
+case the :class:`Tuple` type can be used.  This type can only be used
+if `nargs` is set to a fixed number.
+
+For more information see :ref:`tuple-type`.
+
+This can be selected by using a Python tuple literal as a type.
+
+:param types: a list of types that should be used for the tuple items.
+\end{DoxyVerb}
+ 
+
+\label{classclick_1_1types_1_1Tuple_doc-func-members}
+\Hypertarget{classclick_1_1types_1_1Tuple_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclick_1_1types_1_1Tuple_aaf9f6a275fabaa578cdce1df09ed1a3c}\index{click.types.Tuple@{click.types.Tuple}!arity@{arity}}
+\index{arity@{arity}!click.types.Tuple@{click.types.Tuple}}
+\doxysubsubsection{\texorpdfstring{arity()}{arity()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1Tuple_aaf9f6a275fabaa578cdce1df09ed1a3c} 
+ int click.\+types.\+Tuple.\+arity (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classclick_1_1types_1_1CompositeParamType}{click.\+types.\+Composite\+Param\+Type}}.
+
+\Hypertarget{classclick_1_1types_1_1Tuple_a16c63980f72bf711d25e13e4b05b116e}\index{click.types.Tuple@{click.types.Tuple}!convert@{convert}}
+\index{convert@{convert}!click.types.Tuple@{click.types.Tuple}}
+\doxysubsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1Tuple_a16c63980f72bf711d25e13e4b05b116e} 
+ t.\+Any click.\+types.\+Tuple.\+convert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{t.\+Any}]{value}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}} \texorpdfstring{$\vert$}{|} None}]{param}{, }\item[{\doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}} \texorpdfstring{$\vert$}{|} None     }]{ctx}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert the value to the correct type. This is not called if
+the value is ``None`` (the missing value).
+
+This must accept string values from the command line, as well as
+values that are already the correct type. It may also convert
+other compatible types.
+
+The ``param`` and ``ctx`` arguments may be ``None`` in certain
+situations, such as when converting prompt input.
+
+If the value cannot be converted, call :meth:`fail` with a
+descriptive message.
+
+:param value: The value to convert.
+:param param: The parameter that is using this type to convert
+    its value. May be ``None``.
+:param ctx: The current context that arrived at this value. May
+    be ``None``.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_a31fdfa396ce7c9ee6361bf7193493a87}{click.\+types.\+Param\+Type}}.
+
+\Hypertarget{classclick_1_1types_1_1Tuple_a53818e537c9eb309f2a5b1137d8cff14}\index{click.types.Tuple@{click.types.Tuple}!to\_info\_dict@{to\_info\_dict}}
+\index{to\_info\_dict@{to\_info\_dict}!click.types.Tuple@{click.types.Tuple}}
+\doxysubsubsection{\texorpdfstring{to\_info\_dict()}{to\_info\_dict()}}
+{\footnotesize\ttfamily \label{classclick_1_1types_1_1Tuple_a53818e537c9eb309f2a5b1137d8cff14} 
+ dict\+[str, t.\+Any]\+ click.\+types.\+Tuple.\+to\+\_\+info\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Gather information that could be useful for a tool generating
+user-facing documentation.
+
+Use :meth:`click.Context.to_info_dict` to traverse the entire
+CLI structure.
+
+.. versionadded:: 8.0
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classclick_1_1types_1_1ParamType_aa61d95bae6a1199881c46bf5788c61c3}{click.\+types.\+Param\+Type}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+click/\+types.\+py\end{DoxyCompactItemize}

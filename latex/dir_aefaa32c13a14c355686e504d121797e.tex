@@ -1,0 +1,486 @@
+\doxysection{frontend/\+node\+\_\+modules/\+postcss-\/load-\/config Directory Reference}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e}{}\label{dir_aefaa32c13a14c355686e504d121797e}\index{frontend/node\_modules/postcss-\/load-\/config Directory Reference@{frontend/node\_modules/postcss-\/load-\/config Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_cd48363c7c50974ab5b3a1444d21b275}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+  \href{https://github.com/postcss/postcss}{\texttt{ }}  \doxysubsection*{Load Config}
+
+ 
+
+\doxysubsubsection*{Install}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/D\ postcss-\/load-\/config}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection*{Usage}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/S|-\/D\ postcss-\/plugin}
+
+\end{DoxyCode}
+
+
+Install all required Post\+CSS plugins and save them to your {\bfseries{package.\+json}} {\ttfamily dependencies}/\+{\ttfamily dev\+Dependencies}
+
+Then create a Post\+CSS config file by choosing one of the following formats\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2052}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily package.\+json}}{{\ttfamily package.\+json}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2052}
+Create a {\bfseries{{\ttfamily postcss}}} section in your project\textquotesingle{}s {\bfseries{{\ttfamily package.\+json}}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}postcss"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}parser"{}:\ "{}sugarss"{},}
+\DoxyCodeLine{\ \ \ \ "{}map"{}:\ false,}
+\DoxyCodeLine{\ \ \ \ "{}plugins"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}postcss-\/plugin"{}:\ \{\}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2053}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily .postcssrc}}{{\ttfamily .postcssrc}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2053}
+Create a {\bfseries{{\ttfamily .postcssrc}}} file in JSON or YAML format
+
+\begin{quote}
+ℹ️ It\textquotesingle{}s recommended to use an extension (e.\+g {\bfseries{{\ttfamily .postcssrc.\+json}}} or {\bfseries{{\ttfamily .postcssrc.\+yml}}}) instead of {\ttfamily .postcssrc} \end{quote}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |}
+\DoxyCodeLine{\ \ |-\/\ (.postcssrc|.postcssrc.json|.postcssrc.yml)}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+{\bfseries{{\ttfamily .postcssrc.\+json}}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}parser"{}:\ "{}sugarss"{},}
+\DoxyCodeLine{\ \ "{}map"{}:\ false,}
+\DoxyCodeLine{\ \ "{}plugins"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}postcss-\/plugin"{}:\ \{\}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{{\ttfamily .postcssrc.\+yml}}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser:\ sugarss}
+\DoxyCodeLine{map:\ false}
+\DoxyCodeLine{plugins:}
+\DoxyCodeLine{\ \ postcss-\/plugin:\ \{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+For YAML configs, you must have \href{https://www.npmjs.com/package/yaml}{\texttt{yaml}} installed as a peer dependency.
+\end{DoxyNote}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2054}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily .postcssrc.\+js} or {\ttfamily postcss.\+config.\+js}}{{\ttfamily .postcssrc.\+js} or {\ttfamily postcss.\+config.\+js}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2054}
+You may need some logic within your config. In this case create JS/\+\+TS file named:\+
+\begin{DoxyItemize}
+\item {\ttfamily .postcssrc.\+js}
+\item {\ttfamily .postcssrc.\+mjs}
+\item {\ttfamily .postcssrc.\+cjs}
+\item {\ttfamily .postcssrc.\+ts}
+\item {\ttfamily .postcssrc.\+mts}
+\item {\ttfamily .postcssrc.\+cts}
+\item {\ttfamily postcss.\+config.\+js}
+\item {\ttfamily postcss.\+config.\+mjs}
+\item {\ttfamily postcss.\+config.\+cjs}
+\item {\ttfamily postcss.\+config.\+ts}
+\item {\ttfamily postcss.\+config.\+mts}
+\item {\ttfamily postcss.\+config.\+cts}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+For Type\+Script configs, you must have \href{https://www.npmjs.com/package/tsx}{\texttt{tsx}} or \href{https://www.npmjs.com/package/jiti}{\texttt{jiti}} installed as a peer dependency.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Project\ (Root)}
+\DoxyCodeLine{\ \ |–\ client}
+\DoxyCodeLine{\ \ |–\ public}
+\DoxyCodeLine{\ \ |-\/\ (.postcssrc|postcss.config).(js|mjs|cjs|ts|mts|cts)}
+\DoxyCodeLine{\ \ |-\/\ package.json}
+
+\end{DoxyCode}
+
+
+You can export the config as an {\ttfamily \{Object\}}
+
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ parser:\ 'sugarss',}
+\DoxyCodeLine{\ \ map:\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Or export a {\ttfamily \{Function\}} that returns the config (more about the {\ttfamily ctx} param below)
+
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (ctx)\ =>\ (\{}
+\DoxyCodeLine{\ \ parser:\ ctx.parser\ ?\ 'sugarss'\ :\ false,}
+\DoxyCodeLine{\ \ map:\ ctx.env\ ===\ 'development'\ ?\ ctx.map\ :\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ ctx.options.plugin}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+Plugins can be loaded either using an {\ttfamily \{Object\}} or an {\ttfamily \{Array\}}\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2055}{}\doxysubsubsubsubsection{\texorpdfstring{{\ttfamily \{Object\}}}{{\ttfamily \{Object\}}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2055}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (\{\ env\ \})\ =>\ (\{}
+\DoxyCodeLine{\ \ ...options,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ env\ ===\ 'production'\ ?\ \{\}\ :\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+ℹ️ When using an {\ttfamily \{Object\}}, the key can be a Node.\+js module name, a path to a Java\+Script file that is relative to the directory of the Post\+CSS config file, or an absolute path to a Java\+Script file. \end{quote}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2056}{}\doxysubsubsubsubsection{\texorpdfstring{{\ttfamily \{Array\}}}{{\ttfamily \{Array\}}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2056}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (\{\ env\ \})\ =>\ (\{}
+\DoxyCodeLine{\ \ ...options,}
+\DoxyCodeLine{\ \ plugins:\ [}
+\DoxyCodeLine{\ \ \ \ env\ ===\ 'production'\ ?\ require('postcss-\/plugin')()\ :\ false}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+ \begin{quote}
+:\+warning:\+ When using an {\ttfamily \{Array\}}, make sure to {\ttfamily require()} each plugin \end{quote}
+
+
+\doxysubsubsection*{Options}
+
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Name  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Type  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Default  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Description  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}to\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily to}}}  &\SetCell{c}{\ttfamily \{String\}}  &\SetCell{c}{\ttfamily undefined}  &Destination File Path  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}map\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily map}}}  &\SetCell{c}{\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Object\}}  &\SetCell{c}{\ttfamily false}  &Enable/\+\+Disable Source Maps  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}from\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily from}}}  &\SetCell{c}{\ttfamily \{String\}}  &\SetCell{c}{\ttfamily undefined}  &Source File Path  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}parser\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily parser}}}  &\SetCell{c}{\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}  &\SetCell{c}{\ttfamily false}  &Custom Post\+CSS Parser  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}syntax\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily syntax}}}  &\SetCell{c}{\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}  &\SetCell{c}{\ttfamily false}  &Custom Post\+CSS Syntax  \\
+\SetCell{c}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\`{}stringifier\`{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\bfseries{{\ttfamily stringifier}}}  &\SetCell{c}{\ttfamily \{String\textbackslash{}\texorpdfstring{$\vert$}{|}\+Function\}}  &\SetCell{c}{\ttfamily false}  &Custom Post\+CSS Stringifier  \\
+\end{DoxyTable}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2057}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily parser}}{{\ttfamily parser}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2057}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ parser:\ 'sugarss'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2058}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily syntax}}{{\ttfamily syntax}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2058}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ syntax:\ 'postcss-\/scss'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2059}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily stringifier}}{{\ttfamily stringifier}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2059}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ stringifier:\ 'midas'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2060}{}\doxysubsubsubsection{\texorpdfstring{\href{https://github.com/postcss/postcss/blob/master/docs/source-maps.md}{\texttt{{\bfseries{{\ttfamily map}}}}}}{\href{https://github.com/postcss/postcss/blob/master/docs/source-maps.md}{\texttt{{\bfseries{{\ttfamily map}}}}}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2060}
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ map:\ 'inline'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+:\+warning:\+ In most cases {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} are set by the third-\/party which integrates this package (CLI, gulp, webpack). It\textquotesingle{}s unlikely one needs to set/\+use {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} within a config file. Unless you\textquotesingle{}re a third-\/party plugin author using this module and its Node API directly {\bfseries{dont\textquotesingle{}t set {\ttfamily options.\+from} \&\& {\ttfamily options.\+to} yourself}} \end{quote}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2061}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily to}}{{\ttfamily to}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2061}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ to:\ 'path/to/dest.css'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2062}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily from}}{{\ttfamily from}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2062}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ from:\ 'path/to/src.css'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection*{Plugins}\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2063}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily \{\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} null}}{{\ttfamily \{\} \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} null}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2063}
+The plugin will be loaded with defaults
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ \{\}\ ||\ null}
+
+\end{DoxyCode}
+
+
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}\ ||\ null}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{quote}
+:\+warning:\+ {\ttfamily \{\}} must be an {\bfseries{empty}} {\ttfamily \{Object\}} literal \end{quote}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2064}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily \{Object\}}}{{\ttfamily \{Object\}}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2064}
+The plugin will be loaded with given options
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ \{\ option:\ '',\ option:\ ''\ \}}
+
+\end{DoxyCode}
+
+
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\ option:\ '',\ option:\ ''\ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2065}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily false}}{{\ttfamily false}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2065}
+The plugin will not be loaded
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'postcss-\/plugin':\ false}
+
+\end{DoxyCode}
+
+
+{\bfseries{.postcssrc.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2066}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily Ordering}}{{\ttfamily Ordering}}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2066}
+Plugin {\bfseries{execution order}} is determined by declaration in the plugins section ({\bfseries{top-\/down}})
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\},\ //\ [0]}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\},\ //\ [1]}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/plugin':\ \{\}\ \ //\ [2]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection*{Context}
+
+When using a {\ttfamily \{Function\}} ({\ttfamily postcss.\+config.\+js} or {\ttfamily .postcssrc.\+js}), it\textquotesingle{}s possible to pass context to {\ttfamily postcss-\/load-\/config}, which will be evaluated while loading your config. By default {\ttfamily ctx.\+env (process.\+env.\+NODE\+\_\+\+ENV)} and {\ttfamily ctx.\+cwd (process.\+cwd())} are available on the {\ttfamily ctx} {\ttfamily \{Object\}}
+
+\begin{quote}
+ℹ️ Most third-\/party integrations add additional properties to the {\ttfamily ctx} (e.\+g {\ttfamily postcss-\/loader}). Check the specific module\textquotesingle{}s README for more information about what is available on the respective {\ttfamily ctx} \end{quote}
+
+
+\doxysubsubsection*{Examples}
+
+{\bfseries{postcss.\+config.\+js}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (ctx)\ =>\ (\{}
+\DoxyCodeLine{\ \ parser:\ ctx.parser\ ?\ 'sugarss'\ :\ false,}
+\DoxyCodeLine{\ \ map:\ ctx.env\ ===\ 'development'\ ?\ ctx.map\ :\ false,}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/import':\ \{\},}
+\DoxyCodeLine{\ \ \ \ 'postcss-\/nested':\ \{\},}
+\DoxyCodeLine{\ \ \ \ cssnano:\ ctx.env\ ===\ 'production'\ ?\ \{\}\ :\ false}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ node\ postcss"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ node\ postcss"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ readFileSync\ \}\ =\ require('fs')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require('postcss')}
+\DoxyCodeLine{const\ postcssrc\ =\ require('postcss-\/load-\/config')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ css\ =\ readFileSync('index.css',\ 'utf8')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ctx\ =\ \{\ parser:\ true,\ map:\ 'inline'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{postcssrc(ctx).then((\{\ plugins,\ options\ \})\ =>\ \{}
+\DoxyCodeLine{\ \ postcss(plugins)}
+\DoxyCodeLine{\ \ \ \ .process(css,\ options)}
+\DoxyCodeLine{\ \ \ \ .then((result)\ =>\ console.log(result.css))}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ gulp"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ gulp"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ task,\ src,\ dest,\ series,\ watch\ \}\ =\ require('gulp')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require('gulp-\/postcssrc')}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ css\ =\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ src('src/*.css')}
+\DoxyCodeLine{\ \ \ \ .pipe(postcss())}
+\DoxyCodeLine{\ \ \ \ .pipe(dest('dest'))}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{task('watch',\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ watch(['src/*.css',\ 'postcss.config.js'],\ css)}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{task('default',\ series(css,\ 'watch'))}
+
+\end{DoxyCode}
+
+
+  
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ \{}
+\DoxyCodeLine{\ \ "{}build"{}:\ "{}NODE\_ENV=production\ webpack"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ "{}NODE\_ENV=development\ webpack-\/dev-\/server"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{webpack.\+config.\+js}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ (env)\ =>\ (\{}
+\DoxyCodeLine{\ \ module:\ \{}
+\DoxyCodeLine{\ \ \ \ rules:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ test:\ /\(\backslash\).css\$/,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ use:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'style-\/loader',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'css-\/loader',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ 'postcss-\/loader'}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+\doxysubsubsection*{Maintainers}
+
+
+\begin{DoxyTable}{2}{}{}{0}
+\SetCell{c} ~\newline
+ \href{https://github.com/michael-ciniawsky}{\texttt{Michael Ciniawsky}} &\SetCell{c} ~\newline
+ \href{https://github.com/ertrzyiks}{\texttt{Mateusz Derks}} \\
+\end{DoxyTable}
+
+
+\doxysubsubsection*{Contributors}
+
+
+\begin{DoxyTable}{4}{}{}{0}
+\SetCell{c} ~\newline
+ \href{https://github.com/sparty02}{\texttt{Ryan Dunckel}} &\SetCell{c} ~\newline
+ \href{https://github.com/pcgilday}{\texttt{Patrick Gilday}} &\SetCell{c} ~\newline
+ \href{https://github.com/daltones}{\texttt{Dalton Santos}} &\SetCell{c} ~\newline
+ \href{https://github.com/fwouts}{\texttt{François Wouts}} \\
+\end{DoxyTable}
+/\+table\hypertarget{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2067}{}\doxysubsubsection{\texorpdfstring{Security Contact}{Security Contact}}\label{dir_aefaa32c13a14c355686e504d121797e_autotoc_md2067}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{Tidelift security contact}}. Tidelift will coordinate the fix and disclosure. 

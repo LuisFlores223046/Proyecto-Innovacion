@@ -1,0 +1,80 @@
+\doxysection{pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Generate\+Json\+Schema\+Handler Class Reference}
+\hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler}{}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler}\index{pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler@{pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler}}
+Inheritance diagram for pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Generate\+Json\+Schema\+Handler:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a708816aedbe39efdab6b7e457ed5fac8}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a708816aedbe39efdab6b7e457ed5fac8} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classpydantic_1_1json__schema_1_1GenerateJsonSchema}{Generate\+Json\+Schema}} generate\+\_\+json\+\_\+schema, Handler\+Override\texorpdfstring{$\vert$}{|}None handler\+\_\+override)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a48194ed3d5176ae7da82bf12be0e1097}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a48194ed3d5176ae7da82bf12be0e1097} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, Core\+Schema\+Or\+Field core\+\_\+schema)
+\item 
+Json\+Schema\+Value \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a4bb9f268fbbab52215706bb46f1eb258}{resolve\+\_\+ref\+\_\+schema}} (self, Json\+Schema\+Value maybe\+\_\+ref\+\_\+json\+\_\+schema)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{pydantic.\+annotated\+\_\+handlers.\+Get\+Json\+Schema\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+Json\+Schema\+Value \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler_a9befab98361aedb08cc3a6f739cf0e5e}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, Core\+Schema\+Or\+Field core\+\_\+schema)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a21c73986686a6e455424a8994c9d1304}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a21c73986686a6e455424a8994c9d1304} 
+{\bfseries generate\+\_\+json\+\_\+schema} = generate\+\_\+json\+\_\+schema
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a9343d4ff52ba549ff013c702210f9fe9}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a9343d4ff52ba549ff013c702210f9fe9} 
+{\bfseries handler} = handler\+\_\+override or generate\+\_\+json\+\_\+schema.\+generate\+\_\+inner
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_aea9a1bf11e43d6785a068ae358484f63}\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_aea9a1bf11e43d6785a068ae358484f63} 
+{\bfseries mode} = generate\+\_\+json\+\_\+schema.\+mode
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}JsonSchemaHandler implementation that doesn't do ref unwrapping by default.
+
+This is used for any Annotated metadata so that we don't end up with conflicting
+modifications to the definition schema.
+
+Used internally by Pydantic, please do not rely on this implementation.
+See `GetJsonSchemaHandler` for the handler API.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_doc-func-members}
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a4bb9f268fbbab52215706bb46f1eb258}\index{pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler@{pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler}!resolve\_ref\_schema@{resolve\_ref\_schema}}
+\index{resolve\_ref\_schema@{resolve\_ref\_schema}!pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler@{pydantic.\_internal.\_schema\_generation\_shared.GenerateJsonSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{resolve\_ref\_schema()}{resolve\_ref\_schema()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler_a4bb9f268fbbab52215706bb46f1eb258} 
+ Json\+Schema\+Value pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Generate\+Json\+Schema\+Handler.\+resolve\+\_\+ref\+\_\+schema (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Json\+Schema\+Value}]{maybe\+\_\+ref\+\_\+json\+\_\+schema}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resolves `$ref` in the json schema.
+
+This returns the input json schema if there is no `$ref` in json schema.
+
+Args:
+    maybe_ref_json_schema: The input json schema that may contains `$ref`.
+
+Returns:
+    Resolved json schema.
+
+Raises:
+    LookupError: If it can't find the definition for `$ref`.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler_a3182dfe87bc063355c992147627993bb}{pydantic.\+annotated\+\_\+handlers.\+Get\+Json\+Schema\+Handler}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+\+\_\+internal/\+\+\_\+schema\+\_\+generation\+\_\+shared.\+py\end{DoxyCompactItemize}

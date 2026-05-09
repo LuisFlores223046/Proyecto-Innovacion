@@ -1,0 +1,116 @@
+\doxysection{sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry Class Reference}
+\hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry}{}\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry}\index{sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}}
+Inheritance diagram for sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a32c174a5f7b2b3c195549394ce3301fd}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Callable\+[\+[$\,$]\+, \+\_\+T]\+ createfunc, Callable\+[\+[$\,$]\+, Any]\+ scopefunc)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_accd3eb44d6340e5c84861f918c000453}\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_accd3eb44d6340e5c84861f918c000453} 
+\+\_\+T {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a4fdb70eba2ff180614600df6903e2079}{has}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a919e1e24d62b3b1fc88b13f06e583d09}{set}} (self, \+\_\+T obj)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_aa6dad8f2dec02d035ddeb25f28f63308}{clear}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_ad41b5bf5813478f352e29e901384441f}\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_ad41b5bf5813478f352e29e901384441f} 
+{\bfseries scopefunc} = scopefunc
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_ab14f9651ba752157466140b1ece3aaf4}\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_ab14f9651ba752157466140b1ece3aaf4} 
+dict {\bfseries registry} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_aba15d2b68c167878f6bcc73578cdd93f}\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_aba15d2b68c167878f6bcc73578cdd93f} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1__CreateFuncType}{\+\_\+\+Create\+Func\+Type}} {\bfseries createfunc} \+[\+\_\+T]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A Registry that can store one or multiple instances of a single
+class on the basis of a "scope" function.
+
+The object implements ``__call__`` as the "getter", so by
+calling ``myregistry()`` the contained object is returned
+for the current scope.
+
+:param createfunc:
+  a callable that returns a new object to be placed in the registry
+
+:param scopefunc:
+  a callable that will return a key to store/retrieve an object.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a32c174a5f7b2b3c195549394ce3301fd}\index{sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a32c174a5f7b2b3c195549394ce3301fd} 
+sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[$\,$]\+, \+\_\+T]\+}]{createfunc}{, }\item[{Callable\+[\+[$\,$]\+, Any]\+     }]{scopefunc}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a new :class:`.ScopedRegistry`.
+
+:param createfunc:  A creation function that will generate
+  a new value for the current scope, if none is present.
+
+:param scopefunc:  A function that returns a hashable
+  token representing the current scope (such as, current
+  thread identifier).
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_aa6dad8f2dec02d035ddeb25f28f63308}\index{sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}!clear@{clear}}
+\index{clear@{clear}!sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_aa6dad8f2dec02d035ddeb25f28f63308} 
+ None sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry.\+clear (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clear the current scope, if any.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ThreadLocalRegistry_a2ea413d0a8aea8ef805d3675e0044395}{sqlalchemy.\+util.\+\_\+collections.\+Thread\+Local\+Registry}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a4fdb70eba2ff180614600df6903e2079}\index{sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}!has@{has}}
+\index{has@{has}!sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}}
+\doxysubsubsection{\texorpdfstring{has()}{has()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a4fdb70eba2ff180614600df6903e2079} 
+ bool sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry.\+has (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if an object is present in the current scope.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ThreadLocalRegistry_a1b9fe38473ba29a5f488236c108a878f}{sqlalchemy.\+util.\+\_\+collections.\+Thread\+Local\+Registry}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a919e1e24d62b3b1fc88b13f06e583d09}\index{sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}!set@{set}}
+\index{set@{set}!sqlalchemy.util.\_collections.ScopedRegistry@{sqlalchemy.util.\_collections.ScopedRegistry}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1__collections_1_1ScopedRegistry_a919e1e24d62b3b1fc88b13f06e583d09} 
+ None sqlalchemy.\+util.\+\_\+collections.\+Scoped\+Registry.\+set (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+T}]{obj}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set the value for the current scope.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1ThreadLocalRegistry_afcedf032f75e0c275fecebaf2ba49046}{sqlalchemy.\+util.\+\_\+collections.\+Thread\+Local\+Registry}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+util/\+\+\_\+collections.\+py\end{DoxyCompactItemize}

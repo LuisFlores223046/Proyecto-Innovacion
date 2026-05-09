@@ -1,0 +1,336 @@
+\doxysection{frontend/\+node\+\_\+modules/\+chalk Directory Reference}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2}{}\label{dir_e861fa512b56ba8283a7893ee8eedea2}\index{frontend/node\_modules/chalk Directory Reference@{frontend/node\_modules/chalk Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_6ed3750e8df5aa5ab1d3e77dff414d16}{source}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxysubsection*{~\newline
+ ~\newline
+  ~\newline
+ ~\newline
+ ~\newline
+ }
+
+\begin{quote}
+Terminal string styling done right \end{quote}
+
+
+\href{https://travis-ci.org/chalk/chalk}{\texttt{}} \href{https://coveralls.io/github/chalk/chalk?branch=master}{\texttt{}} \href{https://www.npmjs.com/package/chalk?activeTab=dependents}{\texttt{}} \href{https://www.npmjs.com/package/chalk}{\texttt{}} \href{https://www.youtube.com/watch?v=9auOCbH5Ns4}{\texttt{}} \href{https://github.com/xojs/xo}{\texttt{}}  \href{https://repl.it/github/chalk/chalk}{\texttt{}}
+
+
+
+~\newline
+
+
+\DoxyHorRuler{0}
+
+
+ 
+
+ 
+
+ \textsuperscript{ Sindre Sorhus\textquotesingle{} open source work is supported by the community on \href{https://github.com/sponsors/sindresorhus}{\texttt{Git\+Hub Sponsors}} and \href{https://stakes.social/0x44d871aebF0126Bf646753E2C976Aa7e68A66c15}{\texttt{Dev}} } 
+
+ \textsuperscript{Special thanks to:\+} ~\newline
+ ~\newline
+ \href{https://standardresume.co/tech}{\texttt{ }} ~\newline
+ ~\newline
+ \href{https://retool.com/?utm_campaign=sindresorhus}{\texttt{ }} ~\newline
+ ~\newline
+ \href{https://doppler.com/?utm_campaign=github_repo&utm_medium=referral&utm_content=chalk&utm_source=github}{\texttt{  {\bfseries{All your environment variables, in one place}}  Stop struggling with scattered API keys, hacking together home-\/brewed tools, ~\newline
+ and avoiding access controls. Keep your team and servers in sync with Doppler.  }} ~\newline
+ \href{https://uibakery.io/?utm_source=chalk&utm_medium=sponsor&utm_campaign=github}{\texttt{  }} 
+
+ 
+
+\DoxyHorRuler{0}
+
+
+~\newline
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1544}{}\doxysubsubsection{\texorpdfstring{Highlights}{Highlights}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1544}
+
+\begin{DoxyItemize}
+\item Expressive API
+\item Highly performant
+\item Ability to nest styles
+\item 256/\+\+Truecolor color support256/\+\+Truecolor color support
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Auto-\/detects color support
+\item Doesn\textquotesingle{}t extend {\ttfamily String.\+prototype}
+\item Clean and focused
+\item Actively maintained
+\item \href{https://www.npmjs.com/browse/depended/chalk}{\texttt{Used by \texorpdfstring{$\sim$}{\string~}50,000 packages}} as of January 1, 2020
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1545}{}\doxysubsubsection{\texorpdfstring{Install}{Install}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1545}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ chalk}
+
+\end{DoxyCode}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1546}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1546}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ chalk\ =\ require('chalk');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(chalk.blue('Hello\ world!'));}
+
+\end{DoxyCode}
+
+
+Chalk comes with an easy to use composable API where you just chain and nest the styles you want.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ chalk\ =\ require('chalk');}
+\DoxyCodeLine{const\ log\ =\ console.log;}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Combine\ styled\ and\ normal\ strings}
+\DoxyCodeLine{log(chalk.blue('Hello')\ +\ '\ World'\ +\ chalk.red('!'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Compose\ multiple\ styles\ using\ the\ chainable\ API}
+\DoxyCodeLine{log(chalk.blue.bgRed.bold('Hello\ world!'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Pass\ in\ multiple\ arguments}
+\DoxyCodeLine{log(chalk.blue('Hello',\ 'World!',\ 'Foo',\ 'bar',\ 'biz',\ 'baz'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Nest\ styles}
+\DoxyCodeLine{log(chalk.red('Hello',\ chalk.underline.bgBlue('world')\ +\ '!'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Nest\ styles\ of\ the\ same\ type\ even\ (color,\ underline,\ background)}
+\DoxyCodeLine{log(chalk.green(}
+\DoxyCodeLine{\ \ \ \ 'I\ am\ a\ green\ line\ '\ +}
+\DoxyCodeLine{\ \ \ \ chalk.blue.underline.bold('with\ a\ blue\ substring')\ +}
+\DoxyCodeLine{\ \ \ \ '\ that\ becomes\ green\ again!'}
+\DoxyCodeLine{));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ ES2015\ template\ literal}
+\DoxyCodeLine{log(`}
+\DoxyCodeLine{CPU:\ \$\{chalk.red('90\%')\}}
+\DoxyCodeLine{RAM:\ \$\{chalk.green('40\%')\}}
+\DoxyCodeLine{DISK:\ \$\{chalk.yellow('70\%')\}}
+\DoxyCodeLine{\`{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ ES2015\ tagged\ template\ literal}
+\DoxyCodeLine{log(chalk`}
+\DoxyCodeLine{CPU:\ \{red\ \$\{cpu.totalPercent\}\%\}}
+\DoxyCodeLine{RAM:\ \{green\ \$\{ram.used\ /\ ram.total\ *\ 100\}\%\}}
+\DoxyCodeLine{DISK:\ \{rgb(255,131,0)\ \$\{disk.used\ /\ disk.total\ *\ 100\}\%\}}
+\DoxyCodeLine{\`{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Use\ RGB\ colors\ in\ terminal\ emulators\ that\ support\ it.}
+\DoxyCodeLine{log(chalk.keyword('orange')('Yay\ for\ orange\ colored\ text!'));}
+\DoxyCodeLine{log(chalk.rgb(123,\ 45,\ 67).underline('Underlined\ reddish\ color'));}
+\DoxyCodeLine{log(chalk.hex('\#DEADED').bold('Bold\ gray!'));}
+
+\end{DoxyCode}
+
+
+Easily define your own themes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ chalk\ =\ require('chalk');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ error\ =\ chalk.bold.red;}
+\DoxyCodeLine{const\ warning\ =\ chalk.keyword('orange');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(error('Error!'));}
+\DoxyCodeLine{console.log(warning('Warning!'));}
+
+\end{DoxyCode}
+
+
+Take advantage of console.\+log \href{https://nodejs.org/docs/latest/api/console.html\#console_console_log_data_args}{\texttt{string substitution}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ name\ =\ 'Sindre';}
+\DoxyCodeLine{console.log(chalk.green('Hello\ \%s'),\ name);}
+\DoxyCodeLine{//=>\ 'Hello\ Sindre'}
+
+\end{DoxyCode}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1547}{}\doxysubsubsection{\texorpdfstring{API}{API}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1547}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1548}{}\doxysubsubsubsection{\texorpdfstring{chalk.{\ttfamily \texorpdfstring{$<$}{<}style\texorpdfstring{$>$}{>}\+[.\texorpdfstring{$<$}{<}style\texorpdfstring{$>$}{>}...]\+(string, \+[string...]\+)}}{chalk.{\ttfamily \texorpdfstring{$<$}{<}style\texorpdfstring{$>$}{>}\+[.\texorpdfstring{$<$}{<}style\texorpdfstring{$>$}{>}...]\+(string, \+[string...]\+)}}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1548}
+Example:\+ {\ttfamily chalk.\+red.\+bold.\+underline(\textquotesingle{}Hello\textquotesingle{}, \textquotesingle{}world\textquotesingle{});}
+
+Chain stylesstyles and call the last one as a method with a string argument. Order doesn\textquotesingle{}t matter, and later styles take precedent in case of a conflict. This simply means that {\ttfamily chalk.\+red.\+yellow.\+green} is equivalent to {\ttfamily chalk.\+green}.
+
+Multiple arguments will be separated by space.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1549}{}\doxysubsubsubsection{\texorpdfstring{chalk.\+level}{chalk.\+level}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1549}
+Specifies the level of color support.
+
+Color support is automatically detected, but you can override it by setting the {\ttfamily level} property. You should however only do this in your own code as it applies globally to all Chalk consumers.
+
+If you need to change this in a reusable module, create a new instance:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ctx\ =\ new\ chalk.Instance(\{level:\ 0\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Level  &\SetCell{bg=\tableheadbgcolor,font=\bfseries}Description  \\
+\SetCell{c}{\ttfamily 0}  &All colors disabled  \\
+\SetCell{c}{\ttfamily 1}  &Basic color support (16 colors)  \\
+\SetCell{c}{\ttfamily 2}  &256 color support  \\
+\SetCell{c}{\ttfamily 3}  &Truecolor support (16 million colors)  \\
+\end{DoxyTable}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1550}{}\doxysubsubsubsection{\texorpdfstring{chalk.\+supports\+Color}{chalk.\+supports\+Color}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1550}
+Detect whether the terminal \href{https://github.com/chalk/supports-color}{\texttt{supports color}}. Used internally and handled for you, but exposed for convenience.
+
+Can be overridden by the user with the flags {\ttfamily -\/-\/color} and {\ttfamily -\/-\/no-\/color}. For situations where using {\ttfamily -\/-\/color} is not possible, use the environment variable {\ttfamily FORCE\+\_\+\+COLOR=1} (level 1), {\ttfamily FORCE\+\_\+\+COLOR=2} (level 2), or {\ttfamily FORCE\+\_\+\+COLOR=3} (level 3) to forcefully enable color, or {\ttfamily FORCE\+\_\+\+COLOR=0} to forcefully disable. The use of {\ttfamily FORCE\+\_\+\+COLOR} overrides all other color support checks.
+
+Explicit 256/\+\+Truecolor mode can be enabled using the {\ttfamily -\/-\/color=256} and {\ttfamily -\/-\/color=16m} flags, respectively.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1551}{}\doxysubsubsubsection{\texorpdfstring{chalk.\+stderr and chalk.\+stderr.\+supports\+Color}{chalk.\+stderr and chalk.\+stderr.\+supports\+Color}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1551}
+{\ttfamily chalk.\+stderr} contains a separate instance configured with color support detected for {\ttfamily stderr} stream instead of {\ttfamily stdout}. Override rules from {\ttfamily chalk.\+supports\+Color} apply to this too. {\ttfamily chalk.\+stderr.\+supports\+Color} is exposed for convenience.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1552}{}\doxysubsubsection{\texorpdfstring{Styles}{Styles}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1552}
+\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1553}{}\doxysubsubsubsection{\texorpdfstring{Modifiers}{Modifiers}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1553}
+
+\begin{DoxyItemize}
+\item {\ttfamily reset} -\/ Resets the current color chain.
+\item {\ttfamily bold} -\/ Make text bold.
+\item {\ttfamily dim} -\/ Emitting only a small amount of light.
+\item {\ttfamily italic} -\/ Make text italic. {\itshape (Not widely supported)}
+\item {\ttfamily underline} -\/ Make text underline. {\itshape (Not widely supported)}
+\item {\ttfamily inverse}-\/ Inverse background and foreground colors.
+\item {\ttfamily hidden} -\/ Prints the text, but makes it invisible.
+\item {\ttfamily strikethrough} -\/ Puts a horizontal line through the center of the text. {\itshape (Not widely supported)}
+\item {\ttfamily visible}-\/ Prints the text only when Chalk has a color level \texorpdfstring{$>$}{>} 0. Can be useful for things that are purely cosmetic.
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1554}{}\doxysubsubsubsection{\texorpdfstring{Colors}{Colors}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1554}
+
+\begin{DoxyItemize}
+\item {\ttfamily black}
+\item {\ttfamily red}
+\item {\ttfamily green}
+\item {\ttfamily yellow}
+\item {\ttfamily blue}
+\item {\ttfamily magenta}
+\item {\ttfamily cyan}
+\item {\ttfamily white}
+\item {\ttfamily black\+Bright} (alias:\+ {\ttfamily gray}, {\ttfamily grey})
+\item {\ttfamily red\+Bright}
+\item {\ttfamily green\+Bright}
+\item {\ttfamily yellow\+Bright}
+\item {\ttfamily blue\+Bright}
+\item {\ttfamily magenta\+Bright}
+\item {\ttfamily cyan\+Bright}
+\item {\ttfamily white\+Bright}
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1555}{}\doxysubsubsubsection{\texorpdfstring{Background colors}{Background colors}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1555}
+
+\begin{DoxyItemize}
+\item {\ttfamily bg\+Black}
+\item {\ttfamily bg\+Red}
+\item {\ttfamily bg\+Green}
+\item {\ttfamily bg\+Yellow}
+\item {\ttfamily bg\+Blue}
+\item {\ttfamily bg\+Magenta}
+\item {\ttfamily bg\+Cyan}
+\item {\ttfamily bg\+White}
+\item {\ttfamily bg\+Black\+Bright} (alias:\+ {\ttfamily bg\+Gray}, {\ttfamily bg\+Grey})
+\item {\ttfamily bg\+Red\+Bright}
+\item {\ttfamily bg\+Green\+Bright}
+\item {\ttfamily bg\+Yellow\+Bright}
+\item {\ttfamily bg\+Blue\+Bright}
+\item {\ttfamily bg\+Magenta\+Bright}
+\item {\ttfamily bg\+Cyan\+Bright}
+\item {\ttfamily bg\+White\+Bright}
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1556}{}\doxysubsubsection{\texorpdfstring{Tagged template literal}{Tagged template literal}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1556}
+Chalk can be used as a \href{https://exploringjs.com/es6/ch_template-literals.html\#_tagged-template-literals}{\texttt{tagged template literal}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ chalk\ =\ require('chalk');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ miles\ =\ 18;}
+\DoxyCodeLine{const\ calculateFeet\ =\ miles\ =>\ miles\ *\ 5280;}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(chalk`}
+\DoxyCodeLine{\ \ \ \ There\ are\ \{bold\ 5280\ feet\}\ in\ a\ mile.}
+\DoxyCodeLine{\ \ \ \ In\ \{bold\ \$\{miles\}\ miles\},\ there\ are\ \{green.bold\ \$\{calculateFeet(miles)\}\ feet\}.}
+\DoxyCodeLine{\`{});}
+
+\end{DoxyCode}
+
+
+Blocks are delimited by an opening curly brace ({\ttfamily \{}), a style, some content, and a closing curly brace ({\ttfamily \}}).
+
+Template styles are chained exactly like normal Chalk styles. The following three statements are equivalent:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(chalk.bold.rgb(10,\ 100,\ 200)('Hello!'));}
+\DoxyCodeLine{console.log(chalk.bold.rgb(10,\ 100,\ 200)`Hello!`);}
+\DoxyCodeLine{console.log(chalk`\{bold.rgb(10,100,200)\ Hello!\}`);}
+
+\end{DoxyCode}
+
+
+Note that function styles ({\ttfamily rgb()}, {\ttfamily hsl()}, {\ttfamily keyword()}, etc.) may not contain spaces between parameters.
+
+All interpolated values ({\ttfamily  chalk\`{}\$\{foo\}\`{} }) are converted to strings via the {\ttfamily .to\+String()} method. All curly braces ({\ttfamily \{} and {\ttfamily \}}) in interpolated value strings are escaped.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1557}{}\doxysubsubsection{\texorpdfstring{256 and Truecolor color support}{256 and Truecolor color support}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1557}
+Chalk supports 256 colors and \href{https://gist.github.com/XVilka/8346728}{\texttt{Truecolor}} (16 million colors) on supported terminal apps.
+
+Colors are downsampled from 16 million RGB values to an ANSI color format that is supported by the terminal emulator (or by specifying {\ttfamily \{level:\+ n\}} as a Chalk option). For example, Chalk configured to run at level 1 (basic color support) will downsample an RGB value of \+\#\+FF0000 (red) to 31 (ANSI escape for red).
+
+Examples:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily chalk.\+hex(\textquotesingle{}\#DEADED\textquotesingle{}).underline(\textquotesingle{}Hello, world!\textquotesingle{})}
+\item {\ttfamily chalk.\+keyword(\textquotesingle{}orange\textquotesingle{})(\textquotesingle{}Some orange text\textquotesingle{})}
+\item {\ttfamily chalk.\+rgb(15, 100, 204).inverse(\textquotesingle{}Hello!\textquotesingle{})}
+\end{DoxyItemize}
+
+Background versions of these models are prefixed with {\ttfamily bg} and the first level of the module capitalized (e.\+g. {\ttfamily keyword} for foreground colors and {\ttfamily bg\+Keyword} for background colors).
+
+
+\begin{DoxyItemize}
+\item {\ttfamily chalk.\+bg\+Hex(\textquotesingle{}\#DEADED\textquotesingle{}).underline(\textquotesingle{}Hello, world!\textquotesingle{})}
+\item {\ttfamily chalk.\+bg\+Keyword(\textquotesingle{}orange\textquotesingle{})(\textquotesingle{}Some orange text\textquotesingle{})}
+\item {\ttfamily chalk.\+bg\+Rgb(15, 100, 204).inverse(\textquotesingle{}Hello!\textquotesingle{})}
+\end{DoxyItemize}
+
+The following color models can be used:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://en.wikipedia.org/wiki/RGB_color_model}{\texttt{{\ttfamily rgb}}} -\/ Example:\+ {\ttfamily chalk.\+rgb(255, 136, 0).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/Web_colors\#Hex_triplet}{\texttt{{\ttfamily hex}}} -\/ Example:\+ {\ttfamily chalk.\+hex(\textquotesingle{}\#FF8800\textquotesingle{}).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://www.w3.org/wiki/CSS/Properties/color/keywords}{\texttt{{\ttfamily keyword}}} (CSS keywords) -\/ Example:\+ {\ttfamily chalk.\+keyword(\textquotesingle{}orange\textquotesingle{}).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/HSL_and_HSV}{\texttt{{\ttfamily hsl}}} -\/ Example:\+ {\ttfamily chalk.\+hsl(32, 100, 50).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/HSL_and_HSV}{\texttt{{\ttfamily hsv}}} -\/ Example:\+ {\ttfamily chalk.\+hsv(32, 100, 100).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/HWB_color_model}{\texttt{{\ttfamily hwb}}} -\/ Example:\+ {\ttfamily chalk.\+hwb(32, 0, 50).bold(\textquotesingle{}Orange!\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/ANSI_escape_code\#3/4_bit}{\texttt{{\ttfamily ansi}}} -\/ Example:\+ {\ttfamily chalk.\+ansi(31).bg\+Ansi(93)(\textquotesingle{}red on yellow\+Bright\textquotesingle{})}
+\item \href{https://en.wikipedia.org/wiki/ANSI_escape_code\#8-bit}{\texttt{{\ttfamily ansi256}}} -\/ Example:\+ {\ttfamily chalk.\+bg\+Ansi256(194)(\textquotesingle{}Honeydew, more or less\textquotesingle{})}
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1558}{}\doxysubsubsection{\texorpdfstring{Windows}{Windows}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1558}
+If you\textquotesingle{}re on Windows, do yourself a favor and use \href{https://github.com/microsoft/terminal}{\texttt{Windows Terminal}} instead of {\ttfamily cmd.\+exe}.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1559}{}\doxysubsubsection{\texorpdfstring{Origin story}{Origin story}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1559}
+\href{https://github.com/Marak/colors.js}{\texttt{colors.\+js}} used to be the most popular string styling module, but it has serious deficiencies like extending {\ttfamily String.\+prototype} which causes all kinds of \href{https://github.com/yeoman/yo/issues/68}{\texttt{problems}} and the package is unmaintained. Although there are other packages, they either do too much or not enough. Chalk is a clean and focused alternative.\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1560}{}\doxysubsubsection{\texorpdfstring{chalk for enterprise}{chalk for enterprise}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1560}
+Available as part of the Tidelift Subscription.
+
+The maintainers of chalk and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. \href{https://tidelift.com/subscription/pkg/npm-chalk?utm_source=npm-chalk&utm_medium=referral&utm_campaign=enterprise&utm_term=repo}{\texttt{Learn more.}}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1561}{}\doxysubsubsection{\texorpdfstring{Related}{Related}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1561}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/chalk/chalk-cli}{\texttt{chalk-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/chalk/ansi-styles}{\texttt{ansi-\/styles}} -\/ ANSI escape codes for styling strings in the terminal
+\item \href{https://github.com/chalk/supports-color}{\texttt{supports-\/color}} -\/ Detect whether a terminal supports color
+\item \href{https://github.com/chalk/strip-ansi}{\texttt{strip-\/ansi}} -\/ Strip ANSI escape codes
+\item \href{https://github.com/chalk/strip-ansi-stream}{\texttt{strip-\/ansi-\/stream}} -\/ Strip ANSI escape codes from a stream
+\item \href{https://github.com/chalk/has-ansi}{\texttt{has-\/ansi}} -\/ Check if a string has ANSI escape codes
+\item \href{https://github.com/chalk/ansi-regex}{\texttt{ansi-\/regex}} -\/ Regular expression for matching ANSI escape codes
+\item \href{https://github.com/chalk/wrap-ansi}{\texttt{wrap-\/ansi}} -\/ Wordwrap a string with ANSI escape codes
+\item \href{https://github.com/chalk/slice-ansi}{\texttt{slice-\/ansi}} -\/ Slice a string with ANSI escape codes
+\item \href{https://github.com/qix-/color-convert}{\texttt{color-\/convert}} -\/ Converts colors between different models
+\item \href{https://github.com/bokub/chalk-animation}{\texttt{chalk-\/animation}} -\/ Animate strings in the terminal
+\item \href{https://github.com/bokub/gradient-string}{\texttt{gradient-\/string}} -\/ Apply color gradients to strings
+\item \href{https://github.com/LitoMore/chalk-pipe}{\texttt{chalk-\/pipe}} -\/ Create chalk style schemes with simpler style strings
+\item \href{https://github.com/sindresorhus/terminal-link}{\texttt{terminal-\/link}} -\/ Create clickable links in the terminal
+\end{DoxyItemize}\hypertarget{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1562}{}\doxysubsubsection{\texorpdfstring{Maintainers}{Maintainers}}\label{dir_e861fa512b56ba8283a7893ee8eedea2_autotoc_md1562}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus}{\texttt{Sindre Sorhus}}
+\item \href{https://github.com/qix-}{\texttt{Josh Junon}} 
+\end{DoxyItemize}

@@ -1,0 +1,132 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fast-\/json-\/stable-\/stringify Directory Reference}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d}{}\label{dir_f22477f6824e99a91085b3dcfd87d98d}\index{frontend/node\_modules/fast-\/json-\/stable-\/stringify Directory Reference@{frontend/node\_modules/fast-\/json-\/stable-\/stringify Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_cba4d4b832b4042dc46d8142171d558c}{benchmark}}
+\item 
+directory \doxymbox{\hyperlink{dir_68c54216dd3992856d70a82e567f3799}{example}}
+\item 
+directory \doxymbox{\hyperlink{dir_b0807be8d56b1b02e645915c5fb8c34d}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2253}{}\doxysubsection{\texorpdfstring{fast-\/json-\/stable-\/stringify}{fast-\/json-\/stable-\/stringify}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2253}
+Deterministic {\ttfamily JSON.\+stringify()} -\/ a faster version of \href{https://github.com/substack}{\texttt{@substack}}\textquotesingle{}s json-\/stable-\/strigify without \href{https://github.com/substack/jsonify}{\texttt{jsonify}}.
+
+You can also pass in a custom comparison function.
+
+\href{https://travis-ci.org/epoberezkin/fast-json-stable-stringify}{\texttt{}} \href{https://coveralls.io/github/epoberezkin/fast-json-stable-stringify?branch=master}{\texttt{}}\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2254}{}\doxysubsection{\texorpdfstring{example}{example}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2254}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('fast-\/json-\/stable-\/stringify');}
+\DoxyCodeLine{var\ obj\ =\ \{\ c:\ 8,\ b:\ [\{z:6,y:5,x:4\},7],\ a:\ 3\ \};}
+\DoxyCodeLine{console.log(stringify(obj));}
+
+\end{DoxyCode}
+
+
+output:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}a"{}:3,"{}b"{}:[\{"{}x"{}:4,"{}y"{}:5,"{}z"{}:6\},7],"{}c"{}:8\}}
+
+\end{DoxyCode}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2255}{}\doxysubsection{\texorpdfstring{methods}{methods}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2255}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('fast-\/json-\/stable-\/stringify')}
+
+\end{DoxyCode}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2256}{}\doxysubsubsection{\texorpdfstring{var str = stringify(obj, opts)}{var str = stringify(obj, opts)}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2256}
+Return a deterministic stringified string {\ttfamily str} from the object {\ttfamily obj}.\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2257}{}\doxysubsubsection{\texorpdfstring{options}{options}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2257}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2258}{}\doxysubsubsubsection{\texorpdfstring{cmp}{cmp}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2258}
+If {\ttfamily opts} is given, you can supply an {\ttfamily opts.\+cmp} to have a custom comparison function for object keys. Your function {\ttfamily opts.\+cmp} is called with these parameters:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{opts.cmp(\{\ key:\ akey,\ value:\ avalue\ \},\ \{\ key:\ bkey,\ value:\ bvalue\ \})}
+
+\end{DoxyCode}
+
+
+For example, to sort on the object key names in reverse order you could write:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('fast-\/json-\/stable-\/stringify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ obj\ =\ \{\ c:\ 8,\ b:\ [\{z:6,y:5,x:4\},7],\ a:\ 3\ \};}
+\DoxyCodeLine{var\ s\ =\ stringify(obj,\ function\ (a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ a.key\ <\ b.key\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{console.log(s);}
+
+\end{DoxyCode}
+
+
+which results in the output string:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}c"{}:8,"{}b"{}:[\{"{}z"{}:6,"{}y"{}:5,"{}x"{}:4\},7],"{}a"{}:3\}}
+
+\end{DoxyCode}
+
+
+Or if you wanted to sort on the object values in reverse order, you could write:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('fast-\/json-\/stable-\/stringify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ obj\ =\ \{\ d:\ 6,\ c:\ 5,\ b:\ [\{z:3,y:2,x:1\},9],\ a:\ 10\ \};}
+\DoxyCodeLine{var\ s\ =\ stringify(obj,\ function\ (a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ a.value\ <\ b.value\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{console.log(s);}
+
+\end{DoxyCode}
+
+
+which outputs:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}d"{}:6,"{}c"{}:5,"{}b"{}:[\{"{}z"{}:3,"{}y"{}:2,"{}x"{}:1\},9],"{}a"{}:10\}}
+
+\end{DoxyCode}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2259}{}\doxysubsubsubsection{\texorpdfstring{cycles}{cycles}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2259}
+Pass {\ttfamily true} in {\ttfamily opts.\+cycles} to stringify circular property as {\ttfamily \+\_\+\+\_\+cycle\+\_\+\+\_\+} -\/ the result will not be a valid JSON string in this case.
+
+Type\+Error will be thrown in case of circular object without this option.\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2260}{}\doxysubsection{\texorpdfstring{install}{install}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2260}
+With \href{https://npmjs.org}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ fast-\/json-\/stable-\/stringify}
+
+\end{DoxyCode}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2261}{}\doxysubsection{\texorpdfstring{benchmark}{benchmark}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2261}
+To run benchmark (requires Node.\+js 6+):\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{node\ benchmark}
+
+\end{DoxyCode}
+
+
+Results:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fast-\/json-\/stable-\/stringify\ x\ 17,189\ ops/sec\ ±1.43\%\ (83\ runs\ sampled)}
+\DoxyCodeLine{json-\/stable-\/stringify\ x\ 13,634\ ops/sec\ ±1.39\%\ (85\ runs\ sampled)}
+\DoxyCodeLine{fast-\/stable-\/stringify\ x\ 20,212\ ops/sec\ ±1.20\%\ (84\ runs\ sampled)}
+\DoxyCodeLine{faster-\/stable-\/stringify\ x\ 15,549\ ops/sec\ ±1.12\%\ (84\ runs\ sampled)}
+\DoxyCodeLine{The\ fastest\ is\ fast-\/stable-\/stringify}
+
+\end{DoxyCode}
+\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2262}{}\doxysubsubsection{\texorpdfstring{Enterprise support}{Enterprise support}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2262}
+fast-\/json-\/stable-\/stringify package is a part of \href{https://tidelift.com/subscription/pkg/npm-fast-json-stable-stringify?utm_source=npm-fast-json-stable-stringify&utm_medium=referral&utm_campaign=enterprise&utm_term=repo}{\texttt{Tidelift enterprise subscription}} -\/ it provides a centralised commercial support to open-\/source software users, in addition to the support provided by software maintainers.\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2263}{}\doxysubsubsection{\texorpdfstring{Security contact}{Security contact}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2263}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{Tidelift security contact}}. Tidelift will coordinate the fix and disclosure. Please do NOT report security vulnerability via Git\+Hub issues.\hypertarget{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2264}{}\doxysubsection{\texorpdfstring{license}{license}}\label{dir_f22477f6824e99a91085b3dcfd87d98d_autotoc_md2264}
+\href{https://github.com/epoberezkin/fast-json-stable-stringify/blob/master/LICENSE}{\texttt{MIT}} 

@@ -1,0 +1,28 @@
+var classsentry__sdk_1_1hub_1_1Hub =
+[
+    [ "add_breadcrumb", "classsentry__sdk_1_1hub_1_1Hub.html#aa642dc12986acb05cd0b05fb34567c5f", null ],
+    [ "bind_client", "classsentry__sdk_1_1hub_1_1Hub.html#a4794dc37a4f3e185ffda5aa7ea2b836b", null ],
+    [ "capture_event", "classsentry__sdk_1_1hub_1_1Hub.html#a3dcc3dbd87cafc43b05c20789b96d228", null ],
+    [ "capture_exception", "classsentry__sdk_1_1hub_1_1Hub.html#aa8c6c9b69f7fe163092b1c6475747846", null ],
+    [ "capture_message", "classsentry__sdk_1_1hub_1_1Hub.html#a54ed77fcbe7295b4f8054d4976ced6ef", null ],
+    [ "client", "classsentry__sdk_1_1hub_1_1Hub.html#a8bcda9de96ee5576da7f031e8419e5f5", null ],
+    [ "configure_scope", "classsentry__sdk_1_1hub_1_1Hub.html#ae4d4a2c51041a4405667ae94886e1b0e", null ],
+    [ "continue_trace", "classsentry__sdk_1_1hub_1_1Hub.html#abf5e92d22dab0e8ddfdae54b2087c5a0", null ],
+    [ "end_session", "classsentry__sdk_1_1hub_1_1Hub.html#a9f4fb96272343cad7159f2ef80758a2d", null ],
+    [ "flush", "classsentry__sdk_1_1hub_1_1Hub.html#a357f7b99cb234a68d15ee424d3a531a9", null ],
+    [ "get_baggage", "classsentry__sdk_1_1hub_1_1Hub.html#a4d4db27c868988bba846cece84a57fc4", null ],
+    [ "get_integration", "classsentry__sdk_1_1hub_1_1Hub.html#a9772596fac3a63051b796183a9650e4c", null ],
+    [ "get_traceparent", "classsentry__sdk_1_1hub_1_1Hub.html#ac013ad1dd3cb74ca04d32ac6063266a5", null ],
+    [ "iter_trace_propagation_headers", "classsentry__sdk_1_1hub_1_1Hub.html#a7b57eb1847f65d34472f392692ede44b", null ],
+    [ "last_event_id", "classsentry__sdk_1_1hub_1_1Hub.html#ab78ff0a6d09d60e5a232e668c927baee", null ],
+    [ "pop_scope_unsafe", "classsentry__sdk_1_1hub_1_1Hub.html#a47140129818e56f46aa2e46f628770ed", null ],
+    [ "push_scope", "classsentry__sdk_1_1hub_1_1Hub.html#a1b16edbf4b96b6d3fb3a58beb658e674", null ],
+    [ "resume_auto_session_tracking", "classsentry__sdk_1_1hub_1_1Hub.html#a6a26313a676656102e567c4ec566f149", null ],
+    [ "run", "classsentry__sdk_1_1hub_1_1Hub.html#ab802dee1e24b8cd704736961c646aafc", null ],
+    [ "scope", "classsentry__sdk_1_1hub_1_1Hub.html#af4d7ec12ae54d5304b032cb527526bd2", null ],
+    [ "start_session", "classsentry__sdk_1_1hub_1_1Hub.html#a89a808a44e0074cef6a3c11e5c9c75c2", null ],
+    [ "start_span", "classsentry__sdk_1_1hub_1_1Hub.html#acff8d7bcb72a1b9d69cc404c74860629", null ],
+    [ "start_transaction", "classsentry__sdk_1_1hub_1_1Hub.html#af23f0624b5f5314d17f0948469cae45e", null ],
+    [ "stop_auto_session_tracking", "classsentry__sdk_1_1hub_1_1Hub.html#a02603ef55dd9dfa91deb3656a7c20aa7", null ],
+    [ "trace_propagation_meta", "classsentry__sdk_1_1hub_1_1Hub.html#acadbda1e6afbcb11eb55747fae1b731f", null ]
+];

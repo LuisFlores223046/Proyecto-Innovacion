@@ -1,0 +1,76 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+fastapi.\+Fast\+Api\+Integration Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration}{}\label{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration}\index{sentry\_sdk.integrations.fastapi.FastApiIntegration@{sentry\_sdk.integrations.fastapi.FastApiIntegration}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+fastapi.\+Fast\+Api\+Integration:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration_a3a1c7046b51e1fcd98e24590f3c7347f}{setup\+\_\+once}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1starlette_1_1StarletteIntegration}{sentry\+\_\+sdk.\+integrations.\+starlette.\+Starlette\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str transaction\+\_\+style="{}url"{}, "{}Union\+[Set\+[int]\+, list\+[Http\+Status\+Code\+Range]\+, None]\+"{} failed\+\_\+request\+\_\+status\+\_\+codes=\+\_\+\+DEFAULT\+\_\+\+FAILED\+\_\+\+REQUEST\+\_\+\+STATUS\+\_\+\+CODES, bool middleware\+\_\+spans=False, "{}tuple\+[str, ...]\+"{} http\+\_\+methods\+\_\+to\+\_\+capture=DEFAULT\+\_\+\+HTTP\+\_\+\+METHODS\+\_\+\+TO\+\_\+\+CAPTURE)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a60252f59d5622a95627f6bb75c168abe}{setup\+\_\+once\+\_\+with\+\_\+options}} (self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1starlette_1_1StarletteIntegration}{sentry\+\_\+sdk.\+integrations.\+starlette.\+Starlette\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries middleware\+\_\+spans} = middleware\+\_\+spans
+\item 
+{\bfseries http\+\_\+methods\+\_\+to\+\_\+capture} = tuple(map(str.\+upper, http\+\_\+methods\+\_\+to\+\_\+capture))
+\item 
+tuple \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1starlette_1_1StarletteIntegration_ac52c96d43a2eb06bbe6396ca52a90c9e}{failed\+\_\+request\+\_\+status\+\_\+codes}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1starlette_1_1StarletteIntegration}{sentry\+\_\+sdk.\+integrations.\+starlette.\+Starlette\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries origin} = f"{}auto.\+http.\{identifier\}"{}
+\item 
+str {\bfseries transaction\+\_\+style} = "{}"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries install} = None
+\item 
+str {\bfseries identifier} = None
+\end{DoxyCompactItemize}
+
+
+\label{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration_a3a1c7046b51e1fcd98e24590f3c7347f}\index{sentry\_sdk.integrations.fastapi.FastApiIntegration@{sentry\_sdk.integrations.fastapi.FastApiIntegration}!setup\_once@{setup\_once}}
+\index{setup\_once@{setup\_once}!sentry\_sdk.integrations.fastapi.FastApiIntegration@{sentry\_sdk.integrations.fastapi.FastApiIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once()}{setup\_once()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1fastapi_1_1FastApiIntegration_a3a1c7046b51e1fcd98e24590f3c7347f} 
+ None sentry\+\_\+sdk.\+integrations.\+fastapi.\+Fast\+Api\+Integration.\+setup\+\_\+once (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Initialize the integration.
+
+This function is only called once, ever. Configuration is not available
+at this point, so the only thing to do here is to hook into exception
+handlers, and perhaps do monkeypatches.
+
+Inside those hooks `Integration.current` can be used to access the
+instance again.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1starlette_1_1StarletteIntegration_add087a5668172f8b59e6766f14b39d41}{sentry\+\_\+sdk.\+integrations.\+starlette.\+Starlette\+Integration}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+fastapi.\+py\end{DoxyCompactItemize}

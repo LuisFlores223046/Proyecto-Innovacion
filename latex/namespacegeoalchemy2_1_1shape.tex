@@ -1,0 +1,82 @@
+\doxysection{geoalchemy2.\+shape Namespace Reference}
+\hypertarget{namespacegeoalchemy2_1_1shape}{}\label{namespacegeoalchemy2_1_1shape}\index{geoalchemy2.shape@{geoalchemy2.shape}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1shape_1_1ShapelyGeometry}{Shapely\+Geometry}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1shape_ad3a09b4a621027242c981344bb102998}\label{namespacegeoalchemy2_1_1shape_ad3a09b4a621027242c981344bb102998} 
+{\bfseries check\+\_\+shapely} ()
+\item 
+\doxymbox{\hyperlink{classgeoalchemy2_1_1shape_1_1ShapelyGeometry}{Shapely\+Geometry}} \doxymbox{\hyperlink{namespacegeoalchemy2_1_1shape_a1689fdd98743b84bd794420474fc6ba2}{to\+\_\+shape}} (\doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKBElement}{WKBElement}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKTElement}{WKTElement}} element)
+\item 
+\doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKBElement}{WKBElement}} \doxymbox{\hyperlink{namespacegeoalchemy2_1_1shape_af7814659726a8b827757393c3f96d8f8}{from\+\_\+shape}} (\doxymbox{\hyperlink{classgeoalchemy2_1_1shape_1_1ShapelyGeometry}{Shapely\+Geometry}} shape, int srid=-\/1, bool\texorpdfstring{$\vert$}{|}None extended=False)
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1shape_ad0be10d0ebf82629a0b53eae1a018165}\label{namespacegeoalchemy2_1_1shape_ad0be10d0ebf82629a0b53eae1a018165} 
+list\+[str]\+ {\bfseries \+\_\+\+\_\+dir\+\_\+\+\_\+} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1shape_a453692243425bbdc4c7f72fb7477cef9}\label{namespacegeoalchemy2_1_1shape_a453692243425bbdc4c7f72fb7477cef9} 
+bool {\bfseries HAS\+\_\+\+SHAPELY} = True
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1shape_a01a94b6eb8fd838fdcf4ed859b9aa3a6}\label{namespacegeoalchemy2_1_1shape_a01a94b6eb8fd838fdcf4ed859b9aa3a6} 
+{\bfseries \+\_\+shapely\+\_\+exc} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module provides utility functions for integrating with Shapely.
+
+.. note::
+
+    As GeoAlchemy 2 itself has no dependency on `Shapely`, applications using
+    functions of this module have to ensure that `Shapely` is available.
+\end{DoxyVerb}
+ 
+
+\label{namespacegeoalchemy2_1_1shape_doc-func-members}
+\Hypertarget{namespacegeoalchemy2_1_1shape_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacegeoalchemy2_1_1shape_af7814659726a8b827757393c3f96d8f8}\index{geoalchemy2.shape@{geoalchemy2.shape}!from\_shape@{from\_shape}}
+\index{from\_shape@{from\_shape}!geoalchemy2.shape@{geoalchemy2.shape}}
+\doxysubsubsection{\texorpdfstring{from\_shape()}{from\_shape()}}
+{\footnotesize\ttfamily \label{namespacegeoalchemy2_1_1shape_af7814659726a8b827757393c3f96d8f8} 
+ \doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKBElement}{WKBElement}} from\+\_\+shape (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classgeoalchemy2_1_1shape_1_1ShapelyGeometry}{Shapely\+Geometry}}}]{shape}{, }\item[{int }]{srid}{ = {\ttfamily -\/1}, }\item[{bool \texorpdfstring{$\vert$}{|} None }]{extended}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function to convert a Shapely geometry to a :class:`geoalchemy2.types.WKBElement`.
+
+Args:
+    shape: The shape to convert.
+    srid: An integer representing the spatial reference system. E.g. ``4326``.
+        Default value is ``-1``, which means no/unknown reference system.
+    extended: A boolean to switch between WKB and EWKB.
+        Default value is False.
+
+Example::
+
+    from shapely.geometry import Point
+    wkb_element = from_shape(Point(5, 45), srid=4326)
+    ewkb_element = from_shape(Point(5, 45), srid=4326, extended=True)
+\end{DoxyVerb}
+ \Hypertarget{namespacegeoalchemy2_1_1shape_a1689fdd98743b84bd794420474fc6ba2}\index{geoalchemy2.shape@{geoalchemy2.shape}!to\_shape@{to\_shape}}
+\index{to\_shape@{to\_shape}!geoalchemy2.shape@{geoalchemy2.shape}}
+\doxysubsubsection{\texorpdfstring{to\_shape()}{to\_shape()}}
+{\footnotesize\ttfamily \label{namespacegeoalchemy2_1_1shape_a1689fdd98743b84bd794420474fc6ba2} 
+ \doxymbox{\hyperlink{classgeoalchemy2_1_1shape_1_1ShapelyGeometry}{Shapely\+Geometry}} to\+\_\+shape (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKBElement}{WKBElement}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classgeoalchemy2_1_1elements_1_1WKTElement}{WKTElement}}}]{element}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function to convert a :class:`geoalchemy2.types.SpatialElement` to a Shapely geometry.
+
+Args:
+    element: The element to convert into a ``Shapely`` object.
+
+Example::
+
+    lake = Session.query(Lake).get(1)
+    polygon = to_shape(lake.geom)
+\end{DoxyVerb}
+ 

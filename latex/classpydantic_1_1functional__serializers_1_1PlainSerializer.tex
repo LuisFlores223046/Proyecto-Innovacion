@@ -1,0 +1,77 @@
+\doxysection{pydantic.\+functional\+\_\+serializers.\+Plain\+Serializer Class Reference}
+\hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer}{}\label{classpydantic_1_1functional__serializers_1_1PlainSerializer}\index{pydantic.functional\_serializers.PlainSerializer@{pydantic.functional\_serializers.PlainSerializer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic_1_1functional__serializers_1_1PlainSerializer_a801af8ccd5ba7263ed1dd8981a213e26}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (self, Any source\+\_\+type, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer_a6842bbe5c093565bb5f25f631995ed4a}\label{classpydantic_1_1functional__serializers_1_1PlainSerializer_a6842bbe5c093565bb5f25f631995ed4a} 
+\doxymbox{\hyperlink{namespacepydantic__core_1_1core__schema}{core\+\_\+schema}} {\bfseries func} .Serializer\+Function
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer_a4faa3bcd5d3a9765bf57b1f71d02f0eb}\label{classpydantic_1_1functional__serializers_1_1PlainSerializer_a4faa3bcd5d3a9765bf57b1f71d02f0eb} 
+Any {\bfseries return\+\_\+type} = Pydantic\+Undefined
+\item 
+\Hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer_a6f0d3985be1fb3f5330c027a2435888a}\label{classpydantic_1_1functional__serializers_1_1PlainSerializer_a6f0d3985be1fb3f5330c027a2435888a} 
+Literal {\bfseries when\+\_\+used} = \textquotesingle{}always\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Plain serializers use a function to modify the output of serialization.
+
+This is particularly helpful when you want to customize the serialization for annotated types.
+Consider an input of `list`, which will be serialized into a space-delimited string.
+
+```python
+from typing import List
+
+from typing_extensions import Annotated
+
+from pydantic import BaseModel, PlainSerializer
+
+CustomStr = Annotated[
+    List, PlainSerializer(lambda x: ' '.join(x), return_type=str)
+]
+
+class StudentModel(BaseModel):
+    courses: CustomStr
+
+student = StudentModel(courses=['Math', 'Chemistry', 'English'])
+print(student.model_dump())
+#> {'courses': 'Math Chemistry English'}
+```
+
+Attributes:
+    func: The serializer function.
+    return_type: The return type for the function. If omitted it will be inferred from the type annotation.
+    when_used: Determines when this serializer should be used. Accepts a string with values `'always'`,
+        `'unless-none'`, `'json'`, and `'json-unless-none'`. Defaults to 'always'.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1functional__serializers_1_1PlainSerializer_doc-func-members}
+\Hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1functional__serializers_1_1PlainSerializer_a801af8ccd5ba7263ed1dd8981a213e26}\index{pydantic.functional\_serializers.PlainSerializer@{pydantic.functional\_serializers.PlainSerializer}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic.functional\_serializers.PlainSerializer@{pydantic.functional\_serializers.PlainSerializer}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1functional__serializers_1_1PlainSerializer_a801af8ccd5ba7263ed1dd8981a213e26} 
+ core\+\_\+schema.\+Core\+Schema pydantic.\+functional\+\_\+serializers.\+Plain\+Serializer.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{source\+\_\+type}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Gets the Pydantic core schema.
+
+Args:
+    source_type: The source type.
+    handler: The `GetCoreSchemaHandler` instance.
+
+Returns:
+    The Pydantic core schema.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+serializers.\+py\end{DoxyCompactItemize}

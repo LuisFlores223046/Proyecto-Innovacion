@@ -1,0 +1,76 @@
+\doxysection{anyio.\+abc.\+\_\+streams.\+Byte\+Receive\+Stream Class Reference}
+\hypertarget{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream}{}\label{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream}\index{anyio.abc.\_streams.ByteReceiveStream@{anyio.abc.\_streams.ByteReceiveStream}}
+Inheritance diagram for anyio.\+abc.\+\_\+streams.\+Byte\+Receive\+Stream:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.789137cm]{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_a365057ac0773ac77ac2f59209e990df7}\label{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_a365057ac0773ac77ac2f59209e990df7} 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream}{Byte\+Receive\+Stream}} {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_ae417974ac598cc10a470dbe75d5b93f6}\label{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_ae417974ac598cc10a470dbe75d5b93f6} 
+bytes {\bfseries \+\_\+\+\_\+anext\+\_\+\+\_\+} (self)
+\item 
+bytes \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_a06468412be105f64c6f137e8d13ede86}{receive}} (self, int max\+\_\+bytes=65536)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource}{anyio.\+abc.\+\_\+resources.\+Async\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+T {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (T self)
+\item 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource_a3ab27dd7173f5cf834e6091003534813}{aclose}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider}}}
+\begin{DoxyCompactItemize}
+\item 
+Mapping\+[T\+\_\+\+Attr, Callable\+[\+[$\,$]\+, T\+\_\+\+Attr]\+]\+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c}{extra\+\_\+attributes}} (self)
+\item 
+T\+\_\+\+Attr {\bfseries extra} (self, T\+\_\+\+Attr attribute)
+\item 
+T\+\_\+\+Attr\texorpdfstring{$\vert$}{|}T\+\_\+\+Default {\bfseries extra} (self, T\+\_\+\+Attr attribute, T\+\_\+\+Default default)
+\item 
+object \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7}{extra}} (self, Any attribute, object default=undefined)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An interface for receiving bytes from a single peer.
+
+Iterating this byte stream will yield a byte string of arbitrary length, but no more
+than 65536 bytes.
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_doc-func-members}
+\Hypertarget{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_a06468412be105f64c6f137e8d13ede86}\index{anyio.abc.\_streams.ByteReceiveStream@{anyio.abc.\_streams.ByteReceiveStream}!receive@{receive}}
+\index{receive@{receive}!anyio.abc.\_streams.ByteReceiveStream@{anyio.abc.\_streams.ByteReceiveStream}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__streams_1_1ByteReceiveStream_a06468412be105f64c6f137e8d13ede86} 
+ bytes anyio.\+abc.\+\_\+streams.\+Byte\+Receive\+Stream.\+receive (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+bytes}{ = {\ttfamily 65536}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive at most ``max_bytes`` bytes from the peer.
+
+.. note:: Implementers of this interface should not return an empty
+    :class:`bytes` object, and users should ignore them.
+
+:param max_bytes: maximum number of bytes to receive
+:return: the received bytes
+:raises ~anyio.EndOfStream: if this stream has been closed from the other end
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1SocketStream_a32658a94422ee3ee2cdd2baf83a5f257}{anyio.\+\_\+backends.\+\_\+asyncio.\+Socket\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1StreamReaderWrapper_ad7b890d98a6617c16bb6f5e9d859a9d5}{anyio.\+\_\+backends.\+\_\+asyncio.\+Stream\+Reader\+Wrapper}}, \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UNIXSocketStream_a18d1736c8519756747081098ca8ca756}{anyio.\+\_\+backends.\+\_\+asyncio.\+UNIXSocket\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1ReceiveStreamWrapper_a515f3039001301f764387b4abf8ba929}{anyio.\+\_\+backends.\+\_\+trio.\+Receive\+Stream\+Wrapper}}, \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1SocketStream_ae70856a13302c2199b76f85414a040a5}{anyio.\+\_\+backends.\+\_\+trio.\+Socket\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1buffered_1_1BufferedByteReceiveStream_ab31a60427a4bdcb40c55bafcd341f0d8}{anyio.\+streams.\+buffered.\+Buffered\+Byte\+Receive\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1file_1_1FileReadStream_aef348393926978a76707264bd5ee0b38}{anyio.\+streams.\+file.\+File\+Read\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1StapledByteStream_a277bb6fddcf597e1f17c916c315f575c}{anyio.\+streams.\+stapled.\+Stapled\+Byte\+Stream}}, and \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSStream_a794bf43a47f6a0b7a746319305da6198}{anyio.\+streams.\+tls.\+TLSStream}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+abc/\+\+\_\+streams.\+py\end{DoxyCompactItemize}

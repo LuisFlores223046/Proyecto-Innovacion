@@ -1,0 +1,58 @@
+\doxysection{uvicorn.\+\_\+subprocess Namespace Reference}
+\hypertarget{namespaceuvicorn_1_1__subprocess}{}\label{namespaceuvicorn_1_1__subprocess}\index{uvicorn.\_subprocess@{uvicorn.\_subprocess}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Spawn\+Process \doxymbox{\hyperlink{namespaceuvicorn_1_1__subprocess_a4cadfc457d9362b4ae88c693580c05c9}{get\+\_\+subprocess}} (\doxymbox{\hyperlink{classuvicorn_1_1config_1_1Config}{Config}} config, Callable\+[..., None]\+ target, list\+[socket]\+ sockets)
+\item 
+None \doxymbox{\hyperlink{namespaceuvicorn_1_1__subprocess_acb818841498b1865a939482cb417ea9d}{subprocess\+\_\+started}} (\doxymbox{\hyperlink{classuvicorn_1_1config_1_1Config}{Config}} config, Callable\+[..., None]\+ target, list\+[socket]\+ sockets, int\texorpdfstring{$\vert$}{|}None stdin\+\_\+fileno)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceuvicorn_1_1__subprocess_a4276b19984371ee34646560a45eeacad}\label{namespaceuvicorn_1_1__subprocess_a4276b19984371ee34646560a45eeacad} 
+{\bfseries spawn} = multiprocessing.\+get\+\_\+context("{}spawn"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Some light wrappers around Python's multiprocessing, to deal with cleanly
+starting child processes.
+\end{DoxyVerb}
+ 
+
+\label{namespaceuvicorn_1_1__subprocess_doc-func-members}
+\Hypertarget{namespaceuvicorn_1_1__subprocess_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceuvicorn_1_1__subprocess_a4cadfc457d9362b4ae88c693580c05c9}\index{uvicorn.\_subprocess@{uvicorn.\_subprocess}!get\_subprocess@{get\_subprocess}}
+\index{get\_subprocess@{get\_subprocess}!uvicorn.\_subprocess@{uvicorn.\_subprocess}}
+\doxysubsubsection{\texorpdfstring{get\_subprocess()}{get\_subprocess()}}
+{\footnotesize\ttfamily \label{namespaceuvicorn_1_1__subprocess_a4cadfc457d9362b4ae88c693580c05c9} 
+ Spawn\+Process get\+\_\+subprocess (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classuvicorn_1_1config_1_1Config}{Config}}}]{config}{, }\item[{Callable\+[..., None]\+}]{target}{, }\item[{list\+[socket]\+}]{sockets}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called in the parent process, to instantiate a new child process instance.
+The child is not yet started at this point.
+
+* config - The Uvicorn configuration instance.
+* target - A callable that accepts a list of sockets. In practice this will
+           be the `Server.run()` method.
+* sockets - A list of sockets to pass to the server. Sockets are bound once
+            by the parent process, and then passed to the child processes.
+\end{DoxyVerb}
+ \Hypertarget{namespaceuvicorn_1_1__subprocess_acb818841498b1865a939482cb417ea9d}\index{uvicorn.\_subprocess@{uvicorn.\_subprocess}!subprocess\_started@{subprocess\_started}}
+\index{subprocess\_started@{subprocess\_started}!uvicorn.\_subprocess@{uvicorn.\_subprocess}}
+\doxysubsubsection{\texorpdfstring{subprocess\_started()}{subprocess\_started()}}
+{\footnotesize\ttfamily \label{namespaceuvicorn_1_1__subprocess_acb818841498b1865a939482cb417ea9d} 
+ None subprocess\+\_\+started (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classuvicorn_1_1config_1_1Config}{Config}}}]{config}{, }\item[{Callable\+[..., None]\+}]{target}{, }\item[{list\+[socket]\+}]{sockets}{, }\item[{int \texorpdfstring{$\vert$}{|} None}]{stdin\+\_\+fileno}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called when the child process starts.
+
+* config - The Uvicorn configuration instance.
+* target - A callable that accepts a list of sockets. In practice this will
+           be the `Server.run()` method.
+* sockets - A list of sockets to pass to the server. Sockets are bound once
+            by the parent process, and then passed to the child processes.
+* stdin_fileno - The file number of sys.stdin, so that it can be reattached
+                 to the child process.
+\end{DoxyVerb}
+ 

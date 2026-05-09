@@ -1,0 +1,56 @@
+\doxysection{frontend/\+node\+\_\+modules/\+resolve-\/from Directory Reference}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa}{}\label{dir_365ef947a706304c22cb6b95d5d6e3aa}\index{frontend/node\_modules/resolve-\/from Directory Reference@{frontend/node\_modules/resolve-\/from Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4372}{}\doxysubsection{\texorpdfstring{resolve-\/from \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/resolve-from.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+resolve-\/from.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/resolve-from}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+resolve-\/from}})}{resolve-\/from \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/resolve-from.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+resolve-\/from.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/resolve-from}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+resolve-\/from}})}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4372}
+\begin{quote}
+Resolve the path of a module like \href{https://nodejs.org/api/globals.html\#globals_require_resolve}{\texttt{{\ttfamily require.\+resolve()}}} but from a given path \end{quote}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4373}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4373}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ resolve-\/from}
+
+\end{DoxyCode}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4374}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4374}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ resolveFrom\ =\ require('resolve-\/from');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ There\ is\ a\ file\ at\ \`{}./foo/bar.js`}
+\DoxyCodeLine{}
+\DoxyCodeLine{resolveFrom('foo',\ './bar');}
+\DoxyCodeLine{//=>\ '/Users/sindresorhus/dev/test/foo/bar.js'}
+
+\end{DoxyCode}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4375}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4375}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4376}{}\doxysubsubsection{\texorpdfstring{resolve\+From(from\+Dir, module\+Id)}{resolve\+From(from\+Dir, module\+Id)}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4376}
+Like {\ttfamily require()}, throws when the module can\textquotesingle{}t be found.\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4377}{}\doxysubsubsection{\texorpdfstring{resolve\+From.\+silent(from\+Dir, module\+Id)}{resolve\+From.\+silent(from\+Dir, module\+Id)}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4377}
+Returns {\ttfamily null} instead of throwing when the module can\textquotesingle{}t be found.\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4378}{}\doxysubsubsubsection{\texorpdfstring{from\+Dir}{from\+Dir}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4378}
+Type:\+ {\ttfamily string}
+
+Directory to resolve from.\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4379}{}\doxysubsubsubsection{\texorpdfstring{module\+Id}{module\+Id}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4379}
+Type:\+ {\ttfamily string}
+
+What you would use in {\ttfamily require()}.\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4380}{}\doxysubsection{\texorpdfstring{Tip}{Tip}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4380}
+Create a partial using a bound function if you want to resolve from the same {\ttfamily from\+Dir} multiple times:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ resolveFromFoo\ =\ resolveFrom.bind(null,\ 'foo');}
+\DoxyCodeLine{}
+\DoxyCodeLine{resolveFromFoo('./bar');}
+\DoxyCodeLine{resolveFromFoo('./baz');}
+
+\end{DoxyCode}
+\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4381}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4381}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/resolve-cwd}{\texttt{resolve-\/cwd}} -\/ Resolve the path of a module from the current working directory
+\item \href{https://github.com/sindresorhus/import-from}{\texttt{import-\/from}} -\/ Import a module from a given path
+\item \href{https://github.com/sindresorhus/import-cwd}{\texttt{import-\/cwd}} -\/ Import a module from the current working directory
+\item \href{https://github.com/sindresorhus/resolve-pkg}{\texttt{resolve-\/pkg}} -\/ Resolve the path of a package regardless of it having an entry point
+\item \href{https://github.com/sindresorhus/import-lazy}{\texttt{import-\/lazy}} -\/ Import a module lazily
+\item \href{https://github.com/sindresorhus/resolve-global}{\texttt{resolve-\/global}} -\/ Resolve the path of a globally installed module
+\end{DoxyItemize}\hypertarget{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4382}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_365ef947a706304c22cb6b95d5d6e3aa_autotoc_md4382}
+MIT © \href{https://sindresorhus.com}{\texttt{Sindre Sorhus}} 

@@ -1,0 +1,76 @@
+\doxysection{jinja2.\+parser Namespace Reference}
+\hypertarget{namespacejinja2_1_1parser}{}\label{namespacejinja2_1_1parser}\index{jinja2.parser@{jinja2.parser}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1parser_1_1Parser}{Parser}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1parser_a26903cfe68fdfd31858aa5f987bb7874}\label{namespacejinja2_1_1parser_a26903cfe68fdfd31858aa5f987bb7874} 
+{\bfseries \+\_\+\+Import\+Include} = t.\+Type\+Var("{}\+\_\+\+Import\+Include"{}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Import}{nodes.\+Import}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Include}{nodes.\+Include}})
+\item 
+\Hypertarget{namespacejinja2_1_1parser_a84f07fd11312e05cfcd297f2b99efb2e}\label{namespacejinja2_1_1parser_a84f07fd11312e05cfcd297f2b99efb2e} 
+{\bfseries \+\_\+\+Macro\+Call} = t.\+Type\+Var("{}\+\_\+\+Macro\+Call"{}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Macro}{nodes.\+Macro}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1CallBlock}{nodes.\+Call\+Block}})
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1parser_ab893b26c0aa4281440af90e1d81862f7}{\+\_\+statement\+\_\+keywords}}
+\item 
+\Hypertarget{namespacejinja2_1_1parser_acbed51cdd2af4807137bd046876d9c3e}\label{namespacejinja2_1_1parser_acbed51cdd2af4807137bd046876d9c3e} 
+{\bfseries \+\_\+compare\+\_\+operators} = frozenset(\+["{}eq"{}, "{}ne"{}, "{}lt"{}, "{}lteq"{}, "{}gt"{}, "{}gteq"{}]\+)
+\item 
+dict \doxymbox{\hyperlink{namespacejinja2_1_1parser_a3d52363efb55cf5d155ee11de4d38589}{\+\_\+math\+\_\+nodes}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Parse tokens from the lexer into nodes for the compiler.\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1parser_doc-var-members}
+\Hypertarget{namespacejinja2_1_1parser_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacejinja2_1_1parser_a3d52363efb55cf5d155ee11de4d38589}\index{jinja2.parser@{jinja2.parser}!\_math\_nodes@{\_math\_nodes}}
+\index{\_math\_nodes@{\_math\_nodes}!jinja2.parser@{jinja2.parser}}
+\doxysubsubsection{\texorpdfstring{\_math\_nodes}{\_math\_nodes}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1parser_a3d52363efb55cf5d155ee11de4d38589} 
+dict jinja2.\+parser.\+\_\+math\+\_\+nodes\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}add"{}}:\ nodes.Add,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}sub"{}}:\ nodes.Sub,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}mul"{}}:\ nodes.Mul,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}div"{}}:\ nodes.Div,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}floordiv"{}}:\ nodes.FloorDiv,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}mod"{}}:\ nodes.Mod,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1parser_ab893b26c0aa4281440af90e1d81862f7}\index{jinja2.parser@{jinja2.parser}!\_statement\_keywords@{\_statement\_keywords}}
+\index{\_statement\_keywords@{\_statement\_keywords}!jinja2.parser@{jinja2.parser}}
+\doxysubsubsection{\texorpdfstring{\_statement\_keywords}{\_statement\_keywords}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1parser_ab893b26c0aa4281440af90e1d81862f7} 
+jinja2.\+parser.\+\_\+statement\+\_\+keywords\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ frozenset(}
+\DoxyCodeLine{\ \ \ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}for"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}if"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}block"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}extends"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}print"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}macro"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}include"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}from"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}import"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}set"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}with"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}autoescape"{}},}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

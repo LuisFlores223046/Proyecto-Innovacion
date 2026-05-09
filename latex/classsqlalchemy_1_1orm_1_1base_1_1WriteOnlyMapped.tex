@@ -1,0 +1,62 @@
+\doxysection{sqlalchemy.\+orm.\+base.\+Write\+Only\+Mapped Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped}{}\label{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped}\index{sqlalchemy.orm.base.WriteOnlyMapped@{sqlalchemy.orm.base.WriteOnlyMapped}}
+Inheritance diagram for sqlalchemy.\+orm.\+base.\+Write\+Only\+Mapped:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.968198cm]{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_aec9bdbb213b93740390ef5b3cc984eba}\label{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_aec9bdbb213b93740390ef5b3cc984eba} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, None instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_abfc3881bd5390f8b3fd8b56f4f4fb2ca}\label{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_abfc3881bd5390f8b3fd8b56f4f4fb2ca} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection}{Write\+Only\+Collection}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, object instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_a1a4a6a6a18f9be6531135d9cf6292dbe}\label{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_a1a4a6a6a18f9be6531135d9cf6292dbe} 
+Union\+[ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1writeonly_1_1WriteOnlyCollection}{Write\+Only\+Collection}}\+[\+\_\+\+T\+\_\+co]\+]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, Optional\+[object]\+ instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_a4372595832b6840e404da2e7fc656c20}\label{classsqlalchemy_1_1orm_1_1base_1_1WriteOnlyMapped_a4372595832b6840e404da2e7fc656c20} 
+None {\bfseries \+\_\+\+\_\+set\+\_\+\+\_\+} (self, Any instance, typing.\+Collection\+[\+\_\+\+T\+\_\+co]\+ value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1TypingOnly}{sqlalchemy.\+util.\+langhelpers.\+Typing\+Only}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent the ORM mapped attribute type for a "write only" relationship.
+
+The :class:`_orm.WriteOnlyMapped` type annotation may be used in an
+:ref:`Annotated Declarative Table <orm_declarative_mapped_column>` mapping
+to indicate that the ``lazy="write_only"`` loader strategy should be used
+for a particular :func:`_orm.relationship`.
+
+E.g.::
+
+    class User(Base):
+        __tablename__ = "user"
+        id: Mapped[int] = mapped_column(primary_key=True)
+        addresses: WriteOnlyMapped[Address] = relationship(
+            cascade="all,delete-orphan"
+        )
+
+See the section :ref:`write_only_relationship` for background.
+
+.. versionadded:: 2.0
+
+.. seealso::
+
+    :ref:`write_only_relationship` - complete background
+
+    :class:`.DynamicMapped` - includes legacy :class:`_orm.Query` support
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+base.\+py\end{DoxyCompactItemize}

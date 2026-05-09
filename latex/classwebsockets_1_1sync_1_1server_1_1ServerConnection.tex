@@ -1,0 +1,169 @@
+\doxysection{websockets.\+sync.\+server.\+Server\+Connection Class Reference}
+\hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection}{}\label{classwebsockets_1_1sync_1_1server_1_1ServerConnection}\index{websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}}
+Inheritance diagram for websockets.\+sync.\+server.\+Server\+Connection:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classwebsockets_1_1sync_1_1server_1_1ServerConnection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_aa79f326c3707c7c826fb556afd7a5321}\label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_aa79f326c3707c7c826fb556afd7a5321} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, socket.\+socket socket, \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol}{Server\+Protocol}} protocol, \texorpdfstring{$\ast$}{*}, Optional\+[float]\+ close\+\_\+timeout=10)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a7762aafc60e39a57c7a68a576f3a4743}{handshake}} (self, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection}{Server\+Connection}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}]\+, Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+,]\+]\+ process\+\_\+request=None, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection}{Server\+Connection}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+, Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+,]\+]\+ process\+\_\+response=None, Optional\+[str]\+ server\+\_\+header=USER\+\_\+\+AGENT, Optional\+[float]\+ timeout=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8f845c67d27e7db614bded45135ced4c}{process\+\_\+event}} (self, Event event)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8d5ee820620f2ef1cbc8682c3f2e339d}{recv\+\_\+events}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection}{websockets.\+sync.\+connection.\+Connection}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, socket.\+socket socket, Protocol protocol, \texorpdfstring{$\ast$}{*}, Optional\+[float]\+ close\+\_\+timeout=10)
+\item 
+Any \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a55e663d0197e3b169737cf3b683c4159}{local\+\_\+address}} (self)
+\item 
+Any \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a2ca7075f15a3b7102bd69996744a9901}{remote\+\_\+address}} (self)
+\item 
+Optional\+[Subprotocol]\+ \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_af1d484cf52b808dcca42fca1eeb7391c}{subprotocol}} (self)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection}{Connection}} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Optional\+[Type\+[Base\+Exception]\+]\+ exc\+\_\+type, Optional\+[Base\+Exception]\+ exc\+\_\+value, Optional\+[Traceback\+Type]\+ traceback)
+\item 
+Iterator\+[Data]\+ \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a34f39e4010d1d39d772d5fd07531cb72}{\+\_\+\+\_\+iter\+\_\+\+\_\+}} (self)
+\item 
+Data \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a045a4503f289ea742252bb28bfab4998}{recv}} (self, Optional\+[float]\+ timeout=None)
+\item 
+Iterator\+[Data]\+ \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a36fa6b277207849bee091d131843ca80}{recv\+\_\+streaming}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a50ee498f270aed05671caf7ad4c030f3}{send}} (self, Union\+[Data, Iterable\+[Data]\+]\+ message)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_aa5fecae016abc3a7889cb18304560e3a}{close}} (self, int code=Close\+Code.\+NORMAL\+\_\+\+CLOSURE, str reason="{}"{})
+\item 
+threading.\+Event \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a2f49c847fce775abda2e05450ec53668}{ping}} (self, Optional\+[Data]\+ data=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a5a476d3f0a7aeab0526b9e70f5934ba6}{pong}} (self, Data data=b"{}"{})
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a807391748e57b80d545d3efe772ed636}{acknowledge\+\_\+pings}} (self, bytes data)
+\item 
+Iterator\+[None]\+ \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a07a094fcfb396df02a178b640b41943c}{send\+\_\+context}} (self, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} expected\+\_\+state=OPEN)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a7931bbe218a2af728ad040c30d4d41ed}{send\+\_\+data}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_ad9e0a2b4a78ffc946b85499c6154df7c}{set\+\_\+recv\+\_\+events\+\_\+exc}} (self, Optional\+[Base\+Exception]\+ exc)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a29299a6035bb6d3f3277f25ac02b9501}{close\+\_\+socket}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_abbd12f973083af74307b5b8fd3926c71}\label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_abbd12f973083af74307b5b8fd3926c71} 
+{\bfseries request\+\_\+rcvd} = threading.\+Event()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection}{websockets.\+sync.\+connection.\+Connection}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries socket} = socket
+\item 
+{\bfseries protocol} = protocol
+\item 
+{\bfseries close\+\_\+timeout} = close\+\_\+timeout
+\item 
+uuid.\+UUID {\bfseries id} = self.\+protocol.\+id
+\item 
+Logger\+Like {\bfseries logger} = self.\+protocol.\+logger
+\item 
+{\bfseries debug} = self.\+protocol.\+debug
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}]\+ {\bfseries request} = None
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+ {\bfseries response} = None
+\item 
+{\bfseries protocol\+\_\+mutex} = threading.\+Lock()
+\item 
+{\bfseries recv\+\_\+messages} = \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1messages_1_1Assembler}{Assembler}}()
+\item 
+bool {\bfseries send\+\_\+in\+\_\+progress} = False
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1utils_1_1Deadline}{Deadline}}]\+ {\bfseries close\+\_\+deadline} = None
+\item 
+dict {\bfseries pings} = \{\}
+\item 
+{\bfseries recv\+\_\+events\+\_\+thread} = threading.\+Thread(target=self.\+recv\+\_\+events)
+\item 
+Optional\+[Base\+Exception]\+ {\bfseries recv\+\_\+events\+\_\+exc} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection}{websockets.\+sync.\+connection.\+Connection}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries recv\+\_\+bufsize} = 65536
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Threaded implementation of a WebSocket server connection.
+
+:class:`ServerConnection` provides :meth:`recv` and :meth:`send` methods for
+receiving and sending messages.
+
+It supports iteration to receive messages::
+
+    for message in websocket:
+        process(message)
+
+The iterator exits normally when the connection is closed with close code
+1000 (OK) or 1001 (going away) or without a close code. It raises a
+:exc:`~websockets.exceptions.ConnectionClosedError` when the connection is
+closed with any other code.
+
+Args:
+    socket: Socket connected to a WebSocket client.
+    protocol: Sans-I/O connection.
+    close_timeout: Timeout for closing the connection in seconds.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_doc-func-members}
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a7762aafc60e39a57c7a68a576f3a4743}\index{websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}!handshake@{handshake}}
+\index{handshake@{handshake}!websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}}
+\doxysubsubsection{\texorpdfstring{handshake()}{handshake()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a7762aafc60e39a57c7a68a576f3a4743} 
+ None websockets.\+sync.\+server.\+Server\+Connection.\+handshake (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[             Callable\+[                 \+[\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection}{Server\+Connection}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}]\+,                 Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+,             ]\+         ]\+ }]{process\+\_\+request}{ = {\ttfamily None}, }\item[{Optional\+[             Callable\+[                 \+[\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1ServerConnection}{Server\+Connection}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+,                 Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}]\+,             ]\+         ]\+ }]{process\+\_\+response}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{server\+\_\+header}{ = {\ttfamily USER\+\_\+AGENT}, }\item[{Optional\+[float]\+ }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Perform the opening handshake.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8f845c67d27e7db614bded45135ced4c}\index{websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}!process\_event@{process\_event}}
+\index{process\_event@{process\_event}!websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}}
+\doxysubsubsection{\texorpdfstring{process\_event()}{process\_event()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8f845c67d27e7db614bded45135ced4c} 
+ None websockets.\+sync.\+server.\+Server\+Connection.\+process\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Event}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process one incoming event.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_aa49b6d83776d20bebe6a41751f5745de}{websockets.\+sync.\+connection.\+Connection}}.
+
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8d5ee820620f2ef1cbc8682c3f2e339d}\index{websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}!recv\_events@{recv\_events}}
+\index{recv\_events@{recv\_events}!websockets.sync.server.ServerConnection@{websockets.sync.server.ServerConnection}}
+\doxysubsubsection{\texorpdfstring{recv\_events()}{recv\_events()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1ServerConnection_a8d5ee820620f2ef1cbc8682c3f2e339d} 
+ None websockets.\+sync.\+server.\+Server\+Connection.\+recv\+\_\+events (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read incoming data from the socket and process events.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1connection_1_1Connection_a8b388f18de71dc4971d20a9d6932d03f}{websockets.\+sync.\+connection.\+Connection}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+sync/\+server.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\doxysection{typer.\+models.\+File\+Binary\+Write Class Reference}
+\hypertarget{classtyper_1_1models_1_1FileBinaryWrite}{}\label{classtyper_1_1models_1_1FileBinaryWrite}\index{typer.models.FileBinaryWrite@{typer.models.FileBinaryWrite}}
+Inheritance diagram for typer.\+models.\+File\+Binary\+Write:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtyper_1_1models_1_1FileBinaryWrite}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}You can use this class to write binary data: you pass `bytes` to it instead of strings.
+The default mode of this class is `mode="wb"`.
+It is useful for writing binary files like images:
+
+**Example**
+
+```python
+from typing import Annotated
+
+import typer
+
+app = typer.Typer()
+
+@app.command()
+def main(file: Annotated[typer.FileBinaryWrite, typer.Option()]):
+    first_line_str = "some settings\\n"
+    # You cannot write str directly to a binary file; encode it first
+    first_line_bytes = first_line_str.encode("utf-8")
+    # Then you can write the bytes
+    file.write(first_line_bytes)
+    # This is already bytes, it starts with b"
+    second_line = b"la cig\xc3\xbce\xc3\xb1a trae al ni\xc3\xb1o"
+    file.write(second_line)
+    print("Binary file written")
+
+if __name__ == "__main__":
+    app()
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+typer/\+models.\+py\end{DoxyCompactItemize}

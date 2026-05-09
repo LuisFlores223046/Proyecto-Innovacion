@@ -1,0 +1,461 @@
+\doxysection{frontend/\+node\+\_\+modules/\+jsesc Directory Reference}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413}{}\label{dir_1711a51b2f435c292e02d3f59c4cf413}\index{frontend/node\_modules/jsesc Directory Reference@{frontend/node\_modules/jsesc Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2973}{}\doxysubsection{\texorpdfstring{jsesc}{jsesc}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2973}
+Given some data, {\itshape jsesc} returns a stringified representation of that data. jsesc is similar to {\ttfamily JSON.\+stringify()} except:\+
+
+
+\begin{DoxyEnumerate}
+\item it outputs Java\+Script instead of JSON by defaultby default
+\end{DoxyEnumerate}, enabling support for data structures like ES6 maps and sets;
+\begin{DoxyEnumerate}
+\item it offers many optionsmany options
+\end{DoxyEnumerate}to customize the output;
+\begin{DoxyEnumerate}
+\item its output is ASCII-\/safe by defaultby default
+\end{DoxyEnumerate}, thanks to its use of \href{https://mathiasbynens.be/notes/javascript-escapes}{\texttt{escape sequences}} where needed.
+
+For any input, jsesc generates the shortest possible valid printable-\/\+ASCII-\/only output. \href{https://mothereff.in/js-escapes}{\texttt{Here’s an online demo.}}
+
+jsesc’s output can be used instead of {\ttfamily JSON.\+stringify}’s to avoid \href{https://en.wikipedia.org/wiki/Mojibake}{\texttt{mojibake}} and other encoding issues, or even to \href{https://twitter.com/annevk/status/380000829643571200}{\texttt{avoid errors}} when passing JSON-\/formatted data (which may contain U+2028 LINE SEPARATOR, U+2029 PARAGRAPH SEPARATOR, or \href{https://esdiscuss.org/topic/code-points-vs-unicode-scalar-values\#content-14}{\texttt{lone surrogates}}) to a Java\+Script parser or an UTF-\/8 encoder.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2974}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2974}
+Via \href{https://www.npmjs.com/}{\texttt{npm}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ jsesc}
+
+\end{DoxyCode}
+
+
+In \href{https://nodejs.org/}{\texttt{Node.\+js}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ jsesc\ =\ require('jsesc');}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2975}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2975}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2976}{}\doxysubsubsection{\texorpdfstring{{\ttfamily jsesc(value, options)}}{{\ttfamily jsesc(value, options)}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2976}
+This function takes a value and returns an escaped version of the value where any characters that are not printable ASCII symbols are escaped using the shortest possible (but valid) \href{https://mathiasbynens.be/notes/javascript-escapes}{\texttt{escape sequences for use in Java\+Script strings}}. The first supported value type is strings:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('Ich\ ♥\ Bücher');}
+\DoxyCodeLine{//\ →\ 'Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xFCcher'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc('foo\ 𝌆\ bar');}
+\DoxyCodeLine{//\ →\ 'foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar'}
+
+\end{DoxyCode}
+
+
+Instead of a string, the {\ttfamily value} can also be an array, an object, a map, a set, or a buffer. In such cases, {\ttfamily jsesc} returns a stringified version of the value where any characters that are not printable ASCII symbols are escaped in the same way.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Escaping\ an\ array}
+\DoxyCodeLine{jsesc([}
+\DoxyCodeLine{\ \ 'Ich\ ♥\ Bücher',\ 'foo\ 𝌆\ bar'}
+\DoxyCodeLine{]);}
+\DoxyCodeLine{//\ →\ '[\(\backslash\)'Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xFCcher\(\backslash\)',\(\backslash\)'foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar\(\backslash\)']'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Escaping\ an\ object}
+\DoxyCodeLine{jsesc(\{}
+\DoxyCodeLine{\ \ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{\(\backslash\)'Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xFCcher\(\backslash\)':\(\backslash\)'foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar\(\backslash\)'\}'}
+
+\end{DoxyCode}
+
+
+The optional {\ttfamily options} argument accepts an object with the following options:\+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2977}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily quotes}}{{\ttfamily quotes}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2977}
+The default value for the {\ttfamily quotes} option is {\ttfamily \textquotesingle{}single\textquotesingle{}}. This means that any occurrences of {\ttfamily \textquotesingle{}} in the input string are escaped as {\ttfamily \textbackslash{}\textquotesingle{}}, so that the output can be used in a string literal wrapped in single quotes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('`Lorem`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.');}
+\DoxyCodeLine{//\ →\ 'Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc('`Lorem`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'single'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '`Lorem`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}`Lorem`\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ \(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)'\ etc."{}}
+
+\end{DoxyCode}
+
+
+If you want to use the output as part of a string literal wrapped in double quotes, set the {\ttfamily quotes} option to {\ttfamily \textquotesingle{}double\textquotesingle{}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('`Lorem`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '`Lorem`\ ipsum\ \(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}`Lorem`\ ipsum\ \(\backslash\)\(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)\(\backslash\)"{}\ sit\ 'amet'\ etc."{}}
+
+\end{DoxyCode}
+
+
+If you want to use the output as part of a template literal (i.\+e. wrapped in backticks), set the {\ttfamily quotes} option to {\ttfamily \textquotesingle{}backtick\textquotesingle{}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('`Lorem`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'backtick'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)\(\backslash\)`Lorem\(\backslash\)\(\backslash\)`\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)\(\backslash\)`Lorem\(\backslash\)\(\backslash\)`\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ 'amet'\ etc."{}}
+\DoxyCodeLine{//\ →\ \`{}\(\backslash\)\(\backslash\)\(\backslash\)`Lorem\(\backslash\)\(\backslash\)\(\backslash\)`\ ipsum\ "{}dolor"{}\ sit\ 'amet'\ etc.`}
+
+\end{DoxyCode}
+
+
+This setting also affects the output for arrays and objects:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc(\{\ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'\ \},\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{"{}Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xFCcher"{}:"{}foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar"{}\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc([\ 'Ich\ ♥\ Bücher',\ 'foo\ 𝌆\ bar'\ ],\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '["{}Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xFCcher"{},"{}foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar"{}]'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2978}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily numbers}}{{\ttfamily numbers}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2978}
+The default value for the {\ttfamily numbers} option is {\ttfamily \textquotesingle{}decimal\textquotesingle{}}. This means that any numeric values are represented using decimal integer literals. Other valid options are {\ttfamily binary}, {\ttfamily octal}, and {\ttfamily hexadecimal}, which result in binary integer literals, octal integer literals, and hexadecimal integer literals, respectively.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc(42,\ \{}
+\DoxyCodeLine{\ \ 'numbers':\ 'binary'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '0b101010'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(42,\ \{}
+\DoxyCodeLine{\ \ 'numbers':\ 'octal'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '0o52'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(42,\ \{}
+\DoxyCodeLine{\ \ 'numbers':\ 'decimal'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '42'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(42,\ \{}
+\DoxyCodeLine{\ \ 'numbers':\ 'hexadecimal'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '0x2A'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2979}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily wrap}}{{\ttfamily wrap}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2979}
+The {\ttfamily wrap} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, the output is a valid Java\+Script string literal wrapped in quotes. The type of quotes can be specified through the {\ttfamily quotes} setting.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'single',}
+\DoxyCodeLine{\ \ 'wrap':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)'Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.\(\backslash\)''}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)'Lorem\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.\(\backslash\)'"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double',}
+\DoxyCodeLine{\ \ 'wrap':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '"{}Lorem\ ipsum\ \(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc."{}'}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)"{}Lorem\ ipsum\ \(\backslash\)\(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.\(\backslash\)"{}"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2980}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily es6}}{{\ttfamily es6}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2980}
+The {\ttfamily es6} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, any astral Unicode symbols in the input are escaped using \href{https://mathiasbynens.be/notes/javascript-escapes\#unicode-code-point}{\texttt{ECMAScript 6 Unicode code point escape sequences}} instead of using separate escape sequences for each surrogate half. If backwards compatibility with ES5 environments is a concern, don’t enable this setting. If the {\ttfamily json} setting is enabled, the value for the {\ttfamily es6} setting is ignored (as if it was {\ttfamily false}).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ By\ default,\ the\ \`{}es6`\ option\ is\ disabled:}
+\DoxyCodeLine{jsesc('foo\ 𝌆\ bar\ 💩\ baz');}
+\DoxyCodeLine{//\ →\ 'foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar\ \(\backslash\)\(\backslash\)uD83D\(\backslash\)\(\backslash\)uDCA9\ baz'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ To\ explicitly\ disable\ it:}
+\DoxyCodeLine{jsesc('foo\ 𝌆\ bar\ 💩\ baz',\ \{}
+\DoxyCodeLine{\ \ 'es6':\ false}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'foo\ \(\backslash\)\(\backslash\)uD834\(\backslash\)\(\backslash\)uDF06\ bar\ \(\backslash\)\(\backslash\)uD83D\(\backslash\)\(\backslash\)uDCA9\ baz'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ To\ enable\ it:}
+\DoxyCodeLine{jsesc('foo\ 𝌆\ bar\ 💩\ baz',\ \{}
+\DoxyCodeLine{\ \ 'es6':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'foo\ \(\backslash\)\(\backslash\)u\{1D306\}\ bar\ \(\backslash\)\(\backslash\)u\{1F4A9\}\ baz'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2981}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily escape\+Everything}}{{\ttfamily escape\+Everything}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2981}
+The {\ttfamily escape\+Everything} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, all the symbols in the output are escaped — even printable ASCII symbols.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('lolwat"{}foo\(\backslash\)'bar',\ \{}
+\DoxyCodeLine{\ \ 'escapeEverything':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)\(\backslash\)x6C\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)x6C\(\backslash\)\(\backslash\)x77\(\backslash\)\(\backslash\)x61\(\backslash\)\(\backslash\)x74\(\backslash\)\(\backslash\)"{}\(\backslash\)\(\backslash\)x66\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)\(\backslash\)'\(\backslash\)\(\backslash\)x62\(\backslash\)\(\backslash\)x61\(\backslash\)\(\backslash\)x72'}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)\(\backslash\)x6C\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)x6C\(\backslash\)\(\backslash\)x77\(\backslash\)\(\backslash\)x61\(\backslash\)\(\backslash\)x74\(\backslash\)\(\backslash\)\(\backslash\)"{}\(\backslash\)\(\backslash\)x66\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)x6F\(\backslash\)\(\backslash\)'\(\backslash\)\(\backslash\)x62\(\backslash\)\(\backslash\)x61\(\backslash\)\(\backslash\)x72"{}}
+
+\end{DoxyCode}
+
+
+This setting also affects the output for string literals within arrays and objects.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2982}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily minimal}}{{\ttfamily minimal}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2982}
+The {\ttfamily minimal} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, only a limited set of symbols in the output are escaped:\+
+
+
+\begin{DoxyItemize}
+\item U+0000 {\ttfamily \textbackslash{}0}
+\item U+0008 {\ttfamily \textbackslash{}b}
+\item U+0009 {\ttfamily \textbackslash{}t}
+\item U+000A {\ttfamily \textbackslash{}n}
+\item U+000C {\ttfamily \textbackslash{}f}
+\item U+000D {\ttfamily \textbackslash{}r}
+\item U+005C {\ttfamily \textbackslash{}\textbackslash{}}
+\item U+2028 {\ttfamily \textbackslash{}u2028}
+\item U+2029 {\ttfamily \textbackslash{}u2029}
+\item whatever symbol is being used for wrapping string literals (based on the \`{}quotes\`{} optionthe {\ttfamily quotes} option
+\end{DoxyItemize})
+\begin{DoxyItemize}
+\item \href{https://esdiscuss.org/topic/code-points-vs-unicode-scalar-values\#content-14}{\texttt{lone surrogates}}
+\end{DoxyItemize}
+
+Note:\+ with this option enabled, jsesc output is no longer guaranteed to be ASCII-\/safe.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('foo\(\backslash\)u2029bar\(\backslash\)nbaz©qux𝌆flops',\ \{}
+\DoxyCodeLine{\ \ 'minimal':\ false}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'foo\(\backslash\)\(\backslash\)u2029bar\(\backslash\)\(\backslash\)nbaz©qux𝌆flops'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2983}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily is\+Script\+Context}}{{\ttfamily is\+Script\+Context}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2983}
+The {\ttfamily is\+Script\+Context} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, occurrences of \href{https://mathiasbynens.be/notes/etago}{\texttt{{\ttfamily \texorpdfstring{$<$}{<}/\+script} and {\ttfamily \texorpdfstring{$<$}{<}/\+style}}} in the output are escaped as {\ttfamily \texorpdfstring{$<$}{<}\textbackslash{}/\+script} and {\ttfamily \texorpdfstring{$<$}{<}\textbackslash{}/\+style}, and \href{https://mathiasbynens.be/notes/etago\#comment-8}{\texttt{{\ttfamily \texorpdfstring{$<$}{<}!-\/-\/}}} is escaped as {\ttfamily \textbackslash{}x3\+C!-\/-\/} (or {\ttfamily \textbackslash{}u003\+C!-\/-\/} when the {\ttfamily json} option is enabled). This setting is useful when jsesc’s output ends up as part of a {\ttfamily \texorpdfstring{$<$}{<}script\texorpdfstring{$>$}{>}} or {\ttfamily \texorpdfstring{$<$}{<}style\texorpdfstring{$>$}{>}} element in an HTML document.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('foo</script>bar',\ \{}
+\DoxyCodeLine{\ \ 'isScriptContext':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'foo<\(\backslash\)\(\backslash\)/script>bar'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2984}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily compact}}{{\ttfamily compact}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2984}
+The {\ttfamily compact} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily true} (enabled). When enabled, the output for arrays and objects is as compact as possible; it’s not formatted nicely.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc(\{\ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'\ \},\ \{}
+\DoxyCodeLine{\ \ 'compact':\ true\ //\ this\ is\ the\ default}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{\(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)':\(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(\{\ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'\ \},\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{\(\backslash\)n\(\backslash\)t\(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)':\ \(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\(\backslash\)n\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc([\ 'Ich\ ♥\ Bücher',\ 'foo\ 𝌆\ bar'\ ],\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '[\(\backslash\)n\(\backslash\)t\(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)',\(\backslash\)n\(\backslash\)t\(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\(\backslash\)n]'}
+
+\end{DoxyCode}
+
+
+This setting has no effect on the output for strings.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2985}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily indent}}{{\ttfamily indent}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2985}
+The {\ttfamily indent} option takes a string value, and defaults to {\ttfamily \textquotesingle{}\textbackslash{}t\textquotesingle{}}. When the {\ttfamily compact} setting is disabled ({\ttfamily false}), the value of the {\ttfamily indent} option is used to format the output for arrays and objects.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc(\{\ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'\ \},\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false,}
+\DoxyCodeLine{\ \ 'indent':\ '\(\backslash\)t'\ //\ this\ is\ the\ default}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{\(\backslash\)n\(\backslash\)t\(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)':\ \(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\(\backslash\)n\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(\{\ 'Ich\ ♥\ Bücher':\ 'foo\ 𝌆\ bar'\ \},\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false,}
+\DoxyCodeLine{\ \ 'indent':\ '\ \ '}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{\(\backslash\)n\ \ \(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)':\ \(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\(\backslash\)n\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc([\ 'Ich\ ♥\ Bücher',\ 'foo\ 𝌆\ bar'\ ],\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false,}
+\DoxyCodeLine{\ \ 'indent':\ '\ \ '}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '[\(\backslash\)n\ \ \(\backslash\)'Ich\ \(\backslash\)u2665\ B\(\backslash\)xFCcher\(\backslash\)',\(\backslash\)n\(\backslash\)\ \ t\(\backslash\)'foo\ \(\backslash\)uD834\(\backslash\)uDF06\ bar\(\backslash\)'\(\backslash\)n]'}
+
+\end{DoxyCode}
+
+
+This setting has no effect on the output for strings.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2986}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily indent\+Level}}{{\ttfamily indent\+Level}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2986}
+The {\ttfamily indent\+Level} option takes a numeric value, and defaults to {\ttfamily 0}. It represents the current indentation level, i.\+e. the number of times the value of the \`{}indent\`{} optionthe {\ttfamily indent} option is repeated.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc(['a',\ 'b',\ 'c'],\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false,}
+\DoxyCodeLine{\ \ 'indentLevel':\ 1}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '[\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)'a\(\backslash\)',\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)'b\(\backslash\)',\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)'c\(\backslash\)'\(\backslash\)n\(\backslash\)t]'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(['a',\ 'b',\ 'c'],\ \{}
+\DoxyCodeLine{\ \ 'compact':\ false,}
+\DoxyCodeLine{\ \ 'indentLevel':\ 2}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '[\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)t\(\backslash\)'a\(\backslash\)',\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)t\(\backslash\)'b\(\backslash\)',\(\backslash\)n\(\backslash\)t\(\backslash\)t\(\backslash\)t\(\backslash\)'c\(\backslash\)'\(\backslash\)n\(\backslash\)t\(\backslash\)t]'}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2987}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily json}}{{\ttfamily json}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2987}
+The {\ttfamily json} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, the output is valid JSON. \href{https://mathiasbynens.be/notes/javascript-escapes\#hexadecimal}{\texttt{Hexadecimal character escape sequences}} and \href{https://mathiasbynens.be/notes/javascript-escapes\#single}{\texttt{the {\ttfamily \textbackslash{}v} or {\ttfamily \textbackslash{}0} escape sequences}} are not used. Setting {\ttfamily json:\+ true} implies {\ttfamily quotes:\+ \textquotesingle{}double\textquotesingle{}, wrap:\+ true, es6:\+ false}, although these values can still be overridden if needed — but in such cases, the output won’t be valid JSON anymore.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('foo\(\backslash\)x00bar\(\backslash\)xFF\(\backslash\)uFFFDbaz',\ \{}
+\DoxyCodeLine{\ \ 'json':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '"{}foo\(\backslash\)\(\backslash\)u0000bar\(\backslash\)\(\backslash\)u00FF\(\backslash\)\(\backslash\)uFFFDbaz"{}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(\{\ 'foo\(\backslash\)x00bar\(\backslash\)xFF\(\backslash\)uFFFDbaz':\ 'foo\(\backslash\)x00bar\(\backslash\)xFF\(\backslash\)uFFFDbaz'\ \},\ \{}
+\DoxyCodeLine{\ \ 'json':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\{"{}foo\(\backslash\)\(\backslash\)u0000bar\(\backslash\)\(\backslash\)u00FF\(\backslash\)\(\backslash\)uFFFDbaz"{}:"{}foo\(\backslash\)\(\backslash\)u0000bar\(\backslash\)\(\backslash\)u00FF\(\backslash\)\(\backslash\)uFFFDbaz"{}\}'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc([\ 'foo\(\backslash\)x00bar\(\backslash\)xFF\(\backslash\)uFFFDbaz',\ 'foo\(\backslash\)x00bar\(\backslash\)xFF\(\backslash\)uFFFDbaz'\ ],\ \{}
+\DoxyCodeLine{\ \ 'json':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '["{}foo\(\backslash\)\(\backslash\)u0000bar\(\backslash\)\(\backslash\)u00FF\(\backslash\)\(\backslash\)uFFFDbaz"{},"{}foo\(\backslash\)\(\backslash\)u0000bar\(\backslash\)\(\backslash\)u00FF\(\backslash\)\(\backslash\)uFFFDbaz"{}]'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Values\ that\ are\ acceptable\ in\ JSON\ but\ aren’t\ strings,\ arrays,\ or\ object}
+\DoxyCodeLine{//\ literals\ can’t\ be\ escaped,\ so\ they’ll\ just\ be\ preserved:}
+\DoxyCodeLine{jsesc([\ 'foo\(\backslash\)x00bar',\ [1,\ '©',\ \{\ 'foo':\ true,\ 'qux':\ null\ \}],\ 42\ ],\ \{}
+\DoxyCodeLine{\ \ 'json':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '["{}foo\(\backslash\)\(\backslash\)u0000bar"{},[1,"{}\(\backslash\)\(\backslash\)u00A9"{},\{"{}foo"{}:true,"{}qux"{}:null\}],42]'}
+\DoxyCodeLine{//\ Values\ that\ aren’t\ allowed\ in\ JSON\ are\ run\ through\ \`{}JSON.stringify()`:}
+\DoxyCodeLine{jsesc([\ undefined,\ -\/Infinity\ ],\ \{}
+\DoxyCodeLine{\ \ 'json':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '[null,null]'}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note:\+}} Using this option on objects or arrays that contain non-\/string values relies on {\ttfamily JSON.\+stringify()}. For legacy environments like IE ≤ 7, use \href{http://bestiejs.github.io/json3/}{\texttt{a {\ttfamily JSON} polyfill}}.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2988}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily lowercase\+Hex}}{{\ttfamily lowercase\+Hex}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2988}
+The {\ttfamily lowercase\+Hex} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, any alphabetical hexadecimal digits in escape sequences as well as any hexadecimal integer literals (see the \`{}numbers\`{} optionthe {\ttfamily numbers} option) in the output are in lowercase.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jsesc('Ich\ ♥\ Bücher',\ \{}
+\DoxyCodeLine{\ \ 'lowercaseHex':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'Ich\ \(\backslash\)\(\backslash\)u2665\ B\(\backslash\)\(\backslash\)xfccher'}
+\DoxyCodeLine{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^\string^}
+\DoxyCodeLine{}
+\DoxyCodeLine{jsesc(42,\ \{}
+\DoxyCodeLine{\ \ 'numbers':\ 'hexadecimal',}
+\DoxyCodeLine{\ \ 'lowercaseHex':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '0x2a'}
+\DoxyCodeLine{//\ \ \ \ \ \ \string^\string^}
+
+\end{DoxyCode}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2989}{}\doxysubsubsection{\texorpdfstring{{\ttfamily jsesc.\+version}}{{\ttfamily jsesc.\+version}}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2989}
+A string representing the semantic version number.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2990}{}\doxysubsubsection{\texorpdfstring{Using the {\ttfamily jsesc} binary}{Using the {\ttfamily jsesc} binary}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2990}
+To use the {\ttfamily jsesc} binary in your shell, simply install jsesc globally using npm:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/g\ jsesc}
+
+\end{DoxyCode}
+
+
+After that you’re able to escape strings from the command line:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ jsesc\ 'föo\ ♥\ bår\ 𝌆\ baz'}
+\DoxyCodeLine{f\(\backslash\)xF6o\ \(\backslash\)u2665\ b\(\backslash\)xE5r\ \(\backslash\)uD834\(\backslash\)uDF06\ baz}
+
+\end{DoxyCode}
+
+
+To escape arrays or objects containing string values, use the {\ttfamily -\/o}/\+{\ttfamily -\/-\/object} option:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ jsesc\ -\/-\/object\ '\{\ "{}föo"{}:\ "{}♥"{},\ "{}bår"{}:\ "{}𝌆\ baz"{}\ \}'}
+\DoxyCodeLine{\{'f\(\backslash\)xF6o':'\(\backslash\)u2665','b\(\backslash\)xE5r':'\(\backslash\)uD834\(\backslash\)uDF06\ baz'\}}
+
+\end{DoxyCode}
+
+
+To prettify the output in such cases, use the {\ttfamily -\/p}/\+{\ttfamily -\/-\/pretty} option:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ jsesc\ -\/-\/pretty\ '\{\ "{}föo"{}:\ "{}♥"{},\ "{}bår"{}:\ "{}𝌆\ baz"{}\ \}'}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ 'f\(\backslash\)xF6o':\ '\(\backslash\)u2665',}
+\DoxyCodeLine{\ \ 'b\(\backslash\)xE5r':\ '\(\backslash\)uD834\(\backslash\)uDF06\ baz'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+For valid JSON output, use the {\ttfamily -\/j}/\+{\ttfamily -\/-\/json} option:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ jsesc\ -\/-\/json\ -\/-\/pretty\ '\{\ "{}föo"{}:\ "{}♥"{},\ "{}bår"{}:\ "{}𝌆\ baz"{}\ \}'}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}f\(\backslash\)u00F6o"{}:\ "{}\(\backslash\)u2665"{},}
+\DoxyCodeLine{\ \ "{}b\(\backslash\)u00E5r"{}:\ "{}\(\backslash\)uD834\(\backslash\)uDF06\ baz"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Read a local JSON file, escape any non-\/\+ASCII symbols, and save the result to a new file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ jsesc\ -\/-\/json\ -\/-\/object\ <\ data-\/raw.json\ >\ data-\/escaped.json}
+
+\end{DoxyCode}
+
+
+Or do the same with an online JSON file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ curl\ -\/sL\ "{}http://git.io/aorKgQ"{}\ |\ jsesc\ -\/-\/json\ -\/-\/object\ >\ data-\/escaped.json}
+
+\end{DoxyCode}
+
+
+See {\ttfamily jsesc -\/-\/help} for the full list of options.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2991}{}\doxysubsection{\texorpdfstring{Support}{Support}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2991}
+As of v3.\+0.\+0, jsesc supports Node.\+js v6+ only.
+
+Older versions (up to jsesc v1.\+3.\+0) support Chrome 27, Firefox 3, Safari 4, Opera 10, IE 6, Node.\+js v6.\+0.\+0, Narwhal 0.\+3.\+2, Ringo\+JS 0.\+8-\/0.\+11, Phantom\+JS 1.\+9.\+0, and Rhino 1.\+7\+RC4. {\bfseries{Note:\+}} Using the {\ttfamily json} option on objects or arrays that contain non-\/string values relies on {\ttfamily JSON.\+parse()}. For legacy environments like IE ≤ 7, use \href{https://bestiejs.github.io/json3/}{\texttt{a {\ttfamily JSON} polyfill}}.\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2992}{}\doxysubsection{\texorpdfstring{Author}{Author}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2992}
+
+\begin{DoxyTable}{1}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}\href{https://twitter.com/mathias}{\texttt{}}  \\
+\href{https://mathiasbynens.be/}{\texttt{Mathias Bynens}}  \\
+\end{DoxyTable}
+\hypertarget{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2993}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_1711a51b2f435c292e02d3f59c4cf413_autotoc_md2993}
+This library is available under the \href{https://mths.be/mit}{\texttt{MIT}} license. 

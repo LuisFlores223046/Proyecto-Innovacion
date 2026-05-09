@@ -1,0 +1,83 @@
+\doxysection{httpx.\+\_\+transports.\+default Namespace Reference}
+\hypertarget{namespacehttpx_1_1__transports_1_1default}{}\label{namespacehttpx_1_1__transports_1_1default}\index{httpx.\_transports.default@{httpx.\_transports.default}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1default_1_1ResponseStream}{Response\+Stream}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1default_1_1HTTPTransport}{HTTPTransport}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1default_1_1AsyncResponseStream}{Async\+Response\+Stream}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1default_1_1AsyncHTTPTransport}{Async\+HTTPTransport}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_a1fbe029c83ff235178c14c31c4422c5e}\label{namespacehttpx_1_1__transports_1_1default_a1fbe029c83ff235178c14c31c4422c5e} 
+dict\+[type\+[Exception]\+, type\+[\doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1HTTPError}{httpx.\+HTTPError}}]\+]\+ {\bfseries \+\_\+load\+\_\+httpcore\+\_\+exceptions} ()
+\item 
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_a12645def126eb34a9c99faf15266b507}\label{namespacehttpx_1_1__transports_1_1default_a12645def126eb34a9c99faf15266b507} 
+typing.\+Iterator\+[None]\+ {\bfseries map\+\_\+httpcore\+\_\+exceptions} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_ad4d4463110d9d27a2d153ae617aade0c}\label{namespacehttpx_1_1__transports_1_1default_ad4d4463110d9d27a2d153ae617aade0c} 
+{\bfseries T} = typing.\+Type\+Var("{}T"{}, bound="{}HTTPTransport"{})
+\item 
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_a77126ff8c8ab403fc26b2fc815ecbc7d}\label{namespacehttpx_1_1__transports_1_1default_a77126ff8c8ab403fc26b2fc815ecbc7d} 
+{\bfseries A} = typing.\+Type\+Var("{}A"{}, bound="{}Async\+HTTPTransport"{})
+\item 
+\doxymbox{\hyperlink{namespacehttpx_1_1__transports_1_1default_a5631ed75c87a457c31f6d9ad5f6e46d9}{SOCKET\+\_\+\+OPTION}}
+\item 
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_a3fc81e25ffa60e733e82328b31cf9b38}\label{namespacehttpx_1_1__transports_1_1default_a3fc81e25ffa60e733e82328b31cf9b38} 
+dict {\bfseries HTTPCORE\+\_\+\+EXC\+\_\+\+MAP} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Custom transports, with nicely configured defaults.
+
+The following additional keyword arguments are currently supported by httpcore...
+
+* uds: str
+* local_address: str
+* retries: int
+
+Example usages...
+
+# Disable HTTP/2 on a single specific domain.
+mounts = {
+    "all://": httpx.HTTPTransport(http2=True),
+    "all://*example.org": httpx.HTTPTransport()
+}
+
+# Using advanced httpcore configuration, with connection retries.
+transport = httpx.HTTPTransport(retries=1)
+client = httpx.Client(transport=transport)
+
+# Using advanced httpcore configuration, with unix domain sockets.
+transport = httpx.HTTPTransport(uds="socket.uds")
+client = httpx.Client(transport=transport)
+\end{DoxyVerb}
+ 
+
+\label{namespacehttpx_1_1__transports_1_1default_doc-var-members}
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacehttpx_1_1__transports_1_1default_a5631ed75c87a457c31f6d9ad5f6e46d9}\index{httpx.\_transports.default@{httpx.\_transports.default}!SOCKET\_OPTION@{SOCKET\_OPTION}}
+\index{SOCKET\_OPTION@{SOCKET\_OPTION}!httpx.\_transports.default@{httpx.\_transports.default}}
+\doxysubsubsection{\texorpdfstring{SOCKET\_OPTION}{SOCKET\_OPTION}}
+{\footnotesize\ttfamily \label{namespacehttpx_1_1__transports_1_1default_a5631ed75c87a457c31f6d9ad5f6e46d9} 
+httpx.\+\_\+transports.\+default.\+SOCKET\+\_\+\+OPTION}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ typing.Union[}
+\DoxyCodeLine{\ \ \ \ typing.Tuple[int,\ int,\ int],}
+\DoxyCodeLine{\ \ \ \ typing.Tuple[int,\ int,\ typing.Union[bytes,\ bytearray]],}
+\DoxyCodeLine{\ \ \ \ typing.Tuple[int,\ int,\ \textcolor{keywordtype}{None},\ int],}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}

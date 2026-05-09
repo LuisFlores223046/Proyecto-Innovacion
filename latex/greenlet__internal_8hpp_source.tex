@@ -1,0 +1,104 @@
+\doxysection{greenlet\+\_\+internal.\+hpp}
+\hypertarget{greenlet__internal_8hpp_source}{}\label{greenlet__internal_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_internal.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_internal.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_INTERNAL\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ GREENLET\_INTERNAL\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ push}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ ignored\ "{}-\/Wunused-\/function"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ ignored\ "{}-\/Wmissing-\/field-\/initializers"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ ignored\ "{}-\/Wunused-\/variable"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ PY\_SSIZE\_T\_CLEAN}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}greenlet\_compiler\_compat.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}greenlet\_cpython\_compat.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}greenlet\_exceptions.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}greenlet\_allocator.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ GREENLET\_MODULE}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__greenlet}{\_greenlet}};}
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__greenlet}{\_greenlet}}\ PyGreenlet;}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ implementation\_ptr\_t\ greenlet::Greenlet*}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}greenlet.h"{}}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00042\ greenlet::refs::MainGreenletExactChecker(\textcolor{keywordtype}{void}\ *p)}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ We\ control\ the\ class\ of\ the\ main\ greenlet\ exactly.}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (Py\_TYPE(p)\ !=\ \&PyGreenlet\_Type)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ std::string\ err(\textcolor{stringliteral}{"{}MainGreenlet:\ Expected\ exactly\ a\ greenlet,\ not\ a\ "{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ err\ +=\ Py\_TYPE(p)-\/>tp\_name;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1TypeError}{greenlet::TypeError}}(err);}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Greenlets\ from\ dead\ threads\ no\ longer\ respond\ to\ main()\ with\ a}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ true\ value;\ so\ in\ that\ case\ we\ need\ to\ perform\ an\ additional}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ check.}}
+\DoxyCodeLine{00057\ \ \ \ \ \doxymbox{\hyperlink{classGreenlet}{Greenlet}}*\ g\ =\ ((PyGreenlet*)p)-\/>pimpl;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (g-\/>main())\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keyword}{dynamic\_cast<}\doxymbox{\hyperlink{classMainGreenlet}{MainGreenlet}}*\textcolor{keyword}{>}(g))\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ std::string\ err(\textcolor{stringliteral}{"{}MainGreenlet:\ Expected\ exactly\ a\ main\ greenlet,\ not\ a\ "{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ err\ +=\ Py\_TYPE(p)-\/>tp\_name;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1TypeError}{greenlet::TypeError}}(err);}
+\DoxyCodeLine{00065\ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ greenlet::refs::TypeChecker\ TC>}
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::Greenlet}}*\ greenlet::refs::\_OwnedGreenlet<T,\ TC>::operator-\/>()\ const\ noexcept}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyGreenlet*\textcolor{keyword}{>}(this-\/>p)-\/>pimpl;}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ greenlet::refs::TypeChecker\ TC>}
+\DoxyCodeLine{00077\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::Greenlet}}*\ greenlet::refs::\_BorrowedGreenlet<T,\ TC>::operator-\/>()\ const\ noexcept}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyGreenlet*\textcolor{keyword}{>}(this-\/>p)-\/>pimpl;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{extern}\ PyTypeObject\ PyGreenlet\_Type;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{static}\ PyGreenlet*\ green\_create\_main(\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{greenlet::ThreadState}}*);}
+\DoxyCodeLine{00094\ \textcolor{keyword}{static}\ PyObject*\ green\_switch(PyGreenlet*\ self,\ PyObject*\ args,\ PyObject*\ kwargs);}
+\DoxyCodeLine{00095\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ green\_is\_gc(BorrowedGreenlet\ self);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ pop}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Local\ Variables:}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ flycheck-\/clang-\/include-\/path:\ ("{}../../include"{}\ "{}/opt/local/Library/Frameworks/Python.framework/Versions/3.10/include/python3.10"{})}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ End:}}
+
+\end{DoxyCode}

@@ -1,0 +1,103 @@
+\doxysection{passlib.\+totp Namespace Reference}
+\hypertarget{namespacepasslib_1_1totp}{}\label{namespacepasslib_1_1totp}\index{passlib.totp@{passlib.totp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1totp_1_1AppWallet}{App\+Wallet}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1totp_1_1TOTP}{TOTP}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpToken}{Totp\+Token}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch}{Totp\+Match}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1totp_af713f2fde45cd1a21a3ebb7b6b4709d0}{\+\_\+get\+\_\+group\+\_\+size}} (klen)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1totp_a6de7d4ac00307426a2b5009baff64a05}{group\+\_\+string}} (value, sep="{}-\/"{})
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1totp_acc8e8e5a6e0215f4b0b5c32754fa342c}{\+\_\+decode\+\_\+bytes}} (key, format)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1totp_a5beafcc395397db964333a100c46cadc}{generate\+\_\+secret}} (entropy=256, charset=BASE64\+\_\+\+CHARS\+[:\+-\/2]\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1totp_af96f8269cec35d3db47d866eed55c9ac}\label{namespacepasslib_1_1totp_af96f8269cec35d3db47d866eed55c9ac} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a621eb01ce77a5d355bf9dc56a3b01bf3}\label{namespacepasslib_1_1totp_a621eb01ce77a5d355bf9dc56a3b01bf3} 
+{\bfseries \+\_\+cg\+\_\+ciphers} = None
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a5468749a4c5cebcaa7f1ac4bbbc29373}\label{namespacepasslib_1_1totp_a5468749a4c5cebcaa7f1ac4bbbc29373} 
+{\bfseries \+\_\+clean\+\_\+re} = re.\+compile(u(r"{}\textbackslash{}s\texorpdfstring{$\vert$}{|}\+[-\/=]\+"{}), re.\+U)
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a5bee5ea8dab74289d71581a3685fcb82}\label{namespacepasslib_1_1totp_a5bee5ea8dab74289d71581a3685fcb82} 
+list {\bfseries \+\_\+chunk\+\_\+sizes} = \+[4,6,5]\+
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a8c355e66a0c65261b7f12da1f8d73e48}\label{namespacepasslib_1_1totp_a8c355e66a0c65261b7f12da1f8d73e48} 
+{\bfseries AES\+\_\+\+SUPPORT} = bool(\+\_\+cg\+\_\+ciphers)
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a0643acf44040107b3e7310905ac6f8bf}\label{namespacepasslib_1_1totp_a0643acf44040107b3e7310905ac6f8bf} 
+{\bfseries \+\_\+tag\+\_\+re} = re.\+compile("{}(?i)\texorpdfstring{$^\wedge$}{\string^}\+[a-\/z0-\/9]\+\+[a-\/z0-\/9\+\_\+.-\/]\+\texorpdfstring{$\ast$}{*}\$"{})
+\item 
+\Hypertarget{namespacepasslib_1_1totp_a5c37b1f0248e52cebfa937aadf1893e6}\label{namespacepasslib_1_1totp_a5c37b1f0248e52cebfa937aadf1893e6} 
+{\bfseries \+\_\+pack\+\_\+uint64} = struct.\+Struct("{}$>$Q"{}).pack
+\item 
+\Hypertarget{namespacepasslib_1_1totp_aaac01b8cbacf41949347958c0a8f7b2c}\label{namespacepasslib_1_1totp_aaac01b8cbacf41949347958c0a8f7b2c} 
+{\bfseries \+\_\+unpack\+\_\+uint32} = struct.\+Struct("{}$>$I"{}).unpack
+\item 
+\Hypertarget{namespacepasslib_1_1totp_aa127ec8e1e3b12bd473928b8b6360ec0}\label{namespacepasslib_1_1totp_aa127ec8e1e3b12bd473928b8b6360ec0} 
+str {\bfseries \+\_\+\+DUMMY\+\_\+\+KEY} = b"{}\textbackslash{}x00"{} \texorpdfstring{$\ast$}{*} 16
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.totp -- TOTP / RFC6238 / Google Authenticator utilities.\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1totp_doc-func-members}
+\Hypertarget{namespacepasslib_1_1totp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1totp_acc8e8e5a6e0215f4b0b5c32754fa342c}\index{passlib.totp@{passlib.totp}!\_decode\_bytes@{\_decode\_bytes}}
+\index{\_decode\_bytes@{\_decode\_bytes}!passlib.totp@{passlib.totp}}
+\doxysubsubsection{\texorpdfstring{\_decode\_bytes()}{\_decode\_bytes()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1totp_acc8e8e5a6e0215f4b0b5c32754fa342c} 
+\+\_\+decode\+\_\+bytes (\begin{DoxyParamCaption}\item[{}]{key}{, }\item[{}]{format}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}internal TOTP() helper --
+decodes key according to specified format.
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1totp_af713f2fde45cd1a21a3ebb7b6b4709d0}\index{passlib.totp@{passlib.totp}!\_get\_group\_size@{\_get\_group\_size}}
+\index{\_get\_group\_size@{\_get\_group\_size}!passlib.totp@{passlib.totp}}
+\doxysubsubsection{\texorpdfstring{\_get\_group\_size()}{\_get\_group\_size()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1totp_af713f2fde45cd1a21a3ebb7b6b4709d0} 
+\+\_\+get\+\_\+group\+\_\+size (\begin{DoxyParamCaption}\item[{}]{klen}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}helper for group_string() --
+calculates optimal size of group for given string size.
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1totp_a5beafcc395397db964333a100c46cadc}\index{passlib.totp@{passlib.totp}!generate\_secret@{generate\_secret}}
+\index{generate\_secret@{generate\_secret}!passlib.totp@{passlib.totp}}
+\doxysubsubsection{\texorpdfstring{generate\_secret()}{generate\_secret()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1totp_a5beafcc395397db964333a100c46cadc} 
+generate\+\_\+secret (\begin{DoxyParamCaption}\item[{}]{entropy}{ = {\ttfamily 256}, }\item[{}]{charset}{ = {\ttfamily BASE64\+\_\+CHARS\+[:\+-\/2]\+}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}generate a random string suitable for use as an
+:class:`AppWallet` application secret.
+
+:param entropy:
+    number of bits of entropy (controls size/complexity of password).
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1totp_a6de7d4ac00307426a2b5009baff64a05}\index{passlib.totp@{passlib.totp}!group\_string@{group\_string}}
+\index{group\_string@{group\_string}!passlib.totp@{passlib.totp}}
+\doxysubsubsection{\texorpdfstring{group\_string()}{group\_string()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1totp_a6de7d4ac00307426a2b5009baff64a05} 
+group\+\_\+string (\begin{DoxyParamCaption}\item[{}]{value}{, }\item[{}]{sep}{ = {\ttfamily "{}-\/"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}reformat string into (roughly) evenly-sized groups, separated by **sep**.
+useful for making tokens & keys easier to read by humans.
+\end{DoxyVerb}
+ 

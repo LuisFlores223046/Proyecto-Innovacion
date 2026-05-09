@@ -1,0 +1,66 @@
+\doxysection{sqlalchemy.\+orm.\+base.\+Dynamic\+Mapped Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped}{}\label{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped}\index{sqlalchemy.orm.base.DynamicMapped@{sqlalchemy.orm.base.DynamicMapped}}
+Inheritance diagram for sqlalchemy.\+orm.\+base.\+Dynamic\+Mapped:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.968198cm]{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_ad8ea79d16d002a96472d8d5bb674d97f}\label{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_ad8ea79d16d002a96472d8d5bb674d97f} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, None instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_ad12e4aa1617f7d6b868cf4aab3c56e57}\label{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_ad12e4aa1617f7d6b868cf4aab3c56e57} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dynamic_1_1AppenderQuery}{Appender\+Query}}\+[\+\_\+\+T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, object instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_a473be5fc2bba26df211b4fe5daf8d227}\label{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_a473be5fc2bba26df211b4fe5daf8d227} 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+\+T\+\_\+co]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dynamic_1_1AppenderQuery}{Appender\+Query}}\+[\+\_\+\+T\+\_\+co]\+]\+ {\bfseries \+\_\+\+\_\+get\+\_\+\+\_\+} (self, Optional\+[object]\+ instance, Any owner)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_a6541837096eba24d1399854dccb088af}\label{classsqlalchemy_1_1orm_1_1base_1_1DynamicMapped_a6541837096eba24d1399854dccb088af} 
+None {\bfseries \+\_\+\+\_\+set\+\_\+\+\_\+} (self, Any instance, typing.\+Collection\+[\+\_\+\+T\+\_\+co]\+ value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1TypingOnly}{sqlalchemy.\+util.\+langhelpers.\+Typing\+Only}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent the ORM mapped attribute type for a "dynamic" relationship.
+
+The :class:`_orm.DynamicMapped` type annotation may be used in an
+:ref:`Annotated Declarative Table <orm_declarative_mapped_column>` mapping
+to indicate that the ``lazy="dynamic"`` loader strategy should be used
+for a particular :func:`_orm.relationship`.
+
+.. legacy::  The "dynamic" lazy loader strategy is the legacy form of what
+   is now the "write_only" strategy described in the section
+   :ref:`write_only_relationship`.
+
+E.g.::
+
+    class User(Base):
+        __tablename__ = "user"
+        id: Mapped[int] = mapped_column(primary_key=True)
+        addresses: DynamicMapped[Address] = relationship(
+            cascade="all,delete-orphan"
+        )
+
+See the section :ref:`dynamic_relationship` for background.
+
+.. versionadded:: 2.0
+
+.. seealso::
+
+    :ref:`dynamic_relationship` - complete background
+
+    :class:`.WriteOnlyMapped` - fully 2.0 style version
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+base.\+py\end{DoxyCompactItemize}

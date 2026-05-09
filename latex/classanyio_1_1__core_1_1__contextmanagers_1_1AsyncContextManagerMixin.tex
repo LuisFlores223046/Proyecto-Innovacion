@@ -1,0 +1,54 @@
+\doxysection{anyio.\+\_\+core.\+\_\+contextmanagers.\+Async\+Context\+Manager\+Mixin Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin}{}\label{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin}\index{anyio.\_core.\_contextmanagers.AsyncContextManagerMixin@{anyio.\_core.\_contextmanagers.AsyncContextManagerMixin}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_a37e569824d53420ae71c619d02703b08}\label{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_a37e569824d53420ae71c619d02703b08} 
+\+\_\+\+T\+\_\+co {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (\doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1__SupportsAsyncCtxMgr}{\+\_\+\+Supports\+Async\+Ctx\+Mgr}}\+[\+\_\+\+T\+\_\+co, bool\texorpdfstring{$\vert$}{|}None]\+ self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_ad6d72231e00ccfd52e831bbddbbe8947}\label{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_ad6d72231e00ccfd52e831bbddbbe8947} 
+\+\_\+\+Exit\+T\+\_\+co {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (\doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1__SupportsAsyncCtxMgr}{\+\_\+\+Supports\+Async\+Ctx\+Mgr}}\+[object, \+\_\+\+Exit\+T\+\_\+co]\+ self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\item 
+Abstract\+Async\+Context\+Manager\+[object, bool\texorpdfstring{$\vert$}{|}None]\+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_a50197f1e0431245c9548fb382da42099}{\+\_\+\+\_\+asynccontextmanager\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin class providing async context manager functionality via a generator-based
+implementation.
+
+This class allows you to implement a context manager via
+:meth:`__asynccontextmanager__`. The mechanics are meant to mirror those of
+:func:`@asynccontextmanager <contextlib.asynccontextmanager>`.
+
+.. note:: Classes using this mix-in are not reentrant as context managers, meaning
+    that once you enter it, you can't re-enter before first exiting it.
+
+.. seealso:: :doc:`contextmanagers`
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_doc-func-members}
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_a50197f1e0431245c9548fb382da42099}\index{anyio.\_core.\_contextmanagers.AsyncContextManagerMixin@{anyio.\_core.\_contextmanagers.AsyncContextManagerMixin}!\_\_asynccontextmanager\_\_@{\_\_asynccontextmanager\_\_}}
+\index{\_\_asynccontextmanager\_\_@{\_\_asynccontextmanager\_\_}!anyio.\_core.\_contextmanagers.AsyncContextManagerMixin@{anyio.\_core.\_contextmanagers.AsyncContextManagerMixin}}
+\doxysubsubsection{\texorpdfstring{\_\_asynccontextmanager\_\_()}{\_\_asynccontextmanager\_\_()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__contextmanagers_1_1AsyncContextManagerMixin_a50197f1e0431245c9548fb382da42099} 
+ Abstract\+Async\+Context\+Manager\+[object, bool \texorpdfstring{$\vert$}{|} None]\+ anyio.\+\_\+core.\+\_\+contextmanagers.\+Async\+Context\+Manager\+Mixin.\+\_\+\+\_\+asynccontextmanager\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement your async context manager logic here.
+
+This method **must** be decorated with
+:func:`@asynccontextmanager <contextlib.asynccontextmanager>`.
+
+.. note:: Remember that the ``yield`` will raise any exception raised in the
+    enclosed context block, so use a ``finally:`` block to clean up resources!
+
+:return: an async context manager object
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+contextmanagers.\+py\end{DoxyCompactItemize}

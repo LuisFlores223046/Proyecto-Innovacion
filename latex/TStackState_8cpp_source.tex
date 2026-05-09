@@ -1,0 +1,271 @@
+\doxysection{TStack\+State.\+cpp}
+\hypertarget{TStackState_8cpp_source}{}\label{TStackState_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TStackState.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TStackState.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_STACK\_STATE\_CPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_STACK\_STATE\_CPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifdef\ GREENLET\_USE\_STDIO}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }std::cerr;}
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\&\ s)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}StackState(stack\_start="{}}\ <<\ (\textcolor{keywordtype}{void}*)s.\_stack\_start}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ stack\_stop="{}}\ <<\ (\textcolor{keywordtype}{void}*)s.stack\_stop}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ stack\_copy="{}}\ <<\ (\textcolor{keywordtype}{void}*)s.stack\_copy}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ stack\_saved="{}}\ <<\ s.\_stack\_saved}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ stack\_prev="{}}\ <<\ s.stack\_prev}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ addr="{}}\ <<\ \&s}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState::StackState}}(\textcolor{keywordtype}{void}*\ mark,\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\&\ current)}
+\DoxyCodeLine{00027\ \ \ \ \ :\ \_stack\_start(nullptr),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ stack\_stop((char*)mark),}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ stack\_copy(nullptr),}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \_stack\_saved(0),}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \textcolor{comment}{/*\ Skip\ a\ dying\ greenlet\ */}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ stack\_prev(current.\_stack\_start}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \&current}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ current.stack\_prev)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState::StackState}}()}
+\DoxyCodeLine{00039\ \ \ \ \ :\ \_stack\_start(nullptr),}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ stack\_stop(nullptr),}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ stack\_copy(nullptr),}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \_stack\_saved(0),}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ stack\_prev(nullptr)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ae28ce402a051df4a69f654151d546dc5}{StackState::StackState}}(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\&\ other)}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ can't\ use\ a\ delegating\ constructor\ because\ of}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ MSVC\ for\ Python\ 2.7}}
+\DoxyCodeLine{00050\ \ \ \ \ :\ \_stack\_start(nullptr),}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ stack\_stop(nullptr),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ stack\_copy(nullptr),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \_stack\_saved(0),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ stack\_prev(nullptr)}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ this-\/>operator=(other);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ StackState\&\ StackState::operator=(\textcolor{keyword}{const}\ StackState\&\ other)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (\&other\ ==\ \textcolor{keyword}{this})\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (other.\_stack\_saved)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(\textcolor{stringliteral}{"{}Refusing\ to\ steal\ memory."{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//If\ we\ have\ memory\ allocated,\ dispose\ of\ it}}
+\DoxyCodeLine{00069\ \ \ \ \ this-\/>free\_stack\_copy();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ this-\/>\_stack\_start\ =\ other.\_stack\_start;}
+\DoxyCodeLine{00072\ \ \ \ \ this-\/>stack\_stop\ =\ other.stack\_stop;}
+\DoxyCodeLine{00073\ \ \ \ \ this-\/>stack\_copy\ =\ other.stack\_copy;}
+\DoxyCodeLine{00074\ \ \ \ \ this-\/>\_stack\_saved\ =\ other.\_stack\_saved;}
+\DoxyCodeLine{00075\ \ \ \ \ this-\/>stack\_prev\ =\ other.stack\_prev;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ StackState::free\_stack\_copy()\ noexcept}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ PyMem\_Free(this-\/>stack\_copy);}
+\DoxyCodeLine{00082\ \ \ \ \ this-\/>stack\_copy\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00083\ \ \ \ \ this-\/>\_stack\_saved\ =\ 0;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ StackState::copy\_heap\_to\_stack(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\&\ current)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{/*\ Restore\ the\ heap\ copy\ back\ into\ the\ C\ stack\ */}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_stack\_saved\ !=\ 0)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ memcpy(this-\/>\_stack\_start,\ this-\/>stack\_copy,\ this-\/>\_stack\_saved);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ this-\/>free\_stack\_copy();}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}*\ owner\ =\ \textcolor{keyword}{const\_cast<}\doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}*\textcolor{keyword}{>}(\&current);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (!owner-\/>\_stack\_start)\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ owner\ =\ owner-\/>stack\_prev;\ \textcolor{comment}{/*\ greenlet\ is\ dying,\ skip\ it\ */}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{while}\ (owner\ \&\&\ owner-\/>stack\_stop\ <=\ this-\/>stack\_stop)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cerr\ <<\ "{}\(\backslash\)tOwner:\ "{}\ <<\ owner\ <<\ endl;}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ owner\ =\ owner-\/>stack\_prev;\ \textcolor{comment}{/*\ find\ greenlet\ with\ more\ stack\ */}}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ this-\/>stack\_prev\ =\ owner;}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ cerr\ <<\ "{}\(\backslash\)tFinished\ with:\ "{}\ <<\ *this\ <<\ endl;}}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ StackState::copy\_stack\_to\_heap\_up\_to(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ stop)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{/*\ Save\ more\ of\ g's\ stack\ into\ the\ heap\ -\/-\/\ at\ least\ up\ to\ 'stop'}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ g-\/>stack\_stop\ |\_\_\_\_\_\_\_\_|}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \_\_\ stop\ \ \ \ \ \ \ .\ .\ .\ .\ .}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ ==>\ \ .\ \ \ \ \ \ \ .}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\_\_\_\_\_\_\_\_|\ \ \ \ \ \ \ \ \ \ \_\_\_\_\_\_\_}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ g-\/>stack\_start\ |\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ |\_\_\_\_\_\_\_|\ g-\/>stack\_copy}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00118\ \ \ \ \ intptr\_t\ sz1\ =\ this-\/>\_stack\_saved;}
+\DoxyCodeLine{00119\ \ \ \ \ intptr\_t\ sz2\ =\ stop\ -\/\ this-\/>\_stack\_start;}
+\DoxyCodeLine{00120\ \ \ \ \ assert(this-\/>\_stack\_start);}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordflow}{if}\ (sz2\ >\ sz1)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ c\ =\ (\textcolor{keywordtype}{char}*)PyMem\_Realloc(this-\/>stack\_copy,\ sz2);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!c)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_NoMemory();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ memcpy(c\ +\ sz1,\ this-\/>\_stack\_start\ +\ sz1,\ sz2\ -\/\ sz1);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ this-\/>stack\_copy\ =\ c;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ this-\/>\_stack\_saved\ =\ sz2;}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00132\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ StackState::copy\_stack\_to\_heap(\textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ stackref,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\&\ current)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{/*\ must\ free\ all\ the\ C\ stack\ up\ to\ target\_stop\ */}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ target\_stop\ =\ this-\/>stack\_stop;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}*\ owner\ =\ \textcolor{keyword}{const\_cast<}\doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}*\textcolor{keyword}{>}(\&current);}
+\DoxyCodeLine{00141\ \ \ \ \ assert(owner-\/>\_stack\_saved\ ==\ 0);\ \textcolor{comment}{//\ everything\ is\ present\ on\ the\ stack}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (!owner-\/>\_stack\_start)\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ owner\ =\ owner-\/>stack\_prev;\ \textcolor{comment}{/*\ not\ saved\ if\ dying\ */}}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ owner-\/>\_stack\_start\ =\ stackref;}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{while}\ (owner-\/>stack\_stop\ <\ target\_stop)\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ts\_current\ is\ entierely\ within\ the\ area\ to\ free\ */}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (owner-\/>copy\_stack\_to\_heap\_up\_to(owner-\/>stack\_stop))\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{/*\ XXX\ */}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ owner\ =\ owner-\/>stack\_prev;}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (owner\ !=\ \textcolor{keyword}{this})\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (owner-\/>copy\_stack\_to\_heap\_up\_to(target\_stop))\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{/*\ XXX\ */}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ StackState::started()\ const\ noexcept}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_stop\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00167\ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ StackState::main()\ const\ noexcept}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>stack\_stop\ ==\ (\textcolor{keywordtype}{char}*)-\/1;}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ StackState::active()\ const\ noexcept}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_stack\_start\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00177\ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ StackState::set\_active()\ noexcept}
+\DoxyCodeLine{00180\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ assert(this-\/>\_stack\_start\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00182\ \ \ \ \ this-\/>\_stack\_start\ =\ (\textcolor{keywordtype}{char}*)1;}
+\DoxyCodeLine{00183\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ StackState::set\_inactive()\ noexcept}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ this-\/>\_stack\_start\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ XXX:\ What\ if\ we\ still\ have\ memory\ out\ there?}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ That\ case\ is\ actually\ triggered\ by}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ test\_issue251\_issue252\_explicit\_reference\_not\_collectable\ (greenlet.tests.test\_leaks.TestLeaks)}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{comment}{//\ and}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ test\_issue251\_issue252\_need\_to\_collect\_in\_background}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//\ (greenlet.tests.test\_leaks.TestLeaks)}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\ Those\ objects\ never\ get\ deallocated,\ so\ the\ destructor\ never}}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ runs.}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ It\ *seems*\ safe\ to\ clean\ up\ the\ memory\ here?}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_stack\_saved)\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ this-\/>free\_stack\_copy();}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{inline}\ intptr\_t\ StackState::stack\_saved()\ const\ noexcept}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_stack\_saved;}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\ StackState::stack\_start()\ const\ noexcept}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_stack\_start;}
+\DoxyCodeLine{00211\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1StackState}{StackState}}\ StackState::make\_main()\ noexcept}
+\DoxyCodeLine{00215\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1StackState_ab2c943bc4433b35fb0f6feda1b898af7}{StackState}}\ s;}
+\DoxyCodeLine{00217\ \ \ \ \ s.\_stack\_start\ =\ (\textcolor{keywordtype}{char}*)1;}
+\DoxyCodeLine{00218\ \ \ \ \ s.stack\_stop\ =\ (\textcolor{keywordtype}{char}*)-\/1;}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00220\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ StackState::\string~StackState()}
+\DoxyCodeLine{00223\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_stack\_saved\ !=\ 0)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ this-\/>free\_stack\_copy();}
+\DoxyCodeLine{00226\ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keywordtype}{void}\ StackState::copy\_from\_stack(\textcolor{keywordtype}{void}*\ vdest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ vsrc,\ \textcolor{keywordtype}{size\_t}\ n)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00230\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{char}*\ dest\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(vdest);}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ src\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const\ }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(vsrc);}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (src\ +\ n\ <=\ this-\/>\_stack\_start}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ ||\ src\ >=\ this-\/>\_stack\_start\ +\ this-\/>\_stack\_saved}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ ||\ this-\/>\_stack\_saved\ ==\ 0)\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ we're\ copying\ was\ spilled\ from\ the\ stack}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ memcpy(dest,\ src,\ n);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordflow}{if}\ (src\ <\ this-\/>\_stack\_start)\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ part\ before\ the\ saved\ stack.}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ know\ src\ +\ n\ >\ \_stack\_start\ due\ to\ the\ test\ above.}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ nbefore\ =\ this-\/>\_stack\_start\ -\/\ src;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ memcpy(dest,\ src,\ nbefore);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ dest\ +=\ nbefore;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ src\ +=\ nbefore;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ n\ -\/=\ nbefore;}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{//\ We\ know\ src\ >=\ \_stack\_start\ after\ the\ before-\/copy,\ and}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{//\ src\ <\ \_stack\_start\ +\ \_stack\_saved\ due\ to\ the\ first\ if\ condition}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nspilled\ =\ std::min<size\_t>(n,\ this-\/>\_stack\_start\ +\ this-\/>\_stack\_saved\ -\/\ src);}
+\DoxyCodeLine{00253\ \ \ \ \ memcpy(dest,\ this-\/>stack\_copy\ +\ (src\ -\/\ this-\/>\_stack\_start),\ nspilled);}
+\DoxyCodeLine{00254\ \ \ \ \ dest\ +=\ nspilled;}
+\DoxyCodeLine{00255\ \ \ \ \ src\ +=\ nspilled;}
+\DoxyCodeLine{00256\ \ \ \ \ n\ -\/=\ nspilled;}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ >\ 0)\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ the\ part\ after\ the\ saved\ stack}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ memcpy(dest,\ src,\ n);}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \};\ \textcolor{comment}{//\ namespace\ greenlet}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_STACK\_STATE\_CPP}}
+
+\end{DoxyCode}

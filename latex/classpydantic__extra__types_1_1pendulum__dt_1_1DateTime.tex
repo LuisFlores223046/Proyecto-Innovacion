@@ -1,0 +1,97 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time Class Reference}
+\hypertarget{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime}{}\label{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime}\index{pydantic\_extra\_types.pendulum\_dt.DateTime@{pydantic\_extra\_types.pendulum\_dt.DateTime}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.777778cm]{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_ac10f0274a8d8f4eacf551a79c6298b4d}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTimeSettings}{pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, name, bases, dct, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, name, bases, dct, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime}{Date\+Time}} \doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_a2002981aea2bd31fdcbaeebd5df85983}{\+\_\+validate}} (cls, Any value, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidatorFunctionWrapHandler}{core\+\_\+schema.\+Validator\+Function\+Wrap\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_a2df063f4d732818513adb712d7b4f64a}\label{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_a2df063f4d732818513adb712d7b4f64a} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTimeSettings}{pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time\+Settings}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries strict} = kwargs.\+get(\textquotesingle{}strict\textquotesingle{}, True)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A `pendulum.DateTime` object. At runtime, this type decomposes into pendulum.DateTime automatically.
+This type exists because Pydantic throws a fit on unknown types.
+
+```python
+from pydantic import BaseModel
+from pydantic_extra_types.pendulum_dt import DateTime
+
+
+class test_model(BaseModel):
+    dt: DateTime
+
+
+print(test_model(dt='2021-01-01T00:00:00+00:00'))
+
+# > test_model(dt=DateTime(2021, 1, 1, 0, 0, 0, tzinfo=FixedTimezone(0, name="+00:00")))
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_ac10f0274a8d8f4eacf551a79c6298b4d}\index{pydantic\_extra\_types.pendulum\_dt.DateTime@{pydantic\_extra\_types.pendulum\_dt.DateTime}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic\_extra\_types.pendulum\_dt.DateTime@{pydantic\_extra\_types.pendulum\_dt.DateTime}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_ac10f0274a8d8f4eacf551a79c6298b4d} 
+ core\+\_\+schema.\+Core\+Schema pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{type\+[Any]\+}]{source}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Pydantic CoreSchema with the Datetime validation
+
+Args:
+    source: The source type to be converted.
+    handler: The handler to get the CoreSchema.
+
+Returns:
+    A Pydantic CoreSchema with the Datetime validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_a2002981aea2bd31fdcbaeebd5df85983}\index{pydantic\_extra\_types.pendulum\_dt.DateTime@{pydantic\_extra\_types.pendulum\_dt.DateTime}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!pydantic\_extra\_types.pendulum\_dt.DateTime@{pydantic\_extra\_types.pendulum\_dt.DateTime}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime_a2002981aea2bd31fdcbaeebd5df85983} 
+ \doxymbox{\hyperlink{classpydantic__extra__types_1_1pendulum__dt_1_1DateTime}{Date\+Time}} pydantic\+\_\+extra\+\_\+types.\+pendulum\+\_\+dt.\+Date\+Time.\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Any}]{value}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidatorFunctionWrapHandler}{core\+\_\+schema.\+Validator\+Function\+Wrap\+Handler}}}]{handler}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate the datetime object and return it.
+
+Args:
+    value: The value to validate.
+    handler: The handler to get the CoreSchema.
+
+Returns:
+    The validated value or raises a PydanticCustomError.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+pendulum\+\_\+dt.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\doxysection{sqlalchemy.\+orm.\+strategies.\+Load\+Lazy\+Attribute Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute}{}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute}\index{sqlalchemy.orm.strategies.LoadLazyAttribute@{sqlalchemy.orm.strategies.LoadLazyAttribute}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_adcfb483c0c2e574b49ae98531598f8f7}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_adcfb483c0c2e574b49ae98531598f8f7} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, key, initiating\+\_\+strategy, loadopt, extra\+\_\+criteria)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_a4e91fe676801cdfa52f5a14a4c1eac94}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_a4e91fe676801cdfa52f5a14a4c1eac94} 
+{\bfseries \+\_\+\+\_\+getstate\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_aed394bb5cfd6f340b384566f4b080b2c}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_aed394bb5cfd6f340b384566f4b080b2c} 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, state, passive=attributes.\+PASSIVE\+\_\+\+OFF)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_aaf2f80fc484f393e256d2ffe31a27dfb}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_aaf2f80fc484f393e256d2ffe31a27dfb} 
+{\bfseries key} = key
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_ac07e8c5ec17ae60b9b55cbd5250292f4}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_ac07e8c5ec17ae60b9b55cbd5250292f4} 
+{\bfseries strategy\+\_\+key} = initiating\+\_\+strategy.\+strategy\+\_\+key
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_ae0cac71ce6134bf3f7c8707d61391d03}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_ae0cac71ce6134bf3f7c8707d61391d03} 
+{\bfseries loadopt} = loadopt
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_a709ca55d12fca0a1668d75539d57a71e}\label{classsqlalchemy_1_1orm_1_1strategies_1_1LoadLazyAttribute_a709ca55d12fca0a1668d75539d57a71e} 
+{\bfseries extra\+\_\+criteria} = extra\+\_\+criteria
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}semi-serializable loader object used by LazyLoader
+
+Historically, this object would be carried along with instances that
+needed to run lazyloaders, so it had to be serializable to support
+cached instances.
+
+this is no longer a general requirement, and the case where this object
+is used is exactly the case where we can't really serialize easily,
+which is when extra criteria in the loader option is present.
+
+We can't reliably serialize that as it refers to mapped entities and
+AliasedClass objects that are local to the current process, which would
+need to be matched up on deserialize e.g. the sqlalchemy.ext.serializer
+approach.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+strategies.\+py\end{DoxyCompactItemize}

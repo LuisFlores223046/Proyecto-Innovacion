@@ -1,0 +1,52 @@
+\doxysection{sqlalchemy.\+testing.\+schema.\+eq\+\_\+type\+\_\+affinity Class Reference}
+\hypertarget{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity}{}\label{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity}\index{sqlalchemy.testing.schema.eq\_type\_affinity@{sqlalchemy.testing.schema.eq\_type\_affinity}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_ace88fe3579b42daef0efebc940ba4cb5}\label{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_ace88fe3579b42daef0efebc940ba4cb5} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, target)
+\item 
+\Hypertarget{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_a1e430a28b07e68037ee326f42cfb5904}\label{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_a1e430a28b07e68037ee326f42cfb5904} 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_a03fcf5b36450b41b3bcae29513a7dc67}\label{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_a03fcf5b36450b41b3bcae29513a7dc67} 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_af04398d8a859449e0bf6a91d5fe622ed}\label{classsqlalchemy_1_1testing_1_1schema_1_1eq__type__affinity_af04398d8a859449e0bf6a91d5fe622ed} 
+{\bfseries target} = sqltypes.\+to\+\_\+instance(target)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Helper to compare types inside of datastructures based on affinity.
+
+E.g.::
+
+    eq_(
+        inspect(connection).get_columns("foo"),
+        [
+            {
+                "name": "id",
+                "type": testing.eq_type_affinity(sqltypes.INTEGER),
+                "nullable": False,
+                "default": None,
+                "autoincrement": False,
+            },
+            {
+                "name": "data",
+                "type": testing.eq_type_affinity(sqltypes.NullType),
+                "nullable": True,
+                "default": None,
+                "autoincrement": False,
+            },
+        ],
+    )
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+testing/\+schema.\+py\end{DoxyCompactItemize}

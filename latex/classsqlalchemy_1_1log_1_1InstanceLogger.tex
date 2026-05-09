@@ -1,0 +1,166 @@
+\doxysection{sqlalchemy.\+log.\+Instance\+Logger Class Reference}
+\hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger}{}\label{classsqlalchemy_1_1log_1_1InstanceLogger}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_aa3e08ddbee38ff6c143d4f400493734f}\label{classsqlalchemy_1_1log_1_1InstanceLogger_aa3e08ddbee38ff6c143d4f400493734f} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \+\_\+\+Echo\+Flag\+Type echo, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ac166a5a06b05cf8f0fea57c562a89ed1}{debug}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_a3ab778146045cf769105dc3f92b4e031}{info}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ad56a1159800ca84ba705ac642c922109}{warning}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_a0c8d137ec848828723777a5100fff0be}{error}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ae5b527234bd3fe29505ed3f3f6b2c339}{exception}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ad90244502b4e71be966cf439d0f6c24d}{critical}} (self, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ae1ab33c53da8a81a4f698efdfc4ab569}{log}} (self, int level, str msg, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_a6cc17213106ac1654d221127664236eb}{is\+Enabled\+For}} (self, int level)
+\item 
+int \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ab031198beeca4f179fbaf9df17d6760e}{get\+Effective\+Level}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_a326d1c91c0703b40a550f57655721b0c}\label{classsqlalchemy_1_1log_1_1InstanceLogger_a326d1c91c0703b40a550f57655721b0c} 
+{\bfseries echo} = echo
+\item 
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_acf488e9688577da3427add5ad4859640}\label{classsqlalchemy_1_1log_1_1InstanceLogger_acf488e9688577da3427add5ad4859640} 
+{\bfseries logger} = logging.\+get\+Logger(name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ad2edf1f1bc658735b191a79928ce161b}\label{classsqlalchemy_1_1log_1_1InstanceLogger_ad2edf1f1bc658735b191a79928ce161b} 
+None {\bfseries warn} = \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_ad56a1159800ca84ba705ac642c922109}{warning}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger_a43d505baa73263d406327ed6a6789c0d}{\+\_\+echo\+\_\+map}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A logger adapter (wrapper) for :class:`.Identified` subclasses.
+
+This allows multiple instances (e.g. Engine or Pool instances)
+to share a logger, but have its verbosity controlled on a
+per-instance basis.
+
+The basic functionality is to return a logging level
+which is based on an instance's echo setting.
+
+Default implementation is:
+
+'debug' -> logging.DEBUG
+True    -> logging.INFO
+False   -> Effective level of underlying logger (
+logging.WARNING by default)
+None    -> same as False
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1log_1_1InstanceLogger_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ad90244502b4e71be966cf439d0f6c24d}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!critical@{critical}}
+\index{critical@{critical}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{critical()}{critical()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ad90244502b4e71be966cf439d0f6c24d} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+critical (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate a critical call to the underlying logger.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ac166a5a06b05cf8f0fea57c562a89ed1}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!debug@{debug}}
+\index{debug@{debug}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{debug()}{debug()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ac166a5a06b05cf8f0fea57c562a89ed1} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+debug (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate a debug call to the underlying logger.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_a0c8d137ec848828723777a5100fff0be}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!error@{error}}
+\index{error@{error}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_a0c8d137ec848828723777a5100fff0be} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate an error call to the underlying logger.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ae5b527234bd3fe29505ed3f3f6b2c339}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!exception@{exception}}
+\index{exception@{exception}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{exception()}{exception()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ae5b527234bd3fe29505ed3f3f6b2c339} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate an exception call to the underlying logger.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ab031198beeca4f179fbaf9df17d6760e}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!getEffectiveLevel@{getEffectiveLevel}}
+\index{getEffectiveLevel@{getEffectiveLevel}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{getEffectiveLevel()}{getEffectiveLevel()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ab031198beeca4f179fbaf9df17d6760e} 
+ int sqlalchemy.\+log.\+Instance\+Logger.\+get\+Effective\+Level (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}What's the effective level for this logger?\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_a3ab778146045cf769105dc3f92b4e031}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!info@{info}}
+\index{info@{info}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_a3ab778146045cf769105dc3f92b4e031} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+info (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate an info call to the underlying logger.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_a6cc17213106ac1654d221127664236eb}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!isEnabledFor@{isEnabledFor}}
+\index{isEnabledFor@{isEnabledFor}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{isEnabledFor()}{isEnabledFor()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_a6cc17213106ac1654d221127664236eb} 
+ bool sqlalchemy.\+log.\+Instance\+Logger.\+is\+Enabled\+For (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Is this logger enabled for level 'level'?\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ae1ab33c53da8a81a4f698efdfc4ab569}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!log@{log}}
+\index{log@{log}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ae1ab33c53da8a81a4f698efdfc4ab569} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+log (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{level}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate a log call to the underlying logger.
+
+The level here is determined by the echo
+flag as well as that of the underlying logger, and
+logger._log() is called directly.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_ad56a1159800ca84ba705ac642c922109}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!warning@{warning}}
+\index{warning@{warning}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{warning()}{warning()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_ad56a1159800ca84ba705ac642c922109} 
+ None sqlalchemy.\+log.\+Instance\+Logger.\+warning (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{msg}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delegate a warning call to the underlying logger.\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1log_1_1InstanceLogger_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1log_1_1InstanceLogger_a43d505baa73263d406327ed6a6789c0d}\index{sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}!\_echo\_map@{\_echo\_map}}
+\index{\_echo\_map@{\_echo\_map}!sqlalchemy.log.InstanceLogger@{sqlalchemy.log.InstanceLogger}}
+\doxysubsubsection{\texorpdfstring{\_echo\_map}{\_echo\_map}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1log_1_1InstanceLogger_a43d505baa73263d406327ed6a6789c0d} 
+dict sqlalchemy.\+log.\+Instance\+Logger.\+\_\+echo\+\_\+map\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{None}:\ logging.NOTSET,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{False}:\ logging.NOTSET,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{True}:\ logging.INFO,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}debug"{}}:\ logging.DEBUG,}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+log.\+py\end{DoxyCompactItemize}

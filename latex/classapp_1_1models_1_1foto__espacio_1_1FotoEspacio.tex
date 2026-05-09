@@ -1,0 +1,74 @@
+\doxysection{app.\+models.\+foto\+\_\+espacio.\+Foto\+Espacio Class Reference}
+\hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}\index{app.models.foto\_espacio.FotoEspacio@{app.models.foto\_espacio.FotoEspacio}}
+Inheritance diagram for app.\+models.\+foto\+\_\+espacio.\+Foto\+Espacio:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a0405ed121f51f0cfec8627dffb34fd3f}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a0405ed121f51f0cfec8627dffb34fd3f} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a77ee7a2969ce7ade39ca7811f5a1311d}{espacio\+\_\+id}}
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a7d21fad4f5fc0ac753193f2600c90ca7}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a7d21fad4f5fc0ac753193f2600c90ca7} 
+{\bfseries url} = Column(String(500), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a84f8ccc56ef700cc9beaa2ef160141d7}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a84f8ccc56ef700cc9beaa2ef160141d7} 
+{\bfseries descripcion} = Column(String(200), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_af02b6b7003ecabfa40cc0056eebccd92}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_af02b6b7003ecabfa40cc0056eebccd92} 
+{\bfseries es\+\_\+principal} = Column(Boolean, default=False, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a24b4325b7b759a0c01df5884d058046e}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a24b4325b7b759a0c01df5884d058046e} 
+{\bfseries orden} = Column(Integer, default=0, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_adaa0b5a35f5eae2da3572f84cbb11204}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_adaa0b5a35f5eae2da3572f84cbb11204} 
+{\bfseries subida\+\_\+en} = Column(TIMESTAMP(timezone=True), server\+\_\+default=func.\+now(), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_aa1b412ade2085112d38d319dcc1deabd}\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_aa1b412ade2085112d38d319dcc1deabd} 
+{\bfseries espacio} = relationship("{}Espacio"{}, back\+\_\+populates="{}fotos"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Almacena referencias a imágenes asociadas a un espacio específico.
+
+Attributes:
+    id: Identificador único.
+    espacio_id: FK hacia el espacio propietario.
+    url: Dirección del recurso en el storage (Cloudinary).
+    descripcion: Texto descriptivo o leyenda de la imagen.
+    es_principal: Indica si la foto debe mostrarse como portada.
+    orden: Valor numérico para organizar la galería.
+    subida_en: Registro temporal de la carga del archivo.
+\end{DoxyVerb}
+ 
+
+\label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_doc-variable-members}
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a77ee7a2969ce7ade39ca7811f5a1311d}\index{app.models.foto\_espacio.FotoEspacio@{app.models.foto\_espacio.FotoEspacio}!espacio\_id@{espacio\_id}}
+\index{espacio\_id@{espacio\_id}!app.models.foto\_espacio.FotoEspacio@{app.models.foto\_espacio.FotoEspacio}}
+\doxysubsubsection{\texorpdfstring{espacio\_id}{espacio\_id}}
+{\footnotesize\ttfamily \label{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio_a77ee7a2969ce7ade39ca7811f5a1311d} 
+app.\+models.\+foto\+\_\+espacio.\+Foto\+Espacio.\+espacio\+\_\+id\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Column(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Integer,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ForeignKey(\textcolor{stringliteral}{"{}espacios.id"{}},\ ondelete=\textcolor{stringliteral}{"{}CASCADE"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nullable=\textcolor{keyword}{False},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ index=\textcolor{keyword}{True},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+foto\+\_\+espacio.\+py\end{DoxyCompactItemize}

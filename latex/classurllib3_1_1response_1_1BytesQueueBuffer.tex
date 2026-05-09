@@ -1,0 +1,52 @@
+\doxysection{urllib3.\+response.\+Bytes\+Queue\+Buffer Class Reference}
+\hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer}{}\label{classurllib3_1_1response_1_1BytesQueueBuffer}\index{urllib3.response.BytesQueueBuffer@{urllib3.response.BytesQueueBuffer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_a7797564ed5c0194ba1556a135b6b6f36}\label{classurllib3_1_1response_1_1BytesQueueBuffer_a7797564ed5c0194ba1556a135b6b6f36} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_a09db60bd82d91909c553004b47362791}\label{classurllib3_1_1response_1_1BytesQueueBuffer_a09db60bd82d91909c553004b47362791} 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_aae9bd682e9c545ebda81b90f17bafd5e}\label{classurllib3_1_1response_1_1BytesQueueBuffer_aae9bd682e9c545ebda81b90f17bafd5e} 
+None {\bfseries put} (self, bytes data)
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_a57474bca633f44542bb53fc9e81fecc5}\label{classurllib3_1_1response_1_1BytesQueueBuffer_a57474bca633f44542bb53fc9e81fecc5} 
+bytes {\bfseries get} (self, int n)
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_a8c4706019134344d4d8f9ca0e41f3ad9}\label{classurllib3_1_1response_1_1BytesQueueBuffer_a8c4706019134344d4d8f9ca0e41f3ad9} 
+bytes {\bfseries get\+\_\+all} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_a46e9031408a4bf24244d511e427c8338}\label{classurllib3_1_1response_1_1BytesQueueBuffer_a46e9031408a4bf24244d511e427c8338} 
+typing.\+Deque\+[bytes\texorpdfstring{$\vert$}{|}memoryview\+[bytes]\+]\+ {\bfseries buffer} = collections.\+deque()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classurllib3_1_1response_1_1BytesQueueBuffer_af6f09e31534d6e07ba8f8bf0408ed5b6}\label{classurllib3_1_1response_1_1BytesQueueBuffer_af6f09e31534d6e07ba8f8bf0408ed5b6} 
+int {\bfseries \+\_\+size} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Memory-efficient bytes buffer
+
+To return decoded data in read() and still follow the BufferedIOBase API, we need a
+buffer to always return the correct amount of bytes.
+
+This buffer should be filled using calls to put()
+
+Our maximum memory usage is determined by the sum of the size of:
+
+ * self.buffer, which contains the full data
+ * the largest chunk that we will copy in get()
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+urllib3/\+response.\+py\end{DoxyCompactItemize}

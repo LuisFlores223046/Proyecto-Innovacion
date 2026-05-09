@@ -1,0 +1,107 @@
+\doxysection{geoalchemy2.\+functions Namespace Reference}
+\hypertarget{namespacegeoalchemy2_1_1functions}{}\label{namespacegeoalchemy2_1_1functions}\index{geoalchemy2.functions@{geoalchemy2.functions}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1functions_1_1__GeoGenericMeta}{\+\_\+\+Geo\+Generic\+Meta}}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1functions_1_1GeoGenericFunction}{Geo\+Generic\+Function}}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1functions_1_1TableRowElement}{Table\+Row\+Element}}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1functions_1_1ST__AsGeoJSON}{ST\+\_\+\+As\+Geo\+JSON}}
+\item 
+class \doxymbox{\hyperlink{classgeoalchemy2_1_1functions_1_1GenericFunction}{Generic\+Function}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1functions_a9e1ea9b6bf01692746d4949977cef4f3}\label{namespacegeoalchemy2_1_1functions_a9e1ea9b6bf01692746d4949977cef4f3} 
+{\bfseries \+\_\+compile\+\_\+table\+\_\+row\+\_\+thing} (element, compiler, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1functions_ab08519a28b0914903398e5d2422c3278}\label{namespacegeoalchemy2_1_1functions_ab08519a28b0914903398e5d2422c3278} 
+None {\bfseries \+\_\+create\+\_\+dynamic\+\_\+functions} ()
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1functions_ad0be10d0ebf82629a0b53eae1a018165}\label{namespacegeoalchemy2_1_1functions_ad0be10d0ebf82629a0b53eae1a018165} 
+list\+[str]\+ {\bfseries \+\_\+\+\_\+dir\+\_\+\+\_\+} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1functions_af17274579a1fa6eb5874e6e15462b194}\label{namespacegeoalchemy2_1_1functions_af17274579a1fa6eb5874e6e15462b194} 
+type {\bfseries \+\_\+\+Geo\+Function\+Base} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1functions_1_1GenericFunction}{functions.\+Generic\+Function}}]\+
+\item 
+\Hypertarget{namespacegeoalchemy2_1_1functions_ac001499f9d0cbfa52210a961f75b9755}\label{namespacegeoalchemy2_1_1functions_ac001499f9d0cbfa52210a961f75b9755} 
+type {\bfseries \+\_\+\+Geo\+Function\+Parent} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1functions_1_1GenericFunction}{functions.\+Generic\+Function}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This module defines the internals to map the spatial functions to the spatial columns.
+
+This module defines the :class:`GenericFunction` class, which is the base for
+the implementation of spatial functions in GeoAlchemy.  This module is also
+where actual spatial functions are defined. Spatial functions supported by
+GeoAlchemy are defined in this module. See :class:`GenericFunction` to know how
+to create new spatial functions.
+
+.. note::
+
+    By convention the names of spatial functions are prefixed by ``ST_``.  This
+    is to be consistent with PostGIS', which itself is based on the ``SQL-MM``
+    standard.
+
+Functions created by subclassing :class:`GenericFunction` can be called
+in several ways:
+
+* By using the ``func`` object, which is the SQLAlchemy standard way of calling
+  a function. For example, without the ORM::
+
+      select([func.ST_Area(lake_table.c.geom)])
+
+  and with the ORM::
+
+      Session.query(func.ST_Area(Lake.geom))
+
+* By applying the function to a geometry column. For example, without the
+  ORM::
+
+      select([lake_table.c.geom.ST_Area()])
+
+  and with the ORM::
+
+      Session.query(Lake.geom.ST_Area())
+
+* By applying the function to a :class:`geoalchemy2.elements.WKBElement`
+  object (:class:`geoalchemy2.elements.WKBElement` is the type into
+  which GeoAlchemy converts geometry values read from the database), or
+  to a :class:`geoalchemy2.elements.WKTElement` object. For example,
+  without the ORM::
+
+      conn.scalar(lake['geom'].ST_Area())
+
+  and with the ORM::
+
+      session.scalar(lake.geom.ST_Area())
+
+.. warning::
+
+    A few functions (like `ST_Transform()`, `ST_Union()`, `ST_SnapToGrid()`, ...) can be used on
+    several spatial types (:class:`geoalchemy2.types.Geometry`,
+    :class:`geoalchemy2.types.Geography` and / or :class:`geoalchemy2.types.Raster` types). In
+    GeoAlchemy2, these functions are only defined for the :class:`geoalchemy2.types.Geometry` type,
+    as it can not be defined for several types at the same time. Therefore, using these functions on
+    :class:`geoalchemy2.types.Geography` or :class:`geoalchemy2.types.Raster` requires minor
+    tweaking to enforce the type by passing the `type_=Geography` or `type_=Raster` argument to the
+    function::
+
+        s = select([func.ST_Transform(
+                            lake_table.c.raster,
+                            2154,
+                            type_=Raster)
+                        .label('transformed_raster')])
+
+Reference
+---------
+\end{DoxyVerb}
+ 

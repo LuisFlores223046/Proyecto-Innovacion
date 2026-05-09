@@ -1,0 +1,77 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+rust\+\_\+tracing Namespace Reference}
+\hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing}{}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing}\index{sentry\_sdk.integrations.rust\_tracing@{sentry\_sdk.integrations.rust\_tracing}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingLevel}{Rust\+Tracing\+Level}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1EventTypeMapping}{Event\+Type\+Mapping}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingLayer}{Rust\+Tracing\+Layer}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1rust__tracing_1_1RustTracingIntegration}{Rust\+Tracing\+Integration}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a0e5a22c3dc328ec57d6afc569bc4290b}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a0e5a22c3dc328ec57d6afc569bc4290b} 
+"{}sentry\+\_\+sdk.\+\_\+types.\+Log\+Level\+Str"{} {\bfseries tracing\+\_\+level\+\_\+to\+\_\+sentry\+\_\+level} (str level)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_af277ef20a740d6db1690c86741e94b93}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_af277ef20a740d6db1690c86741e94b93} 
+"{}Dict\+[str, Any]\+"{} {\bfseries extract\+\_\+contexts} ("{}Dict\+[str, Any]\+"{} event)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a307c2acd0960460963295e24e8875dd6}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a307c2acd0960460963295e24e8875dd6} 
+None {\bfseries process\+\_\+event} ("{}Dict\+[str, Any]\+"{} event)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a7133eaf59e546ff5ef51b7fa9fed080b}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a7133eaf59e546ff5ef51b7fa9fed080b} 
+None {\bfseries process\+\_\+exception} ("{}Dict\+[str, Any]\+"{} event)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a4672a0e55b2e207f5212319209f8856d}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a4672a0e55b2e207f5212319209f8856d} 
+None {\bfseries process\+\_\+breadcrumb} ("{}Dict\+[str, Any]\+"{} event)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a291ed2addd6398509ad80541e12f8c24}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_a291ed2addd6398509ad80541e12f8c24} 
+bool {\bfseries default\+\_\+span\+\_\+filter} ("{}Dict\+[str, Any]\+"{} metadata)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_ab26231ded61a53435d7912000385df3a}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_ab26231ded61a53435d7912000385df3a} 
+"{}Event\+Type\+Mapping"{} {\bfseries default\+\_\+event\+\_\+type\+\_\+mapping} ("{}Dict\+[str, Any]\+"{} metadata)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesentry__sdk_1_1integrations_1_1rust__tracing_ad2ef6fb846eb481726d815fef098773b}\label{namespacesentry__sdk_1_1integrations_1_1rust__tracing_ad2ef6fb846eb481726d815fef098773b} 
+{\bfseries Trace\+State} = Optional\+[Tuple\+[Optional\+[Sentry\+Span]\+, Sentry\+Span]\+]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This integration ingests tracing data from native extensions written in Rust.
+
+Using it requires additional setup on the Rust side to accept a
+`RustTracingLayer` Python object and register it with the `tracing-subscriber`
+using an adapter from the `pyo3-python-tracing-subscriber` crate. For example:
+```rust
+#[pyfunction]
+pub fn initialize_tracing(py_impl: Bound<'_, PyAny>) {
+    tracing_subscriber::registry()
+        .with(pyo3_python_tracing_subscriber::PythonCallbackLayerBridge::new(py_impl))
+        .init();
+}
+```
+
+Usage in Python would then look like:
+```
+sentry_sdk.init(
+    dsn=sentry_dsn,
+    integrations=[
+        RustTracingIntegration(
+            "demo_rust_extension",
+            demo_rust_extension.initialize_tracing,
+            event_type_mapping=event_type_mapping,
+        )
+    ],
+)
+```
+
+Each native extension requires its own integration.
+\end{DoxyVerb}
+ 

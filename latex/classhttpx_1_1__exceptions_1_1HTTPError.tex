@@ -1,0 +1,49 @@
+\doxysection{httpx.\+\_\+exceptions.\+HTTPError Class Reference}
+\hypertarget{classhttpx_1_1__exceptions_1_1HTTPError}{}\label{classhttpx_1_1__exceptions_1_1HTTPError}\index{httpx.\_exceptions.HTTPError@{httpx.\_exceptions.HTTPError}}
+Inheritance diagram for httpx.\+\_\+exceptions.\+HTTPError:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.514644cm]{classhttpx_1_1__exceptions_1_1HTTPError}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__exceptions_1_1HTTPError_ad222060c460de3fbabe1840fcf726a0d}\label{classhttpx_1_1__exceptions_1_1HTTPError_ad222060c460de3fbabe1840fcf726a0d} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str message)
+\item 
+\Hypertarget{classhttpx_1_1__exceptions_1_1HTTPError_ada8e24ad212f70807fe89fdf530094bc}\label{classhttpx_1_1__exceptions_1_1HTTPError_ada8e24ad212f70807fe89fdf530094bc} 
+\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} {\bfseries request} (self)
+\item 
+\Hypertarget{classhttpx_1_1__exceptions_1_1HTTPError_a071cb95402241d3d6fcafa199d96a004}\label{classhttpx_1_1__exceptions_1_1HTTPError_a071cb95402241d3d6fcafa199d96a004} 
+None {\bfseries request} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__exceptions_1_1HTTPError_a44df45ac41dd394ba59579a7989f4919}\label{classhttpx_1_1__exceptions_1_1HTTPError_a44df45ac41dd394ba59579a7989f4919} 
+\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+request} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for `RequestError` and `HTTPStatusError`.
+
+Useful for `try...except` blocks when issuing a request,
+and then calling `.raise_for_status()`.
+
+For example:
+
+```
+try:
+    response = httpx.get("https://www.example.com")
+    response.raise_for_status()
+except httpx.HTTPError as exc:
+    print(f"HTTP Exception for {exc.request.url} - {exc}")
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+exceptions.\+py\end{DoxyCompactItemize}

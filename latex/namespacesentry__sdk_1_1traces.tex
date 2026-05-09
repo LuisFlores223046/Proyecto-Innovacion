@@ -1,0 +1,68 @@
+\doxysection{sentry\+\_\+sdk.\+traces Namespace Reference}
+\hypertarget{namespacesentry__sdk_1_1traces}{}\label{namespacesentry__sdk_1_1traces}\index{sentry\_sdk.traces@{sentry\_sdk.traces}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1traces_1_1SpanStatus}{Span\+Status}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1traces_1_1SegmentSource}{Segment\+Source}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1traces_1_1StreamedSpan}{Streamed\+Span}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesentry__sdk_1_1traces_a275cf666a04f1c97870e0daa7676fcbc}\label{namespacesentry__sdk_1_1traces_a275cf666a04f1c97870e0daa7676fcbc} 
+int {\bfseries FLAGS\+\_\+\+CAPACITY} = 10
+\item 
+list \doxymbox{\hyperlink{namespacesentry__sdk_1_1traces_a8c528be6738b998b248305f169f9faa1}{LOW\+\_\+\+QUALITY\+\_\+\+SEGMENT\+\_\+\+SOURCES}}
+\item 
+dict \doxymbox{\hyperlink{namespacesentry__sdk_1_1traces_a25d0f669053e26a8c1e62c1f91aaae37}{SOURCE\+\_\+\+FOR\+\_\+\+STYLE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The API in this file is only meant to be used in span streaming mode.
+
+You can enable span streaming mode via
+sentry_sdk.init(_experiments={"trace_lifecycle": "stream"}).
+\end{DoxyVerb}
+ 
+
+\label{namespacesentry__sdk_1_1traces_doc-var-members}
+\Hypertarget{namespacesentry__sdk_1_1traces_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesentry__sdk_1_1traces_a8c528be6738b998b248305f169f9faa1}\index{sentry\_sdk.traces@{sentry\_sdk.traces}!LOW\_QUALITY\_SEGMENT\_SOURCES@{LOW\_QUALITY\_SEGMENT\_SOURCES}}
+\index{LOW\_QUALITY\_SEGMENT\_SOURCES@{LOW\_QUALITY\_SEGMENT\_SOURCES}!sentry\_sdk.traces@{sentry\_sdk.traces}}
+\doxysubsubsection{\texorpdfstring{LOW\_QUALITY\_SEGMENT\_SOURCES}{LOW\_QUALITY\_SEGMENT\_SOURCES}}
+{\footnotesize\ttfamily \label{namespacesentry__sdk_1_1traces_a8c528be6738b998b248305f169f9faa1} 
+list sentry\+\_\+sdk.\+traces.\+LOW\+\_\+\+QUALITY\+\_\+\+SEGMENT\+\_\+\+SOURCES}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ SegmentSource.URL,}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\Hypertarget{namespacesentry__sdk_1_1traces_a25d0f669053e26a8c1e62c1f91aaae37}\index{sentry\_sdk.traces@{sentry\_sdk.traces}!SOURCE\_FOR\_STYLE@{SOURCE\_FOR\_STYLE}}
+\index{SOURCE\_FOR\_STYLE@{SOURCE\_FOR\_STYLE}!sentry\_sdk.traces@{sentry\_sdk.traces}}
+\doxysubsubsection{\texorpdfstring{SOURCE\_FOR\_STYLE}{SOURCE\_FOR\_STYLE}}
+{\footnotesize\ttfamily \label{namespacesentry__sdk_1_1traces_a25d0f669053e26a8c1e62c1f91aaae37} 
+dict sentry\+\_\+sdk.\+traces.\+SOURCE\+\_\+\+FOR\+\_\+\+STYLE}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}endpoint"{}}:\ SegmentSource.COMPONENT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}function\_name"{}}:\ SegmentSource.COMPONENT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}handler\_name"{}}:\ SegmentSource.COMPONENT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}method\_and\_path\_pattern"{}}:\ SegmentSource.ROUTE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}path"{}}:\ SegmentSource.URL,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}route\_name"{}}:\ SegmentSource.COMPONENT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}route\_pattern"{}}:\ SegmentSource.ROUTE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}uri\_template"{}}:\ SegmentSource.ROUTE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}url"{}}:\ SegmentSource.ROUTE,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

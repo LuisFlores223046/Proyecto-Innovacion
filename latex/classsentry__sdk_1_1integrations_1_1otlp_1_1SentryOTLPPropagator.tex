@@ -1,0 +1,53 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+otlp.\+Sentry\+OTLPPropagator Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator}{}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator}\index{sentry\_sdk.integrations.otlp.SentryOTLPPropagator@{sentry\_sdk.integrations.otlp.SentryOTLPPropagator}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+otlp.\+Sentry\+OTLPPropagator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator_ac694c231110a0ee8a05d060d1e82c17d}{inject}} (self, "{}Carrier\+T"{} carrier, "{}Optional\+[Context]\+"{} context=None, "{}Setter\+[CarrierT]\+"{} setter=default\+\_\+setter)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1opentelemetry_1_1propagator_1_1SentryPropagator}{sentry\+\_\+sdk.\+integrations.\+opentelemetry.\+propagator.\+Sentry\+Propagator}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}Context"{} {\bfseries extract} (self, "{}Carrier\+T"{} carrier, "{}Optional\+[Context]\+"{} context=None, "{}Getter\+[CarrierT]\+"{} getter=default\+\_\+getter)
+\item 
+"{}Set\+[str]\+"{} {\bfseries fields} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}We need to override the inject of the older propagator since that
+is SpanProcessor based.
+
+!!! Note regarding baggage:
+We cannot meaningfully populate a new baggage as a head SDK
+when we are using OTLP since we don't have any sort of transaction semantic to
+track state across a group of spans.
+
+For incoming baggage, we just pass it on as is so that case is correctly handled.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator_ac694c231110a0ee8a05d060d1e82c17d}\index{sentry\_sdk.integrations.otlp.SentryOTLPPropagator@{sentry\_sdk.integrations.otlp.SentryOTLPPropagator}!inject@{inject}}
+\index{inject@{inject}!sentry\_sdk.integrations.otlp.SentryOTLPPropagator@{sentry\_sdk.integrations.otlp.SentryOTLPPropagator}}
+\doxysubsubsection{\texorpdfstring{inject()}{inject()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1otlp_1_1SentryOTLPPropagator_ac694c231110a0ee8a05d060d1e82c17d} 
+ None sentry\+\_\+sdk.\+integrations.\+otlp.\+Sentry\+OTLPPropagator.\+inject (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Carrier\+T"{}}]{carrier}{, }\item[{"{}Optional\+[Context]\+"{} }]{context}{ = {\ttfamily None}, }\item[{"{}Setter\+[CarrierT]\+"{} }]{setter}{ = {\ttfamily default\+\_\+setter}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1opentelemetry_1_1propagator_1_1SentryPropagator}{sentry\+\_\+sdk.\+integrations.\+opentelemetry.\+propagator.\+Sentry\+Propagator}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+otlp.\+py\end{DoxyCompactItemize}

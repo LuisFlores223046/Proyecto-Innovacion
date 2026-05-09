@@ -1,0 +1,210 @@
+\doxysection{sqlalchemy.\+util.\+queue.\+Queue Class Reference}
+\hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue}{}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+Inheritance diagram for sqlalchemy.\+util.\+queue.\+Queue:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsqlalchemy_1_1util_1_1queue_1_1Queue}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_a8aff0ee0003c3adad7e311056e45040b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int maxsize=0, bool use\+\_\+lifo=False)
+\item 
+int \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_aad22848ea81dc204c297e13d41884b77}{qsize}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_afa8a582ba5fbed266aba3b519a005806}{empty}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_ab15684e568afe0c6cf3ec415bb2f3ec1}{full}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_a33cd2045a322d19c964a97c9e94fb440}{put}} (self, \+\_\+T item, bool block=True, Optional\+[float]\+ timeout=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_a4133d4f9d7501b08dc25b97d4a4e56c0}{put\+\_\+nowait}} (self, \+\_\+T item)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_adfe83103ebb0bf7b5c82a88c175a9e4f}{get}} (self, bool block=True, Optional\+[float]\+ timeout=None)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue_a9556e5622caa9c3e9585e74ffa219b3a}{get\+\_\+nowait}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int maxsize=0, bool use\+\_\+lifo=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a6f325da8d3367b6a61c2c1d9f36ae4b7}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a6f325da8d3367b6a61c2c1d9f36ae4b7} 
+{\bfseries mutex} = threading.\+RLock()
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a0c29b51c3cebf960dd2e51931728cc28}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a0c29b51c3cebf960dd2e51931728cc28} 
+{\bfseries not\+\_\+empty} = threading.\+Condition(self.\+mutex)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a8c7c1e3cd5a7f7e7d173f12fa2e014e0}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a8c7c1e3cd5a7f7e7d173f12fa2e014e0} 
+{\bfseries not\+\_\+full} = threading.\+Condition(self.\+mutex)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_aaff7edbb2c4c14161315328a18f2d85b}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_aaff7edbb2c4c14161315328a18f2d85b} 
+{\bfseries use\+\_\+lifo} = use\+\_\+lifo
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_ad1b2233b9bc385bdb29ce78aedd4844b}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_ad1b2233b9bc385bdb29ce78aedd4844b} 
+{\bfseries maxsize} = maxsize
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a6a62d2b0897f37e7a5263ee8d89ae1e1}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a6a62d2b0897f37e7a5263ee8d89ae1e1} 
+Deque {\bfseries queue} \+[\+\_\+T]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a22df96622de7aa58c8c8bfdeef7c199b}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a22df96622de7aa58c8c8bfdeef7c199b} 
+None {\bfseries \+\_\+init} (self, int maxsize)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a66f5f195bbad23515e2955cfd4a66ded}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a66f5f195bbad23515e2955cfd4a66ded} 
+int {\bfseries \+\_\+qsize} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a81a21ce95da6ddfd4134297358537ae0}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a81a21ce95da6ddfd4134297358537ae0} 
+bool {\bfseries \+\_\+empty} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_aa20d59c7b025779c13aca6380a28f4eb}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_aa20d59c7b025779c13aca6380a28f4eb} 
+bool {\bfseries \+\_\+full} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_aecb9337d5f1a4fb5337597c57b5b079b}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_aecb9337d5f1a4fb5337597c57b5b079b} 
+None {\bfseries \+\_\+put} (self, \+\_\+T item)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a3ffab8db3c80612d514ab6b746fde454}\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a3ffab8db3c80612d514ab6b746fde454} 
+\+\_\+T {\bfseries \+\_\+get} (self)
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a8aff0ee0003c3adad7e311056e45040b}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a8aff0ee0003c3adad7e311056e45040b} 
+sqlalchemy.\+util.\+queue.\+Queue.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{maxsize}{ = {\ttfamily 0}, }\item[{bool }]{use\+\_\+lifo}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize a queue object with a given maximum size.
+
+If `maxsize` is <= 0, the queue size is infinite.
+
+If `use_lifo` is True, this Queue acts like a Stack (LIFO).
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1util_1_1queue_1_1Queue_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_afa8a582ba5fbed266aba3b519a005806}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!empty@{empty}}
+\index{empty@{empty}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_afa8a582ba5fbed266aba3b519a005806} 
+ bool sqlalchemy.\+util.\+queue.\+Queue.\+empty (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the queue is empty, False otherwise (not
+reliable!).\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_ab15684e568afe0c6cf3ec415bb2f3ec1}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!full@{full}}
+\index{full@{full}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{full()}{full()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_ab15684e568afe0c6cf3ec415bb2f3ec1} 
+ bool sqlalchemy.\+util.\+queue.\+Queue.\+full (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the queue is full, False otherwise (not
+reliable!).\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_adfe83103ebb0bf7b5c82a88c175a9e4f}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!get@{get}}
+\index{get@{get}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_adfe83103ebb0bf7b5c82a88c175a9e4f} 
+ \+\_\+T sqlalchemy.\+util.\+queue.\+Queue.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{block}{ = {\ttfamily True}, }\item[{Optional\+[float]\+ }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove and return an item from the queue.
+
+If optional args `block` is True and `timeout` is None (the
+default), block if necessary until an item is available. If
+`timeout` is a positive number, it blocks at most `timeout`
+seconds and raises the ``Empty`` exception if no item was
+available within that time.  Otherwise (`block` is false),
+return an item if one is immediately available, else raise the
+``Empty`` exception (`timeout` is ignored in that case).
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a9556e5622caa9c3e9585e74ffa219b3a}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!get\_nowait@{get\_nowait}}
+\index{get\_nowait@{get\_nowait}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{get\_nowait()}{get\_nowait()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a9556e5622caa9c3e9585e74ffa219b3a} 
+ \+\_\+T sqlalchemy.\+util.\+queue.\+Queue.\+get\+\_\+nowait (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove and return an item from the queue without blocking.
+
+Only get an item if one is immediately available. Otherwise
+raise the ``Empty`` exception.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a33cd2045a322d19c964a97c9e94fb440}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!put@{put}}
+\index{put@{put}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a33cd2045a322d19c964a97c9e94fb440} 
+ None sqlalchemy.\+util.\+queue.\+Queue.\+put (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+T}]{item}{, }\item[{bool }]{block}{ = {\ttfamily True}, }\item[{Optional\+[float]\+ }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put an item into the queue.
+
+If optional args `block` is True and `timeout` is None (the
+default), block if necessary until a free slot is
+available. If `timeout` is a positive number, it blocks at
+most `timeout` seconds and raises the ``Full`` exception if no
+free slot was available within that time.  Otherwise (`block`
+is false), put an item on the queue if a free slot is
+immediately available, else raise the ``Full`` exception
+(`timeout` is ignored in that case).
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_a4133d4f9d7501b08dc25b97d4a4e56c0}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!put\_nowait@{put\_nowait}}
+\index{put\_nowait@{put\_nowait}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{put\_nowait()}{put\_nowait()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_a4133d4f9d7501b08dc25b97d4a4e56c0} 
+ None sqlalchemy.\+util.\+queue.\+Queue.\+put\+\_\+nowait (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+T}]{item}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put an item into the queue without blocking.
+
+Only enqueue the item if a free slot is immediately available.
+Otherwise raise the ``Full`` exception.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+\Hypertarget{classsqlalchemy_1_1util_1_1queue_1_1Queue_aad22848ea81dc204c297e13d41884b77}\index{sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}!qsize@{qsize}}
+\index{qsize@{qsize}!sqlalchemy.util.queue.Queue@{sqlalchemy.util.queue.Queue}}
+\doxysubsubsection{\texorpdfstring{qsize()}{qsize()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1queue_1_1Queue_aad22848ea81dc204c297e13d41884b77} 
+ int sqlalchemy.\+util.\+queue.\+Queue.\+qsize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the approximate size of the queue (not reliable!).\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{sqlalchemy.\+util.\+queue.\+Queue\+Common}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+util/\+queue.\+py\end{DoxyCompactItemize}

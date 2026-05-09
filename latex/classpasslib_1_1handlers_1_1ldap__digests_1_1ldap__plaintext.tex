@@ -1,0 +1,94 @@
+\doxysection{passlib.\+handlers.\+ldap\+\_\+digests.\+ldap\+\_\+plaintext Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext}{}\label{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext}\index{passlib.handlers.ldap\_digests.ldap\_plaintext@{passlib.handlers.ldap\_digests.ldap\_plaintext}}
+Inheritance diagram for passlib.\+handlers.\+ldap\+\_\+digests.\+ldap\+\_\+plaintext:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_a5f1598d588aca496ae16de7511a65723}{genconfig}} (cls)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_aeecf35f81b7eab14cf3cf2aa359c8a1a}{identify}} (cls, hash)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1misc_1_1plaintext}{passlib.\+handlers.\+misc.\+plaintext}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries hash} (cls, secret, encoding=None)
+\item 
+{\bfseries verify} (cls, secret, hash, encoding=None)
+\item 
+{\bfseries genhash} (cls, secret, config, encoding=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_ad1154c86382f90855d257bda49128160}\label{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_ad1154c86382f90855d257bda49128160} 
+{\bfseries \+\_\+2307\+\_\+pat} = re.\+compile(u(r"{}\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}\{\textbackslash{}w+\textbackslash{}\}.\texorpdfstring{$\ast$}{*}\$"{}))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1misc_1_1plaintext}{passlib.\+handlers.\+misc.\+plaintext}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries name} = "{}plaintext"{}
+\item 
+tuple {\bfseries setting\+\_\+kwds} = ()
+\item 
+tuple {\bfseries context\+\_\+kwds} = ("{}encoding"{},)
+\item 
+str {\bfseries default\+\_\+encoding} = "{}utf-\/8"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class stores passwords in plaintext, and follows the :ref:`password-hash-api`.
+
+This class acts much like the generic :class:`!passlib.hash.plaintext` handler,
+except that it will identify a hash only if it does NOT begin with the ``{XXX}`` identifier prefix
+used by RFC2307 passwords.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`, :meth:`~passlib.ifc.PasswordHash.genhash`, and :meth:`~passlib.ifc.PasswordHash.verify` methods all require the
+following additional contextual keyword:
+
+:type encoding: str
+:param encoding:
+    This controls the character encoding to use (defaults to ``utf-8``).
+
+    This encoding will be used to encode :class:`!unicode` passwords
+    under Python 2, and decode :class:`!bytes` hashes under Python 3.
+
+.. versionchanged:: 1.6
+    The ``encoding`` keyword was added.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_a5f1598d588aca496ae16de7511a65723}\index{passlib.handlers.ldap\_digests.ldap\_plaintext@{passlib.handlers.ldap\_digests.ldap\_plaintext}!genconfig@{genconfig}}
+\index{genconfig@{genconfig}!passlib.handlers.ldap\_digests.ldap\_plaintext@{passlib.handlers.ldap\_digests.ldap\_plaintext}}
+\doxysubsubsection{\texorpdfstring{genconfig()}{genconfig()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_a5f1598d588aca496ae16de7511a65723} 
+passlib.\+handlers.\+ldap\+\_\+digests.\+ldap\+\_\+plaintext.\+genconfig (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1misc_1_1plaintext}{passlib.\+handlers.\+misc.\+plaintext}}.
+
+\Hypertarget{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_aeecf35f81b7eab14cf3cf2aa359c8a1a}\index{passlib.handlers.ldap\_digests.ldap\_plaintext@{passlib.handlers.ldap\_digests.ldap\_plaintext}!identify@{identify}}
+\index{identify@{identify}!passlib.handlers.ldap\_digests.ldap\_plaintext@{passlib.handlers.ldap\_digests.ldap\_plaintext}}
+\doxysubsubsection{\texorpdfstring{identify()}{identify()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1ldap__digests_1_1ldap__plaintext_aeecf35f81b7eab14cf3cf2aa359c8a1a} 
+passlib.\+handlers.\+ldap\+\_\+digests.\+ldap\+\_\+plaintext.\+identify (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{hash}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1misc_1_1plaintext}{passlib.\+handlers.\+misc.\+plaintext}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+ldap\+\_\+digests.\+py\end{DoxyCompactItemize}

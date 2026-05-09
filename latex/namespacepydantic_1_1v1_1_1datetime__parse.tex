@@ -1,0 +1,186 @@
+\doxysection{pydantic.\+v1.\+datetime\+\_\+parse Namespace Reference}
+\hypertarget{namespacepydantic_1_1v1_1_1datetime__parse}{}\label{namespacepydantic_1_1v1_1_1datetime__parse}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_aff45d7ccf6132ffb0b39fe9a47da4b8b}\label{namespacepydantic_1_1v1_1_1datetime__parse_aff45d7ccf6132ffb0b39fe9a47da4b8b} 
+Union\+[None, int, float]\+ {\bfseries get\+\_\+numeric} (Str\+Bytes\+Int\+Float value, str native\+\_\+expected\+\_\+type)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_acad594f902b44dc4d4739d836f189c75}\label{namespacepydantic_1_1v1_1_1datetime__parse_acad594f902b44dc4d4739d836f189c75} 
+datetime {\bfseries from\+\_\+unix\+\_\+seconds} (Union\+[int, float]\+ seconds)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_afc6dbaebcd0192a506fda98baf61dfa3}\label{namespacepydantic_1_1v1_1_1datetime__parse_afc6dbaebcd0192a506fda98baf61dfa3} 
+Union\+[None, int, timezone]\+ {\bfseries \+\_\+parse\+\_\+timezone} (Optional\+[str]\+ value, Type\+[Exception]\+ error)
+\item 
+date \doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a0842413e272a9bc06dc9692cca4eb80f}{parse\+\_\+date}} (Union\+[date, Str\+Bytes\+Int\+Float]\+ value)
+\item 
+time \doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a3faadb558a1237ff481b1ad509a62767}{parse\+\_\+time}} (Union\+[time, Str\+Bytes\+Int\+Float]\+ value)
+\item 
+datetime \doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a5f681ad89fba55cf3b93d2be04836cc9}{parse\+\_\+datetime}} (Union\+[datetime, Str\+Bytes\+Int\+Float]\+ value)
+\item 
+timedelta \doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a9006909f0758611ae258f4521aee84f1}{parse\+\_\+duration}} (Str\+Bytes\+Int\+Float value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a5a6623f7b8d1dd4fd9dfc0dec544f979}\label{namespacepydantic_1_1v1_1_1datetime__parse_a5a6623f7b8d1dd4fd9dfc0dec544f979} 
+str {\bfseries date\+\_\+expr} = r\textquotesingle{}(?P$<$year$>$\textbackslash{}d\{4\})-\/(?P$<$month$>$\textbackslash{}d\{1,2\})-\/(?P$<$day$>$\textbackslash{}d\{1,2\})\textquotesingle{}
+\item 
+tuple \doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a8141e5129f07979df68473bcb06b5e54}{time\+\_\+expr}}
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a4f70663f139c793754d59bbaf35d0cf9}\label{namespacepydantic_1_1v1_1_1datetime__parse_a4f70663f139c793754d59bbaf35d0cf9} 
+{\bfseries date\+\_\+re} = re.\+compile(f\textquotesingle{}\{date\+\_\+expr\}\$\textquotesingle{})
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a2d4313dd7b262cc0cda3f909b5aedd87}\label{namespacepydantic_1_1v1_1_1datetime__parse_a2d4313dd7b262cc0cda3f909b5aedd87} 
+{\bfseries time\+\_\+re} = re.\+compile(time\+\_\+expr)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_aa1c5ce4e8d56674af98d82e922b8c1a7}\label{namespacepydantic_1_1v1_1_1datetime__parse_aa1c5ce4e8d56674af98d82e922b8c1a7} 
+{\bfseries datetime\+\_\+re} = re.\+compile(f\textquotesingle{}\{date\+\_\+expr\}\+[T ]\+\{time\+\_\+expr\}\textquotesingle{})
+\item 
+\doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a8615782140660e10ef08449b32ba186c}{standard\+\_\+duration\+\_\+re}}
+\item 
+\doxymbox{\hyperlink{namespacepydantic_1_1v1_1_1datetime__parse_a558e442fe736d268b2cc84f31a808684}{iso8601\+\_\+duration\+\_\+re}}
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a521358c1dbc8736b448583b20b323f54}\label{namespacepydantic_1_1v1_1_1datetime__parse_a521358c1dbc8736b448583b20b323f54} 
+{\bfseries EPOCH} = datetime(1970, 1, 1)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a4e81962a97c4a7011c91331d20f82420}\label{namespacepydantic_1_1v1_1_1datetime__parse_a4e81962a97c4a7011c91331d20f82420} 
+{\bfseries MS\+\_\+\+WATERSHED} = int(2e10)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_ab1d9c222d6d63f91b49ad509c4ffab9f}\label{namespacepydantic_1_1v1_1_1datetime__parse_ab1d9c222d6d63f91b49ad509c4ffab9f} 
+{\bfseries MAX\+\_\+\+NUMBER} = int(3e20)
+\item 
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_aa7c4763f133c0c24d024a4d5eeea70f2}\label{namespacepydantic_1_1v1_1_1datetime__parse_aa7c4763f133c0c24d024a4d5eeea70f2} 
+{\bfseries Str\+Bytes\+Int\+Float} = Union\+[str, bytes, int, float]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions to parse datetime objects.
+
+We're using regular expressions rather than time.strptime because:
+- They provide both validation and parsing.
+- They're more flexible for datetimes.
+- The date/datetime/time constructors produce friendlier error messages.
+
+Stolen from https://raw.githubusercontent.com/django/django/main/django/utils/dateparse.py at
+9718fa2e8abe430c3526a9278dd976443d4ae3c6
+
+Changed to:
+* use standard python datetime types not django.utils.timezone
+* raise ValueError when regex doesn't match rather than returning None
+* support parsing unix timestamps for dates and datetimes
+\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1v1_1_1datetime__parse_doc-func-members}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a0842413e272a9bc06dc9692cca4eb80f}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!parse\_date@{parse\_date}}
+\index{parse\_date@{parse\_date}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{parse\_date()}{parse\_date()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a0842413e272a9bc06dc9692cca4eb80f} 
+ date parse\+\_\+date (\begin{DoxyParamCaption}\item[{Union\+[date, Str\+Bytes\+Int\+Float]\+}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a date/int/float/string and return a datetime.date.
+
+Raise ValueError if the input is well formatted but not a valid date.
+Raise ValueError if the input isn't well formatted.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a5f681ad89fba55cf3b93d2be04836cc9}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!parse\_datetime@{parse\_datetime}}
+\index{parse\_datetime@{parse\_datetime}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{parse\_datetime()}{parse\_datetime()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a5f681ad89fba55cf3b93d2be04836cc9} 
+ datetime parse\+\_\+datetime (\begin{DoxyParamCaption}\item[{Union\+[datetime, Str\+Bytes\+Int\+Float]\+}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a datetime/int/float/string and return a datetime.datetime.
+
+This function supports time zone offsets. When the input contains one,
+the output uses a timezone with a fixed offset from UTC.
+
+Raise ValueError if the input is well formatted but not a valid datetime.
+Raise ValueError if the input isn't well formatted.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a9006909f0758611ae258f4521aee84f1}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!parse\_duration@{parse\_duration}}
+\index{parse\_duration@{parse\_duration}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{parse\_duration()}{parse\_duration()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a9006909f0758611ae258f4521aee84f1} 
+ timedelta parse\+\_\+duration (\begin{DoxyParamCaption}\item[{Str\+Bytes\+Int\+Float}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a duration int/float/string and return a datetime.timedelta.
+
+The preferred format for durations in Django is '%d %H:%M:%S.%f'.
+
+Also supports ISO 8601 representation.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a3faadb558a1237ff481b1ad509a62767}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!parse\_time@{parse\_time}}
+\index{parse\_time@{parse\_time}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{parse\_time()}{parse\_time()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a3faadb558a1237ff481b1ad509a62767} 
+ time parse\+\_\+time (\begin{DoxyParamCaption}\item[{Union\+[time, Str\+Bytes\+Int\+Float]\+}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a time/string and return a datetime.time.
+
+Raise ValueError if the input is well formatted but not a valid time.
+Raise ValueError if the input isn't well formatted, in particular if it contains an offset.
+\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1v1_1_1datetime__parse_doc-var-members}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a558e442fe736d268b2cc84f31a808684}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!iso8601\_duration\_re@{iso8601\_duration\_re}}
+\index{iso8601\_duration\_re@{iso8601\_duration\_re}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{iso8601\_duration\_re}{iso8601\_duration\_re}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a558e442fe736d268b2cc84f31a808684} 
+pydantic.\+v1.\+datetime\+\_\+parse.\+iso8601\+\_\+duration\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'\string^(?P<sign>[-\/+]?)'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'P'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<days>\(\backslash\)d+(.\(\backslash\)d+)?)D)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:T'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<hours>\(\backslash\)d+(.\(\backslash\)d+)?)H)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<minutes>\(\backslash\)d+(.\(\backslash\)d+)?)M)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<seconds>\(\backslash\)d+(.\(\backslash\)d+)?)S)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r')?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'\$'}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a8615782140660e10ef08449b32ba186c}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!standard\_duration\_re@{standard\_duration\_re}}
+\index{standard\_duration\_re@{standard\_duration\_re}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{standard\_duration\_re}{standard\_duration\_re}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a8615782140660e10ef08449b32ba186c} 
+pydantic.\+v1.\+datetime\+\_\+parse.\+standard\+\_\+duration\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'\string^'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<days>-\/?\(\backslash\)d+)\ (days?,\ )?)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'((?:(?P<hours>-\/?\(\backslash\)d+):)(?=\(\backslash\)d+:\(\backslash\)d+))?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:(?P<minutes>-\/?\(\backslash\)d+):)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?P<seconds>-\/?\(\backslash\)d+)'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?:\(\backslash\).(?P<microseconds>\(\backslash\)d\{1,6\})\(\backslash\)d\{0,6\})?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'\$'}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacepydantic_1_1v1_1_1datetime__parse_a8141e5129f07979df68473bcb06b5e54}\index{pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}!time\_expr@{time\_expr}}
+\index{time\_expr@{time\_expr}!pydantic.v1.datetime\_parse@{pydantic.v1.datetime\_parse}}
+\doxysubsubsection{\texorpdfstring{time\_expr}{time\_expr}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1v1_1_1datetime__parse_a8141e5129f07979df68473bcb06b5e54} 
+tuple pydantic.\+v1.\+datetime\+\_\+parse.\+time\+\_\+expr}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?P<hour>\(\backslash\)d\{1,2\}):(?P<minute>\(\backslash\)d\{1,2\})'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?::(?P<second>\(\backslash\)d\{1,2\})(?:\(\backslash\).(?P<microsecond>\(\backslash\)d\{1,6\})\(\backslash\)d\{0,6\})?)?'}}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r'(?P<tzinfo>Z|[+-\/]\(\backslash\)d\{2\}(?::?\(\backslash\)d\{2\})?)?\$'}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

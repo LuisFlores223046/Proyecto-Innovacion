@@ -1,0 +1,70 @@
+\doxysection{pip.\+\_\+internal.\+network.\+download Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1network_1_1download}{}\label{namespacepip_1_1__internal_1_1network_1_1download}\index{pip.\_internal.network.download@{pip.\_internal.network.download}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1download_1_1Downloader}{Downloader}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1download_1_1BatchDownloader}{Batch\+Downloader}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a0c05c1be75525de49ed4e12b1e0e2681}\label{namespacepip_1_1__internal_1_1network_1_1download_a0c05c1be75525de49ed4e12b1e0e2681} 
+Optional\+[int]\+ {\bfseries \+\_\+get\+\_\+http\+\_\+response\+\_\+size} (\doxymbox{\hyperlink{classpip_1_1__vendor_1_1requests_1_1models_1_1Response}{Response}} resp)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a7f2e867209b162e3715eb1a0c2405e10}\label{namespacepip_1_1__internal_1_1network_1_1download_a7f2e867209b162e3715eb1a0c2405e10} 
+Iterable\+[bytes]\+ {\bfseries \+\_\+prepare\+\_\+download} (\doxymbox{\hyperlink{classpip_1_1__vendor_1_1requests_1_1models_1_1Response}{Response}} resp, \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}} link, str progress\+\_\+bar)
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1network_1_1download_a3ad12e07333275aba8cbd817d152afe1}{sanitize\+\_\+content\+\_\+filename}} (str filename)
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1network_1_1download_a6289b27c6afff04550bb5808b484b4ef}{parse\+\_\+content\+\_\+disposition}} (str content\+\_\+disposition, str default\+\_\+filename)
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1network_1_1download_a41baacf305c8dfebd740372430df40cc}{\+\_\+get\+\_\+http\+\_\+response\+\_\+filename}} (\doxymbox{\hyperlink{classpip_1_1__vendor_1_1requests_1_1models_1_1Response}{Response}} resp, \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}} link)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a9d3cbfed7d037fec8367df482ea1f765}\label{namespacepip_1_1__internal_1_1network_1_1download_a9d3cbfed7d037fec8367df482ea1f765} 
+\doxymbox{\hyperlink{classpip_1_1__vendor_1_1requests_1_1models_1_1Response}{Response}} {\bfseries \+\_\+http\+\_\+get\+\_\+download} (\doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1session_1_1PipSession}{Pip\+Session}} session, \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}} link)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a502f6c96b5e357b7f9e35d56085ea942}\label{namespacepip_1_1__internal_1_1network_1_1download_a502f6c96b5e357b7f9e35d56085ea942} 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Download files with progress indicators.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1network_1_1download_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a41baacf305c8dfebd740372430df40cc}\index{pip.\_internal.network.download@{pip.\_internal.network.download}!\_get\_http\_response\_filename@{\_get\_http\_response\_filename}}
+\index{\_get\_http\_response\_filename@{\_get\_http\_response\_filename}!pip.\_internal.network.download@{pip.\_internal.network.download}}
+\doxysubsubsection{\texorpdfstring{\_get\_http\_response\_filename()}{\_get\_http\_response\_filename()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1network_1_1download_a41baacf305c8dfebd740372430df40cc} 
+ str \+\_\+get\+\_\+http\+\_\+response\+\_\+filename (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classpip_1_1__vendor_1_1requests_1_1models_1_1Response}{Response}}}]{resp}{, }\item[{\doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}}}]{link}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get an ideal filename from the given HTTP response, falling back to
+the link filename if not provided.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a6289b27c6afff04550bb5808b484b4ef}\index{pip.\_internal.network.download@{pip.\_internal.network.download}!parse\_content\_disposition@{parse\_content\_disposition}}
+\index{parse\_content\_disposition@{parse\_content\_disposition}!pip.\_internal.network.download@{pip.\_internal.network.download}}
+\doxysubsubsection{\texorpdfstring{parse\_content\_disposition()}{parse\_content\_disposition()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1network_1_1download_a6289b27c6afff04550bb5808b484b4ef} 
+ str parse\+\_\+content\+\_\+disposition (\begin{DoxyParamCaption}\item[{str}]{content\+\_\+disposition}{, }\item[{str}]{default\+\_\+filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse the "filename" value from a Content-Disposition header, and
+return the default filename if the result is empty.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1network_1_1download_a3ad12e07333275aba8cbd817d152afe1}\index{pip.\_internal.network.download@{pip.\_internal.network.download}!sanitize\_content\_filename@{sanitize\_content\_filename}}
+\index{sanitize\_content\_filename@{sanitize\_content\_filename}!pip.\_internal.network.download@{pip.\_internal.network.download}}
+\doxysubsubsection{\texorpdfstring{sanitize\_content\_filename()}{sanitize\_content\_filename()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1network_1_1download_a3ad12e07333275aba8cbd817d152afe1} 
+ str sanitize\+\_\+content\+\_\+filename (\begin{DoxyParamCaption}\item[{str}]{filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sanitize the "filename" value from a Content-Disposition header.
+\end{DoxyVerb}
+ 

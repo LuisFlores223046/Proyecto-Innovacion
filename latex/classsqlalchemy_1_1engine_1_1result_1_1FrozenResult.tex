@@ -1,0 +1,88 @@
+\doxysection{sqlalchemy.\+engine.\+result.\+Frozen\+Result Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult}{}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult}\index{sqlalchemy.engine.result.FrozenResult@{sqlalchemy.engine.result.FrozenResult}}
+Inheritance diagram for sqlalchemy.\+engine.\+result.\+Frozen\+Result:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_ac8b724cfc6e679a5e0554732c175a3b7}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_ac8b724cfc6e679a5e0554732c175a3b7} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[\+\_\+\+TP]\+ result)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a33fd2b86f6473a51482cf9ea8fc2eb8a}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a33fd2b86f6473a51482cf9ea8fc2eb8a} 
+Sequence\+[Sequence\+[Any]\+]\+ {\bfseries rewrite\+\_\+rows} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a35fe25d904afc85b659d04a0b1e1758a}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a35fe25d904afc85b659d04a0b1e1758a} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult}{Frozen\+Result}}\+[\+\_\+\+TP]\+ {\bfseries with\+\_\+new\+\_\+rows} (self, Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1row_1_1Row}{Row}}\+[\+\_\+\+TP]\+]\+ tuple\+\_\+data)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a2bb4eeb5877c2f920428f27bdbff9f22}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a2bb4eeb5877c2f920428f27bdbff9f22} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[\+\_\+\+TP]\+ {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a7c804130199cf2253a30e975e48bcb7f}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a7c804130199cf2253a30e975e48bcb7f} 
+{\bfseries metadata} = result.\+\_\+metadata.\+\_\+for\+\_\+freeze()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a2bb7d7491f304ff3f836c1055aed0a02}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a2bb7d7491f304ff3f836c1055aed0a02} 
+Sequence {\bfseries data} \+[Any]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a71e9939e448aeaef9334b5dbf1a14fbb}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_a71e9939e448aeaef9334b5dbf1a14fbb} 
+{\bfseries \+\_\+source\+\_\+supports\+\_\+scalars} = result.\+\_\+source\+\_\+supports\+\_\+scalars
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_aee0cafcfbf26092a2a5d4e5f4eedb81c}\label{classsqlalchemy_1_1engine_1_1result_1_1FrozenResult_aee0cafcfbf26092a2a5d4e5f4eedb81c} 
+{\bfseries \+\_\+attributes} = result.\+\_\+attributes
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a :class:`_engine.Result` object in a "frozen" state suitable
+for caching.
+
+The :class:`_engine.FrozenResult` object is returned from the
+:meth:`_engine.Result.freeze` method of any :class:`_engine.Result`
+object.
+
+A new iterable :class:`_engine.Result` object is generated from a fixed
+set of data each time the :class:`_engine.FrozenResult` is invoked as
+a callable::
+
+
+    result = connection.execute(query)
+
+    frozen = result.freeze()
+
+    unfrozen_result_one = frozen()
+
+    for row in unfrozen_result_one:
+        print(row)
+
+    unfrozen_result_two = frozen()
+    rows = unfrozen_result_two.all()
+
+    # ... etc
+
+.. versionadded:: 1.4
+
+.. seealso::
+
+    :ref:`do_orm_execute_re_executing` - example usage within the
+    ORM to implement a result-set cache.
+
+    :func:`_orm.loading.merge_frozen_result` - ORM function to merge
+    a frozen result back into a :class:`_orm.Session`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+result.\+py\end{DoxyCompactItemize}

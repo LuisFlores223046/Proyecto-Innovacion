@@ -1,0 +1,60 @@
+\doxysection{pydantic.\+types.\+Get\+Pydantic\+Schema Class Reference}
+\hypertarget{classpydantic_1_1types_1_1GetPydanticSchema}{}\label{classpydantic_1_1types_1_1GetPydanticSchema}\index{pydantic.types.GetPydanticSchema@{pydantic.types.GetPydanticSchema}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Any \doxymbox{\hyperlink{classpydantic_1_1types_1_1GetPydanticSchema_ac728b883bdf98575aa811aad736bf01e}{\+\_\+\+\_\+getattr\+\_\+\+\_\+}} (self, str item)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1GetPydanticSchema_a17adbdbcdd0a394cd5e2eccb04496c99}\label{classpydantic_1_1types_1_1GetPydanticSchema_a17adbdbcdd0a394cd5e2eccb04496c99} 
+Callable {\bfseries get\+\_\+pydantic\+\_\+core\+\_\+schema} = None
+\item 
+\Hypertarget{classpydantic_1_1types_1_1GetPydanticSchema_a88d6f532d0539ed164488cbf04a3ec70}\label{classpydantic_1_1types_1_1GetPydanticSchema_a88d6f532d0539ed164488cbf04a3ec70} 
+Callable {\bfseries get\+\_\+pydantic\+\_\+json\+\_\+schema} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/types/#using-getpydanticschema-to-reduce-boilerplate
+
+A convenience class for creating an annotation that provides pydantic custom type hooks.
+
+This class is intended to eliminate the need to create a custom "marker" which defines the
+ `__get_pydantic_core_schema__` and `__get_pydantic_json_schema__` custom hook methods.
+
+For example, to have a field treated by type checkers as `int`, but by pydantic as `Any`, you can do:
+```python
+from typing import Any
+
+from typing_extensions import Annotated
+
+from pydantic import BaseModel, GetPydanticSchema
+
+HandleAsAny = GetPydanticSchema(lambda _s, h: h(Any))
+
+class Model(BaseModel):
+    x: Annotated[int, HandleAsAny]  # pydantic sees `x: Any`
+
+print(repr(Model(x='abc').x))
+#> 'abc'
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1types_1_1GetPydanticSchema_doc-func-members}
+\Hypertarget{classpydantic_1_1types_1_1GetPydanticSchema_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1types_1_1GetPydanticSchema_ac728b883bdf98575aa811aad736bf01e}\index{pydantic.types.GetPydanticSchema@{pydantic.types.GetPydanticSchema}!\_\_getattr\_\_@{\_\_getattr\_\_}}
+\index{\_\_getattr\_\_@{\_\_getattr\_\_}!pydantic.types.GetPydanticSchema@{pydantic.types.GetPydanticSchema}}
+\doxysubsubsection{\texorpdfstring{\_\_getattr\_\_()}{\_\_getattr\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1GetPydanticSchema_ac728b883bdf98575aa811aad736bf01e} 
+ Any pydantic.\+types.\+Get\+Pydantic\+Schema.\+\_\+\+\_\+getattr\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{item}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Use this rather than defining `__get_pydantic_core_schema__` etc. to reduce the number of nested calls.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+types.\+py\end{DoxyCompactItemize}

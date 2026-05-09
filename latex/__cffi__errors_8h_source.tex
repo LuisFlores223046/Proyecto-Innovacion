@@ -1,0 +1,155 @@
+\doxysection{\+\_\+cffi\+\_\+errors.\+h}
+\hypertarget{__cffi__errors_8h_source}{}\label{__cffi__errors_8h_source}\index{venv/lib/python3.12/site-\/packages/cffi/\_cffi\_errors.h@{venv/lib/python3.12/site-\/packages/cffi/\_cffi\_errors.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CFFI\_MESSAGEBOX}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#\ ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#\ \ define\ CFFI\_MESSAGEBOX\ \ 1}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#\ \ define\ CFFI\_MESSAGEBOX\ \ 0}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#if\ CFFI\_MESSAGEBOX}}
+\DoxyCodeLine{00011\ \textcolor{comment}{/*\ Windows\ only:\ logic\ to\ take\ the\ Python-\/CFFI\ embedding\ logic}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ initialization\ errors\ and\ display\ them\ in\ a\ background\ thread}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ with\ MessageBox.\ \ The\ idea\ is\ that\ if\ the\ whole\ program\ closes}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ as\ a\ result\ of\ this\ problem,\ then\ likely\ it\ is\ already\ a\ console}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ program\ and\ you\ can\ read\ the\ stderr\ output\ in\ the\ console\ too.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ If\ it\ is\ not\ a\ console\ program,\ then\ it\ will\ likely\ show\ its\ own}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ dialog\ to\ complain,\ or\ generally\ not\ abruptly\ close,\ and\ for\ this}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ case\ the\ background\ thread\ should\ stay\ alive.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\textcolor{keyword}{volatile}\ \_cffi\_bootstrap\_text;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{static}\ PyObject\ *\_cffi\_start\_error\_capture(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ PyObject\ *result\ =\ NULL;}
+\DoxyCodeLine{00025\ \ \ \ \ PyObject\ *x,\ *m,\ *bi;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (InterlockedCompareExchangePointer(\&\_cffi\_bootstrap\_text,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *)1,\ NULL)\ !=\ NULL)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (PyObject\ *)1;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ m\ =\ PyImport\_AddModule(\textcolor{stringliteral}{"{}\_cffi\_error\_capture"{}});}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (m\ ==\ NULL)}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ result\ =\ PyModule\_GetDict(m);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ ==\ NULL)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ PY\_MAJOR\_VERSION\ >=\ 3}}
+\DoxyCodeLine{00040\ \ \ \ \ bi\ =\ PyImport\_ImportModule(\textcolor{stringliteral}{"{}builtins"{}});}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \ \ \ \ bi\ =\ PyImport\_ImportModule(\textcolor{stringliteral}{"{}\_\_builtin\_\_"{}});}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{if}\ (bi\ ==\ NULL)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00046\ \ \ \ \ PyDict\_SetItemString(result,\ \textcolor{stringliteral}{"{}\_\_builtins\_\_"{}},\ bi);}
+\DoxyCodeLine{00047\ \ \ \ \ Py\_DECREF(bi);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ x\ =\ PyRun\_String(}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}import\ sys\(\backslash\)n"{}}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}class\ FileLike:\(\backslash\)n"{}}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ def\ write(self,\ x):\(\backslash\)n"{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \ \ try:\(\backslash\)n"{}}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \ \ \ \ of.write(x)\(\backslash\)n"{}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \ \ except:\ pass\(\backslash\)n"{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \ \ self.buf\ +=\ x\(\backslash\)n"{}}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ def\ flush(self):\(\backslash\)n"{}}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ \ \ pass\(\backslash\)n"{}}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}fl\ =\ FileLike()\(\backslash\)n"{}}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}fl.buf\ =\ ''\(\backslash\)n"{}}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}of\ =\ sys.stderr\(\backslash\)n"{}}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sys.stderr\ =\ fl\(\backslash\)n"{}}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}def\ done():\(\backslash\)n"{}}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ sys.stderr\ =\ of\(\backslash\)n"{}}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ \ return\ fl.buf\(\backslash\)n"{}},\ \ \ \textcolor{comment}{/*\ make\ sure\ the\ returned\ value\ stays\ alive\ */}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ Py\_file\_input,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ result,\ result);}
+\DoxyCodeLine{00068\ \ \ \ \ Py\_XDECREF(x);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ error:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{if}\ (PyErr\_Occurred())}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ PyErr\_WriteUnraisable(Py\_None);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ PyErr\_Clear();}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#pragma\ comment(lib,\ "{}user32.lib"{})}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{static}\ DWORD\ WINAPI\ \_cffi\_bootstrap\_dialog(LPVOID\ ignored)}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ Sleep(666);\ \ \ \ \textcolor{comment}{/*\ may\ be\ interrupted\ if\ the\ whole\ process\ is\ closing\ */}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#if\ PY\_MAJOR\_VERSION\ >=\ 3}}
+\DoxyCodeLine{00085\ \ \ \ \ MessageBoxW(NULL,\ (\textcolor{keywordtype}{wchar\_t}\ *)\_cffi\_bootstrap\_text,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ L\textcolor{stringliteral}{"{}Python-\/CFFI\ error"{}},}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONERROR);}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00089\ \ \ \ \ MessageBoxA(NULL,\ (\textcolor{keywordtype}{char}\ *)\_cffi\_bootstrap\_text,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Python-\/CFFI\ error"{}},}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MB\_OK\ |\ MB\_ICONERROR);}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ \ \ \ \ \_cffi\_bootstrap\_text\ =\ NULL;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_stop\_error\_capture(PyObject\ *ecap)}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ PyObject\ *s;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ *text;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{if}\ (ecap\ ==\ (PyObject\ *)1)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (ecap\ ==\ NULL)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ s\ =\ PyRun\_String(\textcolor{stringliteral}{"{}done()"{}},\ Py\_eval\_input,\ ecap,\ ecap);}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ NULL)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{/*\ Show\ a\ dialog\ box,\ but\ in\ a\ background\ thread,\ and}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ never\ show\ multiple\ dialog\ boxes\ at\ once.\ */}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#if\ PY\_MAJOR\_VERSION\ >=\ 3}}
+\DoxyCodeLine{00115\ \ \ \ \ text\ =\ PyUnicode\_AsWideCharString(s,\ NULL);}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00117\ \ \ \ \ text\ =\ PyString\_AsString(s);}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \_cffi\_bootstrap\_text\ =\ text;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{if}\ (text\ !=\ NULL)}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ HANDLE\ h;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ h\ =\ CreateThread(NULL,\ 0,\ \_cffi\_bootstrap\_dialog,}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NULL,\ 0,\ NULL);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (h\ !=\ NULL)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ CloseHandle(h);}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{/*\ decref\ the\ string,\ but\ it\ should\ stay\ alive\ as\ 'fl.buf'}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ \ \ \ \ \ \ in\ the\ small\ module\ above.\ \ It\ will\ really\ be\ freed\ only\ if}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ \ \ \ \ \ \ we\ later\ get\ another\ similar\ error.\ \ So\ it's\ a\ leak\ of\ at}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ \ \ \ \ \ \ most\ one\ copy\ of\ the\ small\ module.\ \ That's\ fine\ for\ this}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ \ \ \ \ \ \ situation\ which\ is\ usually\ a\ "{}fatal\ error"{}\ anyway.\ */}}
+\DoxyCodeLine{00135\ \ \ \ \ Py\_DECREF(s);}
+\DoxyCodeLine{00136\ \ \ \ \ PyErr\_Clear();}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ error:}
+\DoxyCodeLine{00140\ \ \ \ \ \_cffi\_bootstrap\_text\ =\ NULL;}
+\DoxyCodeLine{00141\ \ \ \ \ PyErr\_Clear();}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{static}\ PyObject\ *\_cffi\_start\_error\_capture(\textcolor{keywordtype}{void})\ \{\ \textcolor{keywordflow}{return}\ NULL;\ \}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_stop\_error\_capture(PyObject\ *ecap)\ \{\ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

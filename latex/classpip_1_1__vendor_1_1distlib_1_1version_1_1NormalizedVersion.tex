@@ -1,0 +1,113 @@
+\doxysection{pip.\+\_\+vendor.\+distlib.\+version.\+Normalized\+Version Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion}{}\label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion}\index{pip.\_vendor.distlib.version.NormalizedVersion@{pip.\_vendor.distlib.version.NormalizedVersion}}
+Inheritance diagram for pip.\+\_\+vendor.\+distlib.\+version.\+Normalized\+Version:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_afea6ce3b0727370d2b0e93eee3bd839d}{parse}} (self, s)
+\item 
+\doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_ab5e000c394cf6460c39180ff51913715}{is\+\_\+prerelease}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1Version}{pip.\+\_\+vendor.\+distlib.\+version.\+Version}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, s)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+gt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+le\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ge\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_af6c27838327bce8c17783034d59e7f06}\label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_af6c27838327bce8c17783034d59e7f06} 
+{\bfseries PREREL\+\_\+\+TAGS} = set(\+[\textquotesingle{}a\textquotesingle{}, \textquotesingle{}b\textquotesingle{}, \textquotesingle{}c\textquotesingle{}, \textquotesingle{}rc\textquotesingle{}, \textquotesingle{}dev\textquotesingle{}]\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_a5e638d9d15f83a2c803b9bde48e41181}\label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_a5e638d9d15f83a2c803b9bde48e41181} 
+{\bfseries \+\_\+release\+\_\+clause} = tuple(int(v) for v in groups\+[1]\+.split(\textquotesingle{}.\textquotesingle{}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1Version}{pip.\+\_\+vendor.\+distlib.\+version.\+Version}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+string} = s.\+strip()
+\item 
+{\bfseries \+\_\+parts} = self.\+parse(s)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1Version}{pip.\+\_\+vendor.\+distlib.\+version.\+Version}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+check\+\_\+compatible} (self, other)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A rational version.
+
+Good:
+    1.2         # equivalent to "1.2.0"
+    1.2.0
+    1.2a1
+    1.2.3a2
+    1.2.3b1
+    1.2.3c1
+    1.2.3.4
+    TODO: fill this out
+
+Bad:
+    1           # minimum two numbers
+    1.2a        # release level must have a release serial
+    1.2.3b
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_doc-func-members}
+\Hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_ab5e000c394cf6460c39180ff51913715}\index{pip.\_vendor.distlib.version.NormalizedVersion@{pip.\_vendor.distlib.version.NormalizedVersion}!is\_prerelease@{is\_prerelease}}
+\index{is\_prerelease@{is\_prerelease}!pip.\_vendor.distlib.version.NormalizedVersion@{pip.\_vendor.distlib.version.NormalizedVersion}}
+\doxysubsubsection{\texorpdfstring{is\_prerelease()}{is\_prerelease()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_ab5e000c394cf6460c39180ff51913715} 
+pip.\+\_\+vendor.\+distlib.\+version.\+Normalized\+Version.\+is\+\_\+prerelease (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1Version}{pip.\+\_\+vendor.\+distlib.\+version.\+Version}}.
+
+\Hypertarget{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_afea6ce3b0727370d2b0e93eee3bd839d}\index{pip.\_vendor.distlib.version.NormalizedVersion@{pip.\_vendor.distlib.version.NormalizedVersion}!parse@{parse}}
+\index{parse@{parse}!pip.\_vendor.distlib.version.NormalizedVersion@{pip.\_vendor.distlib.version.NormalizedVersion}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1distlib_1_1version_1_1NormalizedVersion_afea6ce3b0727370d2b0e93eee3bd839d} 
+pip.\+\_\+vendor.\+distlib.\+version.\+Normalized\+Version.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{s}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1distlib_1_1version_1_1Version}{pip.\+\_\+vendor.\+distlib.\+version.\+Version}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+distlib/\+version.\+py\end{DoxyCompactItemize}

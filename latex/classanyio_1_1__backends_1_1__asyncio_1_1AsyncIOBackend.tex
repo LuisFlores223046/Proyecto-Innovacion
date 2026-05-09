@@ -1,0 +1,610 @@
+\doxysection{anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend Class Reference}
+\hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend}{}\label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+Inheritance diagram for anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T\+\_\+\+Retval \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4b9ee0817f30f9793ef8651af80e52e3}{run}} (cls, Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[T\+\_\+\+Retval]\+]\+ func, tuple\+[Unpack\+[Pos\+ArgsT]\+]\+ args, dict\+[str, Any]\+ kwargs, dict\+[str, Any]\+ options)
+\item 
+object \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a00f553f8f7df91dc47ffef7d683daa51}{current\+\_\+token}} (cls)
+\item 
+float \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a87cc07f59f64fcd3bb219493ff54881d}{current\+\_\+time}} (cls)
+\item 
+type\+[Base\+Exception]\+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa11ce19b3fb340b3cbe7b3b8a1adebcb}{cancelled\+\_\+exception\+\_\+class}} (cls)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa86a02f839059ee7dd80b3b445df04e2}{checkpoint}} (cls)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2ea239f5a9ef24cc1f89b42a268b8e0a}{checkpoint\+\_\+if\+\_\+cancelled}} (cls)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a035f106e77033aa00dc567a1d3c5501c}{cancel\+\_\+shielded\+\_\+checkpoint}} (cls)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad238052b53eaa45a591babe5ea63a687}{sleep}} (cls, float delay)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1CancelScope}{Cancel\+Scope}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a72f6b8bade3d221949d04129fee8fe4f}{create\+\_\+cancel\+\_\+scope}} (cls, \texorpdfstring{$\ast$}{*}, float deadline=math.\+inf, bool shield=False)
+\item 
+float \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2033feb8e14090305c12f0fd8178f32b}{current\+\_\+effective\+\_\+deadline}} (cls)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{abc.\+Task\+Group}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a241830492aba5a6c70fb4fe921a4a9cd}{create\+\_\+task\+\_\+group}} (cls)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Event}{abc.\+Event}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a02523f0fbc19eeb1083358e698cd218a}{create\+\_\+event}} (cls)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Lock}{abc.\+Lock}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18885e742abbe78dc09ae76c684f417b}{create\+\_\+lock}} (cls, \texorpdfstring{$\ast$}{*}, bool fast\+\_\+acquire)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Semaphore}{abc.\+Semaphore}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adb322605c85c88e4228cfb02e3f0daba}{create\+\_\+semaphore}} (cls, int initial\+\_\+value, \texorpdfstring{$\ast$}{*}, int\texorpdfstring{$\vert$}{|}None max\+\_\+value=None, bool fast\+\_\+acquire=False)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1CapacityLimiter}{abc.\+Capacity\+Limiter}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1e140f08ec65f77b682c527cc9134d9d}{create\+\_\+capacity\+\_\+limiter}} (cls, float total\+\_\+tokens)
+\item 
+T\+\_\+\+Retval \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa3d6caa469fbc65360d9d2a56442b3a3}{run\+\_\+sync\+\_\+in\+\_\+worker\+\_\+thread}} (cls, Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, T\+\_\+\+Retval]\+ func, tuple\+[Unpack\+[Pos\+ArgsT]\+]\+ args, bool abandon\+\_\+on\+\_\+cancel=False, \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1CapacityLimiter}{abc.\+Capacity\+Limiter}}\texorpdfstring{$\vert$}{|}None limiter=None)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a35e6dd860f239abee72edf740045a17f}{check\+\_\+cancelled}} (cls)
+\item 
+T\+\_\+\+Retval \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7816157b19a029eae9437120acf5b8f9}{run\+\_\+async\+\_\+from\+\_\+thread}} (cls, Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[T\+\_\+\+Retval]\+]\+ func, tuple\+[Unpack\+[Pos\+ArgsT]\+]\+ args, object token)
+\item 
+T\+\_\+\+Retval \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a688bc4b0c2b356064a856b1e4e7c106f}{run\+\_\+sync\+\_\+from\+\_\+thread}} (cls, Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, T\+\_\+\+Retval]\+ func, tuple\+[Unpack\+[Pos\+ArgsT]\+]\+ args, object token)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1Process}{Process}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2830e71f0ffe07cb33599eb33cd87abe}{open\+\_\+process}} (cls, Str\+Or\+Bytes\+Path\texorpdfstring{$\vert$}{|}Sequence\+[Str\+Or\+Bytes\+Path]\+ command, \texorpdfstring{$\ast$}{*}, int\texorpdfstring{$\vert$}{|}IO\+[Any]\+\texorpdfstring{$\vert$}{|}None stdin, int\texorpdfstring{$\vert$}{|}IO\+[Any]\+\texorpdfstring{$\vert$}{|}None stdout, int\texorpdfstring{$\vert$}{|}IO\+[Any]\+\texorpdfstring{$\vert$}{|}None stderr, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a58e3003d3048b7a633e77315e642daff}{setup\+\_\+process\+\_\+pool\+\_\+exit\+\_\+at\+\_\+shutdown}} (cls, set\+[\doxymbox{\hyperlink{classanyio_1_1abc_1_1__subprocesses_1_1Process}{abc.\+Process}}]\+ workers)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketStream}{abc.\+Socket\+Stream}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a0b0d4485db6a1d46a37acc04b6b39566}{connect\+\_\+tcp}} (cls, str host, int port, IPSock\+Addr\+Type\texorpdfstring{$\vert$}{|}None local\+\_\+address=None)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1UNIXSocketStream}{abc.\+UNIXSocket\+Stream}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a237db011aed4ce630878e030af4926fb}{connect\+\_\+unix}} (cls, str\texorpdfstring{$\vert$}{|}bytes path)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adc1a11c903e9924638721da617c4cb2b}{create\+\_\+tcp\+\_\+listener}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a38106c2b426ffd3849c258d198341ac5}{create\+\_\+unix\+\_\+listener}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UDPSocket}{UDPSocket}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUDPSocket}{Connected\+UDPSocket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad75d14807a6a20be0a0c00830da8881f}{create\+\_\+udp\+\_\+socket}} (cls, Address\+Family family, IPSock\+Addr\+Type\texorpdfstring{$\vert$}{|}None local\+\_\+address, IPSock\+Addr\+Type\texorpdfstring{$\vert$}{|}None remote\+\_\+address, bool reuse\+\_\+port)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1UNIXDatagramSocket}{abc.\+UNIXDatagram\+Socket}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1ConnectedUNIXDatagramSocket}{abc.\+Connected\+UNIXDatagram\+Socket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4609520523af493380871f36d4c63ae2}{create\+\_\+unix\+\_\+datagram\+\_\+socket}} (cls, socket.\+socket raw\+\_\+socket, str\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}None remote\+\_\+path)
+\item 
+Sequence\+[ tuple\+[ Address\+Family, Socket\+Kind, int, str, tuple\+[str, int]\+\texorpdfstring{$\vert$}{|}tuple\+[str, int, int, int]\+\texorpdfstring{$\vert$}{|}tuple\+[int, bytes]\+,]\+]\+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7c90ed61394477f250a127b5eb0dc8ac}{getaddrinfo}} (cls, bytes\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}None host, str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}None port, \texorpdfstring{$\ast$}{*}, int\texorpdfstring{$\vert$}{|}Address\+Family family=0, int\texorpdfstring{$\vert$}{|}Socket\+Kind type=0, int proto=0, int flags=0)
+\item 
+tuple\+[str, str]\+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1f670d14e3a6ddc7556888b9b379b888}{getnameinfo}} (cls, IPSock\+Addr\+Type sockaddr, int flags=0)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a89c60eed0c3a8feb5efa5423e20c87cc}{wait\+\_\+readable}} (cls, File\+Descriptor\+Like obj)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a3f4c9f17434ebe7fc8c390be6b7e683b}{wait\+\_\+writable}} (cls, File\+Descriptor\+Like obj)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a98c50f920753352d4e4ee5093180180c}{notify\+\_\+closing}} (cls, File\+Descriptor\+Like obj)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a92b9eda36d81c088a7736cf676863bdf}{wrap\+\_\+listener\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1SocketStream}{Socket\+Stream}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aad2cf49ef1c1b0ed5ac8f990a8e4e698}{wrap\+\_\+stream\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UNIXSocketStream}{UNIXSocket\+Stream}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a274711917053232cf600b4234a6e17bd}{wrap\+\_\+unix\+\_\+stream\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UDPSocket}{UDPSocket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4acd2f59719180ac70440a7205a2faf8}{wrap\+\_\+udp\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUDPSocket}{Connected\+UDPSocket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a6b93ef7f2f4f2f6ce51032999f3390ca}{wrap\+\_\+connected\+\_\+udp\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UNIXDatagramSocket}{UNIXDatagram\+Socket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a12955c9f1b3a40ec05d737cc92ad7bf1}{wrap\+\_\+unix\+\_\+datagram\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUNIXDatagramSocket}{Connected\+UNIXDatagram\+Socket}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a53b4237a9346a80ae9a79232eba050e3}{wrap\+\_\+connected\+\_\+unix\+\_\+datagram\+\_\+socket}} (cls, socket.\+socket sock)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1CapacityLimiter}{Capacity\+Limiter}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8714bdb409c55cee0284bb1157ca29bd}{current\+\_\+default\+\_\+thread\+\_\+limiter}} (cls)
+\item 
+Abstract\+Context\+Manager\+[Async\+Iterator\+[Signals]\+]\+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1518deeac1c771909992923faa92f49e}{open\+\_\+signal\+\_\+receiver}} (cls, \texorpdfstring{$\ast$}{*}Signals signals)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__testing_1_1TaskInfo}{Task\+Info}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8a3bb3f7e2e3bafd7adbbc83b6f4b0ea}{get\+\_\+current\+\_\+task}} (cls)
+\item 
+Sequence\+[\doxymbox{\hyperlink{classanyio_1_1__core_1_1__testing_1_1TaskInfo}{Task\+Info}}]\+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_afa8dc5d2580b143b19cfc98cc0a3a8a0}{get\+\_\+running\+\_\+tasks}} (cls)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18ea6a4c1b4796e252716229a6722716}{wait\+\_\+all\+\_\+tasks\+\_\+blocked}} (cls)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TestRunner}{Test\+Runner}} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ab526bd7f337d988ddfe9aa7fae63851d}{create\+\_\+test\+\_\+runner}} (cls, dict\+[str, Any]\+ options)
+\end{DoxyCompactItemize}
+
+
+\label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_doc-func-members}
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a035f106e77033aa00dc567a1d3c5501c}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!cancel\_shielded\_checkpoint@{cancel\_shielded\_checkpoint}}
+\index{cancel\_shielded\_checkpoint@{cancel\_shielded\_checkpoint}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{cancel\_shielded\_checkpoint()}{cancel\_shielded\_checkpoint()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a035f106e77033aa00dc567a1d3c5501c} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+cancel\+\_\+shielded\+\_\+checkpoint (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Allow the rescheduling of other tasks.
+
+This will give other tasks the opportunity to run, but without checking if the
+current task group has been cancelled, unlike with :meth:`checkpoint`.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_a880d2d4f6498b88e6166ff8f21750231}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa11ce19b3fb340b3cbe7b3b8a1adebcb}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!cancelled\_exception\_class@{cancelled\_exception\_class}}
+\index{cancelled\_exception\_class@{cancelled\_exception\_class}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{cancelled\_exception\_class()}{cancelled\_exception\_class()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa11ce19b3fb340b3cbe7b3b8a1adebcb} 
+ type\+[Base\+Exception]\+ anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+cancelled\+\_\+exception\+\_\+class (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the exception class that is raised in a task if it's cancelled.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_af49a586f262101fc834006bca510d36a}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a35e6dd860f239abee72edf740045a17f}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!check\_cancelled@{check\_cancelled}}
+\index{check\_cancelled@{check\_cancelled}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{check\_cancelled()}{check\_cancelled()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a35e6dd860f239abee72edf740045a17f} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+check\+\_\+cancelled (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa86a02f839059ee7dd80b3b445df04e2}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!checkpoint@{checkpoint}}
+\index{checkpoint@{checkpoint}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{checkpoint()}{checkpoint()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa86a02f839059ee7dd80b3b445df04e2} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+checkpoint (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if the task has been cancelled, and allow rescheduling of other tasks.
+
+This is effectively the same as running :meth:`checkpoint_if_cancelled` and then
+:meth:`cancel_shielded_checkpoint`.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_a9ea69cce0ff6ca3af2f626a1b2af8b25}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2ea239f5a9ef24cc1f89b42a268b8e0a}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!checkpoint\_if\_cancelled@{checkpoint\_if\_cancelled}}
+\index{checkpoint\_if\_cancelled@{checkpoint\_if\_cancelled}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{checkpoint\_if\_cancelled()}{checkpoint\_if\_cancelled()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2ea239f5a9ef24cc1f89b42a268b8e0a} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+checkpoint\+\_\+if\+\_\+cancelled (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if the current task group has been cancelled.
+
+This will check if the task has been cancelled, but will not allow other tasks
+to be scheduled if not.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_ab6bfc6689f52e9d96b7def310f802770}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a0b0d4485db6a1d46a37acc04b6b39566}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!connect\_tcp@{connect\_tcp}}
+\index{connect\_tcp@{connect\_tcp}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{connect\_tcp()}{connect\_tcp()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a0b0d4485db6a1d46a37acc04b6b39566} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketStream}{abc.\+Socket\+Stream}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+connect\+\_\+tcp (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{host}{, }\item[{int}]{port}{, }\item[{IPSock\+Addr\+Type \texorpdfstring{$\vert$}{|} None }]{local\+\_\+address}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a237db011aed4ce630878e030af4926fb}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!connect\_unix@{connect\_unix}}
+\index{connect\_unix@{connect\_unix}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{connect\_unix()}{connect\_unix()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a237db011aed4ce630878e030af4926fb} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1UNIXSocketStream}{abc.\+UNIXSocket\+Stream}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+connect\+\_\+unix (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str \texorpdfstring{$\vert$}{|} bytes}]{path}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a72f6b8bade3d221949d04129fee8fe4f}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_cancel\_scope@{create\_cancel\_scope}}
+\index{create\_cancel\_scope@{create\_cancel\_scope}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_cancel\_scope()}{create\_cancel\_scope()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a72f6b8bade3d221949d04129fee8fe4f} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1CancelScope}{Cancel\+Scope}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+cancel\+\_\+scope (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{float }]{deadline}{ = {\ttfamily math.inf}, }\item[{bool }]{shield}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1e140f08ec65f77b682c527cc9134d9d}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_capacity\_limiter@{create\_capacity\_limiter}}
+\index{create\_capacity\_limiter@{create\_capacity\_limiter}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_capacity\_limiter()}{create\_capacity\_limiter()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1e140f08ec65f77b682c527cc9134d9d} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1CapacityLimiter}{abc.\+Capacity\+Limiter}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+capacity\+\_\+limiter (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{float}]{total\+\_\+tokens}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a02523f0fbc19eeb1083358e698cd218a}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_event@{create\_event}}
+\index{create\_event@{create\_event}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_event()}{create\_event()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a02523f0fbc19eeb1083358e698cd218a} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Event}{abc.\+Event}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+event (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18885e742abbe78dc09ae76c684f417b}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_lock@{create\_lock}}
+\index{create\_lock@{create\_lock}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_lock()}{create\_lock()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18885e742abbe78dc09ae76c684f417b} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Lock}{abc.\+Lock}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+lock (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool}]{fast\+\_\+acquire}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adb322605c85c88e4228cfb02e3f0daba}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_semaphore@{create\_semaphore}}
+\index{create\_semaphore@{create\_semaphore}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_semaphore()}{create\_semaphore()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adb322605c85c88e4228cfb02e3f0daba} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Semaphore}{abc.\+Semaphore}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+semaphore (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{int}]{initial\+\_\+value}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int \texorpdfstring{$\vert$}{|} None }]{max\+\_\+value}{ = {\ttfamily None}, }\item[{bool }]{fast\+\_\+acquire}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a241830492aba5a6c70fb4fe921a4a9cd}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_task\_group@{create\_task\_group}}
+\index{create\_task\_group@{create\_task\_group}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_task\_group()}{create\_task\_group()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a241830492aba5a6c70fb4fe921a4a9cd} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{abc.\+Task\+Group}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+task\+\_\+group (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adc1a11c903e9924638721da617c4cb2b}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_tcp\_listener@{create\_tcp\_listener}}
+\index{create\_tcp\_listener@{create\_tcp\_listener}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_tcp\_listener()}{create\_tcp\_listener()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_adc1a11c903e9924638721da617c4cb2b} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+tcp\+\_\+listener (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ab526bd7f337d988ddfe9aa7fae63851d}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_test\_runner@{create\_test\_runner}}
+\index{create\_test\_runner@{create\_test\_runner}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_test\_runner()}{create\_test\_runner()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ab526bd7f337d988ddfe9aa7fae63851d} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TestRunner}{Test\+Runner}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+test\+\_\+runner (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{dict\+[str, Any]\+}]{options}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad75d14807a6a20be0a0c00830da8881f}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_udp\_socket@{create\_udp\_socket}}
+\index{create\_udp\_socket@{create\_udp\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_udp\_socket()}{create\_udp\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad75d14807a6a20be0a0c00830da8881f} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UDPSocket}{UDPSocket}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUDPSocket}{Connected\+UDPSocket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+udp\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Address\+Family}]{family}{, }\item[{IPSock\+Addr\+Type \texorpdfstring{$\vert$}{|} None}]{local\+\_\+address}{, }\item[{IPSock\+Addr\+Type \texorpdfstring{$\vert$}{|} None}]{remote\+\_\+address}{, }\item[{bool}]{reuse\+\_\+port}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4609520523af493380871f36d4c63ae2}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_unix\_datagram\_socket@{create\_unix\_datagram\_socket}}
+\index{create\_unix\_datagram\_socket@{create\_unix\_datagram\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_unix\_datagram\_socket()}{create\_unix\_datagram\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4609520523af493380871f36d4c63ae2} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1UNIXDatagramSocket}{abc.\+UNIXDatagram\+Socket}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1ConnectedUNIXDatagramSocket}{abc.\+Connected\+UNIXDatagram\+Socket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+unix\+\_\+datagram\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{raw\+\_\+socket}{, }\item[{str \texorpdfstring{$\vert$}{|} bytes \texorpdfstring{$\vert$}{|} None     }]{remote\+\_\+path}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a38106c2b426ffd3849c258d198341ac5}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!create\_unix\_listener@{create\_unix\_listener}}
+\index{create\_unix\_listener@{create\_unix\_listener}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{create\_unix\_listener()}{create\_unix\_listener()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a38106c2b426ffd3849c258d198341ac5} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+create\+\_\+unix\+\_\+listener (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8714bdb409c55cee0284bb1157ca29bd}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!current\_default\_thread\_limiter@{current\_default\_thread\_limiter}}
+\index{current\_default\_thread\_limiter@{current\_default\_thread\_limiter}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{current\_default\_thread\_limiter()}{current\_default\_thread\_limiter()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8714bdb409c55cee0284bb1157ca29bd} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1CapacityLimiter}{Capacity\+Limiter}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+current\+\_\+default\+\_\+thread\+\_\+limiter (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2033feb8e14090305c12f0fd8178f32b}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!current\_effective\_deadline@{current\_effective\_deadline}}
+\index{current\_effective\_deadline@{current\_effective\_deadline}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{current\_effective\_deadline()}{current\_effective\_deadline()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2033feb8e14090305c12f0fd8178f32b} 
+ float anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+current\+\_\+effective\+\_\+deadline (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the nearest deadline among all the cancel scopes effective for the
+current task.
+
+:return:
+    - a clock value from the event loop's internal clock
+    - ``inf`` if there is no deadline in effect
+    - ``-inf`` if the current scope has been cancelled
+:rtype: float
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_abb1d9eb589556a0c639144c2e0e5b4ff}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a87cc07f59f64fcd3bb219493ff54881d}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!current\_time@{current\_time}}
+\index{current\_time@{current\_time}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{current\_time()}{current\_time()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a87cc07f59f64fcd3bb219493ff54881d} 
+ float anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+current\+\_\+time (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current value of the event loop's internal clock.
+
+:return: the clock value (seconds)
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_a12ed415f3a50375655d0a5afa93f860a}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a00f553f8f7df91dc47ffef7d683daa51}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!current\_token@{current\_token}}
+\index{current\_token@{current\_token}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{current\_token()}{current\_token()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a00f553f8f7df91dc47ffef7d683daa51} 
+ object anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+current\+\_\+token (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return an object that allows other threads to run code inside the event loop.
+
+:return: a token object, specific to the event loop running in the current
+    thread
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_a7e2592fb24e4071390c16e3ce3f39ddd}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8a3bb3f7e2e3bafd7adbbc83b6f4b0ea}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!get\_current\_task@{get\_current\_task}}
+\index{get\_current\_task@{get\_current\_task}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{get\_current\_task()}{get\_current\_task()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a8a3bb3f7e2e3bafd7adbbc83b6f4b0ea} 
+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__testing_1_1TaskInfo}{Task\+Info}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+get\+\_\+current\+\_\+task (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_afa8dc5d2580b143b19cfc98cc0a3a8a0}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!get\_running\_tasks@{get\_running\_tasks}}
+\index{get\_running\_tasks@{get\_running\_tasks}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{get\_running\_tasks()}{get\_running\_tasks()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_afa8dc5d2580b143b19cfc98cc0a3a8a0} 
+ Sequence\+[\doxymbox{\hyperlink{classanyio_1_1__core_1_1__testing_1_1TaskInfo}{Task\+Info}}]\+ anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+get\+\_\+running\+\_\+tasks (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7c90ed61394477f250a127b5eb0dc8ac}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!getaddrinfo@{getaddrinfo}}
+\index{getaddrinfo@{getaddrinfo}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{getaddrinfo()}{getaddrinfo()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7c90ed61394477f250a127b5eb0dc8ac} 
+ Sequence\+[         tuple\+[             Address\+Family,             Socket\+Kind,             int,             str,             tuple\+[str, int]\+ \texorpdfstring{$\vert$}{|} tuple\+[str, int, int, int]\+ \texorpdfstring{$\vert$}{|} tuple\+[int, bytes]\+,         ]\+     ]\+ anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+getaddrinfo (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{bytes \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} None}]{host}{, }\item[{str \texorpdfstring{$\vert$}{|} int \texorpdfstring{$\vert$}{|} None}]{port}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int \texorpdfstring{$\vert$}{|} Address\+Family }]{family}{ = {\ttfamily 0}, }\item[{int \texorpdfstring{$\vert$}{|} Socket\+Kind }]{type}{ = {\ttfamily 0}, }\item[{int }]{proto}{ = {\ttfamily 0}, }\item[{int }]{flags}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1f670d14e3a6ddc7556888b9b379b888}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!getnameinfo@{getnameinfo}}
+\index{getnameinfo@{getnameinfo}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{getnameinfo()}{getnameinfo()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1f670d14e3a6ddc7556888b9b379b888} 
+ tuple\+[str, str]\+ anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+getnameinfo (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{IPSock\+Addr\+Type}]{sockaddr}{, }\item[{int }]{flags}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a98c50f920753352d4e4ee5093180180c}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!notify\_closing@{notify\_closing}}
+\index{notify\_closing@{notify\_closing}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{notify\_closing()}{notify\_closing()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a98c50f920753352d4e4ee5093180180c} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+notify\+\_\+closing (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{File\+Descriptor\+Like}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2830e71f0ffe07cb33599eb33cd87abe}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!open\_process@{open\_process}}
+\index{open\_process@{open\_process}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{open\_process()}{open\_process()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a2830e71f0ffe07cb33599eb33cd87abe} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1Process}{Process}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+open\+\_\+process (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Str\+Or\+Bytes\+Path \texorpdfstring{$\vert$}{|} Sequence\+[Str\+Or\+Bytes\+Path]\+}]{command}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int \texorpdfstring{$\vert$}{|} IO\+[Any]\+ \texorpdfstring{$\vert$}{|} None}]{stdin}{, }\item[{int \texorpdfstring{$\vert$}{|} IO\+[Any]\+ \texorpdfstring{$\vert$}{|} None}]{stdout}{, }\item[{int \texorpdfstring{$\vert$}{|} IO\+[Any]\+ \texorpdfstring{$\vert$}{|} None}]{stderr}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1518deeac1c771909992923faa92f49e}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!open\_signal\_receiver@{open\_signal\_receiver}}
+\index{open\_signal\_receiver@{open\_signal\_receiver}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{open\_signal\_receiver()}{open\_signal\_receiver()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a1518deeac1c771909992923faa92f49e} 
+ Abstract\+Context\+Manager\+[Async\+Iterator\+[Signals]\+]\+ anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+open\+\_\+signal\+\_\+receiver (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}Signals     }]{signals}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4b9ee0817f30f9793ef8651af80e52e3}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!run@{run}}
+\index{run@{run}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4b9ee0817f30f9793ef8651af80e52e3} 
+ T\+\_\+\+Retval anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+run (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[T\+\_\+\+Retval]\+]\+}]{func}{, }\item[{tuple\+[Unpack\+[Pos\+ArgsT]\+]\+}]{args}{, }\item[{dict\+[str, Any]\+}]{kwargs}{, }\item[{dict\+[str, Any]\+}]{options}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run the given coroutine function in an asynchronous event loop.
+
+The current thread must not be already running an event loop.
+
+:param func: a coroutine function
+:param args: positional arguments to ``func``
+:param kwargs: positional arguments to ``func``
+:param options: keyword arguments to call the backend ``run()`` implementation
+    with
+:return: the return value of the coroutine function
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_a960f34a100774d23c724b7786aa764f4}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7816157b19a029eae9437120acf5b8f9}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!run\_async\_from\_thread@{run\_async\_from\_thread}}
+\index{run\_async\_from\_thread@{run\_async\_from\_thread}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{run\_async\_from\_thread()}{run\_async\_from\_thread()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a7816157b19a029eae9437120acf5b8f9} 
+ T\+\_\+\+Retval anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+run\+\_\+async\+\_\+from\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[T\+\_\+\+Retval]\+]\+}]{func}{, }\item[{tuple\+[Unpack\+[Pos\+ArgsT]\+]\+}]{args}{, }\item[{object}]{token}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a688bc4b0c2b356064a856b1e4e7c106f}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!run\_sync\_from\_thread@{run\_sync\_from\_thread}}
+\index{run\_sync\_from\_thread@{run\_sync\_from\_thread}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{run\_sync\_from\_thread()}{run\_sync\_from\_thread()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a688bc4b0c2b356064a856b1e4e7c106f} 
+ T\+\_\+\+Retval anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+run\+\_\+sync\+\_\+from\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, T\+\_\+\+Retval]\+}]{func}{, }\item[{tuple\+[Unpack\+[Pos\+ArgsT]\+]\+}]{args}{, }\item[{object}]{token}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa3d6caa469fbc65360d9d2a56442b3a3}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!run\_sync\_in\_worker\_thread@{run\_sync\_in\_worker\_thread}}
+\index{run\_sync\_in\_worker\_thread@{run\_sync\_in\_worker\_thread}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{run\_sync\_in\_worker\_thread()}{run\_sync\_in\_worker\_thread()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aa3d6caa469fbc65360d9d2a56442b3a3} 
+ T\+\_\+\+Retval anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+run\+\_\+sync\+\_\+in\+\_\+worker\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, T\+\_\+\+Retval]\+}]{func}{, }\item[{tuple\+[Unpack\+[Pos\+ArgsT]\+]\+}]{args}{, }\item[{bool }]{abandon\+\_\+on\+\_\+cancel}{ = {\ttfamily False}, }\item[{\doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1CapacityLimiter}{abc.\+Capacity\+Limiter}} \texorpdfstring{$\vert$}{|} None }]{limiter}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a58e3003d3048b7a633e77315e642daff}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!setup\_process\_pool\_exit\_at\_shutdown@{setup\_process\_pool\_exit\_at\_shutdown}}
+\index{setup\_process\_pool\_exit\_at\_shutdown@{setup\_process\_pool\_exit\_at\_shutdown}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{setup\_process\_pool\_exit\_at\_shutdown()}{setup\_process\_pool\_exit\_at\_shutdown()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a58e3003d3048b7a633e77315e642daff} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+setup\+\_\+process\+\_\+pool\+\_\+exit\+\_\+at\+\_\+shutdown (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{set\+[\doxymbox{\hyperlink{classanyio_1_1abc_1_1__subprocesses_1_1Process}{abc.\+Process}}]\+}]{workers}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad238052b53eaa45a591babe5ea63a687}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!sleep@{sleep}}
+\index{sleep@{sleep}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{sleep()}{sleep()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_ad238052b53eaa45a591babe5ea63a687} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+sleep (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{float}]{delay}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Pause the current task for the specified duration.
+
+:param delay: the duration, in seconds
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend_ad92c97aabb7bbc194b76da877eb90937}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18ea6a4c1b4796e252716229a6722716}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wait\_all\_tasks\_blocked@{wait\_all\_tasks\_blocked}}
+\index{wait\_all\_tasks\_blocked@{wait\_all\_tasks\_blocked}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wait\_all\_tasks\_blocked()}{wait\_all\_tasks\_blocked()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a18ea6a4c1b4796e252716229a6722716} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wait\+\_\+all\+\_\+tasks\+\_\+blocked (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a89c60eed0c3a8feb5efa5423e20c87cc}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wait\_readable@{wait\_readable}}
+\index{wait\_readable@{wait\_readable}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wait\_readable()}{wait\_readable()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a89c60eed0c3a8feb5efa5423e20c87cc} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wait\+\_\+readable (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{File\+Descriptor\+Like}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a3f4c9f17434ebe7fc8c390be6b7e683b}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wait\_writable@{wait\_writable}}
+\index{wait\_writable@{wait\_writable}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wait\_writable()}{wait\_writable()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a3f4c9f17434ebe7fc8c390be6b7e683b} 
+ None anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wait\+\_\+writable (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{File\+Descriptor\+Like}]{obj}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a6b93ef7f2f4f2f6ce51032999f3390ca}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_connected\_udp\_socket@{wrap\_connected\_udp\_socket}}
+\index{wrap\_connected\_udp\_socket@{wrap\_connected\_udp\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_connected\_udp\_socket()}{wrap\_connected\_udp\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a6b93ef7f2f4f2f6ce51032999f3390ca} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUDPSocket}{Connected\+UDPSocket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+connected\+\_\+udp\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a53b4237a9346a80ae9a79232eba050e3}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_connected\_unix\_datagram\_socket@{wrap\_connected\_unix\_datagram\_socket}}
+\index{wrap\_connected\_unix\_datagram\_socket@{wrap\_connected\_unix\_datagram\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_connected\_unix\_datagram\_socket()}{wrap\_connected\_unix\_datagram\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a53b4237a9346a80ae9a79232eba050e3} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1ConnectedUNIXDatagramSocket}{Connected\+UNIXDatagram\+Socket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+connected\+\_\+unix\+\_\+datagram\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket     }]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a92b9eda36d81c088a7736cf676863bdf}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_listener\_socket@{wrap\_listener\_socket}}
+\index{wrap\_listener\_socket@{wrap\_listener\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_listener\_socket()}{wrap\_listener\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a92b9eda36d81c088a7736cf676863bdf} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1SocketListener}{Socket\+Listener}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+listener\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aad2cf49ef1c1b0ed5ac8f990a8e4e698}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_stream\_socket@{wrap\_stream\_socket}}
+\index{wrap\_stream\_socket@{wrap\_stream\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_stream\_socket()}{wrap\_stream\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_aad2cf49ef1c1b0ed5ac8f990a8e4e698} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1SocketStream}{Socket\+Stream}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+stream\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4acd2f59719180ac70440a7205a2faf8}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_udp\_socket@{wrap\_udp\_socket}}
+\index{wrap\_udp\_socket@{wrap\_udp\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_udp\_socket()}{wrap\_udp\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a4acd2f59719180ac70440a7205a2faf8} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UDPSocket}{UDPSocket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+udp\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a12955c9f1b3a40ec05d737cc92ad7bf1}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_unix\_datagram\_socket@{wrap\_unix\_datagram\_socket}}
+\index{wrap\_unix\_datagram\_socket@{wrap\_unix\_datagram\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_unix\_datagram\_socket()}{wrap\_unix\_datagram\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a12955c9f1b3a40ec05d737cc92ad7bf1} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UNIXDatagramSocket}{UNIXDatagram\+Socket}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+unix\+\_\+datagram\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+\Hypertarget{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a274711917053232cf600b4234a6e17bd}\index{anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}!wrap\_unix\_stream\_socket@{wrap\_unix\_stream\_socket}}
+\index{wrap\_unix\_stream\_socket@{wrap\_unix\_stream\_socket}!anyio.\_backends.\_asyncio.AsyncIOBackend@{anyio.\_backends.\_asyncio.AsyncIOBackend}}
+\doxysubsubsection{\texorpdfstring{wrap\_unix\_stream\_socket()}{wrap\_unix\_stream\_socket()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__backends_1_1__asyncio_1_1AsyncIOBackend_a274711917053232cf600b4234a6e17bd} 
+ \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1UNIXSocketStream}{UNIXSocket\+Stream}} anyio.\+\_\+backends.\+\_\+asyncio.\+Async\+IOBackend.\+wrap\+\_\+unix\+\_\+stream\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__eventloop_1_1AsyncBackend}{anyio.\+abc.\+\_\+eventloop.\+Async\+Backend}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+backends/\+\+\_\+asyncio.\+py\end{DoxyCompactItemize}

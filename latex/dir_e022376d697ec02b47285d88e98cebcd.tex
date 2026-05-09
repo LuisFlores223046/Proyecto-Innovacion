@@ -1,0 +1,222 @@
+\doxysection{frontend/\+node\+\_\+modules/\+cssesc Directory Reference}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd}{}\label{dir_e022376d697ec02b47285d88e98cebcd}\index{frontend/node\_modules/cssesc Directory Reference@{frontend/node\_modules/cssesc Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md804}{}\doxysubsection{\texorpdfstring{cssesc \+[!\+[Build status]\+(\href{https://travis-ci.org/mathiasbynens/cssesc.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+mathiasbynens/\+cssesc.\+svg?branch=master}})]\+(\href{https://travis-ci.org/mathiasbynens/cssesc}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+mathiasbynens/\+cssesc}}) \+[!\+[Code coverage status]\+(\href{https://img.shields.io/codecov/c/github/mathiasbynens/cssesc.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+codecov/\+c/\+github/\+mathiasbynens/\+cssesc.\+svg}})]\+(\href{https://codecov.io/gh/mathiasbynens/cssesc}{\texttt{https:\+/\+/\+codecov.\+io/\+gh/\+mathiasbynens/\+cssesc}})}{cssesc \+[!\+[Build status]\+(\href{https://travis-ci.org/mathiasbynens/cssesc.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+mathiasbynens/\+cssesc.\+svg?branch=master}})]\+(\href{https://travis-ci.org/mathiasbynens/cssesc}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+mathiasbynens/\+cssesc}}) \+[!\+[Code coverage status]\+(\href{https://img.shields.io/codecov/c/github/mathiasbynens/cssesc.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+codecov/\+c/\+github/\+mathiasbynens/\+cssesc.\+svg}})]\+(\href{https://codecov.io/gh/mathiasbynens/cssesc}{\texttt{https:\+/\+/\+codecov.\+io/\+gh/\+mathiasbynens/\+cssesc}})}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md804}
+A Java\+Script library for escaping CSS strings and identifiers while generating the shortest possible ASCII-\/only output.
+
+This is a Java\+Script library for \href{https://mathiasbynens.be/notes/css-escapes}{\texttt{escaping text for use in CSS strings or identifiers}} while generating the shortest possible valid ASCII-\/only output. \href{https://mothereff.in/css-escapes}{\texttt{Here’s an online demo.}}
+
+\href{https://mths.be/cssescape}{\texttt{A polyfill for the CSSOM {\ttfamily CSS.\+escape()} method is available in a separate repository.}} (In comparison, {\itshape cssesc} is much more powerful.)
+
+Feel free to fork if you see possible improvements!\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md805}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md805}
+Via \href{https://www.npmjs.com/}{\texttt{npm}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ cssesc}
+
+\end{DoxyCode}
+
+
+In a browser:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ src="{}cssesc.js"{}></script>}
+
+\end{DoxyCode}
+
+
+In \href{https://nodejs.org/}{\texttt{Node.\+js}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ cssesc\ =\ require('cssesc');}
+
+\end{DoxyCode}
+
+
+In Ruby using \href{https://github.com/borodean/ruby-cssesc}{\texttt{the {\ttfamily ruby-\/cssesc} wrapper gem}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gem\ install\ ruby-\/cssesc}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require\ 'ruby-\/cssesc'}
+\DoxyCodeLine{CSSEsc.escape('I\ ♥\ Ruby',\ is\_identifier:\ true)}
+
+\end{DoxyCode}
+
+
+In Sass using \href{https://github.com/borodean/sassy-escape}{\texttt{{\ttfamily sassy-\/escape}}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{gem\ install\ sassy-\/escape}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{body\ \{}
+\DoxyCodeLine{\ \ content:\ escape('I\ ♥\ Sass',\ \$is-\/identifier:\ true);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md806}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md806}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md807}{}\doxysubsubsection{\texorpdfstring{{\ttfamily cssesc(value, options)}}{{\ttfamily cssesc(value, options)}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md807}
+This function takes a value and returns an escaped version of the value where any characters that are not printable ASCII symbols are escaped using the shortest possible (but valid) \href{https://mathiasbynens.be/notes/css-escapes}{\texttt{escape sequences for use in CSS strings or identifiers}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('Ich\ ♥\ Bücher');}
+\DoxyCodeLine{//\ →\ 'Ich\ \(\backslash\)\(\backslash\)2665\ \ B\(\backslash\)\(\backslash\)FC\ cher'}
+\DoxyCodeLine{}
+\DoxyCodeLine{cssesc('foo\ 𝌆\ bar');}
+\DoxyCodeLine{//\ →\ 'foo\ \(\backslash\)\(\backslash\)1D306\ \ bar'}
+
+\end{DoxyCode}
+
+
+By default, {\ttfamily cssesc} returns a string that can be used as part of a CSS string. If the target is a CSS identifier rather than a CSS string, use the {\ttfamily is\+Identifier:\+ true} setting (see below).
+
+The optional {\ttfamily options} argument accepts an object with the following options:\+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md808}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily is\+Identifier}}{{\ttfamily is\+Identifier}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md808}
+The default value for the {\ttfamily is\+Identifier} option is {\ttfamily false}. This means that the input text will be escaped for use in a CSS string literal. If you want to use the result as a CSS identifier instead (in a selector, for example), set this option to {\ttfamily true}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('123a2b');}
+\DoxyCodeLine{//\ →\ '123a2b'}
+\DoxyCodeLine{}
+\DoxyCodeLine{cssesc('123a2b',\ \{}
+\DoxyCodeLine{\ \ 'isIdentifier':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)\(\backslash\)31\ 23a2b'}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md809}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily quotes}}{{\ttfamily quotes}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md809}
+The default value for the {\ttfamily quotes} option is {\ttfamily \textquotesingle{}single\textquotesingle{}}. This means that any occurences of {\ttfamily \textquotesingle{}} in the input text will be escaped as {\ttfamily \textbackslash{}\textquotesingle{}}, so that the output can be used in a CSS string literal wrapped in single quotes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.');}
+\DoxyCodeLine{//\ →\ 'Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}Lorem\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ \(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)'\ etc."{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{cssesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'single'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}Lorem\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ \(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)'\ etc."{}}
+
+\end{DoxyCode}
+
+
+If you want to use the output as part of a CSS string literal wrapped in double quotes, set the {\ttfamily quotes} option to {\ttfamily \textquotesingle{}double\textquotesingle{}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double'}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ 'Lorem\ ipsum\ \(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.'}
+\DoxyCodeLine{//\ →\ "{}Lorem\ ipsum\ \(\backslash\)\(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)\(\backslash\)"{}\ sit\ 'amet'\ etc."{}}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md810}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily wrap}}{{\ttfamily wrap}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md810}
+The {\ttfamily wrap} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, the output will be a valid CSS string literal wrapped in quotes. The type of quotes can be specified through the {\ttfamily quotes} setting.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'single',}
+\DoxyCodeLine{\ \ 'wrap':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)'Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.\(\backslash\)''}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)'Lorem\ ipsum\ \(\backslash\)"{}dolor\(\backslash\)"{}\ sit\ \(\backslash\)\(\backslash\)\(\backslash\)'amet\(\backslash\)\(\backslash\)\(\backslash\)'\ etc.\(\backslash\)'"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{cssesc('Lorem\ ipsum\ "{}dolor"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.',\ \{}
+\DoxyCodeLine{\ \ 'quotes':\ 'double',}
+\DoxyCodeLine{\ \ 'wrap':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '"{}Lorem\ ipsum\ \(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc."{}'}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)"{}Lorem\ ipsum\ \(\backslash\)\(\backslash\)\(\backslash\)"{}dolor\(\backslash\)\(\backslash\)\(\backslash\)"{}\ sit\ \(\backslash\)'amet\(\backslash\)'\ etc.\(\backslash\)"{}"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md811}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily escape\+Everything}}{{\ttfamily escape\+Everything}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md811}
+The {\ttfamily escape\+Everything} option takes a boolean value ({\ttfamily true} or {\ttfamily false}), and defaults to {\ttfamily false} (disabled). When enabled, all the symbols in the output will be escaped, even printable ASCII symbols.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cssesc('lolwat"{}foo\(\backslash\)'bar',\ \{}
+\DoxyCodeLine{\ \ 'escapeEverything':\ true}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ →\ '\(\backslash\)\(\backslash\)6C\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)6C\(\backslash\)\(\backslash\)77\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)74\(\backslash\)\(\backslash\)"{}\(\backslash\)\(\backslash\)66\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)\(\backslash\)'\(\backslash\)\(\backslash\)62\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)72'}
+\DoxyCodeLine{//\ →\ "{}\(\backslash\)\(\backslash\)6C\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)6C\(\backslash\)\(\backslash\)77\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)74\(\backslash\)\(\backslash\)\(\backslash\)"{}\(\backslash\)\(\backslash\)66\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)'\(\backslash\)\(\backslash\)62\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)72"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md812}{}\doxysubsubsubsection{\texorpdfstring{Overriding the default options globally}{Overriding the default options globally}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md812}
+The global default settings can be overridden by modifying the {\ttfamily css.\+options} object. This saves you from passing in an {\ttfamily options} object for every call to {\ttfamily encode} if you want to use the non-\/default setting.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Read\ the\ global\ default\ setting\ for\ \`{}escapeEverything`:}
+\DoxyCodeLine{cssesc.options.escapeEverything;}
+\DoxyCodeLine{//\ →\ \`{}false`\ by\ default}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Override\ the\ global\ default\ setting\ for\ \`{}escapeEverything`:}
+\DoxyCodeLine{cssesc.options.escapeEverything\ =\ true;}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Using\ the\ global\ default\ setting\ for\ \`{}escapeEverything`,\ which\ is\ now\ \`{}true`:}
+\DoxyCodeLine{cssesc('foo\ ©\ bar\ ≠\ baz\ 𝌆\ qux');}
+\DoxyCodeLine{//\ →\ '\(\backslash\)\(\backslash\)66\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)6F\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)A9\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)62\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)72\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)2260\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)62\(\backslash\)\(\backslash\)61\(\backslash\)\(\backslash\)7A\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)1D306\(\backslash\)\(\backslash\)\ \(\backslash\)\(\backslash\)71\(\backslash\)\(\backslash\)75\(\backslash\)\(\backslash\)78'}
+
+\end{DoxyCode}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md813}{}\doxysubsubsection{\texorpdfstring{{\ttfamily cssesc.\+version}}{{\ttfamily cssesc.\+version}}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md813}
+A string representing the semantic version number.\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md814}{}\doxysubsubsection{\texorpdfstring{Using the {\ttfamily cssesc} binary}{Using the {\ttfamily cssesc} binary}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md814}
+To use the {\ttfamily cssesc} binary in your shell, simply install cssesc globally using npm:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/g\ cssesc}
+
+\end{DoxyCode}
+
+
+After that you will be able to escape text for use in CSS strings or identifiers from the command line:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ cssesc\ 'föo\ ♥\ bår\ 𝌆\ baz'}
+\DoxyCodeLine{f\(\backslash\)F6o\ \(\backslash\)2665\ \ b\(\backslash\)E5r\ \(\backslash\)1D306\ \ baz}
+
+\end{DoxyCode}
+
+
+If the output needs to be a CSS identifier rather than part of a string literal, use the {\ttfamily -\/i}/\+{\ttfamily -\/-\/identifier} option:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ cssesc\ -\/-\/identifier\ 'föo\ ♥\ bår\ 𝌆\ baz'}
+\DoxyCodeLine{f\(\backslash\)F6o\(\backslash\)\ \(\backslash\)2665\(\backslash\)\ b\(\backslash\)E5r\(\backslash\)\ \(\backslash\)1D306\(\backslash\)\ baz}
+
+\end{DoxyCode}
+
+
+See {\ttfamily cssesc -\/-\/help} for the full list of options.\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md815}{}\doxysubsection{\texorpdfstring{Support}{Support}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md815}
+This library supports the Node.\+js and browser versions mentioned in \href{https://github.com/mathiasbynens/cssesc/blob/master/.babelrc}{\texttt{{\ttfamily .babelrc}}}. For a version that supports a wider variety of legacy browsers and environments out-\/of-\/the-\/box, \href{https://github.com/mathiasbynens/cssesc/releases/tag/v0.1.0}{\texttt{see v0.\+1.\+0}}.\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md816}{}\doxysubsection{\texorpdfstring{Author}{Author}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md816}
+
+\begin{DoxyTable}{1}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}\href{https://twitter.com/mathias}{\texttt{}}  \\
+\href{https://mathiasbynens.be/}{\texttt{Mathias Bynens}}  \\
+\end{DoxyTable}
+\hypertarget{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md817}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_e022376d697ec02b47285d88e98cebcd_autotoc_md817}
+This library is available under the \href{https://mths.be/mit}{\texttt{MIT}} license. 

@@ -1,0 +1,166 @@
+\doxysection{frontend/\+node\+\_\+modules/\+jiti Directory Reference}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5}{}\label{dir_29594d658e1c6fbb0afc31854fafbbf5}\index{frontend/node\_modules/jiti Directory Reference@{frontend/node\_modules/jiti Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_0e9c1bed3d4af81b3131a869785c4288}{bin}}
+\item 
+directory \doxymbox{\hyperlink{dir_aa508573bdd24f12df2c30fe8f2a3acb}{dist}}
+\item 
+directory \doxymbox{\hyperlink{dir_035adde14760ac8b742670410bdb4a80}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1486}{}\doxysubsection{\texorpdfstring{jiti}{jiti}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1486}
+\href{https://npmjs.com/package/jiti}{\texttt{}} \href{https://npmjs.com/package/jiti}{\texttt{}} \href{https://bundlephobia.com/result?p=h3}{\texttt{}} \href{https://github.com/unjs/jiti/blob/main/LICENSE}{\texttt{}}
+
+Runtime Typescript and ESM support for Node.\+js.
+
+\begin{DoxyImportant}{Important}
+This is the support branch for jiti v1. Check out \href{https://github.com/unjs/jiti/tree/main}{\texttt{jiti/\+main}} for the latest version and \href{https://github.com/unjs/jiti/issues/174}{\texttt{unjs/\+jiti\#174}} for the roadmap.
+\end{DoxyImportant}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1487}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1487}
+
+\begin{DoxyItemize}
+\item Seamless typescript and ESM syntax support
+\item Seamless interoperability between ESM and Common\+JS
+\item Synchronous API to replace {\ttfamily require}
+\item Super slim and zero dependency
+\item Smart syntax detection to avoid extra transforms
+\item Common\+JS cache integration
+\item Filesystem transpile hard cache
+\item V8 compile cache
+\item Custom resolve alias
+\end{DoxyItemize}\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1488}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1488}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1489}{}\doxysubsubsection{\texorpdfstring{Programmatic}{Programmatic}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1489}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ jiti\ =\ require("{}jiti"{})(\_\_filename);}
+\DoxyCodeLine{}
+\DoxyCodeLine{jiti("{}./path/to/file.ts"{});}
+
+\end{DoxyCode}
+
+
+You can also pass options as second argument:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ jiti\ =\ require("{}jiti"{})(\_\_filename,\ \{\ debug:\ true\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1490}{}\doxysubsubsection{\texorpdfstring{CLI}{CLI}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1490}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{jiti\ index.ts}
+\DoxyCodeLine{\#\ or\ npx\ jiti\ index.ts}
+
+\end{DoxyCode}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1491}{}\doxysubsubsection{\texorpdfstring{Register require hook}{Register require hook}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1491}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{node\ -\/r\ jiti/register\ index.ts}
+
+\end{DoxyCode}
+
+
+Alternatively, you can register {\ttfamily jiti} as a require hook programmatically:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ jiti\ =\ require("{}jiti"{})();}
+\DoxyCodeLine{const\ unregister\ =\ jiti.register();}
+
+\end{DoxyCode}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1492}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1492}
+\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1493}{}\doxysubsubsection{\texorpdfstring{{\ttfamily debug}}{{\ttfamily debug}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1493}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean
+\item Default:\+ {\ttfamily false}
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+DEBUG}
+\end{DoxyItemize}
+
+Enable debug to see which files are transpiled\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1494}{}\doxysubsubsection{\texorpdfstring{{\ttfamily cache}}{{\ttfamily cache}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1494}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean \texorpdfstring{$\vert$}{|} String
+\item Default:\+ {\ttfamily true}
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+CACHE}
+\end{DoxyItemize}
+
+Use transpile cache
+
+If set to {\ttfamily true} will use {\ttfamily node\+\_\+modules/\+.cache/\+jiti} (if exists) or {\ttfamily \{TMP\+\_\+\+DIR\}/\+node-\/jiti}\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1495}{}\doxysubsubsection{\texorpdfstring{{\ttfamily esm\+Resolve}}{{\ttfamily esm\+Resolve}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1495}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean \texorpdfstring{$\vert$}{|} String
+\item Default:\+ {\ttfamily false}
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+ESM\+\_\+\+RESOLVE}
+\end{DoxyItemize}
+
+Using esm resolution algorithm to support {\ttfamily import} condition.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1496}{}\doxysubsubsection{\texorpdfstring{{\ttfamily transform}}{{\ttfamily transform}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1496}
+
+\begin{DoxyItemize}
+\item Type:\+ Function
+\item Default:\+ Babel (lazy loaded)
+\end{DoxyItemize}
+
+Transform function. See \href{./src/babel.ts}{\texttt{src/\+babel}} for more details\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1497}{}\doxysubsubsection{\texorpdfstring{{\ttfamily source\+Maps}}{{\ttfamily source\+Maps}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1497}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean
+\item Default {\ttfamily false}
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+SOURCE\+\_\+\+MAPS}
+\end{DoxyItemize}
+
+Add inline source map to transformed source for better debugging.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1498}{}\doxysubsubsection{\texorpdfstring{{\ttfamily interop\+Default}}{{\ttfamily interop\+Default}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1498}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Return the {\ttfamily .default} export of a module at the top-\/level.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1499}{}\doxysubsubsection{\texorpdfstring{{\ttfamily alias}}{{\ttfamily alias}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1499}
+
+\begin{DoxyItemize}
+\item Type:\+ Object
+\item Default:\+ -\/
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+ALIAS}
+\end{DoxyItemize}
+
+Custom alias map used to resolve ids.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1500}{}\doxysubsubsection{\texorpdfstring{{\ttfamily native\+Modules}}{{\ttfamily native\+Modules}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1500}
+
+\begin{DoxyItemize}
+\item Type:\+ Array
+\item Default:\+ \+[\textquotesingle{}typescript{\ttfamily ]\+}
+\item {\ttfamily Environment Variable:\+ }JITI\+\_\+\+NATIVE\+\_\+\+MODULES\`{}
+\end{DoxyItemize}
+
+List of modules (within {\ttfamily node\+\_\+modules}) to always use native require for them.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1501}{}\doxysubsubsection{\texorpdfstring{{\ttfamily transform\+Modules}}{{\ttfamily transform\+Modules}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1501}
+
+\begin{DoxyItemize}
+\item Type:\+ Array
+\item Default:\+ \+[]\+
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+TRANSFORM\+\_\+\+MODULES}
+\end{DoxyItemize}
+
+List of modules (within {\ttfamily node\+\_\+modules}) to transform them regardless of syntax.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1502}{}\doxysubsubsection{\texorpdfstring{{\ttfamily experimental\+Bun}}{{\ttfamily experimental\+Bun}}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1502}
+
+\begin{DoxyItemize}
+\item Type:\+ Boolean
+\item Default:\+ Enabled if {\ttfamily process.\+versions.\+bun} exists (Bun runtime)
+\item Environment Variable:\+ {\ttfamily JITI\+\_\+\+EXPERIMENTAL\+\_\+\+BUN}
+\end{DoxyItemize}
+
+Enable experimental native Bun support for transformations.\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1503}{}\doxysubsection{\texorpdfstring{Development}{Development}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1503}
+
+\begin{DoxyItemize}
+\item Clone this repository
+\item Enable \href{https://github.com/nodejs/corepack}{\texttt{Corepack}} using {\ttfamily corepack enable}
+\item Install dependencies using {\ttfamily pnpm install}
+\item Run {\ttfamily pnpm dev}
+\item Run {\ttfamily pnpm jiti ./\+test/\+path/\+to/\+file.ts}
+\end{DoxyItemize}\hypertarget{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1504}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_29594d658e1c6fbb0afc31854fafbbf5_autotoc_md1504}
+MIT. Made with 💖 

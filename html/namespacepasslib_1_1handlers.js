@@ -1,0 +1,26 @@
+var namespacepasslib_1_1handlers =
+[
+    [ "argon2", "namespacepasslib_1_1handlers_1_1argon2.html", "namespacepasslib_1_1handlers_1_1argon2" ],
+    [ "bcrypt", "namespacepasslib_1_1handlers_1_1bcrypt.html", "namespacepasslib_1_1handlers_1_1bcrypt" ],
+    [ "cisco", "namespacepasslib_1_1handlers_1_1cisco.html", "namespacepasslib_1_1handlers_1_1cisco" ],
+    [ "des_crypt", "namespacepasslib_1_1handlers_1_1des__crypt.html", "namespacepasslib_1_1handlers_1_1des__crypt" ],
+    [ "digests", "namespacepasslib_1_1handlers_1_1digests.html", "namespacepasslib_1_1handlers_1_1digests" ],
+    [ "django", "namespacepasslib_1_1handlers_1_1django.html", "namespacepasslib_1_1handlers_1_1django" ],
+    [ "fshp", "namespacepasslib_1_1handlers_1_1fshp.html", "namespacepasslib_1_1handlers_1_1fshp" ],
+    [ "ldap_digests", "namespacepasslib_1_1handlers_1_1ldap__digests.html", "namespacepasslib_1_1handlers_1_1ldap__digests" ],
+    [ "md5_crypt", "namespacepasslib_1_1handlers_1_1md5__crypt.html", "namespacepasslib_1_1handlers_1_1md5__crypt" ],
+    [ "misc", "namespacepasslib_1_1handlers_1_1misc.html", "namespacepasslib_1_1handlers_1_1misc" ],
+    [ "mssql", "namespacepasslib_1_1handlers_1_1mssql.html", "namespacepasslib_1_1handlers_1_1mssql" ],
+    [ "mysql", "namespacepasslib_1_1handlers_1_1mysql.html", "namespacepasslib_1_1handlers_1_1mysql" ],
+    [ "oracle", "namespacepasslib_1_1handlers_1_1oracle.html", "namespacepasslib_1_1handlers_1_1oracle" ],
+    [ "pbkdf2", "namespacepasslib_1_1handlers_1_1pbkdf2.html", "namespacepasslib_1_1handlers_1_1pbkdf2" ],
+    [ "phpass", "namespacepasslib_1_1handlers_1_1phpass.html", "namespacepasslib_1_1handlers_1_1phpass" ],
+    [ "postgres", "namespacepasslib_1_1handlers_1_1postgres.html", "namespacepasslib_1_1handlers_1_1postgres" ],
+    [ "roundup", "namespacepasslib_1_1handlers_1_1roundup.html", null ],
+    [ "scram", "namespacepasslib_1_1handlers_1_1scram.html", "namespacepasslib_1_1handlers_1_1scram" ],
+    [ "scrypt", "namespacepasslib_1_1handlers_1_1scrypt.html", "namespacepasslib_1_1handlers_1_1scrypt" ],
+    [ "sha1_crypt", "namespacepasslib_1_1handlers_1_1sha1__crypt.html", "namespacepasslib_1_1handlers_1_1sha1__crypt" ],
+    [ "sha2_crypt", "namespacepasslib_1_1handlers_1_1sha2__crypt.html", "namespacepasslib_1_1handlers_1_1sha2__crypt" ],
+    [ "sun_md5_crypt", "namespacepasslib_1_1handlers_1_1sun__md5__crypt.html", "namespacepasslib_1_1handlers_1_1sun__md5__crypt" ],
+    [ "windows", "namespacepasslib_1_1handlers_1_1windows.html", "namespacepasslib_1_1handlers_1_1windows" ]
+];

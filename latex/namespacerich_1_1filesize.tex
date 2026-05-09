@@ -1,0 +1,67 @@
+\doxysection{rich.\+filesize Namespace Reference}
+\hypertarget{namespacerich_1_1filesize}{}\label{namespacerich_1_1filesize}\index{rich.filesize@{rich.filesize}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacerich_1_1filesize_ab221d22bd37c14b8a10fb4da32d62ecc}\label{namespacerich_1_1filesize_ab221d22bd37c14b8a10fb4da32d62ecc} 
+str {\bfseries \+\_\+to\+\_\+str} (int size, Iterable\+[str]\+ suffixes, int base, \texorpdfstring{$\ast$}{*}, Optional\+[int]\+ precision=1, Optional\+[str]\+ separator="{} "{})
+\item 
+Tuple\+[int, str]\+ \doxymbox{\hyperlink{namespacerich_1_1filesize_a386bc7449d8392e7fe7f85b9ce23c962}{pick\+\_\+unit\+\_\+and\+\_\+suffix}} (int size, List\+[str]\+ suffixes, int base)
+\item 
+str \doxymbox{\hyperlink{namespacerich_1_1filesize_a75c3069edab1044085c569772346c2b5}{decimal}} (int size, \texorpdfstring{$\ast$}{*}, Optional\+[int]\+ precision=1, Optional\+[str]\+ separator="{} "{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions for reporting filesizes. Borrowed from https://github.com/PyFilesystem/pyfilesystem2
+
+The functions declared in this module should cover the different
+use cases needed to generate a string representation of a file size
+using several different units. Since there are many standards regarding
+file size units, three different functions have been implemented.
+
+See Also:
+    * `Wikipedia: Binary prefix <https://en.wikipedia.org/wiki/Binary_prefix>`_
+\end{DoxyVerb}
+ 
+
+\label{namespacerich_1_1filesize_doc-func-members}
+\Hypertarget{namespacerich_1_1filesize_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacerich_1_1filesize_a75c3069edab1044085c569772346c2b5}\index{rich.filesize@{rich.filesize}!decimal@{decimal}}
+\index{decimal@{decimal}!rich.filesize@{rich.filesize}}
+\doxysubsubsection{\texorpdfstring{decimal()}{decimal()}}
+{\footnotesize\ttfamily \label{namespacerich_1_1filesize_a75c3069edab1044085c569772346c2b5} 
+ str decimal (\begin{DoxyParamCaption}\item[{int}]{size}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[int]\+ }]{precision}{ = {\ttfamily 1}, }\item[{Optional\+[str]\+ }]{separator}{ = {\ttfamily "{}~"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a filesize in to a string (powers of 1000, SI prefixes).
+
+In this convention, ``1000 B = 1 kB``.
+
+This is typically the format used to advertise the storage
+capacity of USB flash drives and the like (*256 MB* meaning
+actually a storage capacity of more than *256 000 000 B*),
+or used by **Mac OS X** since v10.6 to report file sizes.
+
+Arguments:
+    int (size): A file size.
+    int (precision): The number of decimal places to include (default = 1).
+    str (separator): The string to separate the value from the units (default = " ").
+
+Returns:
+    `str`: A string containing a abbreviated file size and units.
+
+Example:
+    >>> filesize.decimal(30000)
+    '30.0 kB'
+    >>> filesize.decimal(30000, precision=2, separator="")
+    '30.00kB'
+\end{DoxyVerb}
+ \Hypertarget{namespacerich_1_1filesize_a386bc7449d8392e7fe7f85b9ce23c962}\index{rich.filesize@{rich.filesize}!pick\_unit\_and\_suffix@{pick\_unit\_and\_suffix}}
+\index{pick\_unit\_and\_suffix@{pick\_unit\_and\_suffix}!rich.filesize@{rich.filesize}}
+\doxysubsubsection{\texorpdfstring{pick\_unit\_and\_suffix()}{pick\_unit\_and\_suffix()}}
+{\footnotesize\ttfamily \label{namespacerich_1_1filesize_a386bc7449d8392e7fe7f85b9ce23c962} 
+ Tuple\+[int, str]\+ pick\+\_\+unit\+\_\+and\+\_\+suffix (\begin{DoxyParamCaption}\item[{int}]{size}{, }\item[{List\+[str]\+}]{suffixes}{, }\item[{int}]{base}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Pick a suffix and base for the given size.\end{DoxyVerb}
+ 

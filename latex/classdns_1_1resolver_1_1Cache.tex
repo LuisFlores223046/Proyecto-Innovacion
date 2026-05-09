@@ -1,0 +1,133 @@
+\doxysection{dns.\+resolver.\+Cache Class Reference}
+\hypertarget{classdns_1_1resolver_1_1Cache}{}\label{classdns_1_1resolver_1_1Cache}\index{dns.resolver.Cache@{dns.resolver.Cache}}
+Inheritance diagram for dns.\+resolver.\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1resolver_1_1Cache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1Cache_a0db3d456a50357145f6e4760b39e814e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, float cleaning\+\_\+interval=300.\+0)
+\item 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}}\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classdns_1_1resolver_1_1Cache_ab3dc8c4bfade88a34c00dafd24ae80c3}{get}} (self, Cache\+Key key)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1Cache_a15376a3c98a8f54cb88ecc0dab7143c7}{put}} (self, Cache\+Key key, \doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}} value)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1Cache_aefeda732ca84eeca47216838264b4f6b}{flush}} (self, Cache\+Key\texorpdfstring{$\vert$}{|}None key=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase}{dns.\+resolver.\+Cache\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_a290e885748a0651f7c36da075ab488bb}{reset\+\_\+statistics}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_afd9f4a90d13f722ff1ccb7284985d16d}{hits}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_ac0d171d6beb7bafe6db4a67c579e715f}{misses}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}} \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_af4c65e043752d8cadb14e85cb0b6f91d}{get\+\_\+statistics\+\_\+snapshot}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1Cache_ac015cee9bb361e8c08681f4d3ba04f6b}\label{classdns_1_1resolver_1_1Cache_ac015cee9bb361e8c08681f4d3ba04f6b} 
+dict {\bfseries data} = \{\}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1Cache_af1bbe09b12f90bded78afb2f57e95fea}\label{classdns_1_1resolver_1_1Cache_af1bbe09b12f90bded78afb2f57e95fea} 
+{\bfseries cleaning\+\_\+interval} = cleaning\+\_\+interval
+\item 
+\Hypertarget{classdns_1_1resolver_1_1Cache_a93fb74c7195c8f81288bddff4a6f93bd}\label{classdns_1_1resolver_1_1Cache_a93fb74c7195c8f81288bddff4a6f93bd} 
+float {\bfseries next\+\_\+cleaning} = time.\+time() + self.\+cleaning\+\_\+interval
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase}{dns.\+resolver.\+Cache\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries lock} = threading.\+Lock()
+\item 
+{\bfseries statistics} = \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}}()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1Cache_aa7dde335d138a6d3e3eb6f7bcc6c907d}{\+\_\+maybe\+\_\+clean}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Simple thread-safe DNS answer cache.\end{DoxyVerb}
+ 
+
+\label{classdns_1_1resolver_1_1Cache_doc-constructors}
+\Hypertarget{classdns_1_1resolver_1_1Cache_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdns_1_1resolver_1_1Cache_a0db3d456a50357145f6e4760b39e814e}\index{dns.resolver.Cache@{dns.resolver.Cache}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dns.resolver.Cache@{dns.resolver.Cache}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1Cache_a0db3d456a50357145f6e4760b39e814e} 
+ None dns.\+resolver.\+Cache.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{cleaning\+\_\+interval}{ = {\ttfamily 300.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}*cleaning_interval*, a ``float`` is the number of seconds between
+periodic cleanings.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1resolver_1_1Cache_doc-func-members}
+\Hypertarget{classdns_1_1resolver_1_1Cache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1resolver_1_1Cache_aa7dde335d138a6d3e3eb6f7bcc6c907d}\index{dns.resolver.Cache@{dns.resolver.Cache}!\_maybe\_clean@{\_maybe\_clean}}
+\index{\_maybe\_clean@{\_maybe\_clean}!dns.resolver.Cache@{dns.resolver.Cache}}
+\doxysubsubsection{\texorpdfstring{\_maybe\_clean()}{\_maybe\_clean()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1Cache_aa7dde335d138a6d3e3eb6f7bcc6c907d} 
+ None dns.\+resolver.\+Cache.\+\_\+maybe\+\_\+clean (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Clean the cache if it's time to do so.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1Cache_aefeda732ca84eeca47216838264b4f6b}\index{dns.resolver.Cache@{dns.resolver.Cache}!flush@{flush}}
+\index{flush@{flush}!dns.resolver.Cache@{dns.resolver.Cache}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1Cache_aefeda732ca84eeca47216838264b4f6b} 
+ None dns.\+resolver.\+Cache.\+flush (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key \texorpdfstring{$\vert$}{|} None }]{key}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Flush the cache.
+
+If *key* is not ``None``, only that item is flushed.  Otherwise the entire cache
+is flushed.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1Cache_ab3dc8c4bfade88a34c00dafd24ae80c3}\index{dns.resolver.Cache@{dns.resolver.Cache}!get@{get}}
+\index{get@{get}!dns.resolver.Cache@{dns.resolver.Cache}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1Cache_ab3dc8c4bfade88a34c00dafd24ae80c3} 
+ \doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}} \texorpdfstring{$\vert$}{|} None dns.\+resolver.\+Cache.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the answer associated with *key*.
+
+Returns None if no answer is cached for the key.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+
+Returns a ``dns.resolver.Answer`` or ``None``.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1Cache_a15376a3c98a8f54cb88ecc0dab7143c7}\index{dns.resolver.Cache@{dns.resolver.Cache}!put@{put}}
+\index{put@{put}!dns.resolver.Cache@{dns.resolver.Cache}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1Cache_a15376a3c98a8f54cb88ecc0dab7143c7} 
+ None dns.\+resolver.\+Cache.\+put (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Cache\+Key}]{key}{, }\item[{\doxymbox{\hyperlink{classdns_1_1resolver_1_1Answer}{Answer}}}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Associate key and value in the cache.
+
+*key*, a ``(dns.name.Name, dns.rdatatype.RdataType, dns.rdataclass.RdataClass)``
+tuple whose values are the query name, rdtype, and rdclass respectively.
+
+*value*, a ``dns.resolver.Answer``, the answer.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+resolver.\+py\end{DoxyCompactItemize}

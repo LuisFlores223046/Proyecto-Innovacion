@@ -1,0 +1,46 @@
+\doxysection{sqlalchemy.\+util.\+topological Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1util_1_1topological}{}\label{namespacesqlalchemy_1_1util_1_1topological}\index{sqlalchemy.util.topological@{sqlalchemy.util.topological}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_a9d9b371ddd21da640129b2280e77d1f0}\label{namespacesqlalchemy_1_1util_1_1topological_a9d9b371ddd21da640129b2280e77d1f0} 
+Iterator\+[Sequence\+[\+\_\+T]\+]\+ {\bfseries sort\+\_\+as\+\_\+subsets} (Collection\+[Tuple\+[\+\_\+T, \+\_\+T]\+]\+ tuples, Collection\+[\+\_\+T]\+ allitems)
+\item 
+Iterator\+[\+\_\+T]\+ \doxymbox{\hyperlink{namespacesqlalchemy_1_1util_1_1topological_a8bb3c7b3a3a4d5bd2c696d5f553e064e}{sort}} (Collection\+[Tuple\+[\+\_\+T, \+\_\+T]\+]\+ tuples, Collection\+[\+\_\+T]\+ allitems, bool deterministic\+\_\+order=True)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_a658c45c941ece821a01f8e1eea9e665e}\label{namespacesqlalchemy_1_1util_1_1topological_a658c45c941ece821a01f8e1eea9e665e} 
+Set\+[\+\_\+T]\+ {\bfseries find\+\_\+cycles} (Iterable\+[Tuple\+[\+\_\+T, \+\_\+T]\+]\+ tuples, Iterable\+[\+\_\+T]\+ allitems)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_a0f45575de57891165b7fe6952392ec00}\label{namespacesqlalchemy_1_1util_1_1topological_a0f45575de57891165b7fe6952392ec00} 
+Set\+[Tuple\+[\+\_\+T, \+\_\+T]\+]\+ {\bfseries \+\_\+gen\+\_\+edges} (Default\+Dict\+[\+\_\+T, Set\+[\+\_\+T]\+]\+ edges)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_a5046d54e512fa7145535dae953851620}\label{namespacesqlalchemy_1_1util_1_1topological_a5046d54e512fa7145535dae953851620} 
+{\bfseries \+\_\+T} = Type\+Var("{}\+\_\+\+T"{}, bound=Any)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Topological sorting algorithms.\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1util_1_1topological_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1util_1_1topological_a8bb3c7b3a3a4d5bd2c696d5f553e064e}\index{sqlalchemy.util.topological@{sqlalchemy.util.topological}!sort@{sort}}
+\index{sort@{sort}!sqlalchemy.util.topological@{sqlalchemy.util.topological}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1util_1_1topological_a8bb3c7b3a3a4d5bd2c696d5f553e064e} 
+ Iterator\+[\+\_\+T]\+ sort (\begin{DoxyParamCaption}\item[{Collection\+[Tuple\+[\+\_\+T, \+\_\+T]\+]\+}]{tuples}{, }\item[{Collection\+[\+\_\+T]\+}]{allitems}{, }\item[{bool }]{deterministic\+\_\+order}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}sort the given list of items by dependency.
+
+'tuples' is a list of tuples representing a partial ordering.
+
+deterministic_order is no longer used, the order is now always
+deterministic given the order of "allitems".    the flag is there
+for backwards compatibility with Alembic.
+\end{DoxyVerb}
+ 

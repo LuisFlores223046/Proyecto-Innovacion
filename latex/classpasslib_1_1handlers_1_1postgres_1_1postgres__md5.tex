@@ -1,0 +1,50 @@
+\doxysection{passlib.\+handlers.\+postgres.\+postgres\+\_\+md5 Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5}{}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5}\index{passlib.handlers.postgres.postgres\_md5@{passlib.handlers.postgres.postgres\_md5}}
+Inheritance diagram for passlib.\+handlers.\+postgres.\+postgres\+\_\+md5:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a980015e07cd5aa8083b8afdf136637a1}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a980015e07cd5aa8083b8afdf136637a1} 
+str {\bfseries name} = "{}postgres\+\_\+md5"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a2cb3313511d870f48949cca41bce7dfc}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a2cb3313511d870f48949cca41bce7dfc} 
+{\bfseries checksum\+\_\+chars} = uh.\+HEX\+\_\+\+CHARS
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_ace0bc602c80ced3f5f7854dbeba6aae8}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_ace0bc602c80ced3f5f7854dbeba6aae8} 
+int {\bfseries checksum\+\_\+size} = 32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a0b60959749a7e8f5df86801839049b8b}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a0b60959749a7e8f5df86801839049b8b} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a1dbd4eac1ae8e79a15a9a8bc754c9cc8}\label{classpasslib_1_1handlers_1_1postgres_1_1postgres__md5_a1dbd4eac1ae8e79a15a9a8bc754c9cc8} 
+{\bfseries \+\_\+hash\+\_\+prefix} = u("{}md5"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements the Postgres MD5 Password hash, and follows the :ref:`password-hash-api`.
+
+It does a single round of hashing, and relies on the username as the salt.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`, :meth:`~passlib.ifc.PasswordHash.genhash`, and :meth:`~passlib.ifc.PasswordHash.verify` methods all require the
+following additional contextual keywords:
+
+:type user: str
+:param user: name of postgres user account this password is associated with.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+postgres.\+py\end{DoxyCompactItemize}

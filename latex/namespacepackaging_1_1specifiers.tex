@@ -1,0 +1,89 @@
+\doxysection{packaging.\+specifiers Namespace Reference}
+\hypertarget{namespacepackaging_1_1specifiers}{}\label{namespacepackaging_1_1specifiers}\index{packaging.specifiers@{packaging.specifiers}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpackaging_1_1specifiers_1_1InvalidSpecifier}{Invalid\+Specifier}}
+\item 
+class \doxymbox{\hyperlink{classpackaging_1_1specifiers_1_1BaseSpecifier}{Base\+Specifier}}
+\item 
+class \doxymbox{\hyperlink{classpackaging_1_1specifiers_1_1Specifier}{Specifier}}
+\item 
+class \doxymbox{\hyperlink{classpackaging_1_1specifiers_1_1SpecifierSet}{Specifier\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a358ca8bb958f37f967bb67cff1cabd80}\label{namespacepackaging_1_1specifiers_a358ca8bb958f37f967bb67cff1cabd80} 
+Version\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+coerce\+\_\+version} (Unparsed\+Version version)
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a590331ed076e62d4c6010ca0f2f4a197}\label{namespacepackaging_1_1specifiers_a590331ed076e62d4c6010ca0f2f4a197} 
+Version {\bfseries \+\_\+public\+\_\+version} (Version version)
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a5222a87eb71e51907a50b53c7d96057a}\label{namespacepackaging_1_1specifiers_a5222a87eb71e51907a50b53c7d96057a} 
+Version {\bfseries \+\_\+base\+\_\+version} (Version version)
+\item 
+list\+[str]\+ \doxymbox{\hyperlink{namespacepackaging_1_1specifiers_ae704cae91f7d796fff60de1a9540d406}{\+\_\+version\+\_\+split}} (str version)
+\item 
+str \doxymbox{\hyperlink{namespacepackaging_1_1specifiers_a8d7aec6a261c4709e009618a0aab2fd4}{\+\_\+version\+\_\+join}} (list\+[str]\+ components)
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a13fa1daae75705c155de9dca4f4ac503}\label{namespacepackaging_1_1specifiers_a13fa1daae75705c155de9dca4f4ac503} 
+bool {\bfseries \+\_\+is\+\_\+not\+\_\+suffix} (str segment)
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_ad3115da615b6f1e024eeeecd249769a1}\label{namespacepackaging_1_1specifiers_ad3115da615b6f1e024eeeecd249769a1} 
+tuple\+[list\+[str]\+, list\+[str]\+]\+ {\bfseries \+\_\+pad\+\_\+version} (list\+[str]\+ left, list\+[str]\+ right)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a6408da24304ac0d92ab9d420c4771ef4}\label{namespacepackaging_1_1specifiers_a6408da24304ac0d92ab9d420c4771ef4} 
+{\bfseries Unparsed\+Version} = Union\+[Version, str]\+
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a32ce1b57e4207bf34b7272749a200756}\label{namespacepackaging_1_1specifiers_a32ce1b57e4207bf34b7272749a200756} 
+{\bfseries Unparsed\+Version\+Var} = Type\+Var("{}Unparsed\+Version\+Var"{}, bound=Unparsed\+Version)
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_a8e71a4e93736fbb85359f1eb54f19a70}\label{namespacepackaging_1_1specifiers_a8e71a4e93736fbb85359f1eb54f19a70} 
+{\bfseries Callable\+Operator} = Callable\+[\+[Version, str]\+, bool]\+
+\item 
+\Hypertarget{namespacepackaging_1_1specifiers_ab9a2d97967a8783a77d4a5c9c4ad81de}\label{namespacepackaging_1_1specifiers_ab9a2d97967a8783a77d4a5c9c4ad81de} 
+{\bfseries \+\_\+prefix\+\_\+regex} = re.\+compile(r"{}(\+[0-\/9]\++)((?:\+a\texorpdfstring{$\vert$}{|}b\texorpdfstring{$\vert$}{|}c\texorpdfstring{$\vert$}{|}rc)\+[0-\/9]\++)"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. testsetup::
+
+    from packaging.specifiers import Specifier, SpecifierSet, InvalidSpecifier
+    from packaging.version import Version
+\end{DoxyVerb}
+ 
+
+\label{namespacepackaging_1_1specifiers_doc-func-members}
+\Hypertarget{namespacepackaging_1_1specifiers_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepackaging_1_1specifiers_a8d7aec6a261c4709e009618a0aab2fd4}\index{packaging.specifiers@{packaging.specifiers}!\_version\_join@{\_version\_join}}
+\index{\_version\_join@{\_version\_join}!packaging.specifiers@{packaging.specifiers}}
+\doxysubsubsection{\texorpdfstring{\_version\_join()}{\_version\_join()}}
+{\footnotesize\ttfamily \label{namespacepackaging_1_1specifiers_a8d7aec6a261c4709e009618a0aab2fd4} 
+ str \+\_\+version\+\_\+join (\begin{DoxyParamCaption}\item[{list\+[str]\+}]{components}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Join split version components into a version string.
+
+This function assumes the input came from :func:`_version_split`, where the
+first component must be the epoch (either empty or numeric), and all other
+components numeric.
+\end{DoxyVerb}
+ \Hypertarget{namespacepackaging_1_1specifiers_ae704cae91f7d796fff60de1a9540d406}\index{packaging.specifiers@{packaging.specifiers}!\_version\_split@{\_version\_split}}
+\index{\_version\_split@{\_version\_split}!packaging.specifiers@{packaging.specifiers}}
+\doxysubsubsection{\texorpdfstring{\_version\_split()}{\_version\_split()}}
+{\footnotesize\ttfamily \label{namespacepackaging_1_1specifiers_ae704cae91f7d796fff60de1a9540d406} 
+ list\+[str]\+ \+\_\+version\+\_\+split (\begin{DoxyParamCaption}\item[{str}]{version}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Split version into components.
+
+The split components are intended for version comparison. The logic does
+not attempt to retain the original version string, so joining the
+components back with :func:`_version_join` may not produce the original
+version string.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,392 @@
+\doxysection{jinja2.\+lexer Namespace Reference}
+\hypertarget{namespacejinja2_1_1lexer}{}\label{namespacejinja2_1_1lexer}\index{jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1Failure}{Failure}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1Token}{Token}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1TokenStreamIterator}{Token\+Stream\+Iterator}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1TokenStream}{Token\+Stream}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1OptionalLStrip}{Optional\+LStrip}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1__Rule}{\+\_\+\+Rule}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1lexer_1_1Lexer}{Lexer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a847736fff60accd0b945c9ab4dc88051}\label{namespacejinja2_1_1lexer_a847736fff60accd0b945c9ab4dc88051} 
+str {\bfseries \+\_\+describe\+\_\+token\+\_\+type} (str token\+\_\+type)
+\item 
+str \doxymbox{\hyperlink{namespacejinja2_1_1lexer_af612198e57dc878f72ff88e63a8dd0ff}{describe\+\_\+token}} ("{}Token"{} token)
+\item 
+str \doxymbox{\hyperlink{namespacejinja2_1_1lexer_ad244754a2d0bc64895b27da839cd9f76}{describe\+\_\+token\+\_\+expr}} (str expr)
+\item 
+int \doxymbox{\hyperlink{namespacejinja2_1_1lexer_a729421afd7d85c61ce24a5f2dda2ea22}{count\+\_\+newlines}} (str value)
+\item 
+t.\+List\+[t.\+Tuple\+[str, str]\+]\+ \doxymbox{\hyperlink{namespacejinja2_1_1lexer_a5e7bbd26523b2fbafc5820343e359c33}{compile\+\_\+rules}} ("{}Environment"{} environment)
+\item 
+"{}Lexer"{} \doxymbox{\hyperlink{namespacejinja2_1_1lexer_a14babf2392663c65ca207011163d3c39}{get\+\_\+lexer}} ("{}Environment"{} environment)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_aa627f3833a95c714fd4bcbfb0736eb1c}\label{namespacejinja2_1_1lexer_aa627f3833a95c714fd4bcbfb0736eb1c} 
+t {\bfseries \+\_\+lexer\+\_\+cache} = \doxymbox{\hyperlink{classjinja2_1_1utils_1_1LRUCache}{LRUCache}}(50)
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ac8f1247fb38b2b625af4e8255007ed7a}\label{namespacejinja2_1_1lexer_ac8f1247fb38b2b625af4e8255007ed7a} 
+{\bfseries whitespace\+\_\+re} = re.\+compile(r"{}\textbackslash{}s+"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a3251916fb908fb7b1ae6f21ed310d734}\label{namespacejinja2_1_1lexer_a3251916fb908fb7b1ae6f21ed310d734} 
+{\bfseries newline\+\_\+re} = re.\+compile(r"{}(\textbackslash{}r\textbackslash{}n\texorpdfstring{$\vert$}{|}\textbackslash{}r\texorpdfstring{$\vert$}{|}\textbackslash{}n)"{})
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_a12f501295f7d04ac6c6d4e05321737df}{string\+\_\+re}}
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_a1cc2dbaf6afa3b265e2842595a68e23c}{integer\+\_\+re}}
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_aecdf9af83a3e30675fb5e154b5b20660}{float\+\_\+re}}
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a461ab21b77893bf440ece470cab9a707}\label{namespacejinja2_1_1lexer_a461ab21b77893bf440ece470cab9a707} 
+{\bfseries TOKEN\+\_\+\+ADD} = intern("{}add"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_af4a552646af1384dd8e4ac8bedaf8cc0}\label{namespacejinja2_1_1lexer_af4a552646af1384dd8e4ac8bedaf8cc0} 
+{\bfseries TOKEN\+\_\+\+ASSIGN} = intern("{}assign"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a811ce1b1755af2b84adcad55178387cf}\label{namespacejinja2_1_1lexer_a811ce1b1755af2b84adcad55178387cf} 
+{\bfseries TOKEN\+\_\+\+COLON} = intern("{}colon"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ad89170b7bead53e88a773b895005c473}\label{namespacejinja2_1_1lexer_ad89170b7bead53e88a773b895005c473} 
+{\bfseries TOKEN\+\_\+\+COMMA} = intern("{}comma"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a14c1a42c44e68f272827fe24bd57ec11}\label{namespacejinja2_1_1lexer_a14c1a42c44e68f272827fe24bd57ec11} 
+{\bfseries TOKEN\+\_\+\+DIV} = intern("{}div"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a19e15cf7829a53b0ae0f1f3bacc62fcf}\label{namespacejinja2_1_1lexer_a19e15cf7829a53b0ae0f1f3bacc62fcf} 
+{\bfseries TOKEN\+\_\+\+DOT} = intern("{}dot"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a93af7d18b7ff815aaa4d32b34c88ca64}\label{namespacejinja2_1_1lexer_a93af7d18b7ff815aaa4d32b34c88ca64} 
+{\bfseries TOKEN\+\_\+\+EQ} = intern("{}eq"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ac86503ef9640df5dffdcf3fac0dcb5c9}\label{namespacejinja2_1_1lexer_ac86503ef9640df5dffdcf3fac0dcb5c9} 
+{\bfseries TOKEN\+\_\+\+FLOORDIV} = intern("{}floordiv"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ac47d5930e4d10b642349008f98999c6d}\label{namespacejinja2_1_1lexer_ac47d5930e4d10b642349008f98999c6d} 
+{\bfseries TOKEN\+\_\+\+GT} = intern("{}gt"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ae210c4428181cd90c7713e18c6f73122}\label{namespacejinja2_1_1lexer_ae210c4428181cd90c7713e18c6f73122} 
+{\bfseries TOKEN\+\_\+\+GTEQ} = intern("{}gteq"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_aee77d8adb6196064ff1bbb66f0911cd2}\label{namespacejinja2_1_1lexer_aee77d8adb6196064ff1bbb66f0911cd2} 
+{\bfseries TOKEN\+\_\+\+LBRACE} = intern("{}lbrace"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_acf6d05143cd1c9ed3e9305e15822f6d4}\label{namespacejinja2_1_1lexer_acf6d05143cd1c9ed3e9305e15822f6d4} 
+{\bfseries TOKEN\+\_\+\+LBRACKET} = intern("{}lbracket"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_aa2715f56333d120bd562403d6428cef7}\label{namespacejinja2_1_1lexer_aa2715f56333d120bd562403d6428cef7} 
+{\bfseries TOKEN\+\_\+\+LPAREN} = intern("{}lparen"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a0bb4a63194fe45dbf22d86e447848bb8}\label{namespacejinja2_1_1lexer_a0bb4a63194fe45dbf22d86e447848bb8} 
+{\bfseries TOKEN\+\_\+\+LT} = intern("{}lt"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ab5be802dd8ab75d4768a4ec7fcb48fae}\label{namespacejinja2_1_1lexer_ab5be802dd8ab75d4768a4ec7fcb48fae} 
+{\bfseries TOKEN\+\_\+\+LTEQ} = intern("{}lteq"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_aed377c3c7b20b92d4b1fada3921c67ce}\label{namespacejinja2_1_1lexer_aed377c3c7b20b92d4b1fada3921c67ce} 
+{\bfseries TOKEN\+\_\+\+MOD} = intern("{}mod"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a6dc6db525b306e09a061045e425ac78f}\label{namespacejinja2_1_1lexer_a6dc6db525b306e09a061045e425ac78f} 
+{\bfseries TOKEN\+\_\+\+MUL} = intern("{}mul"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a1a329a2edf6e7f61f26c1973017307bf}\label{namespacejinja2_1_1lexer_a1a329a2edf6e7f61f26c1973017307bf} 
+{\bfseries TOKEN\+\_\+\+NE} = intern("{}ne"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_af942d18898a477a5ef98847ff0ef98ed}\label{namespacejinja2_1_1lexer_af942d18898a477a5ef98847ff0ef98ed} 
+{\bfseries TOKEN\+\_\+\+PIPE} = intern("{}pipe"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a1d05638a1391950b6e862e94794a3516}\label{namespacejinja2_1_1lexer_a1d05638a1391950b6e862e94794a3516} 
+{\bfseries TOKEN\+\_\+\+POW} = intern("{}pow"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a16638982bf7d70404a7cc7c9d497f9c4}\label{namespacejinja2_1_1lexer_a16638982bf7d70404a7cc7c9d497f9c4} 
+{\bfseries TOKEN\+\_\+\+RBRACE} = intern("{}rbrace"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a67afba2f6ae7b039ea2d81ebfd876258}\label{namespacejinja2_1_1lexer_a67afba2f6ae7b039ea2d81ebfd876258} 
+{\bfseries TOKEN\+\_\+\+RBRACKET} = intern("{}rbracket"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_af6a6d231c488e181b1d79fab896e7328}\label{namespacejinja2_1_1lexer_af6a6d231c488e181b1d79fab896e7328} 
+{\bfseries TOKEN\+\_\+\+RPAREN} = intern("{}rparen"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a80df8e487eaf131492367c3efdc6c554}\label{namespacejinja2_1_1lexer_a80df8e487eaf131492367c3efdc6c554} 
+{\bfseries TOKEN\+\_\+\+SEMICOLON} = intern("{}semicolon"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_aa576a136b74215289affc2cc210fb269}\label{namespacejinja2_1_1lexer_aa576a136b74215289affc2cc210fb269} 
+{\bfseries TOKEN\+\_\+\+SUB} = intern("{}sub"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a7cf2c44410331ea8ad84543f52f3c333}\label{namespacejinja2_1_1lexer_a7cf2c44410331ea8ad84543f52f3c333} 
+{\bfseries TOKEN\+\_\+\+TILDE} = intern("{}tilde"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_adda2b80d32893442b25dc57630c47c62}\label{namespacejinja2_1_1lexer_adda2b80d32893442b25dc57630c47c62} 
+{\bfseries TOKEN\+\_\+\+WHITESPACE} = intern("{}whitespace"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_ac41bd512ec24456c04083e6f46d1ce31}\label{namespacejinja2_1_1lexer_ac41bd512ec24456c04083e6f46d1ce31} 
+{\bfseries TOKEN\+\_\+\+FLOAT} = intern("{}float"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_abc4d707e4279566def1625183de4d315}\label{namespacejinja2_1_1lexer_abc4d707e4279566def1625183de4d315} 
+{\bfseries TOKEN\+\_\+\+INTEGER} = intern("{}integer"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a6d346540eb6ef21d3704ce6350ef632e}\label{namespacejinja2_1_1lexer_a6d346540eb6ef21d3704ce6350ef632e} 
+{\bfseries TOKEN\+\_\+\+NAME} = intern("{}name"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a9abf4445c79e0ddb3df360fa30137011}\label{namespacejinja2_1_1lexer_a9abf4445c79e0ddb3df360fa30137011} 
+{\bfseries TOKEN\+\_\+\+STRING} = intern("{}string"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a23266fb69d5469954ed75ac5fa6d9ae0}\label{namespacejinja2_1_1lexer_a23266fb69d5469954ed75ac5fa6d9ae0} 
+{\bfseries TOKEN\+\_\+\+OPERATOR} = intern("{}operator"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a176a283b204014786428814a3c1051bd}\label{namespacejinja2_1_1lexer_a176a283b204014786428814a3c1051bd} 
+{\bfseries TOKEN\+\_\+\+BLOCK\+\_\+\+BEGIN} = intern("{}block\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_add1fd658320b0da85c15abe5434f3f21}\label{namespacejinja2_1_1lexer_add1fd658320b0da85c15abe5434f3f21} 
+{\bfseries TOKEN\+\_\+\+BLOCK\+\_\+\+END} = intern("{}block\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a3ff777ced929d2049d7ff905a3d0e3cb}\label{namespacejinja2_1_1lexer_a3ff777ced929d2049d7ff905a3d0e3cb} 
+{\bfseries TOKEN\+\_\+\+VARIABLE\+\_\+\+BEGIN} = intern("{}variable\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a11c221c26d171687455ec19a3366a812}\label{namespacejinja2_1_1lexer_a11c221c26d171687455ec19a3366a812} 
+{\bfseries TOKEN\+\_\+\+VARIABLE\+\_\+\+END} = intern("{}variable\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a3addd2122dec27073225e6665e0a87ef}\label{namespacejinja2_1_1lexer_a3addd2122dec27073225e6665e0a87ef} 
+{\bfseries TOKEN\+\_\+\+RAW\+\_\+\+BEGIN} = intern("{}raw\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a30103350e8ff559f4b19ee14a579af89}\label{namespacejinja2_1_1lexer_a30103350e8ff559f4b19ee14a579af89} 
+{\bfseries TOKEN\+\_\+\+RAW\+\_\+\+END} = intern("{}raw\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a97040b48a74570e7e9e09b9fc4768c34}\label{namespacejinja2_1_1lexer_a97040b48a74570e7e9e09b9fc4768c34} 
+{\bfseries TOKEN\+\_\+\+COMMENT\+\_\+\+BEGIN} = intern("{}comment\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a329df05b8091212c45be0ded2de82918}\label{namespacejinja2_1_1lexer_a329df05b8091212c45be0ded2de82918} 
+{\bfseries TOKEN\+\_\+\+COMMENT\+\_\+\+END} = intern("{}comment\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a4911059b9e8b29fa254732d94069f2a4}\label{namespacejinja2_1_1lexer_a4911059b9e8b29fa254732d94069f2a4} 
+{\bfseries TOKEN\+\_\+\+COMMENT} = intern("{}comment"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a56f9a4878870b30a047dc6156aa95d97}\label{namespacejinja2_1_1lexer_a56f9a4878870b30a047dc6156aa95d97} 
+{\bfseries TOKEN\+\_\+\+LINESTATEMENT\+\_\+\+BEGIN} = intern("{}linestatement\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a5232e624f14d37cec22fad8f178a5ecd}\label{namespacejinja2_1_1lexer_a5232e624f14d37cec22fad8f178a5ecd} 
+{\bfseries TOKEN\+\_\+\+LINESTATEMENT\+\_\+\+END} = intern("{}linestatement\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a54fd6b9338721edd4239d50ab648f6ec}\label{namespacejinja2_1_1lexer_a54fd6b9338721edd4239d50ab648f6ec} 
+{\bfseries TOKEN\+\_\+\+LINECOMMENT\+\_\+\+BEGIN} = intern("{}linecomment\+\_\+begin"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a290aae86bcbe020c7fb53191369918c7}\label{namespacejinja2_1_1lexer_a290aae86bcbe020c7fb53191369918c7} 
+{\bfseries TOKEN\+\_\+\+LINECOMMENT\+\_\+\+END} = intern("{}linecomment\+\_\+end"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a33c488b52e48696b7c43404a0b1ba2ab}\label{namespacejinja2_1_1lexer_a33c488b52e48696b7c43404a0b1ba2ab} 
+{\bfseries TOKEN\+\_\+\+LINECOMMENT} = intern("{}linecomment"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a9b6ea9b7cb58fa3d8e9b7c27cccdf5db}\label{namespacejinja2_1_1lexer_a9b6ea9b7cb58fa3d8e9b7c27cccdf5db} 
+{\bfseries TOKEN\+\_\+\+DATA} = intern("{}data"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a4abfd4db8580944268d6a2b073047042}\label{namespacejinja2_1_1lexer_a4abfd4db8580944268d6a2b073047042} 
+{\bfseries TOKEN\+\_\+\+INITIAL} = intern("{}initial"{})
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a17d944e68268c854b6dfddca2ae7d91e}\label{namespacejinja2_1_1lexer_a17d944e68268c854b6dfddca2ae7d91e} 
+{\bfseries TOKEN\+\_\+\+EOF} = intern("{}eof"{})
+\item 
+dict \doxymbox{\hyperlink{namespacejinja2_1_1lexer_a616f85a922c022c09b529e11e453b33a}{operators}}
+\item 
+\Hypertarget{namespacejinja2_1_1lexer_a10e2d92da74deb70350f218e822e9387}\label{namespacejinja2_1_1lexer_a10e2d92da74deb70350f218e822e9387} 
+dict {\bfseries reverse\+\_\+operators} = \{v:\+ k for k, v in operators.\+items()\}
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_af4be2b8a46ddefd1e05fd2bdb943c4fc}{operator\+\_\+re}}
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_a2fc48289f944b37836b2f0055eb84a7a}{ignored\+\_\+tokens}}
+\item 
+\doxymbox{\hyperlink{namespacejinja2_1_1lexer_a2aa55f6ec41e41dafd556e212e63ec7f}{ignore\+\_\+if\+\_\+empty}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Implements a Jinja / Python combination lexer. The ``Lexer`` class
+is used to do some preprocessing. It filters out invalid operators like
+the bitshift operators we don't allow in templates. It separates
+template code and python code in expressions.
+\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1lexer_doc-func-members}
+\Hypertarget{namespacejinja2_1_1lexer_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacejinja2_1_1lexer_a5e7bbd26523b2fbafc5820343e359c33}\index{jinja2.lexer@{jinja2.lexer}!compile\_rules@{compile\_rules}}
+\index{compile\_rules@{compile\_rules}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{compile\_rules()}{compile\_rules()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a5e7bbd26523b2fbafc5820343e359c33} 
+ t.\+List\+[t.\+Tuple\+[str, str]\+]\+ compile\+\_\+rules (\begin{DoxyParamCaption}\item[{"{}Environment"{}}]{environment}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Compiles all the rules from the environment into a list of rules.\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1lexer_a729421afd7d85c61ce24a5f2dda2ea22}\index{jinja2.lexer@{jinja2.lexer}!count\_newlines@{count\_newlines}}
+\index{count\_newlines@{count\_newlines}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{count\_newlines()}{count\_newlines()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a729421afd7d85c61ce24a5f2dda2ea22} 
+ int count\+\_\+newlines (\begin{DoxyParamCaption}\item[{str}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Count the number of newline characters in the string.  This is
+useful for extensions that filter a stream.
+\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1lexer_af612198e57dc878f72ff88e63a8dd0ff}\index{jinja2.lexer@{jinja2.lexer}!describe\_token@{describe\_token}}
+\index{describe\_token@{describe\_token}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{describe\_token()}{describe\_token()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_af612198e57dc878f72ff88e63a8dd0ff} 
+ str describe\+\_\+token (\begin{DoxyParamCaption}\item[{"{}Token"{}}]{token}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a description of the token.\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1lexer_ad244754a2d0bc64895b27da839cd9f76}\index{jinja2.lexer@{jinja2.lexer}!describe\_token\_expr@{describe\_token\_expr}}
+\index{describe\_token\_expr@{describe\_token\_expr}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{describe\_token\_expr()}{describe\_token\_expr()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_ad244754a2d0bc64895b27da839cd9f76} 
+ str describe\+\_\+token\+\_\+expr (\begin{DoxyParamCaption}\item[{str}]{expr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Like `describe_token` but for token expressions.\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1lexer_a14babf2392663c65ca207011163d3c39}\index{jinja2.lexer@{jinja2.lexer}!get\_lexer@{get\_lexer}}
+\index{get\_lexer@{get\_lexer}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{get\_lexer()}{get\_lexer()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a14babf2392663c65ca207011163d3c39} 
+ "{}Lexer"{} get\+\_\+lexer (\begin{DoxyParamCaption}\item[{"{}Environment"{}}]{environment}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a lexer which is probably cached.\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1lexer_doc-var-members}
+\Hypertarget{namespacejinja2_1_1lexer_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacejinja2_1_1lexer_aecdf9af83a3e30675fb5e154b5b20660}\index{jinja2.lexer@{jinja2.lexer}!float\_re@{float\_re}}
+\index{float\_re@{float\_re}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{float\_re}{float\_re}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_aecdf9af83a3e30675fb5e154b5b20660} 
+jinja2.\+lexer.\+float\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ ,}
+\DoxyCodeLine{\ \ \ \ re.IGNORECASE\ |\ re.VERBOSE,}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_a2aa55f6ec41e41dafd556e212e63ec7f}\index{jinja2.lexer@{jinja2.lexer}!ignore\_if\_empty@{ignore\_if\_empty}}
+\index{ignore\_if\_empty@{ignore\_if\_empty}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{ignore\_if\_empty}{ignore\_if\_empty}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a2aa55f6ec41e41dafd556e212e63ec7f} 
+jinja2.\+lexer.\+ignore\+\_\+if\+\_\+empty}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ frozenset(}
+\DoxyCodeLine{\ \ \ \ [TOKEN\_WHITESPACE,\ TOKEN\_DATA,\ TOKEN\_COMMENT,\ TOKEN\_LINECOMMENT]}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_a2fc48289f944b37836b2f0055eb84a7a}\index{jinja2.lexer@{jinja2.lexer}!ignored\_tokens@{ignored\_tokens}}
+\index{ignored\_tokens@{ignored\_tokens}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{ignored\_tokens}{ignored\_tokens}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a2fc48289f944b37836b2f0055eb84a7a} 
+jinja2.\+lexer.\+ignored\+\_\+tokens}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ frozenset(}
+\DoxyCodeLine{\ \ \ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_COMMENT\_BEGIN,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_COMMENT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_COMMENT\_END,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_WHITESPACE,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_LINECOMMENT\_BEGIN,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_LINECOMMENT\_END,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TOKEN\_LINECOMMENT,}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_a1cc2dbaf6afa3b265e2842595a68e23c}\index{jinja2.lexer@{jinja2.lexer}!integer\_re@{integer\_re}}
+\index{integer\_re@{integer\_re}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{integer\_re}{integer\_re}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a1cc2dbaf6afa3b265e2842595a68e23c} 
+jinja2.\+lexer.\+integer\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ ,}
+\DoxyCodeLine{\ \ \ \ re.IGNORECASE\ |\ re.VERBOSE,}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_af4be2b8a46ddefd1e05fd2bdb943c4fc}\index{jinja2.lexer@{jinja2.lexer}!operator\_re@{operator\_re}}
+\index{operator\_re@{operator\_re}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{operator\_re}{operator\_re}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_af4be2b8a46ddefd1e05fd2bdb943c4fc} 
+jinja2.\+lexer.\+operator\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ f\textcolor{stringliteral}{"{}(\{'|'.join(re.escape(x)\ for\ x\ in\ sorted(operators,\ key=lambda\ x:\ -\/len(x)))\})"{}}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_a616f85a922c022c09b529e11e453b33a}\index{jinja2.lexer@{jinja2.lexer}!operators@{operators}}
+\index{operators@{operators}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{operators}{operators}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a616f85a922c022c09b529e11e453b33a} 
+dict jinja2.\+lexer.\+operators}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}+"{}}:\ TOKEN\_ADD,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}-\/"{}}:\ TOKEN\_SUB,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}/"{}}:\ TOKEN\_DIV,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}//"{}}:\ TOKEN\_FLOORDIV,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}*"{}}:\ TOKEN\_MUL,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\%"{}}:\ TOKEN\_MOD,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}**"{}}:\ TOKEN\_POW,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\string~"{}}:\ TOKEN\_TILDE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}["{}}:\ TOKEN\_LBRACKET,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}]"{}}:\ TOKEN\_RBRACKET,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}("{}}:\ TOKEN\_LPAREN,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{})"{}}:\ TOKEN\_RPAREN,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\{"{}}:\ TOKEN\_LBRACE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\}"{}}:\ TOKEN\_RBRACE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}=="{}}:\ TOKEN\_EQ,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}!="{}}:\ TOKEN\_NE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}>"{}}:\ TOKEN\_GT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}>="{}}:\ TOKEN\_GTEQ,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}<"{}}:\ TOKEN\_LT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}<="{}}:\ TOKEN\_LTEQ,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}="{}}:\ TOKEN\_ASSIGN,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}."{}}:\ TOKEN\_DOT,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}:"{}}:\ TOKEN\_COLON,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}|"{}}:\ TOKEN\_PIPE,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{},"{}}:\ TOKEN\_COMMA,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{};"{}}:\ TOKEN\_SEMICOLON,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1lexer_a12f501295f7d04ac6c6d4e05321737df}\index{jinja2.lexer@{jinja2.lexer}!string\_re@{string\_re}}
+\index{string\_re@{string\_re}!jinja2.lexer@{jinja2.lexer}}
+\doxysubsubsection{\texorpdfstring{string\_re}{string\_re}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1lexer_a12f501295f7d04ac6c6d4e05321737df} 
+jinja2.\+lexer.\+string\+\_\+re}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r"{}('([\string^'\(\backslash\)\(\backslash\)]*(?:\(\backslash\)\(\backslash\).[\string^'\(\backslash\)\(\backslash\)]*)*)'"{}}\ \textcolor{stringliteral}{r'|"{}([\string^"{}\(\backslash\)\(\backslash\)]*(?:\(\backslash\)\(\backslash\).[\string^"{}\(\backslash\)\(\backslash\)]*)*)"{})'},\ re.S}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

@@ -1,0 +1,71 @@
+\doxysection{uvicorn.\+logging.\+Colourized\+Formatter Class Reference}
+\hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter}{}\label{classuvicorn_1_1logging_1_1ColourizedFormatter}\index{uvicorn.logging.ColourizedFormatter@{uvicorn.logging.ColourizedFormatter}}
+Inheritance diagram for uvicorn.\+logging.\+Colourized\+Formatter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classuvicorn_1_1logging_1_1ColourizedFormatter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_ae6390006020a2834b93954b259308d65}\label{classuvicorn_1_1logging_1_1ColourizedFormatter_ae6390006020a2834b93954b259308d65} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str\texorpdfstring{$\vert$}{|}None fmt=None, str\texorpdfstring{$\vert$}{|}None datefmt=None, Literal\+["{}\%"{}, "{}\{"{}, "{}\$"{}]\+ style="{}\%"{}, bool\texorpdfstring{$\vert$}{|}None use\+\_\+colors=None)
+\item 
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_a5dcc9bc0db9c617e9a010a1a033d9737}\label{classuvicorn_1_1logging_1_1ColourizedFormatter_a5dcc9bc0db9c617e9a010a1a033d9737} 
+str {\bfseries color\+\_\+level\+\_\+name} (self, str level\+\_\+name, int level\+\_\+no)
+\item 
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_afdb36ec59b49aee7d13ed1ba1d06ed6a}\label{classuvicorn_1_1logging_1_1ColourizedFormatter_afdb36ec59b49aee7d13ed1ba1d06ed6a} 
+bool {\bfseries should\+\_\+use\+\_\+colors} (self)
+\item 
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_a0201a30409659dee918b6eb766716f0f}\label{classuvicorn_1_1logging_1_1ColourizedFormatter_a0201a30409659dee918b6eb766716f0f} 
+str {\bfseries format\+Message} (self, logging.\+Log\+Record record)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_af698690ab524b5f8e1708a5af9bf35f9}\label{classuvicorn_1_1logging_1_1ColourizedFormatter_af698690ab524b5f8e1708a5af9bf35f9} 
+{\bfseries use\+\_\+colors} = use\+\_\+colors
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classuvicorn_1_1logging_1_1ColourizedFormatter_a0c8e87acdfe0dd9f3ecf72ad5966ffea}{level\+\_\+name\+\_\+colors}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A custom log formatter class that:
+
+* Outputs the LOG_LEVEL with an appropriate color.
+* If a log call includes an `extras={"color_message": ...}` it will be used
+  for formatting the output, instead of the plain text message.
+\end{DoxyVerb}
+ 
+
+\label{classuvicorn_1_1logging_1_1ColourizedFormatter_doc-variable-members}
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classuvicorn_1_1logging_1_1ColourizedFormatter_a0c8e87acdfe0dd9f3ecf72ad5966ffea}\index{uvicorn.logging.ColourizedFormatter@{uvicorn.logging.ColourizedFormatter}!level\_name\_colors@{level\_name\_colors}}
+\index{level\_name\_colors@{level\_name\_colors}!uvicorn.logging.ColourizedFormatter@{uvicorn.logging.ColourizedFormatter}}
+\doxysubsubsection{\texorpdfstring{level\_name\_colors}{level\_name\_colors}}
+{\footnotesize\ttfamily \label{classuvicorn_1_1logging_1_1ColourizedFormatter_a0c8e87acdfe0dd9f3ecf72ad5966ffea} 
+dict uvicorn.\+logging.\+Colourized\+Formatter.\+level\+\_\+name\+\_\+colors\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ TRACE\_LOG\_LEVEL:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}blue"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.DEBUG:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}cyan"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.INFO:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}green"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.WARNING:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}yellow"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.ERROR:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}red"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.CRITICAL:\ \textcolor{keyword}{lambda}\ level\_name:\ click.style(str(level\_name),\ fg=\textcolor{stringliteral}{"{}bright\_red"{}}),}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+uvicorn/\+logging.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\doxysection{frontend/\+node\+\_\+modules/\+cross-\/spawn Directory Reference}
+\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499}{}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499}\index{frontend/node\_modules/cross-\/spawn Directory Reference@{frontend/node\_modules/cross-\/spawn Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_9c123fa267a06af2b88113c04ad88c73}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1794}{}\doxysubsection{\texorpdfstring{cross-\/spawn}{cross-\/spawn}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1794}
+\href{https://npmjs.org/package/cross-spawn}{\texttt{}} \href{https://npmjs.org/package/cross-spawn}{\texttt{}} \href{https://github.com/moxystudio/node-cross-spawn/actions/workflows/ci.yaml}{\texttt{}} \href{https://ci.appveyor.com/project/satazor/node-cross-spawn}{\texttt{}}
+
+A cross platform solution to node\textquotesingle{}s spawn and spawn\+Sync.\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1795}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1795}
+Node.\+js version 8 and up:\+ {\ttfamily \$ npm install cross-\/spawn}
+
+Node.\+js version 7 and under:\+ {\ttfamily \$ npm install cross-\/spawn@6}\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1796}{}\doxysubsection{\texorpdfstring{Why}{Why}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1796}
+Node has issues when using spawn on Windows:\+
+
+
+\begin{DoxyItemize}
+\item It ignores \href{https://github.com/joyent/node/issues/2318}{\texttt{PATHEXT}}
+\item It does not support \href{https://en.wikipedia.org/wiki/Shebang_(Unix)}{\texttt{shebangs}}
+\item Has problems running commands with \href{https://github.com/nodejs/node/issues/7367}{\texttt{spaces}}
+\item Has problems running commands with posix relative paths (e.\+g.:\+ {\ttfamily ./\+my-\/folder/\+my-\/executable})
+\item Has an \href{https://github.com/moxystudio/node-cross-spawn/issues/82}{\texttt{issue}} with command shims (files in {\ttfamily node\+\_\+modules/\+.bin/\+}), where arguments with quotes and parenthesis would result in \href{https://github.com/moxystudio/node-cross-spawn/blob/e77b8f22a416db46b6196767bcd35601d7e11d54/test/index.test.js\#L149}{\texttt{invalid syntax error}}
+\item No {\ttfamily options.\+shell} support on node {\ttfamily \texorpdfstring{$<$}{<}v4.\+8}
+\end{DoxyItemize}
+
+All these issues are handled correctly by {\ttfamily cross-\/spawn}. There are some known modules, such as \href{https://github.com/ForbesLindesay/win-spawn}{\texttt{win-\/spawn}}, that try to solve this but they are either broken or provide faulty escaping of shell arguments.\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1797}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1797}
+Exactly the same way as node\textquotesingle{}s \href{https://nodejs.org/api/child_process.html\#child_process_child_process_spawn_command_args_options}{\texttt{{\ttfamily spawn}}} or \href{https://nodejs.org/api/child_process.html\#child_process_child_process_spawnsync_command_args_options}{\texttt{{\ttfamily spawn\+Sync}}}, so it\textquotesingle{}s a drop in replacement.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ spawn\ =\ require('cross-\/spawn');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Spawn\ NPM\ asynchronously}
+\DoxyCodeLine{const\ child\ =\ spawn('npm',\ ['list',\ '-\/g',\ '-\/depth',\ '0'],\ \{\ stdio:\ 'inherit'\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Spawn\ NPM\ synchronously}
+\DoxyCodeLine{const\ result\ =\ spawn.sync('npm',\ ['list',\ '-\/g',\ '-\/depth',\ '0'],\ \{\ stdio:\ 'inherit'\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1798}{}\doxysubsection{\texorpdfstring{Caveats}{Caveats}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1798}
+\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1799}{}\doxysubsubsection{\texorpdfstring{Using {\ttfamily options.\+shell} as an alternative to {\ttfamily cross-\/spawn}}{Using {\ttfamily options.\+shell} as an alternative to {\ttfamily cross-\/spawn}}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1799}
+Starting from node {\ttfamily v4.\+8}, {\ttfamily spawn} has a {\ttfamily shell} option that allows you run commands from within a shell. This new option solves the \href{https://github.com/joyent/node/issues/2318}{\texttt{PATHEXT}} issue but:\+
+
+
+\begin{DoxyItemize}
+\item It\textquotesingle{}s not supported in node {\ttfamily \texorpdfstring{$<$}{<}v4.\+8}
+\item You must manually escape the command and arguments which is very error prone, specially when passing user input
+\item There are a lot of other unresolved issues from the WhyWhy
+\end{DoxyItemize}section that you must take into account
+
+If you are using the {\ttfamily shell} option to spawn a command in a cross platform way, consider using {\ttfamily cross-\/spawn} instead. You have been warned.\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1800}{}\doxysubsubsection{\texorpdfstring{{\ttfamily options.\+shell} support}{{\ttfamily options.\+shell} support}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1800}
+While {\ttfamily cross-\/spawn} adds support for {\ttfamily options.\+shell} in node {\ttfamily \texorpdfstring{$<$}{<}v4.\+8}, all of its enhancements are disabled.
+
+This mimics the Node.\+js behavior. More specifically, the command and its arguments will not be automatically escaped nor shebang support will be offered. This is by design because if you are using {\ttfamily options.\+shell} you are probably targeting a specific platform anyway and you don\textquotesingle{}t want things to get into your way.\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1801}{}\doxysubsubsection{\texorpdfstring{Shebangs support}{Shebangs support}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1801}
+While {\ttfamily cross-\/spawn} handles shebangs on Windows, its support is limited. More specifically, it just supports {\ttfamily \#!/\+usr/\+bin/\+env \texorpdfstring{$<$}{<}program\texorpdfstring{$>$}{>}} where {\ttfamily \texorpdfstring{$<$}{<}program\texorpdfstring{$>$}{>}} must not contain any arguments. ~\newline
+ If you would like to have the shebang support improved, feel free to contribute via a pull-\/request.
+
+Remember to always test your code on Windows!\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1802}{}\doxysubsection{\texorpdfstring{Tests}{Tests}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1802}
+{\ttfamily \$ npm test} ~\newline
+ {\ttfamily \$ npm test -\/-\/ -\/-\/watch} during development\hypertarget{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1803}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_269e4caa395abe5ee2afb9a6e9bc3499_autotoc_md1803}
+Released under the \href{https://www.opensource.org/licenses/mit-license.php}{\texttt{MIT License}}. 

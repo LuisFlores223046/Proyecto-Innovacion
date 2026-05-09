@@ -1,0 +1,117 @@
+\doxysection{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler Namespace Reference}
+\hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler}{}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler}\index{sentry\_sdk.profiler.transaction\_profiler@{sentry\_sdk.profiler.transaction\_profiler}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Profile}{Profile}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{Scheduler}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler}{Thread\+Scheduler}}
+\item 
+class \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1GeventScheduler}{Gevent\+Scheduler}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_add54ce4bfeab405094e1d311a24825b9}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_add54ce4bfeab405094e1d311a24825b9} 
+bool {\bfseries has\+\_\+profiling\+\_\+enabled} ("{}Dict\+[str, Any]\+"{} options)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a47ee1a41f2877ad41b78366cafcf3fb7}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a47ee1a41f2877ad41b78366cafcf3fb7} 
+bool {\bfseries setup\+\_\+profiler} ("{}Dict\+[str, Any]\+"{} options)
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_ab91283c72c0b52e901d240c31bc23849}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_ab91283c72c0b52e901d240c31bc23849} 
+None {\bfseries teardown\+\_\+profiler} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a24b04daf105d68c3077b1cdcc4f0e4fc}{Processed\+Sample}}
+\item 
+\doxymbox{\hyperlink{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a6bdbf773f6938a55d3db86d72fb6128a}{Processed\+Profile}}
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_aed3a21c42e239975f9920142b9ab39bd}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_aed3a21c42e239975f9920142b9ab39bd} 
+str {\bfseries Thread\+Pool} = \+\_\+\+Thread\+Pool
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a3677d6b206e1e70ba3a7abad58e6af39}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a3677d6b206e1e70ba3a7abad58e6af39} 
+{\bfseries thread\+\_\+sleep} = get\+\_\+original("{}time"{}, "{}sleep"{})
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_aedbbfd3bc92701aa8a4abd215a2c392a}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_aedbbfd3bc92701aa8a4abd215a2c392a} 
+str {\bfseries \+\_\+scheduler} = None
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a98ca6c0a356517369e00c9223ee367ad}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a98ca6c0a356517369e00c9223ee367ad} 
+int {\bfseries PROFILE\+\_\+\+MINIMUM\+\_\+\+SAMPLES} = 2
+\item 
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a5802f34ba672c25be19dab1221d62f6a}\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a5802f34ba672c25be19dab1221d62f6a} 
+{\bfseries MAX\+\_\+\+PROFILE\+\_\+\+DURATION\+\_\+\+NS} = int(3e10)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This file is originally based on code from https://github.com/nylas/nylas-perftools,
+which is published under the following license:
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Nylas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+\end{DoxyVerb}
+ 
+
+\label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_doc-var-members}
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a6bdbf773f6938a55d3db86d72fb6128a}\index{sentry\_sdk.profiler.transaction\_profiler@{sentry\_sdk.profiler.transaction\_profiler}!ProcessedProfile@{ProcessedProfile}}
+\index{ProcessedProfile@{ProcessedProfile}!sentry\_sdk.profiler.transaction\_profiler@{sentry\_sdk.profiler.transaction\_profiler}}
+\doxysubsubsection{\texorpdfstring{ProcessedProfile}{ProcessedProfile}}
+{\footnotesize\ttfamily \label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a6bdbf773f6938a55d3db86d72fb6128a} 
+sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Processed\+Profile}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ TypedDict(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ProcessedProfile"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}frames"{}}:\ List[ProcessedFrame],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stacks"{}}:\ List[ProcessedStack],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}samples"{}}:\ List[ProcessedSample],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}thread\_metadata"{}}:\ Dict[ThreadId,\ ProcessedThreadMetadata],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a24b04daf105d68c3077b1cdcc4f0e4fc}\index{sentry\_sdk.profiler.transaction\_profiler@{sentry\_sdk.profiler.transaction\_profiler}!ProcessedSample@{ProcessedSample}}
+\index{ProcessedSample@{ProcessedSample}!sentry\_sdk.profiler.transaction\_profiler@{sentry\_sdk.profiler.transaction\_profiler}}
+\doxysubsubsection{\texorpdfstring{ProcessedSample}{ProcessedSample}}
+{\footnotesize\ttfamily \label{namespacesentry__sdk_1_1profiler_1_1transaction__profiler_a24b04daf105d68c3077b1cdcc4f0e4fc} 
+sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Processed\+Sample}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ TypedDict(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ProcessedSample"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}elapsed\_since\_start\_ns"{}}:\ str,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}thread\_id"{}}:\ ThreadId,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stack\_id"{}}:\ int,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}

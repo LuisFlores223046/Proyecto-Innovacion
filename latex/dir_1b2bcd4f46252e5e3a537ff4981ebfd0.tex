@@ -1,0 +1,104 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+config-\/helpers Directory Reference}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0}{}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0}\index{frontend/node\_modules/"@eslint/config-\/helpers Directory Reference@{frontend/node\_modules/"@eslint/config-\/helpers Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md224}{}\doxysubsection{\texorpdfstring{@eslint/\+config-\/helpers}{@eslint/\+config-\/helpers}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md224}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md225}{}\doxysubsection{\texorpdfstring{Description}{Description}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md225}
+Helper utilities for creating ESLint configuration.\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md226}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md226}
+For Node.\+js and compatible runtimes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/config-\/helpers}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/config-\/helpers}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/config-\/helpers}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ @eslint/config-\/helpers}
+
+\end{DoxyCode}
+
+
+For Deno:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{deno\ add\ @eslint/config-\/helpers}
+
+\end{DoxyCode}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md227}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md227}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md228}{}\doxysubsubsection{\texorpdfstring{{\ttfamily define\+Config()}}{{\ttfamily define\+Config()}}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md228}
+The {\ttfamily define\+Config()} function allows you to specify an ESLint configuration with full type checking and additional capabilities, such as {\ttfamily extends}. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}@eslint/config-\/helpers"{};}
+\DoxyCodeLine{import\ js\ from\ "{}@eslint/js"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}src/**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ \{\ js\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ ["{}js/recommended"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ semi:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}prefer-\/const"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}test/**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}no-\/console"{}:\ "{}off"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md229}{}\doxysubsubsection{\texorpdfstring{{\ttfamily global\+Ignores()}}{{\ttfamily global\+Ignores()}}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md229}
+The {\ttfamily global\+Ignores()} function allows you to specify patterns for files and directories that should be globally ignored by ESLint. This is useful for excluding files that you don\textquotesingle{}t want to lint, such as build directories or third-\/party libraries. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ \{\ defineConfig,\ globalIgnores\ \}\ from\ "{}@eslint/config-\/helpers"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}src/**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ semi:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}prefer-\/const"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ globalIgnores(["{}node\_modules/"{},\ "{}dist/"{},\ "{}coverage/"{}]),}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md230}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md230}
+Apache 2.\+0\hypertarget{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md231}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_1b2bcd4f46252e5e3a537ff4981ebfd0_autotoc_md231}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://sentry.io}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

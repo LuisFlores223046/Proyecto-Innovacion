@@ -1,0 +1,149 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+timezone\+\_\+name.\+Time\+Zone\+Name Class Reference}
+\hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName}{}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName}\index{pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+timezone\+\_\+name.\+Time\+Zone\+Name:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1AfterValidatorFunctionSchema}{core\+\_\+schema.\+After\+Validator\+Function\+Schema}} \doxymbox{\hyperlink{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_acdf71002b7b4b77348a92fac6ece3829}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (cls, type\+[Any]\+ \+\_\+, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} \+\_\+\+\_\+)
+\item 
+dict\+[str, Any]\+ \doxymbox{\hyperlink{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_ad293cee2f4db7f29698b1f11085b62d7}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+}} (cls, core\+\_\+schema.\+Core\+Schema schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a093967878144a6c7e76bf1bee581461d}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a093967878144a6c7e76bf1bee581461d} 
+{\bfseries strict}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a9ebb2af1fe6fe854186e9e403737c6e3}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a9ebb2af1fe6fe854186e9e403737c6e3} 
+set {\bfseries allowed\+\_\+values} = set(\doxymbox{\hyperlink{namespacepydantic__extra__types_1_1timezone__name_a274965ade345233457976e517729f3df}{get\+\_\+timezones}}())
+\item 
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a46f6fb8ee9a899d80af5e68252d15bc5}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a46f6fb8ee9a899d80af5e68252d15bc5} 
+list {\bfseries allowed\+\_\+values\+\_\+list} = sorted(allowed\+\_\+values)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a1bb83a93e826c5790a4fc82d6c5d3244}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a1bb83a93e826c5790a4fc82d6c5d3244} 
+dict {\bfseries allowed\+\_\+values\+\_\+upper\+\_\+to\+\_\+correct} = \{val.\+upper():\+ val for val in allowed\+\_\+values\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName}{Time\+Zone\+Name}} \doxymbox{\hyperlink{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a47a67e34d00630cd0dbdb18a8bd86514}{\+\_\+validate}} (cls, str \+\_\+\+\_\+input\+\_\+value, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a5440087075802604798c13b21fa0fb13}\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a5440087075802604798c13b21fa0fb13} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}TimeZoneName is a custom string subclass for validating and serializing timezone names.
+
+The TimeZoneName class uses the IANA Time Zone Database for validation.
+It supports both strict and non-strict modes for timezone name validation.
+
+
+## Examples:
+
+Some examples of using the TimeZoneName class:
+
+### Normal usage:
+
+```python
+from pydantic_extra_types.timezone_name import TimeZoneName
+from pydantic import BaseModel
+class Location(BaseModel):
+    city: str
+    timezone: TimeZoneName
+
+loc = Location(city="New York", timezone="America/New_York")
+print(loc.timezone)
+
+>> America/New_York
+
+```
+
+### Non-strict mode:
+
+```python
+
+from pydantic_extra_types.timezone_name import TimeZoneName, timezone_name_settings
+
+@timezone_name_settings(strict=False)
+class TZNonStrict(TimeZoneName):
+    pass
+
+tz = TZNonStrict("america/new_york")
+
+print(tz)
+
+>> america/new_york
+
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_acdf71002b7b4b77348a92fac6ece3829}\index{pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_acdf71002b7b4b77348a92fac6ece3829} 
+ \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1AfterValidatorFunctionSchema}{core\+\_\+schema.\+After\+Validator\+Function\+Schema}} pydantic\+\_\+extra\+\_\+types.\+timezone\+\_\+name.\+Time\+Zone\+Name.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{type\+[Any]\+}]{\+\_\+}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}     }]{\+\_\+\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Pydantic CoreSchema with the timezone name validation.
+
+Args:
+    _: The source type.
+    __: The handler to get the CoreSchema.
+
+Returns:
+    A Pydantic CoreSchema with the timezone name validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_ad293cee2f4db7f29698b1f11085b62d7}\index{pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}!\_\_get\_pydantic\_json\_schema\_\_@{\_\_get\_pydantic\_json\_schema\_\_}}
+\index{\_\_get\_pydantic\_json\_schema\_\_@{\_\_get\_pydantic\_json\_schema\_\_}!pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_json\_schema\_\_()}{\_\_get\_pydantic\_json\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_ad293cee2f4db7f29698b1f11085b62d7} 
+ dict\+[str, Any]\+ pydantic\+\_\+extra\+\_\+types.\+timezone\+\_\+name.\+Time\+Zone\+Name.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{core\+\_\+schema.\+Core\+Schema}]{schema}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}}     }]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Pydantic JSON Schema with the timezone name validation.
+
+Args:
+    schema: The Pydantic CoreSchema.
+    handler: The handler to get the JSON Schema.
+
+Returns:
+    A Pydantic JSON Schema with the timezone name validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a47a67e34d00630cd0dbdb18a8bd86514}\index{pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!pydantic\_extra\_types.timezone\_name.TimeZoneName@{pydantic\_extra\_types.timezone\_name.TimeZoneName}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName_a47a67e34d00630cd0dbdb18a8bd86514} 
+ \doxymbox{\hyperlink{classpydantic__extra__types_1_1timezone__name_1_1TimeZoneName}{Time\+Zone\+Name}} pydantic\+\_\+extra\+\_\+types.\+timezone\+\_\+name.\+Time\+Zone\+Name.\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{\+\_\+\+\_\+input\+\_\+value}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate a time zone name from the provided str value.
+
+Args:
+    __input_value: The str value to be validated.
+    _: The Pydantic ValidationInfo.
+
+Returns:
+    The validated time zone name.
+
+Raises:
+    PydanticCustomError: If the timezone name is not valid.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+timezone\+\_\+name.\+py\end{DoxyCompactItemize}

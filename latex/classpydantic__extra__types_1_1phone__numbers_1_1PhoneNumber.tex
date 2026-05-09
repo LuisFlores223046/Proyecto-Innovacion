@@ -1,0 +1,116 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+phone\+\_\+numbers.\+Phone\+Number Class Reference}
+\hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber}{}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber}\index{pydantic\_extra\_types.phone\_numbers.PhoneNumber@{pydantic\_extra\_types.phone\_numbers.PhoneNumber}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+phone\+\_\+numbers.\+Phone\+Number:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a26b6c59933e6abefe35dd4345c752bc3}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a26b6c59933e6abefe35dd4345c752bc3} 
+dict\+[str, Any]\+ {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a24ccec517cf4b6298721fdd4888a8fa6}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a24ccec517cf4b6298721fdd4888a8fa6} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ab132805445d5cab35ab34394ae8255e5}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ab132805445d5cab35ab34394ae8255e5} 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, Any other)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_abd616156b1c6c678fea14518f3caf37e}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_abd616156b1c6c678fea14518f3caf37e} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ad77c8ffc639a5b98bd884169ee3cde48}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ad77c8ffc639a5b98bd884169ee3cde48} 
+Class\+Var {\bfseries default\+\_\+region\+\_\+code} = None
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_aba2d9640a38c90d9b43283c9b69264ea}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_aba2d9640a38c90d9b43283c9b69264ea} 
+list {\bfseries supported\+\_\+regions} = \+[$\,$]\+
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a8f8b7a7af3c7dbd57fe3f5d21412e3ef}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a8f8b7a7af3c7dbd57fe3f5d21412e3ef} 
+str {\bfseries phone\+\_\+format} = \textquotesingle{}RFC3966\textquotesingle{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a1baa3812a523400fb5ddf202dd9322eb}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_a1baa3812a523400fb5ddf202dd9322eb} 
+str {\bfseries \+\_\+validate} (cls, str phone\+\_\+number, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ad932772fcb0957efa1b21a4b06c1dccb}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumber_ad932772fcb0957efa1b21a4b06c1dccb} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A wrapper around the `phonenumbers.PhoneNumber` object.
+
+It provides class-level configuration points you can change by subclassing:
+
+## Examples
+
+### Normal usage:
+
+```python
+from pydantic import BaseModel
+from pydantic_extra_types.phone_numbers import PhoneNumber
+
+
+class Contact(BaseModel):
+    name: str
+    phone: PhoneNumber
+
+
+c = Contact(name='Alice', phone='+1 650-253-0000')
+print(c.phone)
+# > tel:+1-650-253-0000 (formatted using RFC3966 by default)
+```
+
+### Changing defaults by subclassing:
+
+```python
+from pydantic_extra_types.phone_numbers import PhoneNumber
+
+
+class USPhone(PhoneNumber):
+    default_region_code = 'US'
+    supported_regions = ['US']
+    phone_format = 'NATIONAL'
+
+
+# Now parsing will accept national numbers for the US
+p = USPhone('650-253-0000')
+print(p)
+# > 650-253-0000
+```
+
+### Changing defaults by using the provided validator annotation:
+
+```python
+from typing import Annotated, Union
+import phonenumbers
+from pydantic import BaseModel
+from pydantic_extra_types.phone_numbers import PhoneNumberValidator
+
+E164NumberType = Annotated[Union[str, phonenumbers.PhoneNumber], PhoneNumberValidator(number_format='E164')]
+
+
+class Model(BaseModel):
+    phone: E164NumberType
+
+
+m = Model(phone='+1 650-253-0000')
+print(m.phone)
+# > +16502530000
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+phone\+\_\+numbers.\+py\end{DoxyCompactItemize}

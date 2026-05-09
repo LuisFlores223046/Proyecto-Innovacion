@@ -1,0 +1,95 @@
+\doxysection{sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport Class Reference}
+\hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport}{}\label{classsentry__sdk_1_1transport_1_1__FunctionTransport}\index{sentry\_sdk.transport.\_FunctionTransport@{sentry\_sdk.transport.\_FunctionTransport}}
+Inheritance diagram for sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1transport_1_1__FunctionTransport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport_a84b6fd6f41e0ca67fe473ef7ca9abaec}\label{classsentry__sdk_1_1transport_1_1__FunctionTransport_a84b6fd6f41e0ca67fe473ef7ca9abaec} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}Callable\+[\+[Event]\+, None]\+"{} func)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1__FunctionTransport_ac51eb980efb3e02d58fec62234691b10}{capture\+\_\+event}} (self, "{}Event"{} event)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1__FunctionTransport_a0025b9c69c596f90dc9535e604b330c8}{capture\+\_\+envelope}} (self, "{}Envelope"{} envelope)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae6fe475f10e1e95a3f72b240bb1a6651}{flush}} ("{}Self"{} self, float timeout, "{}Optional\+[Any]\+"{} callback=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a7a45c1a8ade9b1576ca1f7c8b8ec211e}{kill}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a657422bfe281639b13c927c4bd03b81c}{record\+\_\+lost\+\_\+event}} (self, str reason, "{}Optional\+[Event\+Data\+Category]\+"{} data\+\_\+category=None, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} item=None, \texorpdfstring{$\ast$}{*}, int quantity=1)
+\item 
+bool {\bfseries is\+\_\+healthy} ("{}Self"{} self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport_a443928500a289b86d421fbfabd5b2048}\label{classsentry__sdk_1_1transport_1_1__FunctionTransport_a443928500a289b86d421fbfabd5b2048} 
+{\bfseries \+\_\+func} = func
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries options} = options
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries parsed\+\_\+dsn} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}DEPRECATED: Users wishing to provide a custom transport should subclass
+the Transport class, rather than providing a function.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1transport_1_1__FunctionTransport_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport_a0025b9c69c596f90dc9535e604b330c8}\index{sentry\_sdk.transport.\_FunctionTransport@{sentry\_sdk.transport.\_FunctionTransport}!capture\_envelope@{capture\_envelope}}
+\index{capture\_envelope@{capture\_envelope}!sentry\_sdk.transport.\_FunctionTransport@{sentry\_sdk.transport.\_FunctionTransport}}
+\doxysubsubsection{\texorpdfstring{capture\_envelope()}{capture\_envelope()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1__FunctionTransport_a0025b9c69c596f90dc9535e604b330c8} 
+ None sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport.\+capture\+\_\+envelope (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Envelope"{}}]{envelope}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send an envelope to Sentry.
+
+Envelopes are a data container format that can hold any type of data
+submitted to Sentry. We use it to send all event data (including errors,
+transactions, crons check-ins, etc.) to Sentry.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a0c3d7767b555bf5963bfd49d6fd80284}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1__FunctionTransport_ac51eb980efb3e02d58fec62234691b10}\index{sentry\_sdk.transport.\_FunctionTransport@{sentry\_sdk.transport.\_FunctionTransport}!capture\_event@{capture\_event}}
+\index{capture\_event@{capture\_event}!sentry\_sdk.transport.\_FunctionTransport@{sentry\_sdk.transport.\_FunctionTransport}}
+\doxysubsubsection{\texorpdfstring{capture\_event()}{capture\_event()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1__FunctionTransport_ac51eb980efb3e02d58fec62234691b10} 
+ None sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport.\+capture\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Event"{}}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}DEPRECATED: Please use capture_envelope instead.
+
+This gets invoked with the event dictionary when an event should
+be sent to sentry.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+transport.\+py\end{DoxyCompactItemize}

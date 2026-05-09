@@ -1,0 +1,134 @@
+\doxysection{app.\+services.\+espacios Namespace Reference}
+\hypertarget{namespaceapp_1_1services_1_1espacios}{}\label{namespaceapp_1_1services_1_1espacios}\index{app.services.espacios@{app.services.espacios}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a118f16cafde314ec4cd227d3f1294d48}{\+\_\+base\+\_\+query}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db)
+\item 
+list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a30d43c1a359d383978881c365eb69140}{listar\+\_\+espacios}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int\texorpdfstring{$\vert$}{|}None categoria\+\_\+id=None, int\texorpdfstring{$\vert$}{|}None edificio\+\_\+id=None, bool\texorpdfstring{$\vert$}{|}None activo=True)
+\item 
+list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a3b537287bf30c95de4ba0345b7c33c85}{buscar\+\_\+espacios}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, str q, int limite=20)
+\item 
+list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a3fb4c06b23d8c5897d92d2586f4dd312}{espacios\+\_\+abiertos\+\_\+ahora}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db)
+\item 
+list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a5a305f6db6826aa46a4e1484cbbc9bde}{espacios\+\_\+cercanos}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, float lat, float lon, float radio=200.\+0)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_aae943f9e70f7a70cc457fad0d5f0055b}{obtener\+\_\+espacio}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int espacio\+\_\+id)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a8c52e9ed1a42d98cb0fa8c1c9032e76e}{crear\+\_\+espacio}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, \doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioCreate}{Espacio\+Create}} datos)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a856a2edafc4ce13cd6ded0c5f528f3ad}{actualizar\+\_\+espacio}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int espacio\+\_\+id, \doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioUpdate}{Espacio\+Update}} datos)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1espacios_a7068d030d238a4a7459e45f634d50208}{desactivar\+\_\+espacio}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int espacio\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1espacios_a81303d74933d56ebe7de17fe21c42e17}\label{namespaceapp_1_1services_1_1espacios_a81303d74933d56ebe7de17fe21c42e17} 
+{\bfseries \+\_\+\+ZONA\+\_\+\+JUAREZ} = Zone\+Info("{}America/\+Ciudad\+\_\+\+Juarez"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Lógica de negocio para espacios.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1services_1_1espacios_doc-func-members}
+\Hypertarget{namespaceapp_1_1services_1_1espacios_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1services_1_1espacios_a118f16cafde314ec4cd227d3f1294d48}\index{app.services.espacios@{app.services.espacios}!\_base\_query@{\_base\_query}}
+\index{\_base\_query@{\_base\_query}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{\_base\_query()}{\_base\_query()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a118f16cafde314ec4cd227d3f1294d48} 
+\+\_\+base\+\_\+query (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Prepara una consulta con carga optimizada de todas las relaciones.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a856a2edafc4ce13cd6ded0c5f528f3ad}\index{app.services.espacios@{app.services.espacios}!actualizar\_espacio@{actualizar\_espacio}}
+\index{actualizar\_espacio@{actualizar\_espacio}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{actualizar\_espacio()}{actualizar\_espacio()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a856a2edafc4ce13cd6ded0c5f528f3ad} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} actualizar\+\_\+espacio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int}]{espacio\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioUpdate}{Espacio\+Update}}}]{datos}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Actualiza campos específicos de un espacio existente.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a3b537287bf30c95de4ba0345b7c33c85}\index{app.services.espacios@{app.services.espacios}!buscar\_espacios@{buscar\_espacios}}
+\index{buscar\_espacios@{buscar\_espacios}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{buscar\_espacios()}{buscar\_espacios()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a3b537287bf30c95de4ba0345b7c33c85} 
+ list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ buscar\+\_\+espacios (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{str}]{q}{, }\item[{int }]{limite}{ = {\ttfamily 20}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Realiza una búsqueda de espacios activos basada en una cadena de texto.
+
+La búsqueda es insensible a mayúsculas y minúsculas (ilike) y compara el
+término contra el nombre, código y notas del espacio.
+
+Args:
+    db: Sesión de la base de datos.
+    q: Término de búsqueda proporcionado por el usuario.
+    limite: Número máximo de resultados a devolver (por defecto 20).
+
+Returns:
+    List[Espacio]: Lista de espacios que coinciden con los criterios.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a8c52e9ed1a42d98cb0fa8c1c9032e76e}\index{app.services.espacios@{app.services.espacios}!crear\_espacio@{crear\_espacio}}
+\index{crear\_espacio@{crear\_espacio}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{crear\_espacio()}{crear\_espacio()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a8c52e9ed1a42d98cb0fa8c1c9032e76e} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} crear\+\_\+espacio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1espacio_1_1EspacioCreate}{Espacio\+Create}}}]{datos}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea un nuevo registro de espacio en la base de datos.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a7068d030d238a4a7459e45f634d50208}\index{app.services.espacios@{app.services.espacios}!desactivar\_espacio@{desactivar\_espacio}}
+\index{desactivar\_espacio@{desactivar\_espacio}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{desactivar\_espacio()}{desactivar\_espacio()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a7068d030d238a4a7459e45f634d50208} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} desactivar\+\_\+espacio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int}]{espacio\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Borrado lógico — nunca físico.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a3fb4c06b23d8c5897d92d2586f4dd312}\index{app.services.espacios@{app.services.espacios}!espacios\_abiertos\_ahora@{espacios\_abiertos\_ahora}}
+\index{espacios\_abiertos\_ahora@{espacios\_abiertos\_ahora}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{espacios\_abiertos\_ahora()}{espacios\_abiertos\_ahora()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a3fb4c06b23d8c5897d92d2586f4dd312} 
+ list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ espacios\+\_\+abiertos\+\_\+ahora (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Consulta los espacios que se encuentran operativos en el momento actual.
+
+Utiliza la hora local de Ciudad Juárez para comparar contra los horarios
+almacenados en BD (que son hora local, sin zona).
+
+Args:
+    db: Sesión de la base de datos.
+
+Returns:
+    List[Espacio]: Espacios activos cuyo horario coincide con el tiempo actual.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a5a305f6db6826aa46a4e1484cbbc9bde}\index{app.services.espacios@{app.services.espacios}!espacios\_cercanos@{espacios\_cercanos}}
+\index{espacios\_cercanos@{espacios\_cercanos}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{espacios\_cercanos()}{espacios\_cercanos()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a5a305f6db6826aa46a4e1484cbbc9bde} 
+ list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ espacios\+\_\+cercanos (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{float}]{lat}{, }\item[{float}]{lon}{, }\item[{float }]{radio}{ = {\ttfamily 200.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Devuelve espacios activos dentro de `radio` metros usando la fórmula de Haversine en SQL.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_a30d43c1a359d383978881c365eb69140}\index{app.services.espacios@{app.services.espacios}!listar\_espacios@{listar\_espacios}}
+\index{listar\_espacios@{listar\_espacios}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{listar\_espacios()}{listar\_espacios()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_a30d43c1a359d383978881c365eb69140} 
+ list\+[\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}}]\+ listar\+\_\+espacios (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int \texorpdfstring{$\vert$}{|} None }]{categoria\+\_\+id}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{edificio\+\_\+id}{ = {\ttfamily None}, }\item[{bool \texorpdfstring{$\vert$}{|} None }]{activo}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Filtra y devuelve una lista de espacios según criterios.
+
+Args:
+    db: Sesión activa de base de datos.
+    categoria_id: ID de categoría para filtrar.
+    edificio_id: ID de edificio para filtrar.
+    activo: Estado de activación del espacio.
+
+Returns:
+    List[Espacio]: Lista de espacios que coinciden con los filtros.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1espacios_aae943f9e70f7a70cc457fad0d5f0055b}\index{app.services.espacios@{app.services.espacios}!obtener\_espacio@{obtener\_espacio}}
+\index{obtener\_espacio@{obtener\_espacio}!app.services.espacios@{app.services.espacios}}
+\doxysubsubsection{\texorpdfstring{obtener\_espacio()}{obtener\_espacio()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1espacios_aae943f9e70f7a70cc457fad0d5f0055b} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} obtener\+\_\+espacio (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int}]{espacio\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Recupera un espacio por su ID con todas sus relaciones.\end{DoxyVerb}
+ 

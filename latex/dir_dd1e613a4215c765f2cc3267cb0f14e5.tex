@@ -1,0 +1,204 @@
+\doxysection{frontend/\+node\+\_\+modules/\+levn Directory Reference}
+\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5}{}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5}\index{frontend/node\_modules/levn Directory Reference@{frontend/node\_modules/levn Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_f14f531db6240c68ba4d6065628e349e}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3263}{}\doxysubsection{\texorpdfstring{levn \+[!\+[Build Status]\+(\href{https://travis-ci.org/gkz/levn.png}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+gkz/\+levn.\+png}})]\+(\href{https://travis-ci.org/gkz/levn}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+gkz/\+levn}}) \label{_levn}%
+}{levn \+[!\+[Build Status]\+(\href{https://travis-ci.org/gkz/levn.png}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+gkz/\+levn.\+png}})]\+(\href{https://travis-ci.org/gkz/levn}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+gkz/\+levn}}) \label{_levn}%
+}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3263}
+{\bfseries{Light ECMAScript (Java\+Script) Value Notation}} Levn is a library which allows you to parse a string into a Java\+Script value based on an expected type. It is meant for short amounts of human entered data (eg. config files, command line arguments).
+
+Levn aims to concisely describe Java\+Script values in text, and allow for the extraction and validation of those values. Levn uses \href{https://github.com/gkz/type-check}{\texttt{type-\/check}} for its type format, and to validate the results. MIT license. Version 0.\+4.\+1.
+
+{\bfseries{How is this different than JSON?}} levn is meant to be written by humans only, is (due to the previous point) much more concise, can be validated against supplied types, has regex and date literals, and can easily be extended with custom types. On the other hand, it is probably slower and thus less efficient at transporting large amounts of data, which is fine since this is not its purpose. \begin{DoxyVerb}npm install levn
+\end{DoxyVerb}
+
+
+For updates on levn, \href{https://twitter.com/gkzahariev}{\texttt{follow me on twitter}}.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3264}{}\doxysubsection{\texorpdfstring{Quick Examples}{Quick Examples}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3264}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parse\ =\ require('levn').parse;}
+\DoxyCodeLine{parse('Number',\ '2');\ \ \ \ \ \ //\ 2}
+\DoxyCodeLine{parse('String',\ '2');\ \ \ \ \ \ //\ '2'}
+\DoxyCodeLine{parse('String',\ 'levn');\ \ \ //\ 'levn'}
+\DoxyCodeLine{parse('String',\ 'a\ b');\ \ \ \ //\ 'a\ b'}
+\DoxyCodeLine{parse('Boolean',\ 'true');\ \ //\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse('Date',\ '\#2011-\/11-\/11\#');\ //\ (Date\ object)}
+\DoxyCodeLine{parse('Date',\ '2011-\/11-\/11');\ \ \ //\ (Date\ object)}
+\DoxyCodeLine{parse('RegExp',\ '/[a-\/z]/gi');\ \ //\ /[a-\/z]/gi}
+\DoxyCodeLine{parse('RegExp',\ 're');\ \ \ \ \ \ \ \ \ //\ /re/}
+\DoxyCodeLine{parse('Int',\ '2');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse('Number\ |\ String',\ 'str');\ //\ 'str'}
+\DoxyCodeLine{parse('Number\ |\ String',\ '2');\ \ \ //\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{parse('[Number]',\ '[1,2,3]');\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ [1,2,3]}
+\DoxyCodeLine{parse('(String,\ Boolean)',\ '(hi,\ false)');\ \ \ \ \ \ \ \ \ //\ ['hi',\ false]}
+\DoxyCodeLine{parse('\{a:\ String,\ b:\ Number\}',\ '\{a:\ str,\ b:\ 2\}');\ //\ \{a:\ 'str',\ b:\ 2\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ at\ the\ top\ level,\ you\ can\ ommit\ surrounding\ delimiters}
+\DoxyCodeLine{parse('[Number]',\ '1,2,3');\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ [1,2,3]}
+\DoxyCodeLine{parse('(String,\ Boolean)',\ 'hi,\ false');\ \ \ \ \ \ \ \ \ //\ ['hi',\ false]}
+\DoxyCodeLine{parse('\{a:\ String,\ b:\ Number\}',\ 'a:\ str,\ b:\ 2');\ //\ \{a:\ 'str',\ b:\ 2\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ wildcard\ -\/\ auto\ choose\ type}
+\DoxyCodeLine{parse('*',\ '[hi,(null,[42]),\{k:\ true\}]');\ //\ ['hi',\ [null,\ [42]],\ \{k:\ true\}]}
+
+\end{DoxyCode}
+ \hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3265}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3265}
+{\ttfamily require(\textquotesingle{}levn\textquotesingle{});} returns an object that exposes three properties. {\ttfamily VERSION} is the current version of the library as a string. {\ttfamily parse} and {\ttfamily parsed\+Type\+Parse} are functions.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ parse(type,\ input,\ options);}
+\DoxyCodeLine{parse('[Number]',\ '1,2,3');\ //\ [1,\ 2,\ 3]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ parsedTypeParse(parsedType,\ input,\ options);}
+\DoxyCodeLine{var\ parsedType\ =\ require('type-\/check').parseType('[Number]');}
+\DoxyCodeLine{parsedTypeParse(parsedType,\ '1,2,3');\ //\ [1,\ 2,\ 3]}
+
+\end{DoxyCode}
+\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3266}{}\doxysubsubsection{\texorpdfstring{parse(type, input, options)}{parse(type, input, options)}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3266}
+{\ttfamily parse} casts the string {\ttfamily input} into a Java\+Script value according to the specified {\ttfamily type} in the \href{https://github.com/gkz/type-check\#type-format}{\texttt{type format}} (and taking account the optional {\ttfamily options}) and returns the resulting Java\+Script value.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3267}{}\doxysubsubsubsubsection{\texorpdfstring{arguments}{arguments}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3267}
+
+\begin{DoxyItemize}
+\item type -\/ {\ttfamily String} -\/ the type written in the \href{https://github.com/gkz/type-check\#type-format}{\texttt{type format}} which to check against
+\item input -\/ {\ttfamily String} -\/ the value written in the levn formatlevn format
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item options -\/ {\ttfamily Maybe Object} -\/ an optional parameter specifying additional optionsoptions
+\end{DoxyItemize}\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3268}{}\doxysubsubsubsubsection{\texorpdfstring{returns}{returns}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3268}
+{\ttfamily \texorpdfstring{$\ast$}{*}} -\/ the resulting Java\+Script value\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3269}{}\doxysubsubsubsubsection{\texorpdfstring{example}{example}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3269}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('[Number]',\ '1,2,3');\ //\ [1,\ 2,\ 3]}
+
+\end{DoxyCode}
+\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3270}{}\doxysubsubsection{\texorpdfstring{parsed\+Type\+Parse(parsed\+Type, input, options)}{parsed\+Type\+Parse(parsed\+Type, input, options)}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3270}
+{\ttfamily parsed\+Type\+Parse} casts the string {\ttfamily input} into a Java\+Script value according to the specified {\ttfamily type} which has already been parsed (and taking account the optional {\ttfamily options}) and returns the resulting Java\+Script value. You can parse a type using the \href{https://github.com/gkz/type-check}{\texttt{type-\/check}} library\textquotesingle{}s {\ttfamily parse\+Type} function.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3271}{}\doxysubsubsubsubsection{\texorpdfstring{arguments}{arguments}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3271}
+
+\begin{DoxyItemize}
+\item type -\/ {\ttfamily Object} -\/ the type in the parsed type format which to check against
+\item input -\/ {\ttfamily String} -\/ the value written in the levn formatlevn format
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item options -\/ {\ttfamily Maybe Object} -\/ an optional parameter specifying additional optionsoptions
+\end{DoxyItemize}\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3272}{}\doxysubsubsubsubsection{\texorpdfstring{returns}{returns}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3272}
+{\ttfamily \texorpdfstring{$\ast$}{*}} -\/ the resulting Java\+Script value\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3273}{}\doxysubsubsubsubsection{\texorpdfstring{example}{example}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3273}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parsedType\ =\ require('type-\/check').parseType('[Number]');}
+\DoxyCodeLine{parsedTypeParse(parsedType,\ '1,2,3');\ //\ [1,\ 2,\ 3]}
+
+\end{DoxyCode}
+\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3274}{}\doxysubsection{\texorpdfstring{Levn Format}{Levn Format}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3274}
+Levn can use the type information you provide to choose the appropriate value to produce from the input. For the same input, it will choose a different output value depending on the type provided. For example, {\ttfamily parse(\textquotesingle{}Number\textquotesingle{}, \textquotesingle{}2\textquotesingle{})} will produce the number {\ttfamily 2}, but {\ttfamily parse(\textquotesingle{}String\textquotesingle{}, \textquotesingle{}2\textquotesingle{})} will produce the string {\ttfamily "{}2"{}}.
+
+If you do not provide type information, and simply use {\ttfamily \texorpdfstring{$\ast$}{*}}, levn will parse the input according the unambiguous "{}explicit"{} mode, which we will now detail -\/ you can also set the {\ttfamily explicit} option to true manually in the optionsoptions.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}string"{}}, {\ttfamily \textquotesingle{}string\textquotesingle{}} are parsed as a String, eg. {\ttfamily "{}a msg"{}} is {\ttfamily "{}a msg"{}}
+\item {\ttfamily \#date\#} is parsed as a Date, eg. {\ttfamily \#2011-\/11-\/11\#} is {\ttfamily new Date(\textquotesingle{}2011-\/11-\/11\textquotesingle{})}
+\item {\ttfamily /\+regexp/\+flags} is parsed as a Reg\+Exp, eg. {\ttfamily /\+re/\+gi} is {\ttfamily /\+re/\+gi}
+\item {\ttfamily undefined}, {\ttfamily null}, {\ttfamily NaN}, {\ttfamily true}, and {\ttfamily false} are all their Java\+Script equivalents
+\item {\ttfamily \+[element1, element2, etc]\+} is an Array, and the casting procedure is recursively applied to each element. Eg. {\ttfamily \+[1,2,3]\+} is {\ttfamily \+[1,2,3]\+}.
+\item {\ttfamily (element1, element2, etc)} is an tuple, and the casting procedure is recursively applied to each element. Eg. {\ttfamily (1, a)} is {\ttfamily (1, a)} (is {\ttfamily \+[1, \textquotesingle{}a\textquotesingle{}]\+}).
+\item {\ttfamily \{key1:\+ val1, key2:\+ val2, ...\}} is an Object, and the casting procedure is recursively applied to each property. Eg. {\ttfamily \{a:\+ 1, b:\+ 2\}} is {\ttfamily \{a:\+ 1, b:\+ 2\}}.
+\item Any test which does not fall under the above, and which does not contain special characters ({\ttfamily \+[\`{}\`{}]\+\`{}\`{}(\`{}\`{})\`{}\`{}\{\`{}\`{}\}\`{}\`{}:\+\`{}\`{},}) is a string, eg. {\ttfamily \$12-\/ blah} is {\ttfamily "{}\$12-\/ blah"{}}.
+\end{DoxyItemize}
+
+If you do provide type information, you can make your input more concise as the program already has some information about what it expects. Please see the \href{https://github.com/gkz/type-check\#type-format}{\texttt{type format}} section of \href{https://github.com/gkz/type-check}{\texttt{type-\/check}} for more information about how to specify types. There are some rules about what levn can do with the information:\+
+
+
+\begin{DoxyItemize}
+\item If a String is expected, and only a String, all characters of the input (including any special ones) will become part of the output. Eg. {\ttfamily \+[(\{\})]\+} is {\ttfamily "{}\+[(\{\})]\+"{}}, and {\ttfamily "{}hi"{}} is {\ttfamily \textquotesingle{}"{}hi"{}\textquotesingle{}}.
+\item If a Date is expected, the surrounding {\ttfamily \#} can be omitted from date literals. Eg. {\ttfamily 2011-\/11-\/11} is {\ttfamily new Date(\textquotesingle{}2011-\/11-\/11\textquotesingle{})}.
+\item If a Reg\+Exp is expected, no flags need to be specified, and the regex is not using any of the special characters,the opening and closing {\ttfamily /\+} can be omitted -\/ this will have the affect of setting the source of the regex to the input. Eg. {\ttfamily regex} is {\ttfamily /\+regex/\+}.
+\item If an Array is expected, and it is the root node (at the top level), the opening {\ttfamily \+[} and closing {\ttfamily ]\+} can be omitted. Eg. {\ttfamily 1,2,3} is {\ttfamily \+[1,2,3]\+}.
+\item If a tuple is expected, and it is the root node (at the top level), the opening {\ttfamily (} and closing {\ttfamily )} can be omitted. Eg. {\ttfamily 1, a} is {\ttfamily (1, a)} (is {\ttfamily \+[1, \textquotesingle{}a\textquotesingle{}]\+}).
+\item If an Object is expected, and it is the root node (at the top level), the opening {\ttfamily \{} and closing {\ttfamily \}} can be omitted. Eg {\ttfamily a:\+ 1, b:\+ 2} is {\ttfamily \{a:\+ 1, b:\+ 2\}}.
+\end{DoxyItemize}
+
+If you list multiple types (eg. {\ttfamily Number \texorpdfstring{$\vert$}{|} String}), it will first attempt to cast to the first type and then validate -\/ if the validation fails it will move on to the next type and so forth, left to right. You must be careful as some types will succeed with any input, such as String. Thus put String at the end of your list. In non-\/explicit mode, Date and Reg\+Exp will succeed with a large variety of input -\/ also be careful with these and list them near the end if not last in your list.
+
+Whitespace between special characters and elements is inconsequential.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3275}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3275}
+Options is an object. It is an optional parameter to the {\ttfamily parse} and {\ttfamily parsed\+Type\+Parse} functions.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3276}{}\doxysubsubsection{\texorpdfstring{Explicit}{Explicit}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3276}
+A {\ttfamily Boolean}. By default it is {\ttfamily false}.
+
+{\bfseries{Example:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parse('RegExp',\ 're',\ \{explicit:\ false\});\ \ \ \ \ \ \ \ \ \ //\ /re/}
+\DoxyCodeLine{parse('RegExp',\ 're',\ \{explicit:\ true\});\ \ \ \ \ \ \ \ \ \ \ //\ Error:\ ...\ does\ not\ type\ check...}
+\DoxyCodeLine{parse('RegExp\ |\ String',\ 're',\ \{explicit:\ true\});\ \ //\ 're'}
+
+\end{DoxyCode}
+
+
+{\ttfamily explicit} sets whether to be in explicit mode or not. Using {\ttfamily \texorpdfstring{$\ast$}{*}} automatically activates explicit mode. For more information, read the levn formatlevn format section.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3277}{}\doxysubsubsection{\texorpdfstring{custom\+Types}{custom\+Types}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3277}
+An {\ttfamily Object}. Empty {\ttfamily \{\}} by default.
+
+{\bfseries{Example:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ options\ =\ \{}
+\DoxyCodeLine{\ \ customTypes:\ \{}
+\DoxyCodeLine{\ \ \ \ Even:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ typeOf:\ 'Number',}
+\DoxyCodeLine{\ \ \ \ \ \ validate:\ function\ (x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ x\ \%\ 2\ ===\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ cast:\ function\ (x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \{type:\ 'Just',\ value:\ parseInt(x)\};}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{parse('Even',\ '2',\ options);\ //\ 2}
+\DoxyCodeLine{parse('Even',\ '3',\ options);\ //\ Error:\ Value:\ "{}3"{}\ does\ not\ type\ check...}
+
+\end{DoxyCode}
+
+
+{\bfseries{Another Example:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ Person(name,\ age)\{}
+\DoxyCodeLine{\ \ this.name\ =\ name;}
+\DoxyCodeLine{\ \ this.age\ =\ age;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{var\ options\ =\ \{}
+\DoxyCodeLine{\ \ customTypes:\ \{}
+\DoxyCodeLine{\ \ \ \ Person:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ typeOf:\ 'Object',}
+\DoxyCodeLine{\ \ \ \ \ \ validate:\ function\ (x)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ x\ instanceof\ Person;}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ cast:\ function\ (value,\ options,\ typesCast)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ var\ name,\ age;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (\{\}.toString.call(value).slice(8,\ -\/1)\ !==\ 'Object')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ \{type:\ 'Nothing'\};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name\ =\ typesCast(value.name,\ [\{type:\ 'String'\}],\ options);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ age\ =\ typesCast(value.age,\ [\{type:\ 'Numger'\}],\ options);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \{type:\ 'Just',\ value:\ new\ Person(name,\ age)\};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{parse('Person',\ '\{name:\ Laura,\ age:\ 25\}',\ options);\ //\ Person\ \{name:\ 'Laura',\ age:\ 25\}}
+
+\end{DoxyCode}
+
+
+{\ttfamily custom\+Types} is an object whose keys are the name of the types, and whose values are an object with three properties, {\ttfamily type\+Of}, {\ttfamily validate}, and {\ttfamily cast}. For more information about {\ttfamily type\+Of} and {\ttfamily validate}, please see the \href{https://github.com/gkz/type-check\#custom-types}{\texttt{custom types}} section of type-\/check.
+
+{\ttfamily cast} is a function which receives three arguments, the value under question, options, and the types\+Cast function. In {\ttfamily cast}, attempt to cast the value into the specified type. If you are successful, return an object in the format {\ttfamily \{type:\+ \textquotesingle{}Just\textquotesingle{}, value:\+ CAST-\/\+VALUE\}}, if you know it won\textquotesingle{}t work, return {\ttfamily \{type:\+ \textquotesingle{}Nothing\textquotesingle{}\}}. You can use the {\ttfamily types\+Cast} function to cast any child values. Remember to pass {\ttfamily options} to it. In your function you can also check for {\ttfamily options.\+explicit} and act accordingly.\hypertarget{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3278}{}\doxysubsection{\texorpdfstring{Technical About}{Technical About}}\label{dir_dd1e613a4215c765f2cc3267cb0f14e5_autotoc_md3278}
+{\ttfamily levn} is written in \href{http://livescript.net/}{\texttt{Live\+Script}} -\/ a language that compiles to Java\+Script. It uses \href{https://github.com/gkz/type-check}{\texttt{type-\/check}} to both parse types and validate values. It also uses the \href{http://preludels.com/}{\texttt{prelude.\+ls}} library. 

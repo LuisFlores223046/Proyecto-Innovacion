@@ -1,0 +1,183 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@nodelib/\+fs.scandir Directory Reference}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774}{}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774}\index{frontend/node\_modules/"@nodelib/fs.scandir Directory Reference@{frontend/node\_modules/"@nodelib/fs.scandir Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_6fc7f2d1ae233e899ff2c7e4fb4f517e}{out}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md24}{}\doxysubsection{\texorpdfstring{@nodelib/\+fs.scandir}{@nodelib/\+fs.scandir}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md24}
+\begin{quote}
+List files and directories inside the specified directory. \end{quote}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md25}{}\doxysubsection{\texorpdfstring{:\+bulb:\+ Highlights}{:\+bulb:\+ Highlights}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md25}
+The package is aimed at obtaining information about entries in the directory.
+
+
+\begin{DoxyItemize}
+\item :\+moneybag:\+ Returns useful information:\+ {\ttfamily name}, {\ttfamily path}, {\ttfamily dirent} and {\ttfamily stats} (optional).
+\item :\+gear:\+ On Node.\+js 10.\+10+ uses the mechanism without additional calls to determine the entry type. See \`{}old\`{} and \`{}modern\`{} mode{\ttfamily old} and {\ttfamily modern} mode
+\end{DoxyItemize}.
+\begin{DoxyItemize}
+\item :\+link:\+ Can safely work with broken symbolic links.
+\end{DoxyItemize}\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md26}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md26}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @nodelib/fs.scandir}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md27}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md27}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ fsScandir\ from\ '@nodelib/fs.scandir';}
+\DoxyCodeLine{}
+\DoxyCodeLine{fsScandir.scandir('path',\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md28}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md28}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md29}{}\doxysubsubsection{\texorpdfstring{.scandir(path, \+[options\+Or\+Settings]\+, callback)}{.scandir(path, \+[options\+Or\+Settings]\+, callback)}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md29}
+Returns an array of plain objects (\`{}\+Entry\`{}{\ttfamily Entry}) with information about entry for provided path with standard callback-\/style.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fsScandir.scandir('path',\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsScandir.scandir('path',\ \{\},\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsScandir.scandir('path',\ new\ fsScandir.Settings(),\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{.scandir\+Sync(path, \+[options\+Or\+Settings]\+)}{.scandir\+Sync(path, \+[options\+Or\+Settings]\+)}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md30}
+Returns an array of plain objects (\`{}\+Entry\`{}{\ttfamily Entry}) with information about entry for provided path.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ entries\ =\ fsScandir.scandirSync('path');}
+\DoxyCodeLine{const\ entries\ =\ fsScandir.scandirSync('path',\ \{\});}
+\DoxyCodeLine{const\ entries\ =\ fsScandir.scandirSync(('path',\ new\ fsScandir.Settings());}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md31}{}\doxysubsubsubsection{\texorpdfstring{path}{path}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md31}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily true}
+\item Type:\+ {\ttfamily string \texorpdfstring{$\vert$}{|} Buffer \texorpdfstring{$\vert$}{|} URL}
+\end{DoxyItemize}
+
+A path to a file. If a URL is provided, it must use the {\ttfamily file:\+} protocol.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md32}{}\doxysubsubsubsection{\texorpdfstring{options\+Or\+Settings}{options\+Or\+Settings}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md32}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily false}
+\item Type:\+ {\ttfamily Options \texorpdfstring{$\vert$}{|} Settings}
+\item Default:\+ An instance of {\ttfamily Settings} class
+\end{DoxyItemize}
+
+An \`{}\+Options\`{}{\ttfamily Options} object or an instance of \`{}\+Settings\`{}{\ttfamily Settings} class.
+
+\begin{quote}
+:\+book:\+ When you pass a plain object, an instance of the {\ttfamily Settings} class will be created automatically. If you plan to call the method frequently, use a pre-\/created instance of the {\ttfamily Settings} class. \end{quote}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md33}{}\doxysubsubsection{\texorpdfstring{Settings(\+[options]\+)}{Settings(\+[options]\+)}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md33}
+A class of full settings of the package.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ settings\ =\ new\ fsScandir.Settings(\{\ followSymbolicLinks:\ false\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ entries\ =\ fsScandir.scandirSync('path',\ settings);}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md34}{}\doxysubsection{\texorpdfstring{Entry}{Entry}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md34}
+
+\begin{DoxyItemize}
+\item {\ttfamily name} — The name of the entry ({\ttfamily unknown.\+txt}).
+\item {\ttfamily path} — The path of the entry relative to call directory ({\ttfamily root/\+unknown.\+txt}).
+\item {\ttfamily dirent} — An instance of \href{./src/types/index.ts}{\texttt{{\ttfamily fs.\+Dirent}}} class. On Node.\+js below 10.\+10 will be emulated by \href{./src/utils/fs.ts}{\texttt{{\ttfamily Dirent\+From\+Stats}}} class.
+\item {\ttfamily stats} (optional) — An instance of {\ttfamily fs.\+Stats} class.
+\end{DoxyItemize}
+
+For example, the {\ttfamily scandir} call for {\ttfamily tools} directory with one directory inside:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ dirent:\ Dirent\ \{\ name:\ 'typedoc',\ /*\ …\ */\ \},}
+\DoxyCodeLine{\ \ \ \ name:\ 'typedoc',}
+\DoxyCodeLine{\ \ \ \ path:\ 'tools/typedoc'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md35}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md35}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md36}{}\doxysubsubsection{\texorpdfstring{stats}{stats}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md36}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Adds an instance of {\ttfamily fs.\+Stats} class to the \`{}\+Entry\`{}{\ttfamily Entry}.
+
+\begin{quote}
+:\+book:\+ Always use {\ttfamily fs.\+readdir} without the {\ttfamily with\+File\+Types} option. ??TODO?? \end{quote}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md37}{}\doxysubsubsection{\texorpdfstring{follow\+Symbolic\+Links}{follow\+Symbolic\+Links}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md37}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Follow symbolic links or not. Call {\ttfamily fs.\+stat} on symbolic link if {\ttfamily true}.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md38}{}\doxysubsubsection{\texorpdfstring{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md38}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily true}
+\end{DoxyItemize}
+
+Throw an error when symbolic link is broken if {\ttfamily true} or safely use {\ttfamily lstat} call if {\ttfamily false}.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md39}{}\doxysubsubsection{\texorpdfstring{{\ttfamily path\+Segment\+Separator}}{{\ttfamily path\+Segment\+Separator}}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md39}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily string}
+\item Default:\+ {\ttfamily path.\+sep}
+\end{DoxyItemize}
+
+By default, this package uses the correct path separator for your OS ({\ttfamily \textbackslash{}} on Windows, {\ttfamily /\+} on Unix-\/like systems). But you can set this option to any separator character(s) that you want to use instead.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md40}{}\doxysubsubsection{\texorpdfstring{{\ttfamily fs}}{{\ttfamily fs}}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md40}
+
+\begin{DoxyItemize}
+\item Type:\+ \href{./src/adapters/fs.ts}{\texttt{{\ttfamily File\+System\+Adapter}}}
+\item Default:\+ A default FS methods
+\end{DoxyItemize}
+
+By default, the built-\/in Node.\+js module ({\ttfamily fs}) is used to work with the file system. You can replace any method with your own.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ FileSystemAdapter\ \{}
+\DoxyCodeLine{\ \ \ \ lstat?:\ typeof\ fs.lstat;}
+\DoxyCodeLine{\ \ \ \ stat?:\ typeof\ fs.stat;}
+\DoxyCodeLine{\ \ \ \ lstatSync?:\ typeof\ fs.lstatSync;}
+\DoxyCodeLine{\ \ \ \ statSync?:\ typeof\ fs.statSync;}
+\DoxyCodeLine{\ \ \ \ readdir?:\ typeof\ fs.readdir;}
+\DoxyCodeLine{\ \ \ \ readdirSync?:\ typeof\ fs.readdirSync;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ settings\ =\ new\ fsScandir.Settings(\{}
+\DoxyCodeLine{\ \ \ \ fs:\ \{\ lstat:\ fakeLstat\ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md41}{}\doxysubsection{\texorpdfstring{{\ttfamily old} and {\ttfamily modern} mode}{{\ttfamily old} and {\ttfamily modern} mode}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md41}
+This package has two modes that are used depending on the environment and parameters of use.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{old}{old}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md42}
+
+\begin{DoxyItemize}
+\item Node.\+js below {\ttfamily 10.\+10} or when the {\ttfamily stats} option is enabled
+\end{DoxyItemize}
+
+When working in the old mode, the directory is read first ({\ttfamily fs.\+readdir}), then the type of entries is determined ({\ttfamily fs.\+lstat} and/\+or {\ttfamily fs.\+stat} for symbolic links).\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{modern}{modern}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md43}
+
+\begin{DoxyItemize}
+\item Node.\+js 10.\+10+ and the {\ttfamily stats} option is disabled
+\end{DoxyItemize}
+
+In the modern mode, reading the directory ({\ttfamily fs.\+readdir} with the {\ttfamily with\+File\+Types} option) is combined with obtaining information about its entries. An additional call for symbolic links ({\ttfamily fs.\+stat}) is still present.
+
+This mode makes fewer calls to the file system. It\textquotesingle{}s faster.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md44}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md44}
+See the \href{https://github.com/nodelib/nodelib/releases}{\texttt{Releases section of our Git\+Hub project}} for changelog for each release version.\hypertarget{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md45}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_cfe9f87f2dc791dfb2b6560464f9a774_autotoc_md45}
+This software is released under the terms of the MIT license. 

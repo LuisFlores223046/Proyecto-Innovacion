@@ -1,0 +1,127 @@
+\doxysection{jose.\+backends.\+base.\+Key Class Reference}
+\hypertarget{classjose_1_1backends_1_1base_1_1Key}{}\label{classjose_1_1backends_1_1base_1_1Key}\index{jose.backends.base.Key@{jose.backends.base.Key}}
+Inheritance diagram for jose.\+backends.\+base.\+Key:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=6.666667cm]{classjose_1_1backends_1_1base_1_1Key}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a0cc20bae9ce811d932cd371417c35b36}\label{classjose_1_1backends_1_1base_1_1Key_a0cc20bae9ce811d932cd371417c35b36} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, key, algorithm)
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a851f7abceb62f402ac8b664724212259}\label{classjose_1_1backends_1_1base_1_1Key_a851f7abceb62f402ac8b664724212259} 
+{\bfseries sign} (self, msg)
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a2ef45984bfb22163be84900b7997da94}\label{classjose_1_1backends_1_1base_1_1Key_a2ef45984bfb22163be84900b7997da94} 
+{\bfseries verify} (self, msg, sig)
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a06497325002df7ca59785629c10db6b2}\label{classjose_1_1backends_1_1base_1_1Key_a06497325002df7ca59785629c10db6b2} 
+{\bfseries public\+\_\+key} (self)
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a12d401276777a9c624b9076f2b4212a9}\label{classjose_1_1backends_1_1base_1_1Key_a12d401276777a9c624b9076f2b4212a9} 
+{\bfseries to\+\_\+pem} (self)
+\item 
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_ae2414806d9ebb546b4bcee32b7898455}\label{classjose_1_1backends_1_1base_1_1Key_ae2414806d9ebb546b4bcee32b7898455} 
+{\bfseries to\+\_\+dict} (self)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a8c71b41142c4595f3e14d6241a326e21}{encrypt}} (self, plain\+\_\+text, aad=None)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a5f8af656a5330b057cc9d8d01ee11486}{decrypt}} (self, cipher\+\_\+text, iv=None, aad=None, tag=None)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a035084303f96337dd54da298c36adf2d}{wrap\+\_\+key}} (self, key\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a8c72b3bcdca061ace544c220c488f7f0}{unwrap\+\_\+key}} (self, wrapped\+\_\+key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A simple interface for implementing JWK keys.
+\end{DoxyVerb}
+ 
+
+\label{classjose_1_1backends_1_1base_1_1Key_doc-func-members}
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a5f8af656a5330b057cc9d8d01ee11486}\index{jose.backends.base.Key@{jose.backends.base.Key}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!jose.backends.base.Key@{jose.backends.base.Key}}
+\doxysubsubsection{\texorpdfstring{decrypt()}{decrypt()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1base_1_1Key_a5f8af656a5330b057cc9d8d01ee11486} 
+jose.\+backends.\+base.\+Key.\+decrypt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{cipher\+\_\+text}{, }\item[{}]{iv}{ = {\ttfamily None}, }\item[{}]{aad}{ = {\ttfamily None}, }\item[{}]{tag}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decrypt the cipher text and validate the auth tag if present
+Args:
+    cipher_text (bytes): Cipher text to decrypt
+    iv (bytes): IV if block mode
+    aad (bytes): Additional Authenticated Data to verify if auth mode
+    tag (bytes): Authentication tag if auth mode
+
+Returns:
+    bytes: Decrypted value
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyAESKey_a8a851f6533bf197f544b82e99cd0b0d1}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+AESKey}}.
+
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a8c71b41142c4595f3e14d6241a326e21}\index{jose.backends.base.Key@{jose.backends.base.Key}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!jose.backends.base.Key@{jose.backends.base.Key}}
+\doxysubsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1base_1_1Key_a8c71b41142c4595f3e14d6241a326e21} 
+jose.\+backends.\+base.\+Key.\+encrypt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{plain\+\_\+text}{, }\item[{}]{aad}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encrypt the plain text and generate an auth tag if appropriate
+
+Args:
+    plain_text (bytes): Data to encrypt
+    aad (bytes, optional): Authenticated Additional Data if key's algorithm supports auth mode
+
+Returns:
+    (bytes, bytes, bytes): IV, cipher text, and auth tag
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyAESKey_a45d9e9fe2a405adea9ac7748e63c785f}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+AESKey}}.
+
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a8c72b3bcdca061ace544c220c488f7f0}\index{jose.backends.base.Key@{jose.backends.base.Key}!unwrap\_key@{unwrap\_key}}
+\index{unwrap\_key@{unwrap\_key}!jose.backends.base.Key@{jose.backends.base.Key}}
+\doxysubsubsection{\texorpdfstring{unwrap\_key()}{unwrap\_key()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1base_1_1Key_a8c72b3bcdca061ace544c220c488f7f0} 
+jose.\+backends.\+base.\+Key.\+unwrap\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{wrapped\+\_\+key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Unwrap the the wrapped key data
+
+Args:
+    wrapped_key (bytes): Wrapped key data to unwrap
+
+Returns:
+    bytes: Unwrapped key
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyAESKey_a5d0b7cc24190a82770ae0d7efde9de99}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+AESKey}}, \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyRSAKey_ae1b07fbc1cb250994c44530f5f2af35b}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+RSAKey}}, and \doxymbox{\hyperlink{classjose_1_1backends_1_1rsa__backend_1_1RSAKey_ac92845ad940828028ee5b4fe821284f0}{jose.\+backends.\+rsa\+\_\+backend.\+RSAKey}}.
+
+\Hypertarget{classjose_1_1backends_1_1base_1_1Key_a035084303f96337dd54da298c36adf2d}\index{jose.backends.base.Key@{jose.backends.base.Key}!wrap\_key@{wrap\_key}}
+\index{wrap\_key@{wrap\_key}!jose.backends.base.Key@{jose.backends.base.Key}}
+\doxysubsubsection{\texorpdfstring{wrap\_key()}{wrap\_key()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1base_1_1Key_a035084303f96337dd54da298c36adf2d} 
+jose.\+backends.\+base.\+Key.\+wrap\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key\+\_\+data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wrap the the plain text key data
+
+Args:
+    key_data (bytes): Key data to wrap
+
+Returns:
+    bytes: Wrapped key
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyAESKey_ad2b3c15aac8cd2b84c546bfae6986564}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+AESKey}}, \doxymbox{\hyperlink{classjose_1_1backends_1_1cryptography__backend_1_1CryptographyRSAKey_af185e1d4bc973f75c000776965faec02}{jose.\+backends.\+cryptography\+\_\+backend.\+Cryptography\+RSAKey}}, and \doxymbox{\hyperlink{classjose_1_1backends_1_1rsa__backend_1_1RSAKey_adc6238ca6df5b3db7b7b5e996777732d}{jose.\+backends.\+rsa\+\_\+backend.\+RSAKey}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jose/\+backends/\+base.\+py\end{DoxyCompactItemize}

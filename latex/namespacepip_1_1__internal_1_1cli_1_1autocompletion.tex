@@ -1,0 +1,56 @@
+\doxysection{pip.\+\_\+internal.\+cli.\+autocompletion Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1cli_1_1autocompletion}{}\label{namespacepip_1_1__internal_1_1cli_1_1autocompletion}\index{pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a6b43e9e15591029eb9523bffafedbcad}{autocomplete}} ()
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a3998bab638515e8ef66b17e1cdeba051}{get\+\_\+path\+\_\+completion\+\_\+type}} (List\+[str]\+ cwords, int cword, Iterable\+[Any]\+ opts)
+\item 
+Iterable\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1autocompletion_ad16ab02b8e1f8451e5245e7d5b1926b3}{auto\+\_\+complete\+\_\+paths}} (str current, str completion\+\_\+type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Logic that powers autocompletion installed by ``pip completion``.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1cli_1_1autocompletion_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1autocompletion_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1autocompletion_ad16ab02b8e1f8451e5245e7d5b1926b3}\index{pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}!auto\_complete\_paths@{auto\_complete\_paths}}
+\index{auto\_complete\_paths@{auto\_complete\_paths}!pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}}
+\doxysubsubsection{\texorpdfstring{auto\_complete\_paths()}{auto\_complete\_paths()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1autocompletion_ad16ab02b8e1f8451e5245e7d5b1926b3} 
+ Iterable\+[str]\+ auto\+\_\+complete\+\_\+paths (\begin{DoxyParamCaption}\item[{str}]{current}{, }\item[{str}]{completion\+\_\+type}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}If ``completion_type`` is ``file`` or ``path``, list all regular files
+and directories starting with ``current``; otherwise only list directories
+starting with ``current``.
+
+:param current: The word to be completed
+:param completion_type: path completion type(``file``, ``path`` or ``dir``)
+:return: A generator of regular files and/or directories
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a6b43e9e15591029eb9523bffafedbcad}\index{pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}!autocomplete@{autocomplete}}
+\index{autocomplete@{autocomplete}!pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}}
+\doxysubsubsection{\texorpdfstring{autocomplete()}{autocomplete()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a6b43e9e15591029eb9523bffafedbcad} 
+ None autocomplete (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Entry Point for completion of main and subcommand options.\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a3998bab638515e8ef66b17e1cdeba051}\index{pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}!get\_path\_completion\_type@{get\_path\_completion\_type}}
+\index{get\_path\_completion\_type@{get\_path\_completion\_type}!pip.\_internal.cli.autocompletion@{pip.\_internal.cli.autocompletion}}
+\doxysubsubsection{\texorpdfstring{get\_path\_completion\_type()}{get\_path\_completion\_type()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1autocompletion_a3998bab638515e8ef66b17e1cdeba051} 
+ Optional\+[str]\+ get\+\_\+path\+\_\+completion\+\_\+type (\begin{DoxyParamCaption}\item[{List\+[str]\+}]{cwords}{, }\item[{int}]{cword}{, }\item[{Iterable\+[Any]\+ }]{opts}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the type of path completion (``file``, ``dir``, ``path`` or None)
+
+:param cwords: same as the environmental variable ``COMP_WORDS``
+:param cword: same as the environmental variable ``COMP_CWORD``
+:param opts: The available options to check
+:return: path completion type (``file``, ``dir``, ``path`` or None)
+\end{DoxyVerb}
+ 

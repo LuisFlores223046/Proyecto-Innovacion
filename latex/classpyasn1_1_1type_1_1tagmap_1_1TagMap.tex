@@ -1,0 +1,97 @@
+\doxysection{pyasn1.\+type.\+tagmap.\+Tag\+Map Class Reference}
+\hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap}{}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap}\index{pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}}
+Inheritance diagram for pyasn1.\+type.\+tagmap.\+Tag\+Map:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpyasn1_1_1type_1_1tagmap_1_1TagMap}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a7a0731a85b36694705e602b41ee3a0d7}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a7a0731a85b36694705e602b41ee3a0d7} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, present\+Types=None, skip\+Types=None, default\+Type=None)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a6d3bb2195be844d4629c9359fa234103}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a6d3bb2195be844d4629c9359fa234103} 
+{\bfseries \+\_\+\+\_\+contains\+\_\+\+\_\+} (self, tag\+Set)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a5b16239db95dc3a06f5896b86ab0c481}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a5b16239db95dc3a06f5896b86ab0c481} 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, tag\+Set)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_af5580e9a6042844f14f327636c934e6b}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_af5580e9a6042844f14f327636c934e6b} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a22678dc0e357466675ec5e036ae4030c}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a22678dc0e357466675ec5e036ae4030c} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a15e3a27f01937fec58b9692e7cd49cd8}{present\+Types}} (self)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a8d239fc9e67f441c4cc3d392cc8faa30}{skip\+Types}} (self)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a3097346c6e185b55292a6c2c757f0994}{default\+Type}} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a57a4be91500bee14a2dda56ad5f8c289}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a57a4be91500bee14a2dda56ad5f8c289} 
+{\bfseries get\+Pos\+Map} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a1824a8d6d43cb37f74fe8966342ea9e4}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a1824a8d6d43cb37f74fe8966342ea9e4} 
+{\bfseries get\+Neg\+Map} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a9d666ab02f4338142eb9eb9a02e6891f}\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a9d666ab02f4338142eb9eb9a02e6891f} 
+{\bfseries get\+Def} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Map *TagSet* objects to ASN.1 types
+
+Create an object mapping *TagSet* object to ASN.1 type.
+
+*TagMap* objects are immutable and duck-type read-only Python
+:class:`dict` objects holding *TagSet* objects as keys and ASN.1
+type objects as values.
+
+Parameters
+----------
+presentTypes: :py:class:`dict`
+    Map of :class:`~pyasn1.type.tag.TagSet` to ASN.1 objects considered
+    as being unconditionally present in the *TagMap*.
+
+skipTypes: :py:class:`dict`
+    A collection of :class:`~pyasn1.type.tag.TagSet` objects considered
+    as absent in the *TagMap* even when *defaultType* is present.
+
+defaultType: ASN.1 type object
+    An ASN.1 type object callee *TagMap* returns for any *TagSet* key not present
+    in *presentTypes* (unless given key is present in *skipTypes*).
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_doc-func-members}
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a3097346c6e185b55292a6c2c757f0994}\index{pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}!defaultType@{defaultType}}
+\index{defaultType@{defaultType}!pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}}
+\doxysubsubsection{\texorpdfstring{defaultType()}{defaultType()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a3097346c6e185b55292a6c2c757f0994} 
+pyasn1.\+type.\+tagmap.\+Tag\+Map.\+default\+Type (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return default ASN.1 type being returned for any missing *TagSet*\end{DoxyVerb}
+ \Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a15e3a27f01937fec58b9692e7cd49cd8}\index{pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}!presentTypes@{presentTypes}}
+\index{presentTypes@{presentTypes}!pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}}
+\doxysubsubsection{\texorpdfstring{presentTypes()}{presentTypes()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a15e3a27f01937fec58b9692e7cd49cd8} 
+pyasn1.\+type.\+tagmap.\+Tag\+Map.\+present\+Types (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return *TagSet* to ASN.1 type map present in callee *TagMap*\end{DoxyVerb}
+ \Hypertarget{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a8d239fc9e67f441c4cc3d392cc8faa30}\index{pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}!skipTypes@{skipTypes}}
+\index{skipTypes@{skipTypes}!pyasn1.type.tagmap.TagMap@{pyasn1.type.tagmap.TagMap}}
+\doxysubsubsection{\texorpdfstring{skipTypes()}{skipTypes()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1tagmap_1_1TagMap_a8d239fc9e67f441c4cc3d392cc8faa30} 
+pyasn1.\+type.\+tagmap.\+Tag\+Map.\+skip\+Types (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return *TagSet* collection unconditionally absent in callee *TagMap*\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+type/\+tagmap.\+py\end{DoxyCompactItemize}

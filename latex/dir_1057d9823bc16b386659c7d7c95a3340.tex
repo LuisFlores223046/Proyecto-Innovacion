@@ -1,0 +1,73 @@
+\doxysection{frontend/\+node\+\_\+modules/\+has-\/flag Directory Reference}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340}{}\label{dir_1057d9823bc16b386659c7d7c95a3340}\index{frontend/node\_modules/has-\/flag Directory Reference@{frontend/node\_modules/has-\/flag Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2726}{}\doxysubsection{\texorpdfstring{has-\/flag \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/has-flag.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+has-\/flag.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/has-flag}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+has-\/flag}})}{has-\/flag \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/has-flag.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+has-\/flag.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/has-flag}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+has-\/flag}})}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2726}
+\begin{quote}
+Check if \href{https://nodejs.org/docs/latest/api/process.html\#process_process_argv}{\texttt{{\ttfamily argv}}} has a specific flag \end{quote}
+
+
+Correctly stops looking after an {\ttfamily -\/-\/} argument terminator.
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-has-flag?utm_source=npm-has-flag&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. } 
+
+\DoxyHorRuler{0}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2729}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2729}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ has-\/flag}
+
+\end{DoxyCode}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2730}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2730}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.js}
+\DoxyCodeLine{const\ hasFlag\ =\ require('has-\/flag');}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('unicorn');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('-\/-\/unicorn');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('f');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('-\/f');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('foo=bar');}
+\DoxyCodeLine{//=>\ true}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('foo');}
+\DoxyCodeLine{//=>\ false}
+\DoxyCodeLine{}
+\DoxyCodeLine{hasFlag('rainbow');}
+\DoxyCodeLine{//=>\ false}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ node\ foo.js\ -\/f\ -\/-\/unicorn\ -\/-\/foo=bar\ -\/-\/\ -\/-\/rainbow}
+
+\end{DoxyCode}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2731}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2731}
+\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2732}{}\doxysubsubsection{\texorpdfstring{has\+Flag(flag, \+[argv]\+)}{has\+Flag(flag, \+[argv]\+)}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2732}
+Returns a boolean for whether the flag exists.\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2733}{}\doxysubsubsubsection{\texorpdfstring{flag}{flag}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2733}
+Type:\+ {\ttfamily string}
+
+CLI flag to look for. The {\ttfamily -\/-\/} prefix is optional.\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2734}{}\doxysubsubsubsection{\texorpdfstring{argv}{argv}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2734}
+Type:\+ {\ttfamily string\+[]\+}~\newline
+ Default:\+ {\ttfamily process.\+argv}
+
+CLI arguments.\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2735}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2735}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{Tidelift security contact}}. Tidelift will coordinate the fix and disclosure.\hypertarget{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2736}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_1057d9823bc16b386659c7d7c95a3340_autotoc_md2736}
+MIT © \href{https://sindresorhus.com}{\texttt{Sindre Sorhus}} 

@@ -1,0 +1,137 @@
+\chapter{json-\/stable-\/stringify }
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme}{}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme}\index{json-\/stable-\/stringify@{json-\/stable-\/stringify}}
+\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3001}%
+\Hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3001}%
+
+
+This is the same as \href{https://github.com/substack/json-stable-stringify}{\texttt{https:\+/\+/\+github.\+com/\+substack/\+json-\/stable-\/stringify}} but it doesn\textquotesingle{}t depend on libraries without licenses (jsonify).
+
+deterministic version of {\ttfamily JSON.\+stringify()} so you can get a consistent hash from stringified results
+
+You can also pass in a custom comparison function.
+
+\href{https://ci.testling.com/substack/json-stable-stringify}{\texttt{}}
+
+\href{http://travis-ci.org/substack/json-stable-stringify}{\texttt{}}\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3002}{}\doxysection{\texorpdfstring{example}{example}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3002}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('json-\/stable-\/stringify');}
+\DoxyCodeLine{var\ obj\ =\ \{\ c:\ 8,\ b:\ [\{z:6,y:5,x:4\},7],\ a:\ 3\ \};}
+\DoxyCodeLine{console.log(stringify(obj));}
+
+\end{DoxyCode}
+
+
+output:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}a"{}:3,"{}b"{}:[\{"{}x"{}:4,"{}y"{}:5,"{}z"{}:6\},7],"{}c"{}:8\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3003}{}\doxysection{\texorpdfstring{methods}{methods}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3003}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('json-\/stable-\/stringify')}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3004}{}\doxysubsection{\texorpdfstring{var str = stringify(obj, opts)}{var str = stringify(obj, opts)}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3004}
+Return a deterministic stringified string {\ttfamily str} from the object {\ttfamily obj}.\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3005}{}\doxysubsection{\texorpdfstring{options}{options}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3005}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3006}{}\doxysubsubsection{\texorpdfstring{cmp}{cmp}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3006}
+If {\ttfamily opts} is given, you can supply an {\ttfamily opts.\+cmp} to have a custom comparison function for object keys. Your function {\ttfamily opts.\+cmp} is called with these parameters:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{opts.cmp(\{\ key:\ akey,\ value:\ avalue\ \},\ \{\ key:\ bkey,\ value:\ bvalue\ \})}
+
+\end{DoxyCode}
+
+
+For example, to sort on the object key names in reverse order you could write:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('json-\/stable-\/stringify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ obj\ =\ \{\ c:\ 8,\ b:\ [\{z:6,y:5,x:4\},7],\ a:\ 3\ \};}
+\DoxyCodeLine{var\ s\ =\ stringify(obj,\ function\ (a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ a.key\ <\ b.key\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{console.log(s);}
+
+\end{DoxyCode}
+
+
+which results in the output string:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}c"{}:8,"{}b"{}:[\{"{}z"{}:6,"{}y"{}:5,"{}x"{}:4\},7],"{}a"{}:3\}}
+
+\end{DoxyCode}
+
+
+Or if you wanted to sort on the object values in reverse order, you could write:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ stringify\ =\ require('json-\/stable-\/stringify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ obj\ =\ \{\ d:\ 6,\ c:\ 5,\ b:\ [\{z:3,y:2,x:1\},9],\ a:\ 10\ \};}
+\DoxyCodeLine{var\ s\ =\ stringify(obj,\ function\ (a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ a.value\ <\ b.value\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{console.log(s);}
+
+\end{DoxyCode}
+
+
+which outputs:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}d"{}:6,"{}c"{}:5,"{}b"{}:[\{"{}z"{}:3,"{}y"{}:2,"{}x"{}:1\},9],"{}a"{}:10\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3007}{}\doxysubsubsection{\texorpdfstring{space}{space}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3007}
+If you specify {\ttfamily opts.\+space}, it will indent the output for pretty-\/printing. Valid values are strings (e.\+g. {\ttfamily \{space:\+ \textbackslash{}t\}}) or a number of spaces ({\ttfamily \{space:\+ 3\}}).
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ obj\ =\ \{\ b:\ 1,\ a:\ \{\ foo:\ 'bar',\ and:\ [1,\ 2,\ 3]\ \}\ \};}
+\DoxyCodeLine{var\ s\ =\ stringify(obj,\ \{\ space:\ '\ \ '\ \});}
+\DoxyCodeLine{console.log(s);}
+
+\end{DoxyCode}
+
+
+which outputs:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}a"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}and"{}:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ 1,}
+\DoxyCodeLine{\ \ \ \ \ \ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ 3}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ "{}foo"{}:\ "{}bar"{}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ "{}b"{}:\ 1}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3008}{}\doxysubsubsection{\texorpdfstring{replacer}{replacer}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3008}
+The replacer parameter is a function {\ttfamily opts.\+replacer(key, value)} that behaves the same as the replacer \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_native_JSON\#The_replacer_parameter}{\texttt{from the core JSON object}}.\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3009}{}\doxysection{\texorpdfstring{install}{install}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3009}
+With \href{https://npmjs.org}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ json-\/stable-\/stringify}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3010}{}\doxysection{\texorpdfstring{license}{license}}\label{md_frontend_2node__modules_2json-stable-stringify-without-jsonify_2readme_autotoc_md3010}
+MIT 

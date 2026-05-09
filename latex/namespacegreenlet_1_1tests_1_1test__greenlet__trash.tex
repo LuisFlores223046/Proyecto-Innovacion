@@ -1,0 +1,36 @@
+\doxysection{greenlet.\+tests.\+test\+\_\+greenlet\+\_\+trash Namespace Reference}
+\hypertarget{namespacegreenlet_1_1tests_1_1test__greenlet__trash}{}\label{namespacegreenlet_1_1tests_1_1test__greenlet__trash}\index{greenlet.tests.test\_greenlet\_trash@{greenlet.tests.test\_greenlet\_trash}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1tests_1_1test__greenlet__trash_1_1TestTrashCanReEnter}{Test\+Trash\+Can\+Re\+Enter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Tests for greenlets interacting with the CPython trash can API.
+
+The CPython trash can API is not designed to be re-entered from a
+single thread. But this can happen using greenlets, if something
+during the object deallocation process switches greenlets, and this second
+greenlet then causes the trash can to get entered again. Here, we do this
+very explicitly, but in other cases (like gevent) it could be arbitrarily more
+complicated: for example, a weakref callback might try to acquire a lock that's
+already held by another greenlet; that would allow a greenlet switch to occur.
+
+See https://github.com/gevent/gevent/issues/1909
+
+This test is fragile and relies on details of the CPython
+implementation (like most of the rest of this package):
+
+    - We enter the trashcan and deferred deallocation after
+      ``_PyTrash_UNWIND_LEVEL`` calls. This constant, defined in
+      CPython's object.c, is generally 50. That's basically how many objects are required to
+      get us into the deferred deallocation situation.
+
+    - The test fails by hitting an ``assert()`` in object.c; if the
+      build didn't enable assert, then we don't catch this.
+
+    - If the test fails in that way, the interpreter crashes.
+\end{DoxyVerb}
+ 

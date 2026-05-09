@@ -1,0 +1,43 @@
+\doxysection{pydantic.\+\_\+internal.\+\_\+model\+\_\+construction.\+\_\+\+Pydantic\+Weak\+Ref Class Reference}
+\hypertarget{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef}{}\label{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef}\index{pydantic.\_internal.\_model\_construction.\_PydanticWeakRef@{pydantic.\_internal.\_model\_construction.\_PydanticWeakRef}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_a5c3b1e064f61e30c160bbe395c209e3c}\label{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_a5c3b1e064f61e30c160bbe395c209e3c} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Any obj)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_af7d99c44915d063484378384db59e10f}\label{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_af7d99c44915d063484378384db59e10f} 
+Any {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_ad3b3d41eb95b6406a009cc241bf4222f}\label{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_ad3b3d41eb95b6406a009cc241bf4222f} 
+tuple\+[Callable, tuple\+[weakref.\+Reference\+Type\texorpdfstring{$\vert$}{|}None]\+]\+ {\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_a69271f44d79244107144d378ef1c757a}\label{classpydantic_1_1__internal_1_1__model__construction_1_1__PydanticWeakRef_a69271f44d79244107144d378ef1c757a} 
+{\bfseries \+\_\+wr} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wrapper for `weakref.ref` that enables `pickle` serialization.
+
+Cloudpickle fails to serialize `weakref.ref` objects due to an arcane error related
+to abstract base classes (`abc.ABC`). This class works around the issue by wrapping
+`weakref.ref` instead of subclassing it.
+
+See https://github.com/pydantic/pydantic/issues/6763 for context.
+
+Semantics:
+    - If not pickled, behaves the same as a `weakref.ref`.
+    - If pickled along with the referenced object, the same `weakref.ref` behavior
+      will be maintained between them after unpickling.
+    - If pickled without the referenced object, after unpickling the underlying
+      reference will be cleared (`__call__` will always return `None`).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+\+\_\+internal/\+\+\_\+model\+\_\+construction.\+py\end{DoxyCompactItemize}

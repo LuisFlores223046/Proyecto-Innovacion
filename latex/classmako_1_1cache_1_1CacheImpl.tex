@@ -1,0 +1,114 @@
+\doxysection{mako.\+cache.\+Cache\+Impl Class Reference}
+\hypertarget{classmako_1_1cache_1_1CacheImpl}{}\label{classmako_1_1cache_1_1CacheImpl}\index{mako.cache.CacheImpl@{mako.cache.CacheImpl}}
+Inheritance diagram for mako.\+cache.\+Cache\+Impl:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmako_1_1cache_1_1CacheImpl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_a7f9b7be99182a1b537055b6d914b8fe1}\label{classmako_1_1cache_1_1CacheImpl_a7f9b7be99182a1b537055b6d914b8fe1} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, cache)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1CacheImpl_a3b92e29d5ca3094cc00094c75cd39a35}{get\+\_\+or\+\_\+create}} (self, key, creation\+\_\+function, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1CacheImpl_a80bfcac6d048865f9f2c53533e06ca8c}{set}} (self, key, value, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1CacheImpl_ab010cb24f8ca6b395c1655a652a2e635}{get}} (self, key, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1CacheImpl_a46be95e3388dd069dcd3334ec1680ac8}{invalidate}} (self, key, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_af8f6548860551319c6b39fece41e2140}\label{classmako_1_1cache_1_1CacheImpl_af8f6548860551319c6b39fece41e2140} 
+{\bfseries cache} = cache
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_a5a08f57b50b70f7be5b4e6619d2993ee}\label{classmako_1_1cache_1_1CacheImpl_a5a08f57b50b70f7be5b4e6619d2993ee} 
+bool {\bfseries pass\+\_\+context} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Provide a cache implementation for use by :class:`.Cache`.\end{DoxyVerb}
+ 
+
+\label{classmako_1_1cache_1_1CacheImpl_doc-func-members}
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_ab010cb24f8ca6b395c1655a652a2e635}\index{mako.cache.CacheImpl@{mako.cache.CacheImpl}!get@{get}}
+\index{get@{get}!mako.cache.CacheImpl@{mako.cache.CacheImpl}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1CacheImpl_ab010cb24f8ca6b395c1655a652a2e635} 
+mako.\+cache.\+Cache\+Impl.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Retrieve a value from the cache.
+
+    :param key: the value's key.
+    :param \**kw: cache configuration arguments.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1ext_1_1beaker__cache_1_1BeakerCacheImpl_a64d330772b26485e5f9d41030a3bc9d7}{mako.\+ext.\+beaker\+\_\+cache.\+Beaker\+Cache\+Impl}}, and \doxymbox{\hyperlink{classmako_1_1testing_1_1fixtures_1_1PlainCacheImpl_a655ce2d57861a80738f9a5e96d3af4cb}{mako.\+testing.\+fixtures.\+Plain\+Cache\+Impl}}.
+
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_a3b92e29d5ca3094cc00094c75cd39a35}\index{mako.cache.CacheImpl@{mako.cache.CacheImpl}!get\_or\_create@{get\_or\_create}}
+\index{get\_or\_create@{get\_or\_create}!mako.cache.CacheImpl@{mako.cache.CacheImpl}}
+\doxysubsubsection{\texorpdfstring{get\_or\_create()}{get\_or\_create()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1CacheImpl_a3b92e29d5ca3094cc00094c75cd39a35} 
+mako.\+cache.\+Cache\+Impl.\+get\+\_\+or\+\_\+create (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{}]{creation\+\_\+function}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Retrieve a value from the cache, using the given creation function
+    to generate a new value.
+
+    This function *must* return a value, either from
+    the cache, or via the given creation function.
+    If the creation function is called, the newly
+    created value should be populated into the cache
+    under the given key before being returned.
+
+    :param key: the value's key.
+    :param creation_function: function that when called generates
+     a new value.
+    :param \**kw: cache configuration arguments.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1ext_1_1beaker__cache_1_1BeakerCacheImpl_a886f434a310de66f6348762bbdbdb435}{mako.\+ext.\+beaker\+\_\+cache.\+Beaker\+Cache\+Impl}}, and \doxymbox{\hyperlink{classmako_1_1testing_1_1fixtures_1_1PlainCacheImpl_a80a33de94f62756cdaa86fca5e777264}{mako.\+testing.\+fixtures.\+Plain\+Cache\+Impl}}.
+
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_a46be95e3388dd069dcd3334ec1680ac8}\index{mako.cache.CacheImpl@{mako.cache.CacheImpl}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!mako.cache.CacheImpl@{mako.cache.CacheImpl}}
+\doxysubsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1CacheImpl_a46be95e3388dd069dcd3334ec1680ac8} 
+mako.\+cache.\+Cache\+Impl.\+invalidate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invalidate a value in the cache.
+
+    :param key: the value's key.
+    :param \**kw: cache configuration arguments.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1ext_1_1beaker__cache_1_1BeakerCacheImpl_af5bfc36e1dee08543a0ba0829bef8a24}{mako.\+ext.\+beaker\+\_\+cache.\+Beaker\+Cache\+Impl}}, and \doxymbox{\hyperlink{classmako_1_1testing_1_1fixtures_1_1PlainCacheImpl_a173e950117414501e60bcbecf90c12d5}{mako.\+testing.\+fixtures.\+Plain\+Cache\+Impl}}.
+
+\Hypertarget{classmako_1_1cache_1_1CacheImpl_a80bfcac6d048865f9f2c53533e06ca8c}\index{mako.cache.CacheImpl@{mako.cache.CacheImpl}!set@{set}}
+\index{set@{set}!mako.cache.CacheImpl@{mako.cache.CacheImpl}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1CacheImpl_a80bfcac6d048865f9f2c53533e06ca8c} 
+mako.\+cache.\+Cache\+Impl.\+set (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{}]{value}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Place a value in the cache.
+
+    :param key: the value's key.
+    :param value: the value.
+    :param \**kw: cache configuration arguments.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+mako/\+cache.\+py\end{DoxyCompactItemize}

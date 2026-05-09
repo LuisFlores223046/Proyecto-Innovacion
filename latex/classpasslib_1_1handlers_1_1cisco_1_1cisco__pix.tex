@@ -1,0 +1,108 @@
+\doxysection{passlib.\+handlers.\+cisco.\+cisco\+\_\+pix Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}{}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}\index{passlib.handlers.cisco.cisco\_pix@{passlib.handlers.cisco.cisco\_pix}}
+Inheritance diagram for passlib.\+handlers.\+cisco.\+cisco\+\_\+pix:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a9e02f1c47da9acb71888796a94f4e4f7}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a9e02f1c47da9acb71888796a94f4e4f7} 
+{\bfseries use\+\_\+defaults}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a90d44b00ca38164a59e41535c9c9ffc2}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a90d44b00ca38164a59e41535c9c9ffc2} 
+str {\bfseries name} = "{}cisco\+\_\+pix"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a2bbcbaa87f8f7b0dfa67a2bbdc40bc40}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a2bbcbaa87f8f7b0dfa67a2bbdc40bc40} 
+int {\bfseries truncate\+\_\+size} = 16
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a4025ef82cd946b5c348edc98c2e482c7}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a4025ef82cd946b5c348edc98c2e482c7} 
+bool {\bfseries truncate\+\_\+error} = True
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a75e2e62f632301726d4276a502014311}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a75e2e62f632301726d4276a502014311} 
+bool {\bfseries truncate\+\_\+verify\+\_\+reject} = True
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_aa2b5e9622bc99a099bebc9f9e8988cf0}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_aa2b5e9622bc99a099bebc9f9e8988cf0} 
+int {\bfseries checksum\+\_\+size} = 16
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a17e50bc26e223bdf69a2e89361ff52e3}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a17e50bc26e223bdf69a2e89361ff52e3} 
+{\bfseries checksum\+\_\+chars} = uh.\+HASH64\+\_\+\+CHARS
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_afea9bcef71d0cea73057f32a895eddd7}{\+\_\+calc\+\_\+checksum}} (self, secret)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a67f066b66110eab98a5cfdde55998267}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_a67f066b66110eab98a5cfdde55998267} 
+bool {\bfseries \+\_\+is\+\_\+asa} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements the password hash used by older Cisco PIX firewalls,
+and follows the :ref:`password-hash-api`.
+It does a single round of hashing, and relies on the username
+as the salt.
+
+This class only allows passwords <= 16 bytes, anything larger
+will result in a :exc:`~passlib.exc.PasswordSizeError` if passed to :meth:`~cisco_pix.hash`,
+and be silently rejected if passed to :meth:`~cisco_pix.verify`.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`,
+:meth:`~passlib.ifc.PasswordHash.genhash`, and
+:meth:`~passlib.ifc.PasswordHash.verify` methods
+all support the following extra keyword:
+
+:param str user:
+    String containing name of user account this password is associated with.
+
+    This is *required* in order to correctly hash passwords associated
+    with a user account on the Cisco device, as it is used to salt
+    the hash.
+
+    Conversely, this *must* be omitted or set to ``""`` in order to correctly
+    hash passwords which don't have an associated user account
+    (such as the "enable" password).
+
+.. versionadded:: 1.6
+
+.. versionchanged:: 1.7.1
+
+    Passwords > 16 bytes are now rejected / throw error instead of being silently truncated,
+    to match Cisco behavior.  A number of :ref:`bugs <passlib-asa96-bug>` were fixed
+    which caused prior releases to generate unverifiable hashes in certain cases.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_afea9bcef71d0cea73057f32a895eddd7}\index{passlib.handlers.cisco.cisco\_pix@{passlib.handlers.cisco.cisco\_pix}!\_calc\_checksum@{\_calc\_checksum}}
+\index{\_calc\_checksum@{\_calc\_checksum}!passlib.handlers.cisco.cisco\_pix@{passlib.handlers.cisco.cisco\_pix}}
+\doxysubsubsection{\texorpdfstring{\_calc\_checksum()}{\_calc\_checksum()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_afea9bcef71d0cea73057f32a895eddd7} 
+passlib.\+handlers.\+cisco.\+cisco\+\_\+pix.\+\_\+calc\+\_\+checksum (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{secret}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}This function implements the "encrypted" hash format used by Cisco
+PIX & ASA. It's behavior has been confirmed for ASA 9.6,
+but is presumed correct for PIX & other ASA releases,
+as it fits with known test vectors, and existing literature.
+
+While nearly the same, the PIX & ASA hashes have slight differences,
+so this function performs differently based on the _is_asa class flag.
+Noteable changes from PIX to ASA include password size limit
+increased from 16 -> 32, and other internal changes.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+cisco.\+py\end{DoxyCompactItemize}

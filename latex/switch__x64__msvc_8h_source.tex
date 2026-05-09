@@ -1,0 +1,66 @@
+\doxysection{switch\+\_\+x64\+\_\+msvc.\+h}
+\hypertarget{switch__x64__msvc_8h_source}{}\label{switch__x64__msvc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x64\_msvc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_x64\_msvc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 24-\/Nov-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ \ needed\ to\ add\ another\ magic\ constant\ to\ insure}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ \ \ \ that\ f\ in\ slp\_eval\_frame(PyFrameObject\ *f)}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ \ STACK\_REFPLUS\ will\ probably\ be\ 1\ in\ most\ cases.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ \ \ \ \ \ gets\ included\ into\ the\ saved\ stack\ area.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ 26-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ \ \ \ \ \ again\ as\ a\ result\ of\ virtualized\ stack\ access,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ \ \ \ the\ compiler\ used\ less\ registers.\ Needed\ to}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ \ explicit\ mention\ registers\ in\ order\ to\ get\ them\ saved.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ Thanks\ to\ Jeff\ Senn\ for\ pointing\ this\ out\ and\ help.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ 17-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ \ \ after\ virtualizing\ stack\ save/restore,\ the}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ \ \ stack\ size\ shrunk\ a\ bit.\ Needed\ to\ introduce}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ \ \ an\ adjustment\ STACK\_MAGIC\ per\ platform.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 15-\/Sep-\/02\ \ Gerd\ Woetzel\ \ \ \ \ \ \ <gerd.woetzel@GMD.DE>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ slightly\ changed\ framework\ for\ sparc}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ 01-\/Mar-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ Initial\ final\ version\ after\ lots\ of\ iterations\ for\ i386.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/*\ Avoid\ alloca\ redefined\ warning\ on\ mingw64\ */}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifndef\ alloca}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ alloca\ \_alloca}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/*\ Use\ the\ generic\ support\ for\ an\ external\ assembly\ language\ slp\_switch\ function.\ */}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ EXTERNAL\_ASM}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00037\ \textcolor{comment}{/*\ This\ always\ uses\ the\ external\ masm\ assembly\ file.\ */}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ further\ self-\/processing\ support}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*\ we\ have\ IsBadReadPtr\ available,\ so\ we\ can\ peek\ at\ objects\ */}}
+\DoxyCodeLine{00045\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\#define\ STACKLESS\_SPY}}
+\DoxyCodeLine{00047\ \textcolor{comment}{}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\#ifdef\ IMPLEMENT\_STACKLESSMODULE}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\#include\ "{}Windows.h"{}}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\#define\ CANNOT\_READ\_MEM(p,\ bytes)\ IsBadReadPtr(p,\ bytes)}}
+\DoxyCodeLine{00051\ \textcolor{comment}{}}
+\DoxyCodeLine{00052\ \textcolor{comment}{static\ int\ IS\_ON\_STACK(void*p)}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\{}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ int\ stackref;}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ intptr\_t\ stackbase\ =\ ((intptr\_t)\&stackref)\ \&\ 0xfffff000;}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ return\ (intptr\_t)p\ >=\ stackbase\ \&\&\ (intptr\_t)p\ <\ stackbase\ +\ 0x00100000;}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\}}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\#endif}}
+\DoxyCodeLine{00060\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

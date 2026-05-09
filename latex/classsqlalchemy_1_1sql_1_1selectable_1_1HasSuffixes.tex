@@ -1,0 +1,74 @@
+\doxysection{sqlalchemy.\+sql.\+selectable.\+Has\+Suffixes Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes}{}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes}\index{sqlalchemy.sql.selectable.HasSuffixes@{sqlalchemy.sql.selectable.HasSuffixes}}
+Inheritance diagram for sqlalchemy.\+sql.\+selectable.\+Has\+Suffixes:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.458333cm]{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a99949b9c314428912f5a34cb54275318}{suffix\+\_\+with}} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Text\+Coerced\+Expression\+Argument\+[Any]\+ suffixes, str dialect="{}\texorpdfstring{$\ast$}{*}"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_af2229dbad57d3a7382875fec7eda7e3d}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_af2229dbad57d3a7382875fec7eda7e3d} 
+tuple {\bfseries \+\_\+suffixes} = ()
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a974b41f62ef93b98160b9a5be5c037ad}{\+\_\+has\+\_\+suffixes\+\_\+traverse\+\_\+internals}}
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a99949b9c314428912f5a34cb54275318}\index{sqlalchemy.sql.selectable.HasSuffixes@{sqlalchemy.sql.selectable.HasSuffixes}!suffix\_with@{suffix\_with}}
+\index{suffix\_with@{suffix\_with}!sqlalchemy.sql.selectable.HasSuffixes@{sqlalchemy.sql.selectable.HasSuffixes}}
+\doxysubsubsection{\texorpdfstring{suffix\_with()}{suffix\_with()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a99949b9c314428912f5a34cb54275318} 
+ Self sqlalchemy.\+sql.\+selectable.\+Has\+Suffixes.\+suffix\+\_\+with (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\+\_\+\+Text\+Coerced\+Expression\+Argument\+[Any]\+}]{suffixes}{, }\item[{str }]{dialect}{ = {\ttfamily "{}\texorpdfstring{$\ast$}{*}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add one or more expressions following the statement as a whole.
+
+    This is used to support backend-specific suffix keywords on
+    certain constructs.
+
+    E.g.::
+
+        stmt = select(col1, col2).cte().suffix_with(
+            "cycle empno set y_cycle to 1 default 0", dialect="oracle")
+
+    Multiple suffixes can be specified by multiple calls
+    to :meth:`_expression.HasSuffixes.suffix_with`.
+
+    :param \*suffixes: textual or :class:`_expression.ClauseElement`
+     construct which
+     will be rendered following the target clause.
+    :param dialect: Optional string dialect name which will
+     limit rendering of this suffix to only that dialect.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a974b41f62ef93b98160b9a5be5c037ad}\index{sqlalchemy.sql.selectable.HasSuffixes@{sqlalchemy.sql.selectable.HasSuffixes}!\_has\_suffixes\_traverse\_internals@{\_has\_suffixes\_traverse\_internals}}
+\index{\_has\_suffixes\_traverse\_internals@{\_has\_suffixes\_traverse\_internals}!sqlalchemy.sql.selectable.HasSuffixes@{sqlalchemy.sql.selectable.HasSuffixes}}
+\doxysubsubsection{\texorpdfstring{\_has\_suffixes\_traverse\_internals}{\_has\_suffixes\_traverse\_internals}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasSuffixes_a974b41f62ef93b98160b9a5be5c037ad} 
+list sqlalchemy.\+sql.\+selectable.\+Has\+Suffixes.\+\_\+has\+\_\+suffixes\+\_\+traverse\+\_\+internals\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}\_suffixes"{}},\ InternalTraversal.dp\_prefix\_sequence)}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+selectable.\+py\end{DoxyCompactItemize}

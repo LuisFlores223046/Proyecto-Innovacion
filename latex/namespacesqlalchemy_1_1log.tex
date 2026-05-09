@@ -1,0 +1,112 @@
+\doxysection{sqlalchemy.\+log Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1log}{}\label{namespacesqlalchemy_1_1log}\index{sqlalchemy.log@{sqlalchemy.log}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{Identified}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1InstanceLogger}{Instance\+Logger}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1echo__property}{echo\+\_\+property}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a419f159fae5aeae0da14eafd785c99a3}\label{namespacesqlalchemy_1_1log_a419f159fae5aeae0da14eafd785c99a3} 
+None {\bfseries \+\_\+add\+\_\+default\+\_\+handler} (logging.\+Logger logger)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_ac05fce486e023b793a76f7191a73ef11}\label{namespacesqlalchemy_1_1log_ac05fce486e023b793a76f7191a73ef11} 
+str {\bfseries \+\_\+qual\+\_\+logger\+\_\+name\+\_\+for\+\_\+cls} (Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{Identified}}]\+ cls)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a55db4f7ba1660b8e6533f9cb3a5be9c0}\label{namespacesqlalchemy_1_1log_a55db4f7ba1660b8e6533f9cb3a5be9c0} 
+Type\+[\+\_\+\+IT]\+ {\bfseries class\+\_\+logger} (Type\+[\+\_\+\+IT]\+ cls)
+\item 
+None \doxymbox{\hyperlink{namespacesqlalchemy_1_1log_af2a309c07d32aa429663fca8fe5c3a5c}{instance\+\_\+logger}} (\doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{Identified}} instance, \+\_\+\+Echo\+Flag\+Type echoflag=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_aa6d702df17c0e810d3c18f2a226b14c6}\label{namespacesqlalchemy_1_1log_aa6d702df17c0e810d3c18f2a226b14c6} 
+bool {\bfseries STACKLEVEL} = True
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_aff196254036b322b9bd52dd7e5f5ffbe}\label{namespacesqlalchemy_1_1log_aff196254036b322b9bd52dd7e5f5ffbe} 
+int {\bfseries STACKLEVEL\+\_\+\+OFFSET} = 2 if py311 else 1
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a9a7bc41f4ff187a9f10748b44226a209}\label{namespacesqlalchemy_1_1log_a9a7bc41f4ff187a9f10748b44226a209} 
+{\bfseries \+\_\+\+IT} = Type\+Var("{}\+\_\+\+IT"{}, bound="{}Identified"{})
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a8ab4680beb0decd1f7590a48eeafabc5}\label{namespacesqlalchemy_1_1log_a8ab4680beb0decd1f7590a48eeafabc5} 
+{\bfseries \+\_\+\+Echo\+Flag\+Type} = Union\+[None, bool, Literal\+["{}debug"{}]\+]\+
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a893aa7781b8ca6ba69eef16f7ae28eb5}\label{namespacesqlalchemy_1_1log_a893aa7781b8ca6ba69eef16f7ae28eb5} 
+{\bfseries rootlogger} = logging.\+get\+Logger("{}sqlalchemy"{})
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_ad97d93fe0cd59f86b1bd6c4ef26b9f19}\label{namespacesqlalchemy_1_1log_ad97d93fe0cd59f86b1bd6c4ef26b9f19} 
+Set {\bfseries \+\_\+logged\+\_\+classes} = set()
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_a47915d8bbb88fc761e062a64cc5bd3da}\label{namespacesqlalchemy_1_1log_a47915d8bbb88fc761e062a64cc5bd3da} 
+{\bfseries \+\_\+\+Identified\+Logger\+Type} = Union\+[logging.\+Logger, "{}Instance\+Logger"{}]\+
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1log_a99b4bf57dc9e687207e8a9df76679948}{\+\_\+should\+\_\+log\+\_\+debug}}
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1log_a131348170b5d5ca18e459e59bfc42197}{\+\_\+should\+\_\+log\+\_\+info}}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1log_ab50508be69268328e09699e86ca33e32}\label{namespacesqlalchemy_1_1log_ab50508be69268328e09699e86ca33e32} 
+{\bfseries logger} = logger
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Logging control and utilities.
+
+Control of logging for SA can be performed from the regular python logging
+module.  The regular dotted module namespace is used, starting at
+'sqlalchemy'.  For class-level logging, the class name is appended.
+
+The "echo" keyword parameter, available on SQLA :class:`_engine.Engine`
+and :class:`_pool.Pool` objects, corresponds to a logger specific to that
+instance only.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1log_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1log_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1log_af2a309c07d32aa429663fca8fe5c3a5c}\index{sqlalchemy.log@{sqlalchemy.log}!instance\_logger@{instance\_logger}}
+\index{instance\_logger@{instance\_logger}!sqlalchemy.log@{sqlalchemy.log}}
+\doxysubsubsection{\texorpdfstring{instance\_logger()}{instance\_logger()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1log_af2a309c07d32aa429663fca8fe5c3a5c} 
+ None instance\+\_\+logger (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1log_1_1Identified}{Identified}}}]{instance}{, }\item[{\+\_\+\+Echo\+Flag\+Type }]{echoflag}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a logger for an instance that implements :class:`.Identified`.\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1log_doc-var-members}
+\Hypertarget{namespacesqlalchemy_1_1log_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesqlalchemy_1_1log_a99b4bf57dc9e687207e8a9df76679948}\index{sqlalchemy.log@{sqlalchemy.log}!\_should\_log\_debug@{\_should\_log\_debug}}
+\index{\_should\_log\_debug@{\_should\_log\_debug}!sqlalchemy.log@{sqlalchemy.log}}
+\doxysubsubsection{\texorpdfstring{\_should\_log\_debug}{\_should\_log\_debug}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1log_a99b4bf57dc9e687207e8a9df76679948} 
+sqlalchemy.\+log.\+\_\+should\+\_\+log\+\_\+debug\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \textcolor{keyword}{lambda}\ self:\ logger.isEnabledFor(\ \ \textcolor{comment}{\#\ type:\ ignore[method-\/assign]\ \ \#\ noqa:\ E501}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.DEBUG}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1log_a131348170b5d5ca18e459e59bfc42197}\index{sqlalchemy.log@{sqlalchemy.log}!\_should\_log\_info@{\_should\_log\_info}}
+\index{\_should\_log\_info@{\_should\_log\_info}!sqlalchemy.log@{sqlalchemy.log}}
+\doxysubsubsection{\texorpdfstring{\_should\_log\_info}{\_should\_log\_info}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1log_a131348170b5d5ca18e459e59bfc42197} 
+sqlalchemy.\+log.\+\_\+should\+\_\+log\+\_\+info\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \textcolor{keyword}{lambda}\ self:\ logger.isEnabledFor(\ \ \textcolor{comment}{\#\ type:\ ignore[method-\/assign]\ \ \#\ noqa:\ E501}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logging.INFO}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}

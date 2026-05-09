@@ -1,0 +1,203 @@
+\doxysection{frontend/\+node\+\_\+modules/\+json5 Directory Reference}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c}{}\label{dir_34573b0c5b4b3c34b461fa987959620c}\index{frontend/node\_modules/json5 Directory Reference@{frontend/node\_modules/json5 Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_585a2e1cebf4cbc3c0b571c4bd47f437}{dist}}
+\item 
+directory \doxymbox{\hyperlink{dir_683080c0035c0d726374e917e0575b36}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3011}{}\doxysubsection{\texorpdfstring{JSON5 – JSON for Humans}{JSON5 – JSON for Humans}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3011}
+\+[]\+\+[Build Status]\+ \+[]\+\+[Coverage Status]\+
+
+JSON5 is an extension to the popular \href{https://tools.ietf.org/html/rfc7159}{\texttt{JSON}} file format that aims to be easier to {\bfseries{write and maintain {\itshape by hand} (e.\+g. for config files)}}. It is {\itshape not intended} to be used for machine-\/to-\/machine communication. (Keep using JSON or other file formats for that. 🙂)
+
+JSON5 was started in 2012, and as of 2022, now gets {\bfseries{\href{https://www.npmjs.com/package/json5}{\texttt{\texorpdfstring{$>$}{>}65M downloads/\+week}}}}, ranks in the {\bfseries{\href{https://gist.github.com/anvaka/8e8fa57c7ee1350e3491}{\texttt{top 0.\+1\%}}}} of the most depended-\/upon packages on npm, and has been adopted by major projects like {\bfseries{\href{https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/platform/runtime_enabled_features.json5;drc=5de823b36e68fd99009a29281b17bc3a1d6b329c}{\texttt{Chromium}}, \href{https://github.com/vercel/next.js/blob/b88f20c90bf4659b8ad5cb2a27956005eac2c7e8/packages/next/lib/find-config.ts\#L43-L46}{\texttt{Next.\+js}}, \href{https://babeljs.io/docs/en/config-files\#supported-file-extensions}{\texttt{Babel}}, \href{https://community.retool.com/t/i-am-attempting-to-append-several-text-fields-to-a-google-sheet-but-receiving-a-json5-invalid-character-error/7626}{\texttt{Retool}}, \href{https://www.jetbrains.com/help/webstorm/json.html}{\texttt{Web\+Storm}}, and \href{https://github.com/json5/json5/wiki/In-the-Wild}{\texttt{more}}}}. It\textquotesingle{}s also natively supported on {\bfseries{\href{https://developer.apple.com/documentation/foundation/jsondecoder/3766916-allowsjson5}{\texttt{Apple platforms}}}} like {\bfseries{Mac\+OS}} and {\bfseries{i\+OS}}.
+
+Formally, the {\bfseries{\href{https://spec.json5.org/}{\texttt{JSON5 Data Interchange Format}}}} is a superset of JSON (so valid JSON files will always be valid JSON5 files) that expands its syntax to include some productions from \+[ECMAScript 5.\+1]\+ (ES5). It\textquotesingle{}s also a strict {\itshape subset} of ES5, so valid JSON5 files will always be valid ES5.
+
+This Java\+Script library is a reference implementation for JSON5 parsing and serialization, and is directly used in many of the popular projects mentioned above (where e.\+g. extreme performance isn\textquotesingle{}t necessary), but others have created \href{https://github.com/json5/json5/wiki/In-the-Wild}{\texttt{many other libraries}} across many other platforms.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3012}{}\doxysubsection{\texorpdfstring{Summary of Features}{Summary of Features}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3012}
+The following ECMAScript 5.\+1 features, which are not supported in JSON, have been extended to JSON5.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3013}{}\doxysubsubsection{\texorpdfstring{Objects}{Objects}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3013}
+
+\begin{DoxyItemize}
+\item Object keys may be an ECMAScript 5.\+1 {\itshape \+[Identifier\+Name]\+}.
+\item Objects may have a single trailing comma.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3014}{}\doxysubsubsection{\texorpdfstring{Arrays}{Arrays}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3014}
+
+\begin{DoxyItemize}
+\item Arrays may have a single trailing comma.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3015}{}\doxysubsubsection{\texorpdfstring{Strings}{Strings}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3015}
+
+\begin{DoxyItemize}
+\item Strings may be single quoted.
+\item Strings may span multiple lines by escaping new line characters.
+\item Strings may include character escapes.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3016}{}\doxysubsubsection{\texorpdfstring{Numbers}{Numbers}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3016}
+
+\begin{DoxyItemize}
+\item Numbers may be hexadecimal.
+\item Numbers may have a leading or trailing decimal point.
+\item Numbers may be \href{http://ieeexplore.ieee.org/servlet/opac?punumber=4610933}{\texttt{IEEE 754}} positive infinity, negative infinity, and NaN.
+\item Numbers may begin with an explicit plus sign.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3017}{}\doxysubsubsection{\texorpdfstring{Comments}{Comments}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3017}
+
+\begin{DoxyItemize}
+\item Single and multi-\/line comments are allowed.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3018}{}\doxysubsubsection{\texorpdfstring{White Space}{White Space}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3018}
+
+\begin{DoxyItemize}
+\item Additional white space characters are allowed.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3019}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3019}
+Kitchen-\/sink example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ //\ comments}
+\DoxyCodeLine{\ \ unquoted:\ 'and\ you\ can\ quote\ me\ on\ that',}
+\DoxyCodeLine{\ \ singleQuotes:\ 'I\ can\ use\ "{}double\ quotes"{}\ here',}
+\DoxyCodeLine{\ \ lineBreaks:\ "{}Look,\ Mom!\ \(\backslash\)}
+\DoxyCodeLine{No\ \(\backslash\)\(\backslash\)n's!"{},}
+\DoxyCodeLine{\ \ hexadecimal:\ 0xdecaf,}
+\DoxyCodeLine{\ \ leadingDecimalPoint:\ .8675309,\ andTrailing:\ 8675309.,}
+\DoxyCodeLine{\ \ positiveSign:\ +1,}
+\DoxyCodeLine{\ \ trailingComma:\ 'in\ objects',\ andIn:\ ['arrays',],}
+\DoxyCodeLine{\ \ "{}backwardsCompatible"{}:\ "{}with\ JSON"{},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+A more real-\/world example is \href{https://github.com/chromium/chromium/blob/feb3c9f670515edf9a88f185301cbd7794ee3e52/third_party/blink/renderer/platform/runtime_enabled_features.json5}{\texttt{this config file}} from the Chromium/\+\+Blink project.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3020}{}\doxysubsection{\texorpdfstring{Specification}{Specification}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3020}
+For a detailed explanation of the JSON5 format, please read the \href{https://json5.github.io/json5-spec/}{\texttt{official specification}}.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3021}{}\doxysubsection{\texorpdfstring{Installation and Usage}{Installation and Usage}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3021}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3022}{}\doxysubsubsection{\texorpdfstring{Node.\+js}{Node.\+js}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3022}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ json5}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3023}{}\doxysubsubsubsection{\texorpdfstring{Common\+JS}{Common\+JS}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3023}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ JSON5\ =\ require('json5')}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3024}{}\doxysubsubsubsection{\texorpdfstring{Modules}{Modules}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3024}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ JSON5\ from\ 'json5'}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3025}{}\doxysubsubsection{\texorpdfstring{Browsers}{Browsers}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3025}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3026}{}\doxysubsubsubsection{\texorpdfstring{UMD}{UMD}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3026}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<!-\/-\/\ This\ will\ create\ a\ global\ \`{}JSON5`\ variable.\ -\/-\/>}
+\DoxyCodeLine{<script\ src="{}https://unpkg.com/json5@2/dist/index.min.js"{}></script>}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3027}{}\doxysubsubsubsection{\texorpdfstring{Modules}{Modules}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3027}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ JSON5\ from\ 'https://unpkg.com/json5@2/dist/index.min.mjs'}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3028}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3028}
+The JSON5 API is compatible with the \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON}{\texttt{JSON API}}.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3029}{}\doxysubsubsection{\texorpdfstring{JSON5.\+parse()}{JSON5.\+parse()}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3029}
+Parses a JSON5 string, constructing the Java\+Script value or object described by the string. An optional reviver function can be provided to perform a transformation on the resulting object before it is returned.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3030}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3030}
+JSON5.\+parse(text\+[, reviver]\+)\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3031}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3031}
+
+\begin{DoxyItemize}
+\item {\ttfamily text}:\+ The string to parse as JSON5.
+\item {\ttfamily reviver}:\+ If a function, this prescribes how the value originally produced by parsing is transformed, before being returned.
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3032}{}\doxysubsubsubsection{\texorpdfstring{Return value}{Return value}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3032}
+The object corresponding to the given JSON5 text.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3033}{}\doxysubsubsection{\texorpdfstring{JSON5.\+stringify()}{JSON5.\+stringify()}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3033}
+Converts a Java\+Script value to a JSON5 string, optionally replacing values if a replacer function is specified, or optionally including only the specified properties if a replacer array is specified.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3034}{}\doxysubsubsubsection{\texorpdfstring{Syntax}{Syntax}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3034}
+JSON5.\+stringify(value\+[, replacer\+[, space]\+]\+) JSON5.\+stringify(value\+[, options]\+)\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3035}{}\doxysubsubsubsection{\texorpdfstring{Parameters}{Parameters}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3035}
+
+\begin{DoxyItemize}
+\item {\ttfamily value}:\+ The value to convert to a JSON5 string.
+\item {\ttfamily replacer}:\+ A function that alters the behavior of the stringification process, or an array of String and Number objects that serve as a whitelist for selecting/\+filtering the properties of the value object to be included in the JSON5 string. If this value is null or not provided, all properties of the object are included in the resulting JSON5 string.
+\item {\ttfamily space}:\+ A String or Number object that\textquotesingle{}s used to insert white space into the output JSON5 string for readability purposes. If this is a Number, it indicates the number of space characters to use as white space; this number is capped at 10 (if it is greater, the value is just 10). Values less than 1 indicate that no space should be used. If this is a String, the string (or the first 10 characters of the string, if it\textquotesingle{}s longer than that) is used as white space. If this parameter is not provided (or is null), no white space is used. If white space is used, trailing commas will be used in objects and arrays.
+\item {\ttfamily options}:\+ An object with the following properties:\+
+\begin{DoxyItemize}
+\item {\ttfamily replacer}:\+ Same as the {\ttfamily replacer} parameter.
+\item {\ttfamily space}:\+ Same as the {\ttfamily space} parameter.
+\item {\ttfamily quote}:\+ A String representing the quote character to use when serializing strings.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3036}{}\doxysubsubsubsection{\texorpdfstring{Return value}{Return value}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3036}
+A JSON5 string representing the value.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3037}{}\doxysubsubsection{\texorpdfstring{Node.\+js {\ttfamily require()} JSON5 files}{Node.\+js {\ttfamily require()} JSON5 files}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3037}
+When using Node.\+js, you can {\ttfamily require()} JSON5 files by adding the following statement.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require('json5/lib/register')}
+
+\end{DoxyCode}
+
+
+Then you can load a JSON5 file with a Node.\+js {\ttfamily require()} statement. For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ config\ =\ require('./config.json5')}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3038}{}\doxysubsection{\texorpdfstring{CLI}{CLI}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3038}
+Since JSON is more widely used than JSON5, this package includes a CLI for converting JSON5 to JSON and for validating the syntax of JSON5 documents.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3039}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3039}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/-\/global\ json5}
+
+\end{DoxyCode}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3040}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3040}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{json5\ [options]\ <file>}
+
+\end{DoxyCode}
+
+
+If {\ttfamily \texorpdfstring{$<$}{<}file\texorpdfstring{$>$}{>}} is not provided, then STDIN is used.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3041}{}\doxysubsubsubsection{\texorpdfstring{Options:\+}{Options:\+}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3041}
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/s}, {\ttfamily -\/-\/space}:\+ The number of spaces to indent or {\ttfamily t} for tabs
+\item {\ttfamily -\/o}, {\ttfamily -\/-\/out-\/file \+[file]\+}:\+ Output to the specified file, otherwise STDOUT
+\item {\ttfamily -\/v}, {\ttfamily -\/-\/validate}:\+ Validate JSON5 but do not output JSON
+\item {\ttfamily -\/V}, {\ttfamily -\/-\/version}:\+ Output the version number
+\item {\ttfamily -\/h}, {\ttfamily -\/-\/help}:\+ Output usage information
+\end{DoxyItemize}\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3042}{}\doxysubsection{\texorpdfstring{Contributing}{Contributing}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3042}
+\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3043}{}\doxysubsubsection{\texorpdfstring{Development}{Development}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3043}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/json5/json5}
+\DoxyCodeLine{cd\ json5}
+\DoxyCodeLine{npm\ install}
+
+\end{DoxyCode}
+
+
+When contributing code, please write relevant tests and run {\ttfamily npm test} and {\ttfamily npm run lint} before submitting pull requests. Please use an editor that supports \href{http://editorconfig.org/}{\texttt{Editor\+Config}}.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3044}{}\doxysubsubsection{\texorpdfstring{Issues}{Issues}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3044}
+To report bugs or request features regarding the JSON5 {\bfseries{data format}}, please submit an issue to the official {\bfseries{\href{https://github.com/json5/json5-spec}{\texttt{{\itshape specification} repository}}}}.
+
+Note that we will never add any features that make JSON5 incompatible with ES5; that compatibility is a fundamental premise of JSON5.
+
+To report bugs or request features regarding this {\bfseries{Java\+Script implementation}} of JSON5, please submit an issue to {\bfseries{{\itshape this} repository}}.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3045}{}\doxysubsubsection{\texorpdfstring{Security Vulnerabilities and Disclosures}{Security Vulnerabilities and Disclosures}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3045}
+To report a security vulnerability, please follow the follow the guidelines described in our security policy.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3046}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3046}
+MIT. See \doxysectlink{md_frontend_2node__modules_2json5_2LICENSE}{LICENSE.md}{0} for details.\hypertarget{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3047}{}\doxysubsection{\texorpdfstring{Credits}{Credits}}\label{dir_34573b0c5b4b3c34b461fa987959620c_autotoc_md3047}
+\href{https://github.com/aseemk}{\texttt{Aseem Kishore}} founded this project. He wrote a \href{https://aseemk.substack.com/p/ignore-the-f-ing-haters-json5}{\texttt{blog post}} about the journey and lessons learned 10 years in.
+
+\href{http://bolinfest.com/}{\texttt{Michael Bolin}} independently arrived at and published some of these same ideas with awesome explanations and detail. Recommended reading:\+ \href{http://bolinfest.com/essays/json.html}{\texttt{Suggested Improvements to JSON}}
+
+\href{http://www.crockford.com/}{\texttt{Douglas Crockford}} of course designed and built JSON, but his state machine diagrams on the \href{http://json.org/}{\texttt{JSON website}}, as cheesy as it may sound, gave us motivation and confidence that building a new parser to implement these ideas was within reach! The original implementation of JSON5 was also modeled directly off of Doug’s open-\/source \href{https://github.com/douglascrockford/JSON-js/blob/03157639c7a7cddd2e9f032537f346f1a87c0f6d/json_parse.js}{\texttt{json\+\_\+parse.\+js}} parser. We’re grateful for that clean and well-\/documented code.
+
+\href{https://github.com/MaxNanasy}{\texttt{Max Nanasy}} has been an early and prolific supporter, contributing multiple patches and ideas.
+
+\href{https://github.com/aeisenberg}{\texttt{Andrew Eisenberg}} contributed the original {\ttfamily stringify} method.
+
+\href{https://github.com/jordanbtucker}{\texttt{Jordan Tucker}} has aligned JSON5 more closely with ES5, wrote the official JSON5 specification, completely rewrote the codebase from the ground up, and is actively maintaining this project. 

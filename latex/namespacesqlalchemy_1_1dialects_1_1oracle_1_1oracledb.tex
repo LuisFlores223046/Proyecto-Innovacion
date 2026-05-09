@@ -1,0 +1,96 @@
+\doxysection{sqlalchemy.\+dialects.\+oracle.\+oracledb Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb}{}\label{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb}\index{sqlalchemy.dialects.oracle.oracledb@{sqlalchemy.dialects.oracle.oracledb}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1OracleDialect__oracledb}{Oracle\+Dialect\+\_\+oracledb}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1AsyncAdapt__oracledb__cursor}{Async\+Adapt\+\_\+oracledb\+\_\+cursor}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1AsyncAdapt__oracledb__connection}{Async\+Adapt\+\_\+oracledb\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1AsyncAdaptFallback__oracledb__connection}{Async\+Adapt\+Fallback\+\_\+oracledb\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1OracledbAdaptDBAPI}{Oracledb\+Adapt\+DBAPI}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1OracleDialectAsync__oracledb}{Oracle\+Dialect\+Async\+\_\+oracledb}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb_ad5a70b0ad7618e4ef3ae04d6d6f0b48e}\label{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb_ad5a70b0ad7618e4ef3ae04d6d6f0b48e} 
+{\bfseries dialect} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1OracleDialect__oracledb}{Oracle\+Dialect\+\_\+oracledb}}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb_a5e97f3845a1b85b60dc65fa88cb65a8b}\label{namespacesqlalchemy_1_1dialects_1_1oracle_1_1oracledb_a5e97f3845a1b85b60dc65fa88cb65a8b} 
+{\bfseries dialect\+\_\+async} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1oracledb_1_1OracleDialectAsync__oracledb}{Oracle\+Dialect\+Async\+\_\+oracledb}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: oracle+oracledb
+    :name: python-oracledb
+    :dbapi: oracledb
+    :connectstring: oracle+oracledb://user:pass@hostname:port[/dbname][?service_name=<service>[&key=value&key=value...]]
+    :url: https://oracle.github.io/python-oracledb/
+
+python-oracledb is released by Oracle to supersede the cx_Oracle driver.
+It is fully compatible with cx_Oracle and features both a "thin" client
+mode that requires no dependencies, as well as a "thick" mode that uses
+the Oracle Client Interface in the same way as cx_Oracle.
+
+.. seealso::
+
+    :ref:`cx_oracle` - all of cx_Oracle's notes apply to the oracledb driver
+    as well.
+
+The SQLAlchemy ``oracledb`` dialect provides both a sync and an async
+implementation under the same dialect name. The proper version is
+selected depending on how the engine is created:
+
+* calling :func:`_sa.create_engine` with ``oracle+oracledb://...`` will
+  automatically select the sync version, e.g.::
+
+    from sqlalchemy import create_engine
+    sync_engine = create_engine("oracle+oracledb://scott:tiger@localhost/?service_name=XEPDB1")
+
+* calling :func:`_asyncio.create_async_engine` with
+  ``oracle+oracledb://...`` will automatically select the async version,
+  e.g.::
+
+    from sqlalchemy.ext.asyncio import create_async_engine
+    asyncio_engine = create_async_engine("oracle+oracledb://scott:tiger@localhost/?service_name=XEPDB1")
+
+The asyncio version of the dialect may also be specified explicitly using the
+``oracledb_async`` suffix, as::
+
+    from sqlalchemy.ext.asyncio import create_async_engine
+    asyncio_engine = create_async_engine("oracle+oracledb_async://scott:tiger@localhost/?service_name=XEPDB1")
+
+.. versionadded:: 2.0.25 added support for the async version of oracledb.
+
+Thick mode support
+------------------
+
+By default the ``python-oracledb`` is started in thin mode, that does not
+require oracle client libraries to be installed in the system. The
+``python-oracledb`` driver also support a "thick" mode, that behaves
+similarly to ``cx_oracle`` and requires that Oracle Client Interface (OCI)
+is installed.
+
+To enable this mode, the user may call ``oracledb.init_oracle_client``
+manually, or by passing the parameter ``thick_mode=True`` to
+:func:`_sa.create_engine`. To pass custom arguments to ``init_oracle_client``,
+like the ``lib_dir`` path, a dict may be passed to this parameter, as in::
+
+    engine = sa.create_engine("oracle+oracledb://...", thick_mode={
+        "lib_dir": "/path/to/oracle/client/lib", "driver_name": "my-app"
+    })
+
+.. seealso::
+
+    https://python-oracledb.readthedocs.io/en/latest/api_manual/module.html#oracledb.init_oracle_client
+
+
+.. versionadded:: 2.0.0 added support for oracledb driver.
+\end{DoxyVerb}
+ 

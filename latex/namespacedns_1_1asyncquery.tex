@@ -1,0 +1,271 @@
+\doxysection{dns.\+asyncquery Namespace Reference}
+\hypertarget{namespacedns_1_1asyncquery}{}\label{namespacedns_1_1asyncquery}\index{dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedns_1_1asyncquery_a08b058926accce667ac637d6e01de5f1}\label{namespacedns_1_1asyncquery_a08b058926accce667ac637d6e01de5f1} 
+{\bfseries \+\_\+source\+\_\+tuple} (af, address, port)
+\item 
+\Hypertarget{namespacedns_1_1asyncquery_a06de35c4a2f2cc5e178d5d3ac9ebbc14}\label{namespacedns_1_1asyncquery_a06de35c4a2f2cc5e178d5d3ac9ebbc14} 
+{\bfseries \+\_\+timeout} (expiration, now=None)
+\item 
+Tuple\+[int, float]\+ \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a2fd13c26e1c1d14a350015ddde930b55}{send\+\_\+udp}} (dns.\+asyncbackend.\+Datagram\+Socket sock, \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}\texorpdfstring{$\vert$}{|}bytes what, Any destination, float\texorpdfstring{$\vert$}{|}None expiration=None)
+\item 
+Any \doxymbox{\hyperlink{namespacedns_1_1asyncquery_afedd00412c022157c9369b1a22d91682}{receive\+\_\+udp}} (dns.\+asyncbackend.\+Datagram\+Socket sock, Any\texorpdfstring{$\vert$}{|}None destination=None, float\texorpdfstring{$\vert$}{|}None expiration=None, bool ignore\+\_\+unexpected=False, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1tsig_1_1Key}{dns.\+tsig.\+Key}}]\+\texorpdfstring{$\vert$}{|}None keyring=None, bytes\texorpdfstring{$\vert$}{|}None request\+\_\+mac=b"{}"{}, bool ignore\+\_\+trailing=False, bool raise\+\_\+on\+\_\+truncation=False, bool ignore\+\_\+errors=False, \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}\texorpdfstring{$\vert$}{|}None query=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a287c622c2e8121a2a504aea2aebcd1a7}{udp}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=53, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool ignore\+\_\+unexpected=False, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, bool raise\+\_\+on\+\_\+truncation=False, dns.\+asyncbackend.\+Datagram\+Socket\texorpdfstring{$\vert$}{|}None sock=None, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None, bool ignore\+\_\+errors=False)
+\item 
+Tuple\+[\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}, bool]\+ \doxymbox{\hyperlink{namespacedns_1_1asyncquery_ad166c43c6b79c6e16b9e4fbb00eea227}{udp\+\_\+with\+\_\+fallback}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=53, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool ignore\+\_\+unexpected=False, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, dns.\+asyncbackend.\+Datagram\+Socket\texorpdfstring{$\vert$}{|}None udp\+\_\+sock=None, dns.\+asyncbackend.\+Stream\+Socket\texorpdfstring{$\vert$}{|}None tcp\+\_\+sock=None, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None, bool ignore\+\_\+errors=False)
+\item 
+Tuple\+[int, float]\+ \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a7acd5b8bacdbc120956faabdb48d2809}{send\+\_\+tcp}} (dns.\+asyncbackend.\+Stream\+Socket sock, \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}\texorpdfstring{$\vert$}{|}bytes what, float\texorpdfstring{$\vert$}{|}None expiration=None)
+\item 
+\doxymbox{\hyperlink{namespacedns_1_1asyncquery_adbcc2ea28023969a4bf8a7c448750769}{\+\_\+read\+\_\+exactly}} (sock, count, expiration)
+\item 
+Tuple\+[\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}, float]\+ \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a494c7a83d671b5ac653149c4fcb37d04}{receive\+\_\+tcp}} (dns.\+asyncbackend.\+Stream\+Socket sock, float\texorpdfstring{$\vert$}{|}None expiration=None, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1tsig_1_1Key}{dns.\+tsig.\+Key}}]\+\texorpdfstring{$\vert$}{|}None keyring=None, bytes\texorpdfstring{$\vert$}{|}None request\+\_\+mac=b"{}"{}, bool ignore\+\_\+trailing=False)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a2b3963f7f2f7c7dec1101efc66be2f6b}{tcp}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=53, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, dns.\+asyncbackend.\+Stream\+Socket\texorpdfstring{$\vert$}{|}None sock=None, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a8d0c6dba787fc0b8d90d2afab06916f9}{tls}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=853, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, dns.\+asyncbackend.\+Stream\+Socket\texorpdfstring{$\vert$}{|}None sock=None, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None, ssl.\+SSLContext\texorpdfstring{$\vert$}{|}None ssl\+\_\+context=None, str\texorpdfstring{$\vert$}{|}None server\+\_\+hostname=None, bool\texorpdfstring{$\vert$}{|}str verify=True)
+\item 
+\Hypertarget{namespacedns_1_1asyncquery_afc111f3ac71aa932d71789d06995b06f}\label{namespacedns_1_1asyncquery_afc111f3ac71aa932d71789d06995b06f} 
+"{}dns.\+asyncresolver.\+Resolver"{} {\bfseries \+\_\+maybe\+\_\+get\+\_\+resolver} (Optional\+["{}dns.\+asyncresolver.\+Resolver"{}]\+ resolver)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a79ce97dddec88f2606c2862f2dcef938}{https}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=443, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, Optional\+["{}httpx.\+Async\+Client\texorpdfstring{$\vert$}{|}dns.\+quic.\+Async\+Quic\+Connection"{}]\+ client=None, str path="{}/\+dns-\/query"{}, bool post=True, bool\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}ssl.\+SSLContext verify=True, str\texorpdfstring{$\vert$}{|}None bootstrap\+\_\+address=None, Optional\+["{}dns.\+asyncresolver.\+Resolver"{}]\+ resolver=None, int family=socket.\+AF\+\_\+\+UNSPEC, \doxymbox{\hyperlink{classdns_1_1query_1_1HTTPVersion}{HTTPVersion}} http\+\_\+version=HTTPVersion.\+DEFAULT)
+\item 
+\Hypertarget{namespacedns_1_1asyncquery_af04f80edd29575b4e67d272b700f1027}\label{namespacedns_1_1asyncquery_af04f80edd29575b4e67d272b700f1027} 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} {\bfseries \+\_\+http3} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, str url, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=443, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, bool\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}ssl.\+SSLContext verify=True, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None, bool post=True, \doxymbox{\hyperlink{classdns_1_1quic_1_1AsyncQuicConnection}{dns.\+quic.\+Async\+Quic\+Connection}}\texorpdfstring{$\vert$}{|}None connection=None)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \doxymbox{\hyperlink{namespacedns_1_1asyncquery_a3ea58b96d420ee02c18b1dcfdcc4986b}{quic}} (\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} q, str where, float\texorpdfstring{$\vert$}{|}None timeout=None, int port=853, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, bool one\+\_\+rr\+\_\+per\+\_\+rrset=False, bool ignore\+\_\+trailing=False, \doxymbox{\hyperlink{classdns_1_1quic_1_1AsyncQuicConnection}{dns.\+quic.\+Async\+Quic\+Connection}}\texorpdfstring{$\vert$}{|}None connection=None, bool\texorpdfstring{$\vert$}{|}str verify=True, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None, str\texorpdfstring{$\vert$}{|}None hostname=None, str\texorpdfstring{$\vert$}{|}None server\+\_\+hostname=None)
+\item 
+Any \doxymbox{\hyperlink{namespacedns_1_1asyncquery_add49cbc5c03e924113c32936dec1f8ed}{\+\_\+inbound\+\_\+xfr}} (\doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager}{dns.\+transaction.\+Transaction\+Manager}} txn\+\_\+manager, dns.\+asyncbackend.\+Socket s, \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} query, int\texorpdfstring{$\vert$}{|}None serial, float\texorpdfstring{$\vert$}{|}None timeout, float expiration)
+\item 
+None \doxymbox{\hyperlink{namespacedns_1_1asyncquery_afeab226f56f73a38222245fde289279f}{inbound\+\_\+xfr}} (str where, \doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager}{dns.\+transaction.\+Transaction\+Manager}} txn\+\_\+manager, \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}\texorpdfstring{$\vert$}{|}None query=None, int port=53, float\texorpdfstring{$\vert$}{|}None timeout=None, float\texorpdfstring{$\vert$}{|}None lifetime=None, str\texorpdfstring{$\vert$}{|}None source=None, int source\+\_\+port=0, \doxymbox{\hyperlink{classdns_1_1query_1_1UDPMode}{UDPMode}} udp\+\_\+mode=UDPMode.\+NEVER, dns.\+asyncbackend.\+Backend\texorpdfstring{$\vert$}{|}None backend=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedns_1_1asyncquery_a0e87c6a4c524bf2480d835d50ddfc83a}\label{namespacedns_1_1asyncquery_a0e87c6a4c524bf2480d835d50ddfc83a} 
+{\bfseries \+\_\+lltuple} = \doxymbox{\hyperlink{namespacedns_1_1inet_a05713a42a9ab9a70c97356810635cf75}{dns.\+inet.\+low\+\_\+level\+\_\+address\+\_\+tuple}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Talk to a DNS server.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1asyncquery_doc-func-members}
+\Hypertarget{namespacedns_1_1asyncquery_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1asyncquery_add49cbc5c03e924113c32936dec1f8ed}\index{dns.asyncquery@{dns.asyncquery}!\_inbound\_xfr@{\_inbound\_xfr}}
+\index{\_inbound\_xfr@{\_inbound\_xfr}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{\_inbound\_xfr()}{\_inbound\_xfr()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_add49cbc5c03e924113c32936dec1f8ed} 
+ Any \+\_\+inbound\+\_\+xfr (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager}{dns.\+transaction.\+Transaction\+Manager}}}]{txn\+\_\+manager}{, }\item[{dns.\+asyncbackend.\+Socket}]{s}{, }\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{query}{, }\item[{int \texorpdfstring{$\vert$}{|} None}]{serial}{, }\item[{float \texorpdfstring{$\vert$}{|} None}]{timeout}{, }\item[{float}]{expiration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Given a socket, does the zone transfer.\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_adbcc2ea28023969a4bf8a7c448750769}\index{dns.asyncquery@{dns.asyncquery}!\_read\_exactly@{\_read\_exactly}}
+\index{\_read\_exactly@{\_read\_exactly}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{\_read\_exactly()}{\_read\_exactly()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_adbcc2ea28023969a4bf8a7c448750769} 
+\+\_\+read\+\_\+exactly (\begin{DoxyParamCaption}\item[{}]{sock}{, }\item[{}]{count}{, }\item[{}]{expiration}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Read the specified number of bytes from stream.  Keep trying until we
+either get the desired amount, or we hit EOF.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a79ce97dddec88f2606c2862f2dcef938}\index{dns.asyncquery@{dns.asyncquery}!https@{https}}
+\index{https@{https}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{https()}{https()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a79ce97dddec88f2606c2862f2dcef938} 
+ \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} https (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 443}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{Optional\+["{}httpx.\+Async\+Client\texorpdfstring{$\vert$}{|}dns.\+quic.\+Async\+Quic\+Connection"{}]\+ }]{client}{ = {\ttfamily None}, }\item[{str }]{path}{ = {\ttfamily "{}/\+dns-\/query"{}}, }\item[{bool }]{post}{ = {\ttfamily True}, }\item[{bool \texorpdfstring{$\vert$}{|} str \texorpdfstring{$\vert$}{|} ssl.\+SSLContext }]{verify}{ = {\ttfamily True}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{bootstrap\+\_\+address}{ = {\ttfamily None}, }\item[{Optional\+["{}dns.\+asyncresolver.\+Resolver"{}]\+ }]{resolver}{ = {\ttfamily None}, }\item[{int }]{family}{ = {\ttfamily socket.AF\+\_\+UNSPEC}, }\item[{\doxymbox{\hyperlink{classdns_1_1query_1_1HTTPVersion}{HTTPVersion}} }]{http\+\_\+version}{ = {\ttfamily HTTPVersion.DEFAULT}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response obtained after sending a query via DNS-over-HTTPS.
+
+*client*, a ``httpx.AsyncClient``.  If provided, the client to use for
+the query.
+
+Unlike the other dnspython async functions, a backend cannot be provided
+in this function because httpx always auto-detects the async backend.
+
+See :py:func:`dns.query.https()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_afeab226f56f73a38222245fde289279f}\index{dns.asyncquery@{dns.asyncquery}!inbound\_xfr@{inbound\_xfr}}
+\index{inbound\_xfr@{inbound\_xfr}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{inbound\_xfr()}{inbound\_xfr()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_afeab226f56f73a38222245fde289279f} 
+ None inbound\+\_\+xfr (\begin{DoxyParamCaption}\item[{str}]{where}{, }\item[{\doxymbox{\hyperlink{classdns_1_1transaction_1_1TransactionManager}{dns.\+transaction.\+Transaction\+Manager}}}]{txn\+\_\+manager}{, }\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \texorpdfstring{$\vert$}{|} None }]{query}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 53}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{lifetime}{ = {\ttfamily None}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{\doxymbox{\hyperlink{classdns_1_1query_1_1UDPMode}{UDPMode}} }]{udp\+\_\+mode}{ = {\ttfamily UDPMode.NEVER}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Conduct an inbound transfer and apply it via a transaction from the
+txn_manager.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.inbound_xfr()` for the documentation of
+the other parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a3ea58b96d420ee02c18b1dcfdcc4986b}\index{dns.asyncquery@{dns.asyncquery}!quic@{quic}}
+\index{quic@{quic}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{quic()}{quic()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a3ea58b96d420ee02c18b1dcfdcc4986b} 
+ \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} quic (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 853}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{\doxymbox{\hyperlink{classdns_1_1quic_1_1AsyncQuicConnection}{dns.\+quic.\+Async\+Quic\+Connection}} \texorpdfstring{$\vert$}{|} None }]{connection}{ = {\ttfamily None}, }\item[{bool \texorpdfstring{$\vert$}{|} str }]{verify}{ = {\ttfamily True}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{hostname}{ = {\ttfamily None}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{server\+\_\+hostname}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response obtained after sending an asynchronous query via
+DNS-over-QUIC.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.quic()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a494c7a83d671b5ac653149c4fcb37d04}\index{dns.asyncquery@{dns.asyncquery}!receive\_tcp@{receive\_tcp}}
+\index{receive\_tcp@{receive\_tcp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{receive\_tcp()}{receive\_tcp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a494c7a83d671b5ac653149c4fcb37d04} 
+ Tuple\+[\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}, float]\+ receive\+\_\+tcp (\begin{DoxyParamCaption}\item[{dns.\+asyncbackend.\+Stream\+Socket}]{sock}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1tsig_1_1Key}{dns.\+tsig.\+Key}}]\+ \texorpdfstring{$\vert$}{|} None }]{keyring}{ = {\ttfamily None}, }\item[{bytes \texorpdfstring{$\vert$}{|} None }]{request\+\_\+mac}{ = {\ttfamily b"{}"{}}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a DNS message from a TCP socket.
+
+*sock*, a ``dns.asyncbackend.StreamSocket``.
+
+See :py:func:`dns.query.receive_tcp()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_afedd00412c022157c9369b1a22d91682}\index{dns.asyncquery@{dns.asyncquery}!receive\_udp@{receive\_udp}}
+\index{receive\_udp@{receive\_udp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{receive\_udp()}{receive\_udp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_afedd00412c022157c9369b1a22d91682} 
+ Any receive\+\_\+udp (\begin{DoxyParamCaption}\item[{dns.\+asyncbackend.\+Datagram\+Socket}]{sock}{, }\item[{Any \texorpdfstring{$\vert$}{|} None }]{destination}{ = {\ttfamily None}, }\item[{float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}, }\item[{bool }]{ignore\+\_\+unexpected}{ = {\ttfamily False}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, \doxymbox{\hyperlink{classdns_1_1tsig_1_1Key}{dns.\+tsig.\+Key}}]\+ \texorpdfstring{$\vert$}{|} None }]{keyring}{ = {\ttfamily None}, }\item[{bytes \texorpdfstring{$\vert$}{|} None }]{request\+\_\+mac}{ = {\ttfamily b"{}"{}}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{bool }]{raise\+\_\+on\+\_\+truncation}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+errors}{ = {\ttfamily False}, }\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \texorpdfstring{$\vert$}{|} None }]{query}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a DNS message from a UDP socket.
+
+*sock*, a ``dns.asyncbackend.DatagramSocket``.
+
+See :py:func:`dns.query.receive_udp()` for the documentation of the other
+parameters, and exceptions.
+
+Returns a ``(dns.message.Message, float, tuple)`` tuple of the received message, the
+received time, and the address where the message arrived from.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a7acd5b8bacdbc120956faabdb48d2809}\index{dns.asyncquery@{dns.asyncquery}!send\_tcp@{send\_tcp}}
+\index{send\_tcp@{send\_tcp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{send\_tcp()}{send\_tcp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a7acd5b8bacdbc120956faabdb48d2809} 
+ Tuple\+[int, float]\+ send\+\_\+tcp (\begin{DoxyParamCaption}\item[{dns.\+asyncbackend.\+Stream\+Socket}]{sock}{, }\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \texorpdfstring{$\vert$}{|} bytes}]{what}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a DNS message to the specified TCP socket.
+
+*sock*, a ``dns.asyncbackend.StreamSocket``.
+
+See :py:func:`dns.query.send_tcp()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a2fd13c26e1c1d14a350015ddde930b55}\index{dns.asyncquery@{dns.asyncquery}!send\_udp@{send\_udp}}
+\index{send\_udp@{send\_udp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{send\_udp()}{send\_udp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a2fd13c26e1c1d14a350015ddde930b55} 
+ Tuple\+[int, float]\+ send\+\_\+udp (\begin{DoxyParamCaption}\item[{dns.\+asyncbackend.\+Datagram\+Socket}]{sock}{, }\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} \texorpdfstring{$\vert$}{|} bytes}]{what}{, }\item[{Any}]{destination}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a DNS message to the specified UDP socket.
+
+*sock*, a ``dns.asyncbackend.DatagramSocket``.
+
+*what*, a ``bytes`` or ``dns.message.Message``, the message to send.
+
+*destination*, a destination tuple appropriate for the address family
+of the socket, specifying where to send the query.
+
+*expiration*, a ``float`` or ``None``, the absolute time at which
+a timeout exception should be raised.  If ``None``, no timeout will
+occur.  The expiration value is meaningless for the asyncio backend, as
+asyncio's transport sendto() never blocks.
+
+Returns an ``(int, float)`` tuple of bytes sent and the sent time.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a2b3963f7f2f7c7dec1101efc66be2f6b}\index{dns.asyncquery@{dns.asyncquery}!tcp@{tcp}}
+\index{tcp@{tcp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{tcp()}{tcp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a2b3963f7f2f7c7dec1101efc66be2f6b} 
+ \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} tcp (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 53}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{dns.\+asyncbackend.\+Stream\+Socket \texorpdfstring{$\vert$}{|} None }]{sock}{ = {\ttfamily None}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response obtained after sending a query via TCP.
+
+*sock*, a ``dns.asyncbacket.StreamSocket``, or ``None``, the
+socket to use for the query.  If ``None``, the default, a socket
+is created.  Note that if a socket is provided
+*where*, *port*, *source*, *source_port*, and *backend* are ignored.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.tcp()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a8d0c6dba787fc0b8d90d2afab06916f9}\index{dns.asyncquery@{dns.asyncquery}!tls@{tls}}
+\index{tls@{tls}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{tls()}{tls()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a8d0c6dba787fc0b8d90d2afab06916f9} 
+ \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} tls (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 853}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{dns.\+asyncbackend.\+Stream\+Socket \texorpdfstring{$\vert$}{|} None }]{sock}{ = {\ttfamily None}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}, }\item[{ssl.\+SSLContext \texorpdfstring{$\vert$}{|} None }]{ssl\+\_\+context}{ = {\ttfamily None}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{server\+\_\+hostname}{ = {\ttfamily None}, }\item[{bool \texorpdfstring{$\vert$}{|} str }]{verify}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response obtained after sending a query via TLS.
+
+*sock*, an ``asyncbackend.StreamSocket``, or ``None``, the socket
+to use for the query.  If ``None``, the default, a socket is
+created.  Note that if a socket is provided, it must be a
+connected SSL stream socket, and *where*, *port*,
+*source*, *source_port*, *backend*, *ssl_context*, and *server_hostname*
+are ignored.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.tls()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_a287c622c2e8121a2a504aea2aebcd1a7}\index{dns.asyncquery@{dns.asyncquery}!udp@{udp}}
+\index{udp@{udp}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{udp()}{udp()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_a287c622c2e8121a2a504aea2aebcd1a7} 
+ \doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}} udp (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 53}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{ignore\+\_\+unexpected}{ = {\ttfamily False}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{bool }]{raise\+\_\+on\+\_\+truncation}{ = {\ttfamily False}, }\item[{dns.\+asyncbackend.\+Datagram\+Socket \texorpdfstring{$\vert$}{|} None }]{sock}{ = {\ttfamily None}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}, }\item[{bool }]{ignore\+\_\+errors}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response obtained after sending a query via UDP.
+
+*sock*, a ``dns.asyncbackend.DatagramSocket``, or ``None``,
+the socket to use for the query.  If ``None``, the default, a
+socket is created.  Note that if a socket is provided, the
+*source*, *source_port*, and *backend* are ignored.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.udp()` for the documentation of the other
+parameters, exceptions, and return type of this method.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1asyncquery_ad166c43c6b79c6e16b9e4fbb00eea227}\index{dns.asyncquery@{dns.asyncquery}!udp\_with\_fallback@{udp\_with\_fallback}}
+\index{udp\_with\_fallback@{udp\_with\_fallback}!dns.asyncquery@{dns.asyncquery}}
+\doxysubsubsection{\texorpdfstring{udp\_with\_fallback()}{udp\_with\_fallback()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1asyncquery_ad166c43c6b79c6e16b9e4fbb00eea227} 
+ Tuple\+[\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}, bool]\+ udp\+\_\+with\+\_\+fallback (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1message_1_1Message}{dns.\+message.\+Message}}}]{q}{, }\item[{str}]{where}{, }\item[{float \texorpdfstring{$\vert$}{|} None }]{timeout}{ = {\ttfamily None}, }\item[{int }]{port}{ = {\ttfamily 53}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{source}{ = {\ttfamily None}, }\item[{int }]{source\+\_\+port}{ = {\ttfamily 0}, }\item[{bool }]{ignore\+\_\+unexpected}{ = {\ttfamily False}, }\item[{bool }]{one\+\_\+rr\+\_\+per\+\_\+rrset}{ = {\ttfamily False}, }\item[{bool }]{ignore\+\_\+trailing}{ = {\ttfamily False}, }\item[{dns.\+asyncbackend.\+Datagram\+Socket \texorpdfstring{$\vert$}{|} None }]{udp\+\_\+sock}{ = {\ttfamily None}, }\item[{dns.\+asyncbackend.\+Stream\+Socket \texorpdfstring{$\vert$}{|} None }]{tcp\+\_\+sock}{ = {\ttfamily None}, }\item[{dns.\+asyncbackend.\+Backend \texorpdfstring{$\vert$}{|} None }]{backend}{ = {\ttfamily None}, }\item[{bool }]{ignore\+\_\+errors}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the response to the query, trying UDP first and falling back
+to TCP if UDP results in a truncated response.
+
+*udp_sock*, a ``dns.asyncbackend.DatagramSocket``, or ``None``,
+the socket to use for the UDP query.  If ``None``, the default, a
+socket is created.  Note that if a socket is provided the *source*,
+*source_port*, and *backend* are ignored for the UDP query.
+
+*tcp_sock*, a ``dns.asyncbackend.StreamSocket``, or ``None``, the
+socket to use for the TCP query.  If ``None``, the default, a
+socket is created.  Note that if a socket is provided *where*,
+*source*, *source_port*, and *backend*  are ignored for the TCP query.
+
+*backend*, a ``dns.asyncbackend.Backend``, or ``None``.  If ``None``,
+the default, then dnspython will use the default backend.
+
+See :py:func:`dns.query.udp_with_fallback()` for the documentation
+of the other parameters, exceptions, and return type of this
+method.
+\end{DoxyVerb}
+ 

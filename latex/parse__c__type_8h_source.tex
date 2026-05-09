@@ -1,0 +1,187 @@
+\doxysection{parse\+\_\+c\+\_\+type.\+h}
+\hypertarget{parse__c__type_8h_source}{}\label{parse__c__type_8h_source}\index{venv/lib/python3.12/site-\/packages/cffi/parse\_c\_type.h@{venv/lib/python3.12/site-\/packages/cffi/parse\_c\_type.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{/*\ This\ part\ is\ from\ file\ 'cffi/parse\_c\_type.h'.\ \ It\ is\ copied\ at\ the}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ beginning\ of\ C\ sources\ generated\ by\ CFFI's\ ffi.set\_source().\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *\_cffi\_opcode\_t;}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP(opcode,\ arg)\ \ \ (\_cffi\_opcode\_t)(opcode\ |\ (((uintptr\_t)(arg))\ <<\ 8))}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_CFFI\_GETOP(cffi\_opcode)\ \ \ \ ((unsigned\ char)(uintptr\_t)cffi\_opcode)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ \_CFFI\_GETARG(cffi\_opcode)\ \ \ (((intptr\_t)cffi\_opcode)\ >>\ 8)}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_PRIMITIVE\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_POINTER\ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_ARRAY\ \ \ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_OPEN\_ARRAY\ \ \ \ \ \ 7}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_STRUCT\_UNION\ \ \ \ 9}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_ENUM\ \ \ \ \ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_FUNCTION\ \ \ \ \ \ \ 13}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_FUNCTION\_END\ \ \ 15}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_NOOP\ \ \ \ \ \ \ \ \ \ \ 17}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_BITFIELD\ \ \ \ \ \ \ 19}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_TYPENAME\ \ \ \ \ \ \ 21}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_CPYTHON\_BLTN\_V\ 23\ \ \ }\textcolor{comment}{//\ varargs}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_CPYTHON\_BLTN\_N\ 25\ \ \ }\textcolor{comment}{//\ noargs}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_CPYTHON\_BLTN\_O\ 27\ \ \ }\textcolor{comment}{//\ O\ \ (i.e.\ a\ single\ arg)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_CONSTANT\ \ \ \ \ \ \ 29}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_CONSTANT\_INT\ \ \ 31}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_GLOBAL\_VAR\ \ \ \ \ 33}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_DLOPEN\_FUNC\ \ \ \ 35}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_DLOPEN\_CONST\ \ \ 37}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_GLOBAL\_VAR\_F\ \ \ 39}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ \_CFFI\_OP\_EXTERN\_PYTHON\ \ 41}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_VOID\ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_BOOL\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_CHAR\ \ \ \ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_SCHAR\ \ \ \ \ \ \ \ \ 3}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UCHAR\ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_SHORT\ \ \ \ \ \ \ \ \ 5}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_USHORT\ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\ \ \ \ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_LONG\ \ \ \ \ \ \ \ \ \ 9}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_ULONG\ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_LONGLONG\ \ \ \ \ 11}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_ULONGLONG\ \ \ \ 12}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_FLOAT\ \ \ \ \ \ \ \ 13}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_DOUBLE\ \ \ \ \ \ \ 14}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_LONGDOUBLE\ \ \ 15}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_WCHAR\ \ \ \ \ \ \ \ 16}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT8\ \ \ \ \ \ \ \ \ 17}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT8\ \ \ \ \ \ \ \ 18}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT16\ \ \ \ \ \ \ \ 19}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT16\ \ \ \ \ \ \ 20}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT32\ \ \ \ \ \ \ \ 21}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT32\ \ \ \ \ \ \ 22}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT64\ \ \ \ \ \ \ \ 23}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT64\ \ \ \ \ \ \ 24}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INTPTR\ \ \ \ \ \ \ 25}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINTPTR\ \ \ \ \ \ 26}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_PTRDIFF\ \ \ \ \ \ 27}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_SIZE\ \ \ \ \ \ \ \ \ 28}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_SSIZE\ \ \ \ \ \ \ \ 29}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_LEAST8\ \ \ 30}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_LEAST8\ \ 31}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_LEAST16\ \ 32}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_LEAST16\ 33}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_LEAST32\ \ 34}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_LEAST32\ 35}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_LEAST64\ \ 36}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_LEAST64\ 37}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_FAST8\ \ \ \ 38}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_FAST8\ \ \ 39}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_FAST16\ \ \ 40}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_FAST16\ \ 41}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_FAST32\ \ \ 42}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_FAST32\ \ 43}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INT\_FAST64\ \ \ 44}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINT\_FAST64\ \ 45}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_INTMAX\ \ \ \ \ \ \ 46}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_UINTMAX\ \ \ \ \ \ 47}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_FLOATCOMPLEX\ 48}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_DOUBLECOMPLEX\ 49}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_CHAR16\ \ \ \ \ \ \ 50}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ \_CFFI\_PRIM\_CHAR32\ \ \ \ \ \ \ 51}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ \_CFFI\_\_NUM\_PRIM\ \ \ \ \ \ \ \ \ 52}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ \_CFFI\_\_UNKNOWN\_PRIM\ \ \ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ \_CFFI\_\_UNKNOWN\_FLOAT\_PRIM\ \ \ \ \ (-\/2)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ \_CFFI\_\_UNKNOWN\_LONG\_DOUBLE\ \ \ \ (-\/3)}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ \_CFFI\_\_IO\_FILE\_STRUCT\ \ \ \ \ \ \ \ \ (-\/1)}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__global__s}{\_cffi\_global\_s}}\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ *address;}
+\DoxyCodeLine{00098\ \ \ \ \ \_cffi\_opcode\_t\ type\_op;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ *size\_or\_direct\_fn;\ \ \textcolor{comment}{//\ OP\_GLOBAL\_VAR:\ size,\ or\ 0\ if\ unknown}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OP\_CPYTHON\_BLTN\_*:\ addr\ of\ direct\ function}}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__getconst__s}{\_cffi\_getconst\_s}}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ value;}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ *ctx;}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{int}\ gindex;}
+\DoxyCodeLine{00107\ \};}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__struct__union__s}{\_cffi\_struct\_union\_s}}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{int}\ type\_index;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/>\ \_cffi\_types,\ on\ a\ OP\_STRUCT\_UNION}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ flags;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \_CFFI\_F\_*\ flags\ below}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ alignment;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{int}\ first\_field\_index;\ \ \ \textcolor{comment}{//\ -\/>\ \_cffi\_fields\ array}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_fields;}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ \_CFFI\_F\_UNION\ \ \ \ \ \ \ \ \ 0x01\ \ \ }\textcolor{comment}{//\ is\ a\ union,\ not\ a\ struct}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ \_CFFI\_F\_CHECK\_FIELDS\ \ 0x02\ \ \ }\textcolor{comment}{//\ complain\ if\ fields\ are\ not\ in\ the}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}standard\ layout"{}\ or\ if\ some\ are\ missing}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ \_CFFI\_F\_PACKED\ \ \ \ \ \ \ \ 0x04\ \ \ }\textcolor{comment}{//\ for\ CHECK\_FIELDS,\ assume\ a\ packed\ struct}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ \_CFFI\_F\_EXTERNAL\ \ \ \ \ \ 0x08\ \ \ }\textcolor{comment}{//\ in\ some\ other\ ffi.include()}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ \_CFFI\_F\_OPAQUE\ \ \ \ \ \ \ \ 0x10\ \ \ }\textcolor{comment}{//\ opaque}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__field__s}{\_cffi\_field\_s}}\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ field\_offset;}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ field\_size;}
+\DoxyCodeLine{00129\ \ \ \ \ \_cffi\_opcode\_t\ field\_type\_op;}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__enum__s}{\_cffi\_enum\_s}}\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ type\_index;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/>\ \_cffi\_types,\ on\ a\ OP\_ENUM}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{int}\ type\_prim;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \_CFFI\_PRIM\_xxx}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *enumerators;\ \textcolor{comment}{//\ comma-\/delimited\ string}}
+\DoxyCodeLine{00137\ \};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__typename__s}{\_cffi\_typename\_s}}\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ type\_index;\ \ \ \textcolor{comment}{/*\ if\ opaque,\ points\ to\ a\ possibly\ artificial}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OP\_STRUCT\ which\ is\ itself\ opaque\ */}}
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \_cffi\_opcode\_t\ *types;}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__global__s}{\_cffi\_global\_s}}\ *globals;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__field__s}{\_cffi\_field\_s}}\ *fields;}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__struct__union__s}{\_cffi\_struct\_union\_s}}\ *struct\_unions;}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__enum__s}{\_cffi\_enum\_s}}\ *enums;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__typename__s}{\_cffi\_typename\_s}}\ *typenames;}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_globals;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_struct\_unions;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_enums;}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_typenames;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\textcolor{keyword}{const}\ *includes;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ num\_types;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ flags;\ \ \ \ \ \ \textcolor{comment}{/*\ future\ extension\ */}}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__parse__info__s}{\_cffi\_parse\_info\_s}}\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ *ctx;}
+\DoxyCodeLine{00163\ \ \ \ \ \_cffi\_opcode\_t\ *output;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ output\_size;}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ error\_location;}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *error\_message;}
+\DoxyCodeLine{00167\ \};}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__externpy__s}{\_cffi\_externpy\_s}}\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\_of\_result;}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ *reserved1,\ *reserved2;}
+\DoxyCodeLine{00173\ \};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#ifdef\ \_CFFI\_INTERNAL}}
+\DoxyCodeLine{00176\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ parse\_c\_type(\textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__parse__info__s}{\_cffi\_parse\_info\_s}}\ *info,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *input);}
+\DoxyCodeLine{00177\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ search\_in\_globals(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ *ctx,}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *search,\ \textcolor{keywordtype}{size\_t}\ search\_len);}
+\DoxyCodeLine{00179\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ search\_in\_struct\_unions(\textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ *ctx,}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *search,\ \textcolor{keywordtype}{size\_t}\ search\_len);}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,88 @@
+\doxysection{sqlalchemy.\+ext.\+instrumentation Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation}{}\label{namespacesqlalchemy_1_1ext_1_1instrumentation}\index{sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1instrumentation_1_1ExtendedInstrumentationRegistry}{Extended\+Instrumentation\+Registry}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1instrumentation_1_1InstrumentationManager}{Instrumentation\+Manager}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1instrumentation_1_1__ClassInstrumentationAdapter}{\+\_\+\+Class\+Instrumentation\+Adapter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1instrumentation_a280303540b0aa1819fde54c5d50b05ce}{find\+\_\+native\+\_\+user\+\_\+instrumentation\+\_\+hook}} (cls)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1instrumentation_a895f3fe1bae9ab9daf48f0a6f280fe20}{\+\_\+install\+\_\+instrumented\+\_\+lookups}} ()
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1instrumentation_ac608abcf603b1c62e4622680fbbdf76d}{\+\_\+reinstall\+\_\+default\+\_\+lookups}} ()
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_a3afef4a409298079468460e51e9da27a}\label{namespacesqlalchemy_1_1ext_1_1instrumentation_a3afef4a409298079468460e51e9da27a} 
+{\bfseries \+\_\+install\+\_\+lookups} (lookups)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_a4c608717003193d77b939fed3bea9035}\label{namespacesqlalchemy_1_1ext_1_1instrumentation_a4c608717003193d77b939fed3bea9035} 
+str {\bfseries INSTRUMENTATION\+\_\+\+MANAGER} = "{}\+\_\+\+\_\+sa\+\_\+instrumentation\+\_\+manager\+\_\+\+\_\+"{}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_a6e7bd1fcaae2c004cd63358efefa696f}\label{namespacesqlalchemy_1_1ext_1_1instrumentation_a6e7bd1fcaae2c004cd63358efefa696f} 
+list {\bfseries instrumentation\+\_\+finders} = \+[\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1instrumentation_a280303540b0aa1819fde54c5d50b05ce}{find\+\_\+native\+\_\+user\+\_\+instrumentation\+\_\+hook}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Extensible class instrumentation.
+
+The :mod:`sqlalchemy.ext.instrumentation` package provides for alternate
+systems of class instrumentation within the ORM.  Class instrumentation
+refers to how the ORM places attributes on the class which maintain
+data and track changes to that data, as well as event hooks installed
+on the class.
+
+.. note::
+    The extension package is provided for the benefit of integration
+    with other object management packages, which already perform
+    their own instrumentation.  It is not intended for general use.
+
+For examples of how the instrumentation extension is used,
+see the example :ref:`examples_instrumentation`.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1ext_1_1instrumentation_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_a895f3fe1bae9ab9daf48f0a6f280fe20}\index{sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}!\_install\_instrumented\_lookups@{\_install\_instrumented\_lookups}}
+\index{\_install\_instrumented\_lookups@{\_install\_instrumented\_lookups}!sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}}
+\doxysubsubsection{\texorpdfstring{\_install\_instrumented\_lookups()}{\_install\_instrumented\_lookups()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1instrumentation_a895f3fe1bae9ab9daf48f0a6f280fe20} 
+\+\_\+install\+\_\+instrumented\+\_\+lookups (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Replace global class/object management functions
+with ExtendedInstrumentationRegistry implementations, which
+allow multiple types of class managers to be present,
+at the cost of performance.
+
+This function is called only by ExtendedInstrumentationRegistry
+and unit tests specific to this behavior.
+
+The _reinstall_default_lookups() function can be called
+after this one to re-establish the default functions.
+\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_ac608abcf603b1c62e4622680fbbdf76d}\index{sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}!\_reinstall\_default\_lookups@{\_reinstall\_default\_lookups}}
+\index{\_reinstall\_default\_lookups@{\_reinstall\_default\_lookups}!sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}}
+\doxysubsubsection{\texorpdfstring{\_reinstall\_default\_lookups()}{\_reinstall\_default\_lookups()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1instrumentation_ac608abcf603b1c62e4622680fbbdf76d} 
+\+\_\+reinstall\+\_\+default\+\_\+lookups (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Restore simplified lookups.\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1instrumentation_a280303540b0aa1819fde54c5d50b05ce}\index{sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}!find\_native\_user\_instrumentation\_hook@{find\_native\_user\_instrumentation\_hook}}
+\index{find\_native\_user\_instrumentation\_hook@{find\_native\_user\_instrumentation\_hook}!sqlalchemy.ext.instrumentation@{sqlalchemy.ext.instrumentation}}
+\doxysubsubsection{\texorpdfstring{find\_native\_user\_instrumentation\_hook()}{find\_native\_user\_instrumentation\_hook()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1instrumentation_a280303540b0aa1819fde54c5d50b05ce} 
+find\+\_\+native\+\_\+user\+\_\+instrumentation\+\_\+hook (\begin{DoxyParamCaption}\item[{}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find user-specified instrumentation management for a class.\end{DoxyVerb}
+ 

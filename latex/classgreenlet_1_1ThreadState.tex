@@ -1,0 +1,120 @@
+\doxysection{greenlet::\+Thread\+State Class Reference}
+\hypertarget{classgreenlet_1_1ThreadState}{}\label{classgreenlet_1_1ThreadState}\index{greenlet::ThreadState@{greenlet::ThreadState}}
+
+
+{\ttfamily \+\#include $<$greenlet\+\_\+thread\+\_\+state.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a7418790fa08b5347d41f501d22c509b0}\label{classgreenlet_1_1ThreadState_a7418790fa08b5347d41f501d22c509b0} 
+void {\bfseries restore\+\_\+exception\+\_\+state} ()
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a0139821745ba161ccc4e227867cf6072}\label{classgreenlet_1_1ThreadState_a0139821745ba161ccc4e227867cf6072} 
+bool {\bfseries has\+\_\+main\+\_\+greenlet} ()
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a8654aeb5f79c865094571cb5590d3833}\label{classgreenlet_1_1ThreadState_a8654aeb5f79c865094571cb5590d3833} 
+int {\bfseries tp\+\_\+traverse} (visitproc visit, void \texorpdfstring{$\ast$}{*}arg, bool traverse\+\_\+main=true)
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a3f28e093fbb7a00997074b053bc49c61}\label{classgreenlet_1_1ThreadState_a3f28e093fbb7a00997074b053bc49c61} 
+\doxymbox{\hyperlink{classBorrowedMainGreenlet}{Borrowed\+Main\+Greenlet}} {\bfseries borrow\+\_\+main\+\_\+greenlet} () const
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_adb579ea1b12c2bd763ea695e1a66c040}\label{classgreenlet_1_1ThreadState_adb579ea1b12c2bd763ea695e1a66c040} 
+Owned\+Main\+Greenlet {\bfseries get\+\_\+main\+\_\+greenlet} ()
+\item 
+Owned\+Greenlet \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_a23bff70b4f83cb25391bb184d71d100e}{get\+\_\+current}} ()
+\item 
+Borrowed\+Greenlet \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_ada49d9fc0df3c10376c65672390a2902}{borrow\+\_\+current}} ()
+\item 
+Owned\+Greenlet \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_a83eabab8d1e50dad7df68ff473c8e798}{get\+\_\+current}} () const
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_af6a3e1dfb92c4ab6be83622aa04a1e61}\label{classgreenlet_1_1ThreadState_af6a3e1dfb92c4ab6be83622aa04a1e61} 
+{\footnotesize template$<$typename T, refs::\+\+Type\+Checker TC$>$ }\\bool {\bfseries is\+\_\+current} (const \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{refs::\+\+Py\+Object\+Pointer}}$<$ T, TC $>$ \&obj) const
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_abde501c09d0a703fdfcf9a24e776d853}\label{classgreenlet_1_1ThreadState_abde501c09d0a703fdfcf9a24e776d853} 
+void {\bfseries set\+\_\+current} (const Owned\+Greenlet \&target)
+\item 
+Owned\+Object \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_a19816a8f1ab1a8cc017784bd004a8110}{get\+\_\+tracefunc}} () const
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_ab2d1431cda3e0022b9bb5f89f0338c88}\label{classgreenlet_1_1ThreadState_ab2d1431cda3e0022b9bb5f89f0338c88} 
+void {\bfseries set\+\_\+tracefunc} (Borrowed\+Object tracefunc)
+\item 
+void \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_ace74a065299ce3ad65a6363e7b6c9551}{delete\+\_\+when\+\_\+thread\+\_\+running}} (Py\+Greenlet \texorpdfstring{$\ast$}{*}to\+\_\+del)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_aed5549523642f1a489e0e9ec2a604937}\label{classgreenlet_1_1ThreadState_aed5549523642f1a489e0e9ec2a604937} 
+static void \texorpdfstring{$\ast$}{*} {\bfseries operator new} (size\+\_\+t UNUSED(count))
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a07e74558a3c81a95331c6da942b3126e}\label{classgreenlet_1_1ThreadState_a07e74558a3c81a95331c6da942b3126e} 
+static void {\bfseries operator delete} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+\Hypertarget{classgreenlet_1_1ThreadState_a51970c5bf4d5961c0a45de0ba08a10c8}\label{classgreenlet_1_1ThreadState_a51970c5bf4d5961c0a45de0ba08a10c8} 
+static void {\bfseries init} ()
+\item 
+static std::\+clock\+\_\+t \& \doxymbox{\hyperlink{classgreenlet_1_1ThreadState_ac8317cdb3a3cd3f7a895d8a65466022f}{clocks\+\_\+used\+\_\+doing\+\_\+gc}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Thread-\/local state of greenlets.
+
+Each native thread will get exactly one of these objects, automatically accessed through the best available thread-\/local mechanism the compiler supports ({\ttfamily thread\+\_\+local} for C++11 compilers or {\ttfamily \+\_\+\+\_\+thread}/\+{\ttfamily declspec(thread)} for older GCC/\+clang or MSVC, respectively.)
+
+Previously, we kept thread-\/local state mostly in a bunch of {\ttfamily static volatile} variables in the main greenlet file.. This had the problem of requiring extra checks, loops, and great care accessing these variables if we potentially invoked any Python code that could release the GIL, because the state could change out from under us. Making the variables thread-\/local solves this problem.
+
+When we detected that a greenlet API accessing the current greenlet was invoked from a different thread than the greenlet belonged to, we stored a reference to the greenlet in the Python thread dictionary for the thread the greenlet belonged to. This could lead to memory leaks if the thread then exited (because of a reference cycle, as greenlets referred to the thread dictionary, and deleting non-\/current greenlets leaked their frame plus perhaps arguments on the C stack). If a thread exited while still having running greenlet objects (perhaps that had just switched back to the main greenlet), and did not invoke one of the greenlet APIs {\itshape in that thread, immediately before it exited, without some other thread then being invoked}, such a leak was guaranteed.
+
+This can be partly solved by using compiler thread-\/local variables instead of the Python thread dictionary, thus avoiding a cycle.
+
+To fully solve this problem, we need a reliable way to know that a thread is done and we should clean up the main greenlet. On POSIX, we can use the destructor function of {\ttfamily pthread\+\_\+key\+\_\+create}, but there\textquotesingle{}s nothing similar on Windows; a C++11 thread local object reliably invokes its destructor when the thread it belongs to exits (non-\/\+C++11 compilers offer {\ttfamily \+\_\+\+\_\+thread} or {\ttfamily declspec(thread)} to create thread-\/local variables, but they can\textquotesingle{}t hold C++ objects that invoke destructors; the C++11 version is the most portable solution I found). When the thread exits, we can drop references and otherwise manipulate greenlets and frames that we know can no longer be switched to. For compilers that don\textquotesingle{}t support C++11 thread locals, we have a solution that uses the python thread dictionary, though it may not collect everything as promptly as other compilers do, if some other library is using the thread dictionary and has a cycle or extra reference.
+
+There are two small wrinkles. The first is that when the thread exits, it is too late to actually invoke Python APIs:\+ the Python thread state is gone, and the GIL is released. To solve {\itshape this} problem, our destructor uses {\ttfamily Py\+\_\+\+Add\+Pending\+Call} to transfer the destruction work to the main thread. (This is not an issue for the dictionary solution.)
+
+The second is that once the thread exits, the thread local object is invalid and we can\textquotesingle{}t even access a pointer to it, so we can\textquotesingle{}t pass it to {\ttfamily Py\+\_\+\+Add\+Pending\+Call}. This is handled by actually using a second object that\textquotesingle{}s thread local (\doxylink{classgreenlet_1_1ThreadStateCreator}{Thread\+State\+Creator}) and having it dynamically allocate this object so it can live until the pending call runs. 
+
+\label{classgreenlet_1_1ThreadState_doc-func-members}
+\Hypertarget{classgreenlet_1_1ThreadState_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgreenlet_1_1ThreadState_ada49d9fc0df3c10376c65672390a2902}\index{greenlet::ThreadState@{greenlet::ThreadState}!borrow\_current@{borrow\_current}}
+\index{borrow\_current@{borrow\_current}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{borrow\_current()}{borrow\_current()}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_ada49d9fc0df3c10376c65672390a2902} 
+Borrowed\+Greenlet greenlet::\+\+Thread\+State::\+borrow\+\_\+current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+As for non-\/const \doxylink{classgreenlet_1_1ThreadState_a23bff70b4f83cb25391bb184d71d100e}{get\+\_\+current()}; \Hypertarget{classgreenlet_1_1ThreadState_ac8317cdb3a3cd3f7a895d8a65466022f}\index{greenlet::ThreadState@{greenlet::ThreadState}!clocks\_used\_doing\_gc@{clocks\_used\_doing\_gc}}
+\index{clocks\_used\_doing\_gc@{clocks\_used\_doing\_gc}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{clocks\_used\_doing\_gc()}{clocks\_used\_doing\_gc()}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_ac8317cdb3a3cd3f7a895d8a65466022f} 
+std::\+clock\+\_\+t \& greenlet::\+\+Thread\+State::\+clocks\+\_\+used\+\_\+doing\+\_\+gc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Set to std::\+clock\+\_\+t(-\/1) to disable. \Hypertarget{classgreenlet_1_1ThreadState_ace74a065299ce3ad65a6363e7b6c9551}\index{greenlet::ThreadState@{greenlet::ThreadState}!delete\_when\_thread\_running@{delete\_when\_thread\_running}}
+\index{delete\_when\_thread\_running@{delete\_when\_thread\_running}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{delete\_when\_thread\_running()}{delete\_when\_thread\_running()}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_ace74a065299ce3ad65a6363e7b6c9551} 
+void greenlet::\+\+Thread\+State::\+delete\+\_\+when\+\_\+thread\+\_\+running (\begin{DoxyParamCaption}\item[{Py\+Greenlet \texorpdfstring{$\ast$}{*}}]{to\+\_\+del}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Given a reference to a greenlet that some other thread attempted to delete (has a refcount of 0) store it for later deletion when the thread this state belongs to is current. \Hypertarget{classgreenlet_1_1ThreadState_a23bff70b4f83cb25391bb184d71d100e}\index{greenlet::ThreadState@{greenlet::ThreadState}!get\_current@{get\_current}}
+\index{get\_current@{get\_current}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{get\_current()}{get\_current()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_a23bff70b4f83cb25391bb184d71d100e} 
+Owned\+Greenlet greenlet::\+\+Thread\+State::\+get\+\_\+current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+In addition to returning a new reference to the currunt greenlet, this performs any maintenance needed. \Hypertarget{classgreenlet_1_1ThreadState_a83eabab8d1e50dad7df68ff473c8e798}\index{greenlet::ThreadState@{greenlet::ThreadState}!get\_current@{get\_current}}
+\index{get\_current@{get\_current}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{get\_current()}{get\_current()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_a83eabab8d1e50dad7df68ff473c8e798} 
+Owned\+Greenlet greenlet::\+\+Thread\+State::\+get\+\_\+current (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does no maintenance. \Hypertarget{classgreenlet_1_1ThreadState_a19816a8f1ab1a8cc017784bd004a8110}\index{greenlet::ThreadState@{greenlet::ThreadState}!get\_tracefunc@{get\_tracefunc}}
+\index{get\_tracefunc@{get\_tracefunc}!greenlet::ThreadState@{greenlet::ThreadState}}
+\doxysubsubsection{\texorpdfstring{get\_tracefunc()}{get\_tracefunc()}}
+{\footnotesize\ttfamily \label{classgreenlet_1_1ThreadState_a19816a8f1ab1a8cc017784bd004a8110} 
+Owned\+Object greenlet::\+\+Thread\+State::\+get\+\_\+tracefunc (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns a new reference, or a false object. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+greenlet/\+greenlet\+\_\+thread\+\_\+state.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,1511 @@
+\doxysection{sqlalchemy.\+dialects.\+postgresql.\+base Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base}{}\label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base}\index{sqlalchemy.dialects.postgresql.base@{sqlalchemy.dialects.postgresql.base}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGCompiler}{PGCompiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDDLCompiler}{PGDDLCompiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGTypeCompiler}{PGType\+Compiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGIdentifierPreparer}{PGIdentifier\+Preparer}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1ReflectedNamedType}{Reflected\+Named\+Type}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1ReflectedDomainConstraint}{Reflected\+Domain\+Constraint}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1ReflectedDomain}{Reflected\+Domain}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1ReflectedEnum}{Reflected\+Enum}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGInspector}{PGInspector}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGExecutionContext}{PGExecution\+Context}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGReadOnlyConnectionCharacteristic}{PGRead\+Only\+Connection\+Characteristic}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDeferrableConnectionCharacteristic}{PGDeferrable\+Connection\+Characteristic}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDialect}{PGDialect}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a99f7e74d1320c5d07376ec8ca4a018bb}\label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a99f7e74d1320c5d07376ec8ca4a018bb} 
+{\bfseries IDX\+\_\+\+USING} = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}(?:\+btree\texorpdfstring{$\vert$}{|}hash\texorpdfstring{$\vert$}{|}gist\texorpdfstring{$\vert$}{|}gin\texorpdfstring{$\vert$}{|}\+[\textbackslash{}w\+\_\+]\++)\$"{}, re.\+I)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_ae2cbb12cb247d979b50afe85206b9283}\label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_ae2cbb12cb247d979b50afe85206b9283} 
+dict {\bfseries RESERVED\+\_\+\+WORDS}
+\item 
+dict \doxymbox{\hyperlink{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a2931e8d38b7bbc8879763d3a6df1cc29}{colspecs}}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a9b4884f986fcad06149e9073408417f5}\label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a9b4884f986fcad06149e9073408417f5} 
+dict {\bfseries ischema\+\_\+names}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: postgresql
+    :name: PostgreSQL
+    :full_support: 12, 13, 14, 15
+    :normal_support: 9.6+
+    :best_effort: 9+
+
+.. _postgresql_sequences:
+
+Sequences/SERIAL/IDENTITY
+-------------------------
+
+PostgreSQL supports sequences, and SQLAlchemy uses these as the default means
+of creating new primary key values for integer-based primary key columns. When
+creating tables, SQLAlchemy will issue the ``SERIAL`` datatype for
+integer-based primary key columns, which generates a sequence and server side
+default corresponding to the column.
+
+To specify a specific named sequence to be used for primary key generation,
+use the :func:`~sqlalchemy.schema.Sequence` construct::
+
+    Table(
+        "sometable",
+        metadata,
+        Column(
+            "id", Integer, Sequence("some_id_seq", start=1), primary_key=True
+        )
+    )
+
+When SQLAlchemy issues a single INSERT statement, to fulfill the contract of
+having the "last insert identifier" available, a RETURNING clause is added to
+the INSERT statement which specifies the primary key columns should be
+returned after the statement completes. The RETURNING functionality only takes
+place if PostgreSQL 8.2 or later is in use. As a fallback approach, the
+sequence, whether specified explicitly or implicitly via ``SERIAL``, is
+executed independently beforehand, the returned value to be used in the
+subsequent insert. Note that when an
+:func:`~sqlalchemy.sql.expression.insert()` construct is executed using
+"executemany" semantics, the "last inserted identifier" functionality does not
+apply; no RETURNING clause is emitted nor is the sequence pre-executed in this
+case.
+
+
+PostgreSQL 10 and above IDENTITY columns
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PostgreSQL 10 and above have a new IDENTITY feature that supersedes the use
+of SERIAL. The :class:`_schema.Identity` construct in a
+:class:`_schema.Column` can be used to control its behavior::
+
+    from sqlalchemy import Table, Column, MetaData, Integer, Computed
+
+    metadata = MetaData()
+
+    data = Table(
+        "data",
+        metadata,
+        Column(
+            'id', Integer, Identity(start=42, cycle=True), primary_key=True
+        ),
+        Column('data', String)
+    )
+
+The CREATE TABLE for the above :class:`_schema.Table` object would be:
+
+.. sourcecode:: sql
+
+    CREATE TABLE data (
+        id INTEGER GENERATED BY DEFAULT AS IDENTITY (START WITH 42 CYCLE),
+        data VARCHAR,
+        PRIMARY KEY (id)
+    )
+
+.. versionchanged::  1.4   Added :class:`_schema.Identity` construct
+   in a :class:`_schema.Column` to specify the option of an autoincrementing
+   column.
+
+.. note::
+
+   Previous versions of SQLAlchemy did not have built-in support for rendering
+   of IDENTITY, and could use the following compilation hook to replace
+   occurrences of SERIAL with IDENTITY::
+
+       from sqlalchemy.schema import CreateColumn
+       from sqlalchemy.ext.compiler import compiles
+
+
+       @compiles(CreateColumn, 'postgresql')
+       def use_identity(element, compiler, **kw):
+           text = compiler.visit_create_column(element, **kw)
+           text = text.replace(
+               "SERIAL", "INT GENERATED BY DEFAULT AS IDENTITY"
+            )
+           return text
+
+   Using the above, a table such as::
+
+       t = Table(
+           't', m,
+           Column('id', Integer, primary_key=True),
+           Column('data', String)
+       )
+
+   Will generate on the backing database as::
+
+       CREATE TABLE t (
+           id INT GENERATED BY DEFAULT AS IDENTITY,
+           data VARCHAR,
+           PRIMARY KEY (id)
+       )
+
+.. _postgresql_ss_cursors:
+
+Server Side Cursors
+-------------------
+
+Server-side cursor support is available for the psycopg2, asyncpg
+dialects and may also be available in others.
+
+Server side cursors are enabled on a per-statement basis by using the
+:paramref:`.Connection.execution_options.stream_results` connection execution
+option::
+
+    with engine.connect() as conn:
+        result = conn.execution_options(stream_results=True).execute(text("select * from table"))
+
+Note that some kinds of SQL statements may not be supported with
+server side cursors; generally, only SQL statements that return rows should be
+used with this option.
+
+.. deprecated:: 1.4  The dialect-level server_side_cursors flag is deprecated
+   and will be removed in a future release.  Please use the
+   :paramref:`_engine.Connection.stream_results` execution option for
+   unbuffered cursor support.
+
+.. seealso::
+
+    :ref:`engine_stream_results`
+
+.. _postgresql_isolation_level:
+
+Transaction Isolation Level
+---------------------------
+
+Most SQLAlchemy dialects support setting of transaction isolation level
+using the :paramref:`_sa.create_engine.isolation_level` parameter
+at the :func:`_sa.create_engine` level, and at the :class:`_engine.Connection`
+level via the :paramref:`.Connection.execution_options.isolation_level`
+parameter.
+
+For PostgreSQL dialects, this feature works either by making use of the
+DBAPI-specific features, such as psycopg2's isolation level flags which will
+embed the isolation level setting inline with the ``"BEGIN"`` statement, or for
+DBAPIs with no direct support by emitting ``SET SESSION CHARACTERISTICS AS
+TRANSACTION ISOLATION LEVEL <level>`` ahead of the ``"BEGIN"`` statement
+emitted by the DBAPI.   For the special AUTOCOMMIT isolation level,
+DBAPI-specific techniques are used which is typically an ``.autocommit``
+flag on the DBAPI connection object.
+
+To set isolation level using :func:`_sa.create_engine`::
+
+    engine = create_engine(
+        "postgresql+pg8000://scott:tiger@localhost/test",
+        isolation_level = "REPEATABLE READ"
+    )
+
+To set using per-connection execution options::
+
+    with engine.connect() as conn:
+        conn = conn.execution_options(
+            isolation_level="REPEATABLE READ"
+        )
+        with conn.begin():
+            # ... work with transaction
+
+There are also more options for isolation level configurations, such as
+"sub-engine" objects linked to a main :class:`_engine.Engine` which each apply
+different isolation level settings.  See the discussion at
+:ref:`dbapi_autocommit` for background.
+
+Valid values for ``isolation_level`` on most PostgreSQL dialects include:
+
+* ``READ COMMITTED``
+* ``READ UNCOMMITTED``
+* ``REPEATABLE READ``
+* ``SERIALIZABLE``
+* ``AUTOCOMMIT``
+
+.. seealso::
+
+    :ref:`dbapi_autocommit`
+
+    :ref:`postgresql_readonly_deferrable`
+
+    :ref:`psycopg2_isolation_level`
+
+    :ref:`pg8000_isolation_level`
+
+.. _postgresql_readonly_deferrable:
+
+Setting READ ONLY / DEFERRABLE
+------------------------------
+
+Most PostgreSQL dialects support setting the "READ ONLY" and "DEFERRABLE"
+characteristics of the transaction, which is in addition to the isolation level
+setting. These two attributes can be established either in conjunction with or
+independently of the isolation level by passing the ``postgresql_readonly`` and
+``postgresql_deferrable`` flags with
+:meth:`_engine.Connection.execution_options`.  The example below illustrates
+passing the ``"SERIALIZABLE"`` isolation level at the same time as setting
+"READ ONLY" and "DEFERRABLE"::
+
+    with engine.connect() as conn:
+        conn = conn.execution_options(
+            isolation_level="SERIALIZABLE",
+            postgresql_readonly=True,
+            postgresql_deferrable=True
+        )
+        with conn.begin():
+            #  ... work with transaction
+
+Note that some DBAPIs such as asyncpg only support "readonly" with
+SERIALIZABLE isolation.
+
+.. versionadded:: 1.4 added support for the ``postgresql_readonly``
+   and ``postgresql_deferrable`` execution options.
+
+.. _postgresql_reset_on_return:
+
+Temporary Table / Resource Reset for Connection Pooling
+-------------------------------------------------------
+
+The :class:`.QueuePool` connection pool implementation used
+by the SQLAlchemy :class:`.Engine` object includes
+:ref:`reset on return <pool_reset_on_return>` behavior that will invoke
+the DBAPI ``.rollback()`` method when connections are returned to the pool.
+While this rollback will clear out the immediate state used by the previous
+transaction, it does not cover a wider range of session-level state, including
+temporary tables as well as other server state such as prepared statement
+handles and statement caches.   The PostgreSQL database includes a variety
+of commands which may be used to reset this state, including
+``DISCARD``, ``RESET``, ``DEALLOCATE``, and ``UNLISTEN``.
+
+
+To install
+one or more of these commands as the means of performing reset-on-return,
+the :meth:`.PoolEvents.reset` event hook may be used, as demonstrated
+in the example below. The implementation
+will end transactions in progress as well as discard temporary tables
+using the ``CLOSE``, ``RESET`` and ``DISCARD`` commands; see the PostgreSQL
+documentation for background on what each of these statements do.
+
+The :paramref:`_sa.create_engine.pool_reset_on_return` parameter
+is set to ``None`` so that the custom scheme can replace the default behavior
+completely.   The custom hook implementation calls ``.rollback()`` in any case,
+as it's usually important that the DBAPI's own tracking of commit/rollback
+will remain consistent with the state of the transaction::
+
+
+    from sqlalchemy import create_engine
+    from sqlalchemy import event
+
+    postgresql_engine = create_engine(
+        "postgresql+pyscopg2://scott:tiger@hostname/dbname",
+
+        # disable default reset-on-return scheme
+        pool_reset_on_return=None,
+    )
+
+
+    @event.listens_for(postgresql_engine, "reset")
+    def _reset_postgresql(dbapi_connection, connection_record, reset_state):
+        if not reset_state.terminate_only:
+            dbapi_connection.execute("CLOSE ALL")
+            dbapi_connection.execute("RESET ALL")
+            dbapi_connection.execute("DISCARD TEMP")
+
+        # so that the DBAPI itself knows that the connection has been
+        # reset
+        dbapi_connection.rollback()
+
+.. versionchanged:: 2.0.0b3  Added additional state arguments to
+   the :meth:`.PoolEvents.reset` event and additionally ensured the event
+   is invoked for all "reset" occurrences, so that it's appropriate
+   as a place for custom "reset" handlers.   Previous schemes which
+   use the :meth:`.PoolEvents.checkin` handler remain usable as well.
+
+.. seealso::
+
+    :ref:`pool_reset_on_return` - in the :ref:`pooling_toplevel` documentation
+
+.. _postgresql_alternate_search_path:
+
+Setting Alternate Search Paths on Connect
+------------------------------------------
+
+The PostgreSQL ``search_path`` variable refers to the list of schema names
+that will be implicitly referenced when a particular table or other
+object is referenced in a SQL statement.  As detailed in the next section
+:ref:`postgresql_schema_reflection`, SQLAlchemy is generally organized around
+the concept of keeping this variable at its default value of ``public``,
+however, in order to have it set to any arbitrary name or names when connections
+are used automatically, the "SET SESSION search_path" command may be invoked
+for all connections in a pool using the following event handler, as discussed
+at :ref:`schema_set_default_connections`::
+
+    from sqlalchemy import event
+    from sqlalchemy import create_engine
+
+    engine = create_engine("postgresql+psycopg2://scott:tiger@host/dbname")
+
+    @event.listens_for(engine, "connect", insert=True)
+    def set_search_path(dbapi_connection, connection_record):
+        existing_autocommit = dbapi_connection.autocommit
+        dbapi_connection.autocommit = True
+        cursor = dbapi_connection.cursor()
+        cursor.execute("SET SESSION search_path='%s'" % schema_name)
+        cursor.close()
+        dbapi_connection.autocommit = existing_autocommit
+
+The reason the recipe is complicated by use of the ``.autocommit`` DBAPI
+attribute is so that when the ``SET SESSION search_path`` directive is invoked,
+it is invoked outside of the scope of any transaction and therefore will not
+be reverted when the DBAPI connection has a rollback.
+
+.. seealso::
+
+  :ref:`schema_set_default_connections` - in the :ref:`metadata_toplevel` documentation
+
+
+
+
+.. _postgresql_schema_reflection:
+
+Remote-Schema Table Introspection and PostgreSQL search_path
+------------------------------------------------------------
+
+.. admonition:: Section Best Practices Summarized
+
+    keep the ``search_path`` variable set to its default of ``public``, without
+    any other schema names. Ensure the username used to connect **does not**
+    match remote schemas, or ensure the ``"$user"`` token is **removed** from
+    ``search_path``.  For other schema names, name these explicitly
+    within :class:`_schema.Table` definitions. Alternatively, the
+    ``postgresql_ignore_search_path`` option will cause all reflected
+    :class:`_schema.Table` objects to have a :attr:`_schema.Table.schema`
+    attribute set up.
+
+The PostgreSQL dialect can reflect tables from any schema, as outlined in
+:ref:`metadata_reflection_schemas`.
+
+In all cases, the first thing SQLAlchemy does when reflecting tables is
+to **determine the default schema for the current database connection**.
+It does this using the PostgreSQL ``current_schema()``
+function, illustated below using a PostgreSQL client session (i.e. using
+the ``psql`` tool)::
+
+    test=> select current_schema();
+    current_schema
+    ----------------
+    public
+    (1 row)
+
+Above we see that on a plain install of PostgreSQL, the default schema name
+is the name ``public``.
+
+However, if your database username **matches the name of a schema**, PostgreSQL's
+default is to then **use that name as the default schema**.  Below, we log in
+using the username ``scott``.  When we create a schema named ``scott``, **it
+implicitly changes the default schema**::
+
+    test=> select current_schema();
+    current_schema
+    ----------------
+    public
+    (1 row)
+
+    test=> create schema scott;
+    CREATE SCHEMA
+    test=> select current_schema();
+    current_schema
+    ----------------
+    scott
+    (1 row)
+
+The behavior of ``current_schema()`` is derived from the
+`PostgreSQL search path
+<https://www.postgresql.org/docs/current/static/ddl-schemas.html#DDL-SCHEMAS-PATH>`_
+variable ``search_path``, which in modern PostgreSQL versions defaults to this::
+
+    test=> show search_path;
+    search_path
+    -----------------
+    "$user", public
+    (1 row)
+
+Where above, the ``"$user"`` variable will inject the current username as the
+default schema, if one exists.   Otherwise, ``public`` is used.
+
+When a :class:`_schema.Table` object is reflected, if it is present in the
+schema indicated by the ``current_schema()`` function, **the schema name assigned
+to the ".schema" attribute of the Table is the Python "None" value**.  Otherwise, the
+".schema" attribute will be assigned the string name of that schema.
+
+With regards to tables which these :class:`_schema.Table`
+objects refer to via foreign key constraint, a decision must be made as to how
+the ``.schema`` is represented in those remote tables, in the case where that
+remote schema name is also a member of the current ``search_path``.
+
+By default, the PostgreSQL dialect mimics the behavior encouraged by
+PostgreSQL's own ``pg_get_constraintdef()`` builtin procedure.  This function
+returns a sample definition for a particular foreign key constraint,
+omitting the referenced schema name from that definition when the name is
+also in the PostgreSQL schema search path.  The interaction below
+illustrates this behavior::
+
+    test=> CREATE TABLE test_schema.referred(id INTEGER PRIMARY KEY);
+    CREATE TABLE
+    test=> CREATE TABLE referring(
+    test(>         id INTEGER PRIMARY KEY,
+    test(>         referred_id INTEGER REFERENCES test_schema.referred(id));
+    CREATE TABLE
+    test=> SET search_path TO public, test_schema;
+    test=> SELECT pg_catalog.pg_get_constraintdef(r.oid, true) FROM
+    test-> pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n
+    test-> ON n.oid = c.relnamespace
+    test-> JOIN pg_catalog.pg_constraint r  ON c.oid = r.conrelid
+    test-> WHERE c.relname='referring' AND r.contype = 'f'
+    test-> ;
+                   pg_get_constraintdef
+    ---------------------------------------------------
+     FOREIGN KEY (referred_id) REFERENCES referred(id)
+    (1 row)
+
+Above, we created a table ``referred`` as a member of the remote schema
+``test_schema``, however when we added ``test_schema`` to the
+PG ``search_path`` and then asked ``pg_get_constraintdef()`` for the
+``FOREIGN KEY`` syntax, ``test_schema`` was not included in the output of
+the function.
+
+On the other hand, if we set the search path back to the typical default
+of ``public``::
+
+    test=> SET search_path TO public;
+    SET
+
+The same query against ``pg_get_constraintdef()`` now returns the fully
+schema-qualified name for us::
+
+    test=> SELECT pg_catalog.pg_get_constraintdef(r.oid, true) FROM
+    test-> pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n
+    test-> ON n.oid = c.relnamespace
+    test-> JOIN pg_catalog.pg_constraint r  ON c.oid = r.conrelid
+    test-> WHERE c.relname='referring' AND r.contype = 'f';
+                         pg_get_constraintdef
+    ---------------------------------------------------------------
+     FOREIGN KEY (referred_id) REFERENCES test_schema.referred(id)
+    (1 row)
+
+SQLAlchemy will by default use the return value of ``pg_get_constraintdef()``
+in order to determine the remote schema name.  That is, if our ``search_path``
+were set to include ``test_schema``, and we invoked a table
+reflection process as follows::
+
+    >>> from sqlalchemy import Table, MetaData, create_engine, text
+    >>> engine = create_engine("postgresql+psycopg2://scott:tiger@localhost/test")
+    >>> with engine.connect() as conn:
+    ...     conn.execute(text("SET search_path TO test_schema, public"))
+    ...     metadata_obj = MetaData()
+    ...     referring = Table('referring', metadata_obj,
+    ...                       autoload_with=conn)
+    ...
+    <sqlalchemy.engine.result.CursorResult object at 0x101612ed0>
+
+The above process would deliver to the :attr:`_schema.MetaData.tables`
+collection
+``referred`` table named **without** the schema::
+
+    >>> metadata_obj.tables['referred'].schema is None
+    True
+
+To alter the behavior of reflection such that the referred schema is
+maintained regardless of the ``search_path`` setting, use the
+``postgresql_ignore_search_path`` option, which can be specified as a
+dialect-specific argument to both :class:`_schema.Table` as well as
+:meth:`_schema.MetaData.reflect`::
+
+    >>> with engine.connect() as conn:
+    ...     conn.execute(text("SET search_path TO test_schema, public"))
+    ...     metadata_obj = MetaData()
+    ...     referring = Table('referring', metadata_obj,
+    ...                       autoload_with=conn,
+    ...                       postgresql_ignore_search_path=True)
+    ...
+    <sqlalchemy.engine.result.CursorResult object at 0x1016126d0>
+
+We will now have ``test_schema.referred`` stored as schema-qualified::
+
+    >>> metadata_obj.tables['test_schema.referred'].schema
+    'test_schema'
+
+.. sidebar:: Best Practices for PostgreSQL Schema reflection
+
+    The description of PostgreSQL schema reflection behavior is complex, and
+    is the product of many years of dealing with widely varied use cases and
+    user preferences. But in fact, there's no need to understand any of it if
+    you just stick to the simplest use pattern: leave the ``search_path`` set
+    to its default of ``public`` only, never refer to the name ``public`` as
+    an explicit schema name otherwise, and refer to all other schema names
+    explicitly when building up a :class:`_schema.Table` object.  The options
+    described here are only for those users who can't, or prefer not to, stay
+    within these guidelines.
+
+.. seealso::
+
+    :ref:`reflection_schema_qualified_interaction` - discussion of the issue
+    from a backend-agnostic perspective
+
+    `The Schema Search Path
+    <https://www.postgresql.org/docs/current/static/ddl-schemas.html#DDL-SCHEMAS-PATH>`_
+    - on the PostgreSQL website.
+
+INSERT/UPDATE...RETURNING
+-------------------------
+
+The dialect supports PG 8.2's ``INSERT..RETURNING``, ``UPDATE..RETURNING`` and
+``DELETE..RETURNING`` syntaxes.   ``INSERT..RETURNING`` is used by default
+for single-row INSERT statements in order to fetch newly generated
+primary key identifiers.   To specify an explicit ``RETURNING`` clause,
+use the :meth:`._UpdateBase.returning` method on a per-statement basis::
+
+    # INSERT..RETURNING
+    result = table.insert().returning(table.c.col1, table.c.col2).\
+        values(name='foo')
+    print(result.fetchall())
+
+    # UPDATE..RETURNING
+    result = table.update().returning(table.c.col1, table.c.col2).\
+        where(table.c.name=='foo').values(name='bar')
+    print(result.fetchall())
+
+    # DELETE..RETURNING
+    result = table.delete().returning(table.c.col1, table.c.col2).\
+        where(table.c.name=='foo')
+    print(result.fetchall())
+
+.. _postgresql_insert_on_conflict:
+
+INSERT...ON CONFLICT (Upsert)
+------------------------------
+
+Starting with version 9.5, PostgreSQL allows "upserts" (update or insert) of
+rows into a table via the ``ON CONFLICT`` clause of the ``INSERT`` statement. A
+candidate row will only be inserted if that row does not violate any unique
+constraints.  In the case of a unique constraint violation, a secondary action
+can occur which can be either "DO UPDATE", indicating that the data in the
+target row should be updated, or "DO NOTHING", which indicates to silently skip
+this row.
+
+Conflicts are determined using existing unique constraints and indexes.  These
+constraints may be identified either using their name as stated in DDL,
+or they may be inferred by stating the columns and conditions that comprise
+the indexes.
+
+SQLAlchemy provides ``ON CONFLICT`` support via the PostgreSQL-specific
+:func:`_postgresql.insert()` function, which provides
+the generative methods :meth:`_postgresql.Insert.on_conflict_do_update`
+and :meth:`~.postgresql.Insert.on_conflict_do_nothing`:
+
+.. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy.dialects.postgresql import insert
+    >>> insert_stmt = insert(my_table).values(
+    ...     id='some_existing_id',
+    ...     data='inserted value')
+    >>> do_nothing_stmt = insert_stmt.on_conflict_do_nothing(
+    ...     index_elements=['id']
+    ... )
+    >>> print(do_nothing_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO NOTHING
+    {stop}
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     constraint='pk_my_table',
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT ON CONSTRAINT pk_my_table DO UPDATE SET data = %(param_1)s
+
+.. seealso::
+
+    `INSERT .. ON CONFLICT
+    <https://www.postgresql.org/docs/current/static/sql-insert.html#SQL-ON-CONFLICT>`_
+    - in the PostgreSQL documentation.
+
+Specifying the Target
+^^^^^^^^^^^^^^^^^^^^^
+
+Both methods supply the "target" of the conflict using either the
+named constraint or by column inference:
+
+* The :paramref:`_postgresql.Insert.on_conflict_do_update.index_elements` argument
+  specifies a sequence containing string column names, :class:`_schema.Column`
+  objects, and/or SQL expression elements, which would identify a unique
+  index:
+
+  .. sourcecode:: pycon+sql
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     index_elements=['id'],
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s
+    {stop}
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     index_elements=[my_table.c.id],
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s
+
+* When using :paramref:`_postgresql.Insert.on_conflict_do_update.index_elements` to
+  infer an index, a partial index can be inferred by also specifying the
+  use the :paramref:`_postgresql.Insert.on_conflict_do_update.index_where` parameter:
+
+  .. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(user_email='a@b.com', data='inserted data')
+    >>> stmt = stmt.on_conflict_do_update(
+    ...     index_elements=[my_table.c.user_email],
+    ...     index_where=my_table.c.user_email.like('%@gmail.com'),
+    ...     set_=dict(data=stmt.excluded.data)
+    ... )
+    >>> print(stmt)
+    {printsql}INSERT INTO my_table (data, user_email)
+    VALUES (%(data)s, %(user_email)s) ON CONFLICT (user_email)
+    WHERE user_email LIKE %(user_email_1)s DO UPDATE SET data = excluded.data
+
+* The :paramref:`_postgresql.Insert.on_conflict_do_update.constraint` argument is
+  used to specify an index directly rather than inferring it.  This can be
+  the name of a UNIQUE constraint, a PRIMARY KEY constraint, or an INDEX:
+
+  .. sourcecode:: pycon+sql
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     constraint='my_table_idx_1',
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT ON CONSTRAINT my_table_idx_1 DO UPDATE SET data = %(param_1)s
+    {stop}
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     constraint='my_table_pk',
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT ON CONSTRAINT my_table_pk DO UPDATE SET data = %(param_1)s
+    {stop}
+
+* The :paramref:`_postgresql.Insert.on_conflict_do_update.constraint` argument may
+  also refer to a SQLAlchemy construct representing a constraint,
+  e.g. :class:`.UniqueConstraint`, :class:`.PrimaryKeyConstraint`,
+  :class:`.Index`, or :class:`.ExcludeConstraint`.   In this use,
+  if the constraint has a name, it is used directly.  Otherwise, if the
+  constraint is unnamed, then inference will be used, where the expressions
+  and optional WHERE clause of the constraint will be spelled out in the
+  construct.  This use is especially convenient
+  to refer to the named or unnamed primary key of a :class:`_schema.Table`
+  using the
+  :attr:`_schema.Table.primary_key` attribute:
+
+  .. sourcecode:: pycon+sql
+
+    >>> do_update_stmt = insert_stmt.on_conflict_do_update(
+    ...     constraint=my_table.primary_key,
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s
+
+The SET Clause
+^^^^^^^^^^^^^^^
+
+``ON CONFLICT...DO UPDATE`` is used to perform an update of the already
+existing row, using any combination of new values as well as values
+from the proposed insertion.   These values are specified using the
+:paramref:`_postgresql.Insert.on_conflict_do_update.set_` parameter.  This
+parameter accepts a dictionary which consists of direct values
+for UPDATE:
+
+.. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(id='some_id', data='inserted value')
+    >>> do_update_stmt = stmt.on_conflict_do_update(
+    ...     index_elements=['id'],
+    ...     set_=dict(data='updated value')
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s
+
+.. warning::
+
+    The :meth:`_expression.Insert.on_conflict_do_update`
+    method does **not** take into
+    account Python-side default UPDATE values or generation functions, e.g.
+    those specified using :paramref:`_schema.Column.onupdate`.
+    These values will not be exercised for an ON CONFLICT style of UPDATE,
+    unless they are manually specified in the
+    :paramref:`_postgresql.Insert.on_conflict_do_update.set_` dictionary.
+
+Updating using the Excluded INSERT Values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to refer to the proposed insertion row, the special alias
+:attr:`~.postgresql.Insert.excluded` is available as an attribute on
+the :class:`_postgresql.Insert` object; this object is a
+:class:`_expression.ColumnCollection`
+which alias contains all columns of the target
+table:
+
+.. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(
+    ...     id='some_id',
+    ...     data='inserted value',
+    ...     author='jlh'
+    ... )
+    >>> do_update_stmt = stmt.on_conflict_do_update(
+    ...     index_elements=['id'],
+    ...     set_=dict(data='updated value', author=stmt.excluded.author)
+    ... )
+    >>> print(do_update_stmt)
+    {printsql}INSERT INTO my_table (id, data, author)
+    VALUES (%(id)s, %(data)s, %(author)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s, author = excluded.author
+
+Additional WHERE Criteria
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The :meth:`_expression.Insert.on_conflict_do_update` method also accepts
+a WHERE clause using the :paramref:`_postgresql.Insert.on_conflict_do_update.where`
+parameter, which will limit those rows which receive an UPDATE:
+
+.. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(
+    ...     id='some_id',
+    ...     data='inserted value',
+    ...     author='jlh'
+    ... )
+    >>> on_update_stmt = stmt.on_conflict_do_update(
+    ...     index_elements=['id'],
+    ...     set_=dict(data='updated value', author=stmt.excluded.author),
+    ...     where=(my_table.c.status == 2)
+    ... )
+    >>> print(on_update_stmt)
+    {printsql}INSERT INTO my_table (id, data, author)
+    VALUES (%(id)s, %(data)s, %(author)s)
+    ON CONFLICT (id) DO UPDATE SET data = %(param_1)s, author = excluded.author
+    WHERE my_table.status = %(status_1)s
+
+Skipping Rows with DO NOTHING
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``ON CONFLICT`` may be used to skip inserting a row entirely
+if any conflict with a unique or exclusion constraint occurs; below
+this is illustrated using the
+:meth:`~.postgresql.Insert.on_conflict_do_nothing` method:
+
+.. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(id='some_id', data='inserted value')
+    >>> stmt = stmt.on_conflict_do_nothing(index_elements=['id'])
+    >>> print(stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT (id) DO NOTHING
+
+If ``DO NOTHING`` is used without specifying any columns or constraint,
+it has the effect of skipping the INSERT for any unique or exclusion
+constraint violation which occurs:
+
+.. sourcecode:: pycon+sql
+
+    >>> stmt = insert(my_table).values(id='some_id', data='inserted value')
+    >>> stmt = stmt.on_conflict_do_nothing()
+    >>> print(stmt)
+    {printsql}INSERT INTO my_table (id, data) VALUES (%(id)s, %(data)s)
+    ON CONFLICT DO NOTHING
+
+.. _postgresql_match:
+
+Full Text Search
+----------------
+
+PostgreSQL's full text search system is available through the use of the
+:data:`.func` namespace, combined with the use of custom operators
+via the :meth:`.Operators.bool_op` method.    For simple cases with some
+degree of cross-backend compatibility, the :meth:`.Operators.match` operator
+may also be used.
+
+.. _postgresql_simple_match:
+
+Simple plain text matching with ``match()``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The :meth:`.Operators.match` operator provides for cross-compatible simple
+text matching.   For the PostgreSQL backend, it's hardcoded to generate
+an expression using the ``@@`` operator in conjunction with the
+``plainto_tsquery()`` PostgreSQL function.
+
+On the PostgreSQL dialect, an expression like the following::
+
+    select(sometable.c.text.match("search string"))
+
+would emit to the database::
+
+    SELECT text @@ plainto_tsquery('search string') FROM table
+
+Above, passing a plain string to :meth:`.Operators.match` will automatically
+make use of ``plainto_tsquery()`` to specify the type of tsquery.  This
+establishes basic database cross-compatibility for :meth:`.Operators.match`
+with other backends.
+
+.. versionchanged:: 2.0 The default tsquery generation function used by the
+   PostgreSQL dialect with :meth:`.Operators.match` is ``plainto_tsquery()``.
+
+   To render exactly what was rendered in 1.4, use the following form::
+
+        from sqlalchemy import func
+
+        select(
+            sometable.c.text.bool_op("@@")(func.to_tsquery("search string"))
+        )
+
+   Which would emit::
+
+        SELECT text @@ to_tsquery('search string') FROM table
+
+Using PostgreSQL full text functions and operators directly
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Text search operations beyond the simple use of :meth:`.Operators.match`
+may make use of the :data:`.func` namespace to generate PostgreSQL full-text
+functions, in combination with :meth:`.Operators.bool_op` to generate
+any boolean operator.
+
+For example, the query::
+
+    select(
+        func.to_tsquery('cat').bool_op("@>")(func.to_tsquery('cat & rat'))
+    )
+
+would generate:
+
+.. sourcecode:: sql
+
+    SELECT to_tsquery('cat') @> to_tsquery('cat & rat')
+
+
+The :class:`_postgresql.TSVECTOR` type can provide for explicit CAST::
+
+    from sqlalchemy.dialects.postgresql import TSVECTOR
+    from sqlalchemy import select, cast
+    select(cast("some text", TSVECTOR))
+
+produces a statement equivalent to::
+
+    SELECT CAST('some text' AS TSVECTOR) AS anon_1
+
+The ``func`` namespace is augmented by the PostgreSQL dialect to set up
+correct argument and return types for most full text search functions.
+These functions are used automatically by the :attr:`_sql.func` namespace
+assuming the ``sqlalchemy.dialects.postgresql`` package has been imported,
+or :func:`_sa.create_engine` has been invoked using a ``postgresql``
+dialect.  These functions are documented at:
+
+* :class:`_postgresql.to_tsvector`
+* :class:`_postgresql.to_tsquery`
+* :class:`_postgresql.plainto_tsquery`
+* :class:`_postgresql.phraseto_tsquery`
+* :class:`_postgresql.websearch_to_tsquery`
+* :class:`_postgresql.ts_headline`
+
+Specifying the "regconfig" with ``match()`` or custom operators
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PostgreSQL's ``plainto_tsquery()`` function accepts an optional
+"regconfig" argument that is used to instruct PostgreSQL to use a
+particular pre-computed GIN or GiST index in order to perform the search.
+When using :meth:`.Operators.match`, this additional parameter may be
+specified using the ``postgresql_regconfig`` parameter, such as::
+
+    select(mytable.c.id).where(
+        mytable.c.title.match('somestring', postgresql_regconfig='english')
+    )
+
+Which would emit::
+
+    SELECT mytable.id FROM mytable
+    WHERE mytable.title @@ plainto_tsquery('english', 'somestring')
+
+When using other PostgreSQL search functions with :data:`.func`, the
+"regconfig" parameter may be passed directly as the initial argument::
+
+    select(mytable.c.id).where(
+        func.to_tsvector("english", mytable.c.title).bool_op("@@")(
+            func.to_tsquery("english", "somestring")
+        )
+    )
+
+produces a statement equivalent to::
+
+    SELECT mytable.id FROM mytable
+    WHERE to_tsvector('english', mytable.title) @@
+        to_tsquery('english', 'somestring')
+
+It is recommended that you use the ``EXPLAIN ANALYZE...`` tool from
+PostgreSQL to ensure that you are generating queries with SQLAlchemy that
+take full advantage of any indexes you may have created for full text search.
+
+.. seealso::
+
+    `Full Text Search <https://www.postgresql.org/docs/current/textsearch-controls.html>`_ - in the PostgreSQL documentation
+
+
+FROM ONLY ...
+-------------
+
+The dialect supports PostgreSQL's ONLY keyword for targeting only a particular
+table in an inheritance hierarchy. This can be used to produce the
+``SELECT ... FROM ONLY``, ``UPDATE ONLY ...``, and ``DELETE FROM ONLY ...``
+syntaxes. It uses SQLAlchemy's hints mechanism::
+
+    # SELECT ... FROM ONLY ...
+    result = table.select().with_hint(table, 'ONLY', 'postgresql')
+    print(result.fetchall())
+
+    # UPDATE ONLY ...
+    table.update(values=dict(foo='bar')).with_hint('ONLY',
+                                                   dialect_name='postgresql')
+
+    # DELETE FROM ONLY ...
+    table.delete().with_hint('ONLY', dialect_name='postgresql')
+
+
+.. _postgresql_indexes:
+
+PostgreSQL-Specific Index Options
+---------------------------------
+
+Several extensions to the :class:`.Index` construct are available, specific
+to the PostgreSQL dialect.
+
+Covering Indexes
+^^^^^^^^^^^^^^^^
+
+The ``postgresql_include`` option renders INCLUDE(colname) for the given
+string names::
+
+    Index("my_index", table.c.x, postgresql_include=['y'])
+
+would render the index as ``CREATE INDEX my_index ON table (x) INCLUDE (y)``
+
+Note that this feature requires PostgreSQL 11 or later.
+
+.. versionadded:: 1.4
+
+.. _postgresql_partial_indexes:
+
+Partial Indexes
+^^^^^^^^^^^^^^^
+
+Partial indexes add criterion to the index definition so that the index is
+applied to a subset of rows.   These can be specified on :class:`.Index`
+using the ``postgresql_where`` keyword argument::
+
+  Index('my_index', my_table.c.id, postgresql_where=my_table.c.value > 10)
+
+.. _postgresql_operator_classes:
+
+Operator Classes
+^^^^^^^^^^^^^^^^
+
+PostgreSQL allows the specification of an *operator class* for each column of
+an index (see
+https://www.postgresql.org/docs/current/interactive/indexes-opclass.html).
+The :class:`.Index` construct allows these to be specified via the
+``postgresql_ops`` keyword argument::
+
+    Index(
+        'my_index', my_table.c.id, my_table.c.data,
+        postgresql_ops={
+            'data': 'text_pattern_ops',
+            'id': 'int4_ops'
+        })
+
+Note that the keys in the ``postgresql_ops`` dictionaries are the
+"key" name of the :class:`_schema.Column`, i.e. the name used to access it from
+the ``.c`` collection of :class:`_schema.Table`, which can be configured to be
+different than the actual name of the column as expressed in the database.
+
+If ``postgresql_ops`` is to be used against a complex SQL expression such
+as a function call, then to apply to the column it must be given a label
+that is identified in the dictionary by name, e.g.::
+
+    Index(
+        'my_index', my_table.c.id,
+        func.lower(my_table.c.data).label('data_lower'),
+        postgresql_ops={
+            'data_lower': 'text_pattern_ops',
+            'id': 'int4_ops'
+        })
+
+Operator classes are also supported by the
+:class:`_postgresql.ExcludeConstraint` construct using the
+:paramref:`_postgresql.ExcludeConstraint.ops` parameter. See that parameter for
+details.
+
+.. versionadded:: 1.3.21 added support for operator classes with
+   :class:`_postgresql.ExcludeConstraint`.
+
+
+Index Types
+^^^^^^^^^^^
+
+PostgreSQL provides several index types: B-Tree, Hash, GiST, and GIN, as well
+as the ability for users to create their own (see
+https://www.postgresql.org/docs/current/static/indexes-types.html). These can be
+specified on :class:`.Index` using the ``postgresql_using`` keyword argument::
+
+    Index('my_index', my_table.c.data, postgresql_using='gin')
+
+The value passed to the keyword argument will be simply passed through to the
+underlying CREATE INDEX command, so it *must* be a valid index type for your
+version of PostgreSQL.
+
+.. _postgresql_index_storage:
+
+Index Storage Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+PostgreSQL allows storage parameters to be set on indexes. The storage
+parameters available depend on the index method used by the index. Storage
+parameters can be specified on :class:`.Index` using the ``postgresql_with``
+keyword argument::
+
+    Index('my_index', my_table.c.data, postgresql_with={"fillfactor": 50})
+
+PostgreSQL allows to define the tablespace in which to create the index.
+The tablespace can be specified on :class:`.Index` using the
+``postgresql_tablespace`` keyword argument::
+
+    Index('my_index', my_table.c.data, postgresql_tablespace='my_tablespace')
+
+Note that the same option is available on :class:`_schema.Table` as well.
+
+.. _postgresql_index_concurrently:
+
+Indexes with CONCURRENTLY
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The PostgreSQL index option CONCURRENTLY is supported by passing the
+flag ``postgresql_concurrently`` to the :class:`.Index` construct::
+
+    tbl = Table('testtbl', m, Column('data', Integer))
+
+    idx1 = Index('test_idx1', tbl.c.data, postgresql_concurrently=True)
+
+The above index construct will render DDL for CREATE INDEX, assuming
+PostgreSQL 8.2 or higher is detected or for a connection-less dialect, as::
+
+    CREATE INDEX CONCURRENTLY test_idx1 ON testtbl (data)
+
+For DROP INDEX, assuming PostgreSQL 9.2 or higher is detected or for
+a connection-less dialect, it will emit::
+
+    DROP INDEX CONCURRENTLY test_idx1
+
+When using CONCURRENTLY, the PostgreSQL database requires that the statement
+be invoked outside of a transaction block.   The Python DBAPI enforces that
+even for a single statement, a transaction is present, so to use this
+construct, the DBAPI's "autocommit" mode must be used::
+
+    metadata = MetaData()
+    table = Table(
+        "foo", metadata,
+        Column("id", String))
+    index = Index(
+        "foo_idx", table.c.id, postgresql_concurrently=True)
+
+    with engine.connect() as conn:
+        with conn.execution_options(isolation_level='AUTOCOMMIT'):
+            table.create(conn)
+
+.. seealso::
+
+    :ref:`postgresql_isolation_level`
+
+.. _postgresql_index_reflection:
+
+PostgreSQL Index Reflection
+---------------------------
+
+The PostgreSQL database creates a UNIQUE INDEX implicitly whenever the
+UNIQUE CONSTRAINT construct is used.   When inspecting a table using
+:class:`_reflection.Inspector`, the :meth:`_reflection.Inspector.get_indexes`
+and the :meth:`_reflection.Inspector.get_unique_constraints`
+will report on these
+two constructs distinctly; in the case of the index, the key
+``duplicates_constraint`` will be present in the index entry if it is
+detected as mirroring a constraint.   When performing reflection using
+``Table(..., autoload_with=engine)``, the UNIQUE INDEX is **not** returned
+in :attr:`_schema.Table.indexes` when it is detected as mirroring a
+:class:`.UniqueConstraint` in the :attr:`_schema.Table.constraints` collection
+.
+
+Special Reflection Options
+--------------------------
+
+The :class:`_reflection.Inspector`
+used for the PostgreSQL backend is an instance
+of :class:`.PGInspector`, which offers additional methods::
+
+    from sqlalchemy import create_engine, inspect
+
+    engine = create_engine("postgresql+psycopg2://localhost/test")
+    insp = inspect(engine)  # will be a PGInspector
+
+    print(insp.get_enums())
+
+.. autoclass:: PGInspector
+    :members:
+
+.. _postgresql_table_options:
+
+PostgreSQL Table Options
+------------------------
+
+Several options for CREATE TABLE are supported directly by the PostgreSQL
+dialect in conjunction with the :class:`_schema.Table` construct:
+
+* ``INHERITS``::
+
+    Table("some_table", metadata, ..., postgresql_inherits="some_supertable")
+
+    Table("some_table", metadata, ..., postgresql_inherits=("t1", "t2", ...))
+
+* ``ON COMMIT``::
+
+    Table("some_table", metadata, ..., postgresql_on_commit='PRESERVE ROWS')
+
+* ``PARTITION BY``::
+
+    Table("some_table", metadata, ...,
+          postgresql_partition_by='LIST (part_column)')
+
+    .. versionadded:: 1.2.6
+
+* ``TABLESPACE``::
+
+    Table("some_table", metadata, ..., postgresql_tablespace='some_tablespace')
+
+  The above option is also available on the :class:`.Index` construct.
+
+* ``USING``::
+
+    Table("some_table", metadata, ..., postgresql_using='heap')
+
+    .. versionadded:: 2.0.26
+
+* ``WITH OIDS``::
+
+    Table("some_table", metadata, ..., postgresql_with_oids=True)
+
+* ``WITHOUT OIDS``::
+
+    Table("some_table", metadata, ..., postgresql_with_oids=False)
+
+.. seealso::
+
+    `PostgreSQL CREATE TABLE options
+    <https://www.postgresql.org/docs/current/static/sql-createtable.html>`_ -
+    in the PostgreSQL documentation.
+
+.. _postgresql_constraint_options:
+
+PostgreSQL Constraint Options
+-----------------------------
+
+The following option(s) are supported by the PostgreSQL dialect in conjunction
+with selected constraint constructs:
+
+* ``NOT VALID``:  This option applies towards CHECK and FOREIGN KEY constraints
+  when the constraint is being added to an existing table via ALTER TABLE,
+  and has the effect that existing rows are not scanned during the ALTER
+  operation against the constraint being added.
+
+  When using a SQL migration tool such as `Alembic <https://alembic.sqlalchemy.org>`_
+  that renders ALTER TABLE constructs, the ``postgresql_not_valid`` argument
+  may be specified as an additional keyword argument within the operation
+  that creates the constraint, as in the following Alembic example::
+
+        def update():
+            op.create_foreign_key(
+                "fk_user_address",
+                "address",
+                "user",
+                ["user_id"],
+                ["id"],
+                postgresql_not_valid=True
+            )
+
+  The keyword is ultimately accepted directly by the
+  :class:`_schema.CheckConstraint`, :class:`_schema.ForeignKeyConstraint`
+  and :class:`_schema.ForeignKey` constructs; when using a tool like
+  Alembic, dialect-specific keyword arguments are passed through to
+  these constructs from the migration operation directives::
+
+       CheckConstraint("some_field IS NOT NULL", postgresql_not_valid=True)
+
+       ForeignKeyConstraint(["some_id"], ["some_table.some_id"], postgresql_not_valid=True)
+
+  .. versionadded:: 1.4.32
+
+  .. seealso::
+
+      `PostgreSQL ALTER TABLE options
+      <https://www.postgresql.org/docs/current/static/sql-altertable.html>`_ -
+      in the PostgreSQL documentation.
+
+.. _postgresql_table_valued_overview:
+
+Table values, Table and Column valued functions, Row and Tuple objects
+-----------------------------------------------------------------------
+
+PostgreSQL makes great use of modern SQL forms such as table-valued functions,
+tables and rows as values.   These constructs are commonly used as part
+of PostgreSQL's support for complex datatypes such as JSON, ARRAY, and other
+datatypes.  SQLAlchemy's SQL expression language has native support for
+most table-valued and row-valued forms.
+
+.. _postgresql_table_valued:
+
+Table-Valued Functions
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Many PostgreSQL built-in functions are intended to be used in the FROM clause
+of a SELECT statement, and are capable of returning table rows or sets of table
+rows. A large portion of PostgreSQL's JSON functions for example such as
+``json_array_elements()``, ``json_object_keys()``, ``json_each_text()``,
+``json_each()``, ``json_to_record()``, ``json_populate_recordset()`` use such
+forms. These classes of SQL function calling forms in SQLAlchemy are available
+using the :meth:`_functions.FunctionElement.table_valued` method in conjunction
+with :class:`_functions.Function` objects generated from the :data:`_sql.func`
+namespace.
+
+Examples from PostgreSQL's reference documentation follow below:
+
+* ``json_each()``:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import select, func
+    >>> stmt = select(func.json_each('{"a":"foo", "b":"bar"}').table_valued("key", "value"))
+    >>> print(stmt)
+    {printsql}SELECT anon_1.key, anon_1.value
+    FROM json_each(:json_each_1) AS anon_1
+
+* ``json_populate_record()``:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import select, func, literal_column
+    >>> stmt = select(
+    ...     func.json_populate_record(
+    ...         literal_column("null::myrowtype"),
+    ...         '{"a":1,"b":2}'
+    ...     ).table_valued("a", "b", name="x")
+    ... )
+    >>> print(stmt)
+    {printsql}SELECT x.a, x.b
+    FROM json_populate_record(null::myrowtype, :json_populate_record_1) AS x
+
+* ``json_to_record()`` - this form uses a PostgreSQL specific form of derived
+  columns in the alias, where we may make use of :func:`_sql.column` elements with
+  types to produce them.  The :meth:`_functions.FunctionElement.table_valued`
+  method produces  a :class:`_sql.TableValuedAlias` construct, and the method
+  :meth:`_sql.TableValuedAlias.render_derived` method sets up the derived
+  columns specification:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import select, func, column, Integer, Text
+    >>> stmt = select(
+    ...     func.json_to_record('{"a":1,"b":[1,2,3],"c":"bar"}').table_valued(
+    ...         column("a", Integer), column("b", Text), column("d", Text),
+    ...     ).render_derived(name="x", with_types=True)
+    ... )
+    >>> print(stmt)
+    {printsql}SELECT x.a, x.b, x.d
+    FROM json_to_record(:json_to_record_1) AS x(a INTEGER, b TEXT, d TEXT)
+
+* ``WITH ORDINALITY`` - part of the SQL standard, ``WITH ORDINALITY`` adds an
+  ordinal counter to the output of a function and is accepted by a limited set
+  of PostgreSQL functions including ``unnest()`` and ``generate_series()``. The
+  :meth:`_functions.FunctionElement.table_valued` method accepts a keyword
+  parameter ``with_ordinality`` for this purpose, which accepts the string name
+  that will be applied to the "ordinality" column:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import select, func
+    >>> stmt = select(
+    ...     func.generate_series(4, 1, -1).
+    ...     table_valued("value", with_ordinality="ordinality").
+    ...     render_derived()
+    ... )
+    >>> print(stmt)
+    {printsql}SELECT anon_1.value, anon_1.ordinality
+    FROM generate_series(:generate_series_1, :generate_series_2, :generate_series_3)
+    WITH ORDINALITY AS anon_1(value, ordinality)
+
+.. versionadded:: 1.4.0b2
+
+.. seealso::
+
+    :ref:`tutorial_functions_table_valued` - in the :ref:`unified_tutorial`
+
+.. _postgresql_column_valued:
+
+Column Valued Functions
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Similar to the table valued function, a column valued function is present
+in the FROM clause, but delivers itself to the columns clause as a single
+scalar value.  PostgreSQL functions such as ``json_array_elements()``,
+``unnest()`` and ``generate_series()`` may use this form. Column valued functions are available using the
+:meth:`_functions.FunctionElement.column_valued` method of :class:`_functions.FunctionElement`:
+
+* ``json_array_elements()``:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import select, func
+    >>> stmt = select(func.json_array_elements('["one", "two"]').column_valued("x"))
+    >>> print(stmt)
+    {printsql}SELECT x
+    FROM json_array_elements(:json_array_elements_1) AS x
+
+* ``unnest()`` - in order to generate a PostgreSQL ARRAY literal, the
+  :func:`_postgresql.array` construct may be used:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy.dialects.postgresql import array
+    >>> from sqlalchemy import select, func
+    >>> stmt = select(func.unnest(array([1, 2])).column_valued())
+    >>> print(stmt)
+    {printsql}SELECT anon_1
+    FROM unnest(ARRAY[%(param_1)s, %(param_2)s]) AS anon_1
+
+  The function can of course be used against an existing table-bound column
+  that's of type :class:`_types.ARRAY`:
+
+  .. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import table, column, ARRAY, Integer
+    >>> from sqlalchemy import select, func
+    >>> t = table("t", column('value', ARRAY(Integer)))
+    >>> stmt = select(func.unnest(t.c.value).column_valued("unnested_value"))
+    >>> print(stmt)
+    {printsql}SELECT unnested_value
+    FROM unnest(t.value) AS unnested_value
+
+.. seealso::
+
+    :ref:`tutorial_functions_column_valued` - in the :ref:`unified_tutorial`
+
+
+Row Types
+^^^^^^^^^
+
+Built-in support for rendering a ``ROW`` may be approximated using
+``func.ROW`` with the :attr:`_sa.func` namespace, or by using the
+:func:`_sql.tuple_` construct:
+
+.. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import table, column, func, tuple_
+    >>> t = table("t", column("id"), column("fk"))
+    >>> stmt = t.select().where(
+    ...     tuple_(t.c.id, t.c.fk) > (1,2)
+    ... ).where(
+    ...     func.ROW(t.c.id, t.c.fk) < func.ROW(3, 7)
+    ... )
+    >>> print(stmt)
+    {printsql}SELECT t.id, t.fk
+    FROM t
+    WHERE (t.id, t.fk) > (:param_1, :param_2) AND ROW(t.id, t.fk) < ROW(:ROW_1, :ROW_2)
+
+.. seealso::
+
+    `PostgreSQL Row Constructors
+    <https://www.postgresql.org/docs/current/sql-expressions.html#SQL-SYNTAX-ROW-CONSTRUCTORS>`_
+
+    `PostgreSQL Row Constructor Comparison
+    <https://www.postgresql.org/docs/current/functions-comparisons.html#ROW-WISE-COMPARISON>`_
+
+Table Types passed to Functions
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+PostgreSQL supports passing a table as an argument to a function, which is
+known as a "record" type. SQLAlchemy :class:`_sql.FromClause` objects
+such as :class:`_schema.Table` support this special form using the
+:meth:`_sql.FromClause.table_valued` method, which is comparable to the
+:meth:`_functions.FunctionElement.table_valued` method except that the collection
+of columns is already established by that of the :class:`_sql.FromClause`
+itself:
+
+.. sourcecode:: pycon+sql
+
+    >>> from sqlalchemy import table, column, func, select
+    >>> a = table( "a", column("id"), column("x"), column("y"))
+    >>> stmt = select(func.row_to_json(a.table_valued()))
+    >>> print(stmt)
+    {printsql}SELECT row_to_json(a) AS row_to_json_1
+    FROM a
+
+.. versionadded:: 1.4.0b2
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_doc-var-members}
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a2931e8d38b7bbc8879763d3a6df1cc29}\index{sqlalchemy.dialects.postgresql.base@{sqlalchemy.dialects.postgresql.base}!colspecs@{colspecs}}
+\index{colspecs@{colspecs}!sqlalchemy.dialects.postgresql.base@{sqlalchemy.dialects.postgresql.base}}
+\doxysubsubsection{\texorpdfstring{colspecs}{colspecs}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1dialects_1_1postgresql_1_1base_a2931e8d38b7bbc8879763d3a6df1cc29} 
+dict sqlalchemy.\+dialects.\+postgresql.\+base.\+colspecs}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ sqltypes.ARRAY:\ \_array.ARRAY,}
+\DoxyCodeLine{\ \ \ \ sqltypes.Interval:\ INTERVAL,}
+\DoxyCodeLine{\ \ \ \ sqltypes.Enum:\ ENUM,}
+\DoxyCodeLine{\ \ \ \ sqltypes.JSON.JSONPathType:\ \_json.JSONPATH,}
+\DoxyCodeLine{\ \ \ \ sqltypes.JSON:\ \_json.JSON,}
+\DoxyCodeLine{\ \ \ \ sqltypes.Uuid:\ PGUuid,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,123 @@
+\doxysection{app.\+services.\+fotos Namespace Reference}
+\hypertarget{namespaceapp_1_1services_1_1fotos}{}\label{namespaceapp_1_1services_1_1fotos}\index{app.services.fotos@{app.services.fotos}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_a85a9efdf721ba8b52447435afcde2faf}{\+\_\+validar\+\_\+archivo}} (\doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}} file)
+\item 
+str \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_aefdbb58a123fee903fc0ee16530e0b17}{\+\_\+slug}} (str text)
+\item 
+str \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_ac6ccac52a4bc021c5985f6fb86a2b6d0}{\+\_\+public\+\_\+id}} (int orden)
+\item 
+str \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_a5511532e15fc86476c43a8b3f0243ec8}{\+\_\+folder\+\_\+path}} (str edificio\+\_\+codigo, str piso\+\_\+numero, str espacio\+\_\+codigo, str espacio\+\_\+nombre)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_a24d7322642bb58d9d427cacbec04e90f}{subir\+\_\+foto}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, \doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}} file, \doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoCreate}{Foto\+Create}} datos)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_aebb9a589f7c682d737a0feb7efc7e8d0}{actualizar\+\_\+foto}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int foto\+\_\+id, \doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoUpdate}{Foto\+Update}} datos)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} \doxymbox{\hyperlink{namespaceapp_1_1services_1_1fotos_ade9aaf8aed8cea7a76674ed933e8194e}{eliminar\+\_\+foto}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db, int foto\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_a73e4e5576e5db14ac0115acc16b363e9}\label{namespaceapp_1_1services_1_1fotos_a73e4e5576e5db14ac0115acc16b363e9} 
+{\bfseries cloud\+\_\+name}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_a75f55ff8243ed751fc54be74da4edd3d}\label{namespaceapp_1_1services_1_1fotos_a75f55ff8243ed751fc54be74da4edd3d} 
+{\bfseries api\+\_\+key}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_a00affb87da5c5f51642e822c0bccdbdc}\label{namespaceapp_1_1services_1_1fotos_a00affb87da5c5f51642e822c0bccdbdc} 
+{\bfseries api\+\_\+secret}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_a8e5b5db19fa900b201cb917e51fc9423}\label{namespaceapp_1_1services_1_1fotos_a8e5b5db19fa900b201cb917e51fc9423} 
+{\bfseries secure}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_aaea0656e843cc2eedf7b9c03bd9fe4c5}\label{namespaceapp_1_1services_1_1fotos_aaea0656e843cc2eedf7b9c03bd9fe4c5} 
+dict {\bfseries \+\_\+\+ALLOWED\+\_\+\+MIME\+\_\+\+TYPES} = \{"{}image/\+jpeg"{}, "{}image/\+png"{}, "{}image/\+webp"{}, "{}image/\+gif"{}\}
+\item 
+\Hypertarget{namespaceapp_1_1services_1_1fotos_ab6c9c3448d036225452c3b55e57997a3}\label{namespaceapp_1_1services_1_1fotos_ab6c9c3448d036225452c3b55e57997a3} 
+int {\bfseries \+\_\+\+MAX\+\_\+\+FILE\+\_\+\+BYTES} = 5 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Lógica de subida / eliminación de fotos en Cloudinary.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1services_1_1fotos_doc-func-members}
+\Hypertarget{namespaceapp_1_1services_1_1fotos_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1services_1_1fotos_a5511532e15fc86476c43a8b3f0243ec8}\index{app.services.fotos@{app.services.fotos}!\_folder\_path@{\_folder\_path}}
+\index{\_folder\_path@{\_folder\_path}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{\_folder\_path()}{\_folder\_path()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_a5511532e15fc86476c43a8b3f0243ec8} 
+ str \+\_\+folder\+\_\+path (\begin{DoxyParamCaption}\item[{str}]{edificio\+\_\+codigo}{, }\item[{str}]{piso\+\_\+numero}{, }\item[{str}]{espacio\+\_\+codigo}{, }\item[{str}]{espacio\+\_\+nombre}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Genera la ruta de carpeta en Cloudinary: mapacu/A/P1/A-101_Audiovisual\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_ac6ccac52a4bc021c5985f6fb86a2b6d0}\index{app.services.fotos@{app.services.fotos}!\_public\_id@{\_public\_id}}
+\index{\_public\_id@{\_public\_id}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{\_public\_id()}{\_public\_id()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_ac6ccac52a4bc021c5985f6fb86a2b6d0} 
+ str \+\_\+public\+\_\+id (\begin{DoxyParamCaption}\item[{int}]{orden}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Genera un public_id legible para el archivo dentro de la carpeta del espacio.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_aefdbb58a123fee903fc0ee16530e0b17}\index{app.services.fotos@{app.services.fotos}!\_slug@{\_slug}}
+\index{\_slug@{\_slug}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{\_slug()}{\_slug()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_aefdbb58a123fee903fc0ee16530e0b17} 
+ str \+\_\+slug (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Normaliza texto para uso en carpetas/public_id.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_a85a9efdf721ba8b52447435afcde2faf}\index{app.services.fotos@{app.services.fotos}!\_validar\_archivo@{\_validar\_archivo}}
+\index{\_validar\_archivo@{\_validar\_archivo}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{\_validar\_archivo()}{\_validar\_archivo()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_a85a9efdf721ba8b52447435afcde2faf} 
+ bytes \+\_\+validar\+\_\+archivo (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}}}]{file}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Valida tipo MIME y tamaño; devuelve el contenido para reutilizar.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_aebb9a589f7c682d737a0feb7efc7e8d0}\index{app.services.fotos@{app.services.fotos}!actualizar\_foto@{actualizar\_foto}}
+\index{actualizar\_foto@{actualizar\_foto}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{actualizar\_foto()}{actualizar\_foto()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_aebb9a589f7c682d737a0feb7efc7e8d0} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} actualizar\+\_\+foto (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int}]{foto\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoUpdate}{Foto\+Update}}}]{datos}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Actualiza metadatos de una foto ya existente.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_ade9aaf8aed8cea7a76674ed933e8194e}\index{app.services.fotos@{app.services.fotos}!eliminar\_foto@{eliminar\_foto}}
+\index{eliminar\_foto@{eliminar\_foto}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{eliminar\_foto()}{eliminar\_foto()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_ade9aaf8aed8cea7a76674ed933e8194e} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} eliminar\+\_\+foto (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{int}]{foto\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Elimina permanentemente una fotografía tanto del almacenamiento en la nube
+como de la base de datos.
+
+Args:
+    db: Sesión activa de la base de datos.
+    foto_id: Identificador único de la fotografía a eliminar.
+
+Returns:
+    FotoEspacio: El objeto de la fotografía que ha sido eliminada.
+
+Raises:
+    HTTPException: 404 si la fotografía no existe en los registros.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1services_1_1fotos_a24d7322642bb58d9d427cacbec04e90f}\index{app.services.fotos@{app.services.fotos}!subir\_foto@{subir\_foto}}
+\index{subir\_foto@{subir\_foto}!app.services.fotos@{app.services.fotos}}
+\doxysubsubsection{\texorpdfstring{subir\_foto()}{subir\_foto()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1services_1_1fotos_a24d7322642bb58d9d427cacbec04e90f} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} subir\+\_\+foto (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}}]{db}{, }\item[{\doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}}}]{file}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoCreate}{Foto\+Create}}}]{datos}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Carga una imagen a Cloudinary y guarda su referencia en la DB.
+
+Args:
+    db: Sesión de base de datos.
+    file: Objeto del archivo subido.
+    datos: Esquema con metadatos de la foto.
+
+Returns:
+    FotoEspacio: El objeto de la foto creada.
+
+Raises:
+    HTTPException: 404 si el espacio no existe, 400 si falla Cloudinary.
+\end{DoxyVerb}
+ 

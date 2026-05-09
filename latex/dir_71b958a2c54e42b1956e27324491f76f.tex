@@ -1,0 +1,175 @@
+\doxysection{frontend/\+node\+\_\+modules/\+esrecurse Directory Reference}
+\hypertarget{dir_71b958a2c54e42b1956e27324491f76f}{}\label{dir_71b958a2c54e42b1956e27324491f76f}\index{frontend/node\_modules/esrecurse Directory Reference@{frontend/node\_modules/esrecurse Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2113}{}\doxysubsection{\texorpdfstring{Esrecurse \+[!\+[Build Status]\+(\href{https://travis-ci.org/estools/esrecurse.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+estools/\+esrecurse.\+svg?branch=master}})]\+(\href{https://travis-ci.org/estools/esrecurse}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+estools/\+esrecurse}})}{Esrecurse \+[!\+[Build Status]\+(\href{https://travis-ci.org/estools/esrecurse.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+estools/\+esrecurse.\+svg?branch=master}})]\+(\href{https://travis-ci.org/estools/esrecurse}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+estools/\+esrecurse}})}}\label{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2113}
+Esrecurse (\href{https://github.com/estools/esrecurse}{\texttt{esrecurse}}) is \href{https://www.ecma-international.org/publications/standards/Ecma-262.htm}{\texttt{ECMAScript}} recursive traversing functionality.\hypertarget{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2114}{}\doxysubsubsection{\texorpdfstring{Example Usage}{Example Usage}}\label{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2114}
+The following code will output all variables declared at the root of a file.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{esrecurse.visit(ast,\ \{}
+\DoxyCodeLine{\ \ \ \ XXXStatement:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.visit(node.left);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.visit(node.right);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+We can use {\ttfamily Visitor} instance.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ visitor\ =\ new\ esrecurse.Visitor(\{}
+\DoxyCodeLine{\ \ \ \ XXXStatement:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.visit(node.left);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.visit(node.right);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{visitor.visit(ast);}
+
+\end{DoxyCode}
+
+
+We can inherit {\ttfamily Visitor} instance easily.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{class\ Derived\ extends\ esrecurse.Visitor\ \{}
+\DoxyCodeLine{\ \ \ \ constructor()}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super(null);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ XXXStatement(node)\ \{}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ DerivedVisitor()\ \{}
+\DoxyCodeLine{\ \ \ \ esrecurse.Visitor.call(/*\ this\ for\ constructor\ */\ \ this\ \ /*\ visitor\ object\ automatically\ becomes\ this.\ */);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{util.inherits(DerivedVisitor,\ esrecurse.Visitor);}
+\DoxyCodeLine{DerivedVisitor.prototype.XXXStatement\ =\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ this.visit(node.left);}
+\DoxyCodeLine{\ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ this.visit(node.right);}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+And you can invoke default visiting operation inside custom visit operation.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ DerivedVisitor()\ \{}
+\DoxyCodeLine{\ \ \ \ esrecurse.Visitor.call(/*\ this\ for\ constructor\ */\ \ this\ \ /*\ visitor\ object\ automatically\ becomes\ this.\ */);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{util.inherits(DerivedVisitor,\ esrecurse.Visitor);}
+\DoxyCodeLine{DerivedVisitor.prototype.XXXStatement\ =\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ this.visitChildren(node);}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+
+
+The {\ttfamily child\+Visitor\+Keys} option does customize the behaviour of {\ttfamily this.\+visit\+Children(node)}. We can use user-\/defined node types.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ tree\ contains\ a\ user-\/defined\ \`{}TestExpression`\ node.}
+\DoxyCodeLine{var\ tree\ =\ \{}
+\DoxyCodeLine{\ \ \ \ type:\ 'TestExpression',}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'argument'\ is\ the\ property\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ argument:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ type:\ 'Literal',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 20}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ This\ 'extended'\ is\ the\ property\ not\ containing\ the\ other\ **node**.}
+\DoxyCodeLine{\ \ \ \ extended:\ true}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{esrecurse.visit(}
+\DoxyCodeLine{\ \ \ \ ast,}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Literal:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Extending\ the\ existing\ traversing\ rules.}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ childVisitorKeys:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ TargetNodeName:\ [\ 'keys',\ 'containing',\ 'the',\ 'other',\ '**node**'\ ]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ TestExpression:\ ['argument']}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+
+We can use the {\ttfamily fallback} option as well. If the {\ttfamily fallback} option is {\ttfamily "{}iteration"{}}, {\ttfamily esrecurse} would visit all enumerable properties of unknown nodes. Please note circular references cause the stack overflow. AST might have circular references in additional properties for some purpose (e.\+g. {\ttfamily node.\+parent}).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{esrecurse.visit(}
+\DoxyCodeLine{\ \ \ \ ast,}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Literal:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fallback:\ 'iteration'}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+
+If the {\ttfamily fallback} option is a function, {\ttfamily esrecurse} calls this function to determine the enumerable properties of unknown nodes. Please note circular references cause the stack overflow. AST might have circular references in additional properties for some purpose (e.\+g. {\ttfamily node.\+parent}).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{esrecurse.visit(}
+\DoxyCodeLine{\ \ \ \ ast,}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Literal:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ do\ something...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fallback:\ function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ Object.keys(node).filter(function(key)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ key\ !==\ 'argument'}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2115}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_71b958a2c54e42b1956e27324491f76f_autotoc_md2115}
+Copyright (C) 2014 \href{https://github.com/Constellation}{\texttt{Yusuke Suzuki}} (twitter:\+ \href{https://twitter.com/Constellation}{\texttt{@Constellation}}) and other contributors.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\+
+
+
+\begin{DoxyItemize}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/\+or other materials provided with the distribution.
+\end{DoxyItemize}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL $<$\+COPYRIGHT HOLDER$>$ BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 

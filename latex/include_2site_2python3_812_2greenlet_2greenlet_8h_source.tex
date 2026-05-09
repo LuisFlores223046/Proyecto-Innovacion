@@ -1,0 +1,170 @@
+\doxysection{greenlet.\+h}
+\hypertarget{include_2site_2python3_812_2greenlet_2greenlet_8h_source}{}\label{include_2site_2python3_812_2greenlet_2greenlet_8h_source}\index{venv/include/site/python3.12/greenlet/greenlet.h@{venv/include/site/python3.12/greenlet/greenlet.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*\ Greenlet\ object\ interface\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ Py\_GREENLETOBJECT\_H}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ Py\_GREENLETOBJECT\_H}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{/*\ This\ is\ deprecated\ and\ undocumented.\ It\ does\ not\ change.\ */}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ GREENLET\_VERSION\ "{}1.0.0"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_MODULE}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ implementation\_ptr\_t\ void*}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__greenlet}{\_greenlet}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ PyObject\_HEAD}
+\DoxyCodeLine{00024\ \ \ \ \ PyObject*\ weakreflist;}
+\DoxyCodeLine{00025\ \ \ \ \ PyObject*\ dict;}
+\DoxyCodeLine{00026\ \ \ \ \ implementation\_ptr\_t\ pimpl;}
+\DoxyCodeLine{00027\ \}\ PyGreenlet;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ PyGreenlet\_Check(op)\ (op\ \&\&\ PyObject\_TypeCheck(op,\ \&PyGreenlet\_Type))}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/*\ C\ API\ functions\ */}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/*\ Total\ number\ of\ symbols\ that\ are\ exported\ */}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PyGreenlet\_API\_pointers\ 12}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ PyGreenlet\_Type\_NUM\ 0}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ PyExc\_GreenletError\_NUM\ 1}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ PyExc\_GreenletExit\_NUM\ 2}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ PyGreenlet\_New\_NUM\ 3}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ PyGreenlet\_GetCurrent\_NUM\ 4}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ PyGreenlet\_Throw\_NUM\ 5}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ PyGreenlet\_Switch\_NUM\ 6}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ PyGreenlet\_SetParent\_NUM\ 7}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ PyGreenlet\_MAIN\_NUM\ 8}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ PyGreenlet\_STARTED\_NUM\ 9}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ PyGreenlet\_ACTIVE\_NUM\ 10}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ PyGreenlet\_GET\_PARENT\_NUM\ 11}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_MODULE}}
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ This\ section\ is\ used\ by\ modules\ that\ uses\ the\ greenlet\ C\ API\ */}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}**\ \_PyGreenlet\_API\ =\ NULL;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_Type\ \(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(PyTypeObject*)\_PyGreenlet\_API[PyGreenlet\_Type\_NUM])}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyExc\_GreenletError\ \(\backslash\)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ((PyObject*)\_PyGreenlet\_API[PyExc\_GreenletError\_NUM])}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyExc\_GreenletExit\ \(\backslash\)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ((PyObject*)\_PyGreenlet\_API[PyExc\_GreenletExit\_NUM])}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ *\ PyGreenlet\_New(PyObject\ *args)}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ *\ greenlet.greenlet(run,\ parent=None)}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_New\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(PyGreenlet\ *\ (*)(PyObject\ *\ run,\ PyGreenlet\ *\ parent))\ \(\backslash\)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_New\_NUM])}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ *\ PyGreenlet\_GetCurrent(void)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ *\ greenlet.getcurrent()}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_GetCurrent\ \(\backslash\)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(PyGreenlet\ *\ (*)(void))\ \_PyGreenlet\_API[PyGreenlet\_GetCurrent\_NUM])}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ *\ PyGreenlet\_Throw(}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ PyGreenlet\ *greenlet,}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ PyObject\ *typ,}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ PyObject\ *val,}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ PyObject\ *tb)}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ *\ g.throw(...)}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_Throw\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(PyObject\ *\ (*)(PyGreenlet\ *\ self,\ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\ *\ typ,\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\ *\ val,\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\ *\ tb))\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_Throw\_NUM])}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ *\ PyGreenlet\_Switch(PyGreenlet\ *greenlet,\ PyObject\ *args)}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ *\ g.switch(*args,\ **kwargs)}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_Switch\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(PyObject\ *\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ (*)(PyGreenlet\ *\ greenlet,\ PyObject\ *\ args,\ PyObject\ *\ kwargs))\ \(\backslash\)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_Switch\_NUM])}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ *\ PyGreenlet\_SetParent(PyObject\ *greenlet,\ PyObject\ *new\_parent)}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ *\ g.parent\ =\ new\_parent}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_SetParent\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (*(int\ (*)(PyGreenlet\ *\ greenlet,\ PyGreenlet\ *\ nparent))\ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_SetParent\_NUM])}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ *\ PyGreenlet\_GetParent(PyObject*\ greenlet)}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ *\ return\ greenlet.parent;}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ *\ This\ could\ return\ NULL\ even\ if\ there\ is\ no\ exception\ active.}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ *\ If\ it\ does\ not\ return\ NULL,\ you\ are\ responsible\ for\ decrementing\ the}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ *\ reference\ count.}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ PyGreenlet\_GetParent\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \ \ (*(PyGreenlet*\ (*)(PyGreenlet*))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_GET\_PARENT\_NUM])}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ *\ deprecated,\ undocumented\ alias.}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ PyGreenlet\_GET\_PARENT\ PyGreenlet\_GetParent}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ PyGreenlet\_MAIN\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ (*(int\ (*)(PyGreenlet*))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_MAIN\_NUM])}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ PyGreenlet\_STARTED\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ (*(int\ (*)(PyGreenlet*))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_STARTED\_NUM])}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ PyGreenlet\_ACTIVE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ (*(int\ (*)(PyGreenlet*))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \_PyGreenlet\_API[PyGreenlet\_ACTIVE\_NUM])}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{/*\ Macro\ that\ imports\ greenlet\ and\ initializes\ C\ API\ */}}
+\DoxyCodeLine{00151\ \textcolor{comment}{/*\ NOTE:\ This\ has\ actually\ moved\ to\ \`{}\`{}greenlet.\_greenlet.\_C\_API``,\ but\ we}}
+\DoxyCodeLine{00152\ \textcolor{comment}{\ \ \ keep\ the\ older\ definition\ to\ be\ sure\ older\ code\ that\ might\ have\ a\ copy\ of}}
+\DoxyCodeLine{00153\ \textcolor{comment}{\ \ \ the\ header\ still\ works.\ */}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyGreenlet\_Import()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \_PyGreenlet\_API\ =\ (void**)PyCapsule\_Import("{}greenlet.\_C\_API"{},\ 0);\ \(\backslash\)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ GREENLET\_MODULE\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00162\ \}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !Py\_GREENLETOBJECT\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

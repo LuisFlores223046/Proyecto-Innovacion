@@ -1,0 +1,177 @@
+\doxysection{mako.\+cache.\+Cache Class Reference}
+\hypertarget{classmako_1_1cache_1_1Cache}{}\label{classmako_1_1cache_1_1Cache}\index{mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a8671e6b924711c87b85a6095bc501ea0}\label{classmako_1_1cache_1_1Cache_a8671e6b924711c87b85a6095bc501ea0} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, template, \texorpdfstring{$\ast$}{*}args)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_a94c7733dfd368f63181a5bfc6e8fee0b}{get\+\_\+or\+\_\+create}} (self, key, creation\+\_\+function, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_a861f7772cb5d3dc8703287547ece18a8}{set}} (self, key, value, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_af49a98f922b39852179269a14958452d}{get}} (self, key, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_af5c0c4c6d39e0037811840443472f634}{invalidate}} (self, key, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_a36f53dffc70bdad32d3e483b19bc056d}{invalidate\+\_\+body}} (self)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_ab967c9cae570637c5bf052be83af9d2b}{invalidate\+\_\+def}} (self, name)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_af48a6c779191f7eaa7801aeb36bc3afe}{invalidate\+\_\+closure}} (self, name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a1e418f0174cd677adff13f80beebc01a}\label{classmako_1_1cache_1_1Cache_a1e418f0174cd677adff13f80beebc01a} 
+{\bfseries template} = template
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a08f33800f616b1c1cfbf3c31b065a576}\label{classmako_1_1cache_1_1Cache_a08f33800f616b1c1cfbf3c31b065a576} 
+{\bfseries impl} = None
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a1682aab4a12423a353c2f054f117a66e}\label{classmako_1_1cache_1_1Cache_a1682aab4a12423a353c2f054f117a66e} 
+{\bfseries id} = None
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a100b10272e51b7948df5a86d4bcb91ec}\label{classmako_1_1cache_1_1Cache_a100b10272e51b7948df5a86d4bcb91ec} 
+{\bfseries starttime} = None
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a046f7de7c807073943d5e3887ce402e0}\label{classmako_1_1cache_1_1Cache_a046f7de7c807073943d5e3887ce402e0} 
+{\bfseries put} = \doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_a861f7772cb5d3dc8703287547ece18a8}{set}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_abcb2188da6490d14b71a3b19b4e19488}\label{classmako_1_1cache_1_1Cache_abcb2188da6490d14b71a3b19b4e19488} 
+{\bfseries \+\_\+load\+\_\+impl} (self, name)
+\item 
+\doxymbox{\hyperlink{classmako_1_1cache_1_1Cache_acccec9635980ba654c3d6aa9e2dfe8f9}{\+\_\+ctx\+\_\+get\+\_\+or\+\_\+create}} (self, key, creation\+\_\+function, context, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a03426e9eaeedde0d467ca5878e064ffb}\label{classmako_1_1cache_1_1Cache_a03426e9eaeedde0d467ca5878e064ffb} 
+{\bfseries \+\_\+get\+\_\+cache\+\_\+kw} (self, kw, context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmako_1_1cache_1_1Cache_a519d7cff8e6fb62ef1fe0d15dbbe484f}\label{classmako_1_1cache_1_1Cache_a519d7cff8e6fb62ef1fe0d15dbbe484f} 
+dict {\bfseries \+\_\+def\+\_\+regions} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a data content cache made available to the module
+space of a specific :class:`.Template` object.
+
+.. versionadded:: 0.6
+   :class:`.Cache` by itself is mostly a
+   container for a :class:`.CacheImpl` object, which implements
+   a fixed API to provide caching services; specific subclasses exist to
+   implement different
+   caching strategies.   Mako includes a backend that works with
+   the Beaker caching system.   Beaker itself then supports
+   a number of backends (i.e. file, memory, memcached, etc.)
+
+The construction of a :class:`.Cache` is part of the mechanics
+of a :class:`.Template`, and programmatic access to this
+cache is typically via the :attr:`.Template.cache` attribute.
+\end{DoxyVerb}
+ 
+
+\label{classmako_1_1cache_1_1Cache_doc-func-members}
+\Hypertarget{classmako_1_1cache_1_1Cache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmako_1_1cache_1_1Cache_acccec9635980ba654c3d6aa9e2dfe8f9}\index{mako.cache.Cache@{mako.cache.Cache}!\_ctx\_get\_or\_create@{\_ctx\_get\_or\_create}}
+\index{\_ctx\_get\_or\_create@{\_ctx\_get\_or\_create}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{\_ctx\_get\_or\_create()}{\_ctx\_get\_or\_create()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_acccec9635980ba654c3d6aa9e2dfe8f9} 
+mako.\+cache.\+Cache.\+\_\+ctx\+\_\+get\+\_\+or\+\_\+create (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{}]{creation\+\_\+function}{, }\item[{}]{context}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Retrieve a value from the cache, using the given creation function
+to generate a new value.\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_af49a98f922b39852179269a14958452d}\index{mako.cache.Cache@{mako.cache.Cache}!get@{get}}
+\index{get@{get}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_af49a98f922b39852179269a14958452d} 
+mako.\+cache.\+Cache.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Retrieve a value from the cache.
+
+    :param key: the value's key.
+    :param \**kw: cache configuration arguments.  The
+     backend is configured using these arguments upon first request.
+     Subsequent requests that use the same series of configuration
+     values will use that same backend.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_a94c7733dfd368f63181a5bfc6e8fee0b}\index{mako.cache.Cache@{mako.cache.Cache}!get\_or\_create@{get\_or\_create}}
+\index{get\_or\_create@{get\_or\_create}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{get\_or\_create()}{get\_or\_create()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_a94c7733dfd368f63181a5bfc6e8fee0b} 
+mako.\+cache.\+Cache.\+get\+\_\+or\+\_\+create (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{}]{creation\+\_\+function}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Retrieve a value from the cache, using the given creation function
+to generate a new value.\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_af5c0c4c6d39e0037811840443472f634}\index{mako.cache.Cache@{mako.cache.Cache}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_af5c0c4c6d39e0037811840443472f634} 
+mako.\+cache.\+Cache.\+invalidate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invalidate a value in the cache.
+
+    :param key: the value's key.
+    :param \**kw: cache configuration arguments.  The
+     backend is configured using these arguments upon first request.
+     Subsequent requests that use the same series of configuration
+     values will use that same backend.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_a36f53dffc70bdad32d3e483b19bc056d}\index{mako.cache.Cache@{mako.cache.Cache}!invalidate\_body@{invalidate\_body}}
+\index{invalidate\_body@{invalidate\_body}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{invalidate\_body()}{invalidate\_body()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_a36f53dffc70bdad32d3e483b19bc056d} 
+mako.\+cache.\+Cache.\+invalidate\+\_\+body (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invalidate the cached content of the "body" method for this
+template.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_af48a6c779191f7eaa7801aeb36bc3afe}\index{mako.cache.Cache@{mako.cache.Cache}!invalidate\_closure@{invalidate\_closure}}
+\index{invalidate\_closure@{invalidate\_closure}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{invalidate\_closure()}{invalidate\_closure()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_af48a6c779191f7eaa7801aeb36bc3afe} 
+mako.\+cache.\+Cache.\+invalidate\+\_\+closure (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invalidate a nested ``<%def>`` within this template.
+
+Caching of nested defs is a blunt tool as there is no
+management of scope -- nested defs that use cache tags
+need to have names unique of all other nested defs in the
+template, else their content will be overwritten by
+each other.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_ab967c9cae570637c5bf052be83af9d2b}\index{mako.cache.Cache@{mako.cache.Cache}!invalidate\_def@{invalidate\_def}}
+\index{invalidate\_def@{invalidate\_def}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{invalidate\_def()}{invalidate\_def()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_ab967c9cae570637c5bf052be83af9d2b} 
+mako.\+cache.\+Cache.\+invalidate\+\_\+def (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invalidate the cached content of a particular ``<%def>`` within this
+template.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1cache_1_1Cache_a861f7772cb5d3dc8703287547ece18a8}\index{mako.cache.Cache@{mako.cache.Cache}!set@{set}}
+\index{set@{set}!mako.cache.Cache@{mako.cache.Cache}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{classmako_1_1cache_1_1Cache_a861f7772cb5d3dc8703287547ece18a8} 
+mako.\+cache.\+Cache.\+set (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{, }\item[{}]{value}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Place a value in the cache.
+
+:param key: the value's key.
+:param value: the value.
+:param \**kw: cache configuration arguments.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+mako/\+cache.\+py\end{DoxyCompactItemize}

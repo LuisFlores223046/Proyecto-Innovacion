@@ -1,0 +1,54 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+coordinate.\+Latitude Class Reference}
+\hypertarget{classpydantic__extra__types_1_1coordinate_1_1Latitude}{}\label{classpydantic__extra__types_1_1coordinate_1_1Latitude}\index{pydantic\_extra\_types.coordinate.Latitude@{pydantic\_extra\_types.coordinate.Latitude}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+coordinate.\+Latitude:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1coordinate_1_1Latitude}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1coordinate_1_1Latitude_a2e312c6f26a3c2607ebfb6cd0ab86a81}\label{classpydantic__extra__types_1_1coordinate_1_1Latitude_a2e312c6f26a3c2607ebfb6cd0ab86a81} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1coordinate_1_1Latitude_ad12c898fbf2d8c36a07142880a5df754}\label{classpydantic__extra__types_1_1coordinate_1_1Latitude_ad12c898fbf2d8c36a07142880a5df754} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1coordinate_1_1Latitude_a947e979b24adf837f50eeb01ec6be202}\label{classpydantic__extra__types_1_1coordinate_1_1Latitude_a947e979b24adf837f50eeb01ec6be202} 
+Class\+Var {\bfseries min} = -\/90.\+00
+\item 
+\Hypertarget{classpydantic__extra__types_1_1coordinate_1_1Latitude_a49a004a9102b0cfd7db5f93ff2401ea0}\label{classpydantic__extra__types_1_1coordinate_1_1Latitude_a49a004a9102b0cfd7db5f93ff2401ea0} 
+Class\+Var {\bfseries max} = 90.\+00
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Latitude value should be between -90 and 90, inclusive.
+
+Supports both float and Decimal types.
+
+```py
+from decimal import Decimal
+from pydantic import BaseModel
+from pydantic_extra_types.coordinate import Latitude
+
+
+class Location(BaseModel):
+    latitude: Latitude
+
+
+# Using float
+location1 = Location(latitude=41.40338)
+# Using Decimal
+location2 = Location(latitude=Decimal('41.40338'))
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+coordinate.\+py\end{DoxyCompactItemize}

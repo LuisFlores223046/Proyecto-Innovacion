@@ -1,0 +1,85 @@
+\doxysection{fastapi.\+responses.\+ORJSONResponse Class Reference}
+\hypertarget{classfastapi_1_1responses_1_1ORJSONResponse}{}\label{classfastapi_1_1responses_1_1ORJSONResponse}\index{fastapi.responses.ORJSONResponse@{fastapi.responses.ORJSONResponse}}
+Inheritance diagram for fastapi.\+responses.\+ORJSONResponse:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classfastapi_1_1responses_1_1ORJSONResponse}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classfastapi_1_1responses_1_1ORJSONResponse_a8ca68750ef7378d34d1e08749f36b78e}{render}} (self, Any content)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1JSONResponse}{starlette.\+responses.\+JSONResponse}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, typing.\+Any content, int status\+\_\+code=200, typing.\+Mapping\+[str, str]\+\texorpdfstring{$\vert$}{|}None headers=None, str\texorpdfstring{$\vert$}{|}None media\+\_\+type=None, \doxymbox{\hyperlink{classstarlette_1_1background_1_1BackgroundTask}{Background\+Task}}\texorpdfstring{$\vert$}{|}None background=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{starlette.\+responses.\+Response}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, typing.\+Any content=None, int status\+\_\+code=200, typing.\+Mapping\+[str, str]\+\texorpdfstring{$\vert$}{|}None headers=None, str\texorpdfstring{$\vert$}{|}None media\+\_\+type=None, \doxymbox{\hyperlink{classstarlette_1_1background_1_1BackgroundTask}{Background\+Task}}\texorpdfstring{$\vert$}{|}None background=None)
+\item 
+None {\bfseries init\+\_\+headers} (self, typing.\+Mapping\+[str, str]\+\texorpdfstring{$\vert$}{|}None headers=None)
+\item 
+\doxymbox{\hyperlink{classstarlette_1_1datastructures_1_1MutableHeaders}{Mutable\+Headers}} {\bfseries headers} (self)
+\item 
+None {\bfseries set\+\_\+cookie} (self, str key, str value="{}"{}, int\texorpdfstring{$\vert$}{|}None max\+\_\+age=None, datetime\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}None expires=None, str path="{}/\+"{}, str\texorpdfstring{$\vert$}{|}None domain=None, bool secure=False, bool httponly=False, typing.\+Literal\+["{}lax"{}, "{}strict"{}, "{}none"{}]\+\texorpdfstring{$\vert$}{|}None samesite="{}lax"{})
+\item 
+None {\bfseries delete\+\_\+cookie} (self, str key, str path="{}/\+"{}, str\texorpdfstring{$\vert$}{|}None domain=None, bool secure=False, bool httponly=False, typing.\+Literal\+["{}lax"{}, "{}strict"{}, "{}none"{}]\+\texorpdfstring{$\vert$}{|}None samesite="{}lax"{})
+\item 
+None {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, Scope scope, Receive receive, Send send)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{starlette.\+responses.\+Response}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries status\+\_\+code} = status\+\_\+code
+\item 
+{\bfseries background} = background
+\item 
+bytes {\bfseries body} = self.\+render(content)
+\item 
+{\bfseries raw\+\_\+headers} = raw\+\_\+headers
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{starlette.\+responses.\+Response}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries media\+\_\+type} = None
+\item 
+str {\bfseries charset} = "{}utf-\/8"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{starlette.\+responses.\+Response}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+headers} = \doxymbox{\hyperlink{classstarlette_1_1datastructures_1_1MutableHeaders}{Mutable\+Headers}}(raw=self.\+raw\+\_\+headers)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}JSON response using the high-performance orjson library to serialize data to JSON.
+
+Read more about it in the
+[FastAPI docs for Custom Response - HTML, Stream, File, others](https://fastapi.tiangolo.com/advanced/custom-response/).
+\end{DoxyVerb}
+ 
+
+\label{classfastapi_1_1responses_1_1ORJSONResponse_doc-func-members}
+\Hypertarget{classfastapi_1_1responses_1_1ORJSONResponse_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfastapi_1_1responses_1_1ORJSONResponse_a8ca68750ef7378d34d1e08749f36b78e}\index{fastapi.responses.ORJSONResponse@{fastapi.responses.ORJSONResponse}!render@{render}}
+\index{render@{render}!fastapi.responses.ORJSONResponse@{fastapi.responses.ORJSONResponse}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{classfastapi_1_1responses_1_1ORJSONResponse_a8ca68750ef7378d34d1e08749f36b78e} 
+ bytes fastapi.\+responses.\+ORJSONResponse.\+render (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{content}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classstarlette_1_1responses_1_1JSONResponse}{starlette.\+responses.\+JSONResponse}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+responses.\+py\end{DoxyCompactItemize}

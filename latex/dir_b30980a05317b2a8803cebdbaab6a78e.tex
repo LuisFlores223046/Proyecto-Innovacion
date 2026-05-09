@@ -1,0 +1,201 @@
+\doxysection{frontend/\+node\+\_\+modules/\+set-\/cookie-\/parser Directory Reference}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e}{}\label{dir_b30980a05317b2a8803cebdbaab6a78e}\index{frontend/node\_modules/set-\/cookie-\/parser Directory Reference@{frontend/node\_modules/set-\/cookie-\/parser Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_f9da548f43ee581711587791420613b1}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2546}{}\doxysubsection{\texorpdfstring{set-\/cookie-\/parser}{set-\/cookie-\/parser}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2546}
+\href{https://github.com/nfriedly/set-cookie-parser/actions/workflows/node.js.yml}{\texttt{}} \href{https://npmjs.org/package/set-cookie-parser}{\texttt{}} \href{https://npmjs.org/package/set-cookie-parser}{\texttt{}}
+
+\DoxyHorRuler{0}
+
+
+ℹ️ {\bfseries{Note for current users:\+}} I\textquotesingle{}m considering some changes for the next major version and would appreciate your feedback:\+ \href{https://github.com/nfriedly/set-cookie-parser/discussions/68}{\texttt{https:\+/\+/\+github.\+com/\+nfriedly/\+set-\/cookie-\/parser/\+discussions/\+68}}
+
+\DoxyHorRuler{0}
+
+
+Parses set-\/cookie headers into Java\+Script objects
+
+Accepts a single {\ttfamily set-\/cookie} header value, an array of {\ttfamily set-\/cookie} header values, a Node.\+js response object, or a {\ttfamily fetch()} {\ttfamily Response} object that may have 0 or more {\ttfamily set-\/cookie} headers.
+
+Also accepts an optional options object. Defaults:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ decodeValues:\ true,\ \ //\ Calls\ decodeURIComponent\ on\ each\ value\ -\/\ default:\ true}
+\DoxyCodeLine{\ \ \ \ map:\ false,\ \ \ \ \ \ \ \ \ \ //\ Return\ an\ object\ instead\ of\ an\ array\ -\/\ default:\ false}
+\DoxyCodeLine{\ \ \ \ silent:\ false,\ \ \ \ \ \ \ //\ Suppress\ the\ warning\ that\ is\ logged\ when\ called\ on\ a\ request\ instead\ of\ a\ response\ -\/\ default:\ false}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Returns either an array of cookie objects or a map of name =\texorpdfstring{$>$}{>} cookie object with {\ttfamily \{map:\+ true\}}. Each cookie object will have, at a minimum {\ttfamily name} and {\ttfamily value} properties, and may have additional properties depending on the set-\/cookie header:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily name} -\/ cookie name (string)
+\item {\ttfamily value} -\/ cookie value (string)
+\item {\ttfamily path} -\/ URL path to limit the scope to (string or undefined)
+\item {\ttfamily domain} -\/ domain to expand the scope to (string or undefined, may begin with "{}."{} to indicate the named domain or any subdomain of it)
+\item {\ttfamily expires} -\/ absolute expiration date for the cookie (Date object or undefined)
+\item {\ttfamily max\+Age} -\/ relative expiration time of the cookie in seconds from when the client receives it (integer or undefined)
+\begin{DoxyItemize}
+\item Note:\+ when using with \href{http://expressjs.com/en/4x/api.html\#res.cookie}{\texttt{express\textquotesingle{}s res.\+cookie() method}}, multiply {\ttfamily max\+Age} by 1000 to convert to milliseconds.
+\end{DoxyItemize}
+\item {\ttfamily secure} -\/ indicates cookie should only be sent over HTTPs (true or undefined)
+\item {\ttfamily http\+Only} -\/ indicates cookie should {\itshape not} be accessible to client-\/side Java\+Script (true or undefined)
+\item {\ttfamily same\+Site} -\/ indicates if cookie should be included in cross-\/site requests (\href{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie\#samesitesamesite-value}{\texttt{more info}}) (string or undefined)
+\begin{DoxyItemize}
+\item Note:\+ valid values are {\ttfamily "{}Strict"{}}, {\ttfamily "{}Lax"{}}, and {\ttfamily "{}None"{}}, but set-\/cookie-\/parser coppies the value verbatim and does {\itshape not} perform any validation.
+\end{DoxyItemize}
+\item {\ttfamily partitioned} -\/ indicates cookie should be scoped to the combination of 3rd party domain + top page domain (\href{https://developer.mozilla.org/en-US/docs/Web/Privacy/Privacy_sandbox/Partitioned_cookies}{\texttt{more info}}) (true or undefined)
+\end{DoxyItemize}
+
+(The output format is loosely based on the input format of \href{https://www.npmjs.com/package/cookie}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+cookie}})\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2549}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2549}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ set-\/cookie-\/parser}
+
+\end{DoxyCode}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2550}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2550}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2551}{}\doxysubsubsection{\texorpdfstring{Get array of cookie objects}{Get array of cookie objects}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2551}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ http\ =\ require('http');}
+\DoxyCodeLine{var\ setCookie\ =\ require('set-\/cookie-\/parser');}
+\DoxyCodeLine{}
+\DoxyCodeLine{http.get('http://example.com',\ function(res)\ \{}
+\DoxyCodeLine{\ \ var\ cookies\ =\ setCookie.parse(res,\ \{}
+\DoxyCodeLine{\ \ \ \ decodeValues:\ true\ \ //\ default:\ true}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ cookies.forEach(console.log);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Example output:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ 'bam',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 'baz'}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ 'foo',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 'bar',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ path:\ '/',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ expires:\ new\ Date('Tue\ Jul\ 01\ 2025\ 06:01:11\ GMT-\/0400\ (EDT)'),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ maxAge:\ 1000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ domain:\ '.example.com',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ secure:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ httpOnly:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ sameSite:\ 'lax'}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2552}{}\doxysubsubsection{\texorpdfstring{Get map of cookie objects}{Get map of cookie objects}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2552}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ http\ =\ require('http');}
+\DoxyCodeLine{var\ setCookie\ =\ require('set-\/cookie-\/parser');}
+\DoxyCodeLine{}
+\DoxyCodeLine{http.get('http://example.com',\ function(res)\ \{}
+\DoxyCodeLine{\ \ var\ cookies\ =\ setCookie.parse(res,\ \{}
+\DoxyCodeLine{\ \ \ \ decodeValues:\ true,\ \ //\ default:\ true}
+\DoxyCodeLine{\ \ \ \ map:\ true\ \ \ \ \ \ \ \ \ \ \ \ //\ default:\ false}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ var\ desiredCookie\ =\ cookies['session'];}
+\DoxyCodeLine{\ \ console.log(desiredCookie);}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+ Example output:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ bam:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ 'bam',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 'baz'}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ foo:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ 'foo',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ 'bar',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ path:\ '/',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ expires:\ new\ Date('Tue\ Jul\ 01\ 2025\ 06:01:11\ GMT-\/0400\ (EDT)'),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ maxAge:\ 1000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ domain:\ '.example.com',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ secure:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ httpOnly:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ sameSite:\ 'lax'}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2553}{}\doxysubsubsection{\texorpdfstring{Creating a new, modified set-\/cookie header}{Creating a new, modified set-\/cookie header}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2553}
+This library can be used in conjunction with the \href{https://www.npmjs.com/package/cookie}{\texttt{cookie}} library to modify and replace set-\/cookie headers:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ libCookie\ =\ require('cookie');}
+\DoxyCodeLine{const\ setCookie\ =\ require('set-\/cookie-\/parser');}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ modifySetCookie(res)\{}
+\DoxyCodeLine{\ \ //\ parse\ the\ set-\/cookie\ headers\ with\ this\ library}
+\DoxyCodeLine{\ \ let\ cookies\ =\ setCookie.parse(res);}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ //\ modify\ the\ cookies\ here}
+\DoxyCodeLine{\ \ //\ ...}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ //\ create\ new\ set-\/cookie\ headers\ using\ the\ cookie\ library}
+\DoxyCodeLine{\ \ res.headers['set-\/cookie']\ =\ cookies.map(function(cookie)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ libCookie.serialize(cookie.name,\ cookie.value,\ cookie);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+See a real-\/world example of this in \href{https://github.com/nfriedly/node-unblocker/blob/08a89ec27274b46dcd80d0a324a59406f2bdad3d/lib/cookies.js\#L67-L85}{\texttt{unblocker}}\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2554}{}\doxysubsection{\texorpdfstring{Usage in React Native (and with some other fetch implementations)}{Usage in React Native (and with some other fetch implementations)}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2554}
+React Native follows the Fetch spec more closely and combines all of the Set-\/\+Cookie header values into a single string. The {\ttfamily split\+Cookies\+String} method reverses this.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ setCookie\ =\ require('set-\/cookie-\/parser');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ response\ =\ fetch(/*...*/);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ This\ is\ mainly\ for\ React\ Native;\ Node.js\ does\ not\ combine\ set-\/cookie\ headers.}
+\DoxyCodeLine{var\ combinedCookieHeader\ =\ response.headers.get('Set-\/Cookie');}
+\DoxyCodeLine{var\ splitCookieHeaders\ =\ setCookie.splitCookiesString(combinedCookieHeader)}
+\DoxyCodeLine{var\ cookies\ =\ setCookie.parse(splitCookieHeaders);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(cookies);\ //\ should\ be\ an\ array\ of\ cookies}
+
+\end{DoxyCode}
+
+
+This behavior may become a default part of parse in the next major release, but requires the extra step for now.
+
+Note that the {\ttfamily fetch()} spec now includes a {\ttfamily get\+Set\+Cookie()} method that provides un-\/combined {\ttfamily Set-\/\+Cookie} headers. This library will automatically use that method if it is present.\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2555}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2555}
+\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2556}{}\doxysubsubsection{\texorpdfstring{parse(input, \+[options]\+)}{parse(input, \+[options]\+)}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2556}
+Parses cookies from a string, array of strings, or a http response object. Always returns an array, regardless of input format. (Unless the {\ttfamily map} option is set, in which case it always returns an object.)\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2557}{}\doxysubsubsection{\texorpdfstring{parse\+String(individual\+Set\+Cookie\+Header, \+[options]\+)}{parse\+String(individual\+Set\+Cookie\+Header, \+[options]\+)}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2557}
+Parses a single set-\/cookie header value string. Options default is {\ttfamily \{decode\+Values:\+ true\}}. Used under-\/the-\/hood by {\ttfamily parse()}. Returns an object.\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2558}{}\doxysubsubsection{\texorpdfstring{split\+Cookies\+String(combined\+Set\+Cookie\+Header)}{split\+Cookies\+String(combined\+Set\+Cookie\+Header)}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2558}
+It\textquotesingle{}s uncommon, but the HTTP spec does allow for multiple of the same header to have their values combined (comma-\/separated) into a single header. This method splits apart a combined header without choking on commas that appear within a cookie\textquotesingle{}s value (or expiration date). Returns an array of strings that may be passed to {\ttfamily parse()}.\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2559}{}\doxysubsection{\texorpdfstring{References}{References}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2559}
+
+\begin{DoxyItemize}
+\item \href{https://tools.ietf.org/html/rfc6265}{\texttt{RFC 6265:\+ HTTP State Management Mechanism}}
+\item \href{https://httpwg.org/http-extensions/draft-ietf-httpbis-rfc6265bis.html}{\texttt{draft-\/ietf-\/httpbis-\/rfc6265bis-\/10}}
+\end{DoxyItemize}\hypertarget{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2560}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_b30980a05317b2a8803cebdbaab6a78e_autotoc_md2560}
+MIT © \href{http://www.nfriedly.com/}{\texttt{Nathan Friedly}} 

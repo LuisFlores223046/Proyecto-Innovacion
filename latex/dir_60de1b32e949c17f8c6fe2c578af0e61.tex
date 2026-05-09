@@ -1,0 +1,48 @@
+\doxysection{frontend/\+node\+\_\+modules/\+es-\/object-\/atoms Directory Reference}
+\hypertarget{dir_60de1b32e949c17f8c6fe2c578af0e61}{}\label{dir_60de1b32e949c17f8c6fe2c578af0e61}\index{frontend/node\_modules/es-\/object-\/atoms Directory Reference@{frontend/node\_modules/es-\/object-\/atoms Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_308e64c0ba15e6da9effd1f86961acc3}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md895}{}\doxysubsection{\texorpdfstring{es-\/object-\/atoms \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}{es-\/object-\/atoms \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}}\label{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md895}
+\href{https://github.com/ljharb/es-object-atoms/actions}{\texttt{}} \href{https://app.codecov.io/gh/ljharb/es-object-atoms/}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npm-stat.com/charts.html?package=es-object-atoms}{\texttt{}}
+
+\href{https://npmjs.org/package/es-object-atoms}{\texttt{}}
+
+ES Object-\/related atoms:\+ Object, To\+Object, Require\+Object\+Coercible.\hypertarget{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md896}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md896}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ assert\ =\ require('assert');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \$Object\ =\ require('es-\/object-\/atoms');}
+\DoxyCodeLine{const\ isObject\ =\ require('es-\/object-\/atoms/isObject');}
+\DoxyCodeLine{const\ ToObject\ =\ require('es-\/object-\/atoms/ToObject');}
+\DoxyCodeLine{const\ RequireObjectCoercible\ =\ require('es-\/object-\/atoms/RequireObjectCoercible');}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.equal(\$Object,\ Object);}
+\DoxyCodeLine{assert.throws(()\ =>\ ToObject(null),\ TypeError);}
+\DoxyCodeLine{assert.throws(()\ =>\ ToObject(undefined),\ TypeError);}
+\DoxyCodeLine{assert.throws(()\ =>\ RequireObjectCoercible(null),\ TypeError);}
+\DoxyCodeLine{assert.throws(()\ =>\ RequireObjectCoercible(undefined),\ TypeError);}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.equal(isObject(undefined),\ false);}
+\DoxyCodeLine{assert.equal(isObject(null),\ false);}
+\DoxyCodeLine{assert.equal(isObject(\{\}),\ true);}
+\DoxyCodeLine{assert.equal(isObject([]),\ true);}
+\DoxyCodeLine{assert.equal(isObject(function\ ()\ \{\}),\ true);}
+\DoxyCodeLine{}
+\DoxyCodeLine{assert.deepEqual(RequireObjectCoercible(true),\ true);}
+\DoxyCodeLine{assert.deepEqual(ToObject(true),\ Object(true));}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ obj\ =\ \{\};}
+\DoxyCodeLine{assert.equal(RequireObjectCoercible(obj),\ obj);}
+\DoxyCodeLine{assert.equal(ToObject(obj),\ obj);}
+
+\end{DoxyCode}
+\hypertarget{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md897}{}\doxysubsection{\texorpdfstring{Tests}{Tests}}\label{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md897}
+Simply clone the repo, {\ttfamily npm install}, and run {\ttfamily npm test}\hypertarget{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md898}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{dir_60de1b32e949c17f8c6fe2c578af0e61_autotoc_md898}
+Please email \href{https://github.com/ljharb}{\texttt{@ljharb}} or see \href{https://tidelift.com/security}{\texttt{https:\+/\+/\+tidelift.\+com/\+security}} if you have a potential security vulnerability to report. 

@@ -1,0 +1,302 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+plugin-\/kit Directory Reference}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938}{}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938}\index{frontend/node\_modules/"@eslint/plugin-\/kit Directory Reference@{frontend/node\_modules/"@eslint/plugin-\/kit Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md262}{}\doxysubsection{\texorpdfstring{ESLint Plugin Kit}{ESLint Plugin Kit}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md262}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md263}{}\doxysubsection{\texorpdfstring{Description}{Description}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md263}
+A collection of utilities to help build ESLint plugins.\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md264}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md264}
+For Node.\+js and compatible runtimes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/plugin-\/kit}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/plugin-\/kit}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/plugin-\/kit}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ @eslint/plugin-\/kit}
+
+\end{DoxyCode}
+
+
+For Deno:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{deno\ add\ @eslint/plugin-\/kit}
+
+\end{DoxyCode}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md265}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md265}
+This package exports the following utilities:\+
+
+
+\begin{DoxyItemize}
+\item \`{}\+Config\+Comment\+Parser\`{}{\ttfamily Config\+Comment\+Parser}
+\end{DoxyItemize}-\/ used to parse ESLint configuration comments (i.\+e., {\ttfamily /\+\texorpdfstring{$\ast$}{*} eslint-\/disable rule \texorpdfstring{$\ast$}{*}/\+})
+\begin{DoxyItemize}
+\item \`{}\+Visit\+Node\+Step\`{} and \`{}\+Call\+Method\+Step\`{}{\ttfamily Visit\+Node\+Step} and {\ttfamily Call\+Method\+Step}
+\end{DoxyItemize}-\/ used to help implement {\ttfamily Source\+Code\#traverse()}
+\begin{DoxyItemize}
+\item \`{}\+Directive\`{}{\ttfamily Directive}
+\end{DoxyItemize}-\/ used to help implement {\ttfamily Source\+Code\#get\+Disable\+Directives()}
+\begin{DoxyItemize}
+\item \`{}\+Text\+Source\+Code\+Base\`{}{\ttfamily Text\+Source\+Code\+Base}
+\end{DoxyItemize}-\/ base class to help implement the {\ttfamily Source\+Code} interface\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md266}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Config\+Comment\+Parser}}{{\ttfamily Config\+Comment\+Parser}}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md266}
+To use the {\ttfamily Config\+Comment\+Parser} class, import it from the package and create a new instance, such as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ConfigCommentParser\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ a\ new\ instance}
+\DoxyCodeLine{const\ commentParser\ =\ new\ ConfigCommentParser();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ pass\ in\ a\ comment\ string\ without\ the\ comment\ delimiters}
+\DoxyCodeLine{const\ directive\ =\ commentParser.parseDirective(}
+\DoxyCodeLine{\ \ \ \ "{}eslint-\/disable\ prefer-\/const,\ semi\ -\/-\/\ I\ don't\ want\ to\ use\ these."{},}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ will\ be\ undefined\ when\ a\ directive\ can't\ be\ parsed}
+\DoxyCodeLine{if\ (directive)\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(directive.label);\ //\ "{}eslint-\/disable"{}}
+\DoxyCodeLine{\ \ \ \ console.log(directive.value);\ //\ "{}prefer-\/const,\ semi"{}}
+\DoxyCodeLine{\ \ \ \ console.log(directive.justification);\ //\ "{}I\ don't\ want\ to\ use\ these."{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+There are different styles of directive values that you\textquotesingle{}ll need to parse separately to get the correct format:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ConfigCommentParser\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ a\ new\ instance}
+\DoxyCodeLine{const\ commentParser\ =\ new\ ConfigCommentParser();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ list\ format}
+\DoxyCodeLine{const\ list\ =\ commentParser.parseListConfig("{}prefer-\/const,\ semi"{});}
+\DoxyCodeLine{console.log(Object.entries(list));\ //\ [["{}prefer-\/const"{},\ true],\ ["{}semi"{},\ true]]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ string\ format}
+\DoxyCodeLine{const\ strings\ =\ commentParser.parseStringConfig("{}foo:off,\ bar"{});}
+\DoxyCodeLine{console.log(Object.entries(strings));\ //\ [["{}foo"{},\ "{}off"{}],\ ["{}bar"{},\ null]]}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ JSON-\/like\ config\ format}
+\DoxyCodeLine{const\ jsonLike\ =\ commentParser.parseJSONLikeConfig(}
+\DoxyCodeLine{\ \ \ \ "{}semi:[error,\ never],\ prefer-\/const:\ warn"{},}
+\DoxyCodeLine{);}
+\DoxyCodeLine{console.log(Object.entries(jsonLike.config));\ //\ [["{}semi"{},\ ["{}error"{},\ "{}never"{}]],\ ["{}prefer-\/const"{},\ "{}warn"{}]]}
+
+\end{DoxyCode}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md267}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Visit\+Node\+Step} and {\ttfamily Call\+Method\+Step}}{{\ttfamily Visit\+Node\+Step} and {\ttfamily Call\+Method\+Step}}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md267}
+The {\ttfamily Visit\+Node\+Step} and {\ttfamily Call\+Method\+Step} classes represent steps in the traversal of source code. They implement the correct interfaces to return from the {\ttfamily Source\+Code\#traverse()} method.
+
+The {\ttfamily Visit\+Node\+Step} class is the more common of the two, where you are describing a visit to a particular node during the traversal. The constructor accepts three arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily target} -\/ the node being visited. This is used to determine the method to call inside of a rule. For instance, if the node\textquotesingle{}s type is {\ttfamily Literal} then ESLint will call a method named {\ttfamily Literal()} on the rule (if present).
+\item {\ttfamily phase} -\/ either 1 for enter or 2 for exit.
+\item {\ttfamily args} -\/ an array of arguments to pass into the visitor method of a rule.
+\end{DoxyItemize}
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ VisitNodeStep\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{class\ MySourceCode\ \{}
+\DoxyCodeLine{\ \ \ \ traverse()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ steps\ =\ [];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ for\ (const\ \{\ node,\ parent,\ phase\ \}\ of\ iterator(this.ast))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ steps.push(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\ VisitNodeStep(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target:\ node,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ phase:\ phase\ ===\ "{}enter"{}\ ?\ 1\ :\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args:\ [node,\ parent],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ steps;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The {\ttfamily Call\+Method\+Step} class is less common and is used to tell ESLint to call a specific method on the rule. The constructor accepts two arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily target} -\/ the name of the method to call, frequently beginning with {\ttfamily "{}on"{}} such as {\ttfamily "{}on\+Code\+Path\+Start"{}}.
+\item {\ttfamily args} -\/ an array of arguments to pass to the method.
+\end{DoxyItemize}
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ VisitNodeStep,\ CallMethodStep\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{class\ MySourceCode\ \{}
+\DoxyCodeLine{\ \ \ \ traverse()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ steps\ =\ [];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ for\ (const\ \{\ node,\ parent,\ phase\ \}\ of\ iterator(this.ast))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ steps.push(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\ VisitNodeStep(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target:\ node,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ phase:\ phase\ ===\ "{}enter"{}\ ?\ 1\ :\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args:\ [node,\ parent],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ call\ a\ method\ indicating\ how\ many\ times\ we've\ been\ through\ the\ loop}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ steps.push(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\ CallMethodStep(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target:\ "{}onIteration"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args:\ [steps.length]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ steps;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md268}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Directive}}{{\ttfamily Directive}}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md268}
+The {\ttfamily Directive} class represents a disable directive in the source code and implements the {\ttfamily Directive} interface from {\ttfamily @eslint/\+core}. You can tell ESLint about disable directives using the {\ttfamily Source\+Code\#get\+Disable\+Directives()} method, where part of the return value is an array of {\ttfamily Directive} objects. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ Directive,\ ConfigCommentParser\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{class\ MySourceCode\ \{}
+\DoxyCodeLine{\ \ \ \ getDisableDirectives()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ directives\ =\ [];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ problems\ =\ [];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ commentParser\ =\ new\ ConfigCommentParser();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ read\ in\ the\ inline\ config\ nodes\ to\ check\ each\ one}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.getInlineConfigNodes().forEach(comment\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ Step\ 1:\ Parse\ the\ directive}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ const\ \{\ label,\ value,\ justification\ \}\ =}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ commentParser.parseDirective(comment.value);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ Step\ 2:\ Extract\ the\ directive\ value\ and\ create\ the\ \`{}Directive`\ object}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ switch\ (label)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ "{}eslint-\/disable"{}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ "{}eslint-\/enable"{}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ "{}eslint-\/disable-\/next-\/line"{}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ "{}eslint-\/disable-\/line"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ directiveType\ =\ label.slice("{}eslint-\/"{}.length);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ directives.push(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\ Directive(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type:\ directiveType,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node:\ comment,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ justification,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ ignore\ any\ comments\ that\ don't\ begin\ with\ known\ labels}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ directives,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ problems,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md269}{}\doxysubsubsection{\texorpdfstring{{\ttfamily Text\+Source\+Code\+Base}}{{\ttfamily Text\+Source\+Code\+Base}}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md269}
+The {\ttfamily Text\+Source\+Code\+Base} class is intended to be a base class that has several of the common members found in {\ttfamily Source\+Code} objects already implemented. Those members are:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily lines} -\/ an array of text lines that is created automatically when the constructor is called.
+\item {\ttfamily get\+Loc(node\+Or\+Token)} -\/ gets the location of a node or token. Works for nodes that have the ESLint-\/style {\ttfamily loc} property and nodes that have the Unist-\/style \href{https://github.com/syntax-tree/unist?tab=readme-ov-file\#position}{\texttt{{\ttfamily position} property}}. If you\textquotesingle{}re using an AST with a different location format, you\textquotesingle{}ll still need to implement this method yourself.
+\item {\ttfamily get\+Loc\+From\+Index(index)} -\/ Converts a source text index into a {\ttfamily \{ line:\+ number, column:\+ number \}} pair. (For this method to work, the root node should always cover the entire source code text, and the {\ttfamily get\+Loc()} method needs to be implemented correctly.)
+\item {\ttfamily get\+Index\+From\+Loc(loc)} -\/ Converts a {\ttfamily \{ line:\+ number, column:\+ number \}} pair into a source text index. (For this method to work, the root node should always cover the entire source code text, and the {\ttfamily get\+Loc()} method needs to be implemented correctly.)
+\item {\ttfamily get\+Range(node\+Or\+Token)} -\/ gets the range of a node or token within the source text. Works for nodes that have the ESLint-\/style {\ttfamily range} property and nodes that have the Unist-\/style \href{https://github.com/syntax-tree/unist?tab=readme-ov-file\#position}{\texttt{{\ttfamily position} property}}. If you\textquotesingle{}re using an AST with a different range format, you\textquotesingle{}ll still need to implement this method yourself.
+\item {\ttfamily get\+Text(node, before\+Count, after\+Count)} -\/ gets the source text for the given node that has range information attached. Optionally, can return additional characters before and after the given node. As long as {\ttfamily get\+Range()} is properly implemented, this method will just work.
+\item {\ttfamily get\+Ancestors(node)} -\/ returns the ancestry of the node. In order for this to work, you must implement the {\ttfamily get\+Parent()} method yourself.
+\end{DoxyItemize}
+
+Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ TextSourceCodeBase\ \}\ from\ "{}@eslint/plugin-\/kit"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ class\ MySourceCode\ extends\ TextSourceCodeBase\ \{}
+\DoxyCodeLine{\ \ \ \ \#parents\ =\ new\ Map();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ constructor(\{\ ast,\ text\ \})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ super(\{\ ast,\ text\ \});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ getParent(node)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ this.\#parents.get(node);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ traverse()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ steps\ =\ [];}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ for\ (const\ \{\ node,\ parent,\ phase\ \}\ of\ iterator(this.ast))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //save\ the\ parent\ information}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ this.\#parent.set(node,\ parent);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ steps.push(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\ VisitNodeStep(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target:\ node,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ phase:\ phase\ ===\ "{}enter"{}\ ?\ 1\ :\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ args:\ [node,\ parent],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ steps;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+In general, it\textquotesingle{}s safe to collect the parent information during the {\ttfamily traverse()} method as {\ttfamily get\+Parent()} and {\ttfamily get\+Ancestor()} will only be called from rules once the AST has been traversed at least once.\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md270}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md270}
+Apache 2.\+0\hypertarget{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md271}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_9e9ea4d73b61169b8ec6aad12bbc4938_autotoc_md271}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://sentry.io}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

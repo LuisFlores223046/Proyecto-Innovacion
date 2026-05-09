@@ -1,0 +1,74 @@
+\doxysection{jinja2.\+ext.\+Loop\+Control\+Extension Class Reference}
+\hypertarget{classjinja2_1_1ext_1_1LoopControlExtension}{}\label{classjinja2_1_1ext_1_1LoopControlExtension}\index{jinja2.ext.LoopControlExtension@{jinja2.ext.LoopControlExtension}}
+Inheritance diagram for jinja2.\+ext.\+Loop\+Control\+Extension:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1ext_1_1LoopControlExtension}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+t.\+Union\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Break}{nodes.\+Break}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Continue}{nodes.\+Continue}}]\+ \doxymbox{\hyperlink{classjinja2_1_1ext_1_1LoopControlExtension_a924c02b3cb9f5735ec16c41b81a5a400}{parse}} (self, "{}Parser"{} parser)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension}{jinja2.\+ext.\+Extension}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls)
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classjinja2_1_1environment_1_1Environment}{Environment}} environment)
+\item 
+"{}te.\+Self"{} \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_a9d46fd0361592bee89963c17681b71a8}{bind}} (self, \doxymbox{\hyperlink{classjinja2_1_1environment_1_1Environment}{Environment}} environment)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_ace0a9167ec8ec3e0cac046044c56a758}{preprocess}} (self, str source, t.\+Optional\+[str]\+ name, t.\+Optional\+[str]\+ filename=None)
+\item 
+t.\+Union\+["{}Token\+Stream"{}, t.\+Iterable\+["{}Token"{}]\+]\+ \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_aaa734456979123e4a6fe57d1dcf18201}{filter\+\_\+stream}} (self, "{}Token\+Stream"{} stream)
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1ExtensionAttribute}{nodes.\+Extension\+Attribute}} \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_a9c01ec07df747d478f63f217ebbb6ada}{attr}} (self, str name, t.\+Optional\+[int]\+ lineno=None)
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Call}{nodes.\+Call}} \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_a4490a8dffd62246d11a66f1ff5b9e258}{call\+\_\+method}} (self, str name, t.\+Optional\+[t.\+List\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Expr}{nodes.\+Expr}}]\+]\+ args=None, t.\+Optional\+[t.\+List\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Keyword}{nodes.\+Keyword}}]\+]\+ kwargs=None, t.\+Optional\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Expr}{nodes.\+Expr}}]\+ dyn\+\_\+args=None, t.\+Optional\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Expr}{nodes.\+Expr}}]\+ dyn\+\_\+kwargs=None, t.\+Optional\+[int]\+ lineno=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension}{jinja2.\+ext.\+Extension}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries environment} = environment
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension}{jinja2.\+ext.\+Extension}}}
+\begin{DoxyCompactItemize}
+\item 
+t {\bfseries identifier} .Class\+Var\+[str]\+
+\item 
+t {\bfseries tags} = set()
+\item 
+int {\bfseries priority} = 100
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Adds break and continue to the template engine.\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1ext_1_1LoopControlExtension_doc-func-members}
+\Hypertarget{classjinja2_1_1ext_1_1LoopControlExtension_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1ext_1_1LoopControlExtension_a924c02b3cb9f5735ec16c41b81a5a400}\index{jinja2.ext.LoopControlExtension@{jinja2.ext.LoopControlExtension}!parse@{parse}}
+\index{parse@{parse}!jinja2.ext.LoopControlExtension@{jinja2.ext.LoopControlExtension}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1ext_1_1LoopControlExtension_a924c02b3cb9f5735ec16c41b81a5a400} 
+ t.\+Union\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Break}{nodes.\+Break}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Continue}{nodes.\+Continue}}]\+ jinja2.\+ext.\+Loop\+Control\+Extension.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Parser"{}}]{parser}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}If any of the :attr:`tags` matched this method is called with the
+parser as first argument.  The token the parser stream is pointing at
+is the name token that matched.  This method has to return one or a
+list of multiple nodes.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1ext_1_1Extension_ab21761ef8794ae53ffb445c8c03cdeed}{jinja2.\+ext.\+Extension}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+ext.\+py\end{DoxyCompactItemize}

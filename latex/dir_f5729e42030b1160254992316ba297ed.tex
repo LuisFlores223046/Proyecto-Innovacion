@@ -1,0 +1,72 @@
+\doxysection{frontend/\+node\+\_\+modules/\+p-\/locate Directory Reference}
+\hypertarget{dir_f5729e42030b1160254992316ba297ed}{}\label{dir_f5729e42030b1160254992316ba297ed}\index{frontend/node\_modules/p-\/locate Directory Reference@{frontend/node\_modules/p-\/locate Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3730}{}\doxysubsection{\texorpdfstring{p-\/locate \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/p-locate.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+p-\/locate.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/p-locate}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+p-\/locate}})}{p-\/locate \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/p-locate.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+p-\/locate.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/p-locate}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+p-\/locate}})}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3730}
+\begin{quote}
+Get the first fulfilled promise that satisfies the provided testing function \end{quote}
+
+
+Think of it like an async version of \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/find}{\texttt{{\ttfamily Array\#find}}}.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3731}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3731}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ p-\/locate}
+
+\end{DoxyCode}
+\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3732}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3732}
+Here we find the first file that exists on disk, in array order.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ pathExists\ =\ require('path-\/exists');}
+\DoxyCodeLine{const\ pLocate\ =\ require('p-\/locate');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ files\ =\ [}
+\DoxyCodeLine{\ \ \ \ 'unicorn.png',}
+\DoxyCodeLine{\ \ \ \ 'rainbow.png',\ //\ Only\ this\ one\ actually\ exists\ on\ disk}
+\DoxyCodeLine{\ \ \ \ 'pony.png'}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ const\ foundPath\ =\ await\ pLocate(files,\ file\ =>\ pathExists(file));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(foundPath);}
+\DoxyCodeLine{\ \ \ \ //=>\ 'rainbow'}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+
+
+{\itshape The above is just an example. Use \href{https://github.com/sindresorhus/locate-path}{\texttt{{\ttfamily locate-\/path}}} if you need this.}\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3733}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3733}
+\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3734}{}\doxysubsubsection{\texorpdfstring{p\+Locate(input, tester, options?)}{p\+Locate(input, tester, options?)}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3734}
+Returns a {\ttfamily Promise} that is fulfilled when {\ttfamily tester} resolves to {\ttfamily true} or the iterable is done, or rejects if any of the promises reject. The fulfilled value is the current iterable value or {\ttfamily undefined} if {\ttfamily tester} never resolved to {\ttfamily true}.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3735}{}\doxysubsubsubsection{\texorpdfstring{input}{input}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3735}
+Type:\+ {\ttfamily Iterable\texorpdfstring{$<$}{<}Promise \texorpdfstring{$\vert$}{|} unknown\texorpdfstring{$>$}{>}}
+
+An iterable of promises/\+values to test.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3736}{}\doxysubsubsubsection{\texorpdfstring{tester(element)}{tester(element)}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3736}
+Type:\+ {\ttfamily Function}
+
+This function will receive resolved values from {\ttfamily input} and is expected to return a {\ttfamily Promise\texorpdfstring{$<$}{<}boolean\texorpdfstring{$>$}{>}} or {\ttfamily boolean}.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3737}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3737}
+Type:\+ {\ttfamily object}\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3738}{}\doxysubsubsubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3738}
+Type:\+ {\ttfamily number}\textbackslash{} Default:\+ {\ttfamily Infinity}\textbackslash{} Minimum:\+ {\ttfamily 1}
+
+Number of concurrently pending promises returned by {\ttfamily tester}.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3739}{}\doxysubsubsubsubsection{\texorpdfstring{preserve\+Order}{preserve\+Order}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3739}
+Type:\+ {\ttfamily boolean}\textbackslash{} Default:\+ {\ttfamily true}
+
+Preserve {\ttfamily input} order when searching.
+
+Disable this to improve performance if you don\textquotesingle{}t care about the order.\hypertarget{dir_f5729e42030b1160254992316ba297ed_autotoc_md3740}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_f5729e42030b1160254992316ba297ed_autotoc_md3740}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/p-map}{\texttt{p-\/map}} -\/ Map over promises concurrently
+\item \href{https://github.com/sindresorhus/p-filter}{\texttt{p-\/filter}} -\/ Filter promises concurrently
+\item \href{https://github.com/sindresorhus/p-any}{\texttt{p-\/any}} -\/ Wait for any promise to be fulfilled
+\item \href{https://github.com/sindresorhus/promise-fun}{\texttt{More…}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-p-locate?utm_source=npm-p-locate&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

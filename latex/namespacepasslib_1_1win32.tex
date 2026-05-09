@@ -1,0 +1,54 @@
+\doxysection{passlib.\+win32 Namespace Reference}
+\hypertarget{namespacepasslib_1_1win32}{}\label{namespacepasslib_1_1win32}\index{passlib.win32@{passlib.win32}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1win32_aefebf06cfa0181a23b9a955d87c8af49}{raw\+\_\+lmhash}} (secret, encoding="{}ascii"{}, hex=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1win32_a88429a6fbba1ed7c1df738f63f0bd454}\label{namespacepasslib_1_1win32_a88429a6fbba1ed7c1df738f63f0bd454} 
+str {\bfseries LM\+\_\+\+MAGIC} = b"{}\+KGS!@\+\#\$\%"{}
+\item 
+\Hypertarget{namespacepasslib_1_1win32_a3f3e273f67dd181172338c7d7fd279c4}\label{namespacepasslib_1_1win32_a3f3e273f67dd181172338c7d7fd279c4} 
+{\bfseries raw\+\_\+nthash} = nthash.\+raw\+\_\+nthash
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.win32 - MS Windows support - DEPRECATED, WILL BE REMOVED IN 1.8
+
+the LMHASH and NTHASH algorithms are used in various windows related contexts,
+but generally not in a manner compatible with how passlib is structured.
+
+in particular, they have no identifying marks, both being
+32 bytes of binary data. thus, they can't be easily identified
+in a context with other hashes, so a CryptHandler hasn't been defined for them.
+
+this module provided two functions to aid in any use-cases which exist.
+
+.. warning::
+
+    these functions should not be used for new code unless an existing
+    system requires them, they are both known broken,
+    and are beyond insecure on their own.
+
+.. autofunction:: raw_lmhash
+.. autofunction:: raw_nthash
+
+See also :mod:`passlib.hash.nthash`.
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1win32_doc-func-members}
+\Hypertarget{namespacepasslib_1_1win32_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1win32_aefebf06cfa0181a23b9a955d87c8af49}\index{passlib.win32@{passlib.win32}!raw\_lmhash@{raw\_lmhash}}
+\index{raw\_lmhash@{raw\_lmhash}!passlib.win32@{passlib.win32}}
+\doxysubsubsection{\texorpdfstring{raw\_lmhash()}{raw\_lmhash()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1win32_aefebf06cfa0181a23b9a955d87c8af49} 
+raw\+\_\+lmhash (\begin{DoxyParamCaption}\item[{}]{secret}{, }\item[{}]{encoding}{ = {\ttfamily "{}ascii"{}}, }\item[{}]{hex}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}encode password using des-based LMHASH algorithm; returns string of raw bytes, or unicode hex\end{DoxyVerb}
+ 

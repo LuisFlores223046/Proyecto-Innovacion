@@ -1,0 +1,49 @@
+\doxysection{ecdsa.\+rfc6979 Namespace Reference}
+\hypertarget{namespaceecdsa_1_1rfc6979}{}\label{namespaceecdsa_1_1rfc6979}\index{ecdsa.rfc6979@{ecdsa.rfc6979}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceecdsa_1_1rfc6979_a9ac97de169c1bed119a03515bfaeed01}\label{namespaceecdsa_1_1rfc6979_a9ac97de169c1bed119a03515bfaeed01} 
+{\bfseries bits2int} (data, qlen)
+\item 
+\Hypertarget{namespaceecdsa_1_1rfc6979_a5e25b17ab793ee7f847d647c3ef4a555}\label{namespaceecdsa_1_1rfc6979_a5e25b17ab793ee7f847d647c3ef4a555} 
+{\bfseries bits2octets} (data, order)
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1rfc6979_a1e79826e8ac21bf7baafe3b94fde9164}{generate\+\_\+k}} (order, secexp, hash\+\_\+func, data, retry\+\_\+gen=0, extra\+\_\+entropy=b"{}"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}RFC 6979:
+    Deterministic Usage of the Digital Signature Algorithm (DSA) and
+    Elliptic Curve Digital Signature Algorithm (ECDSA)
+
+    http://tools.ietf.org/html/rfc6979
+
+Many thanks to Coda Hale for his implementation in Go language:
+    https://github.com/codahale/rfc6979
+\end{DoxyVerb}
+ 
+
+\label{namespaceecdsa_1_1rfc6979_doc-func-members}
+\Hypertarget{namespaceecdsa_1_1rfc6979_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceecdsa_1_1rfc6979_a1e79826e8ac21bf7baafe3b94fde9164}\index{ecdsa.rfc6979@{ecdsa.rfc6979}!generate\_k@{generate\_k}}
+\index{generate\_k@{generate\_k}!ecdsa.rfc6979@{ecdsa.rfc6979}}
+\doxysubsubsection{\texorpdfstring{generate\_k()}{generate\_k()}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1rfc6979_a1e79826e8ac21bf7baafe3b94fde9164} 
+generate\+\_\+k (\begin{DoxyParamCaption}\item[{}]{order}{, }\item[{}]{secexp}{, }\item[{}]{hash\+\_\+func}{, }\item[{}]{data}{, }\item[{}]{retry\+\_\+gen}{ = {\ttfamily 0}, }\item[{}]{extra\+\_\+entropy}{ = {\ttfamily b"{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate the ``k`` value - the nonce for DSA.
+
+:param int order: order of the DSA generator used in the signature
+:param int secexp: secure exponent (private key) in numeric form
+:param hash_func: reference to the same hash function used for generating
+    hash, like :py:class:`hashlib.sha1`
+:param bytes data: hash in binary form of the signing data
+:param int retry_gen: how many good 'k' values to skip before returning
+:param bytes extra_entropy: additional added data in binary form as per
+    section-3.6 of rfc6979
+:rtype: int
+\end{DoxyVerb}
+ 

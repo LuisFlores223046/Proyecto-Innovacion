@@ -1,0 +1,142 @@
+\doxysection{httpcore.\+\_\+models.\+URL Class Reference}
+\hypertarget{classhttpcore_1_1__models_1_1URL}{}\label{classhttpcore_1_1__models_1_1URL}\index{httpcore.\_models.URL@{httpcore.\_models.URL}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL_a04ce39d55fa0c94fa70793326c0fcd92}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bytes\texorpdfstring{$\vert$}{|}str url="{}"{}, \texorpdfstring{$\ast$}{*}, bytes\texorpdfstring{$\vert$}{|}str scheme=b"{}"{}, bytes\texorpdfstring{$\vert$}{|}str host=b"{}"{}, int\texorpdfstring{$\vert$}{|}None port=None, bytes\texorpdfstring{$\vert$}{|}str target=b"{}"{})
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_aae6a92ff8f39db349109c97fe79dbfee}\label{classhttpcore_1_1__models_1_1URL_aae6a92ff8f39db349109c97fe79dbfee} 
+\doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Origin}{Origin}} {\bfseries origin} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a39916188c8e5a1ea287eb5ee63163bf9}\label{classhttpcore_1_1__models_1_1URL_a39916188c8e5a1ea287eb5ee63163bf9} 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, typing.\+Any other)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a9a3181cc8b6ecf8bc99a9eda6b312936}\label{classhttpcore_1_1__models_1_1URL_a9a3181cc8b6ecf8bc99a9eda6b312936} 
+bytes {\bfseries \+\_\+\+\_\+bytes\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a79175a97fd52bdcc69b333aea26faa5a}\label{classhttpcore_1_1__models_1_1URL_a79175a97fd52bdcc69b333aea26faa5a} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_aa6003f827c6cc3b53e3c04fc46dfe862}\label{classhttpcore_1_1__models_1_1URL_aa6003f827c6cc3b53e3c04fc46dfe862} 
+{\bfseries scheme} = parsed.\+scheme
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a508cd430d7d530e9f09c9089da5ae1bb}\label{classhttpcore_1_1__models_1_1URL_a508cd430d7d530e9f09c9089da5ae1bb} 
+str {\bfseries host} = parsed.\+hostname or b"{}"{}
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a0628321ecb42c35590adfb0386e9300e}\label{classhttpcore_1_1__models_1_1URL_a0628321ecb42c35590adfb0386e9300e} 
+{\bfseries port} = parsed.\+port
+\item 
+tuple \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1URL_a6abd30b84af593286dac766dc1f9a05e}{target}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents the URL against which an HTTP request may be made.
+
+The URL may either be specified as a plain string, for convienence:
+
+```python
+url = httpcore.URL("https://www.example.com/")
+```
+
+Or be constructed with explicitily pre-parsed components:
+
+```python
+url = httpcore.URL(scheme=b'https', host=b'www.example.com', port=None, target=b'/')
+```
+
+Using this second more explicit style allows integrations that are using
+`httpcore` to pass through URLs that have already been parsed in order to use
+libraries such as `rfc-3986` rather than relying on the stdlib. It also ensures
+that URL parsing is treated identically at both the networking level and at any
+higher layers of abstraction.
+
+The four components are important here, as they allow the URL to be precisely
+specified in a pre-parsed format. They also allow certain types of request to
+be created that could not otherwise be expressed.
+
+For example, an HTTP request to `http://www.example.com/` forwarded via a proxy
+at `http://localhost:8080`...
+
+```python
+# Constructs an HTTP request with a complete URL as the target:
+# GET https://www.example.com/ HTTP/1.1
+url = httpcore.URL(
+    scheme=b'http',
+    host=b'localhost',
+    port=8080,
+    target=b'https://www.example.com/'
+)
+request = httpcore.Request(
+    method="GET",
+    url=url
+)
+```
+
+Another example is constructing an `OPTIONS *` request...
+
+```python
+# Constructs an 'OPTIONS *' HTTP request:
+# OPTIONS * HTTP/1.1
+url = httpcore.URL(scheme=b'https', host=b'www.example.com', target=b'*')
+request = httpcore.Request(method="OPTIONS", url=url)
+```
+
+This kind of request is not possible to formulate with a URL string,
+because the `/` delimiter is always used to demark the target from the
+host/port portion of the URL.
+
+For convenience, string-like arguments may be specified either as strings or
+as bytes. However, once a request is being issue over-the-wire, the URL
+components are always ultimately required to be a bytewise representation.
+
+In order to avoid any ambiguity over character encodings, when strings are used
+as arguments, they must be strictly limited to the ASCII range `chr(0)`-`chr(127)`.
+If you require a bytewise representation that is outside this range you must
+handle the character encoding directly, and pass a bytes instance.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__models_1_1URL_doc-constructors}
+\Hypertarget{classhttpcore_1_1__models_1_1URL_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a04ce39d55fa0c94fa70793326c0fcd92}\index{httpcore.\_models.URL@{httpcore.\_models.URL}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!httpcore.\_models.URL@{httpcore.\_models.URL}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__models_1_1URL_a04ce39d55fa0c94fa70793326c0fcd92} 
+ None httpcore.\+\_\+models.\+URL.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes \texorpdfstring{$\vert$}{|} str }]{url}{ = {\ttfamily "{}"{}}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bytes \texorpdfstring{$\vert$}{|} str }]{scheme}{ = {\ttfamily b"{}"{}}, }\item[{bytes \texorpdfstring{$\vert$}{|} str }]{host}{ = {\ttfamily b"{}"{}}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{port}{ = {\ttfamily None}, }\item[{bytes \texorpdfstring{$\vert$}{|} str }]{target}{ = {\ttfamily b"{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parameters:
+    url: The complete URL as a string or bytes.
+    scheme: The URL scheme as a string or bytes.
+        Typically either `"http"` or `"https"`.
+    host: The URL host as a string or bytes. Such as `"www.example.com"`.
+    port: The port to connect to. Either an integer or `None`.
+    target: The target of the HTTP request. Such as `"/items?search=red"`.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__models_1_1URL_doc-variable-members}
+\Hypertarget{classhttpcore_1_1__models_1_1URL_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpcore_1_1__models_1_1URL_a6abd30b84af593286dac766dc1f9a05e}\index{httpcore.\_models.URL@{httpcore.\_models.URL}!target@{target}}
+\index{target@{target}!httpcore.\_models.URL@{httpcore.\_models.URL}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__models_1_1URL_a6abd30b84af593286dac766dc1f9a05e} 
+httpcore.\+\_\+models.\+URL.\+target}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (parsed.path\ \textcolor{keywordflow}{or}\ b\textcolor{stringliteral}{"{}/"{}})\ +\ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ b\textcolor{stringliteral}{"{}?"{}}\ +\ parsed.query\ \textcolor{keywordflow}{if}\ parsed.query\ \textcolor{keywordflow}{else}\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+models.\+py\end{DoxyCompactItemize}

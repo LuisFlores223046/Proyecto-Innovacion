@@ -1,0 +1,76 @@
+\doxysection{pip.\+\_\+internal.\+vcs.\+versioncontrol Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol}{}\label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol}\index{pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1RemoteNotFoundError}{Remote\+Not\+Found\+Error}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1RemoteNotValidError}{Remote\+Not\+Valid\+Error}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1RevOptions}{Rev\+Options}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1VcsSupport}{Vcs\+Support}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1VersionControl}{Version\+Control}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a9254d39e5b5e5564b4b2fe7e683b2ce7}{is\+\_\+url}} (str name)
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_ac25330930d26774b9aba081264e2dec6}{make\+\_\+vcs\+\_\+requirement\+\_\+url}} (str repo\+\_\+url, str rev, str project\+\_\+name, Optional\+[str]\+ subdir=None)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a470950463628dc6884273964c4db69aa}{find\+\_\+path\+\_\+to\+\_\+project\+\_\+root\+\_\+from\+\_\+repo\+\_\+root}} (str location, str repo\+\_\+root)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a5985b711475a83d999df91dc2d1a992d}\label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a5985b711475a83d999df91dc2d1a992d} 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_abd1a73ed07725a5cd6bd41f2e288be76}\label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_abd1a73ed07725a5cd6bd41f2e288be76} 
+{\bfseries Auth\+Info} = Tuple\+[Optional\+[str]\+, Optional\+[str]\+]\+
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_abe0917d729e813375fa39966f4eea0f3}\label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_abe0917d729e813375fa39966f4eea0f3} 
+{\bfseries vcs} = \doxymbox{\hyperlink{classpip_1_1__internal_1_1vcs_1_1versioncontrol_1_1VcsSupport}{Vcs\+Support}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Handles all VCS (version control) support\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a470950463628dc6884273964c4db69aa}\index{pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}!find\_path\_to\_project\_root\_from\_repo\_root@{find\_path\_to\_project\_root\_from\_repo\_root}}
+\index{find\_path\_to\_project\_root\_from\_repo\_root@{find\_path\_to\_project\_root\_from\_repo\_root}!pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}}
+\doxysubsubsection{\texorpdfstring{find\_path\_to\_project\_root\_from\_repo\_root()}{find\_path\_to\_project\_root\_from\_repo\_root()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a470950463628dc6884273964c4db69aa} 
+ Optional\+[str]\+ find\+\_\+path\+\_\+to\+\_\+project\+\_\+root\+\_\+from\+\_\+repo\+\_\+root (\begin{DoxyParamCaption}\item[{str}]{location}{, }\item[{str }]{repo\+\_\+root}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find the the Python project's root by searching up the filesystem from
+`location`. Return the path to project root relative to `repo_root`.
+Return None if the project root is `repo_root`, or cannot be found.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a9254d39e5b5e5564b4b2fe7e683b2ce7}\index{pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}!is\_url@{is\_url}}
+\index{is\_url@{is\_url}!pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}}
+\doxysubsubsection{\texorpdfstring{is\_url()}{is\_url()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_a9254d39e5b5e5564b4b2fe7e683b2ce7} 
+ bool is\+\_\+url (\begin{DoxyParamCaption}\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return true if the name looks like a URL.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_ac25330930d26774b9aba081264e2dec6}\index{pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}!make\_vcs\_requirement\_url@{make\_vcs\_requirement\_url}}
+\index{make\_vcs\_requirement\_url@{make\_vcs\_requirement\_url}!pip.\_internal.vcs.versioncontrol@{pip.\_internal.vcs.versioncontrol}}
+\doxysubsubsection{\texorpdfstring{make\_vcs\_requirement\_url()}{make\_vcs\_requirement\_url()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1vcs_1_1versioncontrol_ac25330930d26774b9aba081264e2dec6} 
+ str make\+\_\+vcs\+\_\+requirement\+\_\+url (\begin{DoxyParamCaption}\item[{str}]{repo\+\_\+url}{, }\item[{str}]{rev}{, }\item[{str}]{project\+\_\+name}{, }\item[{Optional\+[str]\+ }]{subdir}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the URL for a VCS requirement.
+
+Args:
+  repo_url: the remote VCS url, with any needed VCS prefix (e.g. "git+").
+  project_name: the (unescaped) project name.
+\end{DoxyVerb}
+ 

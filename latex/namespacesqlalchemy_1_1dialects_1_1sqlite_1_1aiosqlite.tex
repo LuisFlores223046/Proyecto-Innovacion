@@ -1,0 +1,95 @@
+\doxysection{sqlalchemy.\+dialects.\+sqlite.\+aiosqlite Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite}{}\label{namespacesqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite}\index{sqlalchemy.dialects.sqlite.aiosqlite@{sqlalchemy.dialects.sqlite.aiosqlite}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1AsyncAdapt__aiosqlite__cursor}{Async\+Adapt\+\_\+aiosqlite\+\_\+cursor}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1AsyncAdapt__aiosqlite__ss__cursor}{Async\+Adapt\+\_\+aiosqlite\+\_\+ss\+\_\+cursor}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1AsyncAdapt__aiosqlite__connection}{Async\+Adapt\+\_\+aiosqlite\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1AsyncAdaptFallback__aiosqlite__connection}{Async\+Adapt\+Fallback\+\_\+aiosqlite\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1AsyncAdapt__aiosqlite__dbapi}{Async\+Adapt\+\_\+aiosqlite\+\_\+dbapi}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteExecutionContext__aiosqlite}{SQLite\+Execution\+Context\+\_\+aiosqlite}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteDialect__aiosqlite}{SQLite\+Dialect\+\_\+aiosqlite}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_a85642152ff1c2fb907902b9e7f305295}\label{namespacesqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_a85642152ff1c2fb907902b9e7f305295} 
+{\bfseries dialect} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1aiosqlite_1_1SQLiteDialect__aiosqlite}{SQLite\+Dialect\+\_\+aiosqlite}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: sqlite+aiosqlite
+    :name: aiosqlite
+    :dbapi: aiosqlite
+    :connectstring: sqlite+aiosqlite:///file_path
+    :url: https://pypi.org/project/aiosqlite/
+
+The aiosqlite dialect provides support for the SQLAlchemy asyncio interface
+running on top of pysqlite.
+
+aiosqlite is a wrapper around pysqlite that uses a background thread for
+each connection.   It does not actually use non-blocking IO, as SQLite
+databases are not socket-based.  However it does provide a working asyncio
+interface that's useful for testing and prototyping purposes.
+
+Using a special asyncio mediation layer, the aiosqlite dialect is usable
+as the backend for the :ref:`SQLAlchemy asyncio <asyncio_toplevel>`
+extension package.
+
+This dialect should normally be used only with the
+:func:`_asyncio.create_async_engine` engine creation function::
+
+    from sqlalchemy.ext.asyncio import create_async_engine
+    engine = create_async_engine("sqlite+aiosqlite:///filename")
+
+The URL passes through all arguments to the ``pysqlite`` driver, so all
+connection arguments are the same as they are for that of :ref:`pysqlite`.
+
+.. _aiosqlite_udfs:
+
+User-Defined Functions
+----------------------
+
+aiosqlite extends pysqlite to support async, so we can create our own user-defined functions (UDFs)
+in Python and use them directly in SQLite queries as described here: :ref:`pysqlite_udfs`.
+
+.. _aiosqlite_serializable:
+
+Serializable isolation / Savepoints / Transactional DDL (asyncio version)
+-------------------------------------------------------------------------
+
+Similarly to pysqlite, aiosqlite does not support SAVEPOINT feature.
+
+The solution is similar to :ref:`pysqlite_serializable`. This is achieved by the event listeners in async::
+
+    from sqlalchemy import create_engine, event
+    from sqlalchemy.ext.asyncio import create_async_engine
+
+    engine = create_async_engine("sqlite+aiosqlite:///myfile.db")
+
+    @event.listens_for(engine.sync_engine, "connect")
+    def do_connect(dbapi_connection, connection_record):
+        # disable aiosqlite's emitting of the BEGIN statement entirely.
+        # also stops it from emitting COMMIT before any DDL.
+        dbapi_connection.isolation_level = None
+
+    @event.listens_for(engine.sync_engine, "begin")
+    def do_begin(conn):
+        # emit our own BEGIN
+        conn.exec_driver_sql("BEGIN")
+
+.. warning:: When using the above recipe, it is advised to not use the
+   :paramref:`.Connection.execution_options.isolation_level` setting on
+   :class:`_engine.Connection` and :func:`_sa.create_engine`
+   with the SQLite driver,
+   as this function necessarily will also alter the ".isolation_level" setting.
+\end{DoxyVerb}
+ 

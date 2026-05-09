@@ -1,0 +1,166 @@
+\doxysection{sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy}{}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+Inheritance diagram for sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a0d90ed0d7cc154dac72e5c17271e2f0a}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a0d90ed0d7cc154dac72e5c17271e2f0a} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, dbapi\+\_\+cursor, execution\+\_\+options, growth\+\_\+factor=5, initial\+\_\+buffer=None)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ad711db9aa7a216bb1d4c55e7a076d2e4}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ad711db9aa7a216bb1d4c55e7a076d2e4} 
+{\bfseries create} (cls, result)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ab5a1c7aee2bc4025ceff1a90f234cdc7}{yield\+\_\+per}} (self, result, dbapi\+\_\+cursor, num)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a83e314275b3b6cb33f4278818e9ff3dc}{soft\+\_\+close}} (self, result, dbapi\+\_\+cursor)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ac99af1730ce8d4809c58dba5449a042d}{hard\+\_\+close}} (self, result, dbapi\+\_\+cursor)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_acfc7c521cbfb701233cbfb84df3d4542}{fetchone}} (self, result, dbapi\+\_\+cursor, hard\+\_\+close=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_aef3b2240008389a424334d995b8174ce}{fetchmany}} (self, result, dbapi\+\_\+cursor, size=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a34aa7a3e3b991e796a35e41d74285f2b}{fetchall}} (self, result, dbapi\+\_\+cursor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+No\+Return \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy_a6dbfb64b2788553d8f2799b856ce5dbb}{handle\+\_\+exception}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}\+[Any]\+ result, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}]\+ dbapi\+\_\+cursor, Base\+Exception err)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a992ac68bae5814821407ace435fa01fc}{\+\_\+buffer\+\_\+rows}} (self, result, dbapi\+\_\+cursor)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a4b04ba867d42138e056a0ac780d1ddb8}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a4b04ba867d42138e056a0ac780d1ddb8} 
+{\bfseries \+\_\+max\+\_\+row\+\_\+buffer} = execution\+\_\+options.\+get("{}max\+\_\+row\+\_\+buffer"{}, 1000)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a39608e325838adaa5ed5bf67e549728d}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a39608e325838adaa5ed5bf67e549728d} 
+{\bfseries \+\_\+rowbuffer} = initial\+\_\+buffer
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a2c78f15ea8542d2f9b55ea89105dc752}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a2c78f15ea8542d2f9b55ea89105dc752} 
+int {\bfseries \+\_\+growth\+\_\+factor} = growth\+\_\+factor
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a546c5d56fef2d7f4e0253edec5c73d45}\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a546c5d56fef2d7f4e0253edec5c73d45} 
+{\bfseries \+\_\+bufsize} = min(self.\+\_\+max\+\_\+row\+\_\+buffer, self.\+\_\+growth\+\_\+factor)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries alternate\+\_\+cursor\+\_\+description} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A cursor fetch strategy with row buffering behavior.
+
+This strategy buffers the contents of a selection of rows
+before ``fetchone()`` is called.  This is to allow the results of
+``cursor.description`` to be available immediately, when
+interfacing with a DB-API that requires rows to be consumed before
+this information is available (currently psycopg2, when used with
+server-side cursors).
+
+The pre-fetching behavior fetches only one row initially, and then
+grows its buffer size by a fixed amount with each successive need
+for additional rows up the ``max_row_buffer`` size, which defaults
+to 1000::
+
+    with psycopg2_engine.connect() as conn:
+
+        result = conn.execution_options(
+            stream_results=True, max_row_buffer=50
+            ).execute(text("select * from table"))
+
+.. versionadded:: 1.4 ``max_row_buffer`` may now exceed 1000 rows.
+
+.. seealso::
+
+    :ref:`psycopg2_execution_options`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a992ac68bae5814821407ace435fa01fc}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!\_buffer\_rows@{\_buffer\_rows}}
+\index{\_buffer\_rows@{\_buffer\_rows}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{\_buffer\_rows()}{\_buffer\_rows()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a992ac68bae5814821407ace435fa01fc} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+\_\+buffer\+\_\+rows (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}this is currently used only by fetchone().\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a34aa7a3e3b991e796a35e41d74285f2b}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!fetchall@{fetchall}}
+\index{fetchall@{fetchall}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchall()}{fetchall()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a34aa7a3e3b991e796a35e41d74285f2b} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+fetchall (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_aef3b2240008389a424334d995b8174ce}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!fetchmany@{fetchmany}}
+\index{fetchmany@{fetchmany}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchmany()}{fetchmany()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_aef3b2240008389a424334d995b8174ce} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+fetchmany (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{, }\item[{}]{size}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_acfc7c521cbfb701233cbfb84df3d4542}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!fetchone@{fetchone}}
+\index{fetchone@{fetchone}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchone()}{fetchone()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_acfc7c521cbfb701233cbfb84df3d4542} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+fetchone (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{, }\item[{}]{hard\+\_\+close}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ac99af1730ce8d4809c58dba5449a042d}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!hard\_close@{hard\_close}}
+\index{hard\_close@{hard\_close}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{hard\_close()}{hard\_close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ac99af1730ce8d4809c58dba5449a042d} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+hard\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a83e314275b3b6cb33f4278818e9ff3dc}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!soft\_close@{soft\_close}}
+\index{soft\_close@{soft\_close}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{soft\_close()}{soft\_close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_a83e314275b3b6cb33f4278818e9ff3dc} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+soft\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ab5a1c7aee2bc4025ceff1a90f234cdc7}\index{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}!yield\_per@{yield\_per}}
+\index{yield\_per@{yield\_per}!sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy@{sqlalchemy.engine.cursor.BufferedRowCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{yield\_per()}{yield\_per()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1BufferedRowCursorFetchStrategy_ab5a1c7aee2bc4025ceff1a90f234cdc7} 
+sqlalchemy.\+engine.\+cursor.\+Buffered\+Row\+Cursor\+Fetch\+Strategy.\+yield\+\_\+per (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{, }\item[{}]{num}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Cursor\+Fetch\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+cursor.\+py\end{DoxyCompactItemize}

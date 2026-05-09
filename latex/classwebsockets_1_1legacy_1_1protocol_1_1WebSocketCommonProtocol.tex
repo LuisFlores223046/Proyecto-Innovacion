@@ -1,0 +1,841 @@
+\doxysection{websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol Class Reference}
+\hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol}{}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+Inheritance diagram for websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.866667cm]{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a66fcfb0558000f15c9a0402905f81043}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a66fcfb0558000f15c9a0402905f81043} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}, Optional\+[Logger\+Like]\+ logger=None, Optional\+[float]\+ ping\+\_\+interval=20, Optional\+[float]\+ ping\+\_\+timeout=20, Optional\+[float]\+ close\+\_\+timeout=None, Optional\+[int]\+ max\+\_\+size=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}20, Optional\+[int]\+ max\+\_\+queue=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}5, int read\+\_\+limit=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}16, int write\+\_\+limit=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}16, Optional\+[str]\+ host=None, Optional\+[int]\+ port=None, Optional\+[bool]\+ secure=None, bool legacy\+\_\+recv=False, Optional\+[asyncio.\+Abstract\+Event\+Loop]\+ loop=None, Optional\+[float]\+ timeout=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a84455422ed747abc2313be6138a87c5f}{connection\+\_\+open}} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a4662f15625e182a432f96f0543506ab7}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a4662f15625e182a432f96f0543506ab7} 
+Optional\+[str]\+ {\bfseries host} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a81e4b9714c8c12cee24c418011ef4ca7}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a81e4b9714c8c12cee24c418011ef4ca7} 
+Optional\+[int]\+ {\bfseries port} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a821b2783699e835e93bcae2a15ec477d}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a821b2783699e835e93bcae2a15ec477d} 
+Optional\+[bool]\+ {\bfseries secure} (self)
+\item 
+Any \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90aaadbdb48e66440599f96f305c161}{local\+\_\+address}} (self)
+\item 
+Any \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9dbf996533f4b7b30d37d1909c83d676}{remote\+\_\+address}} (self)
+\item 
+bool \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_af2d29b6fb0452130aa5404c50eb57044}{open}} (self)
+\item 
+bool \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90d097c978aea651f3a9f8805c81bf3}{closed}} (self)
+\item 
+Optional\+[int]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3fda21b4b885868bdab0d72ace2e22a6}{close\+\_\+code}} (self)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a26944da2d48b26164be430e5daba78b4}{close\+\_\+reason}} (self)
+\item 
+Async\+Iterator\+[Data]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac646be31cd26b87bd76fbaf34d19a130}{\+\_\+\+\_\+aiter\+\_\+\+\_\+}} (self)
+\item 
+Data \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a204cda1c777ce1fc1a099d1a1c56880c}{recv}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a41f884d2c3e29592d9a124364cd391ce}{send}} (self, Union\+[Data, Iterable\+[Data]\+, Async\+Iterable\+[Data]\+]\+ message)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9736dd62f6e54f5b4c5ac8e5044a2d41}{close}} (self, int code=Close\+Code.\+NORMAL\+\_\+\+CLOSURE, str reason="{}"{})
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a1b8153b1f616fbc30c55f909b136836a}{wait\+\_\+closed}} (self)
+\item 
+Awaitable\+[None]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a51947d6d8bcef29a942d5d1f1af148da}{ping}} (self, Optional\+[Data]\+ data=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a351ae54b7c302671ec2397214c9b118a}{pong}} (self, Data data=b"{}"{})
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_af7e68b98ff68e5de797c11147b8a3657}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_af7e68b98ff68e5de797c11147b8a3657} 
+\doxymbox{\hyperlink{classwebsockets_1_1exceptions_1_1ConnectionClosed}{Connection\+Closed}} {\bfseries connection\+\_\+closed\+\_\+exc} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a6dfc82dc3bdf4b6aa1cd7dd4a12290a3}{ensure\+\_\+open}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a00e0c1738444d6bd1de5f321a0356e3d}{transfer\+\_\+data}} (self)
+\item 
+Optional\+[Data]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad69607d84b4232932c75c8d5b16e5ceb}{read\+\_\+message}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1framing_1_1Frame}{Frame}}]\+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7332f037f14c2430e34b0d4d8d72f431}{read\+\_\+data\+\_\+frame}} (self, Optional\+[int]\+ max\+\_\+size)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1framing_1_1Frame}{Frame}} \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a021afdd41ad6f748ef14c7450ae9a28b}{read\+\_\+frame}} (self, Optional\+[int]\+ max\+\_\+size)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad36537e16d6dedaed78d19c33ca8474b}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad36537e16d6dedaed78d19c33ca8474b} 
+None {\bfseries write\+\_\+frame\+\_\+sync} (self, bool fin, int opcode, bytes data)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a49d159c6a35ca97a0bca60ea73f80d0a}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a49d159c6a35ca97a0bca60ea73f80d0a} 
+None {\bfseries drain} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a52101577b8db810afcf6af346b227600}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a52101577b8db810afcf6af346b227600} 
+None {\bfseries write\+\_\+frame} (self, bool fin, int opcode, bytes data, \texorpdfstring{$\ast$}{*}, int \+\_\+state=State.\+OPEN)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aa8eda577f73f23881a13abac41750e81}{write\+\_\+close\+\_\+frame}} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}} close, Optional\+[bytes]\+ data=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac15b54c81067e7533c50bb08258098d0}{keepalive\+\_\+ping}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9da3a7b3767714657479530afadc6a63}{close\+\_\+connection}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7117567b78496f9c1a5de4e29fea111a}{close\+\_\+transport}} (self)
+\item 
+bool \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_acd51bf6ff7f8f3c578059ad0dd014c88}{wait\+\_\+for\+\_\+connection\+\_\+lost}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a60961832bfe8821c6dd5ce88d75b37d1}{fail\+\_\+connection}} (self, int code=Close\+Code.\+ABNORMAL\+\_\+\+CLOSURE, str reason="{}"{})
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a76fe3cf4dc28c519bf3ac65c3addba3e}{abort\+\_\+pings}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a983288e761fc1602e126140fe1fdad4e}{connection\+\_\+made}} (self, asyncio.\+Base\+Transport transport)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab7c69afd37aca3842328adde6241eed1}{connection\+\_\+lost}} (self, Optional\+[Exception]\+ exc)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a347bd8cfa89ea853a2da046f733d6683}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a347bd8cfa89ea853a2da046f733d6683} 
+None {\bfseries pause\+\_\+writing} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad24f2bb19345e6f3de5e7f056baa88e0}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad24f2bb19345e6f3de5e7f056baa88e0} 
+None {\bfseries resume\+\_\+writing} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aeee68ef0fb534b8b4c77f0cc69269140}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aeee68ef0fb534b8b4c77f0cc69269140} 
+None {\bfseries data\+\_\+received} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab390525e7d67ee7296d0b6d3e7a0e7d9}{eof\+\_\+received}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae44cfcae3e52105d2abf638b8913d30d}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae44cfcae3e52105d2abf638b8913d30d} 
+{\bfseries ping\+\_\+interval} = ping\+\_\+interval
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a15e2df1d741aaf84eb8aff18e2242441}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a15e2df1d741aaf84eb8aff18e2242441} 
+{\bfseries ping\+\_\+timeout} = ping\+\_\+timeout
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a66fdf2c1fccc0c99ad47e517f5f40839}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a66fdf2c1fccc0c99ad47e517f5f40839} 
+{\bfseries close\+\_\+timeout} = close\+\_\+timeout
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8a18b02f4e2e35da3462d2876d38a72b}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8a18b02f4e2e35da3462d2876d38a72b} 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ade76d0e9021caf7a6373948a7a1c9042}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ade76d0e9021caf7a6373948a7a1c9042} 
+{\bfseries max\+\_\+queue} = max\+\_\+queue
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a17a59c2a80e467c0370a304b8ac3c32c}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a17a59c2a80e467c0370a304b8ac3c32c} 
+{\bfseries read\+\_\+limit} = read\+\_\+limit
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a930f01b4d89fc6946b8e79e455f6fdac}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a930f01b4d89fc6946b8e79e455f6fdac} 
+{\bfseries write\+\_\+limit} = write\+\_\+limit
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aff85e2766ec472bf85cccc4d88b7468b}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aff85e2766ec472bf85cccc4d88b7468b} 
+uuid.\+UUID {\bfseries id} = uuid.\+uuid4()
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a414b9c62f4daf7a63ef14a595b346519}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a414b9c62f4daf7a63ef14a595b346519} 
+Logger\+Like {\bfseries logger} = logging.\+Logger\+Adapter(logger, \{"{}websocket"{}:\+ self\})
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae7e8c753a7ee6267006eedfc7741a437}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae7e8c753a7ee6267006eedfc7741a437} 
+Logger\+Like {\bfseries debug} = logger.\+is\+Enabled\+For(logging.\+DEBUG)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a97a81b2b0626245f973f2e8cc73cb903}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a97a81b2b0626245f973f2e8cc73cb903} 
+{\bfseries loop} = loop
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a45668ae9194cdb9060c2fc2a6d9474e2}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a45668ae9194cdb9060c2fc2a6d9474e2} 
+{\bfseries legacy\+\_\+recv} = legacy\+\_\+recv
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a62174ef508d03c3a530aec6cf0244f6e}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a62174ef508d03c3a530aec6cf0244f6e} 
+{\bfseries reader} = asyncio.\+Stream\+Reader(limit=read\+\_\+limit /\+/\+ 2, loop=loop)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2c5ba76dca3acd85108a21f1ff38613c}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2c5ba76dca3acd85108a21f1ff38613c} 
+{\bfseries state} = State.\+CONNECTING
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab4b498aa9ffb2cea3fc188e977947696}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab4b498aa9ffb2cea3fc188e977947696} 
+str {\bfseries path}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aeaad7817c0a5f1b2f7c916cfe9be35f1}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aeaad7817c0a5f1b2f7c916cfe9be35f1} 
+\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}} {\bfseries request\+\_\+headers}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a6332c973300cc4430bfdcc86510fabda}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a6332c973300cc4430bfdcc86510fabda} 
+\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}} {\bfseries response\+\_\+headers}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a1a42068dca9963df21b792c1d8fc7487}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a1a42068dca9963df21b792c1d8fc7487} 
+list {\bfseries extensions} = \+[$\,$]\+
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac411b3504ec0583537c9d529bd0b6334}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac411b3504ec0583537c9d529bd0b6334} 
+Optional\+[Subprotocol]\+ {\bfseries subprotocol} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2d2490e5dd1ee0245868133f24c8b3f0}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2d2490e5dd1ee0245868133f24c8b3f0} 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+rcvd} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2ffa668c21700391c847e32145a13df7}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a2ffa668c21700391c847e32145a13df7} 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+sent} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_afb6831eb11b8d2d5d560e180dd4180bc}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_afb6831eb11b8d2d5d560e180dd4180bc} 
+Optional\+[bool]\+ {\bfseries close\+\_\+rcvd\+\_\+then\+\_\+sent} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a5aaf3d8b9e8d256751aa97b9ad5eb1c7}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a5aaf3d8b9e8d256751aa97b9ad5eb1c7} 
+asyncio.\+Future\+[None]\+ {\bfseries connection\+\_\+lost\+\_\+waiter} = loop.\+create\+\_\+future()
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a62385c07400c6dffadd944b564ee2e21}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a62385c07400c6dffadd944b564ee2e21} 
+Deque\+[Data]\+ {\bfseries messages} = collections.\+deque()
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae562a614feb2b5fa272e7bfb121421d9}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ae562a614feb2b5fa272e7bfb121421d9} 
+dict {\bfseries pings} = \{\}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a188f5baa1bcf5bd2ce2f867c2601627e}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a188f5baa1bcf5bd2ce2f867c2601627e} 
+float {\bfseries latency} = 0
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a25853735ff4a8b494576ce451bc9d337}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a25853735ff4a8b494576ce451bc9d337} 
+asyncio.\+Task\+[None]\+ {\bfseries transfer\+\_\+data\+\_\+task}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad4a4c514034c7dd3b3903d0ada7bb671}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad4a4c514034c7dd3b3903d0ada7bb671} 
+Optional\+[Base\+Exception]\+ {\bfseries transfer\+\_\+data\+\_\+exc} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a88e1b12ebe9da2a05952b1ae6d90ce09}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a88e1b12ebe9da2a05952b1ae6d90ce09} 
+asyncio.\+Task\+[None]\+ {\bfseries keepalive\+\_\+ping\+\_\+task}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a4a4b797c0cd216ddff445f01f1a51776}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a4a4b797c0cd216ddff445f01f1a51776} 
+asyncio.\+Task\+[None]\+ {\bfseries close\+\_\+connection\+\_\+task}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3a7471413a8e11166b1dcf432b22dae9}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3a7471413a8e11166b1dcf432b22dae9} 
+{\bfseries transport} = transport
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3a513ed5a9adc5f12d7e498b5f79a586}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3a513ed5a9adc5f12d7e498b5f79a586} 
+str {\bfseries side} = "{}undefined"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aef24cb6541688b780c650f68e2b50a4d}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aef24cb6541688b780c650f68e2b50a4d} 
+None {\bfseries \+\_\+drain\+\_\+helper} (self)
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8ca854665e77287026d3178c0bf8ffe3}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8ca854665e77287026d3178c0bf8ffe3} 
+None {\bfseries \+\_\+drain} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_abf28779473a93a7e98d3f69cb2963260}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_abf28779473a93a7e98d3f69cb2963260} 
+Optional\+[str]\+ {\bfseries \+\_\+host} = host
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab0da1f78a72423157679c3222108e233}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab0da1f78a72423157679c3222108e233} 
+Optional\+[int]\+ {\bfseries \+\_\+port} = port
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_afd7d82aa6c9f0c55a27e930f75e79074}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_afd7d82aa6c9f0c55a27e930f75e79074} 
+Optional\+[bool]\+ {\bfseries \+\_\+secure} = secure
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad5a965df3a73e9fc8d0dc377035643f5}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad5a965df3a73e9fc8d0dc377035643f5} 
+bool {\bfseries \+\_\+paused} = False
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a14751bbc558e22c79dfc766b1a36577b}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a14751bbc558e22c79dfc766b1a36577b} 
+Optional\+[asyncio.\+Future\+[None]\+]\+ {\bfseries \+\_\+drain\+\_\+waiter} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a800df53df43a8918bf7a54933d378f1f}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a800df53df43a8918bf7a54933d378f1f} 
+{\bfseries \+\_\+drain\+\_\+lock} = asyncio.\+Lock()
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a749f06e29ccd1492c83d5c63db21eab4}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a749f06e29ccd1492c83d5c63db21eab4} 
+Optional\+[asyncio.\+Future\+[None]\+]\+ {\bfseries \+\_\+pop\+\_\+message\+\_\+waiter} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8ba0b1430e19463a82c830ca49a213f4}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a8ba0b1430e19463a82c830ca49a213f4} 
+Optional\+[asyncio.\+Future\+[None]\+]\+ {\bfseries \+\_\+put\+\_\+message\+\_\+waiter} = None
+\item 
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aaf7f2afaf18b52ad49cc1e455766da0c}\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aaf7f2afaf18b52ad49cc1e455766da0c} 
+Optional\+[asyncio.\+Future\+[None]\+]\+ {\bfseries \+\_\+fragmented\+\_\+message\+\_\+waiter} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}WebSocket connection.
+
+:class:`WebSocketCommonProtocol` provides APIs shared between WebSocket
+servers and clients. You shouldn't use it directly. Instead, use
+:class:`~websockets.client.WebSocketClientProtocol` or
+:class:`~websockets.server.WebSocketServerProtocol`.
+
+This documentation focuses on low-level details that aren't covered in the
+documentation of :class:`~websockets.client.WebSocketClientProtocol` and
+:class:`~websockets.server.WebSocketServerProtocol` for the sake of
+simplicity.
+
+Once the connection is open, a Ping_ frame is sent every ``ping_interval``
+seconds. This serves as a keepalive. It helps keeping the connection open,
+especially in the presence of proxies with short timeouts on inactive
+connections. Set ``ping_interval`` to :obj:`None` to disable this behavior.
+
+.. _Ping: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.5.2
+
+If the corresponding Pong_ frame isn't received within ``ping_timeout``
+seconds, the connection is considered unusable and is closed with code 1011.
+This ensures that the remote endpoint remains responsive. Set
+``ping_timeout`` to :obj:`None` to disable this behavior.
+
+.. _Pong: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.5.3
+
+See the discussion of :doc:`timeouts <../../topics/timeouts>` for details.
+
+The ``close_timeout`` parameter defines a maximum wait time for completing
+the closing handshake and terminating the TCP connection. For legacy
+reasons, :meth:`close` completes in at most ``5 * close_timeout`` seconds
+for clients and ``4 * close_timeout`` for servers.
+
+``close_timeout`` is a parameter of the protocol because websockets usually
+calls :meth:`close` implicitly upon exit:
+
+* on the client side, when using :func:`~websockets.client.connect` as a
+  context manager;
+* on the server side, when the connection handler terminates.
+
+To apply a timeout to any other API, wrap it in :func:`~asyncio.timeout` or
+:func:`~asyncio.wait_for`.
+
+The ``max_size`` parameter enforces the maximum size for incoming messages
+in bytes. The default value is 1 MiB. If a larger message is received,
+:meth:`recv` will raise :exc:`~websockets.exceptions.ConnectionClosedError`
+and the connection will be closed with code 1009.
+
+The ``max_queue`` parameter sets the maximum length of the queue that
+holds incoming messages. The default value is ``32``. Messages are added
+to an in-memory queue when they're received; then :meth:`recv` pops from
+that queue. In order to prevent excessive memory consumption when
+messages are received faster than they can be processed, the queue must
+be bounded. If the queue fills up, the protocol stops processing incoming
+data until :meth:`recv` is called. In this situation, various receive
+buffers (at least in :mod:`asyncio` and in the OS) will fill up, then the
+TCP receive window will shrink, slowing down transmission to avoid packet
+loss.
+
+Since Python can use up to 4 bytes of memory to represent a single
+character, each connection may use up to ``4 * max_size * max_queue``
+bytes of memory to store incoming messages. By default, this is 128 MiB.
+You may want to lower the limits, depending on your application's
+requirements.
+
+The ``read_limit`` argument sets the high-water limit of the buffer for
+incoming bytes. The low-water limit is half the high-water limit. The
+default value is 64 KiB, half of asyncio's default (based on the current
+implementation of :class:`~asyncio.StreamReader`).
+
+The ``write_limit`` argument sets the high-water limit of the buffer for
+outgoing bytes. The low-water limit is a quarter of the high-water limit.
+The default value is 64 KiB, equal to asyncio's default (based on the
+current implementation of ``FlowControlMixin``).
+
+See the discussion of :doc:`memory usage <../../topics/memory>` for details.
+
+Args:
+    logger: Logger for this server.
+        It defaults to ``logging.getLogger("websockets.protocol")``.
+        See the :doc:`logging guide <../../topics/logging>` for details.
+    ping_interval: Delay between keepalive pings in seconds.
+        :obj:`None` disables keepalive pings.
+    ping_timeout: Timeout for keepalive pings in seconds.
+        :obj:`None` disables timeouts.
+    close_timeout: Timeout for closing the connection in seconds.
+        For legacy reasons, the actual timeout is 4 or 5 times larger.
+    max_size: Maximum size of incoming messages in bytes.
+        :obj:`None` disables the limit.
+    max_queue: Maximum number of incoming messages in receive buffer.
+        :obj:`None` disables the limit.
+    read_limit: High-water mark of read buffer in bytes.
+    write_limit: High-water mark of write buffer in bytes.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_doc-func-members}
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac646be31cd26b87bd76fbaf34d19a130}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!\_\_aiter\_\_@{\_\_aiter\_\_}}
+\index{\_\_aiter\_\_@{\_\_aiter\_\_}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{\_\_aiter\_\_()}{\_\_aiter\_\_()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac646be31cd26b87bd76fbaf34d19a130} 
+ Async\+Iterator\+[Data]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+\_\+\+\_\+aiter\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Iterate on incoming messages.
+
+The iterator exits normally when the connection is closed with the close
+code 1000 (OK) or 1001 (going away) or without a close code.
+
+It raises a :exc:`~websockets.exceptions.ConnectionClosedError`
+exception when the connection is closed with any other code.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a76fe3cf4dc28c519bf3ac65c3addba3e}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!abort\_pings@{abort\_pings}}
+\index{abort\_pings@{abort\_pings}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{abort\_pings()}{abort\_pings()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a76fe3cf4dc28c519bf3ac65c3addba3e} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+abort\+\_\+pings (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Raise ConnectionClosed in pending keepalive pings.
+
+They'll never receive a pong once the connection is closed.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9736dd62f6e54f5b4c5ac8e5044a2d41}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!close@{close}}
+\index{close@{close}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9736dd62f6e54f5b4c5ac8e5044a2d41} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{code}{ = {\ttfamily CloseCode.NORMAL\+\_\+CLOSURE}, }\item[{str }]{reason}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Perform the closing handshake.
+
+:meth:`close` waits for the other end to complete the handshake and
+for the TCP connection to terminate. As a consequence, there's no need
+to await :meth:`wait_closed` after :meth:`close`.
+
+:meth:`close` is idempotent: it doesn't do anything once the
+connection is closed.
+
+Wrapping :func:`close` in :func:`~asyncio.create_task` is safe, given
+that errors during connection termination aren't particularly useful.
+
+Canceling :meth:`close` is discouraged. If it takes too long, you can
+set a shorter ``close_timeout``. If you don't want to wait, let the
+Python process exit, then the OS will take care of closing the TCP
+connection.
+
+Args:
+    code: WebSocket close code.
+    reason: WebSocket close reason.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3fda21b4b885868bdab0d72ace2e22a6}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!close\_code@{close\_code}}
+\index{close\_code@{close\_code}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{close\_code()}{close\_code()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a3fda21b4b885868bdab0d72ace2e22a6} 
+ Optional\+[int]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+close\+\_\+code (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}WebSocket close code, defined in `section 7.1.5 of RFC 6455`_.
+
+.. _section 7.1.5 of RFC 6455:
+    https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.5
+
+:obj:`None` if the connection isn't closed yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9da3a7b3767714657479530afadc6a63}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!close\_connection@{close\_connection}}
+\index{close\_connection@{close\_connection}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{close\_connection()}{close\_connection()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9da3a7b3767714657479530afadc6a63} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+close\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}7.1.1. Close the WebSocket Connection
+
+When the opening handshake succeeds, :meth:`connection_open` starts
+this coroutine in a task. It waits for the data transfer phase to
+complete then it closes the TCP connection cleanly.
+
+When the opening handshake fails, :meth:`fail_connection` does the
+same. There's no data transfer phase in that case.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a26944da2d48b26164be430e5daba78b4}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!close\_reason@{close\_reason}}
+\index{close\_reason@{close\_reason}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{close\_reason()}{close\_reason()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a26944da2d48b26164be430e5daba78b4} 
+ Optional\+[str]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+close\+\_\+reason (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}WebSocket close reason, defined in `section 7.1.6 of RFC 6455`_.
+
+.. _section 7.1.6 of RFC 6455:
+    https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6
+
+:obj:`None` if the connection isn't closed yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7117567b78496f9c1a5de4e29fea111a}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!close\_transport@{close\_transport}}
+\index{close\_transport@{close\_transport}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{close\_transport()}{close\_transport()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7117567b78496f9c1a5de4e29fea111a} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+close\+\_\+transport (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the TCP connection.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90d097c978aea651f3a9f8805c81bf3}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!closed@{closed}}
+\index{closed@{closed}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{closed()}{closed()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90d097c978aea651f3a9f8805c81bf3} 
+ bool websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}:obj:`True` when the connection is closed; :obj:`False` otherwise.
+
+Be aware that both :attr:`open` and :attr:`closed` are :obj:`False`
+during the opening and closing sequences.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab7c69afd37aca3842328adde6241eed1}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!connection\_lost@{connection\_lost}}
+\index{connection\_lost@{connection\_lost}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{connection\_lost()}{connection\_lost()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab7c69afd37aca3842328adde6241eed1} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+connection\+\_\+lost (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[Exception]\+}]{exc}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}7.1.4. The WebSocket Connection is Closed.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classuvicorn_1_1protocols_1_1websockets_1_1websockets__impl_1_1WebSocketProtocol_a35f7cf8ec3f8014e21724d12971748f2}{uvicorn.\+protocols.\+websockets.\+websockets\+\_\+impl.\+Web\+Socket\+Protocol}}.
+
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a983288e761fc1602e126140fe1fdad4e}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!connection\_made@{connection\_made}}
+\index{connection\_made@{connection\_made}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{connection\_made()}{connection\_made()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a983288e761fc1602e126140fe1fdad4e} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+connection\+\_\+made (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{asyncio.\+Base\+Transport}]{transport}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Configure write buffer limits.
+
+The high-water limit is defined by ``self.write_limit``.
+
+The low-water limit currently defaults to ``self.write_limit // 4`` in
+:meth:`~asyncio.WriteTransport.set_write_buffer_limits`, which should
+be all right for reasonable use cases of this library.
+
+This is the earliest point where we can get hold of the transport,
+which means it's the best point for configuring it.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classuvicorn_1_1protocols_1_1websockets_1_1websockets__impl_1_1WebSocketProtocol_a45a5c93b4c6c93d18092e447b042d14c}{uvicorn.\+protocols.\+websockets.\+websockets\+\_\+impl.\+Web\+Socket\+Protocol}}, and \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1server_1_1WebSocketServerProtocol_af5b7a36f5557d6c7cad138672dc971c3}{websockets.\+legacy.\+server.\+Web\+Socket\+Server\+Protocol}}.
+
+\Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a84455422ed747abc2313be6138a87c5f}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!connection\_open@{connection\_open}}
+\index{connection\_open@{connection\_open}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{connection\_open()}{connection\_open()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a84455422ed747abc2313be6138a87c5f} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+connection\+\_\+open (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback when the WebSocket opening handshake completes.
+
+Enter the OPEN state and start the data transfer phase.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a6dfc82dc3bdf4b6aa1cd7dd4a12290a3}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!ensure\_open@{ensure\_open}}
+\index{ensure\_open@{ensure\_open}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{ensure\_open()}{ensure\_open()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a6dfc82dc3bdf4b6aa1cd7dd4a12290a3} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+ensure\+\_\+open (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check that the WebSocket connection is open.
+
+Raise :exc:`~websockets.exceptions.ConnectionClosed` if it isn't.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab390525e7d67ee7296d0b6d3e7a0e7d9}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!eof\_received@{eof\_received}}
+\index{eof\_received@{eof\_received}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{eof\_received()}{eof\_received()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ab390525e7d67ee7296d0b6d3e7a0e7d9} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+eof\+\_\+received (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the transport after receiving EOF.
+
+The WebSocket protocol has its own closing handshake: endpoints close
+the TCP or TLS connection after sending and receiving a close frame.
+
+As a consequence, they never need to write after receiving EOF, so
+there's no reason to keep the transport open by returning :obj:`True`.
+
+Besides, that doesn't work on TLS connections.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a60961832bfe8821c6dd5ce88d75b37d1}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!fail\_connection@{fail\_connection}}
+\index{fail\_connection@{fail\_connection}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{fail\_connection()}{fail\_connection()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a60961832bfe8821c6dd5ce88d75b37d1} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+fail\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{code}{ = {\ttfamily CloseCode.ABNORMAL\+\_\+CLOSURE}, }\item[{str }]{reason}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}7.1.7. Fail the WebSocket Connection
+
+This requires:
+
+1. Stopping all processing of incoming data, which means cancelling
+   :attr:`transfer_data_task`. The close code will be 1006 unless a
+   close frame was received earlier.
+
+2. Sending a close frame with an appropriate code if the opening
+   handshake succeeded and the other side is likely to process it.
+
+3. Closing the connection. :meth:`close_connection` takes care of
+   this once :attr:`transfer_data_task` exits after being canceled.
+
+(The specification describes these steps in the opposite order.)
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac15b54c81067e7533c50bb08258098d0}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!keepalive\_ping@{keepalive\_ping}}
+\index{keepalive\_ping@{keepalive\_ping}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{keepalive\_ping()}{keepalive\_ping()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac15b54c81067e7533c50bb08258098d0} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+keepalive\+\_\+ping (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a Ping frame and wait for a Pong frame at regular intervals.
+
+This coroutine exits when the connection terminates and one of the
+following happens:
+
+- :meth:`ping` raises :exc:`ConnectionClosed`, or
+- :meth:`close_connection` cancels :attr:`keepalive_ping_task`.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90aaadbdb48e66440599f96f305c161}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!local\_address@{local\_address}}
+\index{local\_address@{local\_address}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{local\_address()}{local\_address()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ac90aaadbdb48e66440599f96f305c161} 
+ Any websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+local\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Local address of the connection.
+
+For IPv4 connections, this is a ``(host, port)`` tuple.
+
+The format of the address depends on the address family;
+see :meth:`~socket.socket.getsockname`.
+
+:obj:`None` if the TCP connection isn't established yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_af2d29b6fb0452130aa5404c50eb57044}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!open@{open}}
+\index{open@{open}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_af2d29b6fb0452130aa5404c50eb57044} 
+ bool websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+open (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}:obj:`True` when the connection is open; :obj:`False` otherwise.
+
+This attribute may be used to detect disconnections. However, this
+approach is discouraged per the EAFP_ principle. Instead, you should
+handle :exc:`~websockets.exceptions.ConnectionClosed` exceptions.
+
+.. _EAFP: https://docs.python.org/3/glossary.html#term-eafp
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a51947d6d8bcef29a942d5d1f1af148da}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!ping@{ping}}
+\index{ping@{ping}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{ping()}{ping()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a51947d6d8bcef29a942d5d1f1af148da} 
+ Awaitable\+[None]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+ping (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[Data]\+ }]{data}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a Ping_.
+
+.. _Ping: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.5.2
+
+A ping may serve as a keepalive, as a check that the remote endpoint
+received all messages up to this point, or to measure :attr:`latency`.
+
+Canceling :meth:`ping` is discouraged. If :meth:`ping` doesn't return
+immediately, it means the write buffer is full. If you don't want to
+wait, you should close the connection.
+
+Canceling the :class:`~asyncio.Future` returned by :meth:`ping` has no
+effect.
+
+Args:
+    data (Optional[Data]): payload of the ping; a string will be
+        encoded to UTF-8; or :obj:`None` to generate a payload
+        containing four random bytes.
+
+Returns:
+    ~asyncio.Future[float]: A future that will be completed when the
+    corresponding pong is received. You can ignore it if you don't
+    intend to wait. The result of the future is the latency of the
+    connection in seconds.
+
+    ::
+
+        pong_waiter = await ws.ping()
+        # only if you want to wait for the corresponding pong
+        latency = await pong_waiter
+
+Raises:
+    ConnectionClosed: When the connection is closed.
+    RuntimeError: If another ping was sent with the same data and
+        the corresponding pong wasn't received yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a351ae54b7c302671ec2397214c9b118a}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!pong@{pong}}
+\index{pong@{pong}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{pong()}{pong()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a351ae54b7c302671ec2397214c9b118a} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+pong (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Data }]{data}{ = {\ttfamily b"{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a Pong_.
+
+.. _Pong: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.5.3
+
+An unsolicited pong may serve as a unidirectional heartbeat.
+
+Canceling :meth:`pong` is discouraged. If :meth:`pong` doesn't return
+immediately, it means the write buffer is full. If you don't want to
+wait, you should close the connection.
+
+Args:
+    data (Data): Payload of the pong. A string will be encoded to
+        UTF-8.
+
+Raises:
+    ConnectionClosed: When the connection is closed.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7332f037f14c2430e34b0d4d8d72f431}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!read\_data\_frame@{read\_data\_frame}}
+\index{read\_data\_frame@{read\_data\_frame}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{read\_data\_frame()}{read\_data\_frame()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a7332f037f14c2430e34b0d4d8d72f431} 
+ Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1framing_1_1Frame}{Frame}}]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+read\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[int]\+}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a single data frame from the connection.
+
+Process control frames received before the next data frame.
+
+Return :obj:`None` if a close frame is encountered before any data frame.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a021afdd41ad6f748ef14c7450ae9a28b}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!read\_frame@{read\_frame}}
+\index{read\_frame@{read\_frame}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{read\_frame()}{read\_frame()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a021afdd41ad6f748ef14c7450ae9a28b} 
+ \doxymbox{\hyperlink{classwebsockets_1_1legacy_1_1framing_1_1Frame}{Frame}} websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+read\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[int]\+}]{max\+\_\+size}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a single frame from the connection.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad69607d84b4232932c75c8d5b16e5ceb}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!read\_message@{read\_message}}
+\index{read\_message@{read\_message}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{read\_message()}{read\_message()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_ad69607d84b4232932c75c8d5b16e5ceb} 
+ Optional\+[Data]\+ websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+read\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a single message from the connection.
+
+Re-assemble data frames if the message is fragmented.
+
+Return :obj:`None` when the closing handshake is started.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a204cda1c777ce1fc1a099d1a1c56880c}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!recv@{recv}}
+\index{recv@{recv}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{recv()}{recv()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a204cda1c777ce1fc1a099d1a1c56880c} 
+ Data websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+recv (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive the next message.
+
+When the connection is closed, :meth:`recv` raises
+:exc:`~websockets.exceptions.ConnectionClosed`. Specifically, it raises
+:exc:`~websockets.exceptions.ConnectionClosedOK` after a normal
+connection closure and
+:exc:`~websockets.exceptions.ConnectionClosedError` after a protocol
+error or a network failure. This is how you detect the end of the
+message stream.
+
+Canceling :meth:`recv` is safe. There's no risk of losing the next
+message. The next invocation of :meth:`recv` will return it.
+
+This makes it possible to enforce a timeout by wrapping :meth:`recv` in
+:func:`~asyncio.timeout` or :func:`~asyncio.wait_for`.
+
+Returns:
+    Data: A string (:class:`str`) for a Text_ frame. A bytestring
+    (:class:`bytes`) for a Binary_ frame.
+
+    .. _Text: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.6
+    .. _Binary: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.6
+
+Raises:
+    ConnectionClosed: When the connection is closed.
+    RuntimeError: If two coroutines call :meth:`recv` concurrently.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9dbf996533f4b7b30d37d1909c83d676}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!remote\_address@{remote\_address}}
+\index{remote\_address@{remote\_address}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{remote\_address()}{remote\_address()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a9dbf996533f4b7b30d37d1909c83d676} 
+ Any websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+remote\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remote address of the connection.
+
+For IPv4 connections, this is a ``(host, port)`` tuple.
+
+The format of the address depends on the address family;
+see :meth:`~socket.socket.getpeername`.
+
+:obj:`None` if the TCP connection isn't established yet.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a41f884d2c3e29592d9a124364cd391ce}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!send@{send}}
+\index{send@{send}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a41f884d2c3e29592d9a124364cd391ce} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+send (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\+[Data, Iterable\+[Data]\+, Async\+Iterable\+[Data]\+]\+}]{message}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a message.
+
+A string (:class:`str`) is sent as a Text_ frame. A bytestring or
+bytes-like object (:class:`bytes`, :class:`bytearray`, or
+:class:`memoryview`) is sent as a Binary_ frame.
+
+.. _Text: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.6
+.. _Binary: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.6
+
+:meth:`send` also accepts an iterable or an asynchronous iterable of
+strings, bytestrings, or bytes-like objects to enable fragmentation_.
+Each item is treated as a message fragment and sent in its own frame.
+All items must be of the same type, or else :meth:`send` will raise a
+:exc:`TypeError` and the connection will be closed.
+
+.. _fragmentation: https://www.rfc-editor.org/rfc/rfc6455.html#section-5.4
+
+:meth:`send` rejects dict-like objects because this is often an error.
+(If you want to send the keys of a dict-like object as fragments, call
+its :meth:`~dict.keys` method and pass the result to :meth:`send`.)
+
+Canceling :meth:`send` is discouraged. Instead, you should close the
+connection with :meth:`close`. Indeed, there are only two situations
+where :meth:`send` may yield control to the event loop and then get
+canceled; in both cases, :meth:`close` has the same effect and is
+more clear:
+
+1. The write buffer is full. If you don't want to wait until enough
+   data is sent, your only alternative is to close the connection.
+   :meth:`close` will likely time out then abort the TCP connection.
+2. ``message`` is an asynchronous iterator that yields control.
+   Stopping in the middle of a fragmented message will cause a
+   protocol error and the connection will be closed.
+
+When the connection is closed, :meth:`send` raises
+:exc:`~websockets.exceptions.ConnectionClosed`. Specifically, it
+raises :exc:`~websockets.exceptions.ConnectionClosedOK` after a normal
+connection closure and
+:exc:`~websockets.exceptions.ConnectionClosedError` after a protocol
+error or a network failure.
+
+Args:
+    message (Union[Data, Iterable[Data], AsyncIterable[Data]): message
+        to send.
+
+Raises:
+    ConnectionClosed: When the connection is closed.
+    TypeError: If ``message`` doesn't have a supported type.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a00e0c1738444d6bd1de5f321a0356e3d}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!transfer\_data@{transfer\_data}}
+\index{transfer\_data@{transfer\_data}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{transfer\_data()}{transfer\_data()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a00e0c1738444d6bd1de5f321a0356e3d} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+transfer\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read incoming messages and put them in a queue.
+
+This coroutine runs in a task until the closing handshake is started.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a1b8153b1f616fbc30c55f909b136836a}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!wait\_closed@{wait\_closed}}
+\index{wait\_closed@{wait\_closed}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{wait\_closed()}{wait\_closed()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_a1b8153b1f616fbc30c55f909b136836a} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+wait\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait until the connection is closed.
+
+This coroutine is identical to the :attr:`closed` attribute, except it
+can be awaited.
+
+This can make it easier to detect connection termination, regardless
+of its cause, in tasks that interact with the WebSocket connection.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_acd51bf6ff7f8f3c578059ad0dd014c88}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!wait\_for\_connection\_lost@{wait\_for\_connection\_lost}}
+\index{wait\_for\_connection\_lost@{wait\_for\_connection\_lost}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_connection\_lost()}{wait\_for\_connection\_lost()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_acd51bf6ff7f8f3c578059ad0dd014c88} 
+ bool websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+wait\+\_\+for\+\_\+connection\+\_\+lost (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait until the TCP connection is closed or ``self.close_timeout`` elapses.
+
+Return :obj:`True` if the connection is closed and :obj:`False`
+otherwise.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aa8eda577f73f23881a13abac41750e81}\index{websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}!write\_close\_frame@{write\_close\_frame}}
+\index{write\_close\_frame@{write\_close\_frame}!websockets.legacy.protocol.WebSocketCommonProtocol@{websockets.legacy.protocol.WebSocketCommonProtocol}}
+\doxysubsubsection{\texorpdfstring{write\_close\_frame()}{write\_close\_frame()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1legacy_1_1protocol_1_1WebSocketCommonProtocol_aa8eda577f73f23881a13abac41750e81} 
+ None websockets.\+legacy.\+protocol.\+Web\+Socket\+Common\+Protocol.\+write\+\_\+close\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}}]{close}{, }\item[{Optional\+[bytes]\+ }]{data}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write a close frame if and only if the connection state is OPEN.
+
+This dedicated coroutine must be used for writing close frames to
+ensure that at most one close frame is sent on a given connection.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+legacy/\+protocol.\+py\end{DoxyCompactItemize}

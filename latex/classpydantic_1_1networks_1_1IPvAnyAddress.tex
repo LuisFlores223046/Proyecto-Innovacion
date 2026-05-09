@@ -1,0 +1,73 @@
+\doxysection{pydantic.\+networks.\+IPv\+Any\+Address Class Reference}
+\hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress}{}\label{classpydantic_1_1networks_1_1IPvAnyAddress}\index{pydantic.networks.IPvAnyAddress@{pydantic.networks.IPvAnyAddress}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IPv4\+Address\texorpdfstring{$\vert$}{|}IPv6\+Address \doxymbox{\hyperlink{classpydantic_1_1networks_1_1IPvAnyAddress_ad71f1e75f6f9144ff69fa5136b3b1ed3}{\+\_\+\+\_\+new\+\_\+\+\_\+}} (cls, Any value)
+\item 
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_a77dc921a9aadaaecb92d7a6c51b465c1}\label{classpydantic_1_1networks_1_1IPvAnyAddress_a77dc921a9aadaaecb92d7a6c51b465c1} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{\+\_\+schema\+\_\+generation\+\_\+shared.\+Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_a49e586f74879ae33c71f44f176183541}\label{classpydantic_1_1networks_1_1IPvAnyAddress_a49e586f74879ae33c71f44f176183541} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ \+\_\+source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} \+\_\+handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_aa03d40e2e3c67e9ae5b47fff10835bc4}\label{classpydantic_1_1networks_1_1IPvAnyAddress_aa03d40e2e3c67e9ae5b47fff10835bc4} 
+IPv4\+Address\texorpdfstring{$\vert$}{|}IPv6\+Address {\bfseries \+\_\+validate} (cls, Any input\+\_\+value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_a1ae94dd50ea6b90833631c11214450f9}\label{classpydantic_1_1networks_1_1IPvAnyAddress_a1ae94dd50ea6b90833631c11214450f9} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Validate an IPv4 or IPv6 address.
+
+```py
+from pydantic import BaseModel
+from pydantic.networks import IPvAnyAddress
+
+class IpModel(BaseModel):
+    ip: IPvAnyAddress
+
+print(IpModel(ip='127.0.0.1'))
+#> ip=IPv4Address('127.0.0.1')
+
+try:
+    IpModel(ip='http://www.example.com')
+except ValueError as e:
+    print(e.errors())
+    '''
+    [
+        {
+            'type': 'ip_any_address',
+            'loc': ('ip',),
+            'msg': 'value is not a valid IPv4 or IPv6 address',
+            'input': 'http://www.example.com',
+        }
+    ]
+    '''
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1networks_1_1IPvAnyAddress_doc-func-members}
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1networks_1_1IPvAnyAddress_ad71f1e75f6f9144ff69fa5136b3b1ed3}\index{pydantic.networks.IPvAnyAddress@{pydantic.networks.IPvAnyAddress}!\_\_new\_\_@{\_\_new\_\_}}
+\index{\_\_new\_\_@{\_\_new\_\_}!pydantic.networks.IPvAnyAddress@{pydantic.networks.IPvAnyAddress}}
+\doxysubsubsection{\texorpdfstring{\_\_new\_\_()}{\_\_new\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1networks_1_1IPvAnyAddress_ad71f1e75f6f9144ff69fa5136b3b1ed3} 
+ IPv4\+Address \texorpdfstring{$\vert$}{|} IPv6\+Address pydantic.\+networks.\+IPv\+Any\+Address.\+\_\+\+\_\+new\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Any}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate an IPv4 or IPv6 address.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+networks.\+py\end{DoxyCompactItemize}

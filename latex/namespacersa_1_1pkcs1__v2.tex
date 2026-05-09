@@ -1,0 +1,55 @@
+\doxysection{rsa.\+pkcs1\+\_\+v2 Namespace Reference}
+\hypertarget{namespacersa_1_1pkcs1__v2}{}\label{namespacersa_1_1pkcs1__v2}\index{rsa.pkcs1\_v2@{rsa.pkcs1\_v2}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{namespacersa_1_1pkcs1__v2_a995b3e1415fadb9eae1a003c5234259f}{mgf1}} (bytes seed, int length, str hasher="{}SHA-\/1"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1pkcs1__v2_a02f3dfd106dd7dc94cc4438c32aab65c}\label{namespacersa_1_1pkcs1__v2_a02f3dfd106dd7dc94cc4438c32aab65c} 
+{\bfseries failures}
+\item 
+\Hypertarget{namespacersa_1_1pkcs1__v2_a69c1587ce8d50856ca91cb082c342855}\label{namespacersa_1_1pkcs1__v2_a69c1587ce8d50856ca91cb082c342855} 
+{\bfseries tests}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions for PKCS#1 version 2 encryption and signing
+
+This module implements certain functionality from PKCS#1 version 2. Main
+documentation is RFC 2437: https://tools.ietf.org/html/rfc2437
+\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1pkcs1__v2_doc-func-members}
+\Hypertarget{namespacersa_1_1pkcs1__v2_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1pkcs1__v2_a995b3e1415fadb9eae1a003c5234259f}\index{rsa.pkcs1\_v2@{rsa.pkcs1\_v2}!mgf1@{mgf1}}
+\index{mgf1@{mgf1}!rsa.pkcs1\_v2@{rsa.pkcs1\_v2}}
+\doxysubsubsection{\texorpdfstring{mgf1()}{mgf1()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1pkcs1__v2_a995b3e1415fadb9eae1a003c5234259f} 
+ bytes mgf1 (\begin{DoxyParamCaption}\item[{bytes}]{seed}{, }\item[{int}]{length}{, }\item[{str }]{hasher}{ = {\ttfamily "{}SHA-\/1"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}MGF1 is a Mask Generation Function based on a hash function.
+
+A mask generation function takes an octet string of variable length and a
+desired output length as input, and outputs an octet string of the desired
+length. The plaintext-awareness of RSAES-OAEP relies on the random nature of
+the output of the mask generation function, which in turn relies on the
+random nature of the underlying hash.
+
+:param bytes seed: seed from which mask is generated, an octet string
+:param int length: intended length in octets of the mask, at most 2^32(hLen)
+:param str hasher: hash function (hLen denotes the length in octets of the hash
+    function output)
+
+:return: mask, an octet string of length `length`
+:rtype: bytes
+
+:raise OverflowError: when `length` is too large for the specified `hasher`
+:raise ValueError: when specified `hasher` is invalid
+\end{DoxyVerb}
+ 

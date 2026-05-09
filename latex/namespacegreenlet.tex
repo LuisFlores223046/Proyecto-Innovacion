@@ -1,0 +1,111 @@
+\doxysection{greenlet Namespace Reference}
+\hypertarget{namespacegreenlet}{}\label{namespacegreenlet}\index{greenlet@{greenlet}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacegreenlet_1_1tests}{tests}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1AttributeError}{Attribute\+Error}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1BorrowedMainGreenlet}{Borrowed\+Main\+Greenlet}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1BrokenGreenlet}{Broken\+Greenlet}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1ExceptionState}{Exception\+State}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1GreenletGlobals}{Greenlet\+Globals}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1LockInitError}{Lock\+Init\+Error}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1MainGreenlet}{Main\+Greenlet}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{Py\+Err\+Occurred}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1PyFatalError}{Py\+Fatal\+Error}}
+\item 
+struct \doxymbox{\hyperlink{structgreenlet_1_1PythonAllocator}{Python\+Allocator}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1PythonState}{Python\+State}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1PythonStateContext}{Python\+State\+Context}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1StackState}{Stack\+State}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{Switching\+Args}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{Thread\+State}}
+\item 
+struct \doxymbox{\hyperlink{structgreenlet_1_1ThreadState__DestroyNoGIL}{Thread\+State\+\_\+\+Destroy\+No\+GIL}}
+\item 
+struct \doxymbox{\hyperlink{structgreenlet_1_1ThreadState__DestroyWithGIL}{Thread\+State\+\_\+\+Destroy\+With\+GIL}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1ThreadStateCreator}{Thread\+State\+Creator}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1TypeError}{Type\+Error}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1UserGreenlet}{User\+Greenlet}}
+\item 
+class \doxymbox{\hyperlink{classgreenlet_1_1ValueError}{Value\+Error}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegreenlet_a27dd084c7ec3692d62ea5dc459a17ad3}\label{namespacegreenlet_a27dd084c7ec3692d62ea5dc459a17ad3} 
+typedef std::\+vector$<$ \doxymbox{\hyperlink{classThreadState}{Thread\+State}} \texorpdfstring{$\ast$}{*} $>$ {\bfseries cleanup\+\_\+queue\+\_\+t}
+\item 
+\Hypertarget{namespacegreenlet_a7053d77d32dbf432446cd750b740ccad}\label{namespacegreenlet_a7053d77d32dbf432446cd750b740ccad} 
+typedef std::\+mutex {\bfseries Mutex}
+\item 
+\Hypertarget{namespacegreenlet_a1411c9bd7c8b18f89b6b71af35075dac}\label{namespacegreenlet_a1411c9bd7c8b18f89b6b71af35075dac} 
+typedef std::\+lock\+\_\+guard$<$ Mutex $>$ {\bfseries Lock\+Guard}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacegreenlet_a866854ea1487f77ea97faeabb3d6a8f5}\label{namespacegreenlet_a866854ea1487f77ea97faeabb3d6a8f5} 
+{\footnotesize template$<$typename T$>$ }\\void {\bfseries operator$<$$<$} (const Py\+Thread\+State \texorpdfstring{$\ast$}{*}const tstate, T \&exc)
+\item 
+Owned\+Object \& \doxymbox{\hyperlink{namespacegreenlet_ab412614ff9a9cf65204d07fa56659936}{operator$<$$<$=}} (Owned\+Object \&lhs, \doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{greenlet::\+\+Switching\+Args}} \&rhs) noexcept
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The root of the greenlet package.
+\end{DoxyVerb}
+
+
+Defines various utility functions to help greenlet integrate well with threads. This used to be needed when we supported Python 2.\+7 on Windows, which used a very old compiler. We wrote an alternative implementation using Python APIs and POSIX or Windows APIs, but that\textquotesingle{}s no longer needed. So this file is a shadow of its former self --- but may be needed in the future.
+
+Implementation of \doxylink{classgreenlet_1_1UserGreenlet}{greenlet::\+\+User\+Greenlet}.
+
+Format with:\+ clang-\/format -\/i --style=file src/\+greenlet/\+greenlet.\+c
+
+Fix missing braces with:\+ clang-\/tidy src/\+greenlet/\+greenlet.\+c -\/fix -\/checks="{}readability-\/braces-\/around-\/statements"{}
+
+Implementation of \doxylink{classgreenlet_1_1Greenlet}{greenlet::\+\+Greenlet}.
+
+Format with:\+ clang-\/format -\/i --style=file src/\+greenlet/\+greenlet.\+c
+
+Fix missing braces with:\+ clang-\/tidy src/\+greenlet/\+greenlet.\+c -\/fix -\/checks="{}readability-\/braces-\/around-\/statements"{} 
+
+\label{namespacegreenlet_doc-func-members}
+\Hypertarget{namespacegreenlet_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacegreenlet_ab412614ff9a9cf65204d07fa56659936}\index{greenlet@{greenlet}!operator$<$$<$=@{operator$<$$<$=}}
+\index{operator$<$$<$=@{operator$<$$<$=}!greenlet@{greenlet}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$=()}{operator<<=()}}
+{\footnotesize\ttfamily \label{namespacegreenlet_ab412614ff9a9cf65204d07fa56659936} 
+Owned\+Object \& greenlet::\+operator$<$$<$= (\begin{DoxyParamCaption}\item[{Owned\+Object \&}]{lhs}{, }\item[{\doxymbox{\hyperlink{classgreenlet_1_1SwitchingArgs}{greenlet::\+\+Switching\+Args}} \&}]{rhs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+CAUTION:\+ May invoke arbitrary Python code.
+
+Figure out what the result of {\ttfamily greenlet.\+switch(arg, kwargs)} should be and transfers ownership of it to the left-\/hand-\/side.
+
+If switch() was just passed an arg tuple, then we\textquotesingle{}ll just return that. If only keyword arguments were passed, then we\textquotesingle{}ll pass the keyword argument dict. Otherwise, we\textquotesingle{}ll create a tuple of (args, kwargs) and return both.
+
+CAUTION:\+ This may allocate a new tuple object, which may cause the Python garbage collector to run, which in turn may run arbitrary Python code that switches. 

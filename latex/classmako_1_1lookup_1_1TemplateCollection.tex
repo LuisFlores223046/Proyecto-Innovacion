@@ -1,0 +1,111 @@
+\doxysection{mako.\+lookup.\+Template\+Collection Class Reference}
+\hypertarget{classmako_1_1lookup_1_1TemplateCollection}{}\label{classmako_1_1lookup_1_1TemplateCollection}\index{mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}}
+Inheritance diagram for mako.\+lookup.\+Template\+Collection:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classmako_1_1lookup_1_1TemplateCollection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateCollection_a26b7b125fc5247cf6108cd2a6a78bc9a}{has\+\_\+template}} (self, uri)
+\item 
+\doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateCollection_abc58329e9a4f9ff9e5fe7f31acae97ed}{get\+\_\+template}} (self, uri, relativeto=None)
+\item 
+\doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateCollection_abc9b03ac636ccd2583e420b9ea3365b3}{filename\+\_\+to\+\_\+uri}} (self, uri, filename)
+\item 
+\doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateCollection_ac98f05c50bc6ee2ed57d9694d94508cd}{adjust\+\_\+uri}} (self, uri, filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent a collection of :class:`.Template` objects,
+identifiable via URI.
+
+A :class:`.TemplateCollection` is linked to the usage of
+all template tags that address other templates, such
+as ``<%include>``, ``<%namespace>``, and ``<%inherit>``.
+The ``file`` attribute of each of those tags refers
+to a string URI that is passed to that :class:`.Template`
+object's :class:`.TemplateCollection` for resolution.
+
+:class:`.TemplateCollection` is an abstract class,
+with the usual default implementation being :class:`.TemplateLookup`.
+\end{DoxyVerb}
+ 
+
+\label{classmako_1_1lookup_1_1TemplateCollection_doc-func-members}
+\Hypertarget{classmako_1_1lookup_1_1TemplateCollection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmako_1_1lookup_1_1TemplateCollection_ac98f05c50bc6ee2ed57d9694d94508cd}\index{mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}!adjust\_uri@{adjust\_uri}}
+\index{adjust\_uri@{adjust\_uri}!mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}}
+\doxysubsubsection{\texorpdfstring{adjust\_uri()}{adjust\_uri()}}
+{\footnotesize\ttfamily \label{classmako_1_1lookup_1_1TemplateCollection_ac98f05c50bc6ee2ed57d9694d94508cd} 
+mako.\+lookup.\+Template\+Collection.\+adjust\+\_\+uri (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uri}{, }\item[{}]{filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Adjust the given ``uri`` based on the calling ``filename``.
+
+When this method is called from the runtime, the
+``filename`` parameter is taken directly to the ``filename``
+attribute of the calling template. Therefore a custom
+:class:`.TemplateCollection` subclass can place any string
+identifier desired in the ``filename`` parameter of the
+:class:`.Template` objects it constructs and have them come back
+here.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateLookup_a0427fa3f83ed0445fd65c5b451480507}{mako.\+lookup.\+Template\+Lookup}}.
+
+\Hypertarget{classmako_1_1lookup_1_1TemplateCollection_abc9b03ac636ccd2583e420b9ea3365b3}\index{mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}!filename\_to\_uri@{filename\_to\_uri}}
+\index{filename\_to\_uri@{filename\_to\_uri}!mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}}
+\doxysubsubsection{\texorpdfstring{filename\_to\_uri()}{filename\_to\_uri()}}
+{\footnotesize\ttfamily \label{classmako_1_1lookup_1_1TemplateCollection_abc9b03ac636ccd2583e420b9ea3365b3} 
+mako.\+lookup.\+Template\+Collection.\+filename\+\_\+to\+\_\+uri (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uri}{, }\item[{}]{filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert the given ``filename`` to a URI relative to
+this :class:`.TemplateCollection`.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateLookup_adb470c29972a9a157b9924981a3ab131}{mako.\+lookup.\+Template\+Lookup}}.
+
+\Hypertarget{classmako_1_1lookup_1_1TemplateCollection_abc58329e9a4f9ff9e5fe7f31acae97ed}\index{mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}!get\_template@{get\_template}}
+\index{get\_template@{get\_template}!mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}}
+\doxysubsubsection{\texorpdfstring{get\_template()}{get\_template()}}
+{\footnotesize\ttfamily \label{classmako_1_1lookup_1_1TemplateCollection_abc58329e9a4f9ff9e5fe7f31acae97ed} 
+mako.\+lookup.\+Template\+Collection.\+get\+\_\+template (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uri}{, }\item[{}]{relativeto}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a :class:`.Template` object corresponding to the given
+``uri``.
+
+The default implementation raises
+:class:`.NotImplementedError`. Implementations should
+raise :class:`.TemplateLookupException` if the given ``uri``
+cannot be resolved.
+
+:param uri: String URI of the template to be resolved.
+:param relativeto: if present, the given ``uri`` is assumed to
+ be relative to this URI.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1lookup_1_1TemplateLookup_a0c33224fd155b746ac5d9f0251ef83e6}{mako.\+lookup.\+Template\+Lookup}}.
+
+\Hypertarget{classmako_1_1lookup_1_1TemplateCollection_a26b7b125fc5247cf6108cd2a6a78bc9a}\index{mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}!has\_template@{has\_template}}
+\index{has\_template@{has\_template}!mako.lookup.TemplateCollection@{mako.lookup.TemplateCollection}}
+\doxysubsubsection{\texorpdfstring{has\_template()}{has\_template()}}
+{\footnotesize\ttfamily \label{classmako_1_1lookup_1_1TemplateCollection_a26b7b125fc5247cf6108cd2a6a78bc9a} 
+mako.\+lookup.\+Template\+Collection.\+has\+\_\+template (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uri}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return ``True`` if this :class:`.TemplateLookup` is
+capable of returning a :class:`.Template` object for the
+given ``uri``.
+
+:param uri: String URI of the template to be resolved.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+mako/\+lookup.\+py\end{DoxyCompactItemize}

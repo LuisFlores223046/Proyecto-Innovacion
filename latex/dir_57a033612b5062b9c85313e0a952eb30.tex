@@ -1,0 +1,54 @@
+\doxysection{frontend/\+node\+\_\+modules/\+tailwindcss/\+lib/\+postcss-\/plugins/\+nesting Directory Reference}
+\hypertarget{dir_57a033612b5062b9c85313e0a952eb30}{}\label{dir_57a033612b5062b9c85313e0a952eb30}\index{frontend/node\_modules/tailwindcss/lib/postcss-\/plugins/nesting Directory Reference@{frontend/node\_modules/tailwindcss/lib/postcss-\/plugins/nesting Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_57a033612b5062b9c85313e0a952eb30_autotoc_md2587}{}\doxysubsection{\texorpdfstring{tailwindcss/\+nesting}{tailwindcss/\+nesting}}\label{dir_57a033612b5062b9c85313e0a952eb30_autotoc_md2587}
+This is a Post\+CSS plugin that wraps \href{https://github.com/postcss/postcss-nested}{\texttt{postcss-\/nested}} or \href{https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting}{\texttt{postcss-\/nesting}} and acts as a compatibility layer to make sure your nesting plugin of choice properly understands Tailwind\textquotesingle{}s custom syntax like {\ttfamily @apply} and {\ttfamily @screen}.
+
+Add it to your Post\+CSS configuration, somewhere before Tailwind itself:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ postcss.config.js}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ [}
+\DoxyCodeLine{\ \ \ \ require('postcss-\/import'),}
+\DoxyCodeLine{\ \ \ \ require('tailwindcss/nesting'),}
+\DoxyCodeLine{\ \ \ \ require('tailwindcss'),}
+\DoxyCodeLine{\ \ \ \ require('autoprefixer'),}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+By default, it uses the \href{https://github.com/postcss/postcss-nested}{\texttt{postcss-\/nested}} plugin under the hood, which uses a Sass-\/like syntax and is the plugin that powers nesting support in the \href{https://tailwindcss.com/docs/plugins\#css-in-js-syntax}{\texttt{Tailwind CSS plugin API}}.
+
+If you\textquotesingle{}d rather use \href{https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting}{\texttt{postcss-\/nesting}} (which is based on the work-\/in-\/progress \href{https://drafts.csswg.org/css-nesting-1/}{\texttt{CSS Nesting}} specification), first install the plugin alongside:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ postcss-\/nesting}
+
+\end{DoxyCode}
+
+
+Then pass the plugin itself as an argument to {\ttfamily tailwindcss/\+nesting} in your Post\+CSS configuration:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ postcss.config.js}
+\DoxyCodeLine{module.exports\ =\ \{}
+\DoxyCodeLine{\ \ plugins:\ [}
+\DoxyCodeLine{\ \ \ \ require('postcss-\/import'),}
+\DoxyCodeLine{\ \ \ \ require('tailwindcss/nesting')(require('postcss-\/nesting')),}
+\DoxyCodeLine{\ \ \ \ require('tailwindcss'),}
+\DoxyCodeLine{\ \ \ \ require('autoprefixer'),}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+This can also be helpful if for whatever reason you need to use a very specific version of {\ttfamily postcss-\/nested} and want to override the version we bundle with {\ttfamily tailwindcss/\+nesting} itself. 

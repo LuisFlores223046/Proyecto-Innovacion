@@ -1,0 +1,56 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@jridgewell/\+resolve-\/uri Directory Reference}
+\hypertarget{dir_d9e6989d7e028b706d506dd2c387ca4d}{}\label{dir_d9e6989d7e028b706d506dd2c387ca4d}\index{frontend/node\_modules/"@jridgewell/resolve-\/uri Directory Reference@{frontend/node\_modules/"@jridgewell/resolve-\/uri Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_beed4b6a9f937578f65168ceb6b25b21}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md331}{}\doxysubsection{\texorpdfstring{@jridgewell/\+resolve-\/uri}{@jridgewell/\+resolve-\/uri}}\label{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md331}
+\begin{quote}
+Resolve a URI relative to an optional base URI \end{quote}
+
+
+Resolve any combination of absolute URIs, protocol-\/realtive URIs, absolute paths, or relative paths.\hypertarget{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md332}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md332}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @jridgewell/resolve-\/uri}
+
+\end{DoxyCode}
+\hypertarget{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md333}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_d9e6989d7e028b706d506dd2c387ca4d_autotoc_md333}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ resolve(input:\ string,\ base?:\ string):\ string;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ resolve\ from\ '@jridgewell/resolve-\/uri';}
+\DoxyCodeLine{}
+\DoxyCodeLine{resolve('foo',\ 'https://example.com');\ //\ =>\ 'https://example.com/foo'}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Input  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Base  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Resolution  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Explanation  \\
+{\ttfamily \href{https://example.com}{\texttt{https:\+/\+/\+example.\+com}}}  &{\itshape any}  &{\ttfamily \href{https://example.com/}{\texttt{https:\+/\+/\+example.\+com/\+}}}  &Input is normalized only  \\
+{\ttfamily /\+/\+example.com}  &{\ttfamily \href{https://base.com/}{\texttt{https:\+/\+/\+base.\+com/\+}}}  &{\ttfamily \href{https://example.com/}{\texttt{https:\+/\+/\+example.\+com/\+}}}  &Input inherits the base\textquotesingle{}s protocol  \\
+{\ttfamily /\+/\+example.com}  &{\itshape rest}  &{\ttfamily /\+/\+example.com/\+}  &Input is normalized only  \\
+{\ttfamily /\+example}  &{\ttfamily \href{https://base.com/}{\texttt{https:\+/\+/\+base.\+com/\+}}}  &{\ttfamily \href{https://base.com/example}{\texttt{https:\+/\+/\+base.\+com/\+example}}}  &Input inherits the base\textquotesingle{}s origin  \\
+{\ttfamily /\+example}  &{\ttfamily /\+/\+base.com/\+}  &{\ttfamily /\+/\+base.com/\+example}  &Input inherits the base\textquotesingle{}s host and remains protocol relative  \\
+{\ttfamily /\+example}  &{\itshape rest}  &{\ttfamily /\+example}  &Input is normalized only  \\
+{\ttfamily example}  &{\ttfamily \href{https://base.com/dir/}{\texttt{https:\+/\+/\+base.\+com/\+dir/\+}}}  &{\ttfamily \href{https://base.com/dir/example}{\texttt{https:\+/\+/\+base.\+com/\+dir/\+example}}}  &Input is joined with the base  \\
+{\ttfamily example}  &{\ttfamily \href{https://base.com/file}{\texttt{https:\+/\+/\+base.\+com/\+file}}}  &{\ttfamily \href{https://base.com/example}{\texttt{https:\+/\+/\+base.\+com/\+example}}}  &Input is joined with the base without its file  \\
+{\ttfamily example}  &{\ttfamily /\+/\+base.com/\+dir/\+}  &{\ttfamily /\+/\+base.com/\+dir/\+example}  &Input is joined with the base\textquotesingle{}s last directory  \\
+{\ttfamily example}  &{\ttfamily /\+/\+base.com/\+file}  &{\ttfamily /\+/\+base.com/\+example}  &Input is joined with the base without its file  \\
+{\ttfamily example}  &{\ttfamily /\+base/\+dir/\+}  &{\ttfamily /\+base/\+dir/\+example}  &Input is joined with the base\textquotesingle{}s last directory  \\
+{\ttfamily example}  &{\ttfamily /\+base/\+file}  &{\ttfamily /\+base/\+example}  &Input is joined with the base without its file  \\
+{\ttfamily example}  &{\ttfamily base/\+dir/\+}  &{\ttfamily base/\+dir/\+example}  &Input is joined with the base\textquotesingle{}s last directory  \\
+{\ttfamily example}  &{\ttfamily base/\+file}  &{\ttfamily base/\+example}  &Input is joined with the base without its file  \\
+\end{DoxyTable}

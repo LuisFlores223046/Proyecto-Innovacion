@@ -1,0 +1,851 @@
+\chapter{API Documentation }
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API}{}\label{md_frontend_2node__modules_2postcss-selector-parser_2API}\index{API Documentation@{API Documentation}}
+\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2070}%
+\Hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2070}%
+
+
+{\itshape Please use only this documented API when working with the parser. Methods not documented here are subject to change at any point.}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2071}{}\doxysection{\texorpdfstring{{\ttfamily parser} function}{{\ttfamily parser} function}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2071}
+This is the module\textquotesingle{}s main entry point.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parser\ =\ require('postcss-\/selector-\/parser');}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2072}{}\doxysubsection{\texorpdfstring{{\ttfamily parser(\+[transform]\+, \+[options]\+)}}{{\ttfamily parser(\+[transform]\+, \+[options]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2072}
+Creates a new {\ttfamily processor} instance
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ processor\ =\ parser();}
+
+\end{DoxyCode}
+
+
+Or, with optional transform function
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ transform\ =\ selectors\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ selectors.walkUniversals(selector\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ selector.remove();}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ processor\ =\ parser(transform)}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Example}
+\DoxyCodeLine{const\ result\ =\ processor.processSync('*.class');}
+\DoxyCodeLine{//\ =>\ .class}
+
+\end{DoxyCode}
+
+
+See processor documentationSee processor documentation
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily transform (function)}:\+ Provide a function to work with the parsed AST.
+\item {\ttfamily options (object)}:\+ Provide default options for all calls on the returned {\ttfamily Processor}.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2073}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+attribute(\+[props]\+)}}{{\ttfamily parser.\+attribute(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2073}
+Creates a new attribute selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.attribute(\{attribute:\ 'href'\});}
+\DoxyCodeLine{//\ =>\ [href]}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2074}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+class\+Name(\+[props]\+)}}{{\ttfamily parser.\+class\+Name(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2074}
+Creates a new class selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.className(\{value:\ 'button'\});}
+\DoxyCodeLine{//\ =>\ .button}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2075}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+combinator(\+[props]\+)}}{{\ttfamily parser.\+combinator(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2075}
+Creates a new selector combinator.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.combinator(\{value:\ '+'\});}
+\DoxyCodeLine{//\ =>\ +}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}
+
+Notes:\+
+\begin{DoxyItemize}
+\item {\bfseries{Descendant Combinators}} The value of descendant combinators created by the parser always just a single space ({\ttfamily "{} "{}}). For descendant selectors with no comments, additional space is now stored in {\ttfamily node.\+spaces.\+before}. Depending on the location of comments, additional spaces may be stored in {\ttfamily node.\+raws.\+spaces.\+before}, {\ttfamily node.\+raws.\+spaces.\+after}, or {\ttfamily node.\+raws.\+value}.
+\item {\bfseries{Named Combinators}} Although, nonstandard and unlikely to ever become a standard, named combinators like {\ttfamily /\+deep/\+} and {\ttfamily /\+for/\+} are parsed as combinators. The {\ttfamily node.\+value} is name after being unescaped and normalized as lowercase. The original value for the combinator name is stored in {\ttfamily node.\+raws.\+value}.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2076}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+comment(\+[props]\+)}}{{\ttfamily parser.\+comment(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2076}
+Creates a new comment.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.comment(\{value:\ '/*\ Affirmative,\ Dave.\ I\ read\ you.\ */'\});}
+\DoxyCodeLine{//\ =>\ /*\ Affirmative,\ Dave.\ I\ read\ you.\ */}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2077}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+id(\+[props]\+)}}{{\ttfamily parser.\+id(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2077}
+Creates a new id selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.id(\{value:\ 'search'\});}
+\DoxyCodeLine{//\ =>\ \#search}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2078}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+nesting(\+[props]\+)}}{{\ttfamily parser.\+nesting(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2078}
+Creates a new nesting selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.nesting();}
+\DoxyCodeLine{//\ =>\ \&}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2079}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+pseudo(\+[props]\+)}}{{\ttfamily parser.\+pseudo(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2079}
+Creates a new pseudo selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.pseudo(\{value:\ '::before'\});}
+\DoxyCodeLine{//\ =>\ ::before}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2080}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+root(\+[props]\+)}}{{\ttfamily parser.\+root(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2080}
+Creates a new root node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.root();}
+\DoxyCodeLine{//\ =>\ (empty)}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2081}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+selector(\+[props]\+)}}{{\ttfamily parser.\+selector(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2081}
+Creates a new selector node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.selector();}
+\DoxyCodeLine{//\ =>\ (empty)}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2082}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+string(\+[props]\+)}}{{\ttfamily parser.\+string(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2082}
+Creates a new string node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.string();}
+\DoxyCodeLine{//\ =>\ (empty)}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2083}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+tag(\+[props]\+)}}{{\ttfamily parser.\+tag(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2083}
+Creates a new tag selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.tag(\{value:\ 'button'\});}
+\DoxyCodeLine{//\ =>\ button}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2084}{}\doxysubsection{\texorpdfstring{{\ttfamily parser.\+universal(\+[props]\+)}}{{\ttfamily parser.\+universal(\+[props]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2084}
+Creates a new universal selector.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.universal();}
+\DoxyCodeLine{//\ =>\ *}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily props (object)}:\+ The new node\textquotesingle{}s properties.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2085}{}\doxysection{\texorpdfstring{Node types}{Node types}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2085}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2086}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+type}}{{\ttfamily node.\+type}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2086}
+A string representation of the selector type. It can be one of the following; {\ttfamily attribute}, {\ttfamily class}, {\ttfamily combinator}, {\ttfamily comment}, {\ttfamily id}, {\ttfamily nesting}, {\ttfamily pseudo}, {\ttfamily root}, {\ttfamily selector}, {\ttfamily string}, {\ttfamily tag}, or {\ttfamily universal}. Note that for convenience, these constants are exposed on the main {\ttfamily parser} as uppercased keys. So for example you can get {\ttfamily id} by querying {\ttfamily parser.\+ID}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{parser.attribute(\{attribute:\ 'href'\}).type;}
+\DoxyCodeLine{//\ =>\ 'attribute'}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2087}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+parent}}{{\ttfamily node.\+parent}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2087}
+Returns the parent node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{root.nodes[0].parent\ ===\ root;}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2088}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+to\+String()}, {\ttfamily String(node)}, or {\ttfamily \textquotesingle{}\textquotesingle{} + node}}{{\ttfamily node.\+to\+String()}, {\ttfamily String(node)}, or {\ttfamily \textquotesingle{}\textquotesingle{} + node}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2088}
+Returns a string representation of the node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ id\ =\ parser.id(\{value:\ 'search'\});}
+\DoxyCodeLine{console.log(String(id));}
+\DoxyCodeLine{//\ =>\ \#search}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2089}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+next()} \& {\ttfamily node.\+prev()}}{{\ttfamily node.\+next()} \& {\ttfamily node.\+prev()}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2089}
+Returns the next/\+previous child of the parent node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ next\ =\ id.next();}
+\DoxyCodeLine{if\ (next\ \&\&\ next.type\ !==\ 'combinator')\ \{}
+\DoxyCodeLine{\ \ \ \ throw\ new\ Error('Qualified\ IDs\ are\ not\ allowed!');}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2090}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+replace\+With(node)}}{{\ttfamily node.\+replace\+With(node)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2090}
+Replace a node with another.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ attr\ =\ selectors.first.first;}
+\DoxyCodeLine{const\ className\ =\ parser.className(\{value:\ 'test'\});}
+\DoxyCodeLine{attr.replaceWith(className);}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily node}:\+ The node to substitute the original with.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2091}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+remove()}}{{\ttfamily node.\+remove()}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2091}
+Removes the node from its parent node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{if\ (node.type\ ===\ 'id')\ \{}
+\DoxyCodeLine{\ \ \ \ node.remove();}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2092}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+clone(\+[opts]\+)}}{{\ttfamily node.\+clone(\+[opts]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2092}
+Returns a copy of a node, detached from any parent containers that the original might have had.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ cloned\ =\ node.clone();}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2093}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+is\+At\+Position(line, column)}}{{\ttfamily node.\+is\+At\+Position(line, column)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2093}
+Return a {\ttfamily boolean} indicating whether this node includes the character at the position of the given line and column. Returns {\ttfamily undefined} if the nodes lack sufficient source metadata to determine the position.
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily line}:\+ 1-\/index based line number relative to the start of the selector.
+\item {\ttfamily column}:\+ 1-\/index based column number relative to the start of the selector.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2094}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+spaces}}{{\ttfamily node.\+spaces}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2094}
+Extra whitespaces around the node will be moved into {\ttfamily node.\+spaces.\+before} and {\ttfamily node.\+spaces.\+after}. So for example, these spaces will be moved as they have no semantic meaning:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{h1\ \ \ \ \ ,\ \ \ \ \ h2\ \ \ \{\}}
+
+\end{DoxyCode}
+
+
+For descendent selectors, the value is always a single space.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{h1\ \ \ \ \ \ \ \ h2\ \{\}}
+
+\end{DoxyCode}
+
+
+Additional whitespace is found in either the {\ttfamily node.\+spaces.\+before} and {\ttfamily node.\+spaces.\+after} depending on the presence of comments or other whitespace characters. If the actual whitespace does not start or end with a single space, the node\textquotesingle{}s raw value is set to the actual space(s) found in the source.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2095}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+source}}{{\ttfamily node.\+source}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2095}
+An object describing the node\textquotesingle{}s start/\+end, line/\+column source position.
+
+Within the following CSS, the {\ttfamily .bar} class node ...
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.foo,}
+\DoxyCodeLine{\ \ .bar\ \{\}}
+
+\end{DoxyCode}
+
+
+... will contain the following {\ttfamily source} object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{source:\ \{}
+\DoxyCodeLine{\ \ \ \ start:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ line:\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ column:\ 3}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ end:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ line:\ 2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ column:\ 6}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2096}{}\doxysubsection{\texorpdfstring{{\ttfamily node.\+source\+Index}}{{\ttfamily node.\+source\+Index}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2096}
+The zero-\/based index of the node within the original source string.
+
+Within the following CSS, the {\ttfamily .baz} class node will have a {\ttfamily source\+Index} of {\ttfamily 12}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.foo,\ .bar,\ .baz\ \{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2097}{}\doxysection{\texorpdfstring{Container types}{Container types}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2097}
+The {\ttfamily root}, {\ttfamily selector}, and {\ttfamily pseudo} nodes have some helper methods for working with their children.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2098}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+nodes}}{{\ttfamily container.\+nodes}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2098}
+An array of the container\textquotesingle{}s children.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Input:\ h1\ h2}
+\DoxyCodeLine{selectors.at(0).nodes.length\ \ \ //\ =>\ 3}
+\DoxyCodeLine{selectors.at(0).nodes[0].value\ //\ =>\ 'h1'}
+\DoxyCodeLine{selectors.at(0).nodes[1].value\ //\ =>\ '\ '}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2099}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+first} \& {\ttfamily container.\+last}}{{\ttfamily container.\+first} \& {\ttfamily container.\+last}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2099}
+The first/\+last child of the container.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selector.first\ ===\ selector.nodes[0];}
+\DoxyCodeLine{selector.last\ ===\ selector.nodes[selector.nodes.length\ -\/\ 1];}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2100}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+at(index)}}{{\ttfamily container.\+at(index)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2100}
+Returns the node at position {\ttfamily index}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selector.at(0)\ ===\ selector.first;}
+\DoxyCodeLine{selector.at(0)\ ===\ selector.nodes[0];}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily index}:\+ The index of the node to return.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2101}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+at\+Position(line, column)}}{{\ttfamily container.\+at\+Position(line, column)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2101}
+Returns the node at the source position {\ttfamily line} and {\ttfamily column}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Input:\ :not(.foo),\(\backslash\)n\#foo\ >\ :matches(ol,\ ul)}
+\DoxyCodeLine{selector.atPosition(1,\ 1);\ //\ =>\ :not(.foo)}
+\DoxyCodeLine{selector.atPosition(2,\ 1);\ //\ =>\ \(\backslash\)n\#foo}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily line}:\+ The line number of the node to return.
+\item {\ttfamily column}:\+ The column number of the node to return.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2102}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+index(node)}}{{\ttfamily container.\+index(node)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2102}
+Return the index of the node within its container.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selector.index(selector.nodes[2])\ //\ =>\ 2}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily node}:\+ A node within the current container.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2103}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+length}}{{\ttfamily container.\+length}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2103}
+Proxy to the length of the container\textquotesingle{}s nodes.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{container.length\ ===\ container.nodes.length}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2104}{}\doxysubsection{\texorpdfstring{{\ttfamily container} Array iterators}{{\ttfamily container} Array iterators}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2104}
+The container class provides proxies to certain Array methods; these are:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily container.\+map === container.\+nodes.\+map}
+\item {\ttfamily container.\+reduce === container.\+nodes.\+reduce}
+\item {\ttfamily container.\+every === container.\+nodes.\+every}
+\item {\ttfamily container.\+some === container.\+nodes.\+some}
+\item {\ttfamily container.\+filter === container.\+nodes.\+filter}
+\item {\ttfamily container.\+sort === container.\+nodes.\+sort}
+\end{DoxyItemize}
+
+Note that these methods only work on a container\textquotesingle{}s immediate children; recursive iteration is provided by {\ttfamily container.\+walk}.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2105}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+each(callback)}}{{\ttfamily container.\+each(callback)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2105}
+Iterate the container\textquotesingle{}s immediate children, calling {\ttfamily callback} for each child. You may return {\ttfamily false} within the callback to break the iteration.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ className;}
+\DoxyCodeLine{selectors.each((selector,\ index)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (selector.type\ ===\ 'class')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ className\ =\ selector.value;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ false;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Note that unlike {\ttfamily Array\#for\+Each()}, this iterator is safe to use whilst adding or removing nodes from the container.
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily callback (function)}:\+ A function to call for each node, which receives {\ttfamily node} and {\ttfamily index} arguments.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2106}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+walk(callback)}}{{\ttfamily container.\+walk(callback)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2106}
+Like {\ttfamily container\#each}, but will also iterate child nodes as long as they are {\ttfamily container} types.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selectors.walk((selector,\ index)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ all\ nodes}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily callback (function)}:\+ A function to call for each node, which receives {\ttfamily node} and {\ttfamily index} arguments.
+\end{DoxyItemize}
+
+This iterator is safe to use whilst mutating {\ttfamily container.\+nodes}, like {\ttfamily container\#each}.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2107}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+walk} proxies}{{\ttfamily container.\+walk} proxies}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2107}
+The container class provides proxy methods for iterating over types of nodes, so that it is easier to write modules that target specific selectors. Those methods are:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily container.\+walk\+Attributes}
+\item {\ttfamily container.\+walk\+Classes}
+\item {\ttfamily container.\+walk\+Combinators}
+\item {\ttfamily container.\+walk\+Comments}
+\item {\ttfamily container.\+walk\+Ids}
+\item {\ttfamily container.\+walk\+Nesting}
+\item {\ttfamily container.\+walk\+Pseudos}
+\item {\ttfamily container.\+walk\+Tags}
+\item {\ttfamily container.\+walk\+Universals}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2108}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+split(callback)}}{{\ttfamily container.\+split(callback)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2108}
+This method allows you to split a group of nodes by returning {\ttfamily true} from a callback. It returns an array of arrays, where each inner array corresponds to the groups that you created via the callback.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ (input)\ =>\ h1\ h2>>h3}
+\DoxyCodeLine{const\ list\ =\ selectors.first.split(selector\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ return\ selector.type\ ===\ 'combinator';}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ (node\ values)\ =>\ [['h1',\ '\ '],\ ['h2',\ '>>'],\ ['h3']]}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily callback (function)}:\+ A function to call for each node, which receives {\ttfamily node} as an argument.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2109}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+prepend(node)} \& {\ttfamily container.\+append(node)}}{{\ttfamily container.\+prepend(node)} \& {\ttfamily container.\+append(node)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2109}
+Add a node to the start/\+end of the container. Note that doing so will set the parent property of the node to this container.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ id\ =\ parser.id(\{value:\ 'search'\});}
+\DoxyCodeLine{selector.append(id);}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily node}:\+ The node to add.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2110}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+insert\+Before(old, new)} \& {\ttfamily container.\+insert\+After(old, new)}}{{\ttfamily container.\+insert\+Before(old, new)} \& {\ttfamily container.\+insert\+After(old, new)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2110}
+Add a node before or after an existing node in a container:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selectors.walk(selector\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (selector.type\ !==\ 'class')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ className\ =\ parser.className(\{value:\ 'theme-\/name'\});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ selector.parent.insertAfter(selector,\ className);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily old}:\+ The existing node in the container.
+\item {\ttfamily new}:\+ The new node to add before/\+after the existing node.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2111}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+remove\+Child(node)}}{{\ttfamily container.\+remove\+Child(node)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2111}
+Remove the node from the container. Note that you can also use {\ttfamily node.\+remove()} if you would like to remove just a single node.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selector.length\ //\ =>\ 2}
+\DoxyCodeLine{selector.remove(id)}
+\DoxyCodeLine{selector.length\ //\ =>\ 1;}
+\DoxyCodeLine{id.parent\ \ \ \ \ \ \ //\ undefined}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily node}:\+ The node to remove.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2112}{}\doxysubsection{\texorpdfstring{{\ttfamily container.\+remove\+All()} or {\ttfamily container.\+empty()}}{{\ttfamily container.\+remove\+All()} or {\ttfamily container.\+empty()}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2112}
+Remove all children from the container.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{selector.removeAll();}
+\DoxyCodeLine{selector.length\ //\ =>\ 0}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2113}{}\doxysection{\texorpdfstring{Root nodes}{Root nodes}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2113}
+A root node represents a comma separated list of selectors. Indeed, all a root\textquotesingle{}s {\ttfamily to\+String()} method does is join its selector children with a \textquotesingle{},\textquotesingle{}. Other than this, it has no special functionality and acts like a container.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2114}{}\doxysubsection{\texorpdfstring{{\ttfamily root.\+trailing\+Comma}}{{\ttfamily root.\+trailing\+Comma}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2114}
+This will be set to {\ttfamily true} if the input has a trailing comma, in order to support parsing of legacy CSS hacks.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2115}{}\doxysection{\texorpdfstring{Selector nodes}{Selector nodes}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2115}
+A selector node represents a single complex selector. For example, this selector string {\ttfamily h1 h2 h3, \+[href]\+ \texorpdfstring{$>$}{>} p}, is represented as two selector nodes. It has no special functionality of its own.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2116}{}\doxysection{\texorpdfstring{Pseudo nodes}{Pseudo nodes}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2116}
+A pseudo selector extends a container node; if it has any parameters of its own (such as {\ttfamily h1:\+not(h2, h3)}), they will be its children. Note that the pseudo {\ttfamily value} will always contain the colons preceding the pseudo identifier. This is so that both {\ttfamily :\+before} and {\ttfamily ::\+before} are properly represented in the AST.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2117}{}\doxysection{\texorpdfstring{Attribute nodes}{Attribute nodes}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2117}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2118}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+quoted}}{{\ttfamily attribute.\+quoted}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2118}
+Returns {\ttfamily true} if the attribute\textquotesingle{}s value is wrapped in quotation marks, false if it is not. Remains {\ttfamily undefined} if there is no attribute value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[href=foo]\ /*\ false\ */}
+\DoxyCodeLine{[href='foo']\ /*\ true\ */}
+\DoxyCodeLine{[href="{}foo"{}]\ /*\ true\ */}
+\DoxyCodeLine{[href]\ /*\ undefined\ */}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2119}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+qualified\+Attribute}}{{\ttfamily attribute.\+qualified\+Attribute}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2119}
+Returns the attribute name qualified with the namespace if one is given.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2120}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+offset\+Of(part)}}{{\ttfamily attribute.\+offset\+Of(part)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2120}
+Returns the offset of the attribute part specified relative to the start of the node of the output string. This is useful in raising error messages about a specific part of the attribute, especially in combination with {\ttfamily attribute.\+source\+Index}.
+
+Returns {\ttfamily -\/1} if the name is invalid or the value doesn\textquotesingle{}t exist in this attribute.
+
+The legal values for {\ttfamily part} are:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}ns"{}} -\/ alias for "{}namespace"{}
+\item {\ttfamily "{}namespace"{}} -\/ the namespace if it exists.
+\item {\ttfamily "{}attribute"{}} -\/ the attribute name
+\item {\ttfamily "{}attribute\+NS"{}} -\/ the start of the attribute or its namespace
+\item {\ttfamily "{}operator"{}} -\/ the match operator of the attribute
+\item {\ttfamily "{}value"{}} -\/ The value (string or identifier)
+\item {\ttfamily "{}insensitive"{}} -\/ the case insensitivity flag
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2121}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+raws.\+unquoted}}{{\ttfamily attribute.\+raws.\+unquoted}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2121}
+Returns the unquoted content of the attribute\textquotesingle{}s value. Remains {\ttfamily undefined} if there is no attribute value.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[href=foo]\ /*\ foo\ */}
+\DoxyCodeLine{[href='foo']\ /*\ foo\ */}
+\DoxyCodeLine{[href="{}foo"{}]\ /*\ foo\ */}
+\DoxyCodeLine{[href]\ /*\ undefined\ */}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2122}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+spaces}}{{\ttfamily attribute.\+spaces}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2122}
+Like {\ttfamily node.\+spaces} with the {\ttfamily before} and {\ttfamily after} values containing the spaces around the element, the parts of the attribute can also have spaces before and after them. The for each of {\ttfamily attribute}, {\ttfamily operator}, {\ttfamily value} and {\ttfamily insensitive} there is corresponding property of the same nam in {\ttfamily node.\+spaces} that has an optional {\ttfamily before} or {\ttfamily after} string containing only whitespace.
+
+Note that corresponding values in {\ttfamily attributes.\+raws.\+spaces} contain values including any comments. If set, these values will override the {\ttfamily attribute.\+spaces} value. Take care to remove them if changing {\ttfamily attribute.\+spaces}.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2123}{}\doxysubsection{\texorpdfstring{{\ttfamily attribute.\+raws}}{{\ttfamily attribute.\+raws}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2123}
+The raws object stores comments and other information necessary to re-\/render the node exactly as it was in the source.
+
+If a comment is embedded within the identifiers for the {\ttfamily namespace}, {\ttfamily attribute} or {\ttfamily value} then a property is placed in the raws for that value containing the full source of the propery including comments.
+
+If a comment is embedded within the space between parts of the attribute then the raw for that space is set accordingly.
+
+Setting an attribute\textquotesingle{}s property {\ttfamily raws} value to be deleted.
+
+For now, changing the spaces required also updating or removing any of the raws values that override them.
+
+Example:\+ {\ttfamily \+[ /\+\texorpdfstring{$\ast$}{*}before\texorpdfstring{$\ast$}{*}/\+ href /\+\texorpdfstring{$\ast$}{*} after-\/attr \texorpdfstring{$\ast$}{*}/\+ = /\+\texorpdfstring{$\ast$}{*} after-\/operator \texorpdfstring{$\ast$}{*}/\+ te/\+\texorpdfstring{$\ast$}{*}inside-\/value\texorpdfstring{$\ast$}{*}/\+st/\+\texorpdfstring{$\ast$}{*} wow \texorpdfstring{$\ast$}{*}/\+ /\+\texorpdfstring{$\ast$}{*}omg\texorpdfstring{$\ast$}{*}/\+i/\+\texorpdfstring{$\ast$}{*}bbq\texorpdfstring{$\ast$}{*}/\+ /\+\texorpdfstring{$\ast$}{*}whodoesthis\texorpdfstring{$\ast$}{*}/\+]\+} would parse as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ attribute:\ "{}href"{},}
+\DoxyCodeLine{\ \ operator:\ "{}="{},}
+\DoxyCodeLine{\ \ value:\ "{}test"{},}
+\DoxyCodeLine{\ \ spaces:\ \{}
+\DoxyCodeLine{\ \ \ \ before:\ '',}
+\DoxyCodeLine{\ \ \ \ after:\ '',}
+\DoxyCodeLine{\ \ \ \ attribute:\ \{\ before:\ '\ \ ',\ after:\ '\ \ '\ \},}
+\DoxyCodeLine{\ \ \ \ operator:\ \{\ after:\ '\ \ '\ \},}
+\DoxyCodeLine{\ \ \ \ value:\ \{\ after:\ '\ '\ \},}
+\DoxyCodeLine{\ \ \ \ insensitive:\ \{\ after:\ '\ '\ \}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ raws:\ \{}
+\DoxyCodeLine{\ \ \ \ spaces:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ attribute:\ \{\ before:\ '\ /*before*/\ ',\ after:\ '\ /*\ after-\/attr\ */\ '\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ operator:\ \{\ after:\ '\ /*\ after-\/operator\ */\ '\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ value:\ \{\ after:\ '/*\ wow\ */\ /*omg*/'\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ insensitive:\ \{\ after:\ '/*bbq*/\ /*whodoesthis*/'\ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ unquoted:\ 'test',}
+\DoxyCodeLine{\ \ \ \ value:\ 'te/*inside-\/value*/st'}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2124}{}\doxysection{\texorpdfstring{{\ttfamily Processor}}{{\ttfamily Processor}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2124}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2125}{}\doxysubsection{\texorpdfstring{{\ttfamily Processor\+Options}}{{\ttfamily Processor\+Options}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2125}
+
+\begin{DoxyItemize}
+\item {\ttfamily lossless} -\/ When {\ttfamily true}, whitespace is preserved. Defaults to {\ttfamily true}.
+\item {\ttfamily update\+Selector} -\/ When {\ttfamily true}, if any processor methods are passed a postcss {\ttfamily Rule} node instead of a string, then that Rule\textquotesingle{}s selector is updated with the results of the processing. Defaults to {\ttfamily true}.
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2126}{}\doxysubsection{\texorpdfstring{{\ttfamily process\texorpdfstring{$\vert$}{|}process\+Sync(selectors, \+[options]\+)}}{{\ttfamily process\texorpdfstring{$\vert$}{|}process\+Sync(selectors, \+[options]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2126}
+Processes the {\ttfamily selectors}, returning a string from the result of processing.
+
+Note:\+ when the {\ttfamily update\+Selector} option is set, the rule\textquotesingle{}s selector will be updated with the resulting string.
+
+{\bfseries{Example:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parser\ =\ require("{}postcss-\/selector-\/parser"{});}
+\DoxyCodeLine{const\ processor\ =\ parser();}
+\DoxyCodeLine{}
+\DoxyCodeLine{let\ result\ =\ processor.processSync('\ .class');}
+\DoxyCodeLine{console.log(result);}
+\DoxyCodeLine{//\ =>\ \ .class}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Asynchronous\ operation}
+\DoxyCodeLine{let\ promise\ =\ processor.process('\ .class').then(result\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(result)}
+\DoxyCodeLine{\ \ \ \ //\ =>\ .class}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ To\ have\ the\ parser\ normalize\ whitespace\ values,\ utilize\ the\ options}
+\DoxyCodeLine{result\ =\ processor.processSync('\ \ .class\ \ ',\ \{lossless:\ false\});}
+\DoxyCodeLine{console.log(result);}
+\DoxyCodeLine{//\ =>\ .class}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ For\ better\ syntax\ errors,\ pass\ a\ PostCSS\ Rule\ node.}
+\DoxyCodeLine{const\ postcss\ =\ require('postcss');}
+\DoxyCodeLine{rule\ =\ postcss.rule(\{selector:\ '\ \#foo\ \ \ \ >\ a,\ \ .class\ \ '\});}
+\DoxyCodeLine{processor.process(rule,\ \{lossless:\ false,\ updateSelector:\ true\}).then(result\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(result);}
+\DoxyCodeLine{\ \ \ \ //\ =>\ \#foo>a,.class}
+\DoxyCodeLine{\ \ \ \ console.log("{}rule:"{},\ rule.selector);}
+\DoxyCodeLine{\ \ \ \ //\ =>\ rule:\ \#foo>a,.class}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily selectors (string\texorpdfstring{$\vert$}{|}postcss.Rule)}:\+ Either a selector string or a Post\+CSS Rule node.
+\item {\ttfamily \+[options]\+ (object)}:\+ Process options
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2127}{}\doxysubsection{\texorpdfstring{{\ttfamily ast\texorpdfstring{$\vert$}{|}ast\+Sync(selectors, \+[options]\+)}}{{\ttfamily ast\texorpdfstring{$\vert$}{|}ast\+Sync(selectors, \+[options]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2127}
+Like {\ttfamily process()} and {\ttfamily process\+Sync()} but after processing the {\ttfamily selectors} these methods return the {\ttfamily Root} node of the result instead of a string.
+
+Note:\+ when the {\ttfamily update\+Selector} option is set, the rule\textquotesingle{}s selector will be updated with the resulting string.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2128}{}\doxysubsection{\texorpdfstring{{\ttfamily transform\texorpdfstring{$\vert$}{|}transform\+Sync(selectors, \+[options]\+)}}{{\ttfamily transform\texorpdfstring{$\vert$}{|}transform\+Sync(selectors, \+[options]\+)}}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2128}
+Like {\ttfamily process()} and {\ttfamily process\+Sync()} but after processing the {\ttfamily selectors} these methods return the value returned by the processor callback.
+
+Note:\+ when the {\ttfamily update\+Selector} option is set, the rule\textquotesingle{}s selector will be updated with the resulting string.\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2129}{}\doxysubsection{\texorpdfstring{Error Handling Within Selector Processors}{Error Handling Within Selector Processors}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2129}
+The root node passed to the selector processor callback has a method {\ttfamily error(message, options)} that returns an error object. This method should always be used to raise errors relating to the syntax of selectors. The options to this method are passed to postcss\textquotesingle{}s error constructor (\href{http://postcss.org/api/\#container-error}{\texttt{documentation}}).\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2130}{}\doxysubsubsection{\texorpdfstring{Async Error Example}{Async Error Example}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2130}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ processor\ =\ (root)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ return\ new\ Promise((resolve,\ reject)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ root.walkClasses((classNode)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (/\string^(.*)[-\/\_]/.test(classNode.value))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ let\ msg\ =\ "{}classes\ may\ not\ have\ underscores\ or\ dashes\ in\ them"{};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reject(root.error(msg,\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index:\ classNode.sourceIndex\ +\ RegExp.\$1.length\ +\ 1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ word:\ classNode.value}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ resolve();}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require("{}postcss"{});}
+\DoxyCodeLine{const\ parser\ =\ require("{}postcss-\/selector-\/parser"{});}
+\DoxyCodeLine{const\ selectorProcessor\ =\ parser(processor);}
+\DoxyCodeLine{const\ plugin\ =\ postcss.plugin('classValidator',\ (options)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ return\ (root)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ let\ promises\ =\ [];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ root.walkRules(rule\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ promises.push(selectorProcessor.process(rule));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.all(promises);}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{postcss(plugin()).process(`}
+\DoxyCodeLine{.foo-\/bar\ \{}
+\DoxyCodeLine{\ \ color:\ red;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\`{}.trim(),\ \{from:\ 'test.css'\}).catch((e)\ =>\ console.error(e.toString()));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ CssSyntaxError:\ classValidator:\ ./test.css:1:5:\ classes\ may\ not\ have\ underscores\ or\ dashes\ in\ them}
+\DoxyCodeLine{//}
+\DoxyCodeLine{//\ >\ 1\ |\ .foo-\/bar\ \{}
+\DoxyCodeLine{//\ \ \ \ \ |\ \ \ \ \ \string^}
+\DoxyCodeLine{//\ \ \ 2\ |\ \ \ color:\ red;}
+\DoxyCodeLine{//\ \ \ 3\ |\ \}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2131}{}\doxysubsubsection{\texorpdfstring{Synchronous Error Example}{Synchronous Error Example}}\label{md_frontend_2node__modules_2postcss-selector-parser_2API_autotoc_md2131}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ processor\ =\ (root)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ root.walkClasses((classNode)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (/.*[-\/\_]/.test(classNode.value))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ let\ msg\ =\ "{}classes\ may\ not\ have\ underscores\ or\ dashes\ in\ them"{};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ throw\ root.error(msg,\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ index:\ classNode.sourceIndex,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ word:\ classNode.value}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ postcss\ =\ require("{}postcss"{});}
+\DoxyCodeLine{const\ parser\ =\ require("{}postcss-\/selector-\/parser"{});}
+\DoxyCodeLine{const\ selectorProcessor\ =\ parser(processor);}
+\DoxyCodeLine{const\ plugin\ =\ postcss.plugin('classValidator',\ (options)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ return\ (root)\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ root.walkRules(rule\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ selectorProcessor.processSync(rule);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{postcss(plugin()).process(`}
+\DoxyCodeLine{.foo-\/bar\ \{}
+\DoxyCodeLine{\ \ color:\ red;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\`{}.trim(),\ \{from:\ 'test.css'\}).catch((e)\ =>\ console.error(e.toString()));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ CssSyntaxError:\ classValidator:\ ./test.css:1:5:\ classes\ may\ not\ have\ underscores\ or\ dashes\ in\ them}
+\DoxyCodeLine{//}
+\DoxyCodeLine{//\ >\ 1\ |\ .foo-\/bar\ \{}
+\DoxyCodeLine{//\ \ \ \ \ |\ \ \ \ \ \string^}
+\DoxyCodeLine{//\ \ \ 2\ |\ \ \ color:\ red;}
+\DoxyCodeLine{//\ \ \ 3\ |\ \}}
+
+\end{DoxyCode}
+ 

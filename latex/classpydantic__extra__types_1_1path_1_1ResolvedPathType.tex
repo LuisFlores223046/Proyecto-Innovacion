@@ -1,0 +1,104 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+path.\+Resolved\+Path\+Type Class Reference}
+\hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType}{}\label{classpydantic__extra__types_1_1path_1_1ResolvedPathType}\index{pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+path.\+Resolved\+Path\+Type:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1path_1_1ResolvedPathType}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a3076da7196a9c3524a9f9ae12885c67e}\label{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a3076da7196a9c3524a9f9ae12885c67e} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpydantic_1_1types_1_1PathType}{pydantic.\+types.\+Path\+Type}}}
+\begin{DoxyCompactItemize}
+\item 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (self, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, Any source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Path \doxymbox{\hyperlink{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a894cae0f00d6a2e268f03ffd98fb087e}{validate\+\_\+file}} (Path path, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\item 
+Path \doxymbox{\hyperlink{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a9322824306bdae8d6c30b8ebe7b8489d}{validate\+\_\+directory}} (Path path, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\item 
+Path \doxymbox{\hyperlink{classpydantic__extra__types_1_1path_1_1ResolvedPathType_ae8ab5d3e94d1530163f8d1b022e291ce}{validate\+\_\+new}} (Path path, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpydantic_1_1types_1_1PathType}{pydantic.\+types.\+Path\+Type}}}
+\begin{DoxyCompactItemize}
+\item 
+Literal {\bfseries path\+\_\+type} \+[\textquotesingle{}file\textquotesingle{}, \textquotesingle{}dir\textquotesingle{}, \textquotesingle{}new\textquotesingle{}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A custom PathType that resolves the path to its absolute form.
+
+Args:
+    path_type (typing.Literal['file', 'dir', 'new']): The type of path to resolve. Can be 'file', 'dir' or 'new'.
+
+Returns:
+    Resolved path as a pathlib.Path object.
+
+Example:
+    ```python
+    from pydantic import BaseModel
+    from pydantic_extra_types.path import ResolvedFilePath, ResolvedDirectoryPath, ResolvedNewPath
+
+
+    class MyModel(BaseModel):
+        file_path: ResolvedFilePath
+        dir_path: ResolvedDirectoryPath
+        new_path: ResolvedNewPath
+
+
+    model = MyModel(file_path='~/myfile.txt', dir_path='~/mydir', new_path='~/newfile.txt')
+    print(model.file_path)
+    # > file_path=PosixPath('/home/user/myfile.txt') dir_path=PosixPath('/home/user/mydir') new_path=PosixPath('/home/user/newfile.txt')\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1path_1_1ResolvedPathType_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a9322824306bdae8d6c30b8ebe7b8489d}\index{pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}!validate\_directory@{validate\_directory}}
+\index{validate\_directory@{validate\_directory}!pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}}
+\doxysubsubsection{\texorpdfstring{validate\_directory()}{validate\_directory()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a9322824306bdae8d6c30b8ebe7b8489d} 
+ Path pydantic\+\_\+extra\+\_\+types.\+path.\+Resolved\+Path\+Type.\+validate\+\_\+directory (\begin{DoxyParamCaption}\item[{Path}]{path}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpydantic_1_1types_1_1PathType}{pydantic.\+types.\+Path\+Type}}.
+
+\Hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a894cae0f00d6a2e268f03ffd98fb087e}\index{pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}!validate\_file@{validate\_file}}
+\index{validate\_file@{validate\_file}!pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}}
+\doxysubsubsection{\texorpdfstring{validate\_file()}{validate\_file()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1path_1_1ResolvedPathType_a894cae0f00d6a2e268f03ffd98fb087e} 
+ Path pydantic\+\_\+extra\+\_\+types.\+path.\+Resolved\+Path\+Type.\+validate\+\_\+file (\begin{DoxyParamCaption}\item[{Path}]{path}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpydantic_1_1types_1_1PathType}{pydantic.\+types.\+Path\+Type}}.
+
+\Hypertarget{classpydantic__extra__types_1_1path_1_1ResolvedPathType_ae8ab5d3e94d1530163f8d1b022e291ce}\index{pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}!validate\_new@{validate\_new}}
+\index{validate\_new@{validate\_new}!pydantic\_extra\_types.path.ResolvedPathType@{pydantic\_extra\_types.path.ResolvedPathType}}
+\doxysubsubsection{\texorpdfstring{validate\_new()}{validate\_new()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1path_1_1ResolvedPathType_ae8ab5d3e94d1530163f8d1b022e291ce} 
+ Path pydantic\+\_\+extra\+\_\+types.\+path.\+Resolved\+Path\+Type.\+validate\+\_\+new (\begin{DoxyParamCaption}\item[{Path}]{path}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpydantic_1_1types_1_1PathType}{pydantic.\+types.\+Path\+Type}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+path.\+py\end{DoxyCompactItemize}

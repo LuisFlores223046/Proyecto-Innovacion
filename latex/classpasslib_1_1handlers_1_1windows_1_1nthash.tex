@@ -1,0 +1,71 @@
+\doxysection{passlib.\+handlers.\+windows.\+nthash Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash}{}\label{classpasslib_1_1handlers_1_1windows_1_1nthash}\index{passlib.handlers.windows.nthash@{passlib.handlers.windows.nthash}}
+Inheritance diagram for passlib.\+handlers.\+windows.\+nthash:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1windows_1_1nthash}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1windows_1_1nthash_ac7fb82fadfe494439474643a979db24e}{raw}} (cls, secret)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_ae4912fcc49c28a5e2ea512179a77e2da}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_ae4912fcc49c28a5e2ea512179a77e2da} 
+{\bfseries raw\+\_\+nthash} (cls, secret, hex=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_a906d3a92550ba7affc6ac4841b4434ac}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_a906d3a92550ba7affc6ac4841b4434ac} 
+str {\bfseries name} = "{}nthash"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_a31642f766c189b19a9101283578e791d}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_a31642f766c189b19a9101283578e791d} 
+{\bfseries checksum\+\_\+chars} = uh.\+HEX\+\_\+\+CHARS
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_a0213a055a1ff0da86b5207733a805514}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_a0213a055a1ff0da86b5207733a805514} 
+int {\bfseries checksum\+\_\+size} = 32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_af853a336661b6e09264d73c1d563a94a}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_af853a336661b6e09264d73c1d563a94a} 
+{\bfseries \+\_\+norm\+\_\+hash} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_ac66a3021cadad81cbe1061ba6f7fd6d4}\label{classpasslib_1_1handlers_1_1windows_1_1nthash_ac66a3021cadad81cbe1061ba6f7fd6d4} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements the NT Password hash, and follows the :ref:`password-hash-api`.
+
+It has no salt and a single fixed round.
+
+The :meth:`~passlib.ifc.PasswordHash.hash` and :meth:`~passlib.ifc.PasswordHash.genconfig` methods accept no optional keywords.
+
+Note that while this class outputs lower-case hexadecimal digests,
+it will accept upper-case digests as well.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1windows_1_1nthash_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1nthash_ac7fb82fadfe494439474643a979db24e}\index{passlib.handlers.windows.nthash@{passlib.handlers.windows.nthash}!raw@{raw}}
+\index{raw@{raw}!passlib.handlers.windows.nthash@{passlib.handlers.windows.nthash}}
+\doxysubsubsection{\texorpdfstring{raw()}{raw()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1windows_1_1nthash_ac7fb82fadfe494439474643a979db24e} 
+passlib.\+handlers.\+windows.\+nthash.\+raw (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{secret}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}encode password using MD4-based NTHASH algorithm
+
+:arg secret: secret as unicode or utf-8 encoded bytes
+
+:returns: returns string of raw bytes
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+windows.\+py\end{DoxyCompactItemize}

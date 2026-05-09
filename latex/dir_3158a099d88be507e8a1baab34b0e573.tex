@@ -1,0 +1,382 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@typescript-\/eslint/\+eslint-\/plugin/\+node\+\_\+modules/\+ignore Directory Reference}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573}{}\label{dir_3158a099d88be507e8a1baab34b0e573}\index{frontend/node\_modules/"@typescript-\/eslint/eslint-\/plugin/node\_modules/ignore Directory Reference@{frontend/node\_modules/"@typescript-\/eslint/eslint-\/plugin/node\_modules/ignore Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Linux /\+ Mac\+OS /\+ Windows  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Coverage  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Downloads  \\
+\href{https://github.com/kaelzhang/node-ignore/actions/workflows/nodejs.yml}{\texttt{}}  &\href{https://codecov.io/gh/kaelzhang/node-ignore}{\texttt{}}  &\href{https://www.npmjs.org/package/ignore}{\texttt{}}  \\
+\end{DoxyTable}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md477}{}\doxysubsection{\texorpdfstring{ignore}{ignore}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md477}
+{\ttfamily ignore} is a manager, filter and parser which implemented in pure Java\+Script according to the \href{http://git-scm.com/docs/gitignore}{\texttt{.gitignore spec 2.\+22.\+1}}.
+
+{\ttfamily ignore} is used by eslint, gitbook and \href{https://www.npmjs.com/browse/depended/ignore}{\texttt{many others}}.
+
+Pay {\bfseries{ATTENTION}} that \href{https://www.npmjs.org/package/minimatch}{\texttt{{\ttfamily minimatch}}} (which used by {\ttfamily fstream-\/ignore}) does not follow the gitignore spec.
+
+To filter filenames according to a .gitignore file, I recommend this npm package, {\ttfamily ignore}.
+
+To parse an {\ttfamily .npmignore} file, you should use {\ttfamily minimatch}, because an {\ttfamily .npmignore} file is parsed by npm using {\ttfamily minimatch} and it does not work in the .gitignore way.\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md478}{}\doxysubsubsubsection{\texorpdfstring{Tested on}{Tested on}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md478}
+{\ttfamily ignore} is fully tested, and has more than {\bfseries{five hundreds}} of unit tests.
+
+
+\begin{DoxyItemize}
+\item Linux + Node:\+ {\ttfamily 0.\+8} -\/ {\ttfamily 7.\+x}
+\item Windows + Node:\+ {\ttfamily 0.\+10} -\/ {\ttfamily 7.\+x}, node \texorpdfstring{$<$}{<} {\ttfamily 0.\+10} is not tested due to the lack of support of appveyor.
+\end{DoxyItemize}
+
+Actually, {\ttfamily ignore} does not rely on any versions of node specially.
+
+Since {\ttfamily 4.\+0.\+0}, ignore will no longer support {\ttfamily node \texorpdfstring{$<$}{<} 6} by default, to use in node \texorpdfstring{$<$}{<} 6, {\ttfamily require(\textquotesingle{}ignore/\+legacy\textquotesingle{})}. For details, see \href{https://github.com/kaelzhang/node-ignore/blob/master/CHANGELOG.md}{\texttt{CHANGELOG}}.\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md479}{}\doxysubsubsection{\texorpdfstring{Table Of Main Contents}{Table Of Main Contents}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md479}
+
+\begin{DoxyItemize}
+\item UsageUsage
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item \`{}\+Pathname\`{} Conventions{\ttfamily Pathname} Conventions
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item See Also:\+
+\begin{DoxyItemize}
+\item \href{https://www.npmjs.com/package/glob-gitignore}{\texttt{{\ttfamily glob-\/gitignore}}} matches files using patterns and filters them according to gitignore rules.
+\end{DoxyItemize}
+\item Upgrade GuideUpgrade Guide
+\end{DoxyItemize}\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md480}{}\doxysubsubsection{\texorpdfstring{Install}{Install}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md480}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ ignore}
+
+\end{DoxyCode}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md481}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md481}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ ignore\ from\ 'ignore'}
+\DoxyCodeLine{const\ ig\ =\ ignore().add(['.abc/*',\ '!.abc/d/'])}
+
+\end{DoxyCode}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md482}{}\doxysubsubsubsection{\texorpdfstring{Filter the given paths}{Filter the given paths}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md482}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ paths\ =\ [}
+\DoxyCodeLine{\ \ '.abc/a.js',\ \ \ \ //\ filtered\ out}
+\DoxyCodeLine{\ \ '.abc/d/e.js'\ \ \ //\ included}
+\DoxyCodeLine{]}
+\DoxyCodeLine{}
+\DoxyCodeLine{ig.filter(paths)\ \ \ \ \ \ \ \ //\ ['.abc/d/e.js']}
+\DoxyCodeLine{ig.ignores('.abc/a.js')\ //\ true}
+
+\end{DoxyCode}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md483}{}\doxysubsubsubsection{\texorpdfstring{As the filter function}{As the filter function}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md483}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{paths.filter(ig.createFilter());\ //\ ['.abc/d/e.js']}
+
+\end{DoxyCode}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md484}{}\doxysubsubsubsection{\texorpdfstring{Win32 paths will be handled}{Win32 paths will be handled}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md484}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ig.filter(['.abc\(\backslash\)\(\backslash\)a.js',\ '.abc\(\backslash\)\(\backslash\)d\(\backslash\)\(\backslash\)e.js'])}
+\DoxyCodeLine{//\ if\ the\ code\ above\ runs\ on\ windows,\ the\ result\ will\ be}
+\DoxyCodeLine{//\ ['.abc\(\backslash\)\(\backslash\)d\(\backslash\)\(\backslash\)e.js']}
+
+\end{DoxyCode}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md485}{}\doxysubsubsection{\texorpdfstring{Why another ignore?}{Why another ignore?}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md485}
+
+\begin{DoxyItemize}
+\item {\ttfamily ignore} is a standalone module, and is much simpler so that it could easy work with other programs, unlike \href{https://npmjs.org/~isaacs}{\texttt{isaacs}}\textquotesingle{}s \href{https://npmjs.org/package/fstream-ignore}{\texttt{fstream-\/ignore}} which must work with the modules of the fstream family.
+\item {\ttfamily ignore} only contains utility methods to filter paths according to the specified ignore rules, so
+\begin{DoxyItemize}
+\item {\ttfamily ignore} never try to find out ignore rules by traversing directories or fetching from git configurations.
+\item {\ttfamily ignore} don\textquotesingle{}t cares about sub-\/modules of git projects.
+\end{DoxyItemize}
+\item Exactly according to \href{http://git-scm.com/docs/gitignore}{\texttt{gitignore man page}}, fixes some known matching issues of fstream-\/ignore, such as:\+
+\begin{DoxyItemize}
+\item \textquotesingle{}{\ttfamily /\+\texorpdfstring{$\ast$}{*}.js}\textquotesingle{} should only match \textquotesingle{}{\ttfamily a.\+js}\textquotesingle{}, but not \textquotesingle{}{\ttfamily abc/\+a.\+js}\textquotesingle{}.
+\item \textquotesingle{}{\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+foo}\textquotesingle{} should match \textquotesingle{}{\ttfamily foo}\textquotesingle{} anywhere.
+\item Prevent re-\/including a file if a parent directory of that file is excluded.
+\item Handle trailing whitespaces:\+
+\begin{DoxyItemize}
+\item {\ttfamily \textquotesingle{}a \textquotesingle{}}(one space) should not match {\ttfamily \textquotesingle{}a \textquotesingle{}}(two spaces).
+\item {\ttfamily \textquotesingle{}a \textbackslash{} \textquotesingle{}} matches {\ttfamily \textquotesingle{}a \textquotesingle{}}
+\end{DoxyItemize}
+\item All test cases are verified with the result of {\ttfamily git check-\/ignore}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md486}{}\doxysubsection{\texorpdfstring{Methods}{Methods}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md486}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md487}{}\doxysubsubsection{\texorpdfstring{.add(pattern:\+ string \texorpdfstring{$\vert$}{|} Ignore):\+ this}{.add(pattern:\+ string \texorpdfstring{$\vert$}{|} Ignore):\+ this}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md487}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md488}{}\doxysubsubsection{\texorpdfstring{.add(patterns:\+ Array\texorpdfstring{$<$}{<}string \texorpdfstring{$\vert$}{|} Ignore\texorpdfstring{$>$}{>}):\+ this}{.add(patterns:\+ Array\texorpdfstring{$<$}{<}string \texorpdfstring{$\vert$}{|} Ignore\texorpdfstring{$>$}{>}):\+ this}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md488}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md489}{}\doxysubsubsection{\texorpdfstring{.add(\{pattern:\+ string, mark?:\+ string\}):\+ this since 7.\+0.\+0}{.add(\{pattern:\+ string, mark?:\+ string\}):\+ this since 7.\+0.\+0}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md489}
+
+\begin{DoxyItemize}
+\item {\bfseries{pattern}} {\ttfamily string \texorpdfstring{$\vert$}{|} Ignore} An ignore pattern string, or the {\ttfamily Ignore} instance
+\item {\bfseries{patterns}} {\ttfamily Array\texorpdfstring{$<$}{<}string \texorpdfstring{$\vert$}{|} Ignore\texorpdfstring{$>$}{>}} Array of ignore patterns.
+\item {\bfseries{mark?}} {\ttfamily string} Pattern mark, which is used to associate the pattern with a certain marker, such as the line no of the {\ttfamily .gitignore} file. Actually it could be an arbitrary string and is optional.
+\end{DoxyItemize}
+
+Adds a rule or several rules to the current manager.
+
+Returns {\ttfamily this}
+
+Notice that a line starting with {\ttfamily \textquotesingle{}\#\textquotesingle{}}(hash) is treated as a comment. Put a backslash ({\ttfamily \textquotesingle{}\textbackslash{}\textquotesingle{}}) in front of the first hash for patterns that begin with a hash, if you want to ignore a file with a hash at the beginning of the filename.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ignore().add('\#abc').ignores('\#abc')\ \ \ \ //\ false}
+\DoxyCodeLine{ignore().add('\(\backslash\)\(\backslash\)\#abc').ignores('\#abc')\ \ \ //\ true}
+
+\end{DoxyCode}
+
+
+{\ttfamily pattern} could either be a line of ignore pattern or a string of multiple ignore patterns, which means we could just {\ttfamily ignore().add()} the content of a ignore file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ignore()}
+\DoxyCodeLine{.add(fs.readFileSync(filenameOfGitignore).toString())}
+\DoxyCodeLine{.filter(filenames)}
+
+\end{DoxyCode}
+
+
+{\ttfamily pattern} could also be an {\ttfamily ignore} instance, so that we could easily inherit the rules of another {\ttfamily Ignore} instance.\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md490}{}\doxysubsubsection{\texorpdfstring{.ignores(pathname:\+ PathnamePathname):\+ boolean}{.ignores(pathname:\+ PathnamePathname):\+ boolean}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md490}
+\begin{quote}
+new in 3.\+2.\+0 \end{quote}
+
+
+Returns {\ttfamily Boolean} whether {\ttfamily pathname} should be ignored.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ig.ignores('.abc/a.js')\ \ \ \ //\ true}
+
+\end{DoxyCode}
+
+
+Please {\bfseries{PAY ATTENTION}} that {\ttfamily .ignores()} is {\bfseries{NOT}} equivalent to {\ttfamily git check-\/ignore} although in most cases they return equivalent results.
+
+However, for the purposes of imitating the behavior of {\ttfamily git check-\/ignore}, please use {\ttfamily .check\+Ignore()} instead.\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md491}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily Pathname} Conventions:\+}{{\ttfamily Pathname} Conventions:\+}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md491}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md492}{}\doxysubsubsubsubsection{\texorpdfstring{1. {\ttfamily Pathname} should be a {\ttfamily path.\+relative()}d pathname}{1. {\ttfamily Pathname} should be a {\ttfamily path.\+relative()}d pathname}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md492}
+{\ttfamily Pathname} should be a string that have been {\ttfamily path.\+join()}ed, or the return value of {\ttfamily path.\+relative()} to the current directory,
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ WRONG,\ an\ error\ will\ be\ thrown}
+\DoxyCodeLine{ig.ignores('./abc')}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ WRONG,\ for\ it\ will\ never\ happen,\ and\ an\ error\ will\ be\ thrown}
+\DoxyCodeLine{//\ If\ the\ gitignore\ rule\ locates\ at\ the\ root\ directory,}
+\DoxyCodeLine{//\ \`{}'/abc'`\ should\ be\ changed\ to\ \`{}'abc'`.}
+\DoxyCodeLine{//\ }
+
+\end{DoxyCode}
+ /\+/\+ path.\+relative(\textquotesingle{}/\+\textquotesingle{}, \textquotesingle{}/\+abc\textquotesingle{}) -\/\texorpdfstring{$>$}{>} \textquotesingle{}abc\textquotesingle{} /\+/\+ \`{}\`{}\`{} ig.\+ignores(\textquotesingle{}/\+abc\textquotesingle{})
+
+/\+/\+ WRONG, that it is an absolute path on Windows, an error will be thrown ig.\+ignores(\textquotesingle{}C:\+\textbackslash{}abc\textquotesingle{})
+
+/\+/\+ Right ig.\+ignores(\textquotesingle{}abc\textquotesingle{})
+
+/\+/\+ Right ig.\+ignores(path.\+join(\textquotesingle{}./\+abc\textquotesingle{})) /\+/\+ path.\+join(\textquotesingle{}./\+abc\textquotesingle{}) -\/\texorpdfstring{$>$}{>} \textquotesingle{}abc\textquotesingle{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{In\ other\ words,\ each\ \`{}Pathname`\ here\ should\ be\ a\ relative\ path\ to\ the\ directory\ of\ the\ gitignore\ rules.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Suppose\ the\ dir\ structure\ is:}
+
+\end{DoxyCode}
+ /\+path/\+to/\+your/\+repo \texorpdfstring{$\vert$}{|}-- a \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}-- a.\+js \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}-- .b \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}-- .c \texorpdfstring{$\vert$}{|}-- .DS\+\_\+store 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Then\ the\ \`{}paths`\ might\ be\ like\ this:}
+
+\end{DoxyCode}
+ js \+[ \textquotesingle{}a/\+a.\+js\textquotesingle{} \textquotesingle{}.b\textquotesingle{}, \textquotesingle{}.c/\+.DS\+\_\+store\textquotesingle{} ]\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\#\ 2.\ filenames\ and\ dirnames}
+\DoxyCodeLine{}
+\DoxyCodeLine{\`{}node-\/ignore`\ does\ NO\ \`{}fs.stat`\ during\ path\ matching,\ so\ \`{}node-\/ignore`\ treats}
+\DoxyCodeLine{-\/\ \`{}foo`\ as\ a\ file}
+\DoxyCodeLine{-\/\ **`foo/`\ as\ a\ directory**}
+\DoxyCodeLine{}
+\DoxyCodeLine{For\ the\ example\ below:}
+
+\end{DoxyCode}
+ js /\+/\+ First, we add a ignore pattern to ignore a directory ig.\+add(\textquotesingle{}config/\+\textquotesingle{})
+
+/\+/\+ {\ttfamily ig} does NOT know if \textquotesingle{}config\textquotesingle{}, in the real world, /\+/\+ is a normal file, directory or something.
+
+ig.\+ignores(\textquotesingle{}config\textquotesingle{}) /\+/\+ {\ttfamily ig} treats {\ttfamily config} as a file, so it returns {\ttfamily false}
+
+ig.\+ignores(\textquotesingle{}config/\+\textquotesingle{}) /\+/\+ returns {\ttfamily true} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Specially\ for\ people\ who\ develop\ some\ library\ based\ on\ \`{}node-\/ignore`,\ it\ is\ important\ to\ understand\ that.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Usually,\ you\ could\ use\ [`glob`](http://npmjs.org/package/glob)\ with\ \`{}option.mark\ =\ true`\ to\ fetch\ the\ structure\ of\ the\ current\ directory:}
+
+\end{DoxyCode}
+ js import glob from \textquotesingle{}glob\textquotesingle{}
+
+glob(\textquotesingle{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\textquotesingle{}, \{ /\+/\+ Adds a /\+ character to directory matches. mark:\+ true \}, (err, files) =\texorpdfstring{$>$}{>} \{ if (err) \{ return console.\+error(err) \}
+
+let filtered = ignore().add(patterns).filter(files) console.\+log(filtered) \}) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ .filter(paths:\ Array\&lt;Pathname\&gt;):\ Array\&lt;Pathname\&gt;}
+
+\end{DoxyCode}
+ ts type Pathname = string 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Filters\ the\ given\ array\ of\ pathnames,\ and\ returns\ the\ filtered\ array.}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/\ **paths**\ \`{}Array.<Pathname>`\ The\ array\ of\ \`{}pathname`s\ to\ be\ filtered.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ .createFilter()}
+\DoxyCodeLine{}
+\DoxyCodeLine{Creates\ a\ filter\ function\ which\ could\ filter\ an\ array\ of\ paths\ with\ \`{}Array.prototype.filter`.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Returns\ \`{}function(path)`\ the\ filter\ function.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ .test(pathname:\ Pathname):\ TestResult}
+\DoxyCodeLine{}
+\DoxyCodeLine{>\ New\ in\ 5.0.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Returns\ \`{}TestResult`}
+
+\end{DoxyCode}
+ ts /\+/\+ Since 5.\+0.\+0 interface Test\+Result \{ ignored:\+ boolean /\+/\+ true if the {\ttfamily pathname} is finally unignored by some negative pattern unignored:\+ boolean /\+/\+ The {\ttfamily Ignore\+Rule} which ignores the pathname rule?:\+ Ignore\+Rule \}
+
+/\+/\+ Since 7.\+0.\+0 interface Ignore\+Rule \{ /\+/\+ The original pattern pattern:\+ string /\+/\+ Whether the pattern is a negative pattern negative:\+ boolean /\+/\+ Which is used for other packages to build things upon {\ttfamily node-\/ignore} mark?:\+ string \} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{-\/\ \`{}\{ignored:\ true,\ unignored:\ false\}`:\ the\ \`{}pathname`\ is\ ignored}
+\DoxyCodeLine{-\/\ \`{}\{ignored:\ false,\ unignored:\ true\}`:\ the\ \`{}pathname`\ is\ unignored}
+\DoxyCodeLine{-\/\ \`{}\{ignored:\ false,\ unignored:\ false\}`:\ the\ \`{}pathname`\ is\ never\ matched\ by\ any\ ignore\ rules.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ .checkIgnore(target:\ string):\ TestResult}
+\DoxyCodeLine{}
+\DoxyCodeLine{>\ new\ in\ 7.0.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Debugs\ gitignore\ /\ exclude\ files,\ which\ is\ equivalent\ to\ \`{}git\ check-\/ignore\ -\/v`.\ Usually\ this\ method\ is\ used\ for\ other\ packages\ to\ implement\ the\ function\ of\ \`{}git\ check-\/ignore\ -\/v`\ upon\ \`{}node-\/ignore`}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/\ **target**\ \`{}string`\ the\ target\ to\ test.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Returns\ \`{}TestResult`}
+
+\end{DoxyCode}
+ js ig.\+add(\{ pattern:\+ \textquotesingle{}foo/\+\texorpdfstring{$\ast$}{*}\textquotesingle{}, mark:\+ \textquotesingle{}60\textquotesingle{} \})
+
+const \{ ignored, rule \} = check\+Ignore(\textquotesingle{}foo/\+\textquotesingle{})
+
+if (ignored) \{ console.\+log({\ttfamily .gitignore:\+\$\{result\}:\+\$\{rule.\+mark\}:\+\$\{rule.\+pattern\} foo/\+}) \}
+
+/\+/\+ .gitignore:\+60:\+foo/\+\texorpdfstring{$\ast$}{*} foo/\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Please\ pay\ attention\ that\ this\ method\ does\ not\ have\ a\ strong\ built-\/in\ cache\ mechanism.}
+\DoxyCodeLine{}
+\DoxyCodeLine{The\ purpose\ of\ introducing\ this\ method\ is\ to\ make\ it\ possible\ to\ implement\ the\ \`{}git\ check-\/ignore`\ command\ in\ JavaScript\ based\ on\ \`{}node-\/ignore`.}
+\DoxyCodeLine{}
+\DoxyCodeLine{So\ do\ not\ use\ this\ method\ in\ those\ situations\ where\ performance\ is\ extremely\ important.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ static\ \`{}isPathValid(pathname):\ boolean`\ since\ 5.0.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Check\ whether\ the\ \`{}pathname`\ is\ an\ valid\ \`{}path.relative()`d\ path\ according\ to\ the\ [convention](\#1-\/pathname-\/should-\/be-\/a-\/pathrelatived-\/pathname).}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ method\ is\ **NOT**\ used\ to\ check\ if\ an\ ignore\ pattern\ is\ valid.}
+
+\end{DoxyCode}
+ js import \{is\+Path\+Valid\} from \textquotesingle{}ignore\textquotesingle{}
+
+is\+Path\+Valid(\textquotesingle{}./\+foo\textquotesingle{}) /\+/\+ false 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ <strike>.addIgnoreFile(path)</strike>}
+\DoxyCodeLine{}
+\DoxyCodeLine{REMOVED\ in\ \`{}3.x`\ for\ now.}
+\DoxyCodeLine{}
+\DoxyCodeLine{To\ upgrade\ \`{}ignore@2.x`\ up\ to\ \`{}3.x`,\ use}
+
+\end{DoxyCode}
+ js import fs from \textquotesingle{}fs\textquotesingle{}
+
+if (fs.\+exists\+Sync(filename)) \{ ignore().add(fs.\+read\+File\+Sync(filename).to\+String()) \} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{instead.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ ignore(options)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ \`{}options.ignorecase`\ since\ 4.0.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Similar\ to\ the\ \`{}core.ignorecase`\ option\ of\ [git-\/config](https://git-\/scm.com/docs/git-\/config),\ \`{}node-\/ignore`\ will\ be\ case\ insensitive\ if\ \`{}options.ignorecase`\ is\ set\ to\ \`{}true`\ (the\ default\ value),\ otherwise\ case\ sensitive.}
+
+\end{DoxyCode}
+ js const ig = ignore(\{ ignorecase:\+ false \})
+
+ig.\+add(\textquotesingle{}\texorpdfstring{$\ast$}{*}.png\textquotesingle{})
+
+ig.\+ignores(\textquotesingle{}\texorpdfstring{$\ast$}{*}.PNG\textquotesingle{}) /\+/\+ false 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\ \`{}options.ignoreCase?:\ boolean`\ since\ 5.2.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{Which\ is\ an\ alternative\ to\ \`{}options.ignoreCase`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ \`{}options.allowRelativePaths?:\ boolean`\ since\ 5.2.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{This\ option\ brings\ backward\ compatibility\ with\ projects\ which\ based\ on\ \`{}ignore@4.x`.\ If\ \`{}options.allowRelativePaths`\ is\ \`{}true`,\ \`{}ignore`\ will\ not\ check\ whether\ the\ given\ path\ to\ be\ tested\ is\ [`path.relative()`d](\#pathname-\/conventions).}
+\DoxyCodeLine{}
+\DoxyCodeLine{However,\ passing\ a\ relative\ path,\ such\ as\ \`{}'./foo'`\ or\ \`{}'../foo'`,\ to\ test\ if\ it\ is\ ignored\ or\ not\ is\ not\ a\ good\ practise,\ which\ might\ lead\ to\ unexpected\ behavior}
+
+\end{DoxyCode}
+ js ignore(\{ allow\+Relative\+Paths:\+ true \}).ignores(\textquotesingle{}../\+foo/\+bar.js\textquotesingle{}) /\+/\+ And it will not throw 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{****}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Upgrade\ Guide}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ Upgrade\ 4.x\ -\/>\ 5.x}
+\DoxyCodeLine{}
+\DoxyCodeLine{Since\ \`{}5.0.0`,\ if\ an\ invalid\ \`{}Pathname`\ passed\ into\ \`{}ig.ignores()`,\ an\ error\ will\ be\ thrown,\ unless\ \`{}options.allowRelative\ =\ true`\ is\ passed\ to\ the\ \`{}Ignore`\ factory.}
+\DoxyCodeLine{}
+\DoxyCodeLine{While\ \`{}ignore\ <\ 5.0.0`\ did\ not\ make\ sure\ what\ the\ return\ value\ was,\ as\ well\ as}
+
+\end{DoxyCode}
+ ts .ignores(pathname:\+ Pathname):\+ boolean
+
+.filter(pathnames:\+ Array$<$\+Pathname$>$):\+ Array$<$\+Pathname$>$
+
+.create\+Filter():\+ (pathname:\+ Pathname) =\texorpdfstring{$>$}{>} boolean
+
+.test(pathname:\+ Pathname):\+ \{ignored:\+ boolean, unignored:\+ boolean\} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{See\ the\ convention\ [here](\#1-\/pathname-\/should-\/be-\/a-\/pathrelatived-\/pathname)\ for\ details.}
+\DoxyCodeLine{}
+\DoxyCodeLine{If\ there\ are\ invalid\ pathnames,\ the\ conversion\ and\ filtration\ should\ be\ done\ by\ users.}
+
+\end{DoxyCode}
+ js import \{is\+Path\+Valid\} from \textquotesingle{}ignore\textquotesingle{} /\+/\+ introduced in 5.\+0.\+0
+
+const paths = \+[ /\+/\+ invalid /\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+ \textquotesingle{}\textquotesingle{}, false, \textquotesingle{}../\+foo\textquotesingle{}, \textquotesingle{}.\textquotesingle{}, /\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+/\+
+
+/\+/\+ valid \textquotesingle{}foo\textquotesingle{} ]\+ .filter(is\+Path\+Valid)
+
+ig.\+filter(paths) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ Upgrade\ 3.x\ -\/>\ 4.x}
+\DoxyCodeLine{}
+\DoxyCodeLine{Since\ \`{}4.0.0`,\ \`{}ignore`\ will\ no\ longer\ support\ node\ <\ 6,\ to\ use\ \`{}ignore`\ in\ node\ <\ 6:}
+
+\end{DoxyCode}
+ js var ignore = require(\textquotesingle{}ignore/\+legacy\textquotesingle{}) \`{}\`{}\`{}\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md493}{}\doxysubsubsection{\texorpdfstring{Upgrade 2.\+x -\/\texorpdfstring{$>$}{>} 3.\+x}{Upgrade 2.\+x -\/\texorpdfstring{$>$}{>} 3.\+x}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md493}
+
+\begin{DoxyItemize}
+\item All {\ttfamily options} of 2.\+x are unnecessary and removed, so just remove them.
+\item {\ttfamily ignore()} instance is no longer an \href{nodejs.org/api/events.html}{\texttt{{\ttfamily Event\+Emitter}}}, and all events are unnecessary and removed.
+\item {\ttfamily .add\+Ignore\+File()} is removed, see the .add\+Ignore\+File.add\+Ignore\+File
+\end{DoxyItemize}section for details.
+
+\DoxyHorRuler{0}
+\hypertarget{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md494}{}\doxysubsection{\texorpdfstring{Collaborators}{Collaborators}}\label{dir_3158a099d88be507e8a1baab34b0e573_autotoc_md494}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/whitecolor}{\texttt{@whitecolor}} {\itshape Alex}
+\item \href{https://github.com/SamyPesse}{\texttt{@Samy\+Pesse}} {\itshape Samy Pessé}
+\item \href{https://github.com/azproduction}{\texttt{@azproduction}} {\itshape Mikhail Davydov}
+\item \href{https://github.com/TrySound}{\texttt{@Try\+Sound}} {\itshape Bogdan Chadkin}
+\item \href{https://github.com/JanMattner}{\texttt{@Jan\+Mattner}} {\itshape Jan Mattner}
+\item \href{https://github.com/ntwb}{\texttt{@ntwb}} {\itshape Stephen Edgar}
+\item \href{https://github.com/kasperisager}{\texttt{@kasperisager}} {\itshape Kasper Isager}
+\item \href{https://github.com/sandersn}{\texttt{@sandersn}} {\itshape Nathan Shively-\/\+Sanders} 
+\end{DoxyItemize}

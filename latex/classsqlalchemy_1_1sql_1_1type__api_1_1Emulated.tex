@@ -1,0 +1,112 @@
+\doxysection{sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated}{}\label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated}\index{sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}}
+Inheritance diagram for sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.729045cm]{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_aeff3665b552a77676c80fcb6bf32d559}{adapt\+\_\+to\+\_\+emulated}} (self, Type\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+]\+ impltype, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\+\_\+\+TE \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a022330f9cb9874906c17c2662b99e8b8}{adapt}} (self, Type\+[\+\_\+\+TE]\+ cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a24ef44cde43cc66561d126561847672c}{adapt}} (self, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+ cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a5d9039f16e2fa57e3eac828d56db353c}{adapt}} (self, Type\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+]\+ cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ {\bfseries dialect\+\_\+impl} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_ae712ffc382456590e92cb2bd0c708012}\label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_ae712ffc382456590e92cb2bd0c708012} 
+{\bfseries native}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1cache__key_1_1CacheConst}{Cache\+Const}}, Tuple\+[Any,...]\+]\+ {\bfseries \+\_\+static\+\_\+cache\+\_\+key} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin for base types that emulate the behavior of a DB-native type.
+
+An :class:`.Emulated` type will use an available database type
+in conjunction with Python-side routines and/or database constraints
+in order to approximate the behavior of a database type that is provided
+natively by some backends.  When a native-providing backend is in
+use, the native version of the type is used.  This native version
+should include the :class:`.NativeForEmulated` mixin to allow it to be
+distinguished from :class:`.Emulated`.
+
+Current examples of :class:`.Emulated` are:  :class:`.Interval`,
+:class:`.Enum`, :class:`.Boolean`.
+
+.. versionadded:: 1.2.0b3
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a022330f9cb9874906c17c2662b99e8b8}\index{sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}!adapt@{adapt}}
+\index{adapt@{adapt}!sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}}
+\doxysubsubsection{\texorpdfstring{adapt()}{adapt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a022330f9cb9874906c17c2662b99e8b8} 
+ \+\_\+\+TE sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated.\+adapt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Type\+[\+\_\+\+TE]\+}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine\+Mixin}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a24ef44cde43cc66561d126561847672c}\index{sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}!adapt@{adapt}}
+\index{adapt@{adapt}!sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}}
+\doxysubsubsection{\texorpdfstring{adapt()}{adapt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a24ef44cde43cc66561d126561847672c} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated.\+adapt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine\+Mixin}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a5d9039f16e2fa57e3eac828d56db353c}\index{sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}!adapt@{adapt}}
+\index{adapt@{adapt}!sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}}
+\doxysubsubsection{\texorpdfstring{adapt()}{adapt()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_a5d9039f16e2fa57e3eac828d56db353c} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated.\+adapt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Type\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+]\+}]{cls}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine\+Mixin}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_aeff3665b552a77676c80fcb6bf32d559}\index{sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}!adapt\_to\_emulated@{adapt\_to\_emulated}}
+\index{adapt\_to\_emulated@{adapt\_to\_emulated}!sqlalchemy.sql.type\_api.Emulated@{sqlalchemy.sql.type\_api.Emulated}}
+\doxysubsubsection{\texorpdfstring{adapt\_to\_emulated()}{adapt\_to\_emulated()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1type__api_1_1Emulated_aeff3665b552a77676c80fcb6bf32d559} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+ sqlalchemy.\+sql.\+type\+\_\+api.\+Emulated.\+adapt\+\_\+to\+\_\+emulated (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Type\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngineMixin}{Type\+Engine\+Mixin}}]\+]\+}]{impltype}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given an impl class, adapt this type to the impl assuming
+"emulated".
+
+The impl should also be an "emulated" version of this type,
+most likely the same class as this type itself.
+
+e.g.: sqltypes.Enum adapts to the Enum class.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1sqltypes_1_1Enum_a4254882b41dc5eba7d377c64480a3fa8}{sqlalchemy.\+sql.\+sqltypes.\+Enum}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1sqltypes_1_1Interval_a2101f0916fa2631e513f6c540a52b8f4}{sqlalchemy.\+sql.\+sqltypes.\+Interval}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+type\+\_\+api.\+py\end{DoxyCompactItemize}

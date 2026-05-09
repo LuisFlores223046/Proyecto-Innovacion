@@ -1,0 +1,83 @@
+\doxysection{markdown\+\_\+it.\+common.\+html\+\_\+re Namespace Reference}
+\hypertarget{namespacemarkdown__it_1_1common_1_1html__re}{}\label{namespacemarkdown__it_1_1common_1_1html__re}\index{markdown\_it.common.html\_re@{markdown\_it.common.html\_re}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a681097c761e14e2f1e160169e409a0a2}\label{namespacemarkdown__it_1_1common_1_1html__re_a681097c761e14e2f1e160169e409a0a2} 
+str {\bfseries attr\+\_\+name} = "{}\+[a-\/zA-\/Z\+\_\+:\+]\+\+[a-\/zA-\/Z0-\/9:\+.\+\_\+-\/]\+\texorpdfstring{$\ast$}{*}"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_aeba17117bf9dc7816da724be590ef18d}\label{namespacemarkdown__it_1_1common_1_1html__re_aeba17117bf9dc7816da724be590ef18d} 
+str {\bfseries unquoted} = "{}\+[\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}"{}\textquotesingle{}=$<$$>$\`{}\textbackslash{}\textbackslash{}x00-\/\textbackslash{}\textbackslash{}x20]\++"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_af972f2a546face2ababb461043dae398}\label{namespacemarkdown__it_1_1common_1_1html__re_af972f2a546face2ababb461043dae398} 
+str {\bfseries single\+\_\+quoted} = "{}\textquotesingle{}\+[\texorpdfstring{$^\wedge$}{\string^}\textquotesingle{}]\+\texorpdfstring{$\ast$}{*}\textquotesingle{}"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a176745ea55023809dd47cb516e6e645a}\label{namespacemarkdown__it_1_1common_1_1html__re_a176745ea55023809dd47cb516e6e645a} 
+str {\bfseries double\+\_\+quoted} = \textquotesingle{}"{}\+[\texorpdfstring{$^\wedge$}{\string^}"{}]\+\texorpdfstring{$\ast$}{*}"{}\textquotesingle{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a0febd91879d33154be92566595b2273e}\label{namespacemarkdown__it_1_1common_1_1html__re_a0febd91879d33154be92566595b2273e} 
+str {\bfseries attr\+\_\+value} = "{}(?:\+"{} + unquoted + "{}\texorpdfstring{$\vert$}{|}"{} + single\+\_\+quoted + "{}\texorpdfstring{$\vert$}{|}"{} + double\+\_\+quoted + "{})"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_aa8ad8d9907ad0eff6155f97739208165}\label{namespacemarkdown__it_1_1common_1_1html__re_aa8ad8d9907ad0eff6155f97739208165} 
+str {\bfseries attribute} = "{}(?:\+\textbackslash{}\textbackslash{}s+"{} + attr\+\_\+name + "{}(?:\+\textbackslash{}\textbackslash{}s\texorpdfstring{$\ast$}{*}=\textbackslash{}\textbackslash{}s\texorpdfstring{$\ast$}{*}"{} + attr\+\_\+value + "{})?)"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a5b6dfc389da201d16d9d3dd2d1b1d782}\label{namespacemarkdown__it_1_1common_1_1html__re_a5b6dfc389da201d16d9d3dd2d1b1d782} 
+str {\bfseries open\+\_\+tag} = "{}$<$\+[A-\/Za-\/z]\+\+[A-\/Za-\/z0-\/9\textbackslash{}\textbackslash{}-\/]\+\texorpdfstring{$\ast$}{*}"{} + attribute + "{}\texorpdfstring{$\ast$}{*}\textbackslash{}\textbackslash{}s\texorpdfstring{$\ast$}{*}\textbackslash{}\textbackslash{}/\+?$>$"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a8c2160ceebaaea92523a9370ae1e1ca6}\label{namespacemarkdown__it_1_1common_1_1html__re_a8c2160ceebaaea92523a9370ae1e1ca6} 
+str {\bfseries close\+\_\+tag} = "{}$<$\textbackslash{}\textbackslash{}/\+\+[A-\/Za-\/z]\+\+[A-\/Za-\/z0-\/9\textbackslash{}\textbackslash{}-\/]\+\texorpdfstring{$\ast$}{*}\textbackslash{}\textbackslash{}s\texorpdfstring{$\ast$}{*}$>$"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_afae6d77260d1639829b81f4832da8a1b}\label{namespacemarkdown__it_1_1common_1_1html__re_afae6d77260d1639829b81f4832da8a1b} 
+str {\bfseries comment} = "{}$<$!-\/-\/-\/?$>$\texorpdfstring{$\vert$}{|}$<$!-\/-\/(?:\+\+[\texorpdfstring{$^\wedge$}{\string^}-\/]\+\texorpdfstring{$\vert$}{|}-\/\+[\texorpdfstring{$^\wedge$}{\string^}-\/]\+\texorpdfstring{$\vert$}{|}-\/-\/\+[\texorpdfstring{$^\wedge$}{\string^}$>$]\+)\texorpdfstring{$\ast$}{*}-\/-\/$>$"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a092a14e97abbb72c31a5096b883120e7}\label{namespacemarkdown__it_1_1common_1_1html__re_a092a14e97abbb72c31a5096b883120e7} 
+str {\bfseries processing} = "{}$<$\+[?]\+\+[\textbackslash{}\textbackslash{}s\textbackslash{}\textbackslash{}S]\+\texorpdfstring{$\ast$}{*}?\+[?]\+$>$"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a41d96aa209519972a95c95d733c3d4e4}\label{namespacemarkdown__it_1_1common_1_1html__re_a41d96aa209519972a95c95d733c3d4e4} 
+str {\bfseries declaration} = "{}$<$!\+[A-\/Za-\/z]\+\+[\texorpdfstring{$^\wedge$}{\string^}$>$]\+\texorpdfstring{$\ast$}{*}$>$"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_afaf4fdf51ae29119401a96fc38e7746b}\label{namespacemarkdown__it_1_1common_1_1html__re_afaf4fdf51ae29119401a96fc38e7746b} 
+str {\bfseries cdata} = "{}$<$!\textbackslash{}\textbackslash{}\+[CDATA\textbackslash{}\textbackslash{}\+[\+[\textbackslash{}\textbackslash{}s\textbackslash{}\textbackslash{}S]\+\texorpdfstring{$\ast$}{*}?\textbackslash{}\textbackslash{}]\+\textbackslash{}\textbackslash{}]\+$>$"{}
+\item 
+\doxymbox{\hyperlink{namespacemarkdown__it_1_1common_1_1html__re_a3fb7e32f0551a1f14fbf62914dd8d635}{HTML\+\_\+\+TAG\+\_\+\+RE}}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_aa85e3385d938dbfc461478931cc6202b}\label{namespacemarkdown__it_1_1common_1_1html__re_aa85e3385d938dbfc461478931cc6202b} 
+str {\bfseries HTML\+\_\+\+OPEN\+\_\+\+CLOSE\+\_\+\+TAG\+\_\+\+STR} = "{}\texorpdfstring{$^\wedge$}{\string^}(?:\+"{} + open\+\_\+tag + "{}\texorpdfstring{$\vert$}{|}"{} + close\+\_\+tag + "{})"{}
+\item 
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a18ceae66e89a03813600e337f3caa66c}\label{namespacemarkdown__it_1_1common_1_1html__re_a18ceae66e89a03813600e337f3caa66c} 
+{\bfseries HTML\+\_\+\+OPEN\+\_\+\+CLOSE\+\_\+\+TAG\+\_\+\+RE} = re.\+compile(HTML\+\_\+\+OPEN\+\_\+\+CLOSE\+\_\+\+TAG\+\_\+\+STR)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Regexps to match html elements\end{DoxyVerb}
+ 
+
+\label{namespacemarkdown__it_1_1common_1_1html__re_doc-var-members}
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemarkdown__it_1_1common_1_1html__re_a3fb7e32f0551a1f14fbf62914dd8d635}\index{markdown\_it.common.html\_re@{markdown\_it.common.html\_re}!HTML\_TAG\_RE@{HTML\_TAG\_RE}}
+\index{HTML\_TAG\_RE@{HTML\_TAG\_RE}!markdown\_it.common.html\_re@{markdown\_it.common.html\_re}}
+\doxysubsubsection{\texorpdfstring{HTML\_TAG\_RE}{HTML\_TAG\_RE}}
+{\footnotesize\ttfamily \label{namespacemarkdown__it_1_1common_1_1html__re_a3fb7e32f0551a1f14fbf62914dd8d635} 
+markdown\+\_\+it.\+common.\+html\+\_\+re.\+HTML\+\_\+\+TAG\+\_\+\+RE}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}\string^(?:"{}}}
+\DoxyCodeLine{\ \ \ \ +\ open\_tag}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{}|"{}}}
+\DoxyCodeLine{\ \ \ \ +\ close\_tag}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{}|"{}}}
+\DoxyCodeLine{\ \ \ \ +\ comment}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{}|"{}}}
+\DoxyCodeLine{\ \ \ \ +\ processing}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{}|"{}}}
+\DoxyCodeLine{\ \ \ \ +\ declaration}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{}|"{}}}
+\DoxyCodeLine{\ \ \ \ +\ cdata}
+\DoxyCodeLine{\ \ \ \ +\ \textcolor{stringliteral}{"{})"{}}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

@@ -1,0 +1,130 @@
+\doxysection{psycopg2.\+pool.\+Abstract\+Connection\+Pool Class Reference}
+\hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool}{}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+Inheritance diagram for psycopg2.\+pool.\+Abstract\+Connection\+Pool:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpsycopg2_1_1pool_1_1AbstractConnectionPool}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_aac3f433a2e2f239fcc78c938d9bd8efd}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, minconn, maxconn, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a50f23aa765291597855ec38e2bdbf115}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a50f23aa765291597855ec38e2bdbf115} 
+{\bfseries minconn} = int(minconn)
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a48e71270537ef4bf05957a8ec3847fc6}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a48e71270537ef4bf05957a8ec3847fc6} 
+{\bfseries maxconn} = int(maxconn)
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_aa0ee946dabad4ca178759d3f9d815179}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_aa0ee946dabad4ca178759d3f9d815179} 
+bool {\bfseries closed} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a84b825b4c3e034df19ad0e3ec9249c1c}{\+\_\+connect}} (self, key=None)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_afcc7110bbbf33fbb438ace626dde3a9a}{\+\_\+getkey}} (self)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a4d744185e3ee46a9b0aa0fda599fea57}{\+\_\+getconn}} (self, key=None)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_ac972d28bd776ca683eead94a1e3a94a3}{\+\_\+putconn}} (self, conn, key=None, close=False)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1pool_1_1AbstractConnectionPool_affcab15cdc2579eef98953cd089a9204}{\+\_\+closeall}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a742e693985e3fa7d4e6e8a005a6eba41}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a742e693985e3fa7d4e6e8a005a6eba41} 
+{\bfseries \+\_\+args} = args
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_ab3b611df8601460722f52cf343f4d5a1}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_ab3b611df8601460722f52cf343f4d5a1} 
+{\bfseries \+\_\+kwargs} = kwargs
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a762ee24b8ce44df211524e67fba2db73}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a762ee24b8ce44df211524e67fba2db73} 
+list {\bfseries \+\_\+pool} = \+[$\,$]\+
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a8f424a71f8b693c4aec1bcbabd85f224}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a8f424a71f8b693c4aec1bcbabd85f224} 
+dict {\bfseries \+\_\+used} = \{\}
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a6f2a25685ef2b74924aac45aa90f9ac8}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a6f2a25685ef2b74924aac45aa90f9ac8} 
+dict {\bfseries \+\_\+rused} = \{\}
+\item 
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a8bf0185eda045455c59c1120bd8e8c21}\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a8bf0185eda045455c59c1120bd8e8c21} 
+int {\bfseries \+\_\+keys} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Generic key-based pooling code.\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_doc-constructors}
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_aac3f433a2e2f239fcc78c938d9bd8efd}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_aac3f433a2e2f239fcc78c938d9bd8efd} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{minconn}{, }\item[{}]{maxconn}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the connection pool.
+
+New 'minconn' connections are created immediately calling 'connfunc'
+with given parameters. The connection pool will support a maximum of
+about 'maxconn' connections.
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_doc-func-members}
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_affcab15cdc2579eef98953cd089a9204}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_closeall@{\_closeall}}
+\index{\_closeall@{\_closeall}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_closeall()}{\_closeall()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_affcab15cdc2579eef98953cd089a9204} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+closeall (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Close all connections.
+
+Note that this can lead to some code fail badly when trying to use
+an already closed connection. If you call .closeall() make sure
+your code can deal with it.
+\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a84b825b4c3e034df19ad0e3ec9249c1c}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_connect@{\_connect}}
+\index{\_connect@{\_connect}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_connect()}{\_connect()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a84b825b4c3e034df19ad0e3ec9249c1c} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+connect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create a new connection and assign it to 'key' if not None.\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a4d744185e3ee46a9b0aa0fda599fea57}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_getconn@{\_getconn}}
+\index{\_getconn@{\_getconn}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_getconn()}{\_getconn()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_a4d744185e3ee46a9b0aa0fda599fea57} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+getconn (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{key}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get a free connection and assign it to 'key' if not None.\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_afcc7110bbbf33fbb438ace626dde3a9a}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_getkey@{\_getkey}}
+\index{\_getkey@{\_getkey}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_getkey()}{\_getkey()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_afcc7110bbbf33fbb438ace626dde3a9a} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+getkey (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Return a new unique key.\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1pool_1_1AbstractConnectionPool_ac972d28bd776ca683eead94a1e3a94a3}\index{psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}!\_putconn@{\_putconn}}
+\index{\_putconn@{\_putconn}!psycopg2.pool.AbstractConnectionPool@{psycopg2.pool.AbstractConnectionPool}}
+\doxysubsubsection{\texorpdfstring{\_putconn()}{\_putconn()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1pool_1_1AbstractConnectionPool_ac972d28bd776ca683eead94a1e3a94a3} 
+psycopg2.\+pool.\+Abstract\+Connection\+Pool.\+\_\+putconn (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{conn}{, }\item[{}]{key}{ = {\ttfamily None}, }\item[{}]{close}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Put away a connection.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+pool.\+py\end{DoxyCompactItemize}

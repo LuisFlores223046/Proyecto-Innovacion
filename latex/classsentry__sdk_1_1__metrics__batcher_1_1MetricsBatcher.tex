@@ -1,0 +1,103 @@
+\doxysection{sentry\+\_\+sdk.\+\_\+metrics\+\_\+batcher.\+Metrics\+Batcher Class Reference}
+\hypertarget{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher}{}\label{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher}\index{sentry\_sdk.\_metrics\_batcher.MetricsBatcher@{sentry\_sdk.\_metrics\_batcher.MetricsBatcher}}
+Inheritance diagram for sentry\+\_\+sdk.\+\_\+metrics\+\_\+batcher.\+Metrics\+Batcher:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a056a691b7f006dc02e824f6726b41c3b}{\+\_\+record\+\_\+lost}} (self, "{}Metric"{} item)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher_a9a018a5dfaef05a48914b16976c7b0de}{\+\_\+ensure\+\_\+thread}} (self)
+\item 
+None {\bfseries \+\_\+flush\+\_\+loop} (self)
+\item 
+None {\bfseries \+\_\+add\+\_\+to\+\_\+envelope} (self, "{}Envelope"{} envelope)
+\item 
+"{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+"{} {\bfseries \+\_\+flush} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+"{}Any"{} \doxymbox{\hyperlink{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a12b3bb2c904b1085c585eec4a736bac9}{\+\_\+to\+\_\+transport\+\_\+format}} ("{}Metric"{} item)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}Callable\+[\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+, None]\+"{} capture\+\_\+func, "{}Callable\+[..., None]\+"{} record\+\_\+lost\+\_\+func)
+\item 
+None {\bfseries add} (self, "{}T"{} item)
+\item 
+None {\bfseries kill} (self)
+\item 
+None {\bfseries flush} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries MAX\+\_\+\+BEFORE\+\_\+\+FLUSH} = 100
+\item 
+int {\bfseries MAX\+\_\+\+BEFORE\+\_\+\+DROP} = 1\+\_\+000
+\item 
+float {\bfseries FLUSH\+\_\+\+WAIT\+\_\+\+TIME} = 5.\+0
+\item 
+str {\bfseries TYPE} = "{}"{}
+\item 
+str {\bfseries CONTENT\+\_\+\+TYPE} = "{}"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}}
+\begin{DoxyCompactItemize}
+\item 
+list {\bfseries \+\_\+buffer} = \+[$\,$]\+
+\item 
+{\bfseries \+\_\+capture\+\_\+func} = capture\+\_\+func
+\item 
+{\bfseries \+\_\+record\+\_\+lost\+\_\+func} = record\+\_\+lost\+\_\+func
+\item 
+bool {\bfseries \+\_\+running} = True
+\item 
+{\bfseries \+\_\+lock} = threading.\+Lock()
+\item 
+{\bfseries \+\_\+flush\+\_\+event} = threading.\+Event()
+\item 
+{\bfseries \+\_\+flusher} = None
+\item 
+{\bfseries \+\_\+flusher\+\_\+pid} = None
+\end{DoxyCompactItemize}
+
+
+\label{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a056a691b7f006dc02e824f6726b41c3b}\index{sentry\_sdk.\_metrics\_batcher.MetricsBatcher@{sentry\_sdk.\_metrics\_batcher.MetricsBatcher}!\_record\_lost@{\_record\_lost}}
+\index{\_record\_lost@{\_record\_lost}!sentry\_sdk.\_metrics\_batcher.MetricsBatcher@{sentry\_sdk.\_metrics\_batcher.MetricsBatcher}}
+\doxysubsubsection{\texorpdfstring{\_record\_lost()}{\_record\_lost()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a056a691b7f006dc02e824f6726b41c3b} 
+ None sentry\+\_\+sdk.\+\_\+metrics\+\_\+batcher.\+Metrics\+Batcher.\+\_\+record\+\_\+lost (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Metric"{}}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}.
+
+\Hypertarget{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a12b3bb2c904b1085c585eec4a736bac9}\index{sentry\_sdk.\_metrics\_batcher.MetricsBatcher@{sentry\_sdk.\_metrics\_batcher.MetricsBatcher}!\_to\_transport\_format@{\_to\_transport\_format}}
+\index{\_to\_transport\_format@{\_to\_transport\_format}!sentry\_sdk.\_metrics\_batcher.MetricsBatcher@{sentry\_sdk.\_metrics\_batcher.MetricsBatcher}}
+\doxysubsubsection{\texorpdfstring{\_to\_transport\_format()}{\_to\_transport\_format()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1__metrics__batcher_1_1MetricsBatcher_a12b3bb2c904b1085c585eec4a736bac9} 
+ "{}Any"{} sentry\+\_\+sdk.\+\_\+metrics\+\_\+batcher.\+Metrics\+Batcher.\+\_\+to\+\_\+transport\+\_\+format (\begin{DoxyParamCaption}\item[{"{}Metric"{}}]{item}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1__batcher_1_1Batcher}{sentry\+\_\+sdk.\+\_\+batcher.\+Batcher}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+\+\_\+metrics\+\_\+batcher.\+py\end{DoxyCompactItemize}

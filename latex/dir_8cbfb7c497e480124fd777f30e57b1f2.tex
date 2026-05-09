@@ -1,0 +1,293 @@
+\doxysection{frontend/\+node\+\_\+modules/\+eslint Directory Reference}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2}{}\label{dir_8cbfb7c497e480124fd777f30e57b1f2}\index{frontend/node\_modules/eslint Directory Reference@{frontend/node\_modules/eslint Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_11f818082f28ba0a9d86ecd720e74146}{bin}}
+\item 
+directory \doxymbox{\hyperlink{dir_774886f8b3bc41c33145e75883de1172}{conf}}
+\item 
+directory \doxymbox{\hyperlink{dir_10e4fa2b86ec4a7a2d04fc4cacf3eeea}{lib}}
+\item 
+directory \doxymbox{\hyperlink{dir_6f353e85cd7f08ddcf860ffddcce8a23}{messages}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+[!\+[npm version]\+(\href{https://img.shields.io/npm/v/eslint.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+eslint.\+svg}})]\+(\href{https://www.npmjs.com/package/eslint}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+eslint}}) \href{https://www.npmjs.com/package/eslint}{\texttt{}} \href{https://github.com/eslint/eslint/actions}{\texttt{}} ~\newline
+ \href{https://opencollective.com/eslint}{\texttt{}} \href{https://opencollective.com/eslint}{\texttt{}}\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2062}{}\doxysubsection{\texorpdfstring{ESLint}{ESLint}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2062}
+\href{https://eslint.org}{\texttt{Website}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/use/configure}{\texttt{Configure ESLint}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/rules/}{\texttt{Rules}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/contribute}{\texttt{Contribute to ESLint}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/contribute/report-bugs}{\texttt{Report Bugs}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/conduct}{\texttt{Code of Conduct}} \texorpdfstring{$\vert$}{|} \href{https://x.com/geteslint}{\texttt{X}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/chat}{\texttt{Discord}} \texorpdfstring{$\vert$}{|} \href{https://fosstodon.org/@eslint}{\texttt{Mastodon}} \texorpdfstring{$\vert$}{|} \href{https://bsky.app/profile/eslint.org}{\texttt{Bluesky}}
+
+ESLint is a tool for identifying and reporting on patterns found in ECMAScript/\+\+Java\+Script code. In many ways, it is similar to JSLint and JSHint with a few exceptions:\+
+
+
+\begin{DoxyItemize}
+\item ESLint uses \href{https://github.com/eslint/js/tree/main/packages/espree}{\texttt{Espree}} for Java\+Script parsing.
+\item ESLint uses an AST to evaluate patterns in code.
+\item ESLint is completely pluggable, every single rule is a plugin and you can add more at runtime.
+\end{DoxyItemize}\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2063}{}\doxysubsubsection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2063}
+
+\begin{DoxyEnumerate}
+\item Installation and UsageInstallation and Usage
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item ConfigurationConfiguration
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Version SupportVersion Support
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Code of ConductCode of Conduct
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Filing IssuesFiling Issues
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Frequently Asked QuestionsFrequently Asked Questions
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item ReleasesReleases
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Security PolicySecurity Policy
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Semantic Versioning PolicySemantic Versioning Policy
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item LicenseLicense
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item TeamTeam
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item SponsorsSponsors
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Technology SponsorsTechnology Sponsors
+\end{DoxyEnumerate}\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2064}{}\doxysubsubsection{\texorpdfstring{Installation and Usage}{Installation and Usage}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2064}
+Prerequisites:\+ \href{https://nodejs.org/}{\texttt{Node.\+js}} ({\ttfamily \texorpdfstring{$^\wedge$}{\string^}18.18.\+0}, {\ttfamily \texorpdfstring{$^\wedge$}{\string^}20.9.\+0}, or {\ttfamily \texorpdfstring{$>$}{>}=21.\+1.\+0}) built with SSL support. (If you are using an official Node.\+js distribution, SSL is always built in.)
+
+You can install and configure ESLint using this command:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ init\ @eslint/config@latest}
+
+\end{DoxyCode}
+
+
+After that, you can run ESLint on any file or directory like this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npx\ eslint\ yourfile.js}
+
+\end{DoxyCode}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2065}{}\doxysubsubsubsection{\texorpdfstring{pnpm Installation}{pnpm Installation}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2065}
+To use ESLint with pnpm, we recommend setting up a {\ttfamily .npmrc} file with at least the following settings:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{auto-\/install-\/peers=true}
+\DoxyCodeLine{node-\/linker=hoisted}
+
+\end{DoxyCode}
+
+
+This ensures that pnpm installs dependencies in a way that is more compatible with npm and is less likely to produce errors.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2066}{}\doxysubsubsection{\texorpdfstring{Configuration}{Configuration}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2066}
+You can configure rules in your {\ttfamily eslint.\+config.\+js} files as in this example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{},\ "{}**/*.cjs"{},\ "{}**/*.mjs"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}prefer-\/const"{}:\ "{}warn"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}no-\/constant-\/binary-\/expression"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+
+
+The names {\ttfamily "{}prefer-\/const"{}} and {\ttfamily "{}no-\/constant-\/binary-\/expression"{}} are the names of \href{https://eslint.org/docs/rules}{\texttt{rules}} in ESLint. The first value is the error level of the rule and can be one of these values:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}off"{}} or {\ttfamily 0} -\/ turn the rule off
+\item {\ttfamily "{}warn"{}} or {\ttfamily 1} -\/ turn the rule on as a warning (doesn\textquotesingle{}t affect exit code)
+\item {\ttfamily "{}error"{}} or {\ttfamily 2} -\/ turn the rule on as an error (exit code will be 1)
+\end{DoxyItemize}
+
+The three error levels allow you fine-\/grained control over how ESLint applies rules (for more configuration options and details, see the \href{https://eslint.org/docs/latest/use/configure}{\texttt{configuration docs}}).\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2067}{}\doxysubsubsection{\texorpdfstring{Version Support}{Version Support}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2067}
+The ESLint team provides ongoing support for the current version and six months of limited support for the previous version. Limited support includes critical bug fixes, security issues, and compatibility issues only.
+
+ESLint offers commercial support for both current and previous versions through our partners, \href{https://tidelift.com/funding/github/npm/eslint}{\texttt{Tidelift}} and \href{https://www.herodevs.com/support/eslint-nes?utm_source=ESLintWebsite&utm_medium=ESLintWebsite&utm_campaign=ESLintNES&utm_id=ESLintNES}{\texttt{Hero\+Devs}}.
+
+See \href{https://eslint.org/version-support}{\texttt{Version Support}} for more details.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2068}{}\doxysubsubsection{\texorpdfstring{Code of Conduct}{Code of Conduct}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2068}
+ESLint adheres to the \href{https://eslint.org/conduct}{\texttt{Open\+JS Foundation Code of Conduct}}.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2069}{}\doxysubsubsection{\texorpdfstring{Filing Issues}{Filing Issues}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2069}
+Before filing an issue, please be sure to read the guidelines for what you\textquotesingle{}re reporting:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://eslint.org/docs/latest/contribute/report-bugs}{\texttt{Bug Report}}
+\item \href{https://eslint.org/docs/latest/contribute/propose-new-rule}{\texttt{Propose a New Rule}}
+\item \href{https://eslint.org/docs/latest/contribute/propose-rule-change}{\texttt{Proposing a Rule Change}}
+\item \href{https://eslint.org/docs/latest/contribute/request-change}{\texttt{Request a Change}}
+\end{DoxyItemize}\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2070}{}\doxysubsubsection{\texorpdfstring{Frequently Asked Questions}{Frequently Asked Questions}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2070}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2071}{}\doxysubsubsubsection{\texorpdfstring{Does ESLint support JSX?}{Does ESLint support JSX?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2071}
+Yes, ESLint natively supports parsing JSX syntax (this must be enabled in \href{https://eslint.org/docs/latest/use/configure}{\texttt{configuration}}). Please note that supporting JSX syntax {\itshape is not} the same as supporting React. React applies specific semantics to JSX syntax that ESLint doesn\textquotesingle{}t recognize. We recommend using \href{https://www.npmjs.com/package/eslint-plugin-react}{\texttt{eslint-\/plugin-\/react}} if you are using React and want React semantics.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2072}{}\doxysubsubsubsection{\texorpdfstring{Does Prettier replace ESLint?}{Does Prettier replace ESLint?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2072}
+No, ESLint and Prettier have different jobs:\+ ESLint is a linter (looking for problematic patterns) and Prettier is a code formatter. Using both tools is common, refer to \href{https://prettier.io/docs/en/install\#eslint-and-other-linters}{\texttt{Prettier\textquotesingle{}s documentation}} to learn how to configure them to work well with each other.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2073}{}\doxysubsubsubsection{\texorpdfstring{What ECMAScript versions does ESLint support?}{What ECMAScript versions does ESLint support?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2073}
+ESLint has full support for ECMAScript 3, 5, and every year from 2015 up until the most recent stage 4 specification (the default). You can set your desired ECMAScript syntax and other settings (like global variables) through \href{https://eslint.org/docs/latest/use/configure}{\texttt{configuration}}.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2074}{}\doxysubsubsubsection{\texorpdfstring{What about experimental features?}{What about experimental features?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2074}
+ESLint\textquotesingle{}s parser only officially supports the latest final ECMAScript standard. We will make changes to core rules in order to avoid crashes on stage 3 ECMAScript syntax proposals (as long as they are implemented using the correct experimental ESTree syntax). We may make changes to core rules to better work with language extensions (such as JSX, Flow, and Type\+Script) on a case-\/by-\/case basis.
+
+In other cases (including if rules need to warn on more or fewer cases due to new syntax, rather than just not crashing), we recommend you use other parsers and/\+or rule plugins. If you are using Babel, you can use \href{https://www.npmjs.com/package/@babel/eslint-parser}{\texttt{@babel/\+eslint-\/parser}} and \href{https://www.npmjs.com/package/@babel/eslint-plugin}{\texttt{@babel/\+eslint-\/plugin}} to use any option available in Babel.
+
+Once a language feature has been adopted into the ECMAScript standard (stage 4 according to the \href{https://tc39.github.io/process-document/}{\texttt{TC39 process}}), we will accept issues and pull requests related to the new feature, subject to our \href{https://eslint.org/docs/latest/contribute}{\texttt{contributing guidelines}}. Until then, please use the appropriate parser and plugin(s) for your experimental feature.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2075}{}\doxysubsubsubsection{\texorpdfstring{Which Node.\+js versions does ESLint support?}{Which Node.\+js versions does ESLint support?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2075}
+ESLint updates the supported Node.\+js versions with each major release of ESLint. At that time, ESLint\textquotesingle{}s supported Node.\+js versions are updated to be:\+
+
+
+\begin{DoxyEnumerate}
+\item The most recent maintenance release of Node.\+js
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The lowest minor version of the Node.\+js LTS release that includes the features the ESLint team wants to use.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The Node.\+js Current release
+\end{DoxyEnumerate}
+
+ESLint is also expected to work with Node.\+js versions released after the Node.\+js Current release.
+
+Refer to the \href{https://eslint.org/docs/latest/use/getting-started\#prerequisites}{\texttt{Quick Start Guide}} for the officially supported Node.\+js versions for a given ESLint release.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2076}{}\doxysubsubsubsection{\texorpdfstring{Where to ask for help?}{Where to ask for help?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2076}
+Open a \href{https://github.com/eslint/eslint/discussions}{\texttt{discussion}} or stop by our \href{https://eslint.org/chat}{\texttt{Discord server}}.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2077}{}\doxysubsubsubsection{\texorpdfstring{Why doesn\textquotesingle{}t ESLint lock dependency versions?}{Why doesn\textquotesingle{}t ESLint lock dependency versions?}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2077}
+Lock files like {\ttfamily package-\/lock.\+json} are helpful for deployed applications. They ensure that dependencies are consistent between environments and across deployments.
+
+Packages like {\ttfamily eslint} that get published to the npm registry do not include lock files. {\ttfamily npm install eslint} as a user will respect version constraints in ESLint\textquotesingle{}s {\ttfamily package.\+json}. ESLint and its dependencies will be included in the user\textquotesingle{}s lock file if one exists, but ESLint\textquotesingle{}s own lock file would not be used.
+
+We intentionally don\textquotesingle{}t lock dependency versions so that we have the latest compatible dependency versions in development and CI that our users get when installing ESLint in a project.
+
+The Twilio blog has a \href{https://www.twilio.com/blog/lockfiles-nodejs}{\texttt{deeper dive}} to learn more.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2078}{}\doxysubsubsection{\texorpdfstring{Releases}{Releases}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2078}
+We have scheduled releases every two weeks on Friday or Saturday. You can follow a \href{https://github.com/eslint/eslint/issues?q=is\%3Aopen+is\%3Aissue+label\%3Arelease}{\texttt{release issue}} for updates about the scheduling of any particular release.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2079}{}\doxysubsubsection{\texorpdfstring{Security Policy}{Security Policy}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2079}
+ESLint takes security seriously. We work hard to ensure that ESLint is safe for everyone and that security issues are addressed quickly and responsibly. Read the full \href{https://github.com/eslint/.github/blob/master/SECURITY.md}{\texttt{security policy}}.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2080}{}\doxysubsubsection{\texorpdfstring{Semantic Versioning Policy}{Semantic Versioning Policy}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2080}
+ESLint follows \href{https://semver.org}{\texttt{semantic versioning}}. However, due to the nature of ESLint as a code quality tool, it\textquotesingle{}s not always clear when a minor or major version bump occurs. To help clarify this for everyone, we\textquotesingle{}ve defined the following semantic versioning policy for ESLint:\+
+
+
+\begin{DoxyItemize}
+\item Patch release (intended to not break your lint build)
+\begin{DoxyItemize}
+\item A bug fix in a rule that results in ESLint reporting fewer linting errors.
+\item A bug fix to the CLI or core (including formatters).
+\item Improvements to documentation.
+\item Non-\/user-\/facing changes such as refactoring code, adding, deleting, or modifying tests, and increasing test coverage.
+\item Re-\/releasing after a failed release (i.\+e., publishing a release that doesn\textquotesingle{}t work for anyone).
+\end{DoxyItemize}
+\item Minor release (might break your lint build)
+\begin{DoxyItemize}
+\item A bug fix in a rule that results in ESLint reporting more linting errors.
+\item A new rule is created.
+\item A new option to an existing rule that does not result in ESLint reporting more linting errors by default.
+\item A new addition to an existing rule to support a newly-\/added language feature (within the last 12 months) that will result in ESLint reporting more linting errors by default.
+\item An existing rule is deprecated.
+\item A new CLI capability is created.
+\item New capabilities to the public API are added (new classes, new methods, new arguments to existing methods, etc.).
+\item A new formatter is created.
+\item {\ttfamily eslint:\+recommended} is updated and will result in strictly fewer linting errors (e.\+g., rule removals).
+\end{DoxyItemize}
+\item Major release (likely to break your lint build)
+\begin{DoxyItemize}
+\item {\ttfamily eslint:\+recommended} is updated and may result in new linting errors (e.\+g., rule additions, most rule option updates).
+\item A new option to an existing rule that results in ESLint reporting more linting errors by default.
+\item An existing formatter is removed.
+\item Part of the public API is removed or changed in an incompatible way. The public API includes:\+
+\begin{DoxyItemize}
+\item Rule schemas
+\item Configuration schema
+\item Command-\/line options
+\item Node.\+js API
+\item Rule, formatter, parser, plugin APIs
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+According to our policy, any minor update may report more linting errors than the previous release (ex:\+ from a bug fix). As such, we recommend using the tilde ({\ttfamily \texorpdfstring{$\sim$}{\string~}}) in {\ttfamily package.\+json} e.\+g. {\ttfamily "{}eslint"{}:\+ "{}\texorpdfstring{$\sim$}{\string~}3.1.\+0"{}} to guarantee the results of your builds.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2081}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2081}
+MIT License
+
+Copyright Open\+JS Foundation and other contributors, \texorpdfstring{$<$}{<}www.\+openjsf.\+org\texorpdfstring{$>$}{>}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "{}\+Software"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/\+or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\+
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "{}\+AS IS"{}, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2082}{}\doxysubsubsection{\texorpdfstring{Team}{Team}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2082}
+These folks keep the project moving and are resources for help.\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2083}{}\doxysubsubsubsection{\texorpdfstring{Technical Steering Committee (TSC)}{Technical Steering Committee (TSC)}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2083}
+The people who manage releases, review feature requests, and meet regularly to ensure ESLint is properly maintained.
+
+
+\begin{DoxyTable}{3}{}{}{0}
+\SetCell{c,h}\href{https://github.com/nzakas}{\texttt{~\newline
+ Nicholas C. Zakas }} &\SetCell{c,h}\href{https://github.com/fasttime}{\texttt{~\newline
+ Francesco Trotta }} &\SetCell{c,h}\href{https://github.com/mdjermanovic}{\texttt{~\newline
+ Milos Djermanovic }} \\
+\end{DoxyTable}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2084}{}\doxysubsubsubsection{\texorpdfstring{Reviewers}{Reviewers}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2084}
+The people who review and implement new features.
+
+
+\begin{DoxyTable}{2}{}{}{0}
+\SetCell{c,h}\href{https://github.com/aladdin-add}{\texttt{~\newline
+ 唯然 }} &\SetCell{c,h}\href{https://github.com/snitin315}{\texttt{~\newline
+ Nitin Kumar }} \\
+\end{DoxyTable}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2085}{}\doxysubsubsubsection{\texorpdfstring{Committers}{Committers}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2085}
+The people who review and fix bugs and help triage issues.
+
+
+\begin{DoxyTable}{6}{}{}{0}
+\SetCell{c,h}\href{https://github.com/DMartens}{\texttt{~\newline
+ fnx }} &\SetCell{c,h}\href{https://github.com/JoshuaKGoldberg}{\texttt{~\newline
+ Josh Goldberg ✨ }} &\SetCell{c,h}\href{https://github.com/SwetaTanwar}{\texttt{~\newline
+ Sweta Tanwar }} &\SetCell{c,h}\href{https://github.com/Tanujkanti4441}{\texttt{~\newline
+ Tanuj Kanti }} &\SetCell{c,h}\href{https://github.com/lumirlumir}{\texttt{~\newline
+ 루밀\+Lu\+Mir }} &\SetCell{c,h}\href{https://github.com/Pixel998}{\texttt{~\newline
+ Pixel998 }} \\
+\end{DoxyTable}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2086}{}\doxysubsubsubsection{\texorpdfstring{Website Team}{Website Team}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2086}
+Team members who focus specifically on eslint.\+org
+
+
+\begin{DoxyTable}{3}{}{}{0}
+\SetCell{c,h}\href{https://github.com/amareshsm}{\texttt{~\newline
+ Amaresh S M }} &\SetCell{c,h}\href{https://github.com/harish-sethuraman}{\texttt{~\newline
+ Harish }} &\SetCell{c,h}\href{https://github.com/kecrily}{\texttt{~\newline
+ Percy Ma }} \\
+\end{DoxyTable}
+\hypertarget{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2087}{}\doxysubsubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_8cbfb7c497e480124fd777f30e57b1f2_autotoc_md2087}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://cybozu.co.jp/}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

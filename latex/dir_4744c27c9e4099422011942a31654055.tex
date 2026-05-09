@@ -1,0 +1,154 @@
+\doxysection{frontend/\+node\+\_\+modules/\+ansi-\/styles Directory Reference}
+\hypertarget{dir_4744c27c9e4099422011942a31654055}{}\label{dir_4744c27c9e4099422011942a31654055}\index{frontend/node\_modules/ansi-\/styles Directory Reference@{frontend/node\_modules/ansi-\/styles Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md897}{}\doxysubsection{\texorpdfstring{ansi-\/styles \+[!\+[Build Status]\+(\href{https://travis-ci.org/chalk/ansi-styles.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+chalk/\+ansi-\/styles.\+svg?branch=master}})]\+(\href{https://travis-ci.org/chalk/ansi-styles}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+chalk/\+ansi-\/styles}})}{ansi-\/styles \+[!\+[Build Status]\+(\href{https://travis-ci.org/chalk/ansi-styles.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+chalk/\+ansi-\/styles.\+svg?branch=master}})]\+(\href{https://travis-ci.org/chalk/ansi-styles}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+chalk/\+ansi-\/styles}})}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md897}
+\begin{quote}
+\href{https://en.wikipedia.org/wiki/ANSI_escape_code\#Colors_and_Styles}{\texttt{ANSI escape codes}} for styling strings in the terminal \end{quote}
+
+
+You probably want the higher-\/level \href{https://github.com/chalk/chalk}{\texttt{chalk}} module for styling your strings.
+
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md898}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md898}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ ansi-\/styles}
+
+\end{DoxyCode}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md899}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md899}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ style\ =\ require('ansi-\/styles');}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(`\$\{style.green.open\}Hello\ world!\$\{style.green.close\}`);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Color\ conversion\ between\ 16/256/truecolor}
+\DoxyCodeLine{//\ NOTE:\ If\ conversion\ goes\ to\ 16\ colors\ or\ 256\ colors,\ the\ original\ color}
+\DoxyCodeLine{//\ \ \ \ \ \ \ may\ be\ degraded\ to\ fit\ that\ color\ palette.\ This\ means\ terminals}
+\DoxyCodeLine{//\ \ \ \ \ \ \ that\ do\ not\ support\ 16\ million\ colors\ will\ best-\/match\ the}
+\DoxyCodeLine{//\ \ \ \ \ \ \ original\ color.}
+\DoxyCodeLine{console.log(style.bgColor.ansi.hsl(120,\ 80,\ 72)\ +\ 'Hello\ world!'\ +\ style.bgColor.close);}
+\DoxyCodeLine{console.log(style.color.ansi256.rgb(199,\ 20,\ 250)\ +\ 'Hello\ world!'\ +\ style.color.close);}
+\DoxyCodeLine{console.log(style.color.ansi16m.hex('\#abcdef')\ +\ 'Hello\ world!'\ +\ style.color.close);}
+
+\end{DoxyCode}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md900}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md900}
+Each style has an {\ttfamily open} and {\ttfamily close} property.\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md901}{}\doxysubsection{\texorpdfstring{Styles}{Styles}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md901}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md902}{}\doxysubsubsection{\texorpdfstring{Modifiers}{Modifiers}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md902}
+
+\begin{DoxyItemize}
+\item {\ttfamily reset}
+\item {\ttfamily bold}
+\item {\ttfamily dim}
+\item {\ttfamily italic} {\itshape (Not widely supported)}
+\item {\ttfamily underline}
+\item {\ttfamily inverse}
+\item {\ttfamily hidden}
+\item {\ttfamily strikethrough} {\itshape (Not widely supported)}
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md903}{}\doxysubsubsection{\texorpdfstring{Colors}{Colors}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md903}
+
+\begin{DoxyItemize}
+\item {\ttfamily black}
+\item {\ttfamily red}
+\item {\ttfamily green}
+\item {\ttfamily yellow}
+\item {\ttfamily blue}
+\item {\ttfamily magenta}
+\item {\ttfamily cyan}
+\item {\ttfamily white}
+\item {\ttfamily black\+Bright} (alias:\+ {\ttfamily gray}, {\ttfamily grey})
+\item {\ttfamily red\+Bright}
+\item {\ttfamily green\+Bright}
+\item {\ttfamily yellow\+Bright}
+\item {\ttfamily blue\+Bright}
+\item {\ttfamily magenta\+Bright}
+\item {\ttfamily cyan\+Bright}
+\item {\ttfamily white\+Bright}
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md904}{}\doxysubsubsection{\texorpdfstring{Background colors}{Background colors}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md904}
+
+\begin{DoxyItemize}
+\item {\ttfamily bg\+Black}
+\item {\ttfamily bg\+Red}
+\item {\ttfamily bg\+Green}
+\item {\ttfamily bg\+Yellow}
+\item {\ttfamily bg\+Blue}
+\item {\ttfamily bg\+Magenta}
+\item {\ttfamily bg\+Cyan}
+\item {\ttfamily bg\+White}
+\item {\ttfamily bg\+Black\+Bright} (alias:\+ {\ttfamily bg\+Gray}, {\ttfamily bg\+Grey})
+\item {\ttfamily bg\+Red\+Bright}
+\item {\ttfamily bg\+Green\+Bright}
+\item {\ttfamily bg\+Yellow\+Bright}
+\item {\ttfamily bg\+Blue\+Bright}
+\item {\ttfamily bg\+Magenta\+Bright}
+\item {\ttfamily bg\+Cyan\+Bright}
+\item {\ttfamily bg\+White\+Bright}
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md905}{}\doxysubsection{\texorpdfstring{Advanced usage}{Advanced usage}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md905}
+By default, you get a map of styles, but the styles are also available as groups. They are non-\/enumerable so they don\textquotesingle{}t show up unless you access them explicitly. This makes it easier to expose only a subset in a higher-\/level module.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily style.\+modifier}
+\item {\ttfamily style.\+color}
+\item {\ttfamily style.\+bg\+Color}
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md906}{}\doxysubsubsubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md906}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(style.color.green.open);}
+
+\end{DoxyCode}
+
+
+Raw escape codes (i.\+e. without the CSI escape prefix {\ttfamily \textbackslash{}u001B\+[} and render mode postfix {\ttfamily m}) are available under {\ttfamily style.\+codes}, which returns a {\ttfamily Map} with the open codes as keys and close codes as values.\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md907}{}\doxysubsubsubsubsubsection{\texorpdfstring{Example}{Example}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md907}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(style.codes.get(36));}
+\DoxyCodeLine{//=>\ 39}
+
+\end{DoxyCode}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md908}{}\doxysubsection{\texorpdfstring{\href{https://gist.github.com/XVilka/8346728}{\texttt{256 /\+ 16 million (True\+Color) support}}}{\href{https://gist.github.com/XVilka/8346728}{\texttt{256 /\+ 16 million (True\+Color) support}}}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md908}
+{\ttfamily ansi-\/styles} uses the \href{https://github.com/Qix-/color-convert}{\texttt{{\ttfamily color-\/convert}}} package to allow for converting between various colors and ANSI escapes, with support for 256 and 16 million colors.
+
+The following color spaces from {\ttfamily color-\/convert} are supported:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily rgb}
+\item {\ttfamily hex}
+\item {\ttfamily keyword}
+\item {\ttfamily hsl}
+\item {\ttfamily hsv}
+\item {\ttfamily hwb}
+\item {\ttfamily ansi}
+\item {\ttfamily ansi256}
+\end{DoxyItemize}
+
+To use these, call the associated conversion function with the intended output, for example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{style.color.ansi.rgb(100,\ 200,\ 15);\ //\ RGB\ to\ 16\ color\ ansi\ foreground\ code}
+\DoxyCodeLine{style.bgColor.ansi.rgb(100,\ 200,\ 15);\ //\ RGB\ to\ 16\ color\ ansi\ background\ code}
+\DoxyCodeLine{}
+\DoxyCodeLine{style.color.ansi256.hsl(120,\ 100,\ 60);\ //\ HSL\ to\ 256\ color\ ansi\ foreground\ code}
+\DoxyCodeLine{style.bgColor.ansi256.hsl(120,\ 100,\ 60);\ //\ HSL\ to\ 256\ color\ ansi\ foreground\ code}
+\DoxyCodeLine{}
+\DoxyCodeLine{style.color.ansi16m.hex('\#C0FFEE');\ //\ Hex\ (RGB)\ to\ 16\ million\ color\ foreground\ code}
+\DoxyCodeLine{style.bgColor.ansi16m.hex('\#C0FFEE');\ //\ Hex\ (RGB)\ to\ 16\ million\ color\ background\ code}
+
+\end{DoxyCode}
+\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md909}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md909}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/ansi-escapes}{\texttt{ansi-\/escapes}} -\/ ANSI escape codes for manipulating the terminal
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md910}{}\doxysubsection{\texorpdfstring{Maintainers}{Maintainers}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md910}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus}{\texttt{Sindre Sorhus}}
+\item \href{https://github.com/qix-}{\texttt{Josh Junon}}
+\end{DoxyItemize}\hypertarget{dir_4744c27c9e4099422011942a31654055_autotoc_md911}{}\doxysubsection{\texorpdfstring{For enterprise}{For enterprise}}\label{dir_4744c27c9e4099422011942a31654055_autotoc_md911}
+Available as part of the Tidelift Subscription.
+
+The maintainers of {\ttfamily ansi-\/styles} and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. \href{https://tidelift.com/subscription/pkg/npm-ansi-styles?utm_source=npm-ansi-styles&utm_medium=referral&utm_campaign=enterprise&utm_term=repo}{\texttt{Learn more.}} 

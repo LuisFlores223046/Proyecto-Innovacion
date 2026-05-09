@@ -1,0 +1,70 @@
+\doxysection{starlette.\+schemas.\+Base\+Schema\+Generator Class Reference}
+\hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator}{}\label{classstarlette_1_1schemas_1_1BaseSchemaGenerator}\index{starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}}
+Inheritance diagram for starlette.\+schemas.\+Base\+Schema\+Generator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classstarlette_1_1schemas_1_1BaseSchemaGenerator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ad02327a6c721620a88f3d66ace8a191a}\label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ad02327a6c721620a88f3d66ace8a191a} 
+dict\+[str, typing.\+Any]\+ {\bfseries get\+\_\+schema} (self, list\+[\doxymbox{\hyperlink{classstarlette_1_1routing_1_1BaseRoute}{Base\+Route}}]\+ routes)
+\item 
+list\+[\doxymbox{\hyperlink{classstarlette_1_1schemas_1_1EndpointInfo}{Endpoint\+Info}}]\+ \doxymbox{\hyperlink{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ace673a9e76c734a8d26ea850e9490199}{get\+\_\+endpoints}} (self, list\+[\doxymbox{\hyperlink{classstarlette_1_1routing_1_1BaseRoute}{Base\+Route}}]\+ routes)
+\item 
+dict\+[str, typing.\+Any]\+ \doxymbox{\hyperlink{classstarlette_1_1schemas_1_1BaseSchemaGenerator_a6f13b6780fe076440e2116cdf1c77e3c}{parse\+\_\+docstring}} (self, typing.\+Callable\+[..., typing.\+Any]\+ func\+\_\+or\+\_\+method)
+\item 
+\Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_a90aea2a03a362c6eb79926d68c6962fc}\label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_a90aea2a03a362c6eb79926d68c6962fc} 
+\doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{Response}} {\bfseries Open\+APIResponse} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ac804c6d33955d317feee0b6aff91fa8f}{\+\_\+remove\+\_\+converter}} (self, str path)
+\end{DoxyCompactItemize}
+
+
+\label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_doc-func-members}
+\Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ac804c6d33955d317feee0b6aff91fa8f}\index{starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}!\_remove\_converter@{\_remove\_converter}}
+\index{\_remove\_converter@{\_remove\_converter}!starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}}
+\doxysubsubsection{\texorpdfstring{\_remove\_converter()}{\_remove\_converter()}}
+{\footnotesize\ttfamily \label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ac804c6d33955d317feee0b6aff91fa8f} 
+ str starlette.\+schemas.\+Base\+Schema\+Generator.\+\_\+remove\+\_\+converter (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{path}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Remove the converter from the path.
+For example, a route like this:
+    Route("/users/{id:int}", endpoint=get_user, methods=["GET"])
+Should be represented as `/users/{id}` in the OpenAPI schema.
+\end{DoxyVerb}
+ \Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ace673a9e76c734a8d26ea850e9490199}\index{starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}!get\_endpoints@{get\_endpoints}}
+\index{get\_endpoints@{get\_endpoints}!starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}}
+\doxysubsubsection{\texorpdfstring{get\_endpoints()}{get\_endpoints()}}
+{\footnotesize\ttfamily \label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_ace673a9e76c734a8d26ea850e9490199} 
+ list\+[\doxymbox{\hyperlink{classstarlette_1_1schemas_1_1EndpointInfo}{Endpoint\+Info}}]\+ starlette.\+schemas.\+Base\+Schema\+Generator.\+get\+\_\+endpoints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{list\+[\doxymbox{\hyperlink{classstarlette_1_1routing_1_1BaseRoute}{Base\+Route}}]\+}]{routes}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given the routes, yields the following information:
+
+- path
+    eg: /users/
+- http_method
+    one of 'get', 'post', 'put', 'patch', 'delete', 'options'
+- func
+    method ready to extract the docstring
+\end{DoxyVerb}
+ \Hypertarget{classstarlette_1_1schemas_1_1BaseSchemaGenerator_a6f13b6780fe076440e2116cdf1c77e3c}\index{starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}!parse\_docstring@{parse\_docstring}}
+\index{parse\_docstring@{parse\_docstring}!starlette.schemas.BaseSchemaGenerator@{starlette.schemas.BaseSchemaGenerator}}
+\doxysubsubsection{\texorpdfstring{parse\_docstring()}{parse\_docstring()}}
+{\footnotesize\ttfamily \label{classstarlette_1_1schemas_1_1BaseSchemaGenerator_a6f13b6780fe076440e2116cdf1c77e3c} 
+ dict\+[str, typing.\+Any]\+ starlette.\+schemas.\+Base\+Schema\+Generator.\+parse\+\_\+docstring (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{typing.\+Callable\+[..., typing.\+Any]\+     }]{func\+\_\+or\+\_\+method}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a function, parse the docstring as YAML and return a dictionary of info.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+starlette/\+schemas.\+py\end{DoxyCompactItemize}

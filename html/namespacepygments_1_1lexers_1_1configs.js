@@ -1,0 +1,25 @@
+var namespacepygments_1_1lexers_1_1configs =
+[
+    [ "IniLexer", "classpygments_1_1lexers_1_1configs_1_1IniLexer.html", "classpygments_1_1lexers_1_1configs_1_1IniLexer" ],
+    [ "DesktopLexer", "classpygments_1_1lexers_1_1configs_1_1DesktopLexer.html", "classpygments_1_1lexers_1_1configs_1_1DesktopLexer" ],
+    [ "SystemdLexer", "classpygments_1_1lexers_1_1configs_1_1SystemdLexer.html", "classpygments_1_1lexers_1_1configs_1_1SystemdLexer" ],
+    [ "RegeditLexer", "classpygments_1_1lexers_1_1configs_1_1RegeditLexer.html", "classpygments_1_1lexers_1_1configs_1_1RegeditLexer" ],
+    [ "PropertiesLexer", "classpygments_1_1lexers_1_1configs_1_1PropertiesLexer.html", null ],
+    [ "KconfigLexer", "classpygments_1_1lexers_1_1configs_1_1KconfigLexer.html", null ],
+    [ "Cfengine3Lexer", "classpygments_1_1lexers_1_1configs_1_1Cfengine3Lexer.html", null ],
+    [ "ApacheConfLexer", "classpygments_1_1lexers_1_1configs_1_1ApacheConfLexer.html", null ],
+    [ "SquidConfLexer", "classpygments_1_1lexers_1_1configs_1_1SquidConfLexer.html", null ],
+    [ "NginxConfLexer", "classpygments_1_1lexers_1_1configs_1_1NginxConfLexer.html", null ],
+    [ "LighttpdConfLexer", "classpygments_1_1lexers_1_1configs_1_1LighttpdConfLexer.html", null ],
+    [ "DockerLexer", "classpygments_1_1lexers_1_1configs_1_1DockerLexer.html", null ],
+    [ "TerraformLexer", "classpygments_1_1lexers_1_1configs_1_1TerraformLexer.html", null ],
+    [ "TermcapLexer", "classpygments_1_1lexers_1_1configs_1_1TermcapLexer.html", null ],
+    [ "TerminfoLexer", "classpygments_1_1lexers_1_1configs_1_1TerminfoLexer.html", null ],
+    [ "PkgConfigLexer", "classpygments_1_1lexers_1_1configs_1_1PkgConfigLexer.html", null ],
+    [ "PacmanConfLexer", "classpygments_1_1lexers_1_1configs_1_1PacmanConfLexer.html", null ],
+    [ "AugeasLexer", "classpygments_1_1lexers_1_1configs_1_1AugeasLexer.html", null ],
+    [ "TOMLLexer", "classpygments_1_1lexers_1_1configs_1_1TOMLLexer.html", null ],
+    [ "NestedTextLexer", "classpygments_1_1lexers_1_1configs_1_1NestedTextLexer.html", null ],
+    [ "SingularityLexer", "classpygments_1_1lexers_1_1configs_1_1SingularityLexer.html", "classpygments_1_1lexers_1_1configs_1_1SingularityLexer" ],
+    [ "UnixConfigLexer", "classpygments_1_1lexers_1_1configs_1_1UnixConfigLexer.html", null ]
+];

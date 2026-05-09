@@ -1,0 +1,94 @@
+\doxysection{frontend/\+node\+\_\+modules/\+yallist Directory Reference}
+\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce}{}\label{dir_7013ce49a0eed0033e41a1991bcb9cce}\index{frontend/node\_modules/yallist Directory Reference@{frontend/node\_modules/yallist Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4939}{}\doxysubsection{\texorpdfstring{yallist}{yallist}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4939}
+Yet Another Linked List
+
+There are many doubly-\/linked list implementations like it, but this one is mine.
+
+For when an array would be too big, and a Map can\textquotesingle{}t be iterated in reverse order.
+
+\href{https://travis-ci.org/isaacs/yallist}{\texttt{}} \href{https://coveralls.io/github/isaacs/yallist}{\texttt{}}\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4940}{}\doxysubsection{\texorpdfstring{basic usage}{basic usage}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4940}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ yallist\ =\ require('yallist')}
+\DoxyCodeLine{var\ myList\ =\ yallist.create([1,\ 2,\ 3])}
+\DoxyCodeLine{myList.push('foo')}
+\DoxyCodeLine{myList.unshift('bar')}
+\DoxyCodeLine{//\ of\ course\ pop()\ and\ shift()\ are\ there,\ too}
+\DoxyCodeLine{console.log(myList.toArray())\ //\ ['bar',\ 1,\ 2,\ 3,\ 'foo']}
+\DoxyCodeLine{myList.forEach(function\ (k)\ \{}
+\DoxyCodeLine{\ \ //\ walk\ the\ list\ head\ to\ tail}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{myList.forEachReverse(function\ (k,\ index,\ list)\ \{}
+\DoxyCodeLine{\ \ //\ walk\ the\ list\ tail\ to\ head}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{var\ myDoubledList\ =\ myList.map(function\ (k)\ \{}
+\DoxyCodeLine{\ \ return\ k\ +\ k}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{//\ now\ myDoubledList\ contains\ ['barbar',\ 2,\ 4,\ 6,\ 'foofoo']}
+\DoxyCodeLine{//\ mapReverse\ is\ also\ a\ thing}
+\DoxyCodeLine{var\ myDoubledListReverse\ =\ myList.mapReverse(function\ (k)\ \{}
+\DoxyCodeLine{\ \ return\ k\ +\ k}
+\DoxyCodeLine{\})\ //\ ['foofoo',\ 6,\ 4,\ 2,\ 'barbar']}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ reduced\ =\ myList.reduce(function\ (set,\ entry)\ \{}
+\DoxyCodeLine{\ \ set\ +=\ entry}
+\DoxyCodeLine{\ \ return\ set}
+\DoxyCodeLine{\},\ 'start')}
+\DoxyCodeLine{console.log(reduced)\ //\ 'startfoo123bar'}
+
+\end{DoxyCode}
+\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4941}{}\doxysubsection{\texorpdfstring{api}{api}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4941}
+The whole API is considered "{}public"{}.
+
+Functions with the same name as an Array method work more or less the same way.
+
+There\textquotesingle{}s reverse versions of most things because that\textquotesingle{}s the point.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4942}{}\doxysubsubsection{\texorpdfstring{Yallist}{Yallist}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4942}
+Default export, the class that holds and manages a list.
+
+Call it with either a for\+Each-\/able (like an array) or a set of arguments, to initialize the list.
+
+The Array-\/ish methods all act like you\textquotesingle{}d expect. No magic length, though, so if you change that it won\textquotesingle{}t automatically prune or add empty spots.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4943}{}\doxysubsubsection{\texorpdfstring{Yallist.\+create(..)}{Yallist.\+create(..)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4943}
+Alias for Yallist function. Some people like factories.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4944}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+head}{yallist.\+head}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4944}
+The first node in the list\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4945}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+tail}{yallist.\+tail}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4945}
+The last node in the list\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4946}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+length}{yallist.\+length}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4946}
+The number of nodes in the list. (Change this at your peril. It is not magic like Array length.)\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4947}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+to\+Array()}{yallist.\+to\+Array()}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4947}
+Convert the list to an array.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4948}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+for\+Each(fn, \+[thisp]\+)}{yallist.\+for\+Each(fn, \+[thisp]\+)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4948}
+Call a function on each item in the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4949}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+for\+Each\+Reverse(fn, \+[thisp]\+)}{yallist.\+for\+Each\+Reverse(fn, \+[thisp]\+)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4949}
+Call a function on each item in the list, in reverse order.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4950}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+get(n)}{yallist.\+get(n)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4950}
+Get the data at position {\ttfamily n} in the list. If you use this a lot, probably better off just using an Array.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4951}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+get\+Reverse(n)}{yallist.\+get\+Reverse(n)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4951}
+Get the data at position {\ttfamily n}, counting from the tail.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4952}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+map(fn, thisp)}{yallist.\+map(fn, thisp)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4952}
+Create a new Yallist with the result of calling the function on each item.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4953}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+map\+Reverse(fn, thisp)}{yallist.\+map\+Reverse(fn, thisp)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4953}
+Same as {\ttfamily map}, but in reverse.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4954}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+pop()}{yallist.\+pop()}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4954}
+Get the data from the list tail, and remove the tail from the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4955}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+push(item, ...)}{yallist.\+push(item, ...)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4955}
+Insert one or more items to the tail of the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4956}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+reduce(fn, initial\+Value)}{yallist.\+reduce(fn, initial\+Value)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4956}
+Like Array.\+reduce.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4957}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+reduce\+Reverse}{yallist.\+reduce\+Reverse}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4957}
+Like Array.\+reduce, but in reverse.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4958}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+reverse}{yallist.\+reverse}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4958}
+Reverse the list in place.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4959}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+shift()}{yallist.\+shift()}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4959}
+Get the data from the list head, and remove the head from the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4960}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+slice(\+[from]\+, \+[to]\+)}{yallist.\+slice(\+[from]\+, \+[to]\+)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4960}
+Just like Array.\+slice, but returns a new Yallist.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4961}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+slice\+Reverse(\+[from]\+, \+[to]\+)}{yallist.\+slice\+Reverse(\+[from]\+, \+[to]\+)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4961}
+Just like yallist.\+slice, but the result is returned in reverse.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4962}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+to\+Array()}{yallist.\+to\+Array()}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4962}
+Create an array representation of the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4963}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+to\+Array\+Reverse()}{yallist.\+to\+Array\+Reverse()}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4963}
+Create a reversed array representation of the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4964}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+unshift(item, ...)}{yallist.\+unshift(item, ...)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4964}
+Insert one or more items to the head of the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4965}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+unshift\+Node(node)}{yallist.\+unshift\+Node(node)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4965}
+Move a Node object to the front of the list. (That is, pull it out of wherever it lives, and make it the new head.)
+
+If the node belongs to a different list, then that list will remove it first.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4966}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+push\+Node(node)}{yallist.\+push\+Node(node)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4966}
+Move a Node object to the end of the list. (That is, pull it out of wherever it lives, and make it the new tail.)
+
+If the node belongs to a list already, then that list will remove it first.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4967}{}\doxysubsubsubsection{\texorpdfstring{yallist.\+remove\+Node(node)}{yallist.\+remove\+Node(node)}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4967}
+Remove a node from the list, preserving referential integrity of head and tail and other nodes.
+
+Will throw an error if you try to have a list remove a node that doesn\textquotesingle{}t belong to it.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4968}{}\doxysubsubsection{\texorpdfstring{Yallist.\+Node}{Yallist.\+Node}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4968}
+The class that holds the data and is actually the list.
+
+Call with {\ttfamily var n = new Node(value, previous\+Node, next\+Node)}
+
+Note that if you do direct operations on Nodes themselves, it\textquotesingle{}s very easy to get into weird states where the list is broken. Be careful :\+)\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4969}{}\doxysubsubsubsection{\texorpdfstring{node.\+next}{node.\+next}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4969}
+The next node in the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4970}{}\doxysubsubsubsection{\texorpdfstring{node.\+prev}{node.\+prev}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4970}
+The previous node in the list.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4971}{}\doxysubsubsubsection{\texorpdfstring{node.\+value}{node.\+value}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4971}
+The data the node contains.\hypertarget{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4972}{}\doxysubsubsubsection{\texorpdfstring{node.\+list}{node.\+list}}\label{dir_7013ce49a0eed0033e41a1991bcb9cce_autotoc_md4972}
+The list to which this node belongs. (Null if it does not belong to any list.) 

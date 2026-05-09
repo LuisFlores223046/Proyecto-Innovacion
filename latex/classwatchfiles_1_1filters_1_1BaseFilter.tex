@@ -1,0 +1,75 @@
+\doxysection{watchfiles.\+filters.\+Base\+Filter Class Reference}
+\hypertarget{classwatchfiles_1_1filters_1_1BaseFilter}{}\label{classwatchfiles_1_1filters_1_1BaseFilter}\index{watchfiles.filters.BaseFilter@{watchfiles.filters.BaseFilter}}
+Inheritance diagram for watchfiles.\+filters.\+Base\+Filter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classwatchfiles_1_1filters_1_1BaseFilter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a237062922f95b7841eb84cfcac47adfa}\label{classwatchfiles_1_1filters_1_1BaseFilter_a237062922f95b7841eb84cfcac47adfa} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+bool \doxymbox{\hyperlink{classwatchfiles_1_1filters_1_1BaseFilter_a85e288f0bf4cb6b333d4a90be1030c2d}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, \textquotesingle{}\doxymbox{\hyperlink{classwatchfiles_1_1main_1_1Change}{Change}}\textquotesingle{} change, str path)
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a94af2c2f1ba78aca638d45557cc6df0e}\label{classwatchfiles_1_1filters_1_1BaseFilter_a94af2c2f1ba78aca638d45557cc6df0e} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_af02a208faea5f1d4012c04e99fa34415}\label{classwatchfiles_1_1filters_1_1BaseFilter_af02a208faea5f1d4012c04e99fa34415} 
+tuple {\bfseries ignore\+\_\+dirs} = ()
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a5e7bbd6434b20b0e565638c09f769ef1}\label{classwatchfiles_1_1filters_1_1BaseFilter_a5e7bbd6434b20b0e565638c09f769ef1} 
+tuple {\bfseries ignore\+\_\+entity\+\_\+patterns} = ()
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a3da58441c4fcd4d3a654ffc0b3a238a2}\label{classwatchfiles_1_1filters_1_1BaseFilter_a3da58441c4fcd4d3a654ffc0b3a238a2} 
+tuple {\bfseries ignore\+\_\+paths} = ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_ab3e038b7f3a02eabf202b294a2108f65}\label{classwatchfiles_1_1filters_1_1BaseFilter_ab3e038b7f3a02eabf202b294a2108f65} 
+{\bfseries \+\_\+ignore\+\_\+dirs} = set(self.\+ignore\+\_\+dirs)
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a829c39ae1b27e9ec54ddcf96962191f7}\label{classwatchfiles_1_1filters_1_1BaseFilter_a829c39ae1b27e9ec54ddcf96962191f7} 
+{\bfseries \+\_\+ignore\+\_\+entity\+\_\+regexes} = tuple(re.\+compile(r) for r in self.\+ignore\+\_\+entity\+\_\+patterns)
+\item 
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_adc57d43cecb9a0beb669881ec08e356a}\label{classwatchfiles_1_1filters_1_1BaseFilter_adc57d43cecb9a0beb669881ec08e356a} 
+{\bfseries \+\_\+ignore\+\_\+paths} = tuple(map(str, self.\+ignore\+\_\+paths))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Useful base class for creating filters. `BaseFilter` should be inherited and configured, rather than used
+directly.
+
+The class supports ignoring files in 3 ways:
+\end{DoxyVerb}
+ 
+
+\label{classwatchfiles_1_1filters_1_1BaseFilter_doc-func-members}
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwatchfiles_1_1filters_1_1BaseFilter_a85e288f0bf4cb6b333d4a90be1030c2d}\index{watchfiles.filters.BaseFilter@{watchfiles.filters.BaseFilter}!\_\_call\_\_@{\_\_call\_\_}}
+\index{\_\_call\_\_@{\_\_call\_\_}!watchfiles.filters.BaseFilter@{watchfiles.filters.BaseFilter}}
+\doxysubsubsection{\texorpdfstring{\_\_call\_\_()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily \label{classwatchfiles_1_1filters_1_1BaseFilter_a85e288f0bf4cb6b333d4a90be1030c2d} 
+ bool watchfiles.\+filters.\+Base\+Filter.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\textquotesingle{}\doxymbox{\hyperlink{classwatchfiles_1_1main_1_1Change}{Change}}\textquotesingle{}}]{change}{, }\item[{str}]{path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Instances of `BaseFilter` subclasses can be used as callables.
+Args:
+    change: The type of change that occurred, see [`Change`][watchfiles.Change].
+    path: the raw path of the file or directory that changed.
+
+Returns:
+    True if the file should be included in changes, False if it should be ignored.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+watchfiles/\+filters.\+py\end{DoxyCompactItemize}

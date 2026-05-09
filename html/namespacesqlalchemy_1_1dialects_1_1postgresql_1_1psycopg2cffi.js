@@ -1,0 +1,4 @@
+var namespacesqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2cffi =
+[
+    [ "PGDialect_psycopg2cffi", "classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2cffi_1_1PGDialect__psycopg2cffi.html", "classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2cffi_1_1PGDialect__psycopg2cffi" ]
+];

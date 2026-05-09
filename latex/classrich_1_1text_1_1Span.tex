@@ -1,0 +1,100 @@
+\doxysection{rich.\+text.\+Span Class Reference}
+\hypertarget{classrich_1_1text_1_1Span}{}\label{classrich_1_1text_1_1Span}\index{rich.text.Span@{rich.text.Span}}
+Inheritance diagram for rich.\+text.\+Span:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrich_1_1text_1_1Span}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1text_1_1Span_a6fc726e9b2e27350d03b35807a47a375}\label{classrich_1_1text_1_1Span_a6fc726e9b2e27350d03b35807a47a375} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classrich_1_1text_1_1Span_a2354869b55d01b8c6408ce52dc0dba73}\label{classrich_1_1text_1_1Span_a2354869b55d01b8c6408ce52dc0dba73} 
+bool {\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+Tuple\+["{}Span"{}, Optional\+["{}Span"{}]\+]\+ \doxymbox{\hyperlink{classrich_1_1text_1_1Span_a863c9b33995334849898f5d19f318cc2}{split}} (self, int offset)
+\item 
+"{}Span"{} \doxymbox{\hyperlink{classrich_1_1text_1_1Span_a3e21542211a504ec881b5d6e16795dae}{move}} (self, int offset)
+\item 
+"{}Span"{} \doxymbox{\hyperlink{classrich_1_1text_1_1Span_a62c6b9fca0c1075a9d3a6ba82ac118eb}{right\+\_\+crop}} (self, int offset)
+\item 
+"{}Span"{} \doxymbox{\hyperlink{classrich_1_1text_1_1Span_a683e2139322db9ed9281ef64a2f029b5}{extend}} (self, int cells)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1text_1_1Span_a90f7c7d373f1115c197e538365ff474d}\label{classrich_1_1text_1_1Span_a90f7c7d373f1115c197e538365ff474d} 
+{\bfseries start}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1text_1_1Span_a36c596767dfa9252fa1ad7a448599018}\label{classrich_1_1text_1_1Span_a36c596767dfa9252fa1ad7a448599018} 
+Union {\bfseries style} \+[str, \doxymbox{\hyperlink{classrich_1_1style_1_1Style}{Style}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A marked up region in some text.\end{DoxyVerb}
+ 
+
+\label{classrich_1_1text_1_1Span_doc-func-members}
+\Hypertarget{classrich_1_1text_1_1Span_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrich_1_1text_1_1Span_a683e2139322db9ed9281ef64a2f029b5}\index{rich.text.Span@{rich.text.Span}!extend@{extend}}
+\index{extend@{extend}!rich.text.Span@{rich.text.Span}}
+\doxysubsubsection{\texorpdfstring{extend()}{extend()}}
+{\footnotesize\ttfamily \label{classrich_1_1text_1_1Span_a683e2139322db9ed9281ef64a2f029b5} 
+ "{}Span"{} rich.\+text.\+Span.\+extend (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{cells}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extend the span by the given number of cells.
+
+Args:
+    cells (int): Additional space to add to end of span.
+
+Returns:
+    Span: A span.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1text_1_1Span_a3e21542211a504ec881b5d6e16795dae}\index{rich.text.Span@{rich.text.Span}!move@{move}}
+\index{move@{move}!rich.text.Span@{rich.text.Span}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily \label{classrich_1_1text_1_1Span_a3e21542211a504ec881b5d6e16795dae} 
+ "{}Span"{} rich.\+text.\+Span.\+move (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{offset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Move start and end by a given offset.
+
+Args:
+    offset (int): Number of characters to add to start and end.
+
+Returns:
+    TextSpan: A new TextSpan with adjusted position.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1text_1_1Span_a62c6b9fca0c1075a9d3a6ba82ac118eb}\index{rich.text.Span@{rich.text.Span}!right\_crop@{right\_crop}}
+\index{right\_crop@{right\_crop}!rich.text.Span@{rich.text.Span}}
+\doxysubsubsection{\texorpdfstring{right\_crop()}{right\_crop()}}
+{\footnotesize\ttfamily \label{classrich_1_1text_1_1Span_a62c6b9fca0c1075a9d3a6ba82ac118eb} 
+ "{}Span"{} rich.\+text.\+Span.\+right\+\_\+crop (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{offset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crop the span at the given offset.
+
+Args:
+    offset (int): A value between start and end.
+
+Returns:
+    Span: A new (possibly smaller) span.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1text_1_1Span_a863c9b33995334849898f5d19f318cc2}\index{rich.text.Span@{rich.text.Span}!split@{split}}
+\index{split@{split}!rich.text.Span@{rich.text.Span}}
+\doxysubsubsection{\texorpdfstring{split()}{split()}}
+{\footnotesize\ttfamily \label{classrich_1_1text_1_1Span_a863c9b33995334849898f5d19f318cc2} 
+ Tuple\+["{}Span"{}, Optional\+["{}Span"{}]\+]\+ rich.\+text.\+Span.\+split (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{offset}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Split a span in to 2 from a given offset.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rich/\+text.\+py\end{DoxyCompactItemize}

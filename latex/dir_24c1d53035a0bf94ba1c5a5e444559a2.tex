@@ -1,0 +1,95 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fast-\/deep-\/equal Directory Reference}
+\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2}{}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2}\index{frontend/node\_modules/fast-\/deep-\/equal Directory Reference@{frontend/node\_modules/fast-\/deep-\/equal Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_ea4cedbfe9c4cd1c9081c620f3f550c3}{es6}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2148}{}\doxysubsection{\texorpdfstring{fast-\/deep-\/equal}{fast-\/deep-\/equal}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2148}
+The fastest deep equal with ES6 Map, Set and Typed arrays support.
+
+\href{https://travis-ci.org/epoberezkin/fast-deep-equal}{\texttt{}} \href{https://www.npmjs.com/package/fast-deep-equal}{\texttt{}} \href{https://coveralls.io/github/epoberezkin/fast-deep-equal?branch=master}{\texttt{}}\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2149}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2149}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ fast-\/deep-\/equal}
+
+\end{DoxyCode}
+\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2150}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2150}
+
+\begin{DoxyItemize}
+\item ES5 compatible
+\item works in node.\+js (8+) and browsers (IE9+)
+\item checks equality of Date and Reg\+Exp objects by value.
+\end{DoxyItemize}
+
+ES6 equal ({\ttfamily require(\textquotesingle{}fast-\/deep-\/equal/\+es6\textquotesingle{})}) also supports:\+
+\begin{DoxyItemize}
+\item Maps
+\item Sets
+\item Typed arrays
+\end{DoxyItemize}\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2151}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2151}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ equal\ =\ require('fast-\/deep-\/equal');}
+\DoxyCodeLine{console.log(equal(\{foo:\ 'bar'\},\ \{foo:\ 'bar'\}));\ //\ true}
+
+\end{DoxyCode}
+
+
+To support ES6 Maps, Sets and Typed arrays equality use:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ equal\ =\ require('fast-\/deep-\/equal/es6');}
+\DoxyCodeLine{console.log(equal(Int16Array([1,\ 2]),\ Int16Array([1,\ 2])));\ //\ true}
+
+\end{DoxyCode}
+
+
+To use with React (avoiding the traversal of React elements\textquotesingle{} \+\_\+owner property that contains circular references and is not needed when comparing the elements -\/ borrowed from \href{https://github.com/FormidableLabs/react-fast-compare}{\texttt{react-\/fast-\/compare}}):\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ equal\ =\ require('fast-\/deep-\/equal/react');}
+\DoxyCodeLine{var\ equal\ =\ require('fast-\/deep-\/equal/es6/react');}
+
+\end{DoxyCode}
+\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2152}{}\doxysubsection{\texorpdfstring{Performance benchmark}{Performance benchmark}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2152}
+Node.\+js v12.\+6.\+0:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fast-\/deep-\/equal\ x\ 261,950\ ops/sec\ ±0.52\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{fast-\/deep-\/equal/es6\ x\ 212,991\ ops/sec\ ±0.34\%\ (92\ runs\ sampled)}
+\DoxyCodeLine{fast-\/equals\ x\ 230,957\ ops/sec\ ±0.83\%\ (85\ runs\ sampled)}
+\DoxyCodeLine{nano-\/equal\ x\ 187,995\ ops/sec\ ±0.53\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{shallow-\/equal-\/fuzzy\ x\ 138,302\ ops/sec\ ±0.49\%\ (90\ runs\ sampled)}
+\DoxyCodeLine{underscore.isEqual\ x\ 74,423\ ops/sec\ ±0.38\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{lodash.isEqual\ x\ 36,637\ ops/sec\ ±0.72\%\ (90\ runs\ sampled)}
+\DoxyCodeLine{deep-\/equal\ x\ 2,310\ ops/sec\ ±0.37\%\ (90\ runs\ sampled)}
+\DoxyCodeLine{deep-\/eql\ x\ 35,312\ ops/sec\ ±0.67\%\ (91\ runs\ sampled)}
+\DoxyCodeLine{ramda.equals\ x\ 12,054\ ops/sec\ ±0.40\%\ (91\ runs\ sampled)}
+\DoxyCodeLine{util.isDeepStrictEqual\ x\ 46,440\ ops/sec\ ±0.43\%\ (90\ runs\ sampled)}
+\DoxyCodeLine{assert.deepStrictEqual\ x\ 456\ ops/sec\ ±0.71\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{}
+\DoxyCodeLine{The\ fastest\ is\ fast-\/deep-\/equal}
+
+\end{DoxyCode}
+
+
+To run benchmark (requires node.\+js 6+):\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ benchmark}
+
+\end{DoxyCode}
+
+
+{\bfseries{Please note}}:\+ this benchmark runs against the available test cases. To choose the most performant library for your application, it is recommended to benchmark against your data and to NOT expect this benchmark to reflect the performance difference in your application.\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2153}{}\doxysubsection{\texorpdfstring{Enterprise support}{Enterprise support}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2153}
+fast-\/deep-\/equal package is a part of \href{https://tidelift.com/subscription/pkg/npm-fast-deep-equal?utm_source=npm-fast-deep-equal&utm_medium=referral&utm_campaign=enterprise&utm_term=repo}{\texttt{Tidelift enterprise subscription}} -\/ it provides a centralised commercial support to open-\/source software users, in addition to the support provided by software maintainers.\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2154}{}\doxysubsection{\texorpdfstring{Security contact}{Security contact}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2154}
+To report a security vulnerability, please use the \href{https://tidelift.com/security}{\texttt{Tidelift security contact}}. Tidelift will coordinate the fix and disclosure. Please do NOT report security vulnerability via Git\+Hub issues.\hypertarget{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2155}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_24c1d53035a0bf94ba1c5a5e444559a2_autotoc_md2155}
+\href{https://github.com/epoberezkin/fast-deep-equal/blob/master/LICENSE}{\texttt{MIT}} 

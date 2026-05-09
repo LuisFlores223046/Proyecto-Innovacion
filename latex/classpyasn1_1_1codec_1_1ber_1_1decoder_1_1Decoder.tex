@@ -1,0 +1,125 @@
+\doxysection{pyasn1.\+codec.\+ber.\+decoder.\+Decoder Class Reference}
+\hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder}{}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder}\index{pyasn1.codec.ber.decoder.Decoder@{pyasn1.codec.ber.decoder.Decoder}}
+Inheritance diagram for pyasn1.\+codec.\+ber.\+decoder.\+Decoder:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_ad93d6974a7297f2e495e666913318d71}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (cls, substrate, asn1\+Spec=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_a2d8156732827e306a8b8449a932ab95a}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_a2d8156732827e306a8b8449a932ab95a} 
+{\bfseries STREAMING\+\_\+\+DECODER} = \doxymbox{\hyperlink{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1StreamingDecoder}{Streaming\+Decoder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_a45bfec440de665cb8777744c4e24f608}\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_a45bfec440de665cb8777744c4e24f608} 
+{\bfseries \+\_\+call\+Substrate\+Fun\+V4as\+V5} (substrate\+Fun\+V4, asn1\+Object, substrate, length)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create a BER decoder object.
+
+Parse BER/CER/DER octet-stream into one, possibly nested, ASN.1 object.
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_doc-func-members}
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_ad93d6974a7297f2e495e666913318d71}\index{pyasn1.codec.ber.decoder.Decoder@{pyasn1.codec.ber.decoder.Decoder}!\_\_call\_\_@{\_\_call\_\_}}
+\index{\_\_call\_\_@{\_\_call\_\_}!pyasn1.codec.ber.decoder.Decoder@{pyasn1.codec.ber.decoder.Decoder}}
+\doxysubsubsection{\texorpdfstring{\_\_call\_\_()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1codec_1_1ber_1_1decoder_1_1Decoder_ad93d6974a7297f2e495e666913318d71} 
+pyasn1.\+codec.\+ber.\+decoder.\+Decoder.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{substrate}{, }\item[{}]{asn1\+Spec}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{options}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Turns BER/CER/DER octet stream into an ASN.1 object.
+
+Takes BER/CER/DER octet-stream in form of :py:class:`bytes` (Python 3)
+or :py:class:`str` (Python 2) and decode it into an ASN.1 object
+(e.g. :py:class:`~pyasn1.type.base.PyAsn1Item` derivative) which
+may be a scalar or an arbitrary nested structure.
+
+Parameters
+----------
+substrate: :py:class:`bytes` (Python 3) or :py:class:`str` (Python 2)
+    BER/CER/DER octet-stream to parse
+
+Keyword Args
+------------
+asn1Spec: :py:class:`~pyasn1.type.base.PyAsn1Item`
+    A pyasn1 type object (:py:class:`~pyasn1.type.base.PyAsn1Item`
+    derivative) to act as a template guiding the decoder.
+    Depending on the ASN.1 structure being decoded, `asn1Spec` may or
+    may not be required. Most common reason for it to require is that
+    ASN.1 structure is encoded in *IMPLICIT* tagging mode.
+
+substrateFun: :py:class:`Union[
+        Callable[[pyasn1.type.base.PyAsn1Item, bytes, int],
+                 Tuple[pyasn1.type.base.PyAsn1Item, bytes]],
+        Callable[[pyasn1.type.base.PyAsn1Item, io.BytesIO, int, dict],
+                 Generator[Union[pyasn1.type.base.PyAsn1Item,
+                                 pyasn1.error.SubstrateUnderrunError],
+                           None, None]]
+    ]`
+    User callback meant to generalize special use cases like non-recursive or
+    partial decoding. A 3-arg non-streaming variant is supported for backwards
+    compatiblilty in addition to the newer 4-arg streaming variant.
+    The callback will receive the uninitialized object recovered from substrate
+    as 1st argument, the uninterpreted payload as 2nd argument, and the length
+    of the uninterpreted payload as 3rd argument. The streaming variant will
+    additionally receive the decode(..., **options) kwargs as 4th argument.
+    The non-streaming variant shall return an object that will be propagated
+    as decode() return value as 1st item, and the remainig payload for further
+    decode passes as 2nd item.
+    The streaming variant shall yield an object that will be propagated as
+    decode() return value, and leave the remaining payload in the stream.
+
+Returns
+-------
+: :py:class:`tuple`
+    A tuple of :py:class:`~pyasn1.type.base.PyAsn1Item` object
+    recovered from BER/CER/DER substrate and the unprocessed trailing
+    portion of the `substrate` (may be empty)
+
+Raises
+------
+: :py:class:`~pyasn1.error.PyAsn1Error`
+    :py:class:`~pyasn1.error.SubstrateUnderrunError` on insufficient
+    input or :py:class:`~pyasn1.error.PyAsn1Error` on decoding error.
+
+Examples
+--------
+Decode BER/CER/DER serialisation without ASN.1 schema
+
+.. code-block:: pycon
+
+   >>> s, unprocessed = decode(b'0\t\x02\x01\x01\x02\x01\x02\x02\x01\x03')
+   >>> str(s)
+   SequenceOf:
+    1 2 3
+
+Decode BER/CER/DER serialisation with ASN.1 schema
+
+.. code-block:: pycon
+
+   >>> seq = SequenceOf(componentType=Integer())
+   >>> s, unprocessed = decode(
+        b'0\t\x02\x01\x01\x02\x01\x02\x02\x01\x03', asn1Spec=seq)
+   >>> str(s)
+   SequenceOf:
+    1 2 3
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+codec/\+ber/\+decoder.\+py\end{DoxyCompactItemize}

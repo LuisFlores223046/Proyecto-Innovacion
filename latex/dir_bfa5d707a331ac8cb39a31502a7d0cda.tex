@@ -1,0 +1,155 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+eslintrc Directory Reference}
+\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda}{}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda}\index{frontend/node\_modules/"@eslint/eslintrc Directory Reference@{frontend/node\_modules/"@eslint/eslintrc Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_11506ae5b98f3c90a7de759d137f38bf}{conf}}
+\item 
+directory \doxymbox{\hyperlink{dir_afc4efbafc00bc0ce12251316353a048}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md239}{}\doxysubsection{\texorpdfstring{ESLint\+RC Library}{ESLint\+RC Library}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md239}
+This repository contains the legacy ESLint\+RC configuration file format for ESLint. This package is not intended for use outside of the ESLint ecosystem. It is ESLint-\/specific and not intended for use in other programs.
+
+{\bfseries{Note:\+}} This package is frozen except for critical bug fixes as ESLint moves to a new config system.\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md240}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md240}
+You can install the package as follows:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/eslintrc\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/eslintrc\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/eslintrc\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ install\ @eslint/eslintrc\ -\/D}
+
+\end{DoxyCode}
+\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md241}{}\doxysubsection{\texorpdfstring{Usage (ESM)}{Usage (ESM)}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md241}
+The primary class in this package is {\ttfamily Flat\+Compat}, which is a utility to translate ESLint\+RC-\/style configs into flat configs. Here\textquotesingle{}s how you use it inside of your {\ttfamily eslint.\+config.\+js} file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ FlatCompat\ \}\ from\ "{}@eslint/eslintrc"{};}
+\DoxyCodeLine{import\ js\ from\ "{}@eslint/js"{};}
+\DoxyCodeLine{import\ path\ from\ "{}path"{};}
+\DoxyCodeLine{import\ \{\ fileURLToPath\ \}\ from\ "{}url"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ mimic\ CommonJS\ variables\ -\/-\/\ not\ needed\ if\ using\ CommonJS}
+\DoxyCodeLine{const\ \_\_filename\ =\ fileURLToPath(import.meta.url);}
+\DoxyCodeLine{const\ \_\_dirname\ =\ path.dirname(\_\_filename);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ compat\ =\ new\ FlatCompat(\{}
+\DoxyCodeLine{\ \ \ \ baseDirectory:\ \_\_dirname,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ optional;\ default:\ process.cwd()}
+\DoxyCodeLine{\ \ \ \ resolvePluginsRelativeTo:\ \_\_dirname,\ \ \ \ \ \ \ //\ optional}
+\DoxyCodeLine{\ \ \ \ recommendedConfig:\ js.configs.recommended,\ //\ optional\ unless\ you're\ using\ "{}eslint:recommended"{}}
+\DoxyCodeLine{\ \ \ \ allConfig:\ js.configs.all,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ optional\ unless\ you're\ using\ "{}eslint:all"{}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ ESLintRC-\/style\ extends}
+\DoxyCodeLine{\ \ \ \ ...compat.extends("{}standard"{},\ "{}example"{},\ "{}plugin:react/recommended"{}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ environments}
+\DoxyCodeLine{\ \ \ \ ...compat.env(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ es2020:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ node:\ true}
+\DoxyCodeLine{\ \ \ \ \}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ plugins}
+\DoxyCodeLine{\ \ \ \ ...compat.plugins("{}jsx-\/a11y"{},\ "{}react"{}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ translate\ an\ entire\ config}
+\DoxyCodeLine{\ \ \ \ ...compat.config(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ ["{}jsx-\/a11y"{},\ "{}react"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ "{}standard"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ env:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ es2020:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ node:\ true}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ semi:\ "{}error"{}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \})}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md242}{}\doxysubsection{\texorpdfstring{Usage (Common\+JS)}{Usage (Common\+JS)}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md242}
+Using {\ttfamily Flat\+Compat} in Common\+JS files is similar to ESM, but you\textquotesingle{}ll use {\ttfamily require()} and {\ttfamily module.\+exports} instead of {\ttfamily import} and {\ttfamily export}. Here\textquotesingle{}s how you use it inside of your {\ttfamily eslint.\+config.\+js} Common\+JS file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ \{\ FlatCompat\ \}\ =\ require("{}@eslint/eslintrc"{});}
+\DoxyCodeLine{const\ js\ =\ require("{}@eslint/js"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ compat\ =\ new\ FlatCompat(\{}
+\DoxyCodeLine{\ \ \ \ baseDirectory:\ \_\_dirname,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ optional;\ default:\ process.cwd()}
+\DoxyCodeLine{\ \ \ \ resolvePluginsRelativeTo:\ \_\_dirname,\ \ \ \ \ \ \ //\ optional}
+\DoxyCodeLine{\ \ \ \ recommendedConfig:\ js.configs.recommended,\ //\ optional\ unless\ using\ "{}eslint:recommended"{}}
+\DoxyCodeLine{\ \ \ \ allConfig:\ js.configs.all,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ optional\ unless\ using\ "{}eslint:all"{}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{module.exports\ =\ [}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ ESLintRC-\/style\ extends}
+\DoxyCodeLine{\ \ \ \ ...compat.extends("{}standard"{},\ "{}example"{},\ "{}plugin:react/recommended"{}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ environments}
+\DoxyCodeLine{\ \ \ \ ...compat.env(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ es2020:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ node:\ true}
+\DoxyCodeLine{\ \ \ \ \}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ mimic\ plugins}
+\DoxyCodeLine{\ \ \ \ ...compat.plugins("{}jsx-\/a11y"{},\ "{}react"{}),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ translate\ an\ entire\ config}
+\DoxyCodeLine{\ \ \ \ ...compat.config(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ ["{}jsx-\/a11y"{},\ "{}react"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ "{}standard"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ env:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ es2020:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ node:\ true}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ semi:\ "{}error"{}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \})}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md243}{}\doxysubsection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md243}
+{\bfseries{Type\+Error:\+ Missing parameter \textquotesingle{}recommended\+Config\textquotesingle{} in Flat\+Compat constructor}}
+
+The {\ttfamily recommended\+Config} option is required when any config uses {\ttfamily eslint:\+recommended}, including any config in an {\ttfamily extends} clause. To fix this, follow the example above using {\ttfamily @eslint/\+js} to provide the {\ttfamily eslint:\+recommended} config.
+
+{\bfseries{Type\+Error:\+ Missing parameter \textquotesingle{}all\+Config\textquotesingle{} in Flat\+Compat constructor}}
+
+The {\ttfamily all\+Config} option is required when any config uses {\ttfamily eslint:\+all}, including any config in an {\ttfamily extends} clause. To fix this, follow the example above using {\ttfamily @eslint/\+js} to provide the {\ttfamily eslint:\+all} config.\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md244}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md244}
+MIT License\hypertarget{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md245}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_bfa5d707a331ac8cb39a31502a7d0cda_autotoc_md245}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://cybozu.co.jp/}{\texttt{}} \href{https://opensource.sap.com}{\texttt{}} \href{https://www.crawljobs.com/}{\texttt{}} \href{https://depot.dev}{\texttt{}} \href{https://www.n-ix.com/}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

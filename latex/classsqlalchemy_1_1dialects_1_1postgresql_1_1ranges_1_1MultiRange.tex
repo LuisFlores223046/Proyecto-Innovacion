@@ -1,0 +1,41 @@
+\doxysection{sqlalchemy.\+dialects.\+postgresql.\+ranges.\+Multi\+Range Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1MultiRange}{}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1MultiRange}\index{sqlalchemy.dialects.postgresql.ranges.MultiRange@{sqlalchemy.dialects.postgresql.ranges.MultiRange}}
+Inheritance diagram for sqlalchemy.\+dialects.\+postgresql.\+ranges.\+Multi\+Range:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1MultiRange}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1MultiRange_a0043f99d7f636ea3b765ba13286697c4}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1MultiRange_a0043f99d7f636ea3b765ba13286697c4} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1ranges_1_1AbstractMultiRange}{Abstract\+Multi\+Range}}\+[\+\_\+T]\+ {\bfseries \+\_\+\+\_\+sa\+\_\+type\+\_\+engine\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represents a multirange sequence.
+
+This list subclass is an utility to allow automatic type inference of
+the proper multi-range SQL type depending on the single range values.
+This is useful when operating on literal multi-ranges::
+
+    import sqlalchemy as sa
+    from sqlalchemy.dialects.postgresql import MultiRange, Range
+
+    value = literal(MultiRange([Range(2, 4)]))
+
+    select(tbl).where(tbl.c.value.op("@")(MultiRange([Range(-3, 7)])))
+
+.. versionadded:: 2.0.26
+
+.. seealso::
+
+    - :ref:`postgresql_multirange_list_use`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+postgresql/\+ranges.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,53 @@
+\doxysection{jinja2.\+bccache Namespace Reference}
+\hypertarget{namespacejinja2_1_1bccache}{}\label{namespacejinja2_1_1bccache}\index{jinja2.bccache@{jinja2.bccache}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1__MemcachedClient}{\+\_\+\+Memcached\+Client}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache}{Bytecode\+Cache}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache}{File\+System\+Bytecode\+Cache}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1MemcachedBytecodeCache}{Memcached\+Bytecode\+Cache}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1bccache_a20569affbc7b932a7c16ce8668d10c48}\label{namespacejinja2_1_1bccache_a20569affbc7b932a7c16ce8668d10c48} 
+int {\bfseries bc\+\_\+version} = 5
+\item 
+tuple \doxymbox{\hyperlink{namespacejinja2_1_1bccache_a819b0f9c7e14a2e48681b07aebef787c}{bc\+\_\+magic}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The optional bytecode cache system. This is useful if you have very
+complex template situations and the compilation of all those templates
+slows down your application too much.
+
+Situations where this is useful are often forking web applications that
+are initialized on the first request.
+\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1bccache_doc-var-members}
+\Hypertarget{namespacejinja2_1_1bccache_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacejinja2_1_1bccache_a819b0f9c7e14a2e48681b07aebef787c}\index{jinja2.bccache@{jinja2.bccache}!bc\_magic@{bc\_magic}}
+\index{bc\_magic@{bc\_magic}!jinja2.bccache@{jinja2.bccache}}
+\doxysubsubsection{\texorpdfstring{bc\_magic}{bc\_magic}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1bccache_a819b0f9c7e14a2e48681b07aebef787c} 
+tuple jinja2.\+bccache.\+bc\+\_\+magic}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ b\textcolor{stringliteral}{"{}j2"{}}}
+\DoxyCodeLine{\ \ \ \ +\ pickle.dumps(bc\_version,\ 2)}
+\DoxyCodeLine{\ \ \ \ +\ pickle.dumps((sys.version\_info[0]\ <<\ 24)\ |\ sys.version\_info[1],\ 2)}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

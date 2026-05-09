@@ -1,0 +1,102 @@
+\doxysection{frontend/\+node\+\_\+modules/\+file-\/entry-\/cache Directory Reference}
+\hypertarget{dir_f87c539523747ba56b44964a3a3b427a}{}\label{dir_f87c539523747ba56b44964a3a3b427a}\index{frontend/node\_modules/file-\/entry-\/cache Directory Reference@{frontend/node\_modules/file-\/entry-\/cache Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2331}{}\doxysubsection{\texorpdfstring{file-\/entry-\/cache}{file-\/entry-\/cache}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2331}
+\begin{quote}
+Super simple cache for file metadata, useful for process that work on a given series of files and that only need to repeat the job on the changed ones since the previous run of the process — Edit \end{quote}
+
+
+\href{https://npmjs.org/package/file-entry-cache}{\texttt{}} \href{https://github.com/jaredwray/file-entry-cache/actions/workflows/tests.yaml}{\texttt{}} \href{https://codecov.io/github/jaredwray/file-entry-cache}{\texttt{}} \href{https://npmjs.com/package/file-entry-cache}{\texttt{}}\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2332}{}\doxysubsection{\texorpdfstring{install}{install}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2332}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/-\/save\ file-\/entry-\/cache}
+
+\end{DoxyCode}
+\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2333}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2333}
+The module exposes two functions {\ttfamily create} and {\ttfamily create\+From\+File}.\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2334}{}\doxysubsection{\texorpdfstring{{\ttfamily create(cache\+Name, \+[directory, use\+Check\+Sum]\+)}}{{\ttfamily create(cache\+Name, \+[directory, use\+Check\+Sum]\+)}}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2334}
+
+\begin{DoxyItemize}
+\item {\bfseries{cache\+Name}}:\+ the name of the cache to be created
+\item {\bfseries{directory}}:\+ Optional the directory to load the cache from
+\item {\bfseries{usecheck\+Sum}}:\+ Whether to use md5 checksum to verify if file changed. If false the default will be to use the mtime and size of the file.
+\end{DoxyItemize}\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2335}{}\doxysubsection{\texorpdfstring{{\ttfamily create\+From\+File(path\+To\+Cache, \+[use\+Check\+Sum]\+)}}{{\ttfamily create\+From\+File(path\+To\+Cache, \+[use\+Check\+Sum]\+)}}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2335}
+
+\begin{DoxyItemize}
+\item {\bfseries{path\+To\+Cache}}:\+ the path to the cache file (this combines the cache name and directory)
+\item {\bfseries{use\+Check\+Sum}}:\+ Whether to use md5 checksum to verify if file changed. If false the default will be to use the mtime and size of the file.
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ loads\ the\ cache,\ if\ one\ does\ not\ exists\ for\ the\ given}
+\DoxyCodeLine{//\ Id\ a\ new\ one\ will\ be\ prepared\ to\ be\ created}
+\DoxyCodeLine{var\ fileEntryCache\ =\ require('file-\/entry-\/cache');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ cache\ =\ fileEntryCache.create('testCache');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ files\ =\ expand('../fixtures/*.txt');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ the\ first\ time\ this\ method\ is\ called,\ will\ return\ all\ the\ files}
+\DoxyCodeLine{var\ oFiles\ =\ cache.getUpdatedFiles(files);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ this\ will\ persist\ this\ to\ disk\ checking\ each\ file\ stats\ and}
+\DoxyCodeLine{//\ updating\ the\ meta\ attributes\ \`{}size`\ and\ \`{}mtime`.}
+\DoxyCodeLine{//\ custom\ fields\ could\ also\ be\ added\ to\ the\ meta\ object\ and\ will\ be\ persisted}
+\DoxyCodeLine{//\ in\ order\ to\ retrieve\ them\ later}
+\DoxyCodeLine{cache.reconcile();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ use\ this\ if\ you\ want\ the\ non\ visited\ file\ entries\ to\ be\ kept\ in\ the\ cache}
+\DoxyCodeLine{//\ for\ more\ than\ one\ execution}
+\DoxyCodeLine{//}
+\DoxyCodeLine{//\ cache.reconcile(\ true\ /*\ noPrune\ */)}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ on\ a\ second\ run}
+\DoxyCodeLine{var\ cache2\ =\ fileEntryCache.create('testCache');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ will\ return\ now\ only\ the\ files\ that\ were\ modified\ or\ none}
+\DoxyCodeLine{//\ if\ no\ files\ were\ modified\ previous\ to\ the\ execution\ of\ this\ function}
+\DoxyCodeLine{var\ oFiles\ =\ cache.getUpdatedFiles(files);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ if\ you\ want\ to\ prevent\ a\ file\ from\ being\ considered\ non\ modified}
+\DoxyCodeLine{//\ something\ useful\ if\ a\ file\ failed\ some\ sort\ of\ validation}
+\DoxyCodeLine{//\ you\ can\ then\ remove\ the\ entry\ from\ the\ cache\ doing}
+\DoxyCodeLine{cache.removeEntry('path/to/file');\ //\ path\ to\ file\ should\ be\ the\ same\ path\ of\ the\ file\ received\ on\ \`{}getUpdatedFiles`}
+\DoxyCodeLine{//\ that\ will\ effectively\ make\ the\ file\ to\ appear\ again\ as\ modified\ until\ the\ validation\ is\ passed.\ In\ that}
+\DoxyCodeLine{//\ case\ you\ should\ not\ remove\ it\ from\ the\ cache}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ if\ you\ need\ all\ the\ files,\ so\ you\ can\ determine\ what\ to\ do\ with\ the\ changed\ ones}
+\DoxyCodeLine{//\ you\ can\ call}
+\DoxyCodeLine{var\ oFiles\ =\ cache.normalizeEntries(files);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ oFiles\ will\ be\ an\ array\ of\ objects\ like\ the\ following}
+\DoxyCodeLine{entry\ =\ \{}
+\DoxyCodeLine{\ \ key:\ 'some/name/file',\ the\ path\ to\ the\ file}
+\DoxyCodeLine{\ \ changed:\ true,\ //\ if\ the\ file\ was\ changed\ since\ previous\ run}
+\DoxyCodeLine{\ \ meta:\ \{}
+\DoxyCodeLine{\ \ \ \ size:\ 3242,\ //\ the\ size\ of\ the\ file}
+\DoxyCodeLine{\ \ \ \ mtime:\ 231231231,\ //\ the\ modification\ time\ of\ the\ file}
+\DoxyCodeLine{\ \ \ \ data:\ \{\}\ //\ some\ extra\ field\ stored\ for\ this\ file\ (useful\ to\ save\ the\ result\ of\ a\ transformation\ on\ the\ file}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2336}{}\doxysubsection{\texorpdfstring{Motivation for this module}{Motivation for this module}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2336}
+I needed a super simple and dumb {\bfseries{in-\/memory cache}} with optional disk persistence (write-\/back cache) in order to make a script that will beautify files with {\ttfamily esformatter} to execute only on the files that were changed since the last run.
+
+In doing so the process of beautifying files was reduced from several seconds to a small fraction of a second.
+
+This module uses \href{https://www.npmjs.com/package/flat-cache}{\texttt{flat-\/cache}} a super simple {\ttfamily key/\+value} cache storage with optional file persistance.
+
+The main idea is to read the files when the task begins, apply the transforms required, and if the process succeed, then store the new state of the files. The next time this module request for {\ttfamily get\+Changed\+Files} will return only the files that were modified. Making the process to end faster.
+
+This module could also be used by processes that modify the files applying a transform, in that case the result of the transform could be stored in the {\ttfamily meta} field, of the entries. Anything added to the meta field will be persisted. Those processes won\textquotesingle{}t need to call {\ttfamily get\+Changed\+Files} they will instead call {\ttfamily normalize\+Entries} that will return the entries with a {\ttfamily changed} field that can be used to determine if the file was changed or not. If it was not changed the transformed stored data could be used instead of actually applying the transformation, saving time in case of only a few files changed.
+
+In the worst case scenario all the files will be processed. In the best case scenario only a few of them will be processed.\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2337}{}\doxysubsection{\texorpdfstring{Important notes}{Important notes}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2337}
+
+\begin{DoxyItemize}
+\item The values set on the meta attribute of the entries should be {\ttfamily stringify-\/able} ones if possible, flat-\/cache uses {\ttfamily circular-\/json} to try to persist circular structures, but this should be considered experimental. The best results are always obtained with non circular values
+\item All the changes to the cache state are done to memory first and only persisted after reconcile.
+\end{DoxyItemize}\hypertarget{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2338}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_f87c539523747ba56b44964a3a3b427a_autotoc_md2338}
+MIT 

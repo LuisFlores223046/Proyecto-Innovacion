@@ -1,0 +1,102 @@
+\doxysection{rich.\+pretty.\+Node Class Reference}
+\hypertarget{classrich_1_1pretty_1_1Node}{}\label{classrich_1_1pretty_1_1Node}\index{rich.pretty.Node@{rich.pretty.Node}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Iterable\+[str]\+ \doxymbox{\hyperlink{classrich_1_1pretty_1_1Node_af766ced739094454a5f0f912656d067f}{iter\+\_\+tokens}} (self)
+\item 
+bool \doxymbox{\hyperlink{classrich_1_1pretty_1_1Node_a6cf85ffe574f41ccbc3f780fe9dc06e6}{check\+\_\+length}} (self, int start\+\_\+length, int max\+\_\+length)
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_af013728f44182575a515d0001c8267f3}\label{classrich_1_1pretty_1_1Node_af013728f44182575a515d0001c8267f3} 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+str \doxymbox{\hyperlink{classrich_1_1pretty_1_1Node_acf18d044399b98fd565704f92227a820}{render}} (self, int max\+\_\+width=80, int indent\+\_\+size=4, bool expand\+\_\+all=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_ad036924320d46540e95045f328f598b1}\label{classrich_1_1pretty_1_1Node_ad036924320d46540e95045f328f598b1} 
+str {\bfseries key\+\_\+repr} = "{}"{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a36824e49f41499d1e34238ea0122a20d}\label{classrich_1_1pretty_1_1Node_a36824e49f41499d1e34238ea0122a20d} 
+str {\bfseries value\+\_\+repr} = "{}"{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a1360ace3698f4f81860fbdb3c4b8b917}\label{classrich_1_1pretty_1_1Node_a1360ace3698f4f81860fbdb3c4b8b917} 
+str {\bfseries open\+\_\+brace} = "{}"{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a4fc06b5615811c9a3d9587d9acd219ee}\label{classrich_1_1pretty_1_1Node_a4fc06b5615811c9a3d9587d9acd219ee} 
+str {\bfseries close\+\_\+brace} = "{}"{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_aa686b9395a2a8716be8b68a5b1eef5d8}\label{classrich_1_1pretty_1_1Node_aa686b9395a2a8716be8b68a5b1eef5d8} 
+str {\bfseries empty} = "{}"{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_acd17386aec368541558437579673bd98}\label{classrich_1_1pretty_1_1Node_acd17386aec368541558437579673bd98} 
+bool {\bfseries last} = False
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a17cb328feda7995948b0ec937d295c86}\label{classrich_1_1pretty_1_1Node_a17cb328feda7995948b0ec937d295c86} 
+bool {\bfseries is\+\_\+tuple} = False
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_ad383d90ca50aed3f1e22ffafa6ab9642}\label{classrich_1_1pretty_1_1Node_ad383d90ca50aed3f1e22ffafa6ab9642} 
+bool {\bfseries is\+\_\+namedtuple} = False
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a4a6aec46161904dda9ca258f5bb57a37}\label{classrich_1_1pretty_1_1Node_a4a6aec46161904dda9ca258f5bb57a37} 
+Optional {\bfseries children} = None
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a60f0136bd944eaaffe11135a3ca9e3c9}\label{classrich_1_1pretty_1_1Node_a60f0136bd944eaaffe11135a3ca9e3c9} 
+str {\bfseries key\+\_\+separator} = "{}:\+ "{}
+\item 
+\Hypertarget{classrich_1_1pretty_1_1Node_a81dee65d8883245ddbe34a8a9f27a102}\label{classrich_1_1pretty_1_1Node_a81dee65d8883245ddbe34a8a9f27a102} 
+str {\bfseries separator} = "{}, "{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A node in a repr tree. May be atomic or a container.\end{DoxyVerb}
+ 
+
+\label{classrich_1_1pretty_1_1Node_doc-func-members}
+\Hypertarget{classrich_1_1pretty_1_1Node_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrich_1_1pretty_1_1Node_a6cf85ffe574f41ccbc3f780fe9dc06e6}\index{rich.pretty.Node@{rich.pretty.Node}!check\_length@{check\_length}}
+\index{check\_length@{check\_length}!rich.pretty.Node@{rich.pretty.Node}}
+\doxysubsubsection{\texorpdfstring{check\_length()}{check\_length()}}
+{\footnotesize\ttfamily \label{classrich_1_1pretty_1_1Node_a6cf85ffe574f41ccbc3f780fe9dc06e6} 
+ bool rich.\+pretty.\+Node.\+check\+\_\+length (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{start\+\_\+length}{, }\item[{int}]{max\+\_\+length}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check the length fits within a limit.
+
+Args:
+    start_length (int): Starting length of the line (indent, prefix, suffix).
+    max_length (int): Maximum length.
+
+Returns:
+    bool: True if the node can be rendered within max length, otherwise False.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1pretty_1_1Node_af766ced739094454a5f0f912656d067f}\index{rich.pretty.Node@{rich.pretty.Node}!iter\_tokens@{iter\_tokens}}
+\index{iter\_tokens@{iter\_tokens}!rich.pretty.Node@{rich.pretty.Node}}
+\doxysubsubsection{\texorpdfstring{iter\_tokens()}{iter\_tokens()}}
+{\footnotesize\ttfamily \label{classrich_1_1pretty_1_1Node_af766ced739094454a5f0f912656d067f} 
+ Iterable\+[str]\+ rich.\+pretty.\+Node.\+iter\+\_\+tokens (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate tokens for this node.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1pretty_1_1Node_acf18d044399b98fd565704f92227a820}\index{rich.pretty.Node@{rich.pretty.Node}!render@{render}}
+\index{render@{render}!rich.pretty.Node@{rich.pretty.Node}}
+\doxysubsubsection{\texorpdfstring{render()}{render()}}
+{\footnotesize\ttfamily \label{classrich_1_1pretty_1_1Node_acf18d044399b98fd565704f92227a820} 
+ str rich.\+pretty.\+Node.\+render (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+width}{ = {\ttfamily 80}, }\item[{int }]{indent\+\_\+size}{ = {\ttfamily 4}, }\item[{bool }]{expand\+\_\+all}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Render the node to a pretty repr.
+
+Args:
+    max_width (int, optional): Maximum width of the repr. Defaults to 80.
+    indent_size (int, optional): Size of indents. Defaults to 4.
+    expand_all (bool, optional): Expand all levels. Defaults to False.
+
+Returns:
+    str: A repr string of the original object.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rich/\+pretty.\+py\end{DoxyCompactItemize}

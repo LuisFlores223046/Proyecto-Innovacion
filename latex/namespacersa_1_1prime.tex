@@ -1,0 +1,137 @@
+\doxysection{rsa.\+prime Namespace Reference}
+\hypertarget{namespacersa_1_1prime}{}\label{namespacersa_1_1prime}\index{rsa.prime@{rsa.prime}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1prime_abd5d6b412aba2f32a393a64bd5982776}{gcd}} (int p, int q)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1prime_a42cda70e6c544798547770955f585ad3}{get\+\_\+primality\+\_\+testing\+\_\+rounds}} (int number)
+\item 
+bool \doxymbox{\hyperlink{namespacersa_1_1prime_a9af5cb8d60aff5235b3b15ffaf784c23}{miller\+\_\+rabin\+\_\+primality\+\_\+testing}} (int n, int k)
+\item 
+bool \doxymbox{\hyperlink{namespacersa_1_1prime_aa4b59065d3d701b45b8d239eda47102a}{is\+\_\+prime}} (int number)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1prime_af97922a2a0f7e89d5b66bda8acf5a8b6}{getprime}} (int nbits)
+\item 
+bool \doxymbox{\hyperlink{namespacersa_1_1prime_afe0594562f1f7de3dc6e2e611074ff0e}{are\+\_\+relatively\+\_\+prime}} (int a, int b)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1prime_a4341d5e25c83d7c0b34ec160a7b13750}\label{namespacersa_1_1prime_a4341d5e25c83d7c0b34ec160a7b13750} 
+{\bfseries failures}
+\item 
+\Hypertarget{namespacersa_1_1prime_a1360d0a49063777d11cf8c8439efd0d4}\label{namespacersa_1_1prime_a1360d0a49063777d11cf8c8439efd0d4} 
+{\bfseries tests}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Numerical functions related to primes.
+
+Implementation based on the book Algorithm Design by Michael T. Goodrich and
+Roberto Tamassia, 2002.
+\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1prime_doc-func-members}
+\Hypertarget{namespacersa_1_1prime_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1prime_afe0594562f1f7de3dc6e2e611074ff0e}\index{rsa.prime@{rsa.prime}!are\_relatively\_prime@{are\_relatively\_prime}}
+\index{are\_relatively\_prime@{are\_relatively\_prime}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{are\_relatively\_prime()}{are\_relatively\_prime()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_afe0594562f1f7de3dc6e2e611074ff0e} 
+ bool are\+\_\+relatively\+\_\+prime (\begin{DoxyParamCaption}\item[{int}]{a}{, }\item[{int}]{b}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns True if a and b are relatively prime, and False if they
+are not.
+
+>>> are_relatively_prime(2, 3)
+True
+>>> are_relatively_prime(2, 4)
+False
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1prime_abd5d6b412aba2f32a393a64bd5982776}\index{rsa.prime@{rsa.prime}!gcd@{gcd}}
+\index{gcd@{gcd}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{gcd()}{gcd()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_abd5d6b412aba2f32a393a64bd5982776} 
+ int gcd (\begin{DoxyParamCaption}\item[{int}]{p}{, }\item[{int}]{q}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the greatest common divisor of p and q
+
+>>> gcd(48, 180)
+12
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1prime_a42cda70e6c544798547770955f585ad3}\index{rsa.prime@{rsa.prime}!get\_primality\_testing\_rounds@{get\_primality\_testing\_rounds}}
+\index{get\_primality\_testing\_rounds@{get\_primality\_testing\_rounds}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{get\_primality\_testing\_rounds()}{get\_primality\_testing\_rounds()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_a42cda70e6c544798547770955f585ad3} 
+ int get\+\_\+primality\+\_\+testing\+\_\+rounds (\begin{DoxyParamCaption}\item[{int}]{number}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns minimum number of rounds for Miller-Rabing primality testing,
+based on number bitsize.
+
+According to NIST FIPS 186-4, Appendix C, Table C.3, minimum number of
+rounds of M-R testing, using an error probability of 2 ** (-100), for
+different p, q bitsizes are:
+  * p, q bitsize: 512; rounds: 7
+  * p, q bitsize: 1024; rounds: 4
+  * p, q bitsize: 1536; rounds: 3
+See: http://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-4.pdf
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1prime_af97922a2a0f7e89d5b66bda8acf5a8b6}\index{rsa.prime@{rsa.prime}!getprime@{getprime}}
+\index{getprime@{getprime}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{getprime()}{getprime()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_af97922a2a0f7e89d5b66bda8acf5a8b6} 
+ int getprime (\begin{DoxyParamCaption}\item[{int}]{nbits}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a prime number that can be stored in 'nbits' bits.
+
+>>> p = getprime(128)
+>>> is_prime(p-1)
+False
+>>> is_prime(p)
+True
+>>> is_prime(p+1)
+False
+
+>>> from rsa import common
+>>> common.bit_size(p) == 128
+True
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1prime_aa4b59065d3d701b45b8d239eda47102a}\index{rsa.prime@{rsa.prime}!is\_prime@{is\_prime}}
+\index{is\_prime@{is\_prime}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{is\_prime()}{is\_prime()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_aa4b59065d3d701b45b8d239eda47102a} 
+ bool is\+\_\+prime (\begin{DoxyParamCaption}\item[{int}]{number}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns True if the number is prime, and False otherwise.
+
+>>> is_prime(2)
+True
+>>> is_prime(42)
+False
+>>> is_prime(41)
+True
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1prime_a9af5cb8d60aff5235b3b15ffaf784c23}\index{rsa.prime@{rsa.prime}!miller\_rabin\_primality\_testing@{miller\_rabin\_primality\_testing}}
+\index{miller\_rabin\_primality\_testing@{miller\_rabin\_primality\_testing}!rsa.prime@{rsa.prime}}
+\doxysubsubsection{\texorpdfstring{miller\_rabin\_primality\_testing()}{miller\_rabin\_primality\_testing()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1prime_a9af5cb8d60aff5235b3b15ffaf784c23} 
+ bool miller\+\_\+rabin\+\_\+primality\+\_\+testing (\begin{DoxyParamCaption}\item[{int}]{n}{, }\item[{int}]{k}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates whether n is composite (which is always correct) or prime
+(which theoretically is incorrect with error probability 4**-k), by
+applying Miller-Rabin primality testing.
+
+For reference and implementation example, see:
+https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+
+:param n: Integer to be tested for primality.
+:type n: int
+:param k: Number of rounds (witnesses) of Miller-Rabin testing.
+:type k: int
+:return: False if the number is composite, True if it's probably prime.
+:rtype: bool
+\end{DoxyVerb}
+ 

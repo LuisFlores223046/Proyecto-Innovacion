@@ -1,0 +1,130 @@
+\doxysection{jinja2.\+bccache.\+Memcached\+Bytecode\+Cache Class Reference}
+\hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache}{}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache}\index{jinja2.bccache.MemcachedBytecodeCache@{jinja2.bccache.MemcachedBytecodeCache}}
+Inheritance diagram for jinja2.\+bccache.\+Memcached\+Bytecode\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1bccache_1_1MemcachedBytecodeCache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a125741af24eafee9b891480b7ff54784}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a125741af24eafee9b891480b7ff54784} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}\+\_\+\+Memcached\+Client"{} client, str prefix="{}jinja2/\+bytecode/\+"{}, t.\+Optional\+[int]\+ timeout=None, bool ignore\+\_\+memcache\+\_\+errors=True)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_aa50e79c302f41dced335e043aad6d7f4}{load\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abdcb2bf438e2e6ad580b215e236d8e4a}{dump\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache}{jinja2.\+bccache.\+Bytecode\+Cache}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_adfccc9f4c141b0886859bb885bcf8e6a}{clear}} (self)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a1ce40bddff60f1a61df8b054fa5cd4b3}{get\+\_\+cache\+\_\+key}} (self, str name, t.\+Optional\+[t.\+Union\+[str]\+]\+ filename=None)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a3eabf30b7c8ef6b72ecafafea0d86c93}{get\+\_\+source\+\_\+checksum}} (self, str source)
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9f6f2505ffdb01644e0138709be1fffb}{get\+\_\+bucket}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[str]\+ filename, str source)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a61ce7c88076ceccc0409dc7e86a028ac}{set\+\_\+bucket}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_af5dfe5316c969178158dff1c9c831edb}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_af5dfe5316c969178158dff1c9c831edb} 
+{\bfseries client} = client
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a637c3deaedead4e48e82999c87fe383d}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a637c3deaedead4e48e82999c87fe383d} 
+{\bfseries prefix} = prefix
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a8b8f997beaa048df65e075ac8e5c981f}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_a8b8f997beaa048df65e075ac8e5c981f} 
+{\bfseries timeout} = timeout
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abe9c75bac7b064d8e008da8cf2f9ca6b}\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abe9c75bac7b064d8e008da8cf2f9ca6b} 
+{\bfseries ignore\+\_\+memcache\+\_\+errors} = ignore\+\_\+memcache\+\_\+errors
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements a bytecode cache that uses a memcache cache for
+storing the information.  It does not enforce a specific memcache library
+(tummy's memcache or cmemcache) but will accept any class that provides
+the minimal interface required.
+
+Libraries compatible with this class:
+
+-   `cachelib <https://github.com/pallets/cachelib>`_
+-   `python-memcached <https://pypi.org/project/python-memcached/>`_
+
+(Unfortunately the django cache interface is not compatible because it
+does not support storing binary data, only text. You can however pass
+the underlying cache client to the bytecode cache which is available
+as `django.core.cache.cache._client`.)
+
+The minimal interface for the client passed to the constructor is this:
+
+.. class:: MinimalClientInterface
+
+    .. method:: set(key, value[, timeout])
+
+        Stores the bytecode in the cache.  `value` is a string and
+        `timeout` the timeout of the key.  If timeout is not provided
+        a default timeout or no timeout should be assumed, if it's
+        provided it's an integer with the number of seconds the cache
+        item should exist.
+
+    .. method:: get(key)
+
+        Returns the value for the cache key.  If the item does not
+        exist in the cache the return value must be `None`.
+
+The other arguments to the constructor are the prefix for all keys that
+is added before the actual cache key and the timeout for the bytecode in
+the cache system.  We recommend a high (or no) timeout.
+
+This bytecode cache does not support clearing of used items in the cache.
+The clear method is a no-operation function.
+
+.. versionadded:: 2.7
+   Added support for ignoring memcache errors through the
+   `ignore_memcache_errors` parameter.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_doc-func-members}
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abdcb2bf438e2e6ad580b215e236d8e4a}\index{jinja2.bccache.MemcachedBytecodeCache@{jinja2.bccache.MemcachedBytecodeCache}!dump\_bytecode@{dump\_bytecode}}
+\index{dump\_bytecode@{dump\_bytecode}!jinja2.bccache.MemcachedBytecodeCache@{jinja2.bccache.MemcachedBytecodeCache}}
+\doxysubsubsection{\texorpdfstring{dump\_bytecode()}{dump\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abdcb2bf438e2e6ad580b215e236d8e4a} 
+ None jinja2.\+bccache.\+Memcached\+Bytecode\+Cache.\+dump\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to write the bytecode
+from a bucket back to the cache.  If it unable to do so it must not
+fail silently but raise an exception.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9247d0d7453cf47dbd00cb43809479f8}{jinja2.\+bccache.\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_aa50e79c302f41dced335e043aad6d7f4}\index{jinja2.bccache.MemcachedBytecodeCache@{jinja2.bccache.MemcachedBytecodeCache}!load\_bytecode@{load\_bytecode}}
+\index{load\_bytecode@{load\_bytecode}!jinja2.bccache.MemcachedBytecodeCache@{jinja2.bccache.MemcachedBytecodeCache}}
+\doxysubsubsection{\texorpdfstring{load\_bytecode()}{load\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_aa50e79c302f41dced335e043aad6d7f4} 
+ None jinja2.\+bccache.\+Memcached\+Bytecode\+Cache.\+load\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to load bytecode into a
+bucket.  If they are not able to find code in the cache for the
+bucket, it must not do anything.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_ae145388705cf26b278492c73bbc388d9}{jinja2.\+bccache.\+Bytecode\+Cache}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+bccache.\+py\end{DoxyCompactItemize}

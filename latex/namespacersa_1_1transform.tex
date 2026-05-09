@@ -1,0 +1,61 @@
+\doxysection{rsa.\+transform Namespace Reference}
+\hypertarget{namespacersa_1_1transform}{}\label{namespacersa_1_1transform}\index{rsa.transform@{rsa.transform}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1transform_a405ab9bb51d272f08f0b0a4d9ea77070}{bytes2int}} (bytes raw\+\_\+bytes)
+\item 
+bytes \doxymbox{\hyperlink{namespacersa_1_1transform_ac7660565dbe885b53c6b87f8eb5fb737}{int2bytes}} (int number, int fill\+\_\+size=0)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Data transformation functions.
+
+From bytes to a number, number to bytes, etc.
+\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1transform_doc-func-members}
+\Hypertarget{namespacersa_1_1transform_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1transform_a405ab9bb51d272f08f0b0a4d9ea77070}\index{rsa.transform@{rsa.transform}!bytes2int@{bytes2int}}
+\index{bytes2int@{bytes2int}!rsa.transform@{rsa.transform}}
+\doxysubsubsection{\texorpdfstring{bytes2int()}{bytes2int()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1transform_a405ab9bb51d272f08f0b0a4d9ea77070} 
+ int bytes2int (\begin{DoxyParamCaption}\item[{bytes}]{raw\+\_\+bytes}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Converts a list of bytes or an 8-bit string to an integer.
+
+    When using unicode strings, encode it to some encoding like UTF8 first.
+
+    >>> (((128 * 256) + 64) * 256) + 15
+    8405007
+    >>> bytes2int(b'\x80@\x0f')
+    8405007
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1transform_ac7660565dbe885b53c6b87f8eb5fb737}\index{rsa.transform@{rsa.transform}!int2bytes@{int2bytes}}
+\index{int2bytes@{int2bytes}!rsa.transform@{rsa.transform}}
+\doxysubsubsection{\texorpdfstring{int2bytes()}{int2bytes()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1transform_ac7660565dbe885b53c6b87f8eb5fb737} 
+ bytes int2bytes (\begin{DoxyParamCaption}\item[{int}]{number}{, }\item[{int }]{fill\+\_\+size}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert an unsigned integer to bytes (big-endian)::
+
+Does not preserve leading zeros if you don't specify a fill size.
+
+:param number:
+    Integer value
+:param fill_size:
+    If the optional fill size is given the length of the resulting
+    byte string is expected to be the fill size and will be padded
+    with prefix zero bytes to satisfy that length.
+:returns:
+    Raw bytes (base-256 representation).
+:raises:
+    ``OverflowError`` when fill_size is given and the number takes up more
+    bytes than fit into the block. This requires the ``overflow``
+    argument to this function to be set to ``False`` otherwise, no
+    error will be raised.
+\end{DoxyVerb}
+ 

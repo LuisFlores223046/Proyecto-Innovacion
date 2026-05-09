@@ -1,0 +1,100 @@
+\doxysection{psycopg2.\+\_\+range.\+Range\+Caster Class Reference}
+\hypertarget{classpsycopg2_1_1__range_1_1RangeCaster}{}\label{classpsycopg2_1_1__range_1_1RangeCaster}\index{psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a3ada8b08d73482f2263cc938cb71a843}\label{classpsycopg2_1_1__range_1_1RangeCaster_a3ada8b08d73482f2263cc938cb71a843} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, pgrange, pyrange, oid, subtype\+\_\+oid, array\+\_\+oid=None)
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_aa3196dba09d7bfabbdd56aeb7a55ec93}\label{classpsycopg2_1_1__range_1_1RangeCaster_aa3196dba09d7bfabbdd56aeb7a55ec93} 
+{\bfseries parse} (self, s, cur=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a4e9416d5260791ff496b0afd85ef1a50}\label{classpsycopg2_1_1__range_1_1RangeCaster_a4e9416d5260791ff496b0afd85ef1a50} 
+{\bfseries subtype\+\_\+oid} = subtype\+\_\+oid
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_adbd88adf45b282532a04fc957e6e3348}\label{classpsycopg2_1_1__range_1_1RangeCaster_adbd88adf45b282532a04fc957e6e3348} 
+{\bfseries typecaster} = new\+\_\+type((oid,), name, self.\+parse)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1__range_1_1RangeCaster_aca2df5fa6f50ad6cf1bbc2f62230ae2f}{array\+\_\+typecaster}}
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a5021a7efd400f3c96f185be64ce6ec7a}\label{classpsycopg2_1_1__range_1_1RangeCaster_a5021a7efd400f3c96f185be64ce6ec7a} 
+{\bfseries adapter} = None
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a06b61f2ad35bb84e7346e6f611da5a2d}\label{classpsycopg2_1_1__range_1_1RangeCaster_a06b61f2ad35bb84e7346e6f611da5a2d} 
+{\bfseries range} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1__range_1_1RangeCaster_ab10e4ecc2c73bbf097926a4b0af313ff}{\+\_\+create\+\_\+ranges}} (self, pgrange, pyrange)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1__range_1_1RangeCaster_ad3a31f42fed7000eac4d6af8a862683f}{\+\_\+from\+\_\+db}} (self, name, pyrange, conn\+\_\+or\+\_\+curs)
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a131268c18c3ae93ae25650acca2a8163}\label{classpsycopg2_1_1__range_1_1RangeCaster_a131268c18c3ae93ae25650acca2a8163} 
+{\bfseries \+\_\+register} (self, scope=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_a278a7bc08df2ae124977cc46cda87fea}\label{classpsycopg2_1_1__range_1_1RangeCaster_a278a7bc08df2ae124977cc46cda87fea} 
+{\bfseries \+\_\+re\+\_\+range} = re.\+compile(, re.\+VERBOSE)
+\item 
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_ab18b2fc70a55234449a754ffcc72bce6}\label{classpsycopg2_1_1__range_1_1RangeCaster_ab18b2fc70a55234449a754ffcc72bce6} 
+{\bfseries \+\_\+re\+\_\+undouble} = re.\+compile(r\textquotesingle{}(\+["{}\textbackslash{}\textbackslash{}]\+)\textbackslash{}1\textquotesingle{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Helper class to convert between `Range` and PostgreSQL range types.
+
+Objects of this class are usually created by `register_range()`. Manual
+creation could be useful if querying the database is not advisable: in
+this case the oids must be provided.
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1__range_1_1RangeCaster_doc-func-members}
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_ab10e4ecc2c73bbf097926a4b0af313ff}\index{psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}!\_create\_ranges@{\_create\_ranges}}
+\index{\_create\_ranges@{\_create\_ranges}!psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}}
+\doxysubsubsection{\texorpdfstring{\_create\_ranges()}{\_create\_ranges()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1__range_1_1RangeCaster_ab10e4ecc2c73bbf097926a4b0af313ff} 
+psycopg2.\+\_\+range.\+Range\+Caster.\+\_\+create\+\_\+ranges (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{pgrange}{, }\item[{}]{pyrange}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create Range and RangeAdapter classes if needed.\end{DoxyVerb}
+ \Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_ad3a31f42fed7000eac4d6af8a862683f}\index{psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}!\_from\_db@{\_from\_db}}
+\index{\_from\_db@{\_from\_db}!psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}}
+\doxysubsubsection{\texorpdfstring{\_from\_db()}{\_from\_db()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1__range_1_1RangeCaster_ad3a31f42fed7000eac4d6af8a862683f} 
+psycopg2.\+\_\+range.\+Range\+Caster.\+\_\+from\+\_\+db (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{, }\item[{}]{pyrange}{, }\item[{}]{conn\+\_\+or\+\_\+curs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Return a `RangeCaster` instance for the type *pgrange*.
+
+Raise `ProgrammingError` if the type is not found.
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1__range_1_1RangeCaster_doc-variable-members}
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpsycopg2_1_1__range_1_1RangeCaster_aca2df5fa6f50ad6cf1bbc2f62230ae2f}\index{psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}!array\_typecaster@{array\_typecaster}}
+\index{array\_typecaster@{array\_typecaster}!psycopg2.\_range.RangeCaster@{psycopg2.\_range.RangeCaster}}
+\doxysubsubsection{\texorpdfstring{array\_typecaster}{array\_typecaster}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1__range_1_1RangeCaster_aca2df5fa6f50ad6cf1bbc2f62230ae2f} 
+psycopg2.\+\_\+range.\+Range\+Caster.\+array\+\_\+typecaster}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ new\_array\_type(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (array\_oid,),\ name\ +\ \textcolor{stringliteral}{"{}ARRAY"{}},\ self.typecaster)}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+\+\_\+range.\+py\end{DoxyCompactItemize}

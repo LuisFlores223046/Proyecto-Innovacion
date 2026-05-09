@@ -1,0 +1,85 @@
+\doxysection{fastapi.\+security.\+api\+\_\+key.\+APIKey\+Header Class Reference}
+\hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader}{}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader}\index{fastapi.security.api\_key.APIKeyHeader@{fastapi.security.api\_key.APIKeyHeader}}
+Inheritance diagram for fastapi.\+security.\+api\+\_\+key.\+APIKey\+Header:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a693fd72d322aebe6a7ab8b45cb4165a7}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a693fd72d322aebe6a7ab8b45cb4165a7} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[str, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}Header name."{})]\+ name, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme name.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ scheme\+\_\+name=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme description.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ description=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[bool, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                By default, if the header is not provided, \`{}\doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader}{APIKey\+Header}}\`{} will                automatically cancel the request and send the client an error.                If \`{}auto\+\_\+error\`{} is set to \`{}False\`{}, when the header is not available,                instead of erroring out, the dependency result will be \`{}None\`{}.                This is useful when you want to have optional authentication.                It is also useful when you want to have authentication that can be                provided in one of multiple optional ways (for example, in a header or                in an HTTP Bearer token).                "{}"{}"{}),]\+ auto\+\_\+error=True)
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a60533ba7fc20a4c372a6d73ae26da26b}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a60533ba7fc20a4c372a6d73ae26da26b} 
+Optional\+[str]\+ {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} \doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a66a485a0557881b4a752be7cb640f429}{model}}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a4738dfa427badb2aa9fcc25e82d3b3c7}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a4738dfa427badb2aa9fcc25e82d3b3c7} 
+{\bfseries scheme\+\_\+name} = scheme\+\_\+name or self.\+\_\+\+\_\+class\+\_\+\+\_\+.\+\_\+\+\_\+name\+\_\+\+\_\+
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_ab4f7c01d59ca476934dbef04d40f93f9}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_ab4f7c01d59ca476934dbef04d40f93f9} 
+{\bfseries auto\+\_\+error} = auto\+\_\+error
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}API key authentication using a header.
+
+This defines the name of the header that should be provided in the request with
+the API key and integrates that into the OpenAPI documentation. It extracts
+the key value sent in the header automatically and provides it as the dependency
+result. But it doesn't define how to send that key to the client.
+
+## Usage
+
+Create an instance object and use that object as the dependency in `Depends()`.
+
+The dependency result will be a string containing the key value.
+
+## Example
+
+```python
+from fastapi import Depends, FastAPI
+from fastapi.security import APIKeyHeader
+
+app = FastAPI()
+
+header_scheme = APIKeyHeader(name="x-key")
+
+
+@app.get("/items/")
+async def read_items(key: str = Depends(header_scheme)):
+    return {"key": key}
+```
+\end{DoxyVerb}
+ 
+
+\label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_doc-variable-members}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a66a485a0557881b4a752be7cb640f429}\index{fastapi.security.api\_key.APIKeyHeader@{fastapi.security.api\_key.APIKeyHeader}!model@{model}}
+\index{model@{model}!fastapi.security.api\_key.APIKeyHeader@{fastapi.security.api\_key.APIKeyHeader}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classfastapi_1_1security_1_1api__key_1_1APIKeyHeader_a66a485a0557881b4a752be7cb640f429} 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} fastapi.\+security.\+api\+\_\+key.\+APIKey\+Header.\+model}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ APIKey(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ **\{\textcolor{stringliteral}{"{}in"{}}:\ APIKeyIn.header\},\ \ \textcolor{comment}{\#\ type:\ ignore[arg-\/type]}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ name=name,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ description=description,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+security/\+api\+\_\+key.\+py\end{DoxyCompactItemize}

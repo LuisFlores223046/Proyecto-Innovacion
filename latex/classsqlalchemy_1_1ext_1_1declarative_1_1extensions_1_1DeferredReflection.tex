@@ -1,0 +1,125 @@
+\doxysection{sqlalchemy.\+ext.\+declarative.\+extensions.\+Deferred\+Reflection Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection}{}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection}\index{sqlalchemy.ext.declarative.extensions.DeferredReflection@{sqlalchemy.ext.declarative.extensions.DeferredReflection}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_ac320e8ec9a00cf04b4324acb0c4b7b56}{prepare}} (cls, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+ bind, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any reflect\+\_\+kw)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_a1bb11a046cf2d4d2687d466a6f2899a7}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_a1bb11a046cf2d4d2687d466a6f2899a7} 
+Callable\+[\+[str]\+, Table]\+ {\bfseries \+\_\+sa\+\_\+deferred\+\_\+table\+\_\+resolver} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1MetaData}{Meta\+Data}} metadata)
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_ac07f63b22c058666c4d7ce3db0810426}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_ac07f63b22c058666c4d7ce3db0810426} 
+{\bfseries \+\_\+sa\+\_\+raise\+\_\+deferred\+\_\+config} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_acbdda1b65583a244851d56d3fb842b63}\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_acbdda1b65583a244851d56d3fb842b63} 
+bool {\bfseries \+\_\+sa\+\_\+decl\+\_\+prepare} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A helper class for construction of mappings based on
+a deferred reflection step.
+
+Normally, declarative can be used with reflection by
+setting a :class:`_schema.Table` object using autoload_with=engine
+as the ``__table__`` attribute on a declarative class.
+The caveat is that the :class:`_schema.Table` must be fully
+reflected, or at the very least have a primary key column,
+at the point at which a normal declarative mapping is
+constructed, meaning the :class:`_engine.Engine` must be available
+at class declaration time.
+
+The :class:`.DeferredReflection` mixin moves the construction
+of mappers to be at a later point, after a specific
+method is called which first reflects all :class:`_schema.Table`
+objects created so far.   Classes can define it as such::
+
+    from sqlalchemy.ext.declarative import declarative_base
+    from sqlalchemy.ext.declarative import DeferredReflection
+    Base = declarative_base()
+
+    class MyClass(DeferredReflection, Base):
+        __tablename__ = 'mytable'
+
+Above, ``MyClass`` is not yet mapped.   After a series of
+classes have been defined in the above fashion, all tables
+can be reflected and mappings created using
+:meth:`.prepare`::
+
+    engine = create_engine("someengine://...")
+    DeferredReflection.prepare(engine)
+
+The :class:`.DeferredReflection` mixin can be applied to individual
+classes, used as the base for the declarative base itself,
+or used in a custom abstract class.   Using an abstract base
+allows that only a subset of classes to be prepared for a
+particular prepare step, which is necessary for applications
+that use more than one engine.  For example, if an application
+has two engines, you might use two bases, and prepare each
+separately, e.g.::
+
+    class ReflectedOne(DeferredReflection, Base):
+        __abstract__ = True
+
+    class ReflectedTwo(DeferredReflection, Base):
+        __abstract__ = True
+
+    class MyClass(ReflectedOne):
+        __tablename__ = 'mytable'
+
+    class MyOtherClass(ReflectedOne):
+        __tablename__ = 'myothertable'
+
+    class YetAnotherClass(ReflectedTwo):
+        __tablename__ = 'yetanothertable'
+
+    # ... etc.
+
+Above, the class hierarchies for ``ReflectedOne`` and
+``ReflectedTwo`` can be configured separately::
+
+    ReflectedOne.prepare(engine_one)
+    ReflectedTwo.prepare(engine_two)
+
+.. seealso::
+
+    :ref:`orm_declarative_reflected_deferred_reflection` - in the
+    :ref:`orm_declarative_table_config_toplevel` section.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_ac320e8ec9a00cf04b4324acb0c4b7b56}\index{sqlalchemy.ext.declarative.extensions.DeferredReflection@{sqlalchemy.ext.declarative.extensions.DeferredReflection}!prepare@{prepare}}
+\index{prepare@{prepare}!sqlalchemy.ext.declarative.extensions.DeferredReflection@{sqlalchemy.ext.declarative.extensions.DeferredReflection}}
+\doxysubsubsection{\texorpdfstring{prepare()}{prepare()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1declarative_1_1extensions_1_1DeferredReflection_ac320e8ec9a00cf04b4324acb0c4b7b56} 
+ None sqlalchemy.\+ext.\+declarative.\+extensions.\+Deferred\+Reflection.\+prepare (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+}]{bind}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{reflect\+\_\+kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reflect all :class:`_schema.Table` objects for all current
+    :class:`.DeferredReflection` subclasses
+
+    :param bind: :class:`_engine.Engine` or :class:`_engine.Connection`
+     instance
+
+     ..versionchanged:: 2.0.16 a :class:`_engine.Connection` is also
+     accepted.
+
+    :param \**reflect_kw: additional keyword arguments passed to
+     :meth:`_schema.MetaData.reflect`, such as
+     :paramref:`_schema.MetaData.reflect.views`.
+
+     .. versionadded:: 2.0.16
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+declarative/\+extensions.\+py\end{DoxyCompactItemize}

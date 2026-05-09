@@ -1,0 +1,115 @@
+\doxysection{httpx.\+\_\+exceptions Namespace Reference}
+\hypertarget{namespacehttpx_1_1__exceptions}{}\label{namespacehttpx_1_1__exceptions}\index{httpx.\_exceptions@{httpx.\_exceptions}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1HTTPError}{HTTPError}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1RequestError}{Request\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1TransportError}{Transport\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1TimeoutException}{Timeout\+Exception}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ConnectTimeout}{Connect\+Timeout}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ReadTimeout}{Read\+Timeout}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1WriteTimeout}{Write\+Timeout}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1PoolTimeout}{Pool\+Timeout}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1NetworkError}{Network\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ReadError}{Read\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1WriteError}{Write\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ConnectError}{Connect\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1CloseError}{Close\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ProxyError}{Proxy\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1UnsupportedProtocol}{Unsupported\+Protocol}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ProtocolError}{Protocol\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1LocalProtocolError}{Local\+Protocol\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1RemoteProtocolError}{Remote\+Protocol\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1DecodingError}{Decoding\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1TooManyRedirects}{Too\+Many\+Redirects}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1HTTPStatusError}{HTTPStatus\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1InvalidURL}{Invalid\+URL}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1CookieConflict}{Cookie\+Conflict}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1StreamError}{Stream\+Error}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1StreamConsumed}{Stream\+Consumed}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1StreamClosed}{Stream\+Closed}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1ResponseNotRead}{Response\+Not\+Read}}
+\item 
+class \doxymbox{\hyperlink{classhttpx_1_1__exceptions_1_1RequestNotRead}{Request\+Not\+Read}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Iterator\+[None]\+ \doxymbox{\hyperlink{namespacehttpx_1_1__exceptions_a46d6b496046db78e7e8f334fbb3eb27a}{request\+\_\+context}} (\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}\texorpdfstring{$\vert$}{|}None request=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Our exception hierarchy:
+
+* HTTPError
+  x RequestError
+    + TransportError
+      - TimeoutException
+        · ConnectTimeout
+        · ReadTimeout
+        · WriteTimeout
+        · PoolTimeout
+      - NetworkError
+        · ConnectError
+        · ReadError
+        · WriteError
+        · CloseError
+      - ProtocolError
+        · LocalProtocolError
+        · RemoteProtocolError
+      - ProxyError
+      - UnsupportedProtocol
+    + DecodingError
+    + TooManyRedirects
+  x HTTPStatusError
+* InvalidURL
+* CookieConflict
+* StreamError
+  x StreamConsumed
+  x StreamClosed
+  x ResponseNotRead
+  x RequestNotRead
+\end{DoxyVerb}
+ 
+
+\label{namespacehttpx_1_1__exceptions_doc-func-members}
+\Hypertarget{namespacehttpx_1_1__exceptions_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacehttpx_1_1__exceptions_a46d6b496046db78e7e8f334fbb3eb27a}\index{httpx.\_exceptions@{httpx.\_exceptions}!request\_context@{request\_context}}
+\index{request\_context@{request\_context}!httpx.\_exceptions@{httpx.\_exceptions}}
+\doxysubsubsection{\texorpdfstring{request\_context()}{request\_context()}}
+{\footnotesize\ttfamily \label{namespacehttpx_1_1__exceptions_a46d6b496046db78e7e8f334fbb3eb27a} 
+ typing.\+Iterator\+[None]\+ request\+\_\+context (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} \texorpdfstring{$\vert$}{|} None }]{request}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A context manager that can be used to attach the given request context
+to any `RequestError` exceptions that are raised within the block.
+\end{DoxyVerb}
+ 

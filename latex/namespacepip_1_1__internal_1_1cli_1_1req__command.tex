@@ -1,0 +1,87 @@
+\doxysection{pip.\+\_\+internal.\+cli.\+req\+\_\+command Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command}{}\label{namespacepip_1_1__internal_1_1cli_1_1req__command}\index{pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1req__command_1_1SessionCommandMixin}{Session\+Command\+Mixin}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1req__command_1_1IndexGroupCommand}{Index\+Group\+Command}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1req__command_1_1RequirementCommand}{Requirement\+Command}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_a67cc7bb45a79472767e3c37ae9985e7c}\label{namespacepip_1_1__internal_1_1cli_1_1req__command_a67cc7bb45a79472767e3c37ae9985e7c} 
+Optional\+["{}SSLContext"{}]\+ {\bfseries \+\_\+create\+\_\+truststore\+\_\+ssl\+\_\+context} ()
+\item 
+None \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1req__command_a9f98ccce29307df43fe4a911a821ab31}{warn\+\_\+if\+\_\+run\+\_\+as\+\_\+root}} ()
+\item 
+Any \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1req__command_a0aa389bcd9b8f07bfb932ddc1397516c}{with\+\_\+cleanup}} (Any func)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_ab18cc0612f20d821fa933b64f3a1b605}\label{namespacepip_1_1__internal_1_1cli_1_1req__command_ab18cc0612f20d821fa933b64f3a1b605} 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+list \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1cli_1_1req__command_a47e81bdfa7bae2de3748cfa7f57a748d}{KEEPABLE\+\_\+\+TEMPDIR\+\_\+\+TYPES}}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_a603c7d6de73dceb1951bf859b4b7e254}\label{namespacepip_1_1__internal_1_1cli_1_1req__command_a603c7d6de73dceb1951bf859b4b7e254} 
+{\bfseries tempdir\+\_\+registry}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Contains the Command base classes that depend on PipSession.
+
+The classes in this module are in a separate module so the commands not
+needing download / PackageFinder capability don't unnecessarily import the
+PackageFinder machinery and all its vendored dependencies, etc.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1cli_1_1req__command_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_a9f98ccce29307df43fe4a911a821ab31}\index{pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}!warn\_if\_run\_as\_root@{warn\_if\_run\_as\_root}}
+\index{warn\_if\_run\_as\_root@{warn\_if\_run\_as\_root}!pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}}
+\doxysubsubsection{\texorpdfstring{warn\_if\_run\_as\_root()}{warn\_if\_run\_as\_root()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1req__command_a9f98ccce29307df43fe4a911a821ab31} 
+ None warn\+\_\+if\+\_\+run\+\_\+as\+\_\+root (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Output a warning for sudo users on Unix.
+
+In a virtual environment, sudo pip still writes to virtualenv.
+On Windows, users may run pip as Administrator without issues.
+This warning only applies to Unix root users outside of virtualenv.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_a0aa389bcd9b8f07bfb932ddc1397516c}\index{pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}!with\_cleanup@{with\_cleanup}}
+\index{with\_cleanup@{with\_cleanup}!pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}}
+\doxysubsubsection{\texorpdfstring{with\_cleanup()}{with\_cleanup()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1req__command_a0aa389bcd9b8f07bfb932ddc1397516c} 
+ Any with\+\_\+cleanup (\begin{DoxyParamCaption}\item[{Any}]{func}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decorator for common logic related to managing temporary
+directories.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1cli_1_1req__command_doc-var-members}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1cli_1_1req__command_a47e81bdfa7bae2de3748cfa7f57a748d}\index{pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}!KEEPABLE\_TEMPDIR\_TYPES@{KEEPABLE\_TEMPDIR\_TYPES}}
+\index{KEEPABLE\_TEMPDIR\_TYPES@{KEEPABLE\_TEMPDIR\_TYPES}!pip.\_internal.cli.req\_command@{pip.\_internal.cli.req\_command}}
+\doxysubsubsection{\texorpdfstring{KEEPABLE\_TEMPDIR\_TYPES}{KEEPABLE\_TEMPDIR\_TYPES}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1cli_1_1req__command_a47e81bdfa7bae2de3748cfa7f57a748d} 
+list pip.\+\_\+internal.\+cli.\+req\+\_\+command.\+KEEPABLE\+\_\+\+TEMPDIR\+\_\+\+TYPES}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ tempdir\_kinds.BUILD\_ENV,}
+\DoxyCodeLine{\ \ \ \ tempdir\_kinds.EPHEM\_WHEEL\_CACHE,}
+\DoxyCodeLine{\ \ \ \ tempdir\_kinds.REQ\_BUILD,}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}

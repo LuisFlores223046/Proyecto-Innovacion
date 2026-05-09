@@ -1,0 +1,52 @@
+\doxysection{h11.\+\_\+events.\+Data Class Reference}
+\hypertarget{classh11_1_1__events_1_1Data}{}\label{classh11_1_1__events_1_1Data}\index{h11.\_events.Data@{h11.\_events.Data}}
+Inheritance diagram for h11.\+\_\+events.\+Data:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classh11_1_1__events_1_1Data}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__events_1_1Data_a27ee64bf733e270cc8ea5e3ac8d8e138}\label{classh11_1_1__events_1_1Data_a27ee64bf733e270cc8ea5e3ac8d8e138} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bytes data, bool chunk\+\_\+start=False, bool chunk\+\_\+end=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Part of an HTTP message body.
+
+Fields:
+
+.. attribute:: data
+
+   A :term:`bytes-like object` containing part of a message body. Or, if
+   using the ``combine=False`` argument to :meth:`Connection.send`, then
+   any object that your socket writing code knows what to do with, and for
+   which calling :func:`len` returns the number of bytes that will be
+   written -- see :ref:`sendfile` for details.
+
+.. attribute:: chunk_start
+
+   A marker that indicates whether this data object is from the start of a
+   chunked transfer encoding chunk. This field is ignored when when a Data
+   event is provided to :meth:`Connection.send`: it is only valid on
+   events emitted from :meth:`Connection.next_event`. You probably
+   shouldn't use this attribute at all; see
+   :ref:`chunk-delimiters-are-bad` for details.
+
+.. attribute:: chunk_end
+
+   A marker that indicates whether this data object is the last for a
+   given chunked transfer encoding chunk. This field is ignored when when
+   a Data event is provided to :meth:`Connection.send`: it is only valid
+   on events emitted from :meth:`Connection.next_event`. You probably
+   shouldn't use this attribute at all; see
+   :ref:`chunk-delimiters-are-bad` for details.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+h11/\+\+\_\+events.\+py\end{DoxyCompactItemize}

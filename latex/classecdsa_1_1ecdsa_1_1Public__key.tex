@@ -1,0 +1,93 @@
+\doxysection{ecdsa.\+ecdsa.\+Public\+\_\+key Class Reference}
+\hypertarget{classecdsa_1_1ecdsa_1_1Public__key}{}\label{classecdsa_1_1ecdsa_1_1Public__key}\index{ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}}
+Inheritance diagram for ecdsa.\+ecdsa.\+Public\+\_\+key:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classecdsa_1_1ecdsa_1_1Public__key}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classecdsa_1_1ecdsa_1_1Public__key_aca26ebe02dc1b9074d14c207a50054ba}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, generator, point, verify=True)
+\item 
+\doxymbox{\hyperlink{classecdsa_1_1ecdsa_1_1Public__key_a6dd002dc50a9d028304a5527b9ce565f}{\+\_\+\+\_\+eq\+\_\+\+\_\+}} (self, other)
+\item 
+\doxymbox{\hyperlink{classecdsa_1_1ecdsa_1_1Public__key_a161d56cee573cf492635bfbb73f8dcd9}{\+\_\+\+\_\+ne\+\_\+\+\_\+}} (self, other)
+\item 
+\doxymbox{\hyperlink{classecdsa_1_1ecdsa_1_1Public__key_a35c2d478e7b5f31c448a03e93c396a76}{verifies}} (self, hash, signature)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_a4b1d2f970d28a9a24f78c2fad406de3c}\label{classecdsa_1_1ecdsa_1_1Public__key_a4b1d2f970d28a9a24f78c2fad406de3c} 
+{\bfseries curve} = generator.\+curve()
+\item 
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_a696242b34de6c9c82ab22ff8be1e14cf}\label{classecdsa_1_1ecdsa_1_1Public__key_a696242b34de6c9c82ab22ff8be1e14cf} 
+{\bfseries generator} = generator
+\item 
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_aa9df343c1231af09e8ee1d36298d831a}\label{classecdsa_1_1ecdsa_1_1Public__key_aa9df343c1231af09e8ee1d36298d831a} 
+{\bfseries point} = point
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Public key for ECDSA.\end{DoxyVerb}
+ 
+
+\label{classecdsa_1_1ecdsa_1_1Public__key_doc-constructors}
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_aca26ebe02dc1b9074d14c207a50054ba}\index{ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classecdsa_1_1ecdsa_1_1Public__key_aca26ebe02dc1b9074d14c207a50054ba} 
+ecdsa.\+ecdsa.\+Public\+\_\+key.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{generator}{, }\item[{}]{point}{, }\item[{}]{verify}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Low level ECDSA public key object.
+
+:param generator: the Point that generates the group (the base point)
+:param point: the Point that defines the public key
+:param bool verify: if True check if point is valid point on curve
+
+:raises InvalidPointError: if the point parameters are invalid or
+    point does not lay on the curve
+\end{DoxyVerb}
+ 
+
+\label{classecdsa_1_1ecdsa_1_1Public__key_doc-func-members}
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_a6dd002dc50a9d028304a5527b9ce565f}\index{ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}!\_\_eq\_\_@{\_\_eq\_\_}}
+\index{\_\_eq\_\_@{\_\_eq\_\_}!ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}}
+\doxysubsubsection{\texorpdfstring{\_\_eq\_\_()}{\_\_eq\_\_()}}
+{\footnotesize\ttfamily \label{classecdsa_1_1ecdsa_1_1Public__key_a6dd002dc50a9d028304a5527b9ce565f} 
+ecdsa.\+ecdsa.\+Public\+\_\+key.\+\_\+\+\_\+eq\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the keys are identical, False otherwise.
+
+Note: for comparison, only placement on the same curve and point
+equality is considered, use of the same generator point is not
+considered.
+\end{DoxyVerb}
+ \Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_a161d56cee573cf492635bfbb73f8dcd9}\index{ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}!\_\_ne\_\_@{\_\_ne\_\_}}
+\index{\_\_ne\_\_@{\_\_ne\_\_}!ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}}
+\doxysubsubsection{\texorpdfstring{\_\_ne\_\_()}{\_\_ne\_\_()}}
+{\footnotesize\ttfamily \label{classecdsa_1_1ecdsa_1_1Public__key_a161d56cee573cf492635bfbb73f8dcd9} 
+ecdsa.\+ecdsa.\+Public\+\_\+key.\+\_\+\+\_\+ne\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return False if the keys are identical, True otherwise.\end{DoxyVerb}
+ \Hypertarget{classecdsa_1_1ecdsa_1_1Public__key_a35c2d478e7b5f31c448a03e93c396a76}\index{ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}!verifies@{verifies}}
+\index{verifies@{verifies}!ecdsa.ecdsa.Public\_key@{ecdsa.ecdsa.Public\_key}}
+\doxysubsubsection{\texorpdfstring{verifies()}{verifies()}}
+{\footnotesize\ttfamily \label{classecdsa_1_1ecdsa_1_1Public__key_a35c2d478e7b5f31c448a03e93c396a76} 
+ecdsa.\+ecdsa.\+Public\+\_\+key.\+verifies (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{hash}{, }\item[{}]{signature}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that signature is a valid signature of hash.
+Return True if the signature is valid.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+ecdsa/\+ecdsa.\+py\end{DoxyCompactItemize}

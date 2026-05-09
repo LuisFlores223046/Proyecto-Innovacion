@@ -1,0 +1,88 @@
+\doxysection{jinja2.\+runtime.\+Chainable\+Undefined Class Reference}
+\hypertarget{classjinja2_1_1runtime_1_1ChainableUndefined}{}\label{classjinja2_1_1runtime_1_1ChainableUndefined}\index{jinja2.runtime.ChainableUndefined@{jinja2.runtime.ChainableUndefined}}
+Inheritance diagram for jinja2.\+runtime.\+Chainable\+Undefined:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1runtime_1_1ChainableUndefined}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1runtime_1_1ChainableUndefined_ae42df24378f7407a45b1fd6514b6c9ee}\label{classjinja2_1_1runtime_1_1ChainableUndefined_ae42df24378f7407a45b1fd6514b6c9ee} 
+str {\bfseries \+\_\+\+\_\+html\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classjinja2_1_1runtime_1_1ChainableUndefined_a56e6c972402f073fdc5d303e77571b12}\label{classjinja2_1_1runtime_1_1ChainableUndefined_a56e6c972402f073fdc5d303e77571b12} 
+"{}Chainable\+Undefined"{} {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+\Hypertarget{classjinja2_1_1runtime_1_1ChainableUndefined_a41aa5f2044c6d7faa90b6ad9800c92c6}\label{classjinja2_1_1runtime_1_1ChainableUndefined_a41aa5f2044c6d7faa90b6ad9800c92c6} 
+"{}Chainable\+Undefined"{} {\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, str \+\_\+name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Optional\+[str]\+ hint=None, t.\+Any obj=missing, t.\+Optional\+[str]\+ name=None, t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1exceptions_1_1TemplateRuntimeError}{Template\+Runtime\+Error}}]\+ exc=\doxymbox{\hyperlink{classjinja2_1_1exceptions_1_1UndefinedError}{Undefined\+Error}})
+\item 
+t.\+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, t.\+Any other)
+\item 
+bool {\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, t.\+Any other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+t.\+Iterator\+[t.\+Any]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+t.\+Async\+Iterator\+[t.\+Any]\+ {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\item 
+bool {\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined_aabb255113b922b275cd184482bdd7629}{\+\_\+undefined\+\_\+message}} (self)
+\item 
+"{}te.\+No\+Return"{} \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined_a016a637ab04793a6dcc75979af5a3ea6}{\+\_\+fail\+\_\+with\+\_\+undefined\+\_\+error}} (self, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+undefined\+\_\+hint} = hint
+\item 
+{\bfseries \+\_\+undefined\+\_\+obj} = obj
+\item 
+{\bfseries \+\_\+undefined\+\_\+name} = name
+\item 
+{\bfseries \+\_\+undefined\+\_\+exception} = exc
+\item 
+{\bfseries \+\_\+undefined\+\_\+message}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An undefined that is chainable, where both ``__getattr__`` and
+``__getitem__`` return itself rather than raising an
+:exc:`UndefinedError`.
+
+>>> foo = ChainableUndefined(name='foo')
+>>> str(foo.bar['baz'])
+''
+>>> foo.bar['baz'] + 42
+Traceback (most recent call last):
+  ...
+jinja2.exceptions.UndefinedError: 'foo' is undefined
+
+.. versionadded:: 2.11.0
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+runtime.\+py\end{DoxyCompactItemize}

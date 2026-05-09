@@ -1,0 +1,76 @@
+\doxysection{passlib.\+handlers.\+des\+\_\+crypt Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1des__crypt}{}\label{namespacepasslib_1_1handlers_1_1des__crypt}\index{passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1des__crypt_1_1des__crypt}{des\+\_\+crypt}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1des__crypt_1_1bsdi__crypt}{bsdi\+\_\+crypt}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1des__crypt_1_1bigcrypt}{bigcrypt}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1des__crypt_1_1crypt16}{crypt16}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1des__crypt_aa2133d20153afb97164427505dda0086}{\+\_\+crypt\+\_\+secret\+\_\+to\+\_\+key}} (secret)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1des__crypt_a10658195a54f2da084358c065a330530}{\+\_\+raw\+\_\+des\+\_\+crypt}} (secret, salt)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1des__crypt_afa237daa4efe6ab87adbcb591afee0e0}{\+\_\+bsdi\+\_\+secret\+\_\+to\+\_\+key}} (secret)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1des__crypt_a9d0dbed5d763d009e1db3bb5a48af763}{\+\_\+raw\+\_\+bsdi\+\_\+crypt}} (secret, rounds, salt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_aac11821a699ecbbd1f77c0043f7416f0}\label{namespacepasslib_1_1handlers_1_1des__crypt_aac11821a699ecbbd1f77c0043f7416f0} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_a0689d1e5f026fe329a3c1fda9aaee95e}\label{namespacepasslib_1_1handlers_1_1des__crypt_a0689d1e5f026fe329a3c1fda9aaee95e} 
+str {\bfseries \+\_\+\+BNULL} = b\textquotesingle{}\textbackslash{}x00\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.des_crypt - traditional unix (DES) crypt and variants\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1des__crypt_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_afa237daa4efe6ab87adbcb591afee0e0}\index{passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}!\_bsdi\_secret\_to\_key@{\_bsdi\_secret\_to\_key}}
+\index{\_bsdi\_secret\_to\_key@{\_bsdi\_secret\_to\_key}!passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_bsdi\_secret\_to\_key()}{\_bsdi\_secret\_to\_key()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1des__crypt_afa237daa4efe6ab87adbcb591afee0e0} 
+\+\_\+bsdi\+\_\+secret\+\_\+to\+\_\+key (\begin{DoxyParamCaption}\item[{}]{secret}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}convert secret to DES key used by bsdi_crypt\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_aa2133d20153afb97164427505dda0086}\index{passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}!\_crypt\_secret\_to\_key@{\_crypt\_secret\_to\_key}}
+\index{\_crypt\_secret\_to\_key@{\_crypt\_secret\_to\_key}!passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_crypt\_secret\_to\_key()}{\_crypt\_secret\_to\_key()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1des__crypt_aa2133d20153afb97164427505dda0086} 
+\+\_\+crypt\+\_\+secret\+\_\+to\+\_\+key (\begin{DoxyParamCaption}\item[{}]{secret}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}convert secret to 64-bit DES key.
+
+this only uses the first 8 bytes of the secret,
+and discards the high 8th bit of each byte at that.
+a null parity bit is inserted after every 7th bit of the output.
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_a9d0dbed5d763d009e1db3bb5a48af763}\index{passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}!\_raw\_bsdi\_crypt@{\_raw\_bsdi\_crypt}}
+\index{\_raw\_bsdi\_crypt@{\_raw\_bsdi\_crypt}!passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_raw\_bsdi\_crypt()}{\_raw\_bsdi\_crypt()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1des__crypt_a9d0dbed5d763d009e1db3bb5a48af763} 
+\+\_\+raw\+\_\+bsdi\+\_\+crypt (\begin{DoxyParamCaption}\item[{}]{secret}{, }\item[{}]{rounds}{, }\item[{}]{salt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}pure-python backend for bsdi_crypt\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1handlers_1_1des__crypt_a10658195a54f2da084358c065a330530}\index{passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}!\_raw\_des\_crypt@{\_raw\_des\_crypt}}
+\index{\_raw\_des\_crypt@{\_raw\_des\_crypt}!passlib.handlers.des\_crypt@{passlib.handlers.des\_crypt}}
+\doxysubsubsection{\texorpdfstring{\_raw\_des\_crypt()}{\_raw\_des\_crypt()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1des__crypt_a10658195a54f2da084358c065a330530} 
+\+\_\+raw\+\_\+des\+\_\+crypt (\begin{DoxyParamCaption}\item[{}]{secret}{, }\item[{}]{salt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}pure-python backed for des_crypt\end{DoxyVerb}
+ 

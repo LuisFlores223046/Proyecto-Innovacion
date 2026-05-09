@@ -1,0 +1,73 @@
+\doxysection{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+random\+\_\+exponential Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__random__exponential}{}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__random__exponential}\index{pip.\_vendor.tenacity.wait.wait\_random\_exponential@{pip.\_vendor.tenacity.wait.wait\_random\_exponential}}
+Inheritance diagram for pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+random\+\_\+exponential:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__random__exponential}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__random__exponential_a05f8759cd48128024d97b18df512a23f}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__random__exponential_a05f8759cd48128024d97b18df512a23f} 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential}{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, typing.\+Union\+[int, float]\+ multiplier=1, \+\_\+utils.\+time\+\_\+unit\+\_\+type max=\+\_\+utils.\+MAX\+\_\+\+WAIT, typing.\+Union\+[int, float]\+ exp\+\_\+base=2, \+\_\+utils.\+time\+\_\+unit\+\_\+type min=0)
+\item 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__base}{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+base}}}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\item 
+"{}wait\+\_\+combine"{} {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\item 
+typing.\+Union\+["{}wait\+\_\+combine"{}, "{}wait\+\_\+base"{}]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential}{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries multiplier} = multiplier
+\item 
+{\bfseries min} = \+\_\+utils.\+to\+\_\+seconds(min)
+\item 
+{\bfseries max} = \+\_\+utils.\+to\+\_\+seconds(max)
+\item 
+{\bfseries exp\+\_\+base} = exp\+\_\+base
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Random wait with exponentially widening window.
+
+An exponential backoff strategy used to mediate contention between multiple
+uncoordinated processes for a shared resource in distributed systems. This
+is the sense in which "exponential backoff" is meant in e.g. Ethernet
+networking, and corresponds to the "Full Jitter" algorithm described in
+this blog post:
+
+https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/
+
+Each retry occurs at a random time in a geometrically expanding interval.
+It allows for a custom multiplier and an ability to restrict the upper
+limit of the random interval to some maximum value.
+
+Example::
+
+    wait_random_exponential(multiplier=0.5,  # initial window 0.5s
+                            max=60)          # max 60s timeout
+
+When waiting for an unavailable resource to become available again, as
+opposed to trying to resolve contention for a shared resource, the
+wait_exponential strategy (which uses a fixed interval) may be preferable.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+tenacity/\+wait.\+py\end{DoxyCompactItemize}

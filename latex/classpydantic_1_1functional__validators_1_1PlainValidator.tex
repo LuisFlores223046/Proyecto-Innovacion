@@ -1,0 +1,44 @@
+\doxysection{pydantic.\+functional\+\_\+validators.\+Plain\+Validator Class Reference}
+\hypertarget{classpydantic_1_1functional__validators_1_1PlainValidator}{}\label{classpydantic_1_1functional__validators_1_1PlainValidator}\index{pydantic.functional\_validators.PlainValidator@{pydantic.functional\_validators.PlainValidator}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1PlainValidator_a1234bb5784d04a7903f7cb81f3750808}\label{classpydantic_1_1functional__validators_1_1PlainValidator_a1234bb5784d04a7903f7cb81f3750808} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, Any source\+\_\+type, \+\_\+\+Get\+Core\+Schema\+Handler handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1PlainValidator_a6fb5400ef6fdb5724adceced22cdbb9d}\label{classpydantic_1_1functional__validators_1_1PlainValidator_a6fb5400ef6fdb5724adceced22cdbb9d} 
+\doxymbox{\hyperlink{namespacepydantic__core_1_1core__schema}{core\+\_\+schema}} {\bfseries func} .No\+Info\+Validator\+Function \texorpdfstring{$\vert$}{|} core\+\_\+schema.\+With\+Info\+Validator\+Function
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/validators/#annotated-validators
+
+A metadata class that indicates that a validation should be applied **instead** of the inner validation logic.
+
+Attributes:
+    func: The validator function.
+
+Example:
+    ```py
+    from typing_extensions import Annotated
+
+    from pydantic import BaseModel, PlainValidator
+
+    MyInt = Annotated[int, PlainValidator(lambda v: int(v) + 1)]
+
+    class Model(BaseModel):
+        a: MyInt
+
+    print(Model(a='1').a)
+    #> 2
+    ```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+validators.\+py\end{DoxyCompactItemize}

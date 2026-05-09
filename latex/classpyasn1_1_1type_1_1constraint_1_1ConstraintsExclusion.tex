@@ -1,0 +1,123 @@
+\doxysection{pyasn1.\+type.\+constraint.\+Constraints\+Exclusion Class Reference}
+\hypertarget{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion}{}\label{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion}\index{pyasn1.type.constraint.ConstraintsExclusion@{pyasn1.type.constraint.ConstraintsExclusion}}
+Inheritance diagram for pyasn1.\+type.\+constraint.\+Constraints\+Exclusion:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_a4d2e8644b7b16dec1ade628bb75a8cd4}{\+\_\+test\+Value}} (self, value, idx)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_aebbb9307f9076c1bce8c51301f904846}{\+\_\+set\+Values}} (self, values)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}values)
+\item 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, value, idx=None)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+le\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+gt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ge\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+nonzero\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+{\bfseries get\+Value\+Map} (self)
+\item 
+{\bfseries is\+Super\+Type\+Of} (self, other\+Constraint)
+\item 
+{\bfseries is\+Sub\+Type\+Of} (self, other\+Constraint)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+value\+Map} = set()
+\item 
+{\bfseries \+\_\+values}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create a ConstraintsExclusion logic operator object.
+
+The ConstraintsExclusion logic operator succeeds when the
+value does *not* satisfy the operand constraint.
+
+The ConstraintsExclusion object can be applied to
+any constraint and logic operator object.
+
+Parameters
+----------
+*constraints:
+    Constraint or logic operator objects.
+
+Examples
+--------
+.. code-block:: python
+
+    class LuckyNumber(Integer):
+        subtypeSpec = ConstraintsExclusion(
+            SingleValueConstraint(13)
+        )
+
+    # this will succeed
+    luckyNumber = LuckyNumber(12)
+
+    # this will raise ValueConstraintError
+    luckyNumber = LuckyNumber(13)
+
+Note
+----
+The `FROM ... EXCEPT ...` ASN.1 clause should be modeled by combining
+constraint objects into one. See `PermittedAlphabetConstraint` for more
+information.
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_doc-func-members}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_aebbb9307f9076c1bce8c51301f904846}\index{pyasn1.type.constraint.ConstraintsExclusion@{pyasn1.type.constraint.ConstraintsExclusion}!\_setValues@{\_setValues}}
+\index{\_setValues@{\_setValues}!pyasn1.type.constraint.ConstraintsExclusion@{pyasn1.type.constraint.ConstraintsExclusion}}
+\doxysubsubsection{\texorpdfstring{\_setValues()}{\_setValues()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_aebbb9307f9076c1bce8c51301f904846} 
+pyasn1.\+type.\+constraint.\+Constraints\+Exclusion.\+\_\+set\+Values (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{values}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}.
+
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_a4d2e8644b7b16dec1ade628bb75a8cd4}\index{pyasn1.type.constraint.ConstraintsExclusion@{pyasn1.type.constraint.ConstraintsExclusion}!\_testValue@{\_testValue}}
+\index{\_testValue@{\_testValue}!pyasn1.type.constraint.ConstraintsExclusion@{pyasn1.type.constraint.ConstraintsExclusion}}
+\doxysubsubsection{\texorpdfstring{\_testValue()}{\_testValue()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1constraint_1_1ConstraintsExclusion_a4d2e8644b7b16dec1ade628bb75a8cd4} 
+pyasn1.\+type.\+constraint.\+Constraints\+Exclusion.\+\_\+test\+Value (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{value}{, }\item[{}]{idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+type/\+constraint.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\doxysection{anyio.\+\_\+core.\+\_\+contextmanagers.\+Context\+Manager\+Mixin Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin}{}\label{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin}\index{anyio.\_core.\_contextmanagers.ContextManagerMixin@{anyio.\_core.\_contextmanagers.ContextManagerMixin}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_ac5b00c2679c485ea4553967c3268e07c}\label{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_ac5b00c2679c485ea4553967c3268e07c} 
+\+\_\+\+T\+\_\+co {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (\doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1__SupportsCtxMgr}{\+\_\+\+Supports\+Ctx\+Mgr}}\+[\+\_\+\+T\+\_\+co, bool\texorpdfstring{$\vert$}{|}None]\+ self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_aa0df74ba3dde3bcb321af6f8059f3610}\label{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_aa0df74ba3dde3bcb321af6f8059f3610} 
+\+\_\+\+Exit\+T\+\_\+co {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (\doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1__SupportsCtxMgr}{\+\_\+\+Supports\+Ctx\+Mgr}}\+[object, \+\_\+\+Exit\+T\+\_\+co]\+ self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\item 
+Abstract\+Context\+Manager\+[object, bool\texorpdfstring{$\vert$}{|}None]\+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_a3b1137775b13737d6bc79827b611f1a1}{\+\_\+\+\_\+contextmanager\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin class providing context manager functionality via a generator-based
+implementation.
+
+This class allows you to implement a context manager via :meth:`__contextmanager__`
+which should return a generator. The mechanics are meant to mirror those of
+:func:`@contextmanager <contextlib.contextmanager>`.
+
+.. note:: Classes using this mix-in are not reentrant as context managers, meaning
+    that once you enter it, you can't re-enter before first exiting it.
+
+.. seealso:: :doc:`contextmanagers`
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_doc-func-members}
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_a3b1137775b13737d6bc79827b611f1a1}\index{anyio.\_core.\_contextmanagers.ContextManagerMixin@{anyio.\_core.\_contextmanagers.ContextManagerMixin}!\_\_contextmanager\_\_@{\_\_contextmanager\_\_}}
+\index{\_\_contextmanager\_\_@{\_\_contextmanager\_\_}!anyio.\_core.\_contextmanagers.ContextManagerMixin@{anyio.\_core.\_contextmanagers.ContextManagerMixin}}
+\doxysubsubsection{\texorpdfstring{\_\_contextmanager\_\_()}{\_\_contextmanager\_\_()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__contextmanagers_1_1ContextManagerMixin_a3b1137775b13737d6bc79827b611f1a1} 
+ Abstract\+Context\+Manager\+[object, bool \texorpdfstring{$\vert$}{|} None]\+ anyio.\+\_\+core.\+\_\+contextmanagers.\+Context\+Manager\+Mixin.\+\_\+\+\_\+contextmanager\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement your context manager logic here.
+
+This method **must** be decorated with
+:func:`@contextmanager <contextlib.contextmanager>`.
+
+.. note:: Remember that the ``yield`` will raise any exception raised in the
+    enclosed context block, so use a ``finally:`` block to clean up resources!
+
+:return: a context manager object
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+contextmanagers.\+py\end{DoxyCompactItemize}

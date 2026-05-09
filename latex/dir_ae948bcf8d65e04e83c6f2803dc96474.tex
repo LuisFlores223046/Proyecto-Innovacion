@@ -1,0 +1,191 @@
+\doxysection{frontend/\+node\+\_\+modules/\+ts-\/interface-\/checker Directory Reference}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474}{}\label{dir_ae948bcf8d65e04e83c6f2803dc96474}\index{frontend/node\_modules/ts-\/interface-\/checker Directory Reference@{frontend/node\_modules/ts-\/interface-\/checker Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_f120799c86e7609277dbbddbab2431d4}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2627}{}\doxysubsection{\texorpdfstring{ts-\/interface-\/checker}{ts-\/interface-\/checker}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2627}
+\href{https://travis-ci.org/gristlabs/ts-interface-checker}{\texttt{}} \href{https://badge.fury.io/js/ts-interface-checker}{\texttt{}}
+
+\begin{quote}
+Runtime library to validate data against Type\+Script interfaces. \end{quote}
+
+
+This package is the runtime support for validators created by \href{https://github.com/gristlabs/ts-interface-builder}{\texttt{ts-\/interface-\/builder}}. It allows validating data, such as parsed JSON objects received over the network, or parsed JSON or YAML files, to check if they satisfy a Type\+Script interface, and to produce informative error messages if they do not.\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2628}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2628}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/-\/save-\/dev\ ts-\/interface-\/builder}
+\DoxyCodeLine{npm\ install\ -\/-\/save\ ts-\/interface-\/checker}
+
+\end{DoxyCode}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2629}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2629}
+Suppose you have a Type\+Script file defining an interface:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.ts}
+\DoxyCodeLine{interface\ Square\ \{}
+\DoxyCodeLine{\ \ size:\ number;}
+\DoxyCodeLine{\ \ color?:\ string;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The first step is to generate some code for runtime checks:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\`{}npm\ bin`/ts-\/interface-\/builder\ foo.ts}
+
+\end{DoxyCode}
+
+
+It produces a file like this:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo-\/ti.js}
+\DoxyCodeLine{import\ *\ as\ t\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ const\ Square\ =\ t.iface([],\ \{}
+\DoxyCodeLine{\ \ "{}size"{}:\ "{}number"{},}
+\DoxyCodeLine{\ \ "{}color"{}:\ t.opt("{}string"{}),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+Now at runtime, to check if a value satisfies the Square interface:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ fooTI\ from\ "{}./foo-\/ti"{};}
+\DoxyCodeLine{import\ \{createCheckers\}\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{Square\}\ =\ createCheckers(fooTI);}
+\DoxyCodeLine{}
+\DoxyCodeLine{Square.check(\{size:\ 1\});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ OK}
+\DoxyCodeLine{Square.check(\{size:\ 1,\ color:\ "{}green"{}\});\ \ //\ OK}
+\DoxyCodeLine{Square.check(\{color:\ "{}green"{}\});\ \ \ \ \ \ \ \ \ \ \ //\ Fails\ with\ "{}value.size\ is\ missing"{}}
+\DoxyCodeLine{Square.check(\{size:\ 4,\ color:\ 5\});\ \ \ \ \ \ \ \ //\ Fails\ with\ "{}value.color\ is\ not\ a\ string"{}}
+
+\end{DoxyCode}
+
+
+Note that {\ttfamily ts-\/interface-\/builder} is only needed for the build-\/time step, and {\ttfamily ts-\/interface-\/checker} is needed at runtime. That\textquotesingle{}s why the recommendation is to npm-\/install the former using {\ttfamily -\/-\/save-\/dev} flag and the latter using {\ttfamily -\/-\/save}.\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2630}{}\doxysubsection{\texorpdfstring{Checking method calls}{Checking method calls}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2630}
+If you have an interface with methods, you can validate method call arguments and return values:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ greet.ts}
+\DoxyCodeLine{interface\ Greeter\ \{}
+\DoxyCodeLine{\ \ greet(name:\ string):\ string;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+After generating the runtime code, you can now check calls like:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ greetTI\ from\ "{}./greet-\/ti"{};}
+\DoxyCodeLine{import\ \{createCheckers\}\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{Greeter\}\ =\ createCheckers(greetTI);}
+\DoxyCodeLine{}
+\DoxyCodeLine{Greeter.methodArgs("{}greet"{}).check(["{}Bob"{}]);\ \ \ \ \ //\ OK}
+\DoxyCodeLine{Greeter.methodArgs("{}greet"{}).check([17]);\ \ \ \ \ \ \ \ //\ Fails\ with\ "{}value.name\ is\ not\ a\ string"{}}
+\DoxyCodeLine{Greeter.methodArgs("{}greet"{}).check([]);\ \ \ \ \ \ \ \ \ \ //\ Fails\ with\ "{}value.name\ is\ missing"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Greeter.methodResult("{}greet"{}).check("{}hello"{});\ \ \ //\ OK}
+\DoxyCodeLine{Greeter.methodResult("{}greet"{}).check(null);\ \ \ \ \ \ //\ Fails\ with\ "{}value\ is\ not\ a\ string"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2631}{}\doxysubsection{\texorpdfstring{Type suites}{Type suites}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2631}
+If one type refers to a type defined in another file, you need to tell the interface checker about all type names when you call {\ttfamily create\+Checkers()}. E.\+g. given
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ color.ts}
+\DoxyCodeLine{export\ type\ Color\ =\ RGB\ |\ string;}
+\DoxyCodeLine{export\ type\ RGB\ =\ [number,\ number,\ number];}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ shape.ts}
+\DoxyCodeLine{import\ \{Color\}\ from\ "{}./color"{};}
+\DoxyCodeLine{export\ interface\ Square\ \{}
+\DoxyCodeLine{\ \ size:\ number;}
+\DoxyCodeLine{\ \ color?:\ Color;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+the produced files {\ttfamily color-\/ti.\+ts} and {\ttfamily shape-\/ti.\+ts} do not automatically refer to each other, but expect you to relate them in {\ttfamily create\+Checkers()} call:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ color\ from\ "{}./color-\/ti"{};}
+\DoxyCodeLine{import\ shape\ from\ "{}./shape-\/ti"{};}
+\DoxyCodeLine{import\ \{createCheckers\}\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{Square\}\ =\ createCheckers(shape,\ color);\ \ \ \ //\ Pass\ in\ all\ required\ type\ suites.}
+\DoxyCodeLine{}
+\DoxyCodeLine{Square.check(\{size:\ 1,\ color:\ [255,255,255]\});}
+
+\end{DoxyCode}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2632}{}\doxysubsection{\texorpdfstring{Strict checking}{Strict checking}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2632}
+You may check that data contains no extra properties. Note that it is not generally recommended as it this prevents backward compatibility:\+ if you add new properties to an interface, then older code with strict checks will not accept them.
+
+Following on the example above:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Square.strictCheck(\{size:\ 1,\ color:\ [255,255,255],\ bg:\ "{}blue"{}\});\ \ \ \ //\ Fails\ with\ value.bg\ is\ extraneous}
+\DoxyCodeLine{Square.strictCheck(\{size:\ 1,\ color:\ [255,255,255,0.5]\});\ \ \ \ \ \ \ \ \ \ \ \ //\ Fails\ with\ ...value.color[3]\ is\ extraneous}
+
+\end{DoxyCode}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2633}{}\doxysubsection{\texorpdfstring{Type guards}{Type guards}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2633}
+Standard {\ttfamily Checker} objects do the type checking logic, but are unable to make the Type\+Script compiler aware that an object of {\ttfamily unknown} type implements a certain interface.
+
+Basic code:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ unk:\ unknown\ =\ \{size:\ 1,\ color:\ "{}green"{}\};}
+\DoxyCodeLine{//\ Type\ is\ unknown,\ so\ TypeScript\ will\ not\ let\ you\ access\ the\ members.}
+\DoxyCodeLine{console.log(unk.size);\ //\ Error:\ "{}Object\ is\ of\ type\ 'unknown'"{}}
+
+\end{DoxyCode}
+
+
+With a {\ttfamily Checker} available:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ fooTI\ from\ "{}./foo-\/ti"{};}
+\DoxyCodeLine{import\ \{createCheckers\}\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{Square\}\ =\ createCheckers(fooTI);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ unk:\ unknown\ =\ \{size:\ 1,\ color:\ "{}green"{}\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{if\ (Square.test(unk))\ \{}
+\DoxyCodeLine{\ \ //\ unk\ does\ implement\ Square,\ but\ TypeScript\ is\ not\ aware\ of\ it.}
+\DoxyCodeLine{\ \ console.log(unk.size);\ //\ Error:\ "{}Object\ is\ of\ type\ 'unknown'"{}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+To enable type guard functionality on the existing {\ttfamily test}, and {\ttfamily strict\+Test} functions, {\ttfamily Checker} objects should be cast to {\ttfamily CheckerT\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}} using the appropriate type.
+
+Using {\ttfamily CheckerT\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}}:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{Square\}\ from\ "{}./foo"{};}
+\DoxyCodeLine{import\ fooTI\ from\ "{}./foo-\/ti"{};}
+\DoxyCodeLine{import\ \{createCheckers,\ CheckerT\}\ from\ "{}ts-\/interface-\/checker"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{Square\}\ =\ createCheckers(fooTI)\ as\ \{Square:\ CheckerT<Square>\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ unk:\ unknown\ =\ \{size:\ 1,\ color:\ "{}green"{}\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{if\ (Square.test(unk))\ \{}
+\DoxyCodeLine{\ \ //\ TypeScript\ is\ now\ aware\ that\ unk\ implements\ Square,\ and\ allows\ member\ access.}
+\DoxyCodeLine{\ \ console.log(unk.size);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2634}{}\doxysubsection{\texorpdfstring{Type assertions}{Type assertions}}\label{dir_ae948bcf8d65e04e83c6f2803dc96474_autotoc_md2634}
+{\ttfamily CheckerT\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}} will eventually support type assertions using the {\ttfamily check} and {\ttfamily strict\+Check} functions, however, this feature is not yet fully working in Type\+Script. 

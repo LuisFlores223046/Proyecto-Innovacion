@@ -1,0 +1,101 @@
+\doxysection{httpx.\+\_\+multipart.\+Multipart\+Stream Class Reference}
+\hypertarget{classhttpx_1_1__multipart_1_1MultipartStream}{}\label{classhttpx_1_1__multipart_1_1MultipartStream}\index{httpx.\_multipart.MultipartStream@{httpx.\_multipart.MultipartStream}}
+Inheritance diagram for httpx.\+\_\+multipart.\+Multipart\+Stream:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpx_1_1__multipart_1_1MultipartStream}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_a4a6162b67c4188944e6cda3c24fd74c5}\label{classhttpx_1_1__multipart_1_1MultipartStream_a4a6162b67c4188944e6cda3c24fd74c5} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Request\+Data data, Request\+Files files, bytes\texorpdfstring{$\vert$}{|}None boundary=None)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_ac2f25cb72ceda88a75b6146ff416d686}\label{classhttpx_1_1__multipart_1_1MultipartStream_ac2f25cb72ceda88a75b6146ff416d686} 
+typing.\+Iterator\+[bytes]\+ {\bfseries iter\+\_\+chunks} (self)
+\item 
+int\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1MultipartStream_ae15f5bd9f8b22bdda2297f1e3f35e955}{get\+\_\+content\+\_\+length}} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_aee6732ad069df114dd6dbc7630bc3e03}\label{classhttpx_1_1__multipart_1_1MultipartStream_aee6732ad069df114dd6dbc7630bc3e03} 
+dict\+[str, str]\+ {\bfseries get\+\_\+headers} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_af9ea7700b939a94555268751c8539074}\label{classhttpx_1_1__multipart_1_1MultipartStream_af9ea7700b939a94555268751c8539074} 
+typing.\+Iterator\+[bytes]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_aabb60a1cd419260e64a55b5aef67d5c6}\label{classhttpx_1_1__multipart_1_1MultipartStream_aabb60a1cd419260e64a55b5aef67d5c6} 
+typing.\+Async\+Iterator\+[bytes]\+ {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__types_1_1SyncByteStream}{httpx.\+\_\+types.\+Sync\+Byte\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+Iterator\+[bytes]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classhttpx_1_1__types_1_1SyncByteStream_ad6fe75f4e2ea0a912624cb2f61b15945}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__types_1_1AsyncByteStream}{httpx.\+\_\+types.\+Async\+Byte\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+Async\+Iterator\+[bytes]\+ {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\item 
+None {\bfseries aclose} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_acb3e6b681eaac37197a1018bfa12b506}\label{classhttpx_1_1__multipart_1_1MultipartStream_acb3e6b681eaac37197a1018bfa12b506} 
+{\bfseries boundary} = boundary
+\item 
+str \doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1MultipartStream_ab1a236dfd38737f3f825c1db42ef37ea}{content\+\_\+type}}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_a391767094f741f31d13916071eb8dfdc}\label{classhttpx_1_1__multipart_1_1MultipartStream_a391767094f741f31d13916071eb8dfdc} 
+{\bfseries fields} = list(self.\+\_\+iter\+\_\+fields(data, files))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_a93b4eca878443a207a5d3b0d3e87110b}\label{classhttpx_1_1__multipart_1_1MultipartStream_a93b4eca878443a207a5d3b0d3e87110b} 
+typing.\+Iterator\+[\doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1FileField}{File\+Field}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1DataField}{Data\+Field}}]\+ {\bfseries \+\_\+iter\+\_\+fields} (self, Request\+Data data, Request\+Files files)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Request content as streaming multipart encoded form data.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__multipart_1_1MultipartStream_doc-func-members}
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_ae15f5bd9f8b22bdda2297f1e3f35e955}\index{httpx.\_multipart.MultipartStream@{httpx.\_multipart.MultipartStream}!get\_content\_length@{get\_content\_length}}
+\index{get\_content\_length@{get\_content\_length}!httpx.\_multipart.MultipartStream@{httpx.\_multipart.MultipartStream}}
+\doxysubsubsection{\texorpdfstring{get\_content\_length()}{get\_content\_length()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__multipart_1_1MultipartStream_ae15f5bd9f8b22bdda2297f1e3f35e955} 
+ int \texorpdfstring{$\vert$}{|} None httpx.\+\_\+multipart.\+Multipart\+Stream.\+get\+\_\+content\+\_\+length (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the length of the multipart encoded content, or `None` if
+any of the files have a length that cannot be determined upfront.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__multipart_1_1MultipartStream_doc-variable-members}
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpx_1_1__multipart_1_1MultipartStream_ab1a236dfd38737f3f825c1db42ef37ea}\index{httpx.\_multipart.MultipartStream@{httpx.\_multipart.MultipartStream}!content\_type@{content\_type}}
+\index{content\_type@{content\_type}!httpx.\_multipart.MultipartStream@{httpx.\_multipart.MultipartStream}}
+\doxysubsubsection{\texorpdfstring{content\_type}{content\_type}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__multipart_1_1MultipartStream_ab1a236dfd38737f3f825c1db42ef37ea} 
+str httpx.\+\_\+multipart.\+Multipart\+Stream.\+content\+\_\+type}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \textcolor{stringliteral}{"{}multipart/form-\/data;\ boundary=\%s"{}}\ \%\ boundary.decode(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ascii"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+multipart.\+py\end{DoxyCompactItemize}

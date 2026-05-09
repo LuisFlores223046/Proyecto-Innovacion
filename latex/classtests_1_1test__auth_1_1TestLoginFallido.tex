@@ -1,0 +1,46 @@
+\doxysection{tests.\+test\+\_\+auth.\+Test\+Login\+Fallido Class Reference}
+\hypertarget{classtests_1_1test__auth_1_1TestLoginFallido}{}\label{classtests_1_1test__auth_1_1TestLoginFallido}\index{tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestLoginFallido_ae0241b2e8b93100b5063bed77c662848}{test\+\_\+password\+\_\+incorrecto\+\_\+retorna\+\_\+401}} (self, \doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}} client, admin\+\_\+user)
+\item 
+\doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestLoginFallido_ac9ee3730dff60bac26ae67b7e774ee12}{test\+\_\+usuario\+\_\+inexistente\+\_\+retorna\+\_\+401}} (self, \doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}} client, admin\+\_\+user)
+\item 
+\doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestLoginFallido_ab7074525bd8098f6e9561f616fa7a10c}{test\+\_\+intentos\+\_\+fallidos\+\_\+incrementan}} (self, \doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}} client, admin\+\_\+user, db\+\_\+session)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Pruebas de rechazo por credenciales incorrectas.\end{DoxyVerb}
+ 
+
+\label{classtests_1_1test__auth_1_1TestLoginFallido_doc-func-members}
+\Hypertarget{classtests_1_1test__auth_1_1TestLoginFallido_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classtests_1_1test__auth_1_1TestLoginFallido_ab7074525bd8098f6e9561f616fa7a10c}\index{tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}!test\_intentos\_fallidos\_incrementan@{test\_intentos\_fallidos\_incrementan}}
+\index{test\_intentos\_fallidos\_incrementan@{test\_intentos\_fallidos\_incrementan}!tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}}
+\doxysubsubsection{\texorpdfstring{test\_intentos\_fallidos\_incrementan()}{test\_intentos\_fallidos\_incrementan()}}
+{\footnotesize\ttfamily \label{classtests_1_1test__auth_1_1TestLoginFallido_ab7074525bd8098f6e9561f616fa7a10c} 
+tests.\+test\+\_\+auth.\+Test\+Login\+Fallido.\+test\+\_\+intentos\+\_\+fallidos\+\_\+incrementan (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}}}]{client}{, }\item[{}]{admin\+\_\+user}{, }\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Cada intento fallido incrementa admin.intentos_fallidos en 1.\end{DoxyVerb}
+ \Hypertarget{classtests_1_1test__auth_1_1TestLoginFallido_ae0241b2e8b93100b5063bed77c662848}\index{tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}!test\_password\_incorrecto\_retorna\_401@{test\_password\_incorrecto\_retorna\_401}}
+\index{test\_password\_incorrecto\_retorna\_401@{test\_password\_incorrecto\_retorna\_401}!tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}}
+\doxysubsubsection{\texorpdfstring{test\_password\_incorrecto\_retorna\_401()}{test\_password\_incorrecto\_retorna\_401()}}
+{\footnotesize\ttfamily \label{classtests_1_1test__auth_1_1TestLoginFallido_ae0241b2e8b93100b5063bed77c662848} 
+tests.\+test\+\_\+auth.\+Test\+Login\+Fallido.\+test\+\_\+password\+\_\+incorrecto\+\_\+retorna\+\_\+401 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}}}]{client}{, }\item[{}]{admin\+\_\+user}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Contraseña equivocada → HTTP 401 con mensaje 'Credenciales incorrectas'.\end{DoxyVerb}
+ \Hypertarget{classtests_1_1test__auth_1_1TestLoginFallido_ac9ee3730dff60bac26ae67b7e774ee12}\index{tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}!test\_usuario\_inexistente\_retorna\_401@{test\_usuario\_inexistente\_retorna\_401}}
+\index{test\_usuario\_inexistente\_retorna\_401@{test\_usuario\_inexistente\_retorna\_401}!tests.test\_auth.TestLoginFallido@{tests.test\_auth.TestLoginFallido}}
+\doxysubsubsection{\texorpdfstring{test\_usuario\_inexistente\_retorna\_401()}{test\_usuario\_inexistente\_retorna\_401()}}
+{\footnotesize\ttfamily \label{classtests_1_1test__auth_1_1TestLoginFallido_ac9ee3730dff60bac26ae67b7e774ee12} 
+tests.\+test\+\_\+auth.\+Test\+Login\+Fallido.\+test\+\_\+usuario\+\_\+inexistente\+\_\+retorna\+\_\+401 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__client_1_1AsyncClient}{Async\+Client}}}]{client}{, }\item[{}]{admin\+\_\+user}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Un username que no existe nunca debe revelar si existe o no (timing attack).\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+tests/\+test\+\_\+auth.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,912 @@
+\chapter{Axios Migration Guide }
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE}{}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE}\index{Axios Migration Guide@{Axios Migration Guide}}
+\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md417}%
+\Hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md417}%
+
+
+\begin{quote}
+{\bfseries{Migrating from Axios 0.\+x to 1.\+x}}
+
+This guide helps developers upgrade from Axios 0.\+x to 1.\+x by documenting breaking changes, providing migration strategies, and offering solutions to common upgrade challenges. \end{quote}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md418}{}\doxysection{\texorpdfstring{Table of Contents}{Table of Contents}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md418}
+
+\begin{DoxyItemize}
+\item OverviewOverview
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Breaking ChangesBreaking Changes
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Error Handling MigrationError Handling Migration
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item API ChangesAPI Changes
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Configuration ChangesConfiguration Changes
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Migration StrategiesMigration Strategies
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item Common PatternsCommon Patterns
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item TroubleshootingTroubleshooting
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item ResourcesResources
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md419}{}\doxysection{\texorpdfstring{Overview}{Overview}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md419}
+Axios 1.\+x introduced several breaking changes to improve consistency, security, and developer experience. While these changes provide better error handling and more predictable behavior, they require code updates when migrating from 0.\+x versions.\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md420}{}\doxysubsection{\texorpdfstring{Key Changes Summary}{Key Changes Summary}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md420}
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Area  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}0.\+x Behavior  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}1.\+x Behavior  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Impact  \\
+Error Handling  &Selective throwing  &Consistent throwing  &High  \\
+JSON Parsing  &Lenient  &Strict  &Medium  \\
+Browser Support  &IE11+  &Modern browsers  &Low-\/\+Medium  \\
+Type\+Script  &Partial  &Full support  &Low  \\
+\end{DoxyTable}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md421}{}\doxysubsection{\texorpdfstring{Migration Complexity}{Migration Complexity}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md421}
+
+\begin{DoxyItemize}
+\item {\bfseries{Simple applications}}:\+ 1-\/2 hours
+\item {\bfseries{Medium applications}}:\+ 1-\/2 days ~\newline
+
+\item {\bfseries{Large applications with complex error handling}}:\+ 3-\/5 days
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md422}{}\doxysection{\texorpdfstring{Breaking Changes}{Breaking Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md422}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md423}{}\doxysubsection{\texorpdfstring{1. Error Handling Changes}{1. Error Handling Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md423}
+{\bfseries{The most significant change in Axios 1.\+x is how errors are handled.}}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md424}{}\doxysubsubsection{\texorpdfstring{0.\+x Behavior}{0.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md424}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Axios\ 0.x\ -\/\ Some\ HTTP\ error\ codes\ didn't\ throw}
+\DoxyCodeLine{axios.get('/api/data')}
+\DoxyCodeLine{\ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Response\ interceptor\ could\ handle\ all\ errors}
+\DoxyCodeLine{\ \ \ \ console.log('Success:',\ response.data);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Response\ interceptor\ handled\ everything}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ handleError(error);}
+\DoxyCodeLine{\ \ \ \ //\ Error\ was\ "{}handled"{}\ and\ didn't\ propagate}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md425}{}\doxysubsubsection{\texorpdfstring{1.\+x Behavior}{1.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md425}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Axios\ 1.x\ -\/\ All\ HTTP\ errors\ throw\ consistently}
+\DoxyCodeLine{axios.get('/api/data')}
+\DoxyCodeLine{\ \ .then(response\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('Success:',\ response.data);}
+\DoxyCodeLine{\ \ \})}
+\DoxyCodeLine{\ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Must\ handle\ errors\ at\ call\ site\ or\ they\ propagate}
+\DoxyCodeLine{\ \ \ \ console.error('Request\ failed:',\ error);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Response\ interceptor\ must\ re-\/throw\ or\ return\ rejected\ promise}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ handleError(error);}
+\DoxyCodeLine{\ \ \ \ //\ Must\ explicitly\ handle\ propagation}
+\DoxyCodeLine{\ \ \ \ return\ Promise.reject(error);\ //\ or\ throw\ error;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md426}{}\doxysubsubsection{\texorpdfstring{Impact}{Impact}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md426}
+
+\begin{DoxyItemize}
+\item {\bfseries{Response interceptors}} can no longer "{}swallow"{} errors silently
+\item {\bfseries{Every API call}} must handle errors explicitly or they become unhandled promise rejections
+\item {\bfseries{Centralized error handling}} requires new patterns
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md427}{}\doxysubsection{\texorpdfstring{2. JSON Parsing Changes}{2. JSON Parsing Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md427}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md428}{}\doxysubsubsection{\texorpdfstring{0.\+x Behavior}{0.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md428}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Axios\ 0.x\ -\/\ Lenient\ JSON\ parsing}
+\DoxyCodeLine{//\ Would\ attempt\ to\ parse\ even\ invalid\ JSON}
+\DoxyCodeLine{response.data;\ //\ Might\ contain\ partial\ data\ or\ fallbacks}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md429}{}\doxysubsubsection{\texorpdfstring{1.\+x Behavior}{1.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md429}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Axios\ 1.x\ -\/\ Strict\ JSON\ parsing}
+\DoxyCodeLine{//\ Throws\ clear\ errors\ for\ invalid\ JSON}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ const\ data\ =\ response.data;}
+\DoxyCodeLine{\}\ catch\ (error)\ \{}
+\DoxyCodeLine{\ \ //\ Handle\ JSON\ parsing\ errors\ explicitly}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md430}{}\doxysubsection{\texorpdfstring{3. Request/\+\+Response Transform Changes}{3. Request/\+\+Response Transform Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md430}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md431}{}\doxysubsubsection{\texorpdfstring{0.\+x Behavior}{0.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md431}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Implicit\ transformations\ with\ some\ edge\ cases}
+\DoxyCodeLine{transformRequest:\ [function\ (data)\ \{}
+\DoxyCodeLine{\ \ //\ Less\ predictable\ behavior}
+\DoxyCodeLine{\ \ return\ data;}
+\DoxyCodeLine{\}]}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md432}{}\doxysubsubsection{\texorpdfstring{1.\+x Behavior}{1.\+x Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md432}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ More\ consistent\ transformation\ pipeline}
+\DoxyCodeLine{transformRequest:\ [function\ (data,\ headers)\ \{}
+\DoxyCodeLine{\ \ //\ Headers\ parameter\ always\ available}
+\DoxyCodeLine{\ \ //\ More\ predictable\ behavior}
+\DoxyCodeLine{\ \ return\ data;}
+\DoxyCodeLine{\}]}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md433}{}\doxysubsection{\texorpdfstring{4. Browser Support Changes}{4. Browser Support Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md433}
+
+\begin{DoxyItemize}
+\item {\bfseries{0.\+x}}:\+ Supported IE11 and older browsers
+\item {\bfseries{1.\+x}}:\+ Requires modern browsers with Promise support
+\item {\bfseries{Polyfills}}:\+ May be needed for older browser support
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md434}{}\doxysection{\texorpdfstring{Error Handling Migration}{Error Handling Migration}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md434}
+The error handling changes are the most complex part of migrating to Axios 1.\+x. Here are proven strategies:\+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md435}{}\doxysubsection{\texorpdfstring{Strategy 1:\+ Centralized Error Handling with Error Boundary}{Strategy 1:\+ Centralized Error Handling with Error Boundary}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md435}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Create\ a\ centralized\ error\ handler}
+\DoxyCodeLine{class\ ApiErrorHandler\ \{}
+\DoxyCodeLine{\ \ constructor()\ \{}
+\DoxyCodeLine{\ \ \ \ this.setupInterceptors();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ setupInterceptors()\ \{}
+\DoxyCodeLine{\ \ \ \ axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ \ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ \ \ \ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Centralized\ error\ processing}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.processError(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Return\ a\ resolved\ promise\ with\ error\ info\ for\ handled\ errors}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (this.isHandledError(error))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ Promise.resolve(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ data:\ null,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ error:\ this.normalizeError(error),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ handled:\ true}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Re-\/throw\ unhandled\ errors}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ );}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ processError(error)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Log\ errors}
+\DoxyCodeLine{\ \ \ \ console.error('API\ Error:',\ error);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ //\ Show\ user\ notifications}
+\DoxyCodeLine{\ \ \ \ if\ (error.response?.status\ ===\ 401)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ this.handleAuthError();}
+\DoxyCodeLine{\ \ \ \ \}\ else\ if\ (error.response?.status\ >=\ 500)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ this.showErrorNotification('Server\ error\ occurred');}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ isHandledError(error)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Define\ which\ errors\ are\ "{}handled"{}\ centrally}
+\DoxyCodeLine{\ \ \ \ const\ handledStatuses\ =\ [401,\ 403,\ 404,\ 422,\ 500,\ 502,\ 503];}
+\DoxyCodeLine{\ \ \ \ return\ handledStatuses.includes(error.response?.status);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ normalizeError(error)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ status:\ error.response?.status,}
+\DoxyCodeLine{\ \ \ \ \ \ message:\ error.response?.data?.message\ ||\ error.message,}
+\DoxyCodeLine{\ \ \ \ \ \ code:\ error.response?.data?.code\ ||\ error.code}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ handleAuthError()\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Redirect\ to\ login,\ clear\ tokens,\ etc.}
+\DoxyCodeLine{\ \ \ \ localStorage.removeItem('token');}
+\DoxyCodeLine{\ \ \ \ window.location.href\ =\ '/login';}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ showErrorNotification(message)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Show\ user-\/friendly\ error\ message}
+\DoxyCodeLine{\ \ \ \ console.error(message);\ //\ Replace\ with\ your\ notification\ system}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Initialize\ globally}
+\DoxyCodeLine{const\ errorHandler\ =\ new\ ApiErrorHandler();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage\ in\ components/services}
+\DoxyCodeLine{async\ function\ fetchUserData(userId)\ \{}
+\DoxyCodeLine{\ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ const\ response\ =\ await\ axios.get(`/api/users/\$\{userId\}`);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ //\ Check\ if\ error\ was\ handled\ centrally}
+\DoxyCodeLine{\ \ \ \ if\ (response.handled)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ \{\ data:\ null,\ error:\ response.error\ \};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ return\ \{\ data:\ response.data,\ error:\ null\ \};}
+\DoxyCodeLine{\ \ \}\ catch\ (error)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Unhandled\ errors\ still\ need\ local\ handling}
+\DoxyCodeLine{\ \ \ \ return\ \{\ data:\ null,\ error:\ \{\ message:\ 'Unexpected\ error\ occurred'\ \}\ \};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md436}{}\doxysubsection{\texorpdfstring{Strategy 2:\+ Wrapper Function Pattern}{Strategy 2:\+ Wrapper Function Pattern}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md436}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Create\ a\ wrapper\ that\ provides\ 0.x-\/like\ behavior}
+\DoxyCodeLine{function\ createApiWrapper()\ \{}
+\DoxyCodeLine{\ \ const\ api\ =\ axios.create();}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ //\ Add\ response\ interceptor\ for\ centralized\ handling}
+\DoxyCodeLine{\ \ api.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ \ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Handle\ common\ errors\ centrally}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (error.response?.status\ ===\ 401)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Handle\ auth\ errors}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handleAuthError();}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ if\ (error.response?.status\ >=\ 500)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Handle\ server\ errors}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ showServerErrorNotification();}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ //\ Always\ reject\ to\ maintain\ error\ propagation}
+\DoxyCodeLine{\ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Wrapper\ function\ that\ mimics\ 0.x\ behavior}
+\DoxyCodeLine{\ \ function\ safeRequest(requestConfig,\ options\ =\ \{\})\ \{}
+\DoxyCodeLine{\ \ \ \ return\ api(requestConfig)}
+\DoxyCodeLine{\ \ \ \ \ \ .then(response\ =>\ response)}
+\DoxyCodeLine{\ \ \ \ \ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (options.suppressErrors)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ //\ Return\ error\ info\ instead\ of\ throwing}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ return\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ data:\ null,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ error:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ status:\ error.response?.status,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ message:\ error.response?.data?.message\ ||\ error.message}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ throw\ error;}
+\DoxyCodeLine{\ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ \{\ safeRequest,\ axios:\ api\ \};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage}
+\DoxyCodeLine{const\ \{\ safeRequest\ \}\ =\ createApiWrapper();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ For\ calls\ where\ you\ want\ centralized\ error\ handling}
+\DoxyCodeLine{const\ result\ =\ await\ safeRequest(}
+\DoxyCodeLine{\ \ \{\ method:\ 'get',\ url:\ '/api/data'\ \},}
+\DoxyCodeLine{\ \ \{\ suppressErrors:\ true\ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{if\ (result.error)\ \{}
+\DoxyCodeLine{\ \ //\ Handle\ error\ case}
+\DoxyCodeLine{\ \ console.log('Request\ failed:',\ result.error.message);}
+\DoxyCodeLine{\}\ else\ \{}
+\DoxyCodeLine{\ \ //\ Handle\ success\ case}
+\DoxyCodeLine{\ \ console.log('Data:',\ result.data);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md437}{}\doxysubsection{\texorpdfstring{Strategy 3:\+ Global Error Handler with Custom Events}{Strategy 3:\+ Global Error Handler with Custom Events}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md437}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Set\ up\ global\ error\ handling\ with\ events}
+\DoxyCodeLine{class\ GlobalErrorHandler\ extends\ EventTarget\ \{}
+\DoxyCodeLine{\ \ constructor()\ \{}
+\DoxyCodeLine{\ \ \ \ super();}
+\DoxyCodeLine{\ \ \ \ this.setupInterceptors();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ setupInterceptors()\ \{}
+\DoxyCodeLine{\ \ \ \ axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ \ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ \ \ \ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Emit\ custom\ event\ for\ global\ handling}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.dispatchEvent(new\ CustomEvent('apiError',\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ detail:\ \{\ error,\ timestamp:\ new\ Date()\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Always\ reject\ to\ maintain\ proper\ error\ flow}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ );}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ globalErrorHandler\ =\ new\ GlobalErrorHandler();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Set\ up\ global\ listeners}
+\DoxyCodeLine{globalErrorHandler.addEventListener('apiError',\ (event)\ =>\ \{}
+\DoxyCodeLine{\ \ const\ \{\ error\ \}\ =\ event.detail;}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ //\ Centralized\ error\ logic}
+\DoxyCodeLine{\ \ if\ (error.response?.status\ ===\ 401)\ \{}
+\DoxyCodeLine{\ \ \ \ handleAuthError();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ if\ (error.response?.status\ >=\ 500)\ \{}
+\DoxyCodeLine{\ \ \ \ showErrorNotification('Server\ error\ occurred');}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage\ remains\ clean}
+\DoxyCodeLine{async\ function\ apiCall()\ \{}
+\DoxyCodeLine{\ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ const\ response\ =\ await\ axios.get('/api/data');}
+\DoxyCodeLine{\ \ \ \ return\ response.data;}
+\DoxyCodeLine{\ \ \}\ catch\ (error)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Error\ was\ already\ handled\ globally}
+\DoxyCodeLine{\ \ \ \ //\ Just\ handle\ component-\/specific\ logic}
+\DoxyCodeLine{\ \ \ \ return\ null;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md438}{}\doxysection{\texorpdfstring{API Changes}{API Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md438}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md439}{}\doxysubsection{\texorpdfstring{Request Configuration}{Request Configuration}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md439}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md440}{}\doxysubsubsection{\texorpdfstring{0.\+x to 1.\+x Changes}{0.\+x to 1.\+x Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md440}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 0.x\ -\/\ Some\ properties\ had\ different\ defaults}
+\DoxyCodeLine{const\ config\ =\ \{}
+\DoxyCodeLine{\ \ timeout:\ 0,\ //\ No\ timeout\ by\ default}
+\DoxyCodeLine{\ \ maxContentLength:\ -\/1,\ //\ No\ limit}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 1.x\ -\/\ More\ secure\ defaults}
+\DoxyCodeLine{const\ config\ =\ \{}
+\DoxyCodeLine{\ \ timeout:\ 0,\ //\ Still\ no\ timeout,\ but\ easier\ to\ configure}
+\DoxyCodeLine{\ \ maxContentLength:\ 2000,\ //\ Default\ limit\ for\ security}
+\DoxyCodeLine{\ \ maxBodyLength:\ 2000,\ //\ New\ property}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md441}{}\doxysubsection{\texorpdfstring{Response Object}{Response Object}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md441}
+The response object structure remains largely the same, but error responses are more consistent:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Both\ 0.x\ and\ 1.x}
+\DoxyCodeLine{response\ =\ \{}
+\DoxyCodeLine{\ \ data:\ \{\},\ //\ Response\ body}
+\DoxyCodeLine{\ \ status:\ 200,\ //\ HTTP\ status}
+\DoxyCodeLine{\ \ statusText:\ 'OK',\ //\ HTTP\ status\ message\ \ }
+\DoxyCodeLine{\ \ headers:\ \{\},\ //\ Response\ headers}
+\DoxyCodeLine{\ \ config:\ \{\},\ //\ Request\ config}
+\DoxyCodeLine{\ \ request:\ \{\}\ //\ Request\ object}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Error\ responses\ are\ more\ consistent\ in\ 1.x}
+\DoxyCodeLine{error.response\ =\ \{}
+\DoxyCodeLine{\ \ data:\ \{\},\ //\ Error\ response\ body}
+\DoxyCodeLine{\ \ status:\ 404,\ //\ HTTP\ error\ status}
+\DoxyCodeLine{\ \ statusText:\ 'Not\ Found',}
+\DoxyCodeLine{\ \ headers:\ \{\},}
+\DoxyCodeLine{\ \ config:\ \{\},}
+\DoxyCodeLine{\ \ request:\ \{\}}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md442}{}\doxysection{\texorpdfstring{Configuration Changes}{Configuration Changes}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md442}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md443}{}\doxysubsection{\texorpdfstring{Default Configuration Updates}{Default Configuration Updates}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md443}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 0.x\ defaults}
+\DoxyCodeLine{axios.defaults.timeout\ =\ 0;\ //\ No\ timeout}
+\DoxyCodeLine{axios.defaults.maxContentLength\ =\ -\/1;\ //\ No\ limit}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 1.x\ defaults\ (more\ secure)}
+\DoxyCodeLine{axios.defaults.timeout\ =\ 0;\ //\ Still\ no\ timeout}
+\DoxyCodeLine{axios.defaults.maxContentLength\ =\ 2000;\ //\ 2MB\ limit}
+\DoxyCodeLine{axios.defaults.maxBodyLength\ =\ 2000;\ //\ 2MB\ limit}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md444}{}\doxysubsection{\texorpdfstring{Instance Configuration}{Instance Configuration}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md444}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 0.x\ -\/\ Instance\ creation}
+\DoxyCodeLine{const\ api\ =\ axios.create(\{}
+\DoxyCodeLine{\ \ baseURL:\ 'https://api.example.com',}
+\DoxyCodeLine{\ \ timeout:\ 1000,}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 1.x\ -\/\ Same\ API,\ but\ more\ options\ available}
+\DoxyCodeLine{const\ api\ =\ axios.create(\{}
+\DoxyCodeLine{\ \ baseURL:\ 'https://api.example.com',}
+\DoxyCodeLine{\ \ timeout:\ 1000,}
+\DoxyCodeLine{\ \ maxBodyLength:\ Infinity,\ //\ Override\ default\ if\ needed}
+\DoxyCodeLine{\ \ maxContentLength:\ Infinity,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md445}{}\doxysection{\texorpdfstring{Migration Strategies}{Migration Strategies}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md445}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md446}{}\doxysubsection{\texorpdfstring{Step-\/by-\/\+Step Migration Process}{Step-\/by-\/\+Step Migration Process}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md446}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md447}{}\doxysubsubsection{\texorpdfstring{Phase 1:\+ Preparation}{Phase 1:\+ Preparation}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md447}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Audit Current Error Handling}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Find\ all\ axios\ usage}
+\DoxyCodeLine{grep\ -\/r\ "{}axios\(\backslash\)."{}\ src/}
+\DoxyCodeLine{grep\ -\/r\ "{}\(\backslash\).catch"{}\ src/}
+\DoxyCodeLine{grep\ -\/r\ "{}interceptors"{}\ src/}
+
+\end{DoxyCode}
+
+\item {\bfseries{Identify Patterns}}
+\begin{DoxyItemize}
+\item Response interceptors that handle errors
+\item Components that rely on centralized error handling
+\item Authentication and retry logic
+\end{DoxyItemize}
+\item {\bfseries{Create Test Cases}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Test\ current\ error\ handling\ behavior}
+\DoxyCodeLine{describe('Error\ Handling\ Migration',\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ it('should\ handle\ 401\ errors\ consistently',\ async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Test\ authentication\ error\ flows}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ it('should\ handle\ 500\ errors\ with\ user\ feedback',\ async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Test\ server\ error\ handling}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md448}{}\doxysubsubsection{\texorpdfstring{Phase 2:\+ Implementation}{Phase 2:\+ Implementation}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md448}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Update Dependencies}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ update\ axios}
+
+\end{DoxyCode}
+
+\item {\bfseries{Implement New Error Handling}}
+\begin{DoxyItemize}
+\item Choose one of the strategies above
+\item Update response interceptors
+\item Add error handling to API calls
+\end{DoxyItemize}
+\item {\bfseries{Update Authentication Logic}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 0.x\ pattern}
+\DoxyCodeLine{axios.interceptors.response.use(null,\ error\ =>\ \{}
+\DoxyCodeLine{\ \ if\ (error.response?.status\ ===\ 401)\ \{}
+\DoxyCodeLine{\ \ \ \ logout();}
+\DoxyCodeLine{\ \ \ \ //\ Error\ was\ "{}handled"{}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 1.x\ pattern}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (error.response?.status\ ===\ 401)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ logout();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ return\ Promise.reject(error);\ //\ Always\ propagate}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md449}{}\doxysubsubsection{\texorpdfstring{Phase 3:\+ Testing and Validation}{Phase 3:\+ Testing and Validation}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md449}
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Test Error Scenarios}}
+\begin{DoxyItemize}
+\item Network failures
+\item HTTP error codes (401, 403, 404, 500, etc.)
+\item Timeout errors
+\item JSON parsing errors
+\end{DoxyItemize}
+\item {\bfseries{Validate User Experience}}
+\begin{DoxyItemize}
+\item Error messages are shown appropriately
+\item Authentication redirects work
+\item Loading states are handled correctly
+\end{DoxyItemize}
+\end{DoxyEnumerate}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md450}{}\doxysubsection{\texorpdfstring{Gradual Migration Approach}{Gradual Migration Approach}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md450}
+For large applications, consider gradual migration:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Create\ a\ compatibility\ layer}
+\DoxyCodeLine{const\ axiosCompat\ =\ \{}
+\DoxyCodeLine{\ \ //\ Use\ new\ axios\ instance\ for\ new\ code}
+\DoxyCodeLine{\ \ v1:\ axios.create(\{}
+\DoxyCodeLine{\ \ \ \ //\ 1.x\ configuration}
+\DoxyCodeLine{\ \ \}),}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ //\ Wrapper\ for\ legacy\ code}
+\DoxyCodeLine{\ \ legacy:\ createLegacyWrapper(axios.create(\{}
+\DoxyCodeLine{\ \ \ \ //\ Configuration\ that\ mimics\ 0.x\ behavior}
+\DoxyCodeLine{\ \ \}))}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ createLegacyWrapper(axiosInstance)\ \{}
+\DoxyCodeLine{\ \ //\ Add\ interceptors\ that\ provide\ 0.x-\/like\ behavior}
+\DoxyCodeLine{\ \ axiosInstance.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ \ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Handle\ errors\ in\ 0.x\ style\ for\ legacy\ code}
+\DoxyCodeLine{\ \ \ \ \ \ handleLegacyError(error);}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Don't\ propagate\ certain\ errors}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (shouldSuppressError(error))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.resolve(\{\ data:\ null,\ error:\ true\ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ return\ axiosInstance;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md451}{}\doxysection{\texorpdfstring{Common Patterns}{Common Patterns}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md451}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md452}{}\doxysubsection{\texorpdfstring{Authentication Interceptors}{Authentication Interceptors}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md452}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md453}{}\doxysubsubsection{\texorpdfstring{Updated Authentication Pattern}{Updated Authentication Pattern}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md453}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Token\ refresh\ interceptor\ for\ 1.x}
+\DoxyCodeLine{let\ isRefreshing\ =\ false;}
+\DoxyCodeLine{let\ refreshSubscribers\ =\ [];}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ subscribeTokenRefresh(cb)\ \{}
+\DoxyCodeLine{\ \ refreshSubscribers.push(cb);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ onTokenRefreshed(token)\ \{}
+\DoxyCodeLine{\ \ refreshSubscribers.forEach(cb\ =>\ cb(token));}
+\DoxyCodeLine{\ \ refreshSubscribers\ =\ [];}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ async\ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ const\ originalRequest\ =\ error.config;}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ if\ (error.response?.status\ ===\ 401\ \&\&\ !originalRequest.\_retry)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ if\ (isRefreshing)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Wait\ for\ token\ refresh}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ new\ Promise(resolve\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ subscribeTokenRefresh(token\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ originalRequest.headers.Authorization\ =\ \`{}Bearer\ \$\{token\}`;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ resolve(axios(originalRequest));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ originalRequest.\_retry\ =\ true;}
+\DoxyCodeLine{\ \ \ \ \ \ isRefreshing\ =\ true;}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ newToken\ =\ await\ refreshToken();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ onTokenRefreshed(newToken);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ isRefreshing\ =\ false;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ originalRequest.headers.Authorization\ =\ \`{}Bearer\ \$\{newToken\}`;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ axios(originalRequest);}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ catch\ (refreshError)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ isRefreshing\ =\ false;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ logout();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(refreshError);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md454}{}\doxysubsection{\texorpdfstring{Retry Logic}{Retry Logic}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md454}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Retry\ interceptor\ for\ 1.x}
+\DoxyCodeLine{function\ createRetryInterceptor(maxRetries\ =\ 3,\ retryDelay\ =\ 1000)\ \{}
+\DoxyCodeLine{\ \ return\ axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ \ \ async\ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ const\ config\ =\ error.config;}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ if\ (!config\ ||\ !config.retry)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ config.\_\_retryCount\ =\ config.\_\_retryCount\ ||\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ if\ (config.\_\_retryCount\ >=\ maxRetries)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ config.\_\_retryCount\ +=\ 1;}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ //\ Exponential\ backoff}
+\DoxyCodeLine{\ \ \ \ \ \ const\ delay\ =\ retryDelay\ *\ Math.pow(2,\ config.\_\_retryCount\ -\/\ 1);}
+\DoxyCodeLine{\ \ \ \ \ \ await\ new\ Promise(resolve\ =>\ setTimeout(resolve,\ delay));}
+\DoxyCodeLine{\ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ return\ axios(config);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Usage}
+\DoxyCodeLine{const\ api\ =\ axios.create();}
+\DoxyCodeLine{createRetryInterceptor(3,\ 1000);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Make\ request\ with\ retry}
+\DoxyCodeLine{api.get('/api/data',\ \{\ retry:\ true\ \});}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md455}{}\doxysubsection{\texorpdfstring{Loading State Management}{Loading State Management}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md455}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Loading\ interceptor\ for\ 1.x}
+\DoxyCodeLine{class\ LoadingManager\ \{}
+\DoxyCodeLine{\ \ constructor()\ \{}
+\DoxyCodeLine{\ \ \ \ this.requests\ =\ new\ Set();}
+\DoxyCodeLine{\ \ \ \ this.setupInterceptors();}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ setupInterceptors()\ \{}
+\DoxyCodeLine{\ \ \ \ axios.interceptors.request.use(config\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ this.requests.add(config);}
+\DoxyCodeLine{\ \ \ \ \ \ this.updateLoadingState();}
+\DoxyCodeLine{\ \ \ \ \ \ return\ config;}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ \ \ \ \ response\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.requests.delete(response.config);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.updateLoadingState();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ response;}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.requests.delete(error.config);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ this.updateLoadingState();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ );}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ }
+\DoxyCodeLine{\ \ updateLoadingState()\ \{}
+\DoxyCodeLine{\ \ \ \ const\ isLoading\ =\ this.requests.size\ >\ 0;}
+\DoxyCodeLine{\ \ \ \ //\ Update\ your\ loading\ UI}
+\DoxyCodeLine{\ \ \ \ document.body.classList.toggle('loading',\ isLoading);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ loadingManager\ =\ new\ LoadingManager();}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md456}{}\doxysection{\texorpdfstring{Troubleshooting}{Troubleshooting}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md456}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md457}{}\doxysubsection{\texorpdfstring{Common Migration Issues}{Common Migration Issues}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md457}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md458}{}\doxysubsubsection{\texorpdfstring{Issue 1:\+ Unhandled Promise Rejections}{Issue 1:\+ Unhandled Promise Rejections}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md458}
+{\bfseries{Problem:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ This\ pattern\ worked\ in\ 0.x\ but\ causes\ unhandled\ rejections\ in\ 1.x}
+\DoxyCodeLine{axios.get('/api/data');\ //\ No\ .catch()\ handler}
+
+\end{DoxyCode}
+
+
+{\bfseries{Solution:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Always\ handle\ promises}
+\DoxyCodeLine{axios.get('/api/data')}
+\DoxyCodeLine{\ \ .catch(error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Handle\ error\ appropriately}
+\DoxyCodeLine{\ \ \ \ console.error('Request\ failed:',\ error.message);}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Or\ use\ async/await\ with\ try/catch}
+\DoxyCodeLine{async\ function\ fetchData()\ \{}
+\DoxyCodeLine{\ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ const\ response\ =\ await\ axios.get('/api/data');}
+\DoxyCodeLine{\ \ \ \ return\ response.data;}
+\DoxyCodeLine{\ \ \}\ catch\ (error)\ \{}
+\DoxyCodeLine{\ \ \ \ console.error('Request\ failed:',\ error.message);}
+\DoxyCodeLine{\ \ \ \ return\ null;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md459}{}\doxysubsubsection{\texorpdfstring{Issue 2:\+ Response Interceptors Not "{}\+Handling"{} Errors}{Issue 2:\+ Response Interceptors Not "{}\+Handling"{} Errors}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md459}
+{\bfseries{Problem:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 0.x\ style\ -\/\ interceptor\ "{}handled"{}\ errors}
+\DoxyCodeLine{axios.interceptors.response.use(null,\ error\ =>\ \{}
+\DoxyCodeLine{\ \ showErrorMessage(error.message);}
+\DoxyCodeLine{\ \ //\ Error\ was\ considered\ "{}handled"{}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+{\bfseries{Solution:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 1.x\ style\ -\/\ explicitly\ control\ error\ propagation}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ response,}
+\DoxyCodeLine{\ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ showErrorMessage(error.message);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ //\ Choose\ whether\ to\ propagate\ the\ error}
+\DoxyCodeLine{\ \ \ \ if\ (shouldPropagateError(error))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ //\ Return\ success-\/like\ response\ for\ "{}handled"{}\ errors}
+\DoxyCodeLine{\ \ \ \ return\ Promise.resolve(\{}
+\DoxyCodeLine{\ \ \ \ \ \ data:\ null,}
+\DoxyCodeLine{\ \ \ \ \ \ handled:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ error:\ normalizeError(error)}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md460}{}\doxysubsubsection{\texorpdfstring{Issue 3:\+ JSON Parsing Errors}{Issue 3:\+ JSON Parsing Errors}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md460}
+{\bfseries{Problem:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 1.x\ is\ stricter\ about\ JSON\ parsing}
+\DoxyCodeLine{//\ This\ might\ throw\ where\ 0.x\ was\ lenient}
+\DoxyCodeLine{const\ data\ =\ response.data;}
+
+\end{DoxyCode}
+
+
+{\bfseries{Solution:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Add\ response\ transformer\ for\ better\ error\ handling}
+\DoxyCodeLine{axios.defaults.transformResponse\ =\ [}
+\DoxyCodeLine{\ \ function\ (data)\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (typeof\ data\ ===\ 'string')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ JSON.parse(data);}
+\DoxyCodeLine{\ \ \ \ \ \ \}\ catch\ (e)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ Handle\ JSON\ parsing\ errors\ gracefully}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.warn('Invalid\ JSON\ response:',\ data);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ \{\ error:\ 'Invalid\ JSON',\ rawData:\ data\ \};}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ return\ data;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md461}{}\doxysubsubsection{\texorpdfstring{Issue 4:\+ Type\+Script Errors After Upgrade}{Issue 4:\+ Type\+Script Errors After Upgrade}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md461}
+{\bfseries{Problem:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ TypeScript\ errors\ after\ upgrade}
+\DoxyCodeLine{const\ response\ =\ await\ axios.get('/api/data');}
+\DoxyCodeLine{//\ Property\ 'someProperty'\ does\ not\ exist\ on\ type\ 'any'}
+
+\end{DoxyCode}
+
+
+{\bfseries{Solution:\+}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Define\ proper\ interfaces}
+\DoxyCodeLine{interface\ ApiResponse\ \{}
+\DoxyCodeLine{\ \ data:\ any;}
+\DoxyCodeLine{\ \ message:\ string;}
+\DoxyCodeLine{\ \ success:\ boolean;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ response\ =\ await\ axios.get<ApiResponse>('/api/data');}
+\DoxyCodeLine{//\ Now\ properly\ typed}
+\DoxyCodeLine{console.log(response.data.data);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md462}{}\doxysubsection{\texorpdfstring{Debug Migration Issues}{Debug Migration Issues}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md462}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md463}{}\doxysubsubsection{\texorpdfstring{Enable Debug Logging}{Enable Debug Logging}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md463}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Add\ request/response\ logging}
+\DoxyCodeLine{axios.interceptors.request.use(config\ =>\ \{}
+\DoxyCodeLine{\ \ console.log('Request:',\ config);}
+\DoxyCodeLine{\ \ return\ config;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{axios.interceptors.response.use(}
+\DoxyCodeLine{\ \ response\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('Response:',\ response);}
+\DoxyCodeLine{\ \ \ \ return\ response;}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ error\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('Error:',\ error);}
+\DoxyCodeLine{\ \ \ \ return\ Promise.reject(error);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md464}{}\doxysubsubsection{\texorpdfstring{Compare Behavior}{Compare Behavior}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md464}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Create\ side-\/by-\/side\ comparison\ during\ migration}
+\DoxyCodeLine{const\ axios0x\ =\ require('axios-\/0x');\ //\ Keep\ old\ version\ for\ testing}
+\DoxyCodeLine{const\ axios1x\ =\ require('axios');}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ compareRequests(config)\ \{}
+\DoxyCodeLine{\ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ const\ [result0x,\ result1x]\ =\ await\ Promise.allSettled([}
+\DoxyCodeLine{\ \ \ \ \ \ axios0x(config),}
+\DoxyCodeLine{\ \ \ \ \ \ axios1x(config)}
+\DoxyCodeLine{\ \ \ \ ]);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ console.log('0.x\ result:',\ result0x);}
+\DoxyCodeLine{\ \ \ \ console.log('1.x\ result:',\ result1x);}
+\DoxyCodeLine{\ \ \}\ catch\ (error)\ \{}
+\DoxyCodeLine{\ \ \ \ console.log('Comparison\ error:',\ error);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md465}{}\doxysection{\texorpdfstring{Resources}{Resources}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md465}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md466}{}\doxysubsection{\texorpdfstring{Official Documentation}{Official Documentation}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md466}
+
+\begin{DoxyItemize}
+\item \href{https://axios-http.com/}{\texttt{Axios 1.\+x Documentation}}
+\item \href{https://github.com/axios/axios}{\texttt{Axios Git\+Hub Repository}}
+\item \href{https://github.com/axios/axios/blob/main/CHANGELOG.md}{\texttt{Axios Changelog}}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md467}{}\doxysubsection{\texorpdfstring{Migration Tools}{Migration Tools}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md467}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/axios/axios-migration-codemod}{\texttt{Axios Migration Codemod}} {\itshape (if available)}
+\item \href{https://github.com/axios/eslint-plugin-axios}{\texttt{ESLint Rules for Axios 1.\+x}} {\itshape (if available)}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md468}{}\doxysubsection{\texorpdfstring{Community Resources}{Community Resources}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md468}
+
+\begin{DoxyItemize}
+\item \href{https://stackoverflow.com/questions/tagged/axios+migration}{\texttt{Stack Overflow -\/ Axios Migration Questions}}
+\item \href{https://github.com/axios/axios/discussions}{\texttt{Git\+Hub Discussions}}
+\item \href{https://discord.gg/axios}{\texttt{Axios Discord Community}} {\itshape (if available)}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md469}{}\doxysubsection{\texorpdfstring{Related Issues}{Related Issues}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md469}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/axios/axios/issues/7208}{\texttt{Error Handling Changes Discussion}}
+\item \href{https://github.com/axios/axios/issues/xxxx}{\texttt{Migration Guide Request}} {\itshape (link to related issues)}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md471}{}\doxysection{\texorpdfstring{Need Help?}{Need Help?}}\label{md_frontend_2node__modules_2axios_2MIGRATION__GUIDE_autotoc_md471}
+If you encounter issues during migration that aren\textquotesingle{}t covered in this guide:\+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{Search existing issues}} in the \href{https://github.com/axios/axios/issues}{\texttt{Axios Git\+Hub repository}}
+\item {\bfseries{Ask questions}} in \href{https://github.com/axios/axios/discussions}{\texttt{Git\+Hub Discussions}}
+\item {\bfseries{Contribute improvements}} to this migration guide
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+
+
+{\itshape This migration guide is maintained by the community. If you find errors or have suggestions, please \href{https://github.com/axios/axios/issues}{\texttt{open an issue}} or submit a pull request.} 

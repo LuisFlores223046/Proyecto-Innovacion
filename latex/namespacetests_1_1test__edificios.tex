@@ -1,0 +1,52 @@
+\doxysection{tests.\+test\+\_\+edificios Namespace Reference}
+\hypertarget{namespacetests_1_1test__edificios}{}\label{namespacetests_1_1test__edificios}\index{tests.test\_edificios@{tests.test\_edificios}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__edificios_1_1TestListarEdificios}{Test\+Listar\+Edificios}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__edificios_1_1TestCrearEdificio}{Test\+Crear\+Edificio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__edificios_1_1TestEliminarEdificio}{Test\+Eliminar\+Edificio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__edificios_1_1TestListarPisos}{Test\+Listar\+Pisos}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__edificios_1_1TestCrearPiso}{Test\+Crear\+Piso}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__edificios_a267101ccb698df9f0cac4f01f5c59896}\label{namespacetests_1_1test__edificios_a267101ccb698df9f0cac4f01f5c59896} 
+\doxymbox{\hyperlink{classapp_1_1models_1_1edificio_1_1Edificio}{Edificio}} {\bfseries edificio\+\_\+prueba} (db\+\_\+session)
+\item 
+\Hypertarget{namespacetests_1_1test__edificios_a53bfda53741d2f50cc61c5cb7c9bc282}\label{namespacetests_1_1test__edificios_a53bfda53741d2f50cc61c5cb7c9bc282} 
+\doxymbox{\hyperlink{classapp_1_1models_1_1piso_1_1Piso}{Piso}} {\bfseries piso\+\_\+prueba} (db\+\_\+session, edificio\+\_\+prueba)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__edificios_a44df77ac58cdb7283e32181048a5be36}\label{namespacetests_1_1test__edificios_a44df77ac58cdb7283e32181048a5be36} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_edificios.py — Tests de integración para /api/v1/edificios y /pisos
+
+Qué se valida:
+  ✔ GET /edificios devuelve lista de edificios.
+  ✔ GET /edificios/completo incluye pisos anidados.
+  ✔ POST /edificios crea un edificio (requiere JWT).
+  ✔ POST /edificios código duplicado → 409 Conflict.
+  ✔ POST /edificios sin token → 401/403.
+  ✔ DELETE /edificios/{id} elimina el edificio (con mock Cloudinary).
+  ✔ DELETE /edificios/{id} inexistente → 404.
+  ✔ GET /edificios/{id}/pisos lista los pisos del edificio.
+  ✔ GET /edificios/{id}/pisos con edificio inexistente → 404.
+  ✔ POST /pisos crea un piso en un edificio existente.
+  ✔ POST /pisos número duplicado en mismo edificio → 409.
+
+Nota: los endpoints que llaman a Cloudinary (foto, delete con foto)
+se parchean con unittest.mock para no necesitar credenciales reales.
+\end{DoxyVerb}
+ 

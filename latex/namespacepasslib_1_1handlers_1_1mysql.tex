@@ -1,0 +1,40 @@
+\doxysection{passlib.\+handlers.\+mysql Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1mysql}{}\label{namespacepasslib_1_1handlers_1_1mysql}\index{passlib.handlers.mysql@{passlib.handlers.mysql}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1mysql_1_1mysql323}{mysql323}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1mysql_1_1mysql41}{mysql41}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1mysql_a45b3002b99689fa654e991e43a801293}\label{namespacepasslib_1_1handlers_1_1mysql_a45b3002b99689fa654e991e43a801293} 
+{\bfseries log}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.mysql
+
+MySQL 3.2.3 / OLD_PASSWORD()
+
+    This implements Mysql's OLD_PASSWORD algorithm, introduced in version 3.2.3, deprecated in version 4.1.
+
+    See :mod:`passlib.handlers.mysql_41` for the new algorithm was put in place in version 4.1
+
+    This algorithm is known to be very insecure, and should only be used to verify existing password hashes.
+
+    http://djangosnippets.org/snippets/1508/
+
+MySQL 4.1.1 / NEW PASSWORD
+    This implements Mysql new PASSWORD algorithm, introduced in version 4.1.
+
+    This function is unsalted, and therefore not very secure against rainbow attacks.
+    It should only be used when dealing with mysql passwords,
+    for all other purposes, you should use a salted hash function.
+
+    Description taken from http://dev.mysql.com/doc/refman/6.0/en/password-hashing.html
+\end{DoxyVerb}
+ 

@@ -1,0 +1,58 @@
+\doxysection{app.\+models.\+edificio.\+Edificio Class Reference}
+\hypertarget{classapp_1_1models_1_1edificio_1_1Edificio}{}\label{classapp_1_1models_1_1edificio_1_1Edificio}\index{app.models.edificio.Edificio@{app.models.edificio.Edificio}}
+Inheritance diagram for app.\+models.\+edificio.\+Edificio:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1edificio_1_1Edificio}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_af7abcc76a0603d835b2cee7598fb2614}\label{classapp_1_1models_1_1edificio_1_1Edificio_af7abcc76a0603d835b2cee7598fb2614} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_ad1f375802cb3277bc0efea617165efbb}\label{classapp_1_1models_1_1edificio_1_1Edificio_ad1f375802cb3277bc0efea617165efbb} 
+{\bfseries codigo} = Column(String(20), unique=True, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_a573165f02b6718b2053101f97488554c}\label{classapp_1_1models_1_1edificio_1_1Edificio_a573165f02b6718b2053101f97488554c} 
+{\bfseries nombre} = Column(String(150), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_a523b3940623d609d7e4742e0a408d37b}\label{classapp_1_1models_1_1edificio_1_1Edificio_a523b3940623d609d7e4742e0a408d37b} 
+{\bfseries descripcion} = Column(Text, nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_a2211b20bf24c1125a6d6a1329a80379e}\label{classapp_1_1models_1_1edificio_1_1Edificio_a2211b20bf24c1125a6d6a1329a80379e} 
+{\bfseries latitud} = Column(Numeric(10, 7), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_a9cee3468f3cfac0a7c228c0a9edf464e}\label{classapp_1_1models_1_1edificio_1_1Edificio_a9cee3468f3cfac0a7c228c0a9edf464e} 
+{\bfseries longitud} = Column(Numeric(10, 7), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_abcad5242d4d568faeda16a9fc3fe3275}\label{classapp_1_1models_1_1edificio_1_1Edificio_abcad5242d4d568faeda16a9fc3fe3275} 
+{\bfseries foto\+\_\+url} = Column(String(500), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_a578195b022900ef65bf693fb4a9409e0}\label{classapp_1_1models_1_1edificio_1_1Edificio_a578195b022900ef65bf693fb4a9409e0} 
+{\bfseries activo} = Column(Boolean, default=True, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1edificio_1_1Edificio_ac449782c79b1653b094c0585c64d359c}\label{classapp_1_1models_1_1edificio_1_1Edificio_ac449782c79b1653b094c0585c64d359c} 
+{\bfseries pisos} = relationship("{}Piso"{}, back\+\_\+populates="{}edificio"{}, cascade="{}all, delete-\/orphan"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Estructura física principal que contiene pisos y espacios.
+
+Attributes:
+    id: Identificador único.
+    codigo: Abreviatura o código identificador único del edificio.
+    nombre: Nombre completo del edificio.
+    descripcion: Detalles adicionales sobre el inmueble.
+    latitud: Coordenada geográfica de latitud.
+    longitud: Coordenada geográfica de longitud.
+    foto_url: Enlace a la imagen principal en el storage.
+    pisos: Relación con los niveles que componen el edificio.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+edificio.\+py\end{DoxyCompactItemize}

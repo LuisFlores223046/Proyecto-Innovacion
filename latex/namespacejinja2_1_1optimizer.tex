@@ -1,0 +1,38 @@
+\doxysection{jinja2.\+optimizer Namespace Reference}
+\hypertarget{namespacejinja2_1_1optimizer}{}\label{namespacejinja2_1_1optimizer}\index{jinja2.optimizer@{jinja2.optimizer}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1optimizer_1_1Optimizer}{Optimizer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{nodes.\+Node}} \doxymbox{\hyperlink{namespacejinja2_1_1optimizer_a463f07ae84fc1b9051dedd32be0bbf62}{optimize}} (\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{nodes.\+Node}} node, "{}Environment"{} environment)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The optimizer tries to constant fold expressions and modify the AST
+in place so that it should be faster to evaluate.
+
+Because the AST does not contain all the scoping information and the
+compiler has to find that out, we cannot do all the optimizations we
+want. For example, loop unrolling doesn't work because unrolled loops
+would have a different scope. The solution would be a second syntax tree
+that stored the scoping rules.
+\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1optimizer_doc-func-members}
+\Hypertarget{namespacejinja2_1_1optimizer_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacejinja2_1_1optimizer_a463f07ae84fc1b9051dedd32be0bbf62}\index{jinja2.optimizer@{jinja2.optimizer}!optimize@{optimize}}
+\index{optimize@{optimize}!jinja2.optimizer@{jinja2.optimizer}}
+\doxysubsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1optimizer_a463f07ae84fc1b9051dedd32be0bbf62} 
+ \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{nodes.\+Node}} optimize (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{nodes.\+Node}}}]{node}{, }\item[{"{}Environment"{}}]{environment}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The context hint can be used to perform an static optimization
+based on the context given.\end{DoxyVerb}
+ 

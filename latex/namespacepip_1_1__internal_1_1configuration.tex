@@ -1,0 +1,93 @@
+\doxysection{pip.\+\_\+internal.\+configuration Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1configuration}{}\label{namespacepip_1_1__internal_1_1configuration}\index{pip.\_internal.configuration@{pip.\_internal.configuration}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1configuration_1_1Configuration}{Configuration}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1configuration_a6473fcca83fa136870d5033aad5d4db4}{\+\_\+normalize\+\_\+name}} (str name)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_ab81a58178755060af7f841ea5890800c}\label{namespacepip_1_1__internal_1_1configuration_ab81a58178755060af7f841ea5890800c} 
+List\+[str]\+ {\bfseries \+\_\+disassemble\+\_\+key} (str name)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_a726590db503ba1f77059fcec1478a9ed}\label{namespacepip_1_1__internal_1_1configuration_a726590db503ba1f77059fcec1478a9ed} 
+Dict\+[Kind, List\+[str]\+]\+ {\bfseries get\+\_\+configuration\+\_\+files} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_a361d9f6d6543b48050190488d62c2578}\label{namespacepip_1_1__internal_1_1configuration_a361d9f6d6543b48050190488d62c2578} 
+{\bfseries Raw\+Config\+Parser} = configparser.\+Raw\+Config\+Parser
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_acdbd1804aa9f7af14ec120c721d07514}\label{namespacepip_1_1__internal_1_1configuration_acdbd1804aa9f7af14ec120c721d07514} 
+{\bfseries Kind} = New\+Type("{}Kind"{}, str)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_a3491ed747330bf1f16aaa176f127c098}\label{namespacepip_1_1__internal_1_1configuration_a3491ed747330bf1f16aaa176f127c098} 
+str {\bfseries CONFIG\+\_\+\+BASENAME} = "{}pip.\+ini"{} if WINDOWS else "{}pip.\+conf"{}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_ad86959280f08293aa0b05c2f3ceae8a7}\label{namespacepip_1_1__internal_1_1configuration_ad86959280f08293aa0b05c2f3ceae8a7} 
+str {\bfseries ENV\+\_\+\+NAMES\+\_\+\+IGNORED} = "{}version"{}, "{}help"{}
+\item 
+\doxymbox{\hyperlink{namespacepip_1_1__internal_1_1configuration_aee310fce28f137a503a38f842e42cfb3}{kinds}}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_adf4aab6f8125f525d04a41d58023c649}\label{namespacepip_1_1__internal_1_1configuration_adf4aab6f8125f525d04a41d58023c649} 
+{\bfseries OVERRIDE\+\_\+\+ORDER} = kinds.\+GLOBAL, kinds.\+USER, kinds.\+SITE, kinds.\+ENV, kinds.\+ENV\+\_\+\+VAR
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_a031ce0eb9adc82b6e3bab2f2a967ec93}\label{namespacepip_1_1__internal_1_1configuration_a031ce0eb9adc82b6e3bab2f2a967ec93} 
+{\bfseries VALID\+\_\+\+LOAD\+\_\+\+ONLY} = kinds.\+USER, kinds.\+GLOBAL, kinds.\+SITE
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_abd083d8243bc9be21b28e14a2973ef59}\label{namespacepip_1_1__internal_1_1configuration_abd083d8243bc9be21b28e14a2973ef59} 
+{\bfseries logger} = get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Configuration management setup
+
+Some terminology:
+- name
+  As written in config files.
+- value
+  Value associated with a name
+- key
+  Name combined with it's section (section.name)
+- variant
+  A single word describing where the configuration key-value pair came from
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1configuration_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_a6473fcca83fa136870d5033aad5d4db4}\index{pip.\_internal.configuration@{pip.\_internal.configuration}!\_normalize\_name@{\_normalize\_name}}
+\index{\_normalize\_name@{\_normalize\_name}!pip.\_internal.configuration@{pip.\_internal.configuration}}
+\doxysubsubsection{\texorpdfstring{\_normalize\_name()}{\_normalize\_name()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1configuration_a6473fcca83fa136870d5033aad5d4db4} 
+ str \+\_\+normalize\+\_\+name (\begin{DoxyParamCaption}\item[{str}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Make a name consistent regardless of source (environment or file)\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1configuration_doc-var-members}
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1configuration_aee310fce28f137a503a38f842e42cfb3}\index{pip.\_internal.configuration@{pip.\_internal.configuration}!kinds@{kinds}}
+\index{kinds@{kinds}!pip.\_internal.configuration@{pip.\_internal.configuration}}
+\doxysubsubsection{\texorpdfstring{kinds}{kinds}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1configuration_aee310fce28f137a503a38f842e42cfb3} 
+pip.\+\_\+internal.\+configuration.\+kinds}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \doxymbox{\hyperlink{namespaceenum}{enum}}(}
+\DoxyCodeLine{\ \ \ \ USER=\textcolor{stringliteral}{"{}user"{}},\ \ \textcolor{comment}{\#\ User\ Specific}}
+\DoxyCodeLine{\ \ \ \ GLOBAL=\textcolor{stringliteral}{"{}global"{}},\ \ \textcolor{comment}{\#\ System\ Wide}}
+\DoxyCodeLine{\ \ \ \ SITE=\textcolor{stringliteral}{"{}site"{}},\ \ \textcolor{comment}{\#\ [Virtual]\ Environment\ Specific}}
+\DoxyCodeLine{\ \ \ \ ENV=\textcolor{stringliteral}{"{}env"{}},\ \ \textcolor{comment}{\#\ from\ PIP\_CONFIG\_FILE}}
+\DoxyCodeLine{\ \ \ \ ENV\_VAR=\textcolor{stringliteral}{"{}env-\/var"{}},\ \ \textcolor{comment}{\#\ from\ Environment\ Variables}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

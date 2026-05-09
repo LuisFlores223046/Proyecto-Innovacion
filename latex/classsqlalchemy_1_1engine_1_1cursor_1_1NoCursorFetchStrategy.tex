@@ -1,0 +1,109 @@
+\doxysection{sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy}{}\label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+Inheritance diagram for sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.545455cm]{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a6bb3210a8e4ee4e634f83de9c182598b}{soft\+\_\+close}} (self, result, dbapi\+\_\+cursor)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a47485c160ac9788929ed4c735ac28660}{hard\+\_\+close}} (self, result, dbapi\+\_\+cursor)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_ad748203b9ce6081ebe85a5582fbcdc59}{fetchone}} (self, result, dbapi\+\_\+cursor, hard\+\_\+close=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a9210b450525d4eac3375e415d9e7194d}{fetchmany}} (self, result, dbapi\+\_\+cursor, size=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_aec87d25081c7dee7bb331d79046f03b9}{fetchall}} (self, result, dbapi\+\_\+cursor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries yield\+\_\+per} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}\+[Any]\+ result, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}]\+ dbapi\+\_\+cursor, int num)
+\item 
+No\+Return {\bfseries handle\+\_\+exception} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}\+[Any]\+ result, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}]\+ dbapi\+\_\+cursor, Base\+Exception err)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a6a1ef5f527fa430c425c4c0e90fd44e0}\label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a6a1ef5f527fa430c425c4c0e90fd44e0} 
+{\bfseries \+\_\+non\+\_\+result} (self, result, default, err=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries alternate\+\_\+cursor\+\_\+description} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Cursor strategy for a result that has no open cursor.
+
+There are two varieties of this strategy, one for DQL and one for
+DML (and also DDL), each of which represent a result that had a cursor
+but no longer has one.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_aec87d25081c7dee7bb331d79046f03b9}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}!fetchall@{fetchall}}
+\index{fetchall@{fetchall}!sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchall()}{fetchall()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_aec87d25081c7dee7bb331d79046f03b9} 
+sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy.\+fetchall (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a9210b450525d4eac3375e415d9e7194d}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}!fetchmany@{fetchmany}}
+\index{fetchmany@{fetchmany}!sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchmany()}{fetchmany()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a9210b450525d4eac3375e415d9e7194d} 
+sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy.\+fetchmany (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{, }\item[{}]{size}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_ad748203b9ce6081ebe85a5582fbcdc59}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}!fetchone@{fetchone}}
+\index{fetchone@{fetchone}!sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{fetchone()}{fetchone()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_ad748203b9ce6081ebe85a5582fbcdc59} 
+sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy.\+fetchone (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{, }\item[{}]{hard\+\_\+close}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a47485c160ac9788929ed4c735ac28660}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}!hard\_close@{hard\_close}}
+\index{hard\_close@{hard\_close}!sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{hard\_close()}{hard\_close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a47485c160ac9788929ed4c735ac28660} 
+sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy.\+hard\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a6bb3210a8e4ee4e634f83de9c182598b}\index{sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}!soft\_close@{soft\_close}}
+\index{soft\_close@{soft\_close}!sqlalchemy.engine.cursor.NoCursorFetchStrategy@{sqlalchemy.engine.cursor.NoCursorFetchStrategy}}
+\doxysubsubsection{\texorpdfstring{soft\_close()}{soft\_close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1cursor_1_1NoCursorFetchStrategy_a6bb3210a8e4ee4e634f83de9c182598b} 
+sqlalchemy.\+engine.\+cursor.\+No\+Cursor\+Fetch\+Strategy.\+soft\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{result}{, }\item[{}]{dbapi\+\_\+cursor}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1ResultFetchStrategy}{sqlalchemy.\+engine.\+cursor.\+Result\+Fetch\+Strategy}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+cursor.\+py\end{DoxyCompactItemize}

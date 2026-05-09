@@ -1,0 +1,94 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+otlp.\+OTLPIntegration Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration}{}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration}\index{sentry\_sdk.integrations.otlp.OTLPIntegration@{sentry\_sdk.integrations.otlp.OTLPIntegration}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+otlp.\+OTLPIntegration:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ab963518076143582affe8a14fadc1454}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ab963518076143582affe8a14fadc1454} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bool setup\+\_\+otlp\+\_\+traces\+\_\+exporter=True, bool setup\+\_\+propagator=True, bool capture\+\_\+exceptions=False)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ab337fa9af89578a47a295bbefa7829a6}{setup\+\_\+once\+\_\+with\+\_\+options}} (self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_af3d01fb85965e77f5a2065d3659782c8}{setup\+\_\+once}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ac4a64a115e5bf3345f0ebeff9722b33d}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ac4a64a115e5bf3345f0ebeff9722b33d} 
+{\bfseries setup\+\_\+otlp\+\_\+traces\+\_\+exporter} = setup\+\_\+otlp\+\_\+traces\+\_\+exporter
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_a692ef157ecb786b503f27471ecfa7e95}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_a692ef157ecb786b503f27471ecfa7e95} 
+{\bfseries setup\+\_\+propagator} = setup\+\_\+propagator
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_a85a5e7260e34fccb6ded729743e70dee}\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_a85a5e7260e34fccb6ded729743e70dee} 
+{\bfseries capture\+\_\+exceptions} = capture\+\_\+exceptions
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries install} = None
+\item 
+str {\bfseries identifier} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Automatically setup OTLP ingestion from the DSN.
+
+:param setup_otlp_traces_exporter: Automatically configure an Exporter to send OTLP traces from the DSN, defaults to True.
+    Set to False if using a custom collector or to setup the TracerProvider manually.
+:param setup_propagator: Automatically configure the Sentry Propagator for Distributed Tracing, defaults to True.
+    Set to False to configure propagators manually or to disable propagation.
+:param capture_exceptions: Intercept and capture exceptions on the OpenTelemetry Span in Sentry as well, defaults to False.
+    Set to True to turn on capturing but be aware that since Sentry captures most exceptions, duplicate exceptions might be dropped by DedupeIntegration in many cases.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_af3d01fb85965e77f5a2065d3659782c8}\index{sentry\_sdk.integrations.otlp.OTLPIntegration@{sentry\_sdk.integrations.otlp.OTLPIntegration}!setup\_once@{setup\_once}}
+\index{setup\_once@{setup\_once}!sentry\_sdk.integrations.otlp.OTLPIntegration@{sentry\_sdk.integrations.otlp.OTLPIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once()}{setup\_once()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_af3d01fb85965e77f5a2065d3659782c8} 
+ None sentry\+\_\+sdk.\+integrations.\+otlp.\+OTLPIntegration.\+setup\+\_\+once (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Initialize the integration.
+
+This function is only called once, ever. Configuration is not available
+at this point, so the only thing to do here is to hook into exception
+handlers, and perhaps do monkeypatches.
+
+Inside those hooks `Integration.current` can be used to access the
+instance again.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a577a498f9be92552175a5565d5c11312}{sentry\+\_\+sdk.\+integrations.\+Integration}}.
+
+\Hypertarget{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ab337fa9af89578a47a295bbefa7829a6}\index{sentry\_sdk.integrations.otlp.OTLPIntegration@{sentry\_sdk.integrations.otlp.OTLPIntegration}!setup\_once\_with\_options@{setup\_once\_with\_options}}
+\index{setup\_once\_with\_options@{setup\_once\_with\_options}!sentry\_sdk.integrations.otlp.OTLPIntegration@{sentry\_sdk.integrations.otlp.OTLPIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once\_with\_options()}{setup\_once\_with\_options()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1otlp_1_1OTLPIntegration_ab337fa9af89578a47a295bbefa7829a6} 
+ None sentry\+\_\+sdk.\+integrations.\+otlp.\+OTLPIntegration.\+setup\+\_\+once\+\_\+with\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Optional\+[Dict\+[str, Any]\+]\+"{} }]{options}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called after setup_once in rare cases on the instance and with options since we don't have those available above.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a60252f59d5622a95627f6bb75c168abe}{sentry\+\_\+sdk.\+integrations.\+Integration}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+otlp.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,68 @@
+\doxysection{jinja2.\+visitor.\+Node\+Visitor Class Reference}
+\hypertarget{classjinja2_1_1visitor_1_1NodeVisitor}{}\label{classjinja2_1_1visitor_1_1NodeVisitor}\index{jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}}
+Inheritance diagram for jinja2.\+visitor.\+Node\+Visitor:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.956175cm]{classjinja2_1_1visitor_1_1NodeVisitor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+"{}t.\+Optional\+[\doxymbox{\hyperlink{classjinja2_1_1visitor_1_1VisitCallable}{Visit\+Callable}}]\+"{} \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_a48f14e449d8a76b3abe49109a6a1aef9}{get\+\_\+visitor}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node)
+\item 
+t.\+Any \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_ac46313d5a7f643dd6b516f67e7a0e3cb}{visit}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\item 
+t.\+Any \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeVisitor_a9020040a2124eaa206bd1505642fa9fa}{generic\+\_\+visit}} (self, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}} node, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Walks the abstract syntax tree and call visitor functions for every
+node found.  The visitor functions may return values which will be
+forwarded by the `visit` method.
+
+Per default the visitor functions for the nodes are ``'visit_'`` +
+class name of the node.  So a `TryFinally` node visit function would
+be `visit_TryFinally`.  This behavior can be changed by overriding
+the `get_visitor` function.  If no visitor function exists for a node
+(return value `None`) the `generic_visit` visitor is used instead.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1visitor_1_1NodeVisitor_doc-func-members}
+\Hypertarget{classjinja2_1_1visitor_1_1NodeVisitor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1visitor_1_1NodeVisitor_a9020040a2124eaa206bd1505642fa9fa}\index{jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}!generic\_visit@{generic\_visit}}
+\index{generic\_visit@{generic\_visit}!jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{generic\_visit()}{generic\_visit()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1visitor_1_1NodeVisitor_a9020040a2124eaa206bd1505642fa9fa} 
+ t.\+Any jinja2.\+visitor.\+Node\+Visitor.\+generic\+\_\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}}]{node}{, }\item[{\texorpdfstring{$\ast$}{*}t.\+Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called if no explicit visitor function exists for a node.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjinja2_1_1idtracking_1_1RootVisitor_ae316dd3b990f89ce46b8972bb3a67185}{jinja2.\+idtracking.\+Root\+Visitor}}, \doxymbox{\hyperlink{classjinja2_1_1optimizer_1_1Optimizer_abcfac0d346c036c692b55a107534c137}{jinja2.\+optimizer.\+Optimizer}}, and \doxymbox{\hyperlink{classjinja2_1_1visitor_1_1NodeTransformer_a508dde6856298458dc79732fa6cd6edd}{jinja2.\+visitor.\+Node\+Transformer}}.
+
+\Hypertarget{classjinja2_1_1visitor_1_1NodeVisitor_a48f14e449d8a76b3abe49109a6a1aef9}\index{jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}!get\_visitor@{get\_visitor}}
+\index{get\_visitor@{get\_visitor}!jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{get\_visitor()}{get\_visitor()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1visitor_1_1NodeVisitor_a48f14e449d8a76b3abe49109a6a1aef9} 
+ "{}t.\+Optional\+[\doxymbox{\hyperlink{classjinja2_1_1visitor_1_1VisitCallable}{Visit\+Callable}}]\+"{} jinja2.\+visitor.\+Node\+Visitor.\+get\+\_\+visitor (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}}]{node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the visitor function for this node or `None` if no visitor
+exists for this node.  In that case the generic visit function is
+used instead.
+\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1visitor_1_1NodeVisitor_ac46313d5a7f643dd6b516f67e7a0e3cb}\index{jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}!visit@{visit}}
+\index{visit@{visit}!jinja2.visitor.NodeVisitor@{jinja2.visitor.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{visit()}{visit()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1visitor_1_1NodeVisitor_ac46313d5a7f643dd6b516f67e7a0e3cb} 
+ t.\+Any jinja2.\+visitor.\+Node\+Visitor.\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Node}{Node}}}]{node}{, }\item[{\texorpdfstring{$\ast$}{*}t.\+Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Visit a node.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+visitor.\+py\end{DoxyCompactItemize}

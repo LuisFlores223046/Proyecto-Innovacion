@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['⚠️_20breaking_20changes_0',['⚠️ Breaking Changes',['../md_frontend_2node__modules_2leaflet_2CHANGELOG.html#autotoc_md1520',1,'⚠️ Breaking Changes'],['../md_frontend_2node__modules_2leaflet_2CHANGELOG.html#autotoc_md1529',1,'⚠️ Breaking Changes']]],
+  ['⚠_20breaking_20changes_1',['⚠ BREAKING CHANGES',['../md_frontend_2node__modules_2chokidar_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md622',1,'⚠ BREAKING CHANGES'],['../md_frontend_2node__modules_2chokidar_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md625',1,'⚠ BREAKING CHANGES'],['../md_frontend_2node__modules_2chokidar_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md634',1,'⚠ BREAKING CHANGES'],['../md_frontend_2node__modules_2fast-glob_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md926',1,'⚠ BREAKING CHANGES'],['../md_frontend_2node__modules_2fast-glob_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md929',1,'⚠ BREAKING CHANGES'],['../md_frontend_2node__modules_2fast-glob_2node__modules_2glob-parent_2CHANGELOG.html#autotoc_md938',1,'⚠ BREAKING CHANGES']]]
+];

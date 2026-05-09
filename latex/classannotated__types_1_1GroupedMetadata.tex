@@ -1,0 +1,88 @@
+\doxysection{annotated\+\_\+types.\+Grouped\+Metadata Class Reference}
+\hypertarget{classannotated__types_1_1GroupedMetadata}{}\label{classannotated__types_1_1GroupedMetadata}\index{annotated\_types.GroupedMetadata@{annotated\_types.GroupedMetadata}}
+Inheritance diagram for annotated\+\_\+types.\+Grouped\+Metadata:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.225806cm]{classannotated__types_1_1GroupedMetadata}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classannotated__types_1_1GroupedMetadata_af74c8053bddcc904fd32a34fb8eab8d9}\label{classannotated__types_1_1GroupedMetadata_af74c8053bddcc904fd32a34fb8eab8d9} 
+Literal\+[True]\+ {\bfseries \+\_\+\+\_\+is\+\_\+annotated\+\_\+types\+\_\+grouped\+\_\+metadata\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classannotated__types_1_1GroupedMetadata_a24576778a5385e994a7269770dd3de56}\label{classannotated__types_1_1GroupedMetadata_a24576778a5385e994a7269770dd3de56} 
+Iterator\+[object]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classannotated__types_1_1GroupedMetadata_a0f223a70af24147fc3ff747a632beef5}\label{classannotated__types_1_1GroupedMetadata_a0f223a70af24147fc3ff747a632beef5} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\Hypertarget{classannotated__types_1_1GroupedMetadata_a24576778a5385e994a7269770dd3de56}\label{classannotated__types_1_1GroupedMetadata_a24576778a5385e994a7269770dd3de56} 
+Iterator\+[object]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1Protocol}{typing\+\_\+extensions.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1__ProtocolMeta}{typing\+\_\+extensions.\+\_\+\+Protocol\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (mcls, name, bases, namespace, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+subclasscheck\+\_\+\+\_\+} (cls, other)
+\item 
+{\bfseries \+\_\+\+\_\+instancecheck\+\_\+\+\_\+} (cls, instance)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (cls, other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1Protocol}{typing\+\_\+extensions.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+protocol} = True
+\item 
+bool {\bfseries \+\_\+is\+\_\+runtime\+\_\+protocol} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A grouping of multiple objects, like typing.Unpack.
+
+`GroupedMetadata` on its own is not metadata and has no meaning.
+All of the constraints and metadata should be fully expressable
+in terms of the `BaseMetadata`'s returned by `GroupedMetadata.__iter__()`.
+
+Concrete implementations should override `GroupedMetadata.__iter__()`
+to add their own metadata.
+For example:
+
+>>> @dataclass
+>>> class Field(GroupedMetadata):
+>>>     gt: float | None = None
+>>>     description: str | None = None
+...
+>>>     def __iter__(self) -> Iterable[object]:
+>>>         if self.gt is not None:
+>>>             yield Gt(self.gt)
+>>>         if self.description is not None:
+>>>             yield Description(self.gt)
+
+Also see the implementation of `Interval` below for an example.
+
+Parsers should recognize this and unpack it so that it can be used
+both with and without unpacking:
+
+- `Annotated[int, Field(...)]` (parser must unpack Field)
+- `Annotated[int, *Field(...)]` (PEP-646)
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+annotated\+\_\+types/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}
