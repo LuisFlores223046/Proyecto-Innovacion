@@ -1,0 +1,84 @@
+\doxysection{httpx.\+\_\+transports.\+asgi.\+ASGITransport Class Reference}
+\hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport}{}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport}\index{httpx.\_transports.asgi.ASGITransport@{httpx.\_transports.asgi.ASGITransport}}
+Inheritance diagram for httpx.\+\_\+transports.\+asgi.\+ASGITransport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_aeabe911d162a5f37a464e4e2f4369bf9}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_aeabe911d162a5f37a464e4e2f4369bf9} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \+\_\+\+ASGIApp app, bool raise\+\_\+app\+\_\+exceptions=True, str root\+\_\+path="{}"{}, tuple\+[str, int]\+ client=("{}127.\+0.\+0.\+1"{}, 123))
+\item 
+\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}} \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a8b05121536f51095356d960a65f65010}{handle\+\_\+async\+\_\+request}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1base_1_1AsyncBaseTransport}{httpx.\+\_\+transports.\+base.\+Async\+Base\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+A {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (A self)
+\item 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type=None, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+value=None, Traceback\+Type\texorpdfstring{$\vert$}{|}None traceback=None)
+\item 
+None {\bfseries aclose} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_aad40132c8ca535bc42b7bd30f307ef66}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_aad40132c8ca535bc42b7bd30f307ef66} 
+{\bfseries app} = app
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a043ed2ea60bb92028ccb61fa2f9baef0}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a043ed2ea60bb92028ccb61fa2f9baef0} 
+{\bfseries raise\+\_\+app\+\_\+exceptions} = raise\+\_\+app\+\_\+exceptions
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_ac86e27ff05c7b2d08cba62f5dbde3ba5}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_ac86e27ff05c7b2d08cba62f5dbde3ba5} 
+{\bfseries root\+\_\+path} = root\+\_\+path
+\item 
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a107e175a096099dd4e51c0a39e539569}\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a107e175a096099dd4e51c0a39e539569} 
+{\bfseries client} = client
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A custom AsyncTransport that handles sending requests directly to an ASGI app.
+
+```python
+transport = httpx.ASGITransport(
+    app=app,
+    root_path="/submount",
+    client=("1.2.3.4", 123)
+)
+client = httpx.AsyncClient(transport=transport)
+```
+
+Arguments:
+
+* `app` - The ASGI application.
+* `raise_app_exceptions` - Boolean indicating if exceptions in the application
+   should be raised. Default to `True`. Can be set to `False` for use cases
+   such as testing the content of a client 500 response.
+* `root_path` - The root path on which the ASGI application should be mounted.
+* `client` - A two-tuple indicating the client IP and port of incoming requests.
+```
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_doc-func-members}
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a8b05121536f51095356d960a65f65010}\index{httpx.\_transports.asgi.ASGITransport@{httpx.\_transports.asgi.ASGITransport}!handle\_async\_request@{handle\_async\_request}}
+\index{handle\_async\_request@{handle\_async\_request}!httpx.\_transports.asgi.ASGITransport@{httpx.\_transports.asgi.ASGITransport}}
+\doxysubsubsection{\texorpdfstring{handle\_async\_request()}{handle\_async\_request()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__transports_1_1asgi_1_1ASGITransport_a8b05121536f51095356d960a65f65010} 
+ \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}} httpx.\+\_\+transports.\+asgi.\+ASGITransport.\+handle\+\_\+async\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classhttpx_1_1__transports_1_1base_1_1AsyncBaseTransport}{httpx.\+\_\+transports.\+base.\+Async\+Base\+Transport}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+transports/\+asgi.\+py\end{DoxyCompactItemize}

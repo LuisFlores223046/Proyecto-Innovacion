@@ -1,0 +1,68 @@
+\doxysection{frontend/\+node\+\_\+modules/\+queue-\/microtask Directory Reference}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254}{}\label{dir_f145b5f88b71d70d0a14d9be0871f254}\index{frontend/node\_modules/queue-\/microtask Directory Reference@{frontend/node\_modules/queue-\/microtask Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2224}{}\doxysubsection{\texorpdfstring{queue-\/microtask \+[!\+[ci]\+\+[ci-\/image]\+]\+\+[ci-\/url]\+ \+[!\+[npm]\+\+[npm-\/image]\+]\+\+[npm-\/url]\+ \+[!\+[downloads]\+\+[downloads-\/image]\+]\+\+[downloads-\/url]\+ \+[!\+[javascript style guide]\+\+[standard-\/image]\+]\+\+[standard-\/url]\+}{queue-\/microtask \+[!\+[ci]\+\+[ci-\/image]\+]\+\+[ci-\/url]\+ \+[!\+[npm]\+\+[npm-\/image]\+]\+\+[npm-\/url]\+ \+[!\+[downloads]\+\+[downloads-\/image]\+]\+\+[downloads-\/url]\+ \+[!\+[javascript style guide]\+\+[standard-\/image]\+]\+\+[standard-\/url]\+}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2224}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2225}{}\doxysubsubsection{\texorpdfstring{fast, tiny \href{https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/queueMicrotask}{\texttt{{\ttfamily queue\+Microtask}}} shim for modern engines}{fast, tiny \href{https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/queueMicrotask}{\texttt{{\ttfamily queue\+Microtask}}} shim for modern engines}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2225}
+
+\begin{DoxyItemize}
+\item Use \href{https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/queueMicrotask}{\texttt{{\ttfamily queue\+Microtask}}} in all modern JS engines.
+\item No dependencies. Less than 10 lines. No shims or complicated fallbacks.
+\item Optimal performance in all modern environments
+\begin{DoxyItemize}
+\item Uses {\ttfamily queue\+Microtask} in modern environments
+\item Fallback to {\ttfamily Promise.\+resolve().then(fn)} in Node.\+js 10 and earlier, and old browsers (same performance as {\ttfamily queue\+Microtask})
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2226}{}\doxysubsection{\texorpdfstring{install}{install}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2226}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ queue-\/microtask}
+
+\end{DoxyCode}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2227}{}\doxysubsection{\texorpdfstring{usage}{usage}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2227}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ queueMicrotask\ =\ require('queue-\/microtask')}
+\DoxyCodeLine{}
+\DoxyCodeLine{queueMicrotask(()\ =>\ \{\ /*\ this\ will\ run\ soon\ */\ \})}
+
+\end{DoxyCode}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2228}{}\doxysubsection{\texorpdfstring{What is {\ttfamily queue\+Microtask} and why would one use it?}{What is {\ttfamily queue\+Microtask} and why would one use it?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2228}
+The {\ttfamily queue\+Microtask} function is a WHATWG standard. It queues a microtask to be executed prior to control returning to the event loop.
+
+A microtask is a short function which will run after the current task has completed its work and when there is no other code waiting to be run before control of the execution context is returned to the event loop.
+
+The code {\ttfamily queue\+Microtask(fn)} is equivalent to the code {\ttfamily Promise.\+resolve().then(fn)}. It is also very similar to \href{https://nodejs.org/api/process.html\#process_process_nexttick_callback_args}{\texttt{{\ttfamily process.\+next\+Tick(fn)}}} in Node.
+
+Using microtasks lets code run without interfering with any other, potentially higher priority, code that is pending, but before the JS engine regains control over the execution context.
+
+See the \href{https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html\#microtask-queuing}{\texttt{spec}} or \href{https://nodejs.org/api/globals.html\#globals_queuemicrotask_callback}{\texttt{Node documentation}} for more information.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2229}{}\doxysubsection{\texorpdfstring{Who is this package for?}{Who is this package for?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2229}
+This package allows you to use {\ttfamily queue\+Microtask} safely in all modern JS engines. Use it if you prioritize small JS bundle size over support for old browsers.
+
+If you just need to support Node 12 and later, use {\ttfamily queue\+Microtask} directly. If you need to support all versions of Node, use this package.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2230}{}\doxysubsection{\texorpdfstring{Why not use {\ttfamily process.\+next\+Tick}?}{Why not use {\ttfamily process.\+next\+Tick}?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2230}
+In Node, {\ttfamily queue\+Microtask} and {\ttfamily process.\+next\+Tick} are \href{https://nodejs.org/api/globals.html\#globals_queuemicrotask_callback}{\texttt{essentially equivalent}}, though there are \href{https://github.com/YuzuJS/setImmediate\#macrotasks-and-microtasks}{\texttt{subtle differences}} that don\textquotesingle{}t matter in most situations.
+
+You can think of {\ttfamily queue\+Microtask} as a standardized version of {\ttfamily process.\+next\+Tick} that works in the browser. No need to rely on your browser bundler to shim {\ttfamily process} for the browser environment.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2231}{}\doxysubsection{\texorpdfstring{Why not use {\ttfamily set\+Timeout(fn, 0)}?}{Why not use {\ttfamily set\+Timeout(fn, 0)}?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2231}
+This approach is the most compatible, but it has problems. Modern browsers throttle timers severely, so {\ttfamily set\+Timeout(…, 0)} usually takes at least 4ms to run. Furthermore, the throttling gets even worse if the page is backgrounded. If you have many {\ttfamily set\+Timeout} calls, then this can severely limit the performance of your program.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2232}{}\doxysubsection{\texorpdfstring{Why not use a microtask library like \href{https://www.npmjs.com/package/immediate}{\texttt{{\ttfamily immediate}}} or \href{https://www.npmjs.com/package/asap}{\texttt{{\ttfamily asap}}}?}{Why not use a microtask library like \href{https://www.npmjs.com/package/immediate}{\texttt{{\ttfamily immediate}}} or \href{https://www.npmjs.com/package/asap}{\texttt{{\ttfamily asap}}}?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2232}
+These packages are great! However, if you prioritize small JS bundle size over optimal performance in old browsers then you may want to consider this package.
+
+This package ({\ttfamily queue-\/microtask}) is four times smaller than {\ttfamily immediate}, twice as small as {\ttfamily asap}, and twice as small as using {\ttfamily process.\+next\+Tick} and letting the browser bundler shim it automatically.
+
+Note:\+ This package throws an exception in JS environments which lack {\ttfamily Promise} support -- which are usually very old browsers and Node.\+js versions.
+
+Since the {\ttfamily queue\+Microtask} API is supported in Node.\+js, Chrome, Firefox, Safari, Opera, and Edge, {\bfseries{the vast majority of users will get optimal performance}}. Any JS environment with {\ttfamily Promise}, which is almost all of them, also get optimal performance. If you need support for JS environments which lack {\ttfamily Promise} support, use one of the alternative packages.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2233}{}\doxysubsection{\texorpdfstring{What is a shim?}{What is a shim?}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2233}
+\begin{quote}
+In computer programming, a shim is a library that transparently intercepts API calls and changes the arguments passed, handles the operation itself or redirects the operation elsewhere. – \href{https://en.wikipedia.org/wiki/Shim_(computing)}{\texttt{Wikipedia}} \end{quote}
+
+
+This package could also be described as a "{}ponyfill"{}.
+
+\begin{quote}
+A ponyfill is almost the same as a polyfill, but not quite. Instead of patching functionality for older browsers, a ponyfill provides that functionality as a standalone module you can use. – \href{https://ponyfoo.com/articles/polyfills-or-ponyfills}{\texttt{Pony\+Foo}} \end{quote}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2234}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2234}
+\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2235}{}\doxysubsubsection{\texorpdfstring{{\ttfamily queue\+Microtask(fn)}}{{\ttfamily queue\+Microtask(fn)}}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2235}
+The {\ttfamily queue\+Microtask()} method queues a microtask.
+
+The {\ttfamily fn} argument is a function to be executed after all pending tasks have completed but before yielding control to the browser\textquotesingle{}s event loop.\hypertarget{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2236}{}\doxysubsection{\texorpdfstring{license}{license}}\label{dir_f145b5f88b71d70d0a14d9be0871f254_autotoc_md2236}
+MIT. Copyright (c) \href{https://feross.org}{\texttt{Feross Aboukhadijeh}}. 

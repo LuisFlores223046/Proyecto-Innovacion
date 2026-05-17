@@ -1,0 +1,69 @@
+\doxysection{app.\+routers.\+categorias Namespace Reference}
+\hypertarget{namespaceapp_1_1routers_1_1categorias}{}\label{namespaceapp_1_1routers_1_1categorias}\index{app.routers.categorias@{app.routers.categorias}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1categorias_a4f23335a148b2321febf61425accfa5a}{listar}} (\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1categorias_a55ebf97cfe206bf12c4ab4afb26f041d}{crear}} (\doxymbox{\hyperlink{classapp_1_1schemas_1_1categoria_1_1CategoriaCreate}{Categoria\+Create}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1categorias_a572f9c1e1206f2508f80c82eee91b640}{actualizar}} (int cat\+\_\+id, \doxymbox{\hyperlink{classapp_1_1schemas_1_1categoria_1_1CategoriaUpdate}{Categoria\+Update}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1routers_1_1categorias_a16e310d098d7892884a5b29e8d9c9e2b}\label{namespaceapp_1_1routers_1_1categorias_a16e310d098d7892884a5b29e8d9c9e2b} 
+{\bfseries router} = \doxymbox{\hyperlink{classfastapi_1_1routing_1_1APIRouter}{APIRouter}}(prefix="{}/\+categorias"{}, tags=\+["{}Categorías"{}]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Rutas para categorías.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1routers_1_1categorias_doc-func-members}
+\Hypertarget{namespaceapp_1_1routers_1_1categorias_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1routers_1_1categorias_a572f9c1e1206f2508f80c82eee91b640}\index{app.routers.categorias@{app.routers.categorias}!actualizar@{actualizar}}
+\index{actualizar@{actualizar}!app.routers.categorias@{app.routers.categorias}}
+\doxysubsubsection{\texorpdfstring{actualizar()}{actualizar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1categorias_a572f9c1e1206f2508f80c82eee91b640} 
+actualizar (\begin{DoxyParamCaption}\item[{int}]{cat\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1categoria_1_1CategoriaUpdate}{Categoria\+Update}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Modifica parcialmente una categoría existente.
+
+Args:
+    cat_id: Identificador único de la categoría.
+    datos: Campos a actualizar.
+    db: Sesión de base de datos.
+
+Returns:
+    Categoria: La categoría actualizada.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1categorias_a55ebf97cfe206bf12c4ab4afb26f041d}\index{app.routers.categorias@{app.routers.categorias}!crear@{crear}}
+\index{crear@{crear}!app.routers.categorias@{app.routers.categorias}}
+\doxysubsubsection{\texorpdfstring{crear()}{crear()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1categorias_a55ebf97cfe206bf12c4ab4afb26f041d} 
+crear (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1categoria_1_1CategoriaCreate}{Categoria\+Create}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea una nueva categoría para clasificar espacios.
+
+Args:
+    datos: Datos de la categoría (nombre, icono, etc).
+    db: Sesión de base de datos.
+    _: Valida rol de administrador.
+
+Returns:
+    Categoria: La categoría creada.
+
+Raises:
+    HTTPException: 409 si el nombre de la categoría ya está en uso.
+\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1categorias_a4f23335a148b2321febf61425accfa5a}\index{app.routers.categorias@{app.routers.categorias}!listar@{listar}}
+\index{listar@{listar}!app.routers.categorias@{app.routers.categorias}}
+\doxysubsubsection{\texorpdfstring{listar()}{listar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1categorias_a4f23335a148b2321febf61425accfa5a} 
+listar (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Lista todas las categorías de espacios disponibles en orden alfabético.\end{DoxyVerb}
+ 

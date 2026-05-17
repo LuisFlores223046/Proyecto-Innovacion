@@ -1,0 +1,166 @@
+\doxysection{frontend/\+node\+\_\+modules/\+any-\/promise Directory Reference}
+\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c}{}\label{dir_fdefd3eb453b2c2bbf35183f57db661c}\index{frontend/node\_modules/any-\/promise Directory Reference@{frontend/node\_modules/any-\/promise Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_b35726f14907550efd5e5adb4a70c970}{register}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md101}{}\doxysubsection{\texorpdfstring{Any Promise}{Any Promise}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md101}
+\href{http://travis-ci.org/kevinbeaty/any-promise}{\texttt{}}
+
+Let your library support any ES 2015 (ES6) compatible {\ttfamily Promise} and leave the choice to application authors. The application can {\itshape optionally} register its preferred {\ttfamily Promise} implementation and it will be exported when requiring {\ttfamily any-\/promise} from library code.
+
+If no preference is registered, defaults to the global {\ttfamily Promise} for newer Node.\+js versions. The browser version defaults to the window {\ttfamily Promise}, so polyfill or register as necessary.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md102}{}\doxysubsubsection{\texorpdfstring{Usage with global Promise:\+}{Usage with global Promise:\+}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md102}
+Assuming the global {\ttfamily Promise} is the desired implementation:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ any\ libraries\ depending\ on\ any-\/promise}
+\DoxyCodeLine{\$\ npm\ install\ mz}
+
+\end{DoxyCode}
+
+
+The installed libraries will use global Promise by default.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ in\ library}
+\DoxyCodeLine{var\ Promise\ =\ require('any-\/promise')\ \ //\ the\ global\ Promise}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ promiseReturningFunction()\{}
+\DoxyCodeLine{\ \ \ \ return\ new\ Promise(function(resolve,\ reject)\{...\})}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md103}{}\doxysubsubsection{\texorpdfstring{Usage with registration:\+}{Usage with registration:\+}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md103}
+Assuming {\ttfamily bluebird} is the desired Promise implementation:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ Install\ preferred\ promise\ library}
+\DoxyCodeLine{\$\ npm\ install\ bluebird}
+\DoxyCodeLine{\#\ Install\ any-\/promise\ to\ allow\ registration}
+\DoxyCodeLine{\$\ npm\ install\ any-\/promise}
+\DoxyCodeLine{\#\ Install\ any\ libraries\ you\ would\ like\ to\ use\ depending\ on\ any-\/promise}
+\DoxyCodeLine{\$\ npm\ install\ mz}
+
+\end{DoxyCode}
+
+
+Register your preference in the application entry point before any other {\ttfamily require} of packages that load {\ttfamily any-\/promise}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ top\ of\ application\ index.js\ or\ other\ entry\ point}
+\DoxyCodeLine{require('any-\/promise/register/bluebird')}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ -\/or-\/\ Equivalent\ to\ above,\ but\ allows\ customization\ of\ Promise\ library}
+\DoxyCodeLine{require('any-\/promise/register')('bluebird',\ \{Promise:\ require('bluebird')\})}
+
+\end{DoxyCode}
+
+
+Now that the implementation is registered, you can use any package depending on {\ttfamily any-\/promise}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ fsp\ =\ require('mz/fs')\ //\ mz/fs\ will\ use\ registered\ bluebird\ promises}
+\DoxyCodeLine{var\ Promise\ =\ require('any-\/promise')\ \ //\ the\ registered\ bluebird\ promise\ }
+
+\end{DoxyCode}
+
+
+It is safe to call {\ttfamily register} multiple times, but it must always be with the same implementation.
+
+Again, registration is {\itshape optional}. It should only be called by the application user if overriding the global {\ttfamily Promise} implementation is desired.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md104}{}\doxysubsubsection{\texorpdfstring{Optional Application Registration}{Optional Application Registration}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md104}
+As an application author, you can {\itshape optionally} register a preferred {\ttfamily Promise} implementation on application startup (before any call to {\ttfamily require(\textquotesingle{}any-\/promise\textquotesingle{})}:\+
+
+You must register your preference before any call to {\ttfamily require(\textquotesingle{}any-\/promise\textquotesingle{})} (by you or required packages), and only one implementation can be registered. Typically, this registration would occur at the top of the application entry point.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md105}{}\doxysubsubsubsection{\texorpdfstring{Registration shortcuts}{Registration shortcuts}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md105}
+If you are using a known {\ttfamily Promise} implementation, you can register your preference with a shortcut:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require('any-\/promise/register/bluebird')}
+\DoxyCodeLine{//\ -\/or-\/}
+\DoxyCodeLine{import\ 'any-\/promise/register/q';}
+
+\end{DoxyCode}
+
+
+Shortcut registration is the preferred registration method as it works in the browser and Node.\+js. It is also convenient for using with {\ttfamily import} and many test runners, that offer a {\ttfamily -\/-\/require} flag:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ ava\ -\/-\/require=any-\/promise/register/bluebird\ test.js}
+
+\end{DoxyCode}
+
+
+Current known implementations include {\ttfamily bluebird}, {\ttfamily q}, {\ttfamily when}, {\ttfamily rsvp}, {\ttfamily es6-\/promise}, {\ttfamily promise}, {\ttfamily native-\/promise-\/only}, {\ttfamily pinkie}, {\ttfamily vow} and {\ttfamily lie}. If you are not using a known implementation, you can use another registration method described below.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md106}{}\doxysubsubsubsection{\texorpdfstring{Basic Registration}{Basic Registration}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md106}
+As an alternative to registration shortcuts, you can call the {\ttfamily register} function with the preferred {\ttfamily Promise} implementation. The benefit of this approach is that a {\ttfamily Promise} library can be required by name without being a known implementation. This approach does NOT work in the browser. To use {\ttfamily any-\/promise} in the browser use either registration shortcuts or specify the {\ttfamily Promise} constructor using advanced registration (see below).
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require('any-\/promise/register')('when')}
+\DoxyCodeLine{//\ -\/or-\/\ require('any-\/promise/register')('any\ other\ ES6\ compatible\ library\ (known\ or\ otherwise)')}
+
+\end{DoxyCode}
+
+
+This registration method will try to detect the {\ttfamily Promise} constructor from requiring the specified implementation. If you would like to specify your own constructor, see advanced registration.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md107}{}\doxysubsubsubsection{\texorpdfstring{Advanced Registration}{Advanced Registration}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md107}
+To use the browser version, you should either install a polyfill or explicitly register the {\ttfamily Promise} constructor:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require('any-\/promise/register')('bluebird',\ \{Promise:\ require('bluebird')\})}
+
+\end{DoxyCode}
+
+
+This could also be used for registering a custom {\ttfamily Promise} implementation or subclass.
+
+Your preference will be registered globally, allowing a single registration even if multiple versions of {\ttfamily any-\/promise} are installed in the NPM dependency tree or are using multiple bundled Java\+Script files in the browser. You can bypass this global registration in options:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{require('../register')('es6-\/promise',\ \{Promise:\ require('es6-\/promise').Promise,\ global:\ false\})}
+
+\end{DoxyCode}
+\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md108}{}\doxysubsubsection{\texorpdfstring{Library Usage}{Library Usage}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md108}
+To use any {\ttfamily Promise} constructor, simply require it:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ Promise\ =\ require('any-\/promise');}
+\DoxyCodeLine{}
+\DoxyCodeLine{return\ Promise}
+\DoxyCodeLine{\ \ .all([xf,\ f,\ init,\ coll])}
+\DoxyCodeLine{\ \ .then(fn);}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{return\ new\ Promise(function(resolve,\ reject)\{}
+\DoxyCodeLine{\ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ resolve(item);}
+\DoxyCodeLine{\ \ \}\ catch(e)\{}
+\DoxyCodeLine{\ \ \ \ reject(e);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Except noted below, libraries using {\ttfamily any-\/promise} should only use \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise}{\texttt{documented}} functions as there is no guarantee which implementation will be chosen by the application author. Libraries should never call {\ttfamily register}, only the application user should call if desired.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md109}{}\doxysubsubsubsection{\texorpdfstring{Advanced Library Usage}{Advanced Library Usage}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md109}
+If your library needs to branch code based on the registered implementation, you can retrieve it using {\ttfamily var impl = require(\textquotesingle{}any-\/promise/\+implementation\textquotesingle{})}, where {\ttfamily impl} will be the package name ({\ttfamily "{}bluebird"{}}, {\ttfamily "{}when"{}}, etc.) if registered, {\ttfamily "{}global.\+Promise"{}} if using the global version on Node.\+js, or {\ttfamily "{}window.\+Promise"{}} if using the browser version. You should always include a default case, as there is no guarantee what package may be registered.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md110}{}\doxysubsubsection{\texorpdfstring{Support for old Node.\+js versions}{Support for old Node.\+js versions}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md110}
+Node.\+js versions prior to {\ttfamily v0.\+12} may have contained buggy versions of the global {\ttfamily Promise}. For this reason, the global {\ttfamily Promise} is not loaded automatically for these old versions. If using {\ttfamily any-\/promise} in Node.\+js versions versions {\ttfamily \texorpdfstring{$<$}{<}= v0.\+12}, the user should register a desired implementation.
+
+If an implementation is not registered, {\ttfamily any-\/promise} will attempt to discover an installed {\ttfamily Promise} implementation. If no implementation can be found, an error will be thrown on {\ttfamily require(\textquotesingle{}any-\/promise\textquotesingle{})}. While the auto-\/discovery usually avoids errors, it is non-\/deterministic. It is recommended that the user always register a preferred implementation for older Node.\+js versions.
+
+This auto-\/discovery is only available for Node.\+jS versions prior to {\ttfamily v0.\+12}. Any newer versions will always default to the global {\ttfamily Promise} implementation.\hypertarget{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md111}{}\doxysubsubsection{\texorpdfstring{Related}{Related}}\label{dir_fdefd3eb453b2c2bbf35183f57db661c_autotoc_md111}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/any-observable}{\texttt{any-\/observable}} -\/ {\ttfamily any-\/promise} for Observables. 
+\end{DoxyItemize}

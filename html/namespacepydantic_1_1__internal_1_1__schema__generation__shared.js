@@ -1,0 +1,5 @@
+var namespacepydantic_1_1__internal_1_1__schema__generation__shared =
+[
+    [ "GenerateJsonSchemaHandler", "classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler.html", "classpydantic_1_1__internal_1_1__schema__generation__shared_1_1GenerateJsonSchemaHandler" ],
+    [ "CallbackGetCoreSchemaHandler", "classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler.html", "classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler" ]
+];

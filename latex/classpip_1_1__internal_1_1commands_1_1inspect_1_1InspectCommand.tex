@@ -1,0 +1,111 @@
+\doxysection{pip.\+\_\+internal.\+commands.\+inspect.\+Inspect\+Command Class Reference}
+\hypertarget{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand}{}\label{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand}\index{pip.\_internal.commands.inspect.InspectCommand@{pip.\_internal.commands.inspect.InspectCommand}}
+Inheritance diagram for pip.\+\_\+internal.\+commands.\+inspect.\+Inspect\+Command:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_ad909c1f5e144f0c011a664029f3e84ef}{add\+\_\+options}} (self)
+\item 
+int \doxymbox{\hyperlink{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_a617b099e7f8157ec3647001660811b78}{run}} (self, Values options, List\+[str]\+ args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str name, str summary, bool isolated=False)
+\item 
+None \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command_a715e0edc6d7dbc3dd2f694340c9caf58}{handle\+\_\+pip\+\_\+version\+\_\+check}} (self, Values options)
+\item 
+Tuple\+[Values, List\+[str]\+]\+ {\bfseries parse\+\_\+args} (self, List\+[str]\+ args)
+\item 
+int {\bfseries main} (self, List\+[str]\+ args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1command__context_1_1CommandContextMixIn}{pip.\+\_\+internal.\+cli.\+command\+\_\+context.\+Command\+Context\+Mix\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+Generator\+[None, None, None]\+ {\bfseries main\+\_\+context} (self)
+\item 
+\+\_\+T {\bfseries enter\+\_\+context} (self, Context\+Manager\+[\+\_\+T]\+ context\+\_\+provider)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_a6bddf48f9507960a24d79747b1f21067}\label{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_a6bddf48f9507960a24d79747b1f21067} 
+Dict\+[str, Any]\+ {\bfseries \+\_\+dist\+\_\+to\+\_\+dict} (self, \doxymbox{\hyperlink{classpip_1_1__internal_1_1metadata_1_1base_1_1BaseDistribution}{Base\+Distribution}} dist)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries \+\_\+main} (self, List\+[str]\+ args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries name} = name
+\item 
+{\bfseries summary} = summary
+\item 
+\doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command_af55279eb904d389000b26fec0cdfb165}{parser}}
+\item 
+Optional\+[Temp\+Dir\+Registry]\+ {\bfseries tempdir\+\_\+registry} = None
+\item 
+{\bfseries cmd\+\_\+opts} = optparse.\+Option\+Group(self.\+parser, optgroup\+\_\+name)
+\item 
+{\bfseries verbosity} = options.\+verbose -\/ options.\+quiet
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries usage} = "{}"{}
+\item 
+bool {\bfseries ignore\+\_\+require\+\_\+venv} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1command__context_1_1CommandContextMixIn}{pip.\+\_\+internal.\+cli.\+command\+\_\+context.\+Command\+Context\+Mix\+In}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+in\+\_\+main\+\_\+context} = False
+\item 
+{\bfseries \+\_\+main\+\_\+context} = Exit\+Stack()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Inspect the content of a Python environment and produce a report in JSON format.
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_doc-func-members}
+\Hypertarget{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_ad909c1f5e144f0c011a664029f3e84ef}\index{pip.\_internal.commands.inspect.InspectCommand@{pip.\_internal.commands.inspect.InspectCommand}!add\_options@{add\_options}}
+\index{add\_options@{add\_options}!pip.\_internal.commands.inspect.InspectCommand@{pip.\_internal.commands.inspect.InspectCommand}}
+\doxysubsubsection{\texorpdfstring{add\_options()}{add\_options()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_ad909c1f5e144f0c011a664029f3e84ef} 
+ None pip.\+\_\+internal.\+commands.\+inspect.\+Inspect\+Command.\+add\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}.
+
+\Hypertarget{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_a617b099e7f8157ec3647001660811b78}\index{pip.\_internal.commands.inspect.InspectCommand@{pip.\_internal.commands.inspect.InspectCommand}!run@{run}}
+\index{run@{run}!pip.\_internal.commands.inspect.InspectCommand@{pip.\_internal.commands.inspect.InspectCommand}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1commands_1_1inspect_1_1InspectCommand_a617b099e7f8157ec3647001660811b78} 
+ int pip.\+\_\+internal.\+commands.\+inspect.\+Inspect\+Command.\+run (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Values}]{options}{, }\item[{List\+[str]\+}]{args}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__internal_1_1cli_1_1base__command_1_1Command}{pip.\+\_\+internal.\+cli.\+base\+\_\+command.\+Command}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+internal/\+commands/\+inspect.\+py\end{DoxyCompactItemize}

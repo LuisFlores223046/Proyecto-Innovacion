@@ -1,0 +1,136 @@
+\doxysection{sqlalchemy.\+dialects.\+postgresql.\+json.\+JSON Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}{}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}\index{sqlalchemy.dialects.postgresql.json.JSON@{sqlalchemy.dialects.postgresql.json.JSON}}
+Inheritance diagram for sqlalchemy.\+dialects.\+postgresql.\+json.\+JSON:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.104536cm]{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_1_1Comparator}{Comparator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_ae164fc9b3ca52913b102938dda3b1af3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, none\+\_\+as\+\_\+null=False, astext\+\_\+type=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_a19a490952bc13fb3f351cd4b55384fc0}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_a19a490952bc13fb3f351cd4b55384fc0} 
+{\bfseries astext\+\_\+type} = sqltypes.\+Text()
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_aff69e719d4c7427b818fad631903dab6}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_aff69e719d4c7427b818fad631903dab6} 
+{\bfseries comparator\+\_\+factory}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent the PostgreSQL JSON type.
+
+:class:`_postgresql.JSON` is used automatically whenever the base
+:class:`_types.JSON` datatype is used against a PostgreSQL backend,
+however base :class:`_types.JSON` datatype does not provide Python
+accessors for PostgreSQL-specific comparison methods such as
+:meth:`_postgresql.JSON.Comparator.astext`; additionally, to use
+PostgreSQL ``JSONB``, the :class:`_postgresql.JSONB` datatype should
+be used explicitly.
+
+.. seealso::
+
+    :class:`_types.JSON` - main documentation for the generic
+    cross-platform JSON datatype.
+
+The operators provided by the PostgreSQL version of :class:`_types.JSON`
+include:
+
+* Index operations (the ``->`` operator)::
+
+    data_table.c.data['some key']
+
+    data_table.c.data[5]
+
+
+* Index operations returning text (the ``->>`` operator)::
+
+    data_table.c.data['some key'].astext == 'some value'
+
+  Note that equivalent functionality is available via the
+  :attr:`.JSON.Comparator.as_string` accessor.
+
+* Index operations with CAST
+  (equivalent to ``CAST(col ->> ['some key'] AS <type>)``)::
+
+    data_table.c.data['some key'].astext.cast(Integer) == 5
+
+  Note that equivalent functionality is available via the
+  :attr:`.JSON.Comparator.as_integer` and similar accessors.
+
+* Path index operations (the ``#>`` operator)::
+
+    data_table.c.data[('key_1', 'key_2', 5, ..., 'key_n')]
+
+* Path index operations returning text (the ``#>>`` operator)::
+
+    data_table.c.data[('key_1', 'key_2', 5, ..., 'key_n')].astext == 'some value'
+
+Index operations return an expression object whose type defaults to
+:class:`_types.JSON` by default,
+so that further JSON-oriented instructions
+may be called upon the result type.
+
+Custom serializers and deserializers are specified at the dialect level,
+that is using :func:`_sa.create_engine`.  The reason for this is that when
+using psycopg2, the DBAPI only allows serializers at the per-cursor
+or per-connection level.   E.g.::
+
+    engine = create_engine("postgresql+psycopg2://scott:tiger@localhost/test",
+                            json_serializer=my_serialize_fn,
+                            json_deserializer=my_deserialize_fn
+                    )
+
+When using the psycopg2 dialect, the json_deserializer is registered
+against the database using ``psycopg2.extras.register_default_json``.
+
+.. seealso::
+
+    :class:`_types.JSON` - Core level JSON type
+
+    :class:`_postgresql.JSONB`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_ae164fc9b3ca52913b102938dda3b1af3}\index{sqlalchemy.dialects.postgresql.json.JSON@{sqlalchemy.dialects.postgresql.json.JSON}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.dialects.postgresql.json.JSON@{sqlalchemy.dialects.postgresql.json.JSON}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_ae164fc9b3ca52913b102938dda3b1af3} 
+sqlalchemy.\+dialects.\+postgresql.\+json.\+JSON.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{none\+\_\+as\+\_\+null}{ = {\ttfamily False}, }\item[{}]{astext\+\_\+type}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a :class:`_types.JSON` type.
+
+:param none_as_null: if True, persist the value ``None`` as a
+ SQL NULL value, not the JSON encoding of ``null``.   Note that
+ when this flag is False, the :func:`.null` construct can still
+ be used to persist a NULL value::
+
+     from sqlalchemy import null
+     conn.execute(table.insert(), {"data": null()})
+
+ .. seealso::
+
+      :attr:`_types.JSON.NULL`
+
+:param astext_type: the type to use for the
+ :attr:`.JSON.Comparator.astext`
+ accessor on indexed attributes.  Defaults to :class:`_types.Text`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+postgresql/\+json.\+py\end{DoxyCompactItemize}

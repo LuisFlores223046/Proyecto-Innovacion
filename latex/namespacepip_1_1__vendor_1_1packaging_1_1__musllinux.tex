@@ -1,0 +1,89 @@
+\doxysection{pip.\+\_\+vendor.\+packaging.\+\_\+musllinux Namespace Reference}
+\hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux}{}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux}\index{pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__vendor_1_1packaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a7a091086f739f6ae954ee5212d542773}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a7a091086f739f6ae954ee5212d542773} 
+Tuple\+[int,...]\+ {\bfseries \+\_\+read\+\_\+unpacked} (IO\+[bytes]\+ f, str fmt)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_ab314558f873b4b25de766b8d9fe1f8cb}{\+\_\+parse\+\_\+ld\+\_\+musl\+\_\+from\+\_\+elf}} (IO\+[bytes]\+ f)
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a2620993b185e0634e7bc4a808a519656}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a2620993b185e0634e7bc4a808a519656} 
+Optional\+[\doxymbox{\hyperlink{classpip_1_1__vendor_1_1packaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}]\+ {\bfseries \+\_\+parse\+\_\+musl\+\_\+version} (str output)
+\item 
+Optional\+[\doxymbox{\hyperlink{classpip_1_1__vendor_1_1packaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}]\+ \doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a03ca7d73773a47903049fa4af274adb0}{\+\_\+get\+\_\+musl\+\_\+version}} (str executable)
+\item 
+Iterator\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a7b5e1f36794d5209de428f2f9fa6c1d0}{platform\+\_\+tags}} (str arch)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_ac558dc6765cdbcdac70233f8d72228e5}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_ac558dc6765cdbcdac70233f8d72228e5} 
+{\bfseries plat} = sysconfig.\+get\+\_\+platform()
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a9706ca1b273433216081c429368373f3}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a9706ca1b273433216081c429368373f3} 
+{\bfseries end}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a62fb42b72b9b98c660d1bd4beafbf2c0}\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a62fb42b72b9b98c660d1bd4beafbf2c0} 
+{\bfseries t}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}PEP 656 support.
+
+This module implements logic to detect if the currently running Python is
+linked against musl, and what musl version is used.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_doc-func-members}
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a03ca7d73773a47903049fa4af274adb0}\index{pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}!\_get\_musl\_version@{\_get\_musl\_version}}
+\index{\_get\_musl\_version@{\_get\_musl\_version}!pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}}
+\doxysubsubsection{\texorpdfstring{\_get\_musl\_version()}{\_get\_musl\_version()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a03ca7d73773a47903049fa4af274adb0} 
+ Optional\+[\doxymbox{\hyperlink{classpip_1_1__vendor_1_1packaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}]\+ \+\_\+get\+\_\+musl\+\_\+version (\begin{DoxyParamCaption}\item[{str}]{executable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Detect currently-running musl runtime version.
+
+This is done by checking the specified executable's dynamic linking
+information, and invoking the loader to parse its output for a version
+string. If the loader is musl, the output would be something like::
+
+    musl libc (x86_64)
+    Version 1.2.2
+    Dynamic Program Loader
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_ab314558f873b4b25de766b8d9fe1f8cb}\index{pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}!\_parse\_ld\_musl\_from\_elf@{\_parse\_ld\_musl\_from\_elf}}
+\index{\_parse\_ld\_musl\_from\_elf@{\_parse\_ld\_musl\_from\_elf}!pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}}
+\doxysubsubsection{\texorpdfstring{\_parse\_ld\_musl\_from\_elf()}{\_parse\_ld\_musl\_from\_elf()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_ab314558f873b4b25de766b8d9fe1f8cb} 
+ Optional\+[str]\+ \+\_\+parse\+\_\+ld\+\_\+musl\+\_\+from\+\_\+elf (\begin{DoxyParamCaption}\item[{IO\+[bytes]\+}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Detect musl libc location by parsing the Python executable.
+
+Based on: https://gist.github.com/lyssdod/f51579ae8d93c8657a5564aefc2ffbca
+ELF header: https://refspecs.linuxfoundation.org/elf/gabi4+/ch4.eheader.html
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a7b5e1f36794d5209de428f2f9fa6c1d0}\index{pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}!platform\_tags@{platform\_tags}}
+\index{platform\_tags@{platform\_tags}!pip.\_vendor.packaging.\_musllinux@{pip.\_vendor.packaging.\_musllinux}}
+\doxysubsubsection{\texorpdfstring{platform\_tags()}{platform\_tags()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1packaging_1_1__musllinux_a7b5e1f36794d5209de428f2f9fa6c1d0} 
+ Iterator\+[str]\+ platform\+\_\+tags (\begin{DoxyParamCaption}\item[{str}]{arch}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate musllinux tags compatible to the current platform.
+
+:param arch: Should be the part of platform tag after the ``linux_``
+    prefix, e.g. ``x86_64``. The ``linux_`` prefix is assumed as a
+    prerequisite for the current platform to be musllinux-compatible.
+
+:returns: An iterator of compatible musllinux tags.
+\end{DoxyVerb}
+ 

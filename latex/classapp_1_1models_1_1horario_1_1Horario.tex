@@ -1,0 +1,67 @@
+\doxysection{app.\+models.\+horario.\+Horario Class Reference}
+\hypertarget{classapp_1_1models_1_1horario_1_1Horario}{}\label{classapp_1_1models_1_1horario_1_1Horario}\index{app.models.horario.Horario@{app.models.horario.Horario}}
+Inheritance diagram for app.\+models.\+horario.\+Horario:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1horario_1_1Horario}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_a984722e9cc717f44dc1e540edaf1830d}\label{classapp_1_1models_1_1horario_1_1Horario_a984722e9cc717f44dc1e540edaf1830d} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1horario_1_1Horario_a298d50da3fd711681d31dc175a17c46d}{espacio\+\_\+id}}
+\item 
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_a08a44ed0a524cb5749be299b37346834}\label{classapp_1_1models_1_1horario_1_1Horario_a08a44ed0a524cb5749be299b37346834} 
+{\bfseries dia\+\_\+semana} = Column(Small\+Integer, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_a94793650812c462cff1b4421ec196341}\label{classapp_1_1models_1_1horario_1_1Horario_a94793650812c462cff1b4421ec196341} 
+{\bfseries hora\+\_\+apertura} = Column(Time, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_a1811fed351e82c274837967038f11507}\label{classapp_1_1models_1_1horario_1_1Horario_a1811fed351e82c274837967038f11507} 
+{\bfseries hora\+\_\+cierre} = Column(Time, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_af15f29249aa1c22b8a1e52df7b99d2a7}\label{classapp_1_1models_1_1horario_1_1Horario_af15f29249aa1c22b8a1e52df7b99d2a7} 
+{\bfseries espacio} = relationship("{}Espacio"{}, back\+\_\+populates="{}horarios"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Define los tiempos de operación de un espacio según el día de la semana.
+
+Attributes:
+    id: Identificador único del horario.
+    espacio_id: Identificador del espacio al que pertenece este horario.
+    dia_semana: Representación numérica (0=lunes, 6=domingo).
+    hora_apertura: Objeto Time que indica el inicio de actividades.
+    hora_cierre: Objeto Time que indica el fin de actividades.
+    espacio: Relación inversa hacia el objeto Espacio.
+\end{DoxyVerb}
+ 
+
+\label{classapp_1_1models_1_1horario_1_1Horario_doc-variable-members}
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classapp_1_1models_1_1horario_1_1Horario_a298d50da3fd711681d31dc175a17c46d}\index{app.models.horario.Horario@{app.models.horario.Horario}!espacio\_id@{espacio\_id}}
+\index{espacio\_id@{espacio\_id}!app.models.horario.Horario@{app.models.horario.Horario}}
+\doxysubsubsection{\texorpdfstring{espacio\_id}{espacio\_id}}
+{\footnotesize\ttfamily \label{classapp_1_1models_1_1horario_1_1Horario_a298d50da3fd711681d31dc175a17c46d} 
+app.\+models.\+horario.\+Horario.\+espacio\+\_\+id\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Column(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Integer,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ForeignKey(\textcolor{stringliteral}{"{}espacios.id"{}},\ ondelete=\textcolor{stringliteral}{"{}CASCADE"{}}),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nullable=\textcolor{keyword}{False},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ index=\textcolor{keyword}{True},}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+horario.\+py\end{DoxyCompactItemize}

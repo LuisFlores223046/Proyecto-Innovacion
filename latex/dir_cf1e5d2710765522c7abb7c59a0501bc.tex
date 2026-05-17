@@ -1,0 +1,139 @@
+\doxysection{frontend/\+node\+\_\+modules/\+eslint-\/visitor-\/keys Directory Reference}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc}{}\label{dir_cf1e5d2710765522c7abb7c59a0501bc}\index{frontend/node\_modules/eslint-\/visitor-\/keys Directory Reference@{frontend/node\_modules/eslint-\/visitor-\/keys Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_7b2f6d3bbf3280d6f580cb572a4af510}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2051}{}\doxysubsection{\texorpdfstring{eslint-\/visitor-\/keys}{eslint-\/visitor-\/keys}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2051}
+\href{https://www.npmjs.com/package/eslint-visitor-keys}{\texttt{}} \href{http://www.npmtrends.com/eslint-visitor-keys}{\texttt{}} \href{https://github.com/eslint/js/actions}{\texttt{}}
+
+Constants and utilities about visitor keys to traverse AST.\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2052}{}\doxysubsection{\texorpdfstring{💿 Installation}{💿 Installation}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2052}
+Use \href{https://www.npmjs.com/}{\texttt{npm}} to install.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ eslint-\/visitor-\/keys}
+
+\end{DoxyCode}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2053}{}\doxysubsubsection{\texorpdfstring{Requirements}{Requirements}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2053}
+
+\begin{DoxyItemize}
+\item \href{https://nodejs.org/}{\texttt{Node.\+js}} {\ttfamily \texorpdfstring{$^\wedge$}{\string^}18.18.\+0}, {\ttfamily \texorpdfstring{$^\wedge$}{\string^}20.9.\+0}, or {\ttfamily \texorpdfstring{$>$}{>}=21.\+1.\+0}
+\end{DoxyItemize}\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2054}{}\doxysubsection{\texorpdfstring{📖 Usage}{📖 Usage}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2054}
+To use in an ESM file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ evk\ from\ "{}eslint-\/visitor-\/keys"{}}
+
+\end{DoxyCode}
+
+
+To use in a Common\+JS file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ evk\ =\ require("{}eslint-\/visitor-\/keys"{})}
+
+\end{DoxyCode}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2055}{}\doxysubsubsection{\texorpdfstring{evk.\+KEYS}{evk.\+KEYS}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2055}
+\begin{quote}
+type:\+ {\ttfamily \{ \+[type:\+ string]\+:\+ string\+[]\+ \texorpdfstring{$\vert$}{|} undefined \}} \end{quote}
+
+
+Visitor keys. This keys are frozen.
+
+This is an object. Keys are the type of \href{https://github.com/estree/estree}{\texttt{ESTree}} nodes. Their values are an array of property names which have child nodes.
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(evk.KEYS.AssignmentExpression)\ //\ →\ ["{}left"{},\ "{}right"{}]}
+
+\end{DoxyCode}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2056}{}\doxysubsubsection{\texorpdfstring{evk.\+get\+Keys(node)}{evk.\+get\+Keys(node)}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2056}
+\begin{quote}
+type:\+ {\ttfamily (node:\+ object) =\texorpdfstring{$>$}{>} string\+[]\+} \end{quote}
+
+
+Get the visitor keys of a given AST node.
+
+This is similar to {\ttfamily Object.\+keys(node)} of ES Standard, but some keys are excluded:\+ {\ttfamily parent}, {\ttfamily leading\+Comments}, {\ttfamily trailing\+Comments}, and names which start with {\ttfamily \+\_\+}.
+
+This will be used to traverse unknown nodes.
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ node\ =\ \{}
+\DoxyCodeLine{\ \ \ \ type:\ "{}AssignmentExpression"{},}
+\DoxyCodeLine{\ \ \ \ left:\ \{\ type:\ "{}Identifier"{},\ name:\ "{}foo"{}\ \},}
+\DoxyCodeLine{\ \ \ \ right:\ \{\ type:\ "{}Literal"{},\ value:\ 0\ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{console.log(evk.getKeys(node))\ //\ →\ ["{}type"{},\ "{}left"{},\ "{}right"{}]}
+
+\end{DoxyCode}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2057}{}\doxysubsubsection{\texorpdfstring{evk.\+union\+With(additional\+Keys)}{evk.\+union\+With(additional\+Keys)}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2057}
+\begin{quote}
+type:\+ {\ttfamily (additional\+Keys:\+ object) =\texorpdfstring{$>$}{>} \{ \+[type:\+ string]\+:\+ string\+[]\+ \texorpdfstring{$\vert$}{|} undefined \}} \end{quote}
+
+
+Make the union set with {\ttfamily evk.\+KEYS} and the given keys.
+
+
+\begin{DoxyItemize}
+\item The order of keys is, {\ttfamily additional\+Keys} is at first, then {\ttfamily evk.\+KEYS} is concatenated after that.
+\item It removes duplicated keys as keeping the first one.
+\end{DoxyItemize}
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(evk.unionWith(\{}
+\DoxyCodeLine{\ \ \ \ MethodDefinition:\ ["{}decorators"{}]}
+\DoxyCodeLine{\}))\ //\ →\ \{\ ...,\ MethodDefinition:\ ["{}decorators"{},\ "{}key"{},\ "{}value"{}],\ ...\ \}}
+
+\end{DoxyCode}
+\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2058}{}\doxysubsection{\texorpdfstring{📰 Change log}{📰 Change log}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2058}
+See \href{https://github.com/eslint/js/releases}{\texttt{Git\+Hub releases}}.\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2059}{}\doxysubsection{\texorpdfstring{🍻 Contributing}{🍻 Contributing}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2059}
+Welcome. See \href{https://eslint.org/docs/developer-guide/contributing/}{\texttt{ESLint contribution guidelines}}.\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2060}{}\doxysubsubsection{\texorpdfstring{Development commands}{Development commands}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2060}
+
+\begin{DoxyItemize}
+\item {\ttfamily npm test} runs tests and measures code coverage.
+\item {\ttfamily npm run lint} checks source codes with ESLint.
+\item {\ttfamily npm run test:\+open-\/coverage} opens the code coverage report of the previous test with your default browser.
+\end{DoxyItemize}\hypertarget{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2061}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_cf1e5d2710765522c7abb7c59a0501bc_autotoc_md2061}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Diamond Sponsors}
+
+\href{https://www.ag-grid.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://sentry.io}{\texttt{}} \href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://www.crosswordsolver.org/anagram-solver/}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nolebase.ayaka.io}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

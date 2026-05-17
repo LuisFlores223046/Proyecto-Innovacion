@@ -1,0 +1,103 @@
+\doxysection{dns.\+exception.\+DNSException Class Reference}
+\hypertarget{classdns_1_1exception_1_1DNSException}{}\label{classdns_1_1exception_1_1DNSException}\index{dns.exception.DNSException@{dns.exception.DNSException}}
+Inheritance diagram for dns.\+exception.\+DNSException:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classdns_1_1exception_1_1DNSException}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_afed2507b1296c641172c07929a4c1181}\label{classdns_1_1exception_1_1DNSException_afed2507b1296c641172c07929a4c1181} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_a27847f62d1d3c41b890df36d924e1e81}\label{classdns_1_1exception_1_1DNSException_a27847f62d1d3c41b890df36d924e1e81} 
+{\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_aab5ba2bfd1fc05b6bc1cec30f2ca0d43}\label{classdns_1_1exception_1_1DNSException_aab5ba2bfd1fc05b6bc1cec30f2ca0d43} 
+{\bfseries kwargs} = self.\+\_\+check\+\_\+kwargs(\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_a82899f159defe6a902f8d7f244f556f9}\label{classdns_1_1exception_1_1DNSException_a82899f159defe6a902f8d7f244f556f9} 
+str {\bfseries msg} = None
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_aa51782a4629e6ea4a60abd7a34692b0b}\label{classdns_1_1exception_1_1DNSException_aa51782a4629e6ea4a60abd7a34692b0b} 
+Set {\bfseries supp\+\_\+kwargs} = set()
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_a274eb7be210056ba05dcdf68e246b5ab}\label{classdns_1_1exception_1_1DNSException_a274eb7be210056ba05dcdf68e246b5ab} 
+str {\bfseries fmt} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1exception_1_1DNSException_a99080c534f9ddbf8b229c4cb10b81078}{\+\_\+check\+\_\+params}} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classdns_1_1exception_1_1DNSException_ad4d9c9c63fe53050fe8cf2e48febded2}\label{classdns_1_1exception_1_1DNSException_ad4d9c9c63fe53050fe8cf2e48febded2} 
+{\bfseries \+\_\+check\+\_\+kwargs} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\doxymbox{\hyperlink{classdns_1_1exception_1_1DNSException_aa7bf685b757d4e5697fdae444a58cc5b}{\+\_\+fmt\+\_\+kwargs}} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Abstract base class shared by all dnspython exceptions.
+
+It supports two basic modes of operation:
+
+a) Old/compatible mode is used if ``__init__`` was called with
+empty *kwargs*.  In compatible mode all *args* are passed
+to the standard Python Exception class as before and all *args* are
+printed by the standard ``__str__`` implementation.  Class variable
+``msg`` (or doc string if ``msg`` is ``None``) is returned from ``str()``
+if *args* is empty.
+
+b) New/parametrized mode is used if ``__init__`` was called with
+non-empty *kwargs*.
+In the new mode *args* must be empty and all kwargs must match
+those set in class variable ``supp_kwargs``. All kwargs are stored inside
+``self.kwargs`` and used in a new ``__str__`` implementation to construct
+a formatted message based on the ``fmt`` class variable, a ``string``.
+
+In the simplest case it is enough to override the ``supp_kwargs``
+and ``fmt`` class variables to get nice parametrized messages.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1exception_1_1DNSException_doc-func-members}
+\Hypertarget{classdns_1_1exception_1_1DNSException_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1exception_1_1DNSException_a99080c534f9ddbf8b229c4cb10b81078}\index{dns.exception.DNSException@{dns.exception.DNSException}!\_check\_params@{\_check\_params}}
+\index{\_check\_params@{\_check\_params}!dns.exception.DNSException@{dns.exception.DNSException}}
+\doxysubsubsection{\texorpdfstring{\_check\_params()}{\_check\_params()}}
+{\footnotesize\ttfamily \label{classdns_1_1exception_1_1DNSException_a99080c534f9ddbf8b229c4cb10b81078} 
+dns.\+exception.\+DNSException.\+\_\+check\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Old exceptions supported only args and not kwargs.
+
+For sanity we do not allow to mix old and new behavior.\end{DoxyVerb}
+ \Hypertarget{classdns_1_1exception_1_1DNSException_aa7bf685b757d4e5697fdae444a58cc5b}\index{dns.exception.DNSException@{dns.exception.DNSException}!\_fmt\_kwargs@{\_fmt\_kwargs}}
+\index{\_fmt\_kwargs@{\_fmt\_kwargs}!dns.exception.DNSException@{dns.exception.DNSException}}
+\doxysubsubsection{\texorpdfstring{\_fmt\_kwargs()}{\_fmt\_kwargs()}}
+{\footnotesize\ttfamily \label{classdns_1_1exception_1_1DNSException_aa7bf685b757d4e5697fdae444a58cc5b} 
+dns.\+exception.\+DNSException.\+\_\+fmt\+\_\+kwargs (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Format kwargs before printing them.
+
+Resulting dictionary has to have keys necessary for str.format call
+on fmt class variable.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classdns_1_1resolver_1_1LifetimeTimeout_a5c897019b37b8ad357cd02171ce93b30}{dns.\+resolver.\+Lifetime\+Timeout}}, \doxymbox{\hyperlink{classdns_1_1resolver_1_1NoAnswer_af87dcacec8268d9e8456afe84878bc31}{dns.\+resolver.\+No\+Answer}}, and \doxymbox{\hyperlink{classdns_1_1resolver_1_1NoNameservers_a6812926042145f9e54b07d13233b7ac2}{dns.\+resolver.\+No\+Nameservers}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+exception.\+py\end{DoxyCompactItemize}

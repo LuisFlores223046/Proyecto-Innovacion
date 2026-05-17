@@ -1,0 +1,72 @@
+\doxysection{mako.\+\_\+ast\+\_\+util.\+Node\+Visitor Class Reference}
+\hypertarget{classmako_1_1__ast__util_1_1NodeVisitor}{}\label{classmako_1_1__ast__util_1_1NodeVisitor}\index{mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}}
+Inheritance diagram for mako.\+\_\+ast\+\_\+util.\+Node\+Visitor:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.108911cm]{classmako_1_1__ast__util_1_1NodeVisitor}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_a9c4b9ef50701928faaa80b3323264906}{get\+\_\+visitor}} (self, node)
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_ad6b7d503a24991ca5b73847a9f701a70}{visit}} (self, node)
+\item 
+\doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeVisitor_a8df47413bb2e548e687da89e3f0245bc}{generic\+\_\+visit}} (self, node)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Walks the abstract syntax tree and call visitor functions for every node
+found.  The visitor functions may return values which will be forwarded
+by the `visit` method.
+
+Per default the visitor functions for the nodes are ``'visit_'`` +
+class name of the node.  So a `TryFinally` node visit function would
+be `visit_TryFinally`.  This behavior can be changed by overriding
+the `get_visitor` function.  If no visitor function exists for a node
+(return value `None`) the `generic_visit` visitor is used instead.
+
+Don't use the `NodeVisitor` if you want to apply changes to nodes during
+traversing.  For this a special visitor exists (`NodeTransformer`) that
+allows modifications.
+\end{DoxyVerb}
+ 
+
+\label{classmako_1_1__ast__util_1_1NodeVisitor_doc-func-members}
+\Hypertarget{classmako_1_1__ast__util_1_1NodeVisitor_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmako_1_1__ast__util_1_1NodeVisitor_a8df47413bb2e548e687da89e3f0245bc}\index{mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}!generic\_visit@{generic\_visit}}
+\index{generic\_visit@{generic\_visit}!mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{generic\_visit()}{generic\_visit()}}
+{\footnotesize\ttfamily \label{classmako_1_1__ast__util_1_1NodeVisitor_a8df47413bb2e548e687da89e3f0245bc} 
+mako.\+\_\+ast\+\_\+util.\+Node\+Visitor.\+generic\+\_\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called if no explicit visitor function exists for a node.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classmako_1_1__ast__util_1_1NodeTransformer_af74426af269eb5827bdc5ba0893d464f}{mako.\+\_\+ast\+\_\+util.\+Node\+Transformer}}.
+
+\Hypertarget{classmako_1_1__ast__util_1_1NodeVisitor_a9c4b9ef50701928faaa80b3323264906}\index{mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}!get\_visitor@{get\_visitor}}
+\index{get\_visitor@{get\_visitor}!mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{get\_visitor()}{get\_visitor()}}
+{\footnotesize\ttfamily \label{classmako_1_1__ast__util_1_1NodeVisitor_a9c4b9ef50701928faaa80b3323264906} 
+mako.\+\_\+ast\+\_\+util.\+Node\+Visitor.\+get\+\_\+visitor (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the visitor function for this node or `None` if no visitor
+exists for this node.  In that case the generic visit function is
+used instead.
+\end{DoxyVerb}
+ \Hypertarget{classmako_1_1__ast__util_1_1NodeVisitor_ad6b7d503a24991ca5b73847a9f701a70}\index{mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}!visit@{visit}}
+\index{visit@{visit}!mako.\_ast\_util.NodeVisitor@{mako.\_ast\_util.NodeVisitor}}
+\doxysubsubsection{\texorpdfstring{visit()}{visit()}}
+{\footnotesize\ttfamily \label{classmako_1_1__ast__util_1_1NodeVisitor_ad6b7d503a24991ca5b73847a9f701a70} 
+mako.\+\_\+ast\+\_\+util.\+Node\+Visitor.\+visit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{node}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Visit a node.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+mako/\+\+\_\+ast\+\_\+util.\+py\end{DoxyCompactItemize}

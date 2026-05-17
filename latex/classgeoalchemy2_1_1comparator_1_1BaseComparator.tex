@@ -1,0 +1,68 @@
+\doxysection{geoalchemy2.\+comparator.\+Base\+Comparator Class Reference}
+\hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator}{}\label{classgeoalchemy2_1_1comparator_1_1BaseComparator}\index{geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}}
+Inheritance diagram for geoalchemy2.\+comparator.\+Base\+Comparator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgeoalchemy2_1_1comparator_1_1BaseComparator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_a0eced4d77d4d795949013586e0c770e2}\label{classgeoalchemy2_1_1comparator_1_1BaseComparator_a0eced4d77d4d795949013586e0c770e2} 
+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} \doxymbox{\hyperlink{classgeoalchemy2_1_1comparator_1_1BaseComparator_a09e96161afb2fa766b0c4b6502d5c079}{intersects}} (self, \+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} \doxymbox{\hyperlink{classgeoalchemy2_1_1comparator_1_1BaseComparator_a056df9cb4015ddec5b2f868fbcc08c67}{overlaps\+\_\+or\+\_\+to\+\_\+left}} (self, \+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} \doxymbox{\hyperlink{classgeoalchemy2_1_1comparator_1_1BaseComparator_a2f13214cf074bb4a20cf27f169282f09}{overlaps\+\_\+or\+\_\+to\+\_\+right}} (self, \+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_a209c96398952631e7c55d02c714794db}\label{classgeoalchemy2_1_1comparator_1_1BaseComparator_a209c96398952631e7c55d02c714794db} 
+{\bfseries key} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A custom comparator base class.
+
+It adds the ability to call spatial functions on columns that use this kind of comparator.
+It also defines functions that map to operators supported by ``Geometry``, ``Geography``
+and ``Raster`` columns.
+
+This comparator is used by the :class:`geoalchemy2.types.Raster`.
+\end{DoxyVerb}
+ 
+
+\label{classgeoalchemy2_1_1comparator_1_1BaseComparator_doc-func-members}
+\Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_a09e96161afb2fa766b0c4b6502d5c079}\index{geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}!intersects@{intersects}}
+\index{intersects@{intersects}!geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}}
+\doxysubsubsection{\texorpdfstring{intersects()}{intersects()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1comparator_1_1BaseComparator_a09e96161afb2fa766b0c4b6502d5c079} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} geoalchemy2.\+comparator.\+Base\+Comparator.\+intersects (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The ``&&`` operator. A's BBOX intersects B's.\end{DoxyVerb}
+ \Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_a056df9cb4015ddec5b2f868fbcc08c67}\index{geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}!overlaps\_or\_to\_left@{overlaps\_or\_to\_left}}
+\index{overlaps\_or\_to\_left@{overlaps\_or\_to\_left}!geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}}
+\doxysubsubsection{\texorpdfstring{overlaps\_or\_to\_left()}{overlaps\_or\_to\_left()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1comparator_1_1BaseComparator_a056df9cb4015ddec5b2f868fbcc08c67} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} geoalchemy2.\+comparator.\+Base\+Comparator.\+overlaps\+\_\+or\+\_\+to\+\_\+left (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The ``&<`` operator. A's BBOX overlaps or is to the left of B's.\end{DoxyVerb}
+ \Hypertarget{classgeoalchemy2_1_1comparator_1_1BaseComparator_a2f13214cf074bb4a20cf27f169282f09}\index{geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}!overlaps\_or\_to\_right@{overlaps\_or\_to\_right}}
+\index{overlaps\_or\_to\_right@{overlaps\_or\_to\_right}!geoalchemy2.comparator.BaseComparator@{geoalchemy2.comparator.BaseComparator}}
+\doxysubsubsection{\texorpdfstring{overlaps\_or\_to\_right()}{overlaps\_or\_to\_right()}}
+{\footnotesize\ttfamily \label{classgeoalchemy2_1_1comparator_1_1BaseComparator_a2f13214cf074bb4a20cf27f169282f09} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}} geoalchemy2.\+comparator.\+Base\+Comparator.\+overlaps\+\_\+or\+\_\+to\+\_\+right (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+COMPARATOR\+\_\+\+INPUT\+\_\+\+TYPE}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The ``&>`` operator. A's BBOX overlaps or is to the right of B's.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+geoalchemy2/\+comparator.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,84 @@
+\doxysection{pip.\+\_\+vendor.\+typing\+\_\+extensions.\+Protocol Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol}{}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol}\index{pip.\_vendor.typing\_extensions.Protocol@{pip.\_vendor.typing\_extensions.Protocol}}
+Inheritance diagram for pip.\+\_\+vendor.\+typing\+\_\+extensions.\+Protocol:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.952381cm]{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a2916efc86cebb8aba6deb7fd30b33988}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a2916efc86cebb8aba6deb7fd30b33988} 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a47d3d1279a5cdefac80e87f62214956d}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a47d3d1279a5cdefac80e87f62214956d} 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a15abbcd70eeee31942a51c9d9644a87d}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a15abbcd70eeee31942a51c9d9644a87d} 
+{\bfseries \+\_\+\+\_\+class\+\_\+getitem\+\_\+\+\_\+} (cls, params)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a2916efc86cebb8aba6deb7fd30b33988}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a2916efc86cebb8aba6deb7fd30b33988} 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1typing__extensions_1_1__ProtocolMeta}{pip.\+\_\+vendor.\+typing\+\_\+extensions.\+\_\+\+Protocol\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (mcls, name, bases, namespace, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+subclasscheck\+\_\+\+\_\+} (cls, other)
+\item 
+{\bfseries \+\_\+\+\_\+instancecheck\+\_\+\+\_\+} (cls, instance)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (cls, other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a72a8b9e9bbf04ddcd9164533a0812591}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a72a8b9e9bbf04ddcd9164533a0812591} 
+bool {\bfseries \+\_\+is\+\_\+protocol} = True
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a93a46872f2579cf65bc6381c5a7ffb27}\label{classpip_1_1__vendor_1_1typing__extensions_1_1Protocol_a93a46872f2579cf65bc6381c5a7ffb27} 
+bool {\bfseries \+\_\+is\+\_\+runtime\+\_\+protocol} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for protocol classes. Protocol classes are defined as::
+
+    class Proto(Protocol):
+        def meth(self) -> int:
+            ...
+
+Such classes are primarily used with static type checkers that recognize
+structural subtyping (static duck-typing), for example::
+
+    class C:
+        def meth(self) -> int:
+            return 0
+
+    def func(x: Proto) -> int:
+        return x.meth()
+
+    func(C())  # Passes static type check
+
+See PEP 544 for details. Protocol classes decorated with
+@typing_extensions.runtime_checkable act
+as simple-minded runtime-checkable protocols that check
+only the presence of given attributes, ignoring their type signatures.
+
+Protocol classes can be generic, they are defined as::
+
+    class GenProto(Protocol[T]):
+        def meth(self) -> T:
+            ...
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,177 @@
+\doxysection{rsa.\+key Namespace Reference}
+\hypertarget{namespacersa_1_1key}{}\label{namespacersa_1_1key}\index{rsa.key@{rsa.key}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey}{Abstract\+Key}}
+\item 
+class \doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey}{Public\+Key}}
+\item 
+class \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey}{Private\+Key}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacersa_1_1key_afab6b0219e8030558840013f87cf8f7a}{find\+\_\+p\+\_\+q}} (int nbits, typing.\+Callable\+[\+[int]\+, int]\+ getprime\+\_\+func=\doxymbox{\hyperlink{namespacersa_1_1prime_af97922a2a0f7e89d5b66bda8acf5a8b6}{rsa.\+prime.\+getprime}}, bool accurate=True)
+\item 
+typing.\+Tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacersa_1_1key_a56e8a544fa831225d11b8d2f6a1a6264}{calculate\+\_\+keys\+\_\+custom\+\_\+exponent}} (int p, int q, int exponent)
+\item 
+typing.\+Tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacersa_1_1key_a388d075765db36b560780744c05018f2}{calculate\+\_\+keys}} (int p, int q)
+\item 
+typing.\+Tuple\+[int, int, int, int]\+ \doxymbox{\hyperlink{namespacersa_1_1key_a3ce8fc09cb82a7e028bcedf6bf009723}{gen\+\_\+keys}} (int nbits, typing.\+Callable\+[\+[int]\+, int]\+ getprime\+\_\+func, bool accurate=True, int exponent=DEFAULT\+\_\+\+EXPONENT)
+\item 
+typing.\+Tuple\+[\doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey}{Public\+Key}}, \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey}{Private\+Key}}]\+ \doxymbox{\hyperlink{namespacersa_1_1key_ad5516e0fe8c6dd2557a7d8b664a3e35f}{newkeys}} (int nbits, bool accurate=True, int poolsize=1, int exponent=DEFAULT\+\_\+\+EXPONENT)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1key_a5b7fde50e62ba49673eb7746309fad4d}\label{namespacersa_1_1key_a5b7fde50e62ba49673eb7746309fad4d} 
+int {\bfseries DEFAULT\+\_\+\+EXPONENT} = 65537
+\item 
+\Hypertarget{namespacersa_1_1key_afa7a29d5fade63db7022067b8e924f04}\label{namespacersa_1_1key_afa7a29d5fade63db7022067b8e924f04} 
+{\bfseries T} = typing.\+Type\+Var("{}T"{}, bound="{}Abstract\+Key"{})
+\item 
+\Hypertarget{namespacersa_1_1key_a548261e3d0a551bcbc0a124cadad9c06}\label{namespacersa_1_1key_a548261e3d0a551bcbc0a124cadad9c06} 
+{\bfseries failures}
+\item 
+\Hypertarget{namespacersa_1_1key_a2dc2ae9353e27729cd308561d13165ba}\label{namespacersa_1_1key_a2dc2ae9353e27729cd308561d13165ba} 
+{\bfseries tests}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}RSA key generation code.
+
+Create new keys with the newkeys() function. It will give you a PublicKey and a
+PrivateKey object.
+
+Loading and saving keys requires the pyasn1 module. This module is imported as
+late as possible, such that other functionality will remain working in absence
+of pyasn1.
+
+.. note::
+
+    Storing public and private keys via the `pickle` module is possible.
+    However, it is insecure to load a key from an untrusted source.
+    The pickle module is not secure against erroneous or maliciously
+    constructed data. Never unpickle data received from an untrusted
+    or unauthenticated source.
+\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1key_doc-func-members}
+\Hypertarget{namespacersa_1_1key_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1key_a388d075765db36b560780744c05018f2}\index{rsa.key@{rsa.key}!calculate\_keys@{calculate\_keys}}
+\index{calculate\_keys@{calculate\_keys}!rsa.key@{rsa.key}}
+\doxysubsubsection{\texorpdfstring{calculate\_keys()}{calculate\_keys()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1key_a388d075765db36b560780744c05018f2} 
+ typing.\+Tuple\+[int, int]\+ calculate\+\_\+keys (\begin{DoxyParamCaption}\item[{int}]{p}{, }\item[{int}]{q}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates an encryption and a decryption key given p and q, and
+returns them as a tuple (e, d)
+
+:param p: the first large prime
+:param q: the second large prime
+
+:return: tuple (e, d) with the encryption and decryption exponents.
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1key_a56e8a544fa831225d11b8d2f6a1a6264}\index{rsa.key@{rsa.key}!calculate\_keys\_custom\_exponent@{calculate\_keys\_custom\_exponent}}
+\index{calculate\_keys\_custom\_exponent@{calculate\_keys\_custom\_exponent}!rsa.key@{rsa.key}}
+\doxysubsubsection{\texorpdfstring{calculate\_keys\_custom\_exponent()}{calculate\_keys\_custom\_exponent()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1key_a56e8a544fa831225d11b8d2f6a1a6264} 
+ typing.\+Tuple\+[int, int]\+ calculate\+\_\+keys\+\_\+custom\+\_\+exponent (\begin{DoxyParamCaption}\item[{int}]{p}{, }\item[{int}]{q}{, }\item[{int}]{exponent}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates an encryption and a decryption key given p, q and an exponent,
+and returns them as a tuple (e, d)
+
+:param p: the first large prime
+:param q: the second large prime
+:param exponent: the exponent for the key; only change this if you know
+    what you're doing, as the exponent influences how difficult your
+    private key can be cracked. A very common choice for e is 65537.
+:type exponent: int
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1key_afab6b0219e8030558840013f87cf8f7a}\index{rsa.key@{rsa.key}!find\_p\_q@{find\_p\_q}}
+\index{find\_p\_q@{find\_p\_q}!rsa.key@{rsa.key}}
+\doxysubsubsection{\texorpdfstring{find\_p\_q()}{find\_p\_q()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1key_afab6b0219e8030558840013f87cf8f7a} 
+ typing.\+Tuple\+[int, int]\+ find\+\_\+p\+\_\+q (\begin{DoxyParamCaption}\item[{int}]{nbits}{, }\item[{typing.\+Callable\+[\+[int]\+, int]\+ }]{getprime\+\_\+func}{ = {\ttfamily \doxymbox{\hyperlink{namespacersa_1_1prime_af97922a2a0f7e89d5b66bda8acf5a8b6}{rsa.\+prime.\+getprime}}}, }\item[{bool }]{accurate}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a tuple of two different primes of nbits bits each.
+
+The resulting p * q has exactly 2 * nbits bits, and the returned p and q
+will not be equal.
+
+:param nbits: the number of bits in each of p and q.
+:param getprime_func: the getprime function, defaults to
+    :py:func:`rsa.prime.getprime`.
+
+    *Introduced in Python-RSA 3.1*
+
+:param accurate: whether to enable accurate mode or not.
+:returns: (p, q), where p > q
+
+>>> (p, q) = find_p_q(128)
+>>> from rsa import common
+>>> common.bit_size(p * q)
+256
+
+When not in accurate mode, the number of bits can be slightly less
+
+>>> (p, q) = find_p_q(128, accurate=False)
+>>> from rsa import common
+>>> common.bit_size(p * q) <= 256
+True
+>>> common.bit_size(p * q) > 240
+True
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1key_a3ce8fc09cb82a7e028bcedf6bf009723}\index{rsa.key@{rsa.key}!gen\_keys@{gen\_keys}}
+\index{gen\_keys@{gen\_keys}!rsa.key@{rsa.key}}
+\doxysubsubsection{\texorpdfstring{gen\_keys()}{gen\_keys()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1key_a3ce8fc09cb82a7e028bcedf6bf009723} 
+ typing.\+Tuple\+[int, int, int, int]\+ gen\+\_\+keys (\begin{DoxyParamCaption}\item[{int}]{nbits}{, }\item[{typing.\+Callable\+[\+[int]\+, int]\+}]{getprime\+\_\+func}{, }\item[{bool }]{accurate}{ = {\ttfamily True}, }\item[{int }]{exponent}{ = {\ttfamily DEFAULT\+\_\+EXPONENT}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate RSA keys of nbits bits. Returns (p, q, e, d).
+
+Note: this can take a long time, depending on the key size.
+
+:param nbits: the total number of bits in ``p`` and ``q``. Both ``p`` and
+    ``q`` will use ``nbits/2`` bits.
+:param getprime_func: either :py:func:`rsa.prime.getprime` or a function
+    with similar signature.
+:param exponent: the exponent for the key; only change this if you know
+    what you're doing, as the exponent influences how difficult your
+    private key can be cracked. A very common choice for e is 65537.
+:type exponent: int
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1key_ad5516e0fe8c6dd2557a7d8b664a3e35f}\index{rsa.key@{rsa.key}!newkeys@{newkeys}}
+\index{newkeys@{newkeys}!rsa.key@{rsa.key}}
+\doxysubsubsection{\texorpdfstring{newkeys()}{newkeys()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1key_ad5516e0fe8c6dd2557a7d8b664a3e35f} 
+ typing.\+Tuple\+[\doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey}{Public\+Key}}, \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey}{Private\+Key}}]\+ newkeys (\begin{DoxyParamCaption}\item[{int}]{nbits}{, }\item[{bool }]{accurate}{ = {\ttfamily True}, }\item[{int }]{poolsize}{ = {\ttfamily 1}, }\item[{int }]{exponent}{ = {\ttfamily DEFAULT\+\_\+EXPONENT}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generates public and private keys, and returns them as (pub, priv).
+
+The public key is also known as the 'encryption key', and is a
+:py:class:`rsa.PublicKey` object. The private key is also known as the
+'decryption key' and is a :py:class:`rsa.PrivateKey` object.
+
+:param nbits: the number of bits required to store ``n = p*q``.
+:param accurate: when True, ``n`` will have exactly the number of bits you
+    asked for. However, this makes key generation much slower. When False,
+    `n`` may have slightly less bits.
+:param poolsize: the number of processes to use to generate the prime
+    numbers. If set to a number > 1, a parallel algorithm will be used.
+    This requires Python 2.6 or newer.
+:param exponent: the exponent for the key; only change this if you know
+    what you're doing, as the exponent influences how difficult your
+    private key can be cracked. A very common choice for e is 65537.
+:type exponent: int
+
+:returns: a tuple (:py:class:`rsa.PublicKey`, :py:class:`rsa.PrivateKey`)
+
+The ``poolsize`` parameter was added in *Python-RSA 3.1* and requires
+Python 2.6 or newer.
+\end{DoxyVerb}
+ 

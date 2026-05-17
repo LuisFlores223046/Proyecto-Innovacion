@@ -1,0 +1,62 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+mongo\+\_\+object\+\_\+id.\+Mongo\+Object\+Id Class Reference}
+\hypertarget{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId}{}\label{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId}\index{pydantic\_extra\_types.mongo\_object\_id.MongoObjectId@{pydantic\_extra\_types.mongo\_object\_id.MongoObjectId}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+mongo\+\_\+object\+\_\+id.\+Mongo\+Object\+Id:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_a5c614bccdf9af8ddbca7e839b9da3ead}\label{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_a5c614bccdf9af8ddbca7e839b9da3ead} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, Any \+\_\+, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} \+\_\+\+\_\+)
+\item 
+Object\+Id \doxymbox{\hyperlink{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_ac881045c738ead54c25d843250b0c460}{validate}} (cls, str value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_a4ff0329828d0926be6e1b5132122d970}\label{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_a4ff0329828d0926be6e1b5132122d970} 
+int {\bfseries OBJECT\+\_\+\+ID\+\_\+\+LENGTH} = 24
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}MongoObjectId parses and validates MongoDB bson.ObjectId.
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types.mongo_object_id import MongoObjectId
+
+
+class MongoDocument(BaseModel):
+    id: MongoObjectId
+
+
+doc = MongoDocument(id='5f9f2f4b9d3c5a7b4c7e6c1d')
+print(doc)
+# > id='5f9f2f4b9d3c5a7b4c7e6c1d'
+```
+
+Raises:
+    PydanticCustomError: If the provided value is not a valid MongoDB ObjectId.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_ac881045c738ead54c25d843250b0c460}\index{pydantic\_extra\_types.mongo\_object\_id.MongoObjectId@{pydantic\_extra\_types.mongo\_object\_id.MongoObjectId}!validate@{validate}}
+\index{validate@{validate}!pydantic\_extra\_types.mongo\_object\_id.MongoObjectId@{pydantic\_extra\_types.mongo\_object\_id.MongoObjectId}}
+\doxysubsubsection{\texorpdfstring{validate()}{validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1mongo__object__id_1_1MongoObjectId_ac881045c738ead54c25d843250b0c460} 
+ Object\+Id pydantic\+\_\+extra\+\_\+types.\+mongo\+\_\+object\+\_\+id.\+Mongo\+Object\+Id.\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate the MongoObjectId str is a valid ObjectId instance.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+mongo\+\_\+object\+\_\+id.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,1042 @@
+\doxysection{alembic.\+operations.\+base.\+Operations Class Reference}
+\hypertarget{classalembic_1_1operations_1_1base_1_1Operations}{}\label{classalembic_1_1operations_1_1base_1_1Operations}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+Inheritance diagram for alembic.\+operations.\+base.\+Operations:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classalembic_1_1operations_1_1base_1_1Operations}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_ad8a70b4f4b664f8b0bb594a6c8974d42}{add\+\_\+column}} (self, str table\+\_\+name, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ column, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_ab7febe5b78282257459d3de3f372c44e}{alter\+\_\+column}} (self, str table\+\_\+name, str column\+\_\+name, \texorpdfstring{$\ast$}{*}, Optional\+[bool]\+ nullable=None, Union\+[str, Literal\+[False]\+, None]\+ comment=False, Any server\+\_\+default=False, Optional\+[str]\+ new\+\_\+column\+\_\+name=None, Union\+[Type\+Engine\+[Any]\+, Type\+[Type\+Engine\+[Any]\+]\+, None]\+ type\+\_\+=None, Union\+[Type\+Engine\+[Any]\+, Type\+[Type\+Engine\+[Any]\+]\+, None]\+ existing\+\_\+type=None, Union\+[str, bool, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Identity}{Identity}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Computed}{Computed}}, None]\+ existing\+\_\+server\+\_\+default=False, Optional\+[bool]\+ existing\+\_\+nullable=None, Optional\+[str]\+ existing\+\_\+comment=None, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a567439df9d062d76163659d553cc3b7a}{bulk\+\_\+insert}} (self, Union\+[Table, Table\+Clause]\+ table, List\+[Dict\+[str, Any]\+]\+ rows, \texorpdfstring{$\ast$}{*}, bool multiinsert=True)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a925c00a285e8b84575086a0de66dcce8}{create\+\_\+check\+\_\+constraint}} (self, Optional\+[str]\+ constraint\+\_\+name, str table\+\_\+name, Union\+[str, Column\+Element\+[bool]\+, Text\+Clause]\+ condition, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Optional\+[Table]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_aafa295c3cca06a47625ee13c756f5ca5}{create\+\_\+exclude\+\_\+constraint}} (self, str constraint\+\_\+name, str table\+\_\+name, \texorpdfstring{$\ast$}{*}Any elements, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a25d3c2becd7244db380439f0d6cc6c0c}{create\+\_\+foreign\+\_\+key}} (self, Optional\+[str]\+ constraint\+\_\+name, str source\+\_\+table, str referent\+\_\+table, List\+[str]\+ local\+\_\+cols, List\+[str]\+ remote\+\_\+cols, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ onupdate=None, Optional\+[str]\+ ondelete=None, Optional\+[bool]\+ deferrable=None, Optional\+[str]\+ initially=None, Optional\+[str]\+ match=None, Optional\+[str]\+ source\+\_\+schema=None, Optional\+[str]\+ referent\+\_\+schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any dialect\+\_\+kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a22cdfa5414670a3c213fd0cc18089310}{create\+\_\+index}} (self, Optional\+[str]\+ index\+\_\+name, str table\+\_\+name, Sequence\+[Union\+[str, Text\+Clause, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1functions_1_1Function}{Function}}\+[Any]\+]\+]\+ columns, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, bool unique=False, Optional\+[bool]\+ if\+\_\+not\+\_\+exists=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a24604d5242a62fc2f03ca1a0bc7b94d5}{create\+\_\+primary\+\_\+key}} (self, Optional\+[str]\+ constraint\+\_\+name, str table\+\_\+name, List\+[str]\+ columns, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None)
+\item 
+Table \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_accd7fb27617fffa2091d709160e18a6d}{create\+\_\+table}} (self, str table\+\_\+name, \texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1SchemaItem}{Schema\+Item}} columns, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a46d70d8cf43fb3382ca96497458782ad}{create\+\_\+table\+\_\+comment}} (self, str table\+\_\+name, Optional\+[str]\+ comment, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ existing\+\_\+comment=None, Optional\+[str]\+ schema=None)
+\item 
+Any \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_aff85a780974555d4690b0a091cb97088}{create\+\_\+unique\+\_\+constraint}} (self, Optional\+[str]\+ constraint\+\_\+name, str table\+\_\+name, Sequence\+[str]\+ columns, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_aee32e38038bc18ae84b180b43871bff2}{drop\+\_\+column}} (self, str table\+\_\+name, str column\+\_\+name, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a4b66ec0607f68aa052c627b31d67ebd4}{drop\+\_\+constraint}} (self, str constraint\+\_\+name, str table\+\_\+name, Optional\+[str]\+ type\+\_\+=None, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_a349db9cbdac8b70ce5855b38484ef723}{drop\+\_\+index}} (self, str index\+\_\+name, Optional\+[str]\+ table\+\_\+name=None, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, Optional\+[bool]\+ if\+\_\+exists=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_adeba6d73d0196c7742cf96bc7077d057}{drop\+\_\+table}} (self, str table\+\_\+name, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_aae0f8b9fc9bc68c8972c4681f8531e5e}{drop\+\_\+table\+\_\+comment}} (self, str table\+\_\+name, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ existing\+\_\+comment=None, Optional\+[str]\+ schema=None)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_aad92691faa4d373660ef0be6b70411a8}{execute}} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+ sqltext, \texorpdfstring{$\ast$}{*}, Optional\+[dict\+[str, Any]\+]\+ execution\+\_\+options=None)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations_ac51b7fd320f7f8a0c4107f687f677392}{rename\+\_\+table}} (self, str old\+\_\+table\+\_\+name, str new\+\_\+table\+\_\+name, \texorpdfstring{$\ast$}{*}, Optional\+[str]\+ schema=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations}{alembic.\+operations.\+base.\+Abstract\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a947b8ad1ad8fc1540bb98f03e586712c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} migration\+\_\+context, Optional\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}]\+ impl=None)
+\item 
+Callable\+[\+[Type\+[\+\_\+T]\+]\+, Type\+[\+\_\+T]\+]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d8edfa2af92833d20d263b1f34d94d}{register\+\_\+operation}} (cls, str name, Optional\+[str]\+ sourcename=None)
+\item 
+Callable\+[\+[\+\_\+C]\+, \+\_\+C]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_aac74a50f78b09deb8bd499eb2989c796}{implementation\+\_\+for}} (cls, Any op\+\_\+cls)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations}{Operations}}]\+ {\bfseries context} (cls, \doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} migration\+\_\+context)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1BatchOperations}{Batch\+Operations}}]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a00caf2e89e818b785bb0889fb6ac1f75}{batch\+\_\+alter\+\_\+table}} (self, str table\+\_\+name, Optional\+[str]\+ schema=None, Literal\+["{}auto"{}, "{}always"{}, "{}never"{}]\+ recreate="{}auto"{}, Optional\+[Tuple\+[Any,...]\+]\+ partial\+\_\+reordering=None, Optional\+[Table]\+ copy\+\_\+from=None, Tuple\+[Any,...]\+ table\+\_\+args=(), Mapping\+[str, Any]\+ table\+\_\+kwargs=util.\+immutabledict(), Tuple\+[Any,...]\+ reflect\+\_\+args=(), Mapping\+[str, Any]\+ reflect\+\_\+kwargs=util.\+immutabledict(), Optional\+[Dict\+[str, str]\+]\+ naming\+\_\+convention=None)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a844c707571ac64844fd6e91a73062b08}{get\+\_\+context}} (self)
+\item 
+Table {\bfseries invoke} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateTableOp}{Create\+Table\+Op}} operation)
+\item 
+None {\bfseries invoke} (self, Union\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AddConstraintOp}{Add\+Constraint\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropConstraintOp}{Drop\+Constraint\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateIndexOp}{Create\+Index\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropIndexOp}{Drop\+Index\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AddColumnOp}{Add\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AlterColumnOp}{Alter\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AlterTableOp}{Alter\+Table\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateTableCommentOp}{Create\+Table\+Comment\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropTableCommentOp}{Drop\+Table\+Comment\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropColumnOp}{Drop\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1BulkInsertOp}{Bulk\+Insert\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropTableOp}{Drop\+Table\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1ExecuteSQLOp}{Execute\+SQLOp}},]\+ operation)
+\item 
+Any {\bfseries invoke} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1MigrateOperation}{Migrate\+Operation}} operation)
+\item 
+Any \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0}{invoke}} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1MigrateOperation}{Migrate\+Operation}} operation)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1conv}{conv}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1fc933cd260025955c812b4643fe53cc}{f}} (self, str name)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1util_1_1sqla__compat_1_1__literal__bindparam}{\+\_\+literal\+\_\+bindparam}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a05a44ae5e502c351a25323c6d61f6efa}{inline\+\_\+literal}} (self, Union\+[str, int]\+ value, Optional\+[Type\+Engine\+[Any]\+]\+ type\+\_\+=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1f461b9ab073a6a3136f62d4668569f5}{get\+\_\+bind}} (self)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a48e942839b64b4a4e7d127417ba5d3fa}{run\+\_\+async}} (self, Callable\+[..., Awaitable\+[\+\_\+T]\+]\+ async\+\_\+function, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw\+\_\+args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries create\+\_\+module\+\_\+class\+\_\+proxy} (cls, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1__ModuleClsMeta}{alembic.\+util.\+langhelpers.\+\_\+\+Module\+Cls\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+setattr\+\_\+\+\_\+} (cls, str key, Callable\+[..., Any]\+ value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations}{alembic.\+operations.\+base.\+Abstract\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries migration\+\_\+context} = migration\+\_\+context
+\item 
+{\bfseries schema\+\_\+obj} = \doxymbox{\hyperlink{classalembic_1_1operations_1_1schemaobj_1_1SchemaObjects}{schemaobj.\+Schema\+Objects}}(migration\+\_\+context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations}{alembic.\+operations.\+base.\+Abstract\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+Union {\bfseries impl} \+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+update\+\_\+module\+\_\+proxies} (cls, str name)
+\item 
+None {\bfseries \+\_\+install\+\_\+proxy} (self)
+\item 
+None {\bfseries \+\_\+remove\+\_\+proxy} (self)
+\item 
+None {\bfseries \+\_\+setup\+\_\+proxy} (cls, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+, Set\+[str]\+ attr\+\_\+names)
+\item 
+None {\bfseries \+\_\+add\+\_\+proxied\+\_\+attribute} (cls, str methname, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+, Set\+[str]\+ attr\+\_\+names)
+\item 
+Callable\+[..., Any]\+ {\bfseries \+\_\+create\+\_\+method\+\_\+proxy} (cls, str name, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations}{alembic.\+operations.\+base.\+Abstract\+Operations}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+to\+\_\+impl} = \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1Dispatcher}{util.\+Dispatcher}}()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+Dict {\bfseries \+\_\+setups} = collections.\+defaultdict(lambda:\+ (set(), \+[$\,$]\+))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Define high level migration operations.
+
+Each operation corresponds to some schema migration operation,
+executed against a particular :class:`.MigrationContext`
+which in turn represents connectivity to a database,
+or a file output stream.
+
+While :class:`.Operations` is normally configured as
+part of the :meth:`.EnvironmentContext.run_migrations`
+method called from an ``env.py`` script, a standalone
+:class:`.Operations` instance can be
+made for use cases external to regular Alembic
+migrations by passing in a :class:`.MigrationContext`::
+
+    from alembic.migration import MigrationContext
+    from alembic.operations import Operations
+
+    conn = myengine.connect()
+    ctx = MigrationContext.configure(conn)
+    op = Operations(ctx)
+
+    op.alter_column("t", "c", nullable=True)
+
+Note that as of 0.8, most of the methods on this class are produced
+dynamically using the :meth:`.Operations.register_operation`
+method.
+\end{DoxyVerb}
+ 
+
+\label{classalembic_1_1operations_1_1base_1_1Operations_doc-func-members}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_ad8a70b4f4b664f8b0bb594a6c8974d42}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!add\_column@{add\_column}}
+\index{add\_column@{add\_column}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{add\_column()}{add\_column()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_ad8a70b4f4b664f8b0bb594a6c8974d42} 
+ None alembic.\+operations.\+base.\+Operations.\+add\+\_\+column (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+}]{column}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue an "add column" instruction using the current
+migration context.
+
+e.g.::
+
+    from alembic import op
+    from sqlalchemy import Column, String
+
+    op.add_column("organization", Column("name", String()))
+
+The :meth:`.Operations.add_column` method typically corresponds
+to the SQL command "ALTER TABLE... ADD COLUMN".    Within the scope
+of this command, the column's name, datatype, nullability,
+and optional server-generated defaults may be indicated.
+
+.. note::
+
+    With the exception of NOT NULL constraints or single-column FOREIGN
+    KEY constraints, other kinds of constraints such as PRIMARY KEY,
+    UNIQUE or CHECK constraints **cannot** be generated using this
+    method; for these constraints, refer to operations such as
+    :meth:`.Operations.create_primary_key` and
+    :meth:`.Operations.create_check_constraint`. In particular, the
+    following :class:`~sqlalchemy.schema.Column` parameters are
+    **ignored**:
+
+    * :paramref:`~sqlalchemy.schema.Column.primary_key` - SQL databases
+      typically do not support an ALTER operation that can add
+      individual columns one at a time to an existing primary key
+      constraint, therefore it's less ambiguous to use the
+      :meth:`.Operations.create_primary_key` method, which assumes no
+      existing primary key constraint is present.
+    * :paramref:`~sqlalchemy.schema.Column.unique` - use the
+      :meth:`.Operations.create_unique_constraint` method
+    * :paramref:`~sqlalchemy.schema.Column.index` - use the
+      :meth:`.Operations.create_index` method
+
+
+The provided :class:`~sqlalchemy.schema.Column` object may include a
+:class:`~sqlalchemy.schema.ForeignKey` constraint directive,
+referencing a remote table name. For this specific type of constraint,
+Alembic will automatically emit a second ALTER statement in order to
+add the single-column FOREIGN KEY constraint separately::
+
+    from alembic import op
+    from sqlalchemy import Column, INTEGER, ForeignKey
+
+    op.add_column(
+        "organization",
+        Column("account_id", INTEGER, ForeignKey("accounts.id")),
+    )
+
+The column argument passed to :meth:`.Operations.add_column` is a
+:class:`~sqlalchemy.schema.Column` construct, used in the same way it's
+used in SQLAlchemy. In particular, values or functions to be indicated
+as producing the column's default value on the database side are
+specified using the ``server_default`` parameter, and not ``default``
+which only specifies Python-side defaults::
+
+    from alembic import op
+    from sqlalchemy import Column, TIMESTAMP, func
+
+    # specify "DEFAULT NOW" along with the column add
+    op.add_column(
+        "account",
+        Column("timestamp", TIMESTAMP, server_default=func.now()),
+    )
+
+:param table_name: String name of the parent table.
+:param column: a :class:`sqlalchemy.schema.Column` object
+ representing the new column.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_ab7febe5b78282257459d3de3f372c44e}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!alter\_column@{alter\_column}}
+\index{alter\_column@{alter\_column}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{alter\_column()}{alter\_column()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_ab7febe5b78282257459d3de3f372c44e} 
+ None alembic.\+operations.\+base.\+Operations.\+alter\+\_\+column (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{str}]{column\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[bool]\+ }]{nullable}{ = {\ttfamily None}, }\item[{Union\+[str, Literal\+[False]\+, None]\+ }]{comment}{ = {\ttfamily False}, }\item[{Any }]{server\+\_\+default}{ = {\ttfamily False}, }\item[{Optional\+[str]\+ }]{new\+\_\+column\+\_\+name}{ = {\ttfamily None}, }\item[{Union\+[Type\+Engine\+[Any]\+, Type\+[Type\+Engine\+[Any]\+]\+, None]\+ }]{type\+\_\+}{ = {\ttfamily None}, }\item[{Union\+[                 Type\+Engine\+[Any]\+, Type\+[Type\+Engine\+[Any]\+]\+, None             ]\+ }]{existing\+\_\+type}{ = {\ttfamily None}, }\item[{Union\+[                 str, bool, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Identity}{Identity}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Computed}{Computed}}, None             ]\+ }]{existing\+\_\+server\+\_\+default}{ = {\ttfamily False}, }\item[{Optional\+[bool]\+ }]{existing\+\_\+nullable}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{existing\+\_\+comment}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue an "alter column" instruction using the
+current migration context.
+
+Generally, only that aspect of the column which
+is being changed, i.e. name, type, nullability,
+default, needs to be specified.  Multiple changes
+can also be specified at once and the backend should
+"do the right thing", emitting each change either
+separately or together as the backend allows.
+
+MySQL has special requirements here, since MySQL
+cannot ALTER a column without a full specification.
+When producing MySQL-compatible migration files,
+it is recommended that the ``existing_type``,
+``existing_server_default``, and ``existing_nullable``
+parameters be present, if not being altered.
+
+Type changes which are against the SQLAlchemy
+"schema" types :class:`~sqlalchemy.types.Boolean`
+and  :class:`~sqlalchemy.types.Enum` may also
+add or drop constraints which accompany those
+types on backends that don't support them natively.
+The ``existing_type`` argument is
+used in this case to identify and remove a previous
+constraint that was bound to the type object.
+
+:param table_name: string name of the target table.
+:param column_name: string name of the target column,
+ as it exists before the operation begins.
+:param nullable: Optional; specify ``True`` or ``False``
+ to alter the column's nullability.
+:param server_default: Optional; specify a string
+ SQL expression, :func:`~sqlalchemy.sql.expression.text`,
+ or :class:`~sqlalchemy.schema.DefaultClause` to indicate
+ an alteration to the column's default value.
+ Set to ``None`` to have the default removed.
+:param comment: optional string text of a new comment to add to the
+ column.
+:param new_column_name: Optional; specify a string name here to
+ indicate the new name within a column rename operation.
+:param type\_: Optional; a :class:`~sqlalchemy.types.TypeEngine`
+ type object to specify a change to the column's type.
+ For SQLAlchemy types that also indicate a constraint (i.e.
+ :class:`~sqlalchemy.types.Boolean`, :class:`~sqlalchemy.types.Enum`),
+ the constraint is also generated.
+:param autoincrement: set the ``AUTO_INCREMENT`` flag of the column;
+ currently understood by the MySQL dialect.
+:param existing_type: Optional; a
+ :class:`~sqlalchemy.types.TypeEngine`
+ type object to specify the previous type.   This
+ is required for all MySQL column alter operations that
+ don't otherwise specify a new type, as well as for
+ when nullability is being changed on a SQL Server
+ column.  It is also used if the type is a so-called
+ SQLAlchemy "schema" type which may define a constraint (i.e.
+ :class:`~sqlalchemy.types.Boolean`,
+ :class:`~sqlalchemy.types.Enum`),
+ so that the constraint can be dropped.
+:param existing_server_default: Optional; The existing
+ default value of the column.   Required on MySQL if
+ an existing default is not being changed; else MySQL
+ removes the default.
+:param existing_nullable: Optional; the existing nullability
+ of the column.  Required on MySQL if the existing nullability
+ is not being changed; else MySQL sets this to NULL.
+:param existing_autoincrement: Optional; the existing autoincrement
+ of the column.  Used for MySQL's system of altering a column
+ that specifies ``AUTO_INCREMENT``.
+:param existing_comment: string text of the existing comment on the
+ column to be maintained.  Required on MySQL if the existing comment
+ on the column is not being changed.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+:param postgresql_using: String argument which will indicate a
+ SQL expression to render within the Postgresql-specific USING clause
+ within ALTER COLUMN.    This string is taken directly as raw SQL which
+ must explicitly include any necessary quoting or escaping of tokens
+ within the expression.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a567439df9d062d76163659d553cc3b7a}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!bulk\_insert@{bulk\_insert}}
+\index{bulk\_insert@{bulk\_insert}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{bulk\_insert()}{bulk\_insert()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a567439df9d062d76163659d553cc3b7a} 
+ None alembic.\+operations.\+base.\+Operations.\+bulk\+\_\+insert (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\+[Table, Table\+Clause]\+}]{table}{, }\item[{List\+[Dict\+[str, Any]\+]\+}]{rows}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{multiinsert}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "bulk insert" operation using the current
+migration context.
+
+This provides a means of representing an INSERT of multiple rows
+which works equally well in the context of executing on a live
+connection as well as that of generating a SQL script.   In the
+case of a SQL script, the values are rendered inline into the
+statement.
+
+e.g.::
+
+    from alembic import op
+    from datetime import date
+    from sqlalchemy.sql import table, column
+    from sqlalchemy import String, Integer, Date
+
+    # Create an ad-hoc table to use for the insert statement.
+    accounts_table = table(
+        "account",
+        column("id", Integer),
+        column("name", String),
+        column("create_date", Date),
+    )
+
+    op.bulk_insert(
+        accounts_table,
+        [
+            {
+                "id": 1,
+                "name": "John Smith",
+                "create_date": date(2010, 10, 5),
+            },
+            {
+                "id": 2,
+                "name": "Ed Williams",
+                "create_date": date(2007, 5, 27),
+            },
+            {
+                "id": 3,
+                "name": "Wendy Jones",
+                "create_date": date(2008, 8, 15),
+            },
+        ],
+    )
+
+When using --sql mode, some datatypes may not render inline
+automatically, such as dates and other special types.   When this
+issue is present, :meth:`.Operations.inline_literal` may be used::
+
+    op.bulk_insert(
+        accounts_table,
+        [
+            {
+                "id": 1,
+                "name": "John Smith",
+                "create_date": op.inline_literal("2010-10-05"),
+            },
+            {
+                "id": 2,
+                "name": "Ed Williams",
+                "create_date": op.inline_literal("2007-05-27"),
+            },
+            {
+                "id": 3,
+                "name": "Wendy Jones",
+                "create_date": op.inline_literal("2008-08-15"),
+            },
+        ],
+        multiinsert=False,
+    )
+
+When using :meth:`.Operations.inline_literal` in conjunction with
+:meth:`.Operations.bulk_insert`, in order for the statement to work
+in "online" (e.g. non --sql) mode, the
+:paramref:`~.Operations.bulk_insert.multiinsert`
+flag should be set to ``False``, which will have the effect of
+individual INSERT statements being emitted to the database, each
+with a distinct VALUES clause, so that the "inline" values can
+still be rendered, rather than attempting to pass the values
+as bound parameters.
+
+:param table: a table object which represents the target of the INSERT.
+
+:param rows: a list of dictionaries indicating rows.
+
+:param multiinsert: when at its default of True and --sql mode is not
+   enabled, the INSERT statement will be executed using
+   "executemany()" style, where all elements in the list of
+   dictionaries are passed as bound parameters in a single
+   list.   Setting this to False results in individual INSERT
+   statements being emitted per parameter set, and is needed
+   in those cases where non-literal values are present in the
+   parameter sets.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a925c00a285e8b84575086a0de66dcce8}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_check\_constraint@{create\_check\_constraint}}
+\index{create\_check\_constraint@{create\_check\_constraint}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_check\_constraint()}{create\_check\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a925c00a285e8b84575086a0de66dcce8} 
+ None alembic.\+operations.\+base.\+Operations.\+create\+\_\+check\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{constraint\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{Union\+[str, Column\+Element\+[bool]\+, Text\+Clause]\+}]{condition}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create check constraint" instruction using the
+current migration context.
+
+e.g.::
+
+    from alembic import op
+    from sqlalchemy.sql import column, func
+
+    op.create_check_constraint(
+        "ck_user_name_len",
+        "user",
+        func.len(column("name")) > 5,
+    )
+
+CHECK constraints are usually against a SQL expression, so ad-hoc
+table metadata is usually needed.   The function will convert the given
+arguments into a :class:`sqlalchemy.schema.CheckConstraint` bound
+to an anonymous table in order to emit the CREATE statement.
+
+:param name: Name of the check constraint.  The name is necessary
+ so that an ALTER statement can be emitted.  For setups that
+ use an automated naming scheme such as that described at
+ :ref:`sqla:constraint_naming_conventions`,
+ ``name`` here can be ``None``, as the event listener will
+ apply the name to the constraint object when it is associated
+ with the table.
+:param table_name: String name of the source table.
+:param condition: SQL expression that's the condition of the
+ constraint. Can be a string or SQLAlchemy expression language
+ structure.
+:param deferrable: optional bool. If set, emit DEFERRABLE or
+ NOT DEFERRABLE when issuing DDL for this constraint.
+:param initially: optional string. If set, emit INITIALLY <value>
+ when issuing DDL for this constraint.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_aafa295c3cca06a47625ee13c756f5ca5}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_exclude\_constraint@{create\_exclude\_constraint}}
+\index{create\_exclude\_constraint@{create\_exclude\_constraint}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_exclude\_constraint()}{create\_exclude\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_aafa295c3cca06a47625ee13c756f5ca5} 
+ Optional\+[Table]\+ alembic.\+operations.\+base.\+Operations.\+create\+\_\+exclude\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{constraint\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{elements}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue an alter to create an EXCLUDE constraint using the
+current migration context.
+
+.. note::  This method is Postgresql specific, and additionally
+   requires at least SQLAlchemy 1.0.
+
+e.g.::
+
+    from alembic import op
+
+    op.create_exclude_constraint(
+        "user_excl",
+        "user",
+        ("period", "&&"),
+        ("group", "="),
+        where=("group != 'some group'"),
+    )
+
+Note that the expressions work the same way as that of
+the ``ExcludeConstraint`` object itself; if plain strings are
+passed, quoting rules must be applied manually.
+
+:param name: Name of the constraint.
+:param table_name: String name of the source table.
+:param elements: exclude conditions.
+:param where: SQL expression or SQL string with optional WHERE
+ clause.
+:param deferrable: optional bool. If set, emit DEFERRABLE or
+ NOT DEFERRABLE when issuing DDL for this constraint.
+:param initially: optional string. If set, emit INITIALLY <value>
+ when issuing DDL for this constraint.
+:param schema: Optional schema name to operate within.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a25d3c2becd7244db380439f0d6cc6c0c}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_foreign\_key@{create\_foreign\_key}}
+\index{create\_foreign\_key@{create\_foreign\_key}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_foreign\_key()}{create\_foreign\_key()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a25d3c2becd7244db380439f0d6cc6c0c} 
+ None alembic.\+operations.\+base.\+Operations.\+create\+\_\+foreign\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{constraint\+\_\+name}{, }\item[{str}]{source\+\_\+table}{, }\item[{str}]{referent\+\_\+table}{, }\item[{List\+[str]\+}]{local\+\_\+cols}{, }\item[{List\+[str]\+}]{remote\+\_\+cols}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{onupdate}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{ondelete}{ = {\ttfamily None}, }\item[{Optional\+[bool]\+ }]{deferrable}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{initially}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{match}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{source\+\_\+schema}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{referent\+\_\+schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{dialect\+\_\+kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create foreign key" instruction using the
+current migration context.
+
+e.g.::
+
+    from alembic import op
+
+    op.create_foreign_key(
+        "fk_user_address",
+        "address",
+        "user",
+        ["user_id"],
+        ["id"],
+    )
+
+This internally generates a :class:`~sqlalchemy.schema.Table` object
+containing the necessary columns, then generates a new
+:class:`~sqlalchemy.schema.ForeignKeyConstraint`
+object which it then associates with the
+:class:`~sqlalchemy.schema.Table`.
+Any event listeners associated with this action will be fired
+off normally.   The :class:`~sqlalchemy.schema.AddConstraint`
+construct is ultimately used to generate the ALTER statement.
+
+:param constraint_name: Name of the foreign key constraint.  The name
+ is necessary so that an ALTER statement can be emitted.  For setups
+ that use an automated naming scheme such as that described at
+ :ref:`sqla:constraint_naming_conventions`,
+ ``name`` here can be ``None``, as the event listener will
+ apply the name to the constraint object when it is associated
+ with the table.
+:param source_table: String name of the source table.
+:param referent_table: String name of the destination table.
+:param local_cols: a list of string column names in the
+ source table.
+:param remote_cols: a list of string column names in the
+ remote table.
+:param onupdate: Optional string. If set, emit ON UPDATE <value> when
+ issuing DDL for this constraint. Typical values include CASCADE,
+ DELETE and RESTRICT.
+:param ondelete: Optional string. If set, emit ON DELETE <value> when
+ issuing DDL for this constraint. Typical values include CASCADE,
+ DELETE and RESTRICT.
+:param deferrable: optional bool. If set, emit DEFERRABLE or NOT
+ DEFERRABLE when issuing DDL for this constraint.
+:param source_schema: Optional schema name of the source table.
+:param referent_schema: Optional schema name of the destination table.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a22cdfa5414670a3c213fd0cc18089310}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_index@{create\_index}}
+\index{create\_index@{create\_index}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_index()}{create\_index()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a22cdfa5414670a3c213fd0cc18089310} 
+ None alembic.\+operations.\+base.\+Operations.\+create\+\_\+index (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{index\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{Sequence\+[Union\+[str, Text\+Clause, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1functions_1_1Function}{Function}}\+[Any]\+]\+]\+}]{columns}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{bool }]{unique}{ = {\ttfamily False}, }\item[{Optional\+[bool]\+ }]{if\+\_\+not\+\_\+exists}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create index" instruction using the current
+migration context.
+
+e.g.::
+
+    from alembic import op
+
+    op.create_index("ik_test", "t1", ["foo", "bar"])
+
+Functional indexes can be produced by using the
+:func:`sqlalchemy.sql.expression.text` construct::
+
+    from alembic import op
+    from sqlalchemy import text
+
+    op.create_index("ik_test", "t1", [text("lower(foo)")])
+
+:param index_name: name of the index.
+:param table_name: name of the owning table.
+:param columns: a list consisting of string column names and/or
+ :func:`~sqlalchemy.sql.expression.text` constructs.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+:param unique: If True, create a unique index.
+
+:param quote: Force quoting of this column's name on or off,
+ corresponding to ``True`` or ``False``. When left at its default
+ of ``None``, the column identifier will be quoted according to
+ whether the name is case sensitive (identifiers with at least one
+ upper case character are treated as case sensitive), or if it's a
+ reserved word. This flag is only needed to force quoting of a
+ reserved word which is not known by the SQLAlchemy dialect.
+
+:param if_not_exists: If True, adds IF NOT EXISTS operator when
+ creating the new index.
+
+ .. versionadded:: 1.12.0
+
+:param \**kw: Additional keyword arguments not mentioned above are
+ dialect specific, and passed in the form
+ ``<dialectname>_<argname>``.
+ See the documentation regarding an individual dialect at
+ :ref:`dialect_toplevel` for detail on documented arguments.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a24604d5242a62fc2f03ca1a0bc7b94d5}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_primary\_key@{create\_primary\_key}}
+\index{create\_primary\_key@{create\_primary\_key}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_primary\_key()}{create\_primary\_key()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a24604d5242a62fc2f03ca1a0bc7b94d5} 
+ None alembic.\+operations.\+base.\+Operations.\+create\+\_\+primary\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{constraint\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{List\+[str]\+}]{columns}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create primary key" instruction using the current
+migration context.
+
+e.g.::
+
+    from alembic import op
+
+    op.create_primary_key("pk_my_table", "my_table", ["id", "version"])
+
+This internally generates a :class:`~sqlalchemy.schema.Table` object
+containing the necessary columns, then generates a new
+:class:`~sqlalchemy.schema.PrimaryKeyConstraint`
+object which it then associates with the
+:class:`~sqlalchemy.schema.Table`.
+Any event listeners associated with this action will be fired
+off normally.   The :class:`~sqlalchemy.schema.AddConstraint`
+construct is ultimately used to generate the ALTER statement.
+
+:param constraint_name: Name of the primary key constraint.  The name
+ is necessary so that an ALTER statement can be emitted.  For setups
+ that use an automated naming scheme such as that described at
+ :ref:`sqla:constraint_naming_conventions`
+ ``name`` here can be ``None``, as the event listener will
+ apply the name to the constraint object when it is associated
+ with the table.
+:param table_name: String name of the target table.
+:param columns: a list of string column names to be applied to the
+ primary key constraint.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_accd7fb27617fffa2091d709160e18a6d}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_table@{create\_table}}
+\index{create\_table@{create\_table}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_table()}{create\_table()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_accd7fb27617fffa2091d709160e18a6d} 
+ Table alembic.\+operations.\+base.\+Operations.\+create\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1SchemaItem}{Schema\+Item}}}]{columns}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any         }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create table" instruction using the current migration
+context.
+
+This directive receives an argument list similar to that of the
+traditional :class:`sqlalchemy.schema.Table` construct, but without the
+metadata::
+
+    from sqlalchemy import INTEGER, VARCHAR, NVARCHAR, Column
+    from alembic import op
+
+    op.create_table(
+        "account",
+        Column("id", INTEGER, primary_key=True),
+        Column("name", VARCHAR(50), nullable=False),
+        Column("description", NVARCHAR(200)),
+        Column("timestamp", TIMESTAMP, server_default=func.now()),
+    )
+
+Note that :meth:`.create_table` accepts
+:class:`~sqlalchemy.schema.Column`
+constructs directly from the SQLAlchemy library.  In particular,
+default values to be created on the database side are
+specified using the ``server_default`` parameter, and not
+``default`` which only specifies Python-side defaults::
+
+    from alembic import op
+    from sqlalchemy import Column, TIMESTAMP, func
+
+    # specify "DEFAULT NOW" along with the "timestamp" column
+    op.create_table(
+        "account",
+        Column("id", INTEGER, primary_key=True),
+        Column("timestamp", TIMESTAMP, server_default=func.now()),
+    )
+
+The function also returns a newly created
+:class:`~sqlalchemy.schema.Table` object, corresponding to the table
+specification given, which is suitable for
+immediate SQL operations, in particular
+:meth:`.Operations.bulk_insert`::
+
+    from sqlalchemy import INTEGER, VARCHAR, NVARCHAR, Column
+    from alembic import op
+
+    account_table = op.create_table(
+        "account",
+        Column("id", INTEGER, primary_key=True),
+        Column("name", VARCHAR(50), nullable=False),
+        Column("description", NVARCHAR(200)),
+        Column("timestamp", TIMESTAMP, server_default=func.now()),
+    )
+
+    op.bulk_insert(
+        account_table,
+        [
+            {"name": "A1", "description": "account 1"},
+            {"name": "A2", "description": "account 2"},
+        ],
+    )
+
+:param table_name: Name of the table
+:param \*columns: collection of :class:`~sqlalchemy.schema.Column`
+ objects within
+ the table, as well as optional :class:`~sqlalchemy.schema.Constraint`
+ objects
+ and :class:`~.sqlalchemy.schema.Index` objects.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+:param \**kw: Other keyword arguments are passed to the underlying
+ :class:`sqlalchemy.schema.Table` object created for the command.
+
+:return: the :class:`~sqlalchemy.schema.Table` object corresponding
+ to the parameters given.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a46d70d8cf43fb3382ca96497458782ad}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_table\_comment@{create\_table\_comment}}
+\index{create\_table\_comment@{create\_table\_comment}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_table\_comment()}{create\_table\_comment()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a46d70d8cf43fb3382ca96497458782ad} 
+ None alembic.\+operations.\+base.\+Operations.\+create\+\_\+table\+\_\+comment (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+}]{comment}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{existing\+\_\+comment}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Emit a COMMENT ON operation to set the comment for a table.
+
+:param table_name: string name of the target table.
+:param comment: string value of the comment being registered against
+ the specified table.
+:param existing_comment: String value of a comment
+ already registered on the specified table, used within autogenerate
+ so that the operation is reversible, but not required for direct
+ use.
+
+.. seealso::
+
+    :meth:`.Operations.drop_table_comment`
+
+    :paramref:`.Operations.alter_column.comment`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_aff85a780974555d4690b0a091cb97088}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!create\_unique\_constraint@{create\_unique\_constraint}}
+\index{create\_unique\_constraint@{create\_unique\_constraint}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{create\_unique\_constraint()}{create\_unique\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_aff85a780974555d4690b0a091cb97088} 
+ Any alembic.\+operations.\+base.\+Operations.\+create\+\_\+unique\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{constraint\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{Sequence\+[str]\+}]{columns}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "create unique constraint" instruction using the
+current migration context.
+
+e.g.::
+
+    from alembic import op
+    op.create_unique_constraint("uq_user_name", "user", ["name"])
+
+This internally generates a :class:`~sqlalchemy.schema.Table` object
+containing the necessary columns, then generates a new
+:class:`~sqlalchemy.schema.UniqueConstraint`
+object which it then associates with the
+:class:`~sqlalchemy.schema.Table`.
+Any event listeners associated with this action will be fired
+off normally.   The :class:`~sqlalchemy.schema.AddConstraint`
+construct is ultimately used to generate the ALTER statement.
+
+:param name: Name of the unique constraint.  The name is necessary
+ so that an ALTER statement can be emitted.  For setups that
+ use an automated naming scheme such as that described at
+ :ref:`sqla:constraint_naming_conventions`,
+ ``name`` here can be ``None``, as the event listener will
+ apply the name to the constraint object when it is associated
+ with the table.
+:param table_name: String name of the source table.
+:param columns: a list of string column names in the
+ source table.
+:param deferrable: optional bool. If set, emit DEFERRABLE or
+ NOT DEFERRABLE when issuing DDL for this constraint.
+:param initially: optional string. If set, emit INITIALLY <value>
+ when issuing DDL for this constraint.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_aee32e38038bc18ae84b180b43871bff2}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!drop\_column@{drop\_column}}
+\index{drop\_column@{drop\_column}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{drop\_column()}{drop\_column()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_aee32e38038bc18ae84b180b43871bff2} 
+ None alembic.\+operations.\+base.\+Operations.\+drop\+\_\+column (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{str}]{column\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "drop column" instruction using the current
+migration context.
+
+e.g.::
+
+    drop_column("organization", "account_id")
+
+:param table_name: name of table
+:param column_name: name of column
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+:param mssql_drop_check: Optional boolean.  When ``True``, on
+ Microsoft SQL Server only, first
+ drop the CHECK constraint on the column using a
+ SQL-script-compatible
+ block that selects into a @variable from sys.check_constraints,
+ then exec's a separate DROP CONSTRAINT for that constraint.
+:param mssql_drop_default: Optional boolean.  When ``True``, on
+ Microsoft SQL Server only, first
+ drop the DEFAULT constraint on the column using a
+ SQL-script-compatible
+ block that selects into a @variable from sys.default_constraints,
+ then exec's a separate DROP CONSTRAINT for that default.
+:param mssql_drop_foreign_key: Optional boolean.  When ``True``, on
+ Microsoft SQL Server only, first
+ drop a single FOREIGN KEY constraint on the column using a
+ SQL-script-compatible
+ block that selects into a @variable from
+ sys.foreign_keys/sys.foreign_key_columns,
+ then exec's a separate DROP CONSTRAINT for that default.  Only
+ works if the column has exactly one FK constraint which refers to
+ it, at the moment.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a4b66ec0607f68aa052c627b31d67ebd4}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!drop\_constraint@{drop\_constraint}}
+\index{drop\_constraint@{drop\_constraint}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{drop\_constraint()}{drop\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a4b66ec0607f68aa052c627b31d67ebd4} 
+ None alembic.\+operations.\+base.\+Operations.\+drop\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{constraint\+\_\+name}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{type\+\_\+}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Drop a constraint of the given name, typically via DROP CONSTRAINT.
+
+:param constraint_name: name of the constraint.
+:param table_name: table name.
+:param type\_: optional, required on MySQL.  can be
+ 'foreignkey', 'primary', 'unique', or 'check'.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_a349db9cbdac8b70ce5855b38484ef723}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!drop\_index@{drop\_index}}
+\index{drop\_index@{drop\_index}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{drop\_index()}{drop\_index()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_a349db9cbdac8b70ce5855b38484ef723} 
+ None alembic.\+operations.\+base.\+Operations.\+drop\+\_\+index (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{index\+\_\+name}{, }\item[{Optional\+[str]\+ }]{table\+\_\+name}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[bool]\+ }]{if\+\_\+exists}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "drop index" instruction using the current
+migration context.
+
+e.g.::
+
+    drop_index("accounts")
+
+:param index_name: name of the index.
+:param table_name: name of the owning table.  Some
+ backends such as Microsoft SQL Server require this.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+
+:param if_exists: If True, adds IF EXISTS operator when
+ dropping the index.
+
+ .. versionadded:: 1.12.0
+
+:param \**kw: Additional keyword arguments not mentioned above are
+ dialect specific, and passed in the form
+ ``<dialectname>_<argname>``.
+ See the documentation regarding an individual dialect at
+ :ref:`dialect_toplevel` for detail on documented arguments.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_adeba6d73d0196c7742cf96bc7077d057}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!drop\_table@{drop\_table}}
+\index{drop\_table@{drop\_table}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{drop\_table()}{drop\_table()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_adeba6d73d0196c7742cf96bc7077d057} 
+ None alembic.\+operations.\+base.\+Operations.\+drop\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any         }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "drop table" instruction using the current
+migration context.
+
+
+e.g.::
+
+    drop_table("accounts")
+
+:param table_name: Name of the table
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+:param \**kw: Other keyword arguments are passed to the underlying
+ :class:`sqlalchemy.schema.Table` object created for the command.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_aae0f8b9fc9bc68c8972c4681f8531e5e}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!drop\_table\_comment@{drop\_table\_comment}}
+\index{drop\_table\_comment@{drop\_table\_comment}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{drop\_table\_comment()}{drop\_table\_comment()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_aae0f8b9fc9bc68c8972c4681f8531e5e} 
+ None alembic.\+operations.\+base.\+Operations.\+drop\+\_\+table\+\_\+comment (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{existing\+\_\+comment}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Issue a "drop table comment" operation to
+remove an existing comment set on a table.
+
+:param table_name: string name of the target table.
+:param existing_comment: An optional string value of a comment already
+ registered on the specified table.
+
+.. seealso::
+
+    :meth:`.Operations.create_table_comment`
+
+    :paramref:`.Operations.alter_column.comment`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_aad92691faa4d373660ef0be6b70411a8}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!execute@{execute}}
+\index{execute@{execute}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_aad92691faa4d373660ef0be6b70411a8} 
+ None alembic.\+operations.\+base.\+Operations.\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+}]{sqltext}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[dict\+[str, Any]\+]\+ }]{execution\+\_\+options}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute the given SQL using the current migration context.
+
+The given SQL can be a plain string, e.g.::
+
+    op.execute("INSERT INTO table (foo) VALUES ('some value')")
+
+Or it can be any kind of Core SQL Expression construct, such as
+below where we use an update construct::
+
+    from sqlalchemy.sql import table, column
+    from sqlalchemy import String
+    from alembic import op
+
+    account = table("account", column("name", String))
+    op.execute(
+        account.update()
+        .where(account.c.name == op.inline_literal("account 1"))
+        .values({"name": op.inline_literal("account 2")})
+    )
+
+Above, we made use of the SQLAlchemy
+:func:`sqlalchemy.sql.expression.table` and
+:func:`sqlalchemy.sql.expression.column` constructs to make a brief,
+ad-hoc table construct just for our UPDATE statement.  A full
+:class:`~sqlalchemy.schema.Table` construct of course works perfectly
+fine as well, though note it's a recommended practice to at least
+ensure the definition of a table is self-contained within the migration
+script, rather than imported from a module that may break compatibility
+with older migrations.
+
+In a SQL script context, the statement is emitted directly to the
+output stream.   There is *no* return result, however, as this
+function is oriented towards generating a change script
+that can run in "offline" mode.     Additionally, parameterized
+statements are discouraged here, as they *will not work* in offline
+mode.  Above, we use :meth:`.inline_literal` where parameters are
+to be used.
+
+For full interaction with a connected database where parameters can
+also be used normally, use the "bind" available from the context::
+
+    from alembic import op
+
+    connection = op.get_bind()
+
+    connection.execute(
+        account.update()
+        .where(account.c.name == "account 1")
+        .values({"name": "account 2"})
+    )
+
+Additionally, when passing the statement as a plain string, it is first
+coerced into a :func:`sqlalchemy.sql.expression.text` construct
+before being passed along.  In the less likely case that the
+literal SQL string contains a colon, it must be escaped with a
+backslash, as::
+
+   op.execute(r"INSERT INTO table (foo) VALUES ('\:colon_value')")
+
+
+:param sqltext: Any legal SQLAlchemy expression, including:
+
+* a string
+* a :func:`sqlalchemy.sql.expression.text` construct.
+* a :func:`sqlalchemy.sql.expression.insert` construct.
+* a :func:`sqlalchemy.sql.expression.update` construct.
+* a :func:`sqlalchemy.sql.expression.delete` construct.
+* Any "executable" described in SQLAlchemy Core documentation,
+  noting that no result set is returned.
+
+.. note::  when passing a plain string, the statement is coerced into
+   a :func:`sqlalchemy.sql.expression.text` construct. This construct
+   considers symbols with colons, e.g. ``:foo`` to be bound parameters.
+   To avoid this, ensure that colon symbols are escaped, e.g.
+   ``\:foo``.
+
+:param execution_options: Optional dictionary of
+ execution options, will be passed to
+ :meth:`sqlalchemy.engine.Connection.execution_options`.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1Operations_ac51b7fd320f7f8a0c4107f687f677392}\index{alembic.operations.base.Operations@{alembic.operations.base.Operations}!rename\_table@{rename\_table}}
+\index{rename\_table@{rename\_table}!alembic.operations.base.Operations@{alembic.operations.base.Operations}}
+\doxysubsubsection{\texorpdfstring{rename\_table()}{rename\_table()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1Operations_ac51b7fd320f7f8a0c4107f687f677392} 
+ None alembic.\+operations.\+base.\+Operations.\+rename\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{old\+\_\+table\+\_\+name}{, }\item[{str}]{new\+\_\+table\+\_\+name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Emit an ALTER TABLE to rename a table.
+
+:param old_table_name: old name.
+:param new_table_name: new name.
+:param schema: Optional schema name to operate within.  To control
+ quoting of the schema outside of the default behavior, use
+ the SQLAlchemy construct
+ :class:`~sqlalchemy.sql.elements.quoted_name`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+operations/\+base.\+py\end{DoxyCompactItemize}

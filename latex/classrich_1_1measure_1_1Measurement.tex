@@ -1,0 +1,117 @@
+\doxysection{rich.\+measure.\+Measurement Class Reference}
+\hypertarget{classrich_1_1measure_1_1Measurement}{}\label{classrich_1_1measure_1_1Measurement}\index{rich.measure.Measurement@{rich.measure.Measurement}}
+Inheritance diagram for rich.\+measure.\+Measurement:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrich_1_1measure_1_1Measurement}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_aec9c4624c7dbb7de0ff35f9364f6540f}{span}} (self)
+\item 
+"{}Measurement"{} \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_a3af49724969e6ae581c7a84f391e2e26}{normalize}} (self)
+\item 
+"{}Measurement"{} \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_aec194095c6c9d7a87f0856f3f2030dd9}{with\+\_\+maximum}} (self, int width)
+\item 
+"{}Measurement"{} \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_aa97322fd3d65dfa13ab8f3aee6947047}{with\+\_\+minimum}} (self, int width)
+\item 
+"{}Measurement"{} \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_a43123fdb8bd0cca056142d777367b705}{clamp}} (self, Optional\+[int]\+ min\+\_\+width=None, Optional\+[int]\+ max\+\_\+width=None)
+\item 
+"{}Measurement"{} \doxymbox{\hyperlink{classrich_1_1measure_1_1Measurement_a92e12b4722ee15c73c7684c4dd2265ea}{get}} (cls, "{}Console"{} console, "{}Console\+Options"{} options, "{}Renderable\+Type"{} renderable)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Stores the minimum and maximum widths (in characters) required to render an object.\end{DoxyVerb}
+ 
+
+\label{classrich_1_1measure_1_1Measurement_doc-func-members}
+\Hypertarget{classrich_1_1measure_1_1Measurement_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrich_1_1measure_1_1Measurement_a43123fdb8bd0cca056142d777367b705}\index{rich.measure.Measurement@{rich.measure.Measurement}!clamp@{clamp}}
+\index{clamp@{clamp}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{clamp()}{clamp()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_a43123fdb8bd0cca056142d777367b705} 
+ "{}Measurement"{} rich.\+measure.\+Measurement.\+clamp (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[int]\+ }]{min\+\_\+width}{ = {\ttfamily None}, }\item[{Optional\+[int]\+ }]{max\+\_\+width}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clamp a measurement within the specified range.
+
+Args:
+    min_width (int): Minimum desired width, or ``None`` for no minimum. Defaults to None.
+    max_width (int): Maximum desired width, or ``None`` for no maximum. Defaults to None.
+
+Returns:
+    Measurement: New Measurement object.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1measure_1_1Measurement_a92e12b4722ee15c73c7684c4dd2265ea}\index{rich.measure.Measurement@{rich.measure.Measurement}!get@{get}}
+\index{get@{get}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_a92e12b4722ee15c73c7684c4dd2265ea} 
+ "{}Measurement"{} rich.\+measure.\+Measurement.\+get (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{"{}Console"{}}]{console}{, }\item[{"{}Console\+Options"{}}]{options}{, }\item[{"{}Renderable\+Type"{}     }]{renderable}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a measurement for a renderable.
+
+Args:
+    console (~rich.console.Console): Console instance.
+    options (~rich.console.ConsoleOptions): Console options.
+    renderable (RenderableType): An object that may be rendered with Rich.
+
+Raises:
+    errors.NotRenderableError: If the object is not renderable.
+
+Returns:
+    Measurement: Measurement object containing range of character widths required to render the object.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1measure_1_1Measurement_a3af49724969e6ae581c7a84f391e2e26}\index{rich.measure.Measurement@{rich.measure.Measurement}!normalize@{normalize}}
+\index{normalize@{normalize}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_a3af49724969e6ae581c7a84f391e2e26} 
+ "{}Measurement"{} rich.\+measure.\+Measurement.\+normalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get measurement that ensures that minimum <= maximum and minimum >= 0
+
+Returns:
+    Measurement: A normalized measurement.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1measure_1_1Measurement_aec9c4624c7dbb7de0ff35f9364f6540f}\index{rich.measure.Measurement@{rich.measure.Measurement}!span@{span}}
+\index{span@{span}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{span()}{span()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_aec9c4624c7dbb7de0ff35f9364f6540f} 
+ int rich.\+measure.\+Measurement.\+span (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get difference between maximum and minimum.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1measure_1_1Measurement_aec194095c6c9d7a87f0856f3f2030dd9}\index{rich.measure.Measurement@{rich.measure.Measurement}!with\_maximum@{with\_maximum}}
+\index{with\_maximum@{with\_maximum}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{with\_maximum()}{with\_maximum()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_aec194095c6c9d7a87f0856f3f2030dd9} 
+ "{}Measurement"{} rich.\+measure.\+Measurement.\+with\+\_\+maximum (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{width}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a RenderableWith where the widths are <= width.
+
+Args:
+    width (int): Maximum desired width.
+
+Returns:
+    Measurement: New Measurement object.
+\end{DoxyVerb}
+ \Hypertarget{classrich_1_1measure_1_1Measurement_aa97322fd3d65dfa13ab8f3aee6947047}\index{rich.measure.Measurement@{rich.measure.Measurement}!with\_minimum@{with\_minimum}}
+\index{with\_minimum@{with\_minimum}!rich.measure.Measurement@{rich.measure.Measurement}}
+\doxysubsubsection{\texorpdfstring{with\_minimum()}{with\_minimum()}}
+{\footnotesize\ttfamily \label{classrich_1_1measure_1_1Measurement_aa97322fd3d65dfa13ab8f3aee6947047} 
+ "{}Measurement"{} rich.\+measure.\+Measurement.\+with\+\_\+minimum (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{width}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a RenderableWith where the widths are >= width.
+
+Args:
+    width (int): Minimum desired width.
+
+Returns:
+    Measurement: New Measurement object.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rich/\+measure.\+py\end{DoxyCompactItemize}

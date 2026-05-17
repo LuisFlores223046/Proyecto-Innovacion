@@ -1,0 +1,150 @@
+\doxysection{dns.\+inet Namespace Reference}
+\hypertarget{namespacedns_1_1inet}{}\label{namespacedns_1_1inet}\index{dns.inet@{dns.inet}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{namespacedns_1_1inet_ae84010d39a8d5315df3910434200d17d}{inet\+\_\+pton}} (int family, str text)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1inet_acee00236bcfe0537dcdc0caf7a3d7fdc}{inet\+\_\+ntop}} (int family, bytes address)
+\item 
+int \doxymbox{\hyperlink{namespacedns_1_1inet_a8b8a5031ee28c6fa637b9bc671006c53}{af\+\_\+for\+\_\+address}} (str text)
+\item 
+bool \doxymbox{\hyperlink{namespacedns_1_1inet_af373f23f8d3e7c1cdb46a45e2d0bf1fb}{is\+\_\+multicast}} (str text)
+\item 
+bool \doxymbox{\hyperlink{namespacedns_1_1inet_a607714a7f7859feddcca17e8fdb119ad}{is\+\_\+address}} (str text)
+\item 
+Any \doxymbox{\hyperlink{namespacedns_1_1inet_a05713a42a9ab9a70c97356810635cf75}{low\+\_\+level\+\_\+address\+\_\+tuple}} (Tuple\+[str, int]\+ high\+\_\+tuple, int\texorpdfstring{$\vert$}{|}None af=None)
+\item 
+\doxymbox{\hyperlink{namespacedns_1_1inet_addc0eaa86c5a28b2ac954d5c2d6d4d7a}{any\+\_\+for\+\_\+af}} (af)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1inet_a9b0312d4bd522323c42176e729409ca7}{canonicalize}} (str text)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedns_1_1inet_a96d2d5a9fedaa01e2b3183093d2f9796}\label{namespacedns_1_1inet_a96d2d5a9fedaa01e2b3183093d2f9796} 
+{\bfseries AF\+\_\+\+INET} = socket.\+AF\+\_\+\+INET
+\item 
+\Hypertarget{namespacedns_1_1inet_af8fc48c4dec97851689824753b2b88fb}\label{namespacedns_1_1inet_af8fc48c4dec97851689824753b2b88fb} 
+{\bfseries AF\+\_\+\+INET6} = socket.\+AF\+\_\+\+INET6
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Generic Internet address helper functions.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1inet_doc-func-members}
+\Hypertarget{namespacedns_1_1inet_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1inet_a8b8a5031ee28c6fa637b9bc671006c53}\index{dns.inet@{dns.inet}!af\_for\_address@{af\_for\_address}}
+\index{af\_for\_address@{af\_for\_address}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{af\_for\_address()}{af\_for\_address()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_a8b8a5031ee28c6fa637b9bc671006c53} 
+ int af\+\_\+for\+\_\+address (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Determine the address family of a textual-form network address.
+
+*text*, a ``str``, the textual address.
+
+Raises ``ValueError`` if the address family cannot be determined
+from the input.
+
+Returns an ``int``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_addc0eaa86c5a28b2ac954d5c2d6d4d7a}\index{dns.inet@{dns.inet}!any\_for\_af@{any\_for\_af}}
+\index{any\_for\_af@{any\_for\_af}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{any\_for\_af()}{any\_for\_af()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_addc0eaa86c5a28b2ac954d5c2d6d4d7a} 
+any\+\_\+for\+\_\+af (\begin{DoxyParamCaption}\item[{}]{af}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the 'any' address for the specified address family.\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_a9b0312d4bd522323c42176e729409ca7}\index{dns.inet@{dns.inet}!canonicalize@{canonicalize}}
+\index{canonicalize@{canonicalize}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{canonicalize()}{canonicalize()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_a9b0312d4bd522323c42176e729409ca7} 
+ str canonicalize (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that *address* is a valid text form IPv4 or IPv6 address and return its
+canonical text form.  IPv6 addresses with scopes are rejected.
+
+*text*, a ``str``, the address in textual form.
+
+Raises ``ValueError`` if the text is not valid.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_acee00236bcfe0537dcdc0caf7a3d7fdc}\index{dns.inet@{dns.inet}!inet\_ntop@{inet\_ntop}}
+\index{inet\_ntop@{inet\_ntop}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{inet\_ntop()}{inet\_ntop()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_acee00236bcfe0537dcdc0caf7a3d7fdc} 
+ str inet\+\_\+ntop (\begin{DoxyParamCaption}\item[{int}]{family}{, }\item[{bytes}]{address}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert the binary form of a network address into its textual form.
+
+*family* is an ``int``, the address family.
+
+*address* is a ``bytes``, the network address in binary form.
+
+Raises ``NotImplementedError`` if the address family specified is not
+implemented.
+
+Returns a ``str``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_ae84010d39a8d5315df3910434200d17d}\index{dns.inet@{dns.inet}!inet\_pton@{inet\_pton}}
+\index{inet\_pton@{inet\_pton}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{inet\_pton()}{inet\_pton()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_ae84010d39a8d5315df3910434200d17d} 
+ bytes inet\+\_\+pton (\begin{DoxyParamCaption}\item[{int}]{family}{, }\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert the textual form of a network address into its binary form.
+
+*family* is an ``int``, the address family.
+
+*text* is a ``str``, the textual address.
+
+Raises ``NotImplementedError`` if the address family specified is not
+implemented.
+
+Returns a ``bytes``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_a607714a7f7859feddcca17e8fdb119ad}\index{dns.inet@{dns.inet}!is\_address@{is\_address}}
+\index{is\_address@{is\_address}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{is\_address()}{is\_address()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_a607714a7f7859feddcca17e8fdb119ad} 
+ bool is\+\_\+address (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Is the specified string an IPv4 or IPv6 address?
+
+*text*, a ``str``, the textual address.
+
+Returns a ``bool``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_af373f23f8d3e7c1cdb46a45e2d0bf1fb}\index{dns.inet@{dns.inet}!is\_multicast@{is\_multicast}}
+\index{is\_multicast@{is\_multicast}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{is\_multicast()}{is\_multicast()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_af373f23f8d3e7c1cdb46a45e2d0bf1fb} 
+ bool is\+\_\+multicast (\begin{DoxyParamCaption}\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Is the textual-form network address a multicast address?
+
+*text*, a ``str``, the textual address.
+
+Raises ``ValueError`` if the address family cannot be determined
+from the input.
+
+Returns a ``bool``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1inet_a05713a42a9ab9a70c97356810635cf75}\index{dns.inet@{dns.inet}!low\_level\_address\_tuple@{low\_level\_address\_tuple}}
+\index{low\_level\_address\_tuple@{low\_level\_address\_tuple}!dns.inet@{dns.inet}}
+\doxysubsubsection{\texorpdfstring{low\_level\_address\_tuple()}{low\_level\_address\_tuple()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1inet_a05713a42a9ab9a70c97356810635cf75} 
+ Any low\+\_\+level\+\_\+address\+\_\+tuple (\begin{DoxyParamCaption}\item[{Tuple\+[str, int]\+}]{high\+\_\+tuple}{, }\item[{int \texorpdfstring{$\vert$}{|} None }]{af}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a "high-level" address tuple, i.e.
+an (address, port) return the appropriate "low-level" address tuple
+suitable for use in socket calls.
+
+If an *af* other than ``None`` is provided, it is assumed the
+address in the high-level tuple is valid and has that af.  If af
+is ``None``, then af_for_address will be called.
+\end{DoxyVerb}
+ 

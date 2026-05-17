@@ -1,0 +1,57 @@
+\doxysection{psycopg2.\+\_\+ipaddress Namespace Reference}
+\hypertarget{namespacepsycopg2_1_1__ipaddress}{}\label{namespacepsycopg2_1_1__ipaddress}\index{psycopg2.\_ipaddress@{psycopg2.\_ipaddress}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepsycopg2_1_1__ipaddress_a3e551be4daba0c91c00a4920fe4c5611}{register\+\_\+ipaddress}} (conn\+\_\+or\+\_\+curs=None)
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_a9886e128955e4d99ab4be6b58d3ed160}\label{namespacepsycopg2_1_1__ipaddress_a9886e128955e4d99ab4be6b58d3ed160} 
+{\bfseries \+\_\+make\+\_\+casters} ()
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_a4f33aa2e92aff6c32ca055fee02a0b68}\label{namespacepsycopg2_1_1__ipaddress_a4f33aa2e92aff6c32ca055fee02a0b68} 
+{\bfseries cast\+\_\+interface} (s, cur=None)
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_a934e746f89ad77f0793e20a12fabb561}\label{namespacepsycopg2_1_1__ipaddress_a934e746f89ad77f0793e20a12fabb561} 
+{\bfseries cast\+\_\+network} (s, cur=None)
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_a7107b4eda312ee905506c21acf6199f7}\label{namespacepsycopg2_1_1__ipaddress_a7107b4eda312ee905506c21acf6199f7} 
+{\bfseries adapt\+\_\+ipaddress} (obj)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_ad25515c8b36889662bb30c18576d08b3}\label{namespacepsycopg2_1_1__ipaddress_ad25515c8b36889662bb30c18576d08b3} 
+{\bfseries ipaddress} = None
+\item 
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_abe0c154538de7d5ba9ce7955114953a2}\label{namespacepsycopg2_1_1__ipaddress_abe0c154538de7d5ba9ce7955114953a2} 
+{\bfseries \+\_\+casters} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Implementation of the ipaddres-based network types adaptation
+\end{DoxyVerb}
+ 
+
+\label{namespacepsycopg2_1_1__ipaddress_doc-func-members}
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepsycopg2_1_1__ipaddress_a3e551be4daba0c91c00a4920fe4c5611}\index{psycopg2.\_ipaddress@{psycopg2.\_ipaddress}!register\_ipaddress@{register\_ipaddress}}
+\index{register\_ipaddress@{register\_ipaddress}!psycopg2.\_ipaddress@{psycopg2.\_ipaddress}}
+\doxysubsubsection{\texorpdfstring{register\_ipaddress()}{register\_ipaddress()}}
+{\footnotesize\ttfamily \label{namespacepsycopg2_1_1__ipaddress_a3e551be4daba0c91c00a4920fe4c5611} 
+register\+\_\+ipaddress (\begin{DoxyParamCaption}\item[{}]{conn\+\_\+or\+\_\+curs}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register conversion support between `ipaddress` objects and `network types`__.
+
+:param conn_or_curs: the scope where to register the type casters.
+    If `!None` register them globally.
+
+After the function is called, PostgreSQL :sql:`inet` values will be
+converted into `~ipaddress.IPv4Interface` or `~ipaddress.IPv6Interface`
+objects, :sql:`cidr` values into into `~ipaddress.IPv4Network` or
+`~ipaddress.IPv6Network`.
+
+.. __: https://www.postgresql.org/docs/current/static/datatype-net-types.html
+\end{DoxyVerb}
+ 

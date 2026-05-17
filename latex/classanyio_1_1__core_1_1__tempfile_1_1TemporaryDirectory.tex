@@ -1,0 +1,68 @@
+\doxysection{anyio.\+\_\+core.\+\_\+tempfile.\+Temporary\+Directory Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory}{}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory}\index{anyio.\_core.\_tempfile.TemporaryDirectory@{anyio.\_core.\_tempfile.TemporaryDirectory}}
+Inheritance diagram for anyio.\+\_\+core.\+\_\+tempfile.\+Temporary\+Directory:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_abe5e00b00f58859b74da748bee3b24b8}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_abe5e00b00f58859b74da748bee3b24b8} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Any\+Str\texorpdfstring{$\vert$}{|}None suffix=None, Any\+Str\texorpdfstring{$\vert$}{|}None prefix=None, Any\+Str\texorpdfstring{$\vert$}{|}None dir=None, \texorpdfstring{$\ast$}{*}, bool ignore\+\_\+cleanup\+\_\+errors=False, bool delete=True)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a20e0fd3981bafe21f6f99c480013e944}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a20e0fd3981bafe21f6f99c480013e944} 
+str {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a559fc4c69b1f4298c86cf071fc0eafc5}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a559fc4c69b1f4298c86cf071fc0eafc5} 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+value, Traceback\+Type\texorpdfstring{$\vert$}{|}None traceback)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a793870cecea41ad92f64c46c328da9df}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a793870cecea41ad92f64c46c328da9df} 
+None {\bfseries cleanup} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_ae2748e5d63c23bd4d7b96c62deacbf33}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_ae2748e5d63c23bd4d7b96c62deacbf33} 
+Any\+Str\texorpdfstring{$\vert$}{|}None {\bfseries suffix} = suffix
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a46d8a27f299ef1a7439ad515a83da0d2}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a46d8a27f299ef1a7439ad515a83da0d2} 
+Any\+Str\texorpdfstring{$\vert$}{|}None {\bfseries prefix} = prefix
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a4bf4aca4752432e65147cc75827a8ab7}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a4bf4aca4752432e65147cc75827a8ab7} 
+Any\+Str\texorpdfstring{$\vert$}{|}None {\bfseries dir} = dir
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a526bf9f97b6498c56981345064ea1b88}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a526bf9f97b6498c56981345064ea1b88} 
+{\bfseries ignore\+\_\+cleanup\+\_\+errors} = ignore\+\_\+cleanup\+\_\+errors
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_aacd828502de2b280293d1db3a1edc040}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_aacd828502de2b280293d1db3a1edc040} 
+{\bfseries delete} = delete
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a144ed5af2ac78b03b641947b5771f25b}\label{classanyio_1_1__core_1_1__tempfile_1_1TemporaryDirectory_a144ed5af2ac78b03b641947b5771f25b} 
+tempfile.\+Temporary\+Directory\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+tempdir} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An asynchronous temporary directory that is created and cleaned up automatically.
+
+This class provides an asynchronous context manager for creating a temporary
+directory. It wraps Python's standard :class:`~tempfile.TemporaryDirectory` to
+perform directory creation and cleanup operations in a background thread.
+
+:param suffix: Suffix to be added to the temporary directory name.
+:param prefix: Prefix to be added to the temporary directory name.
+:param dir: The parent directory where the temporary directory is created.
+:param ignore_cleanup_errors: Whether to ignore errors during cleanup
+    (Python 3.10+).
+:param delete: Whether to delete the directory upon closing (Python 3.12+).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+tempfile.\+py\end{DoxyCompactItemize}

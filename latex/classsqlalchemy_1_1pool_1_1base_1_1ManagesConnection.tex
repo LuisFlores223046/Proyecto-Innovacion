@@ -1,0 +1,127 @@
+\doxysection{sqlalchemy.\+pool.\+base.\+Manages\+Connection Class Reference}
+\hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection}{}\label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection}\index{sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}}
+Inheritance diagram for sqlalchemy.\+pool.\+base.\+Manages\+Connection:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.891892cm]{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Info\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a0b8d40546a4c8cfab56543e368942c63}{info}} (self)
+\item 
+Optional\+[\+\_\+\+Info\+Type]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a54429276055de7a7cb069b98f8e8485c}{record\+\_\+info}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ad98fc194d70786f4012132f8c8236134}{invalidate}} (self, Optional\+[Base\+Exception]\+ e=None, bool soft=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a96014756b127d987137b4f4d1cb6e6b7}\label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a96014756b127d987137b4f4d1cb6e6b7} 
+Optional {\bfseries dbapi\+\_\+connection} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ade94ca36524aa6805f97b952fefdc299}\label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ade94ca36524aa6805f97b952fefdc299} 
+Optional {\bfseries driver\+\_\+connection} \+[Any]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Common base for the two connection-management interfaces
+:class:`.PoolProxiedConnection` and :class:`.ConnectionPoolEntry`.
+
+These two objects are typically exposed in the public facing API
+via the connection pool event hooks, documented at :class:`.PoolEvents`.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a0b8d40546a4c8cfab56543e368942c63}\index{sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}!info@{info}}
+\index{info@{info}!sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}}
+\doxysubsubsection{\texorpdfstring{info()}{info()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a0b8d40546a4c8cfab56543e368942c63} 
+ \+\_\+\+Info\+Type sqlalchemy.\+pool.\+base.\+Manages\+Connection.\+info (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Info dictionary associated with the underlying DBAPI connection
+referred to by this :class:`.ManagesConnection` instance, allowing
+user-defined data to be associated with the connection.
+
+The data in this dictionary is persistent for the lifespan
+of the DBAPI connection itself, including across pool checkins
+and checkouts.  When the connection is invalidated
+and replaced with a new one, this dictionary is cleared.
+
+For a :class:`.PoolProxiedConnection` instance that's not associated
+with a :class:`.ConnectionPoolEntry`, such as if it were detached, the
+attribute returns a dictionary that is local to that
+:class:`.ConnectionPoolEntry`. Therefore the
+:attr:`.ManagesConnection.info` attribute will always provide a Python
+dictionary.
+
+.. seealso::
+
+    :attr:`.ManagesConnection.record_info`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionFairy_a94104605d74672a3888f960970508043}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Fairy}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionRecord_ae46e3b4265bc0e8524a00a5198328596}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Record}}.
+
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ad98fc194d70786f4012132f8c8236134}\index{sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}}
+\doxysubsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_ad98fc194d70786f4012132f8c8236134} 
+ None sqlalchemy.\+pool.\+base.\+Manages\+Connection.\+invalidate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[Base\+Exception]\+ }]{e}{ = {\ttfamily None}, }\item[{bool }]{soft}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Mark the managed connection as invalidated.
+
+:param e: an exception object indicating a reason for the invalidation.
+
+:param soft: if True, the connection isn't closed; instead, this
+ connection will be recycled on next checkout.
+
+.. seealso::
+
+    :ref:`pool_connection_invalidation`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__AdhocProxiedConnection_adc507f86e71a9d31204652f02baf5030}{sqlalchemy.\+pool.\+base.\+\_\+\+Adhoc\+Proxied\+Connection}}, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionFairy_a37d12f36cf72b32b04b3d4632f580247}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Fairy}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionRecord_a649872298b2aed493fb67b71cd1aaa27}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Record}}.
+
+\Hypertarget{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a54429276055de7a7cb069b98f8e8485c}\index{sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}!record\_info@{record\_info}}
+\index{record\_info@{record\_info}!sqlalchemy.pool.base.ManagesConnection@{sqlalchemy.pool.base.ManagesConnection}}
+\doxysubsubsection{\texorpdfstring{record\_info()}{record\_info()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1pool_1_1base_1_1ManagesConnection_a54429276055de7a7cb069b98f8e8485c} 
+ Optional\+[\+\_\+\+Info\+Type]\+ sqlalchemy.\+pool.\+base.\+Manages\+Connection.\+record\+\_\+info (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Persistent info dictionary associated with this
+:class:`.ManagesConnection`.
+
+Unlike the :attr:`.ManagesConnection.info` dictionary, the lifespan
+of this dictionary is that of the :class:`.ConnectionPoolEntry`
+which owns it; therefore this dictionary will persist across
+reconnects and connection invalidation for a particular entry
+in the connection pool.
+
+For a :class:`.PoolProxiedConnection` instance that's not associated
+with a :class:`.ConnectionPoolEntry`, such as if it were detached, the
+attribute returns None. Contrast to the :attr:`.ManagesConnection.info`
+dictionary which is never None.
+
+
+.. seealso::
+
+    :attr:`.ManagesConnection.info`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__AdhocProxiedConnection_a44d0f9bc951c227838e4935933e56b4a}{sqlalchemy.\+pool.\+base.\+\_\+\+Adhoc\+Proxied\+Connection}}, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionFairy_abca491ea3d6d63e245bf6c8caaf25764}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Fairy}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1__ConnectionRecord_a9e141c9c67be70970a05ee0365b0ea0c}{sqlalchemy.\+pool.\+base.\+\_\+\+Connection\+Record}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+pool/\+base.\+py\end{DoxyCompactItemize}

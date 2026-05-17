@@ -1,0 +1,63 @@
+\doxysection{pip.\+\_\+internal.\+build\+\_\+env Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1build__env}{}\label{namespacepip_1_1__internal_1_1build__env}\index{pip.\_internal.build\_env@{pip.\_internal.build\_env}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1build__env_1_1__Prefix}{\+\_\+\+Prefix}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1build__env_1_1BuildEnvironment}{Build\+Environment}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1build__env_1_1NoOpBuildEnvironment}{No\+Op\+Build\+Environment}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1build__env_a20fa17bc521a3460d92508d07c7908fd}\label{namespacepip_1_1__internal_1_1build__env_a20fa17bc521a3460d92508d07c7908fd} 
+Union\+[Tuple\+[str]\+, Tuple\+[str, str]\+]\+ {\bfseries \+\_\+dedup} (str a, str b)
+\item 
+str \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1build__env_a848d7b5dc820ed66cf52b62d05410f7e}{get\+\_\+runnable\+\_\+pip}} ()
+\item 
+Set\+[str]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1build__env_a73239df605b6493cc43b1e3fe5ad6cc5}{\+\_\+get\+\_\+system\+\_\+sitepackages}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1build__env_aae2dc16c5b17802b287cd03d2af818d5}\label{namespacepip_1_1__internal_1_1build__env_aae2dc16c5b17802b287cd03d2af818d5} 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Build Environment used for isolation during sdist building
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1build__env_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1build__env_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1build__env_a73239df605b6493cc43b1e3fe5ad6cc5}\index{pip.\_internal.build\_env@{pip.\_internal.build\_env}!\_get\_system\_sitepackages@{\_get\_system\_sitepackages}}
+\index{\_get\_system\_sitepackages@{\_get\_system\_sitepackages}!pip.\_internal.build\_env@{pip.\_internal.build\_env}}
+\doxysubsubsection{\texorpdfstring{\_get\_system\_sitepackages()}{\_get\_system\_sitepackages()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1build__env_a73239df605b6493cc43b1e3fe5ad6cc5} 
+ Set\+[str]\+ \+\_\+get\+\_\+system\+\_\+sitepackages (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get system site packages
+
+Usually from site.getsitepackages,
+but fallback on `get_purelib()/get_platlib()` if unavailable
+(e.g. in a virtualenv created by virtualenv<20)
+
+Returns normalized set of strings.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1build__env_a848d7b5dc820ed66cf52b62d05410f7e}\index{pip.\_internal.build\_env@{pip.\_internal.build\_env}!get\_runnable\_pip@{get\_runnable\_pip}}
+\index{get\_runnable\_pip@{get\_runnable\_pip}!pip.\_internal.build\_env@{pip.\_internal.build\_env}}
+\doxysubsubsection{\texorpdfstring{get\_runnable\_pip()}{get\_runnable\_pip()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1build__env_a848d7b5dc820ed66cf52b62d05410f7e} 
+ str get\+\_\+runnable\+\_\+pip (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a file to pass to a Python executable, to run the currently-running pip.
+
+This is used to run a pip subprocess, for installing requirements into the build
+environment.
+\end{DoxyVerb}
+ 

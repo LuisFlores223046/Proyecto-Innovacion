@@ -1,0 +1,37 @@
+\doxysection{typer.\+models.\+File\+Text Class Reference}
+\hypertarget{classtyper_1_1models_1_1FileText}{}\label{classtyper_1_1models_1_1FileText}\index{typer.models.FileText@{typer.models.FileText}}
+Inheritance diagram for typer.\+models.\+File\+Text:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classtyper_1_1models_1_1FileText}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Gives you a file-like object for reading text, and you will get a `str` data from it.
+The default mode of this class is `mode="r"`.
+
+**Example**
+
+```python
+from typing import Annotated
+
+import typer
+
+app = typer.Typer()
+
+@app.command()
+def main(config: Annotated[typer.FileText, typer.Option()]):
+    for line in config:
+        print(f"Config line: {line}")
+
+if __name__ == "__main__":
+    app()
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+typer/\+models.\+py\end{DoxyCompactItemize}

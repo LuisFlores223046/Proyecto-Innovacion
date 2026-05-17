@@ -1,0 +1,49 @@
+\doxysection{tests.\+test\+\_\+espacios Namespace Reference}
+\hypertarget{namespacetests_1_1test__espacios}{}\label{namespacetests_1_1test__espacios}\index{tests.test\_espacios@{tests.test\_espacios}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestListarEspacios}{Test\+Listar\+Espacios}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestBuscarEspacios}{Test\+Buscar\+Espacios}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestDetalleEspacio}{Test\+Detalle\+Espacio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestCrearEspacio}{Test\+Crear\+Espacio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestActualizarEspacio}{Test\+Actualizar\+Espacio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestDesactivarEspacio}{Test\+Desactivar\+Espacio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestEspaciosCercanos}{Test\+Espacios\+Cercanos}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__espacios_1_1TestAbiertosAhora}{Test\+Abiertos\+Ahora}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__espacios_aa4f2a60671cddc9042dd28f55cd43c1d}\label{namespacetests_1_1test__espacios_aa4f2a60671cddc9042dd28f55cd43c1d} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_espacios.py — Tests de integración para /api/v1/espacios
+
+Qué se valida:
+  ✔ Listar espacios activos devuelve lista con campos correctos.
+  ✔ Filtro por categoria_id y edificio_id funciona correctamente.
+  ✔ Buscar por texto retorna resultados coincidentes (nombre, código, notas).
+  ✔ Búsqueda sin resultados devuelve lista vacía (no 404).
+  ✔ GET /espacios/{id} retorna el detalle completo (EspacioCompleto).
+  ✔ GET /espacios/{id} con ID inexistente → 404.
+  ✔ POST /espacios crea un espacio (requiere JWT).
+  ✔ POST /espacios sin token → 401/403.
+  ✔ POST /espacios con coordenadas inválidas → 422 (validación Pydantic).
+  ✔ POST /espacios con solo latitud y sin longitud → 422 (model_validator).
+  ✔ PATCH /espacios/{id} actualiza campos específicos.
+  ✔ DELETE /espacios/{id} realiza borrado lógico (activo=False).
+  ✔ GET /espacios/cercanos devuelve espacios dentro del radio.
+  ✔ GET /espacios/abiertos/ahora responde correctamente (no 500).
+\end{DoxyVerb}
+ 

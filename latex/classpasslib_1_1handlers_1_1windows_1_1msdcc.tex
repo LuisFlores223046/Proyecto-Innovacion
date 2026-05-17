@@ -1,0 +1,101 @@
+\doxysection{passlib.\+handlers.\+windows.\+msdcc Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc}{}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc}\index{passlib.handlers.windows.msdcc@{passlib.handlers.windows.msdcc}}
+
+
+class ntlm\+\_\+pair(object):\+ "{}combined lmhash \& nthash"{} name = "{}ntlm\+\_\+pair"{} setting\+\_\+kwds = () \+\_\+hash\+\_\+regex = re.\+compile(u"{}\texorpdfstring{$^\wedge$}{\string^}(?\+P$<$lm$>$\+[0-\/9a-\/f]\+\{32\}):\+(?\+P$<$nt$>$\+[0-\/9]\+\+[a-\/f]\+\{32\})\$"{}, re.\+I)  
+
+
+Inheritance diagram for passlib.\+handlers.\+windows.\+msdcc:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1windows_1_1msdcc}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1windows_1_1msdcc_a91d5846c0c7e5cc1963dd78012afc049}{raw}} (cls, secret, user)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_a56ac6aa57ec046f27776e753f8dfbfbc}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_a56ac6aa57ec046f27776e753f8dfbfbc} 
+{\bfseries user}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_ad1d8103349239f665869e728d613bb53}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_ad1d8103349239f665869e728d613bb53} 
+str {\bfseries name} = "{}msdcc"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_aa5b20ed306bcbf4d04180797f8f8be7c}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_aa5b20ed306bcbf4d04180797f8f8be7c} 
+{\bfseries checksum\+\_\+chars} = uh.\+HEX\+\_\+\+CHARS
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_a53a873e1c0110c296c1f0a470197f0dc}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_a53a873e1c0110c296c1f0a470197f0dc} 
+int {\bfseries checksum\+\_\+size} = 32
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_a64aad2412ef651cd3bf991530bc37055}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_a64aad2412ef651cd3bf991530bc37055} 
+{\bfseries \+\_\+norm\+\_\+hash} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_afff647f08a772c9c09ffe4e2bfdfea04}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_afff647f08a772c9c09ffe4e2bfdfea04} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class ntlm\+\_\+pair(object):\+ "{}combined lmhash \& nthash"{} name = "{}ntlm\+\_\+pair"{} setting\+\_\+kwds = () \+\_\+hash\+\_\+regex = re.\+compile(u"{}\texorpdfstring{$^\wedge$}{\string^}(?\+P$<$lm$>$\+[0-\/9a-\/f]\+\{32\}):\+(?\+P$<$nt$>$\+[0-\/9]\+\+[a-\/f]\+\{32\})\$"{}, re.\+I) 
+
+@classmethod def identify(cls, hash):\+ hash = to\+\_\+unicode(hash, "{}latin-\/1"{}, "{}hash"{}) return len(hash) == 65 and cls.\+\_\+hash\+\_\+regex.\+match(hash) is not None
+
+@classmethod def hash(cls, secret, config=None):\+ if config is not None and not cls.\+identify(config):\+ raise uh.\+exc.\+Invalid\+Hash\+Error(cls) return lmhash.\+hash(secret) + "{}:\+"{} + nthash.\+hash(secret)
+
+@classmethod def verify(cls, secret, hash):\+ hash = to\+\_\+unicode(hash, "{}ascii"{}, "{}hash"{}) m = cls.\+\_\+hash\+\_\+regex.\+match(hash) if not m:\+ raise uh.\+exc.\+Invalid\+Hash\+Error(cls) lm, nt = m.\+group("{}lm"{}, "{}nt"{}) \hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_autotoc_md2678}{}\doxysubsection{\texorpdfstring{NOTE:\+ verify against both in case encoding issue}{NOTE:\+ verify against both in case encoding issue}}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_autotoc_md2678}
+\hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_autotoc_md2679}{}\doxysubsection{\texorpdfstring{causes one not to match.}{causes one not to match.}}\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_autotoc_md2679}
+return lmhash.\+verify(secret, lm) or nthash.\+verify(secret, nt)
+
+\begin{DoxyVerb}This class implements Microsoft's Domain Cached Credentials password hash,
+and follows the :ref:`password-hash-api`.
+
+It has a fixed number of rounds, and uses the associated
+username as the salt.
+
+The :meth:`~passlib.ifc.PasswordHash.hash`, :meth:`~passlib.ifc.PasswordHash.genhash`, and :meth:`~passlib.ifc.PasswordHash.verify` methods
+have the following optional keywords:
+
+:type user: str
+:param user:
+    String containing name of user account this password is associated with.
+    This is required to properly calculate the hash.
+
+    This keyword is case-insensitive, and should contain just the username
+    (e.g. ``Administrator``, not ``SOMEDOMAIN\\Administrator``).
+
+Note that while this class outputs lower-case hexadecimal digests,
+it will accept upper-case digests as well.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1windows_1_1msdcc_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1msdcc_a91d5846c0c7e5cc1963dd78012afc049}\index{passlib.handlers.windows.msdcc@{passlib.handlers.windows.msdcc}!raw@{raw}}
+\index{raw@{raw}!passlib.handlers.windows.msdcc@{passlib.handlers.windows.msdcc}}
+\doxysubsubsection{\texorpdfstring{raw()}{raw()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1windows_1_1msdcc_a91d5846c0c7e5cc1963dd78012afc049} 
+passlib.\+handlers.\+windows.\+msdcc.\+raw (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{secret}{, }\item[{}]{user}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}encode password using mscash v1 algorithm
+
+:arg secret: secret as unicode or utf-8 encoded bytes
+:arg user: username to use as salt
+
+:returns: returns string of raw bytes
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+windows.\+py\end{DoxyCompactItemize}

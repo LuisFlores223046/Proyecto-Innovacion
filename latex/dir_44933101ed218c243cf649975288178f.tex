@@ -1,0 +1,131 @@
+\doxysection{frontend/\+node\+\_\+modules/\+flatted Directory Reference}
+\hypertarget{dir_44933101ed218c243cf649975288178f}{}\label{dir_44933101ed218c243cf649975288178f}\index{frontend/node\_modules/flatted Directory Reference@{frontend/node\_modules/flatted Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_55bf9a7601814da83272d2d85293c3fe}{cjs}}
+\item 
+directory \doxymbox{\hyperlink{dir_a4fabd13bf5428b09b191d59bf9ade70}{esm}}
+\item 
+directory \doxymbox{\hyperlink{dir_7fe6b3280d55e6ceed5f1e0021b06a11}{golang}}
+\item 
+directory \doxymbox{\hyperlink{dir_e356d4fd6885897303ef0faa1188972a}{php}}
+\item 
+directory \doxymbox{\hyperlink{dir_d4e5c61a85f20603c6d614bf4e2aad33}{python}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2411}{}\doxysubsection{\texorpdfstring{flatted}{flatted}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2411}
+\href{https://www.npmjs.com/package/flatted}{\texttt{}} \href{https://coveralls.io/github/WebReflection/flatted?branch=main}{\texttt{}} \href{https://opensource.org/licenses/ISC}{\texttt{}} 
+
+
+
+\textsuperscript{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+Social Media Photo by \href{https://unsplash.com/@mattseymour}{\texttt{Matt Seymour}} on \href{https://unsplash.com/}{\texttt{Unsplash}}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}
+
+A super light (0.\+5K) and fast circular JSON parser, directly from the creator of \href{https://github.com/WebReflection/circular-json/\#circularjson}{\texttt{Circular\+JSON}}.
+
+Available also for {\bfseries{\href{./php/flatted.php}{\texttt{PHP}}}}.
+
+Available also for {\bfseries{\href{./python/flatted.py}{\texttt{Python}}}}.
+
+Available also for {\bfseries{\doxylink{dir_7fe6b3280d55e6ceed5f1e0021b06a11}{Go}}}.
+
+\DoxyHorRuler{0}
+\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2412}{}\doxysubsection{\texorpdfstring{Announcement 📣}{Announcement 📣}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2412}
+There is a standard approach to recursion and more data-\/types than what JSON allows, and it\textquotesingle{}s part of the \href{https://github.com/ungap/structured-clone/\#readme}{\texttt{Structured Clone polyfill}}.
+
+Beside acting as a polyfill, its {\ttfamily @ungap/\+structured-\/clone/\+json} export provides both {\ttfamily stringify} and {\ttfamily parse}, and it\textquotesingle{}s been tested for being faster than {\itshape flatted}, but its produced output is also smaller than {\itshape flatted} in general.
+
+The {\itshape @ungap/\+structured-\/clone} module is, in short, a drop in replacement for {\itshape flatted}, but it\textquotesingle{}s not compatible with {\itshape flatted} specialized syntax.
+
+However, if recursion, as well as more data-\/types, are what you are after, or interesting for your projects/\+use cases, consider switching to this new module whenever you can 👍
+
+\DoxyHorRuler{0}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ flatted}
+
+\end{DoxyCode}
+
+
+Usable via \href{https://unpkg.com/flatted}{\texttt{CDN}} or as regular module.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ ESM}
+\DoxyCodeLine{import\ \{parse,\ stringify,\ toJSON,\ fromJSON\}\ from\ 'flatted';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ CJS}
+\DoxyCodeLine{const\ \{parse,\ stringify,\ toJSON,\ fromJSON\}\ =\ require('flatted');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ a\ =\ [\{\}];}
+\DoxyCodeLine{a[0].a\ =\ a;}
+\DoxyCodeLine{a.push(a);}
+\DoxyCodeLine{}
+\DoxyCodeLine{stringify(a);\ //\ [["{}1"{},"{}0"{}],\{"{}a"{}:"{}0"{}\}]}
+
+\end{DoxyCode}
+\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2413}{}\doxysubsection{\texorpdfstring{to\+JSON and from\+JSON}{to\+JSON and from\+JSON}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2413}
+If you\textquotesingle{}d like to implicitly survive JSON serialization, these two helpers helps:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{toJSON,\ fromJSON\}\ from\ 'flatted';}
+\DoxyCodeLine{}
+\DoxyCodeLine{class\ RecursiveMap\ extends\ Map\ \{}
+\DoxyCodeLine{\ \ static\ fromJSON(any)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ new\ this(fromJSON(any));}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ toJSON()\ \{}
+\DoxyCodeLine{\ \ \ \ return\ toJSON([...this.entries()]);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ recursive\ =\ new\ RecursiveMap;}
+\DoxyCodeLine{const\ same\ =\ \{\};}
+\DoxyCodeLine{same.same\ =\ same;}
+\DoxyCodeLine{recursive.set('same',\ same);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ asString\ =\ JSON.stringify(recursive);}
+\DoxyCodeLine{const\ asMap\ =\ RecursiveMap.fromJSON(JSON.parse(asString));}
+\DoxyCodeLine{asMap.get('same')\ ===\ asMap.get('same').same;}
+\DoxyCodeLine{//\ true}
+
+\end{DoxyCode}
+\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2414}{}\doxysubsection{\texorpdfstring{Flatted VS JSON}{Flatted VS JSON}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2414}
+As it is for every other specialized format capable of serializing and deserializing circular data, you should never {\ttfamily JSON.\+parse(Flatted.\+stringify(data))}, and you should never {\ttfamily Flatted.\+parse(JSON.\+stringify(data))}.
+
+The only way this could work is to {\ttfamily Flatted.\+parse(Flatted.\+stringify(data))}, as it is also for {\itshape Circular\+JSON} or any other, otherwise there\textquotesingle{}s no granted data integrity.
+
+Also please note this project serializes and deserializes only data compatible with JSON, so that sockets, or anything else with internal classes different from those allowed by JSON standard, won\textquotesingle{}t be serialized and unserialized as expected.\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2415}{}\doxysubsubsection{\texorpdfstring{New in V1:\+ Exact same JSON API}{New in V1:\+ Exact same JSON API}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2415}
+
+\begin{DoxyItemize}
+\item Added a \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse\#Syntax}{\texttt{reviver}} parameter to {\ttfamily .parse(string, reviver)} and revive your own objects.
+\item Added a \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify\#Syntax}{\texttt{replacer}} and a {\ttfamily space} parameter to {\ttfamily .stringify(object, replacer, space)} for feature parity with JSON signature.
+\end{DoxyItemize}\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2416}{}\doxysubsubsection{\texorpdfstring{Compatibility}{Compatibility}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2416}
+All ECMAScript engines compatible with {\ttfamily Map}, {\ttfamily Set}, {\ttfamily Object.\+keys}, and {\ttfamily Array.\+prototype.\+reduce} will work, even if polyfilled.\hypertarget{dir_44933101ed218c243cf649975288178f_autotoc_md2417}{}\doxysubsubsection{\texorpdfstring{How does it work ?}{How does it work ?}}\label{dir_44933101ed218c243cf649975288178f_autotoc_md2417}
+While stringifying, all Objects, including Arrays, and strings, are flattened out and replaced as unique index. {\ttfamily \texorpdfstring{$\ast$}{*}}
+
+Once parsed, all indexes will be replaced through the flattened collection.
+
+\textsuperscript{\textsubscript{{\ttfamily \texorpdfstring{$\ast$}{*}} represented as string to avoid conflicts with numbers}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ logic\ example}
+\DoxyCodeLine{var\ a\ =\ [\{one:\ 1\},\ \{two:\ '2'\}];}
+\DoxyCodeLine{a[0].a\ =\ a;}
+\DoxyCodeLine{//\ a\ is\ the\ main\ object,\ will\ be\ at\ index\ '0'}
+\DoxyCodeLine{//\ \{one:\ 1\}\ is\ the\ second\ object,\ index\ '1'}
+\DoxyCodeLine{//\ \{two:\ '2'\}\ the\ third,\ in\ '2',\ and\ it\ has\ a\ string}
+\DoxyCodeLine{//\ which\ will\ be\ found\ at\ index\ '3'}
+\DoxyCodeLine{}
+\DoxyCodeLine{Flatted.stringify(a);}
+\DoxyCodeLine{//\ [["{}1"{},"{}2"{}],\{"{}one"{}:1,"{}a"{}:"{}0"{}\},\{"{}two"{}:"{}3"{}\},"{}2"{}]}
+\DoxyCodeLine{//\ a[one,two]\ \ \ \ \{one:\ 1,\ a\}\ \ \ \ \{two:\ '2'\}\ \ '2'}
+
+\end{DoxyCode}
+ 

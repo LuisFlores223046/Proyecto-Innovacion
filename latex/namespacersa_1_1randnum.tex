@@ -1,0 +1,64 @@
+\doxysection{rsa.\+randnum Namespace Reference}
+\hypertarget{namespacersa_1_1randnum}{}\label{namespacersa_1_1randnum}\index{rsa.randnum@{rsa.randnum}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{namespacersa_1_1randnum_ab8e00166da72a0702826ee574772e609}{read\+\_\+random\+\_\+bits}} (int nbits)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1randnum_a3dc715518c5480f8d250fa0f74f013d4}{read\+\_\+random\+\_\+int}} (int nbits)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1randnum_abd56bb9fd0a2903c006907432e482c3d}{read\+\_\+random\+\_\+odd\+\_\+int}} (int nbits)
+\item 
+int \doxymbox{\hyperlink{namespacersa_1_1randnum_a7975032890ff8ee84298232f4cee4e41}{randint}} (int maxvalue)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions for generating random numbers.\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1randnum_doc-func-members}
+\Hypertarget{namespacersa_1_1randnum_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1randnum_a7975032890ff8ee84298232f4cee4e41}\index{rsa.randnum@{rsa.randnum}!randint@{randint}}
+\index{randint@{randint}!rsa.randnum@{rsa.randnum}}
+\doxysubsubsection{\texorpdfstring{randint()}{randint()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1randnum_a7975032890ff8ee84298232f4cee4e41} 
+ int randint (\begin{DoxyParamCaption}\item[{int}]{maxvalue}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a random integer x with 1 <= x <= maxvalue
+
+May take a very long time in specific situations. If maxvalue needs N bits
+to store, the closer maxvalue is to (2 ** N) - 1, the faster this function
+is.
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1randnum_ab8e00166da72a0702826ee574772e609}\index{rsa.randnum@{rsa.randnum}!read\_random\_bits@{read\_random\_bits}}
+\index{read\_random\_bits@{read\_random\_bits}!rsa.randnum@{rsa.randnum}}
+\doxysubsubsection{\texorpdfstring{read\_random\_bits()}{read\_random\_bits()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1randnum_ab8e00166da72a0702826ee574772e609} 
+ bytes read\+\_\+random\+\_\+bits (\begin{DoxyParamCaption}\item[{int}]{nbits}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reads 'nbits' random bits.
+
+If nbits isn't a whole number of bytes, an extra byte will be appended with
+only the lower bits set.
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1randnum_a3dc715518c5480f8d250fa0f74f013d4}\index{rsa.randnum@{rsa.randnum}!read\_random\_int@{read\_random\_int}}
+\index{read\_random\_int@{read\_random\_int}!rsa.randnum@{rsa.randnum}}
+\doxysubsubsection{\texorpdfstring{read\_random\_int()}{read\_random\_int()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1randnum_a3dc715518c5480f8d250fa0f74f013d4} 
+ int read\+\_\+random\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{nbits}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reads a random integer of approximately nbits bits.\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1randnum_abd56bb9fd0a2903c006907432e482c3d}\index{rsa.randnum@{rsa.randnum}!read\_random\_odd\_int@{read\_random\_odd\_int}}
+\index{read\_random\_odd\_int@{read\_random\_odd\_int}!rsa.randnum@{rsa.randnum}}
+\doxysubsubsection{\texorpdfstring{read\_random\_odd\_int()}{read\_random\_odd\_int()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1randnum_abd56bb9fd0a2903c006907432e482c3d} 
+ int read\+\_\+random\+\_\+odd\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{nbits}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reads a random odd integer of approximately nbits bits.
+
+>>> read_random_odd_int(512) & 1
+1
+\end{DoxyVerb}
+ 

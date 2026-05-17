@@ -1,0 +1,55 @@
+\doxysection{frontend/\+node\+\_\+modules/\+postcss-\/selector-\/parser Directory Reference}
+\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd}{}\label{dir_10309df2a770b8ddccc664b3154ee9cd}\index{frontend/node\_modules/postcss-\/selector-\/parser Directory Reference@{frontend/node\_modules/postcss-\/selector-\/parser Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_3537e1d442cee1c0280fae1ac240dbe7}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2191}{}\doxysubsection{\texorpdfstring{postcss-\/selector-\/parser \+[!\+[test]\+(\href{https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml/badge.svg}{\texttt{https:\+/\+/\+github.\+com/\+postcss/\+postcss-\/selector-\/parser/\+actions/\+workflows/\+test.\+yml/\+badge.\+svg}})]\+(\href{https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml}{\texttt{https:\+/\+/\+github.\+com/\+postcss/\+postcss-\/selector-\/parser/\+actions/\+workflows/\+test.\+yml}})}{postcss-\/selector-\/parser \+[!\+[test]\+(\href{https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml/badge.svg}{\texttt{https:\+/\+/\+github.\+com/\+postcss/\+postcss-\/selector-\/parser/\+actions/\+workflows/\+test.\+yml/\+badge.\+svg}})]\+(\href{https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml}{\texttt{https:\+/\+/\+github.\+com/\+postcss/\+postcss-\/selector-\/parser/\+actions/\+workflows/\+test.\+yml}})}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2191}
+\begin{quote}
+Selector parser with built in methods for working with selector strings. \end{quote}
+\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2192}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2192}
+With \href{https://npmjs.com/package/postcss-selector-parser}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ postcss-\/selector-\/parser}
+
+\end{DoxyCode}
+\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2193}{}\doxysubsection{\texorpdfstring{Quick Start}{Quick Start}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2193}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parser\ =\ require('postcss-\/selector-\/parser');}
+\DoxyCodeLine{const\ transform\ =\ selectors\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ selectors.walk(selector\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ do\ something\ with\ the\ selector}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ console.log(String(selector))}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ transformed\ =\ parser(transform).processSync('h1,\ h2,\ h3');}
+
+\end{DoxyCode}
+
+
+To normalize selector whitespace:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ parser\ =\ require('postcss-\/selector-\/parser');}
+\DoxyCodeLine{const\ normalized\ =\ parser().processSync('h1,\ h2,\ h3',\ \{lossless:\ false\});}
+\DoxyCodeLine{//\ -\/>\ h1,h2,h3}
+
+\end{DoxyCode}
+
+
+Async support is provided through {\ttfamily parser.\+process} and will resolve a Promise with the resulting selector string.\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2194}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2194}
+Please see \doxysectlink{md_frontend_2node__modules_2postcss-selector-parser_2API}{API.md}{0}.\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2195}{}\doxysubsection{\texorpdfstring{Credits}{Credits}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2195}
+
+\begin{DoxyItemize}
+\item Huge thanks to Andrey Sitnik (@ai) for work on Post\+CSS which helped accelerate this module\textquotesingle{}s development.
+\end{DoxyItemize}\hypertarget{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2196}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_10309df2a770b8ddccc664b3154ee9cd_autotoc_md2196}
+MIT 

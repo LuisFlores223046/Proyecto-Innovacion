@@ -1,0 +1,71 @@
+\doxysection{cloudinary.\+poster.\+streaminghttp Namespace Reference}
+\hypertarget{namespacecloudinary_1_1poster_1_1streaminghttp}{}\label{namespacecloudinary_1_1poster_1_1streaminghttp}\index{cloudinary.poster.streaminghttp@{cloudinary.poster.streaminghttp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1__StreamingHTTPMixin}{\+\_\+\+Streaming\+HTTPMixin}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPConnection}{Streaming\+HTTPConnection}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler}{Streaming\+HTTPRedirect\+Handler}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPHandler}{Streaming\+HTTPHandler}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPSConnection}{Streaming\+HTTPSConnection}}
+\item 
+class \doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPSHandler}{Streaming\+HTTPSHandler}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacecloudinary_1_1poster_1_1streaminghttp_a17d0a951fe75084dd543cd93b10d165d}\label{namespacecloudinary_1_1poster_1_1streaminghttp_a17d0a951fe75084dd543cd93b10d165d} 
+{\bfseries get\+\_\+handlers} ()
+\item 
+\doxymbox{\hyperlink{namespacecloudinary_1_1poster_1_1streaminghttp_ad8d73bfce748e971c719ce0805988600}{register\+\_\+openers}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Streaming HTTP uploads module.
+
+This module extends the standard httplib and urllib2 objects so that
+iterable objects can be used in the body of HTTP requests.
+
+In most cases all one should have to do is call :func:`register_openers()`
+to register the new streaming http handlers which will take priority over
+the default handlers, and then you can use iterable objects in the body
+of HTTP requests.
+
+**N.B.** You must specify a Content-Length header if using an iterable object
+since there is no way to determine in advance the total size that will be
+yielded, and there is no way to reset an interator.
+
+Example usage:
+
+>>> from StringIO import StringIO
+>>> import urllib2, poster.streaminghttp
+
+>>> opener = poster.streaminghttp.register_openers()
+
+>>> s = "Test file data"
+>>> f = StringIO(s)
+
+>>> req = urllib2.Request("http://localhost:5000", f,
+...                       {'Content-Length': str(len(s))})
+\end{DoxyVerb}
+ 
+
+\label{namespacecloudinary_1_1poster_1_1streaminghttp_doc-func-members}
+\Hypertarget{namespacecloudinary_1_1poster_1_1streaminghttp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacecloudinary_1_1poster_1_1streaminghttp_ad8d73bfce748e971c719ce0805988600}\index{cloudinary.poster.streaminghttp@{cloudinary.poster.streaminghttp}!register\_openers@{register\_openers}}
+\index{register\_openers@{register\_openers}!cloudinary.poster.streaminghttp@{cloudinary.poster.streaminghttp}}
+\doxysubsubsection{\texorpdfstring{register\_openers()}{register\_openers()}}
+{\footnotesize\ttfamily \label{namespacecloudinary_1_1poster_1_1streaminghttp_ad8d73bfce748e971c719ce0805988600} 
+register\+\_\+openers (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register the streaming http handlers in the global urllib2 default
+opener object.
+
+Returns the created OpenerDirector object.\end{DoxyVerb}
+ 

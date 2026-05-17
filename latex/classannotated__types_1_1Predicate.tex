@@ -1,0 +1,47 @@
+\doxysection{annotated\+\_\+types.\+Predicate Class Reference}
+\hypertarget{classannotated__types_1_1Predicate}{}\label{classannotated__types_1_1Predicate}\index{annotated\_types.Predicate@{annotated\_types.Predicate}}
+Inheritance diagram for annotated\+\_\+types.\+Predicate:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classannotated__types_1_1Predicate}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classannotated__types_1_1Predicate_a5d38d4bf8518a9425da2644b7ff11eef}\label{classannotated__types_1_1Predicate_a5d38d4bf8518a9425da2644b7ff11eef} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classannotated__types_1_1Predicate_a88802bfb185ceff029626d0a3246d892}\label{classannotated__types_1_1Predicate_a88802bfb185ceff029626d0a3246d892} 
+Callable {\bfseries func} \+[\+[Any]\+, bool]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}``Predicate(func: Callable)`` implies `func(value)` is truthy for valid values.
+
+Users should prefer statically inspectable metadata, but if you need the full
+power and flexibility of arbitrary runtime predicates... here it is.
+
+We provide a few predefined predicates for common string constraints:
+``IsLower = Predicate(str.islower)``, ``IsUpper = Predicate(str.isupper)``, and
+``IsDigits = Predicate(str.isdigit)``. Users are encouraged to use methods which
+can be given special handling, and avoid indirection like ``lambda s: s.lower()``.
+
+Some libraries might have special logic to handle certain predicates, e.g. by
+checking for `str.isdigit` and using its presence to both call custom logic to
+enforce digit-only strings, and customise some generated external schema.
+
+We do not specify what behaviour should be expected for predicates that raise
+an exception.  For example `Annotated[int, Predicate(str.isdigit)]` might silently
+skip invalid constraints, or statically raise an error; or it might try calling it
+and then propagate or discard the resulting exception.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+annotated\+\_\+types/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}

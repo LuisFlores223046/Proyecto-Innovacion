@@ -1,0 +1,109 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+litellm.\+Lite\+LLMIntegration Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration}{}\label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration}\index{sentry\_sdk.integrations.litellm.LiteLLMIntegration@{sentry\_sdk.integrations.litellm.LiteLLMIntegration}}
+Inheritance diagram for sentry\+\_\+sdk.\+integrations.\+litellm.\+Lite\+LLMIntegration:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_a8bc4c7b1b05847fe6e6e7a8de9d863f3}\label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_a8bc4c7b1b05847fe6e6e7a8de9d863f3} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Lite\+LLMIntegration"{} self, bool include\+\_\+prompts=True)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a60252f59d5622a95627f6bb75c168abe}{setup\+\_\+once\+\_\+with\+\_\+options}} (self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_af08d151ebe9c1aae62b985296cba7b70}{setup\+\_\+once}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_a396667262a6be62b163ddcb6bdb49973}\label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_a396667262a6be62b163ddcb6bdb49973} 
+{\bfseries include\+\_\+prompts} = include\+\_\+prompts
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_ade36344b8446480756f46a8b2a8877af}\label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_ade36344b8446480756f46a8b2a8877af} 
+str {\bfseries origin} = f"{}auto.\+ai.\{identifier\}"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration}{sentry\+\_\+sdk.\+integrations.\+Integration}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries install} = None
+\item 
+str {\bfseries identifier} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}LiteLLM integration for Sentry.
+
+This integration automatically captures LiteLLM API calls and sends them to Sentry
+for monitoring and error tracking. It supports all 100+ LLM providers that LiteLLM
+supports, including OpenAI, Anthropic, Google, Cohere, and many others.
+
+Features:
+- Automatic exception capture for all LiteLLM calls
+- Token usage tracking across all providers
+- Provider detection and attribution
+- Input/output message capture (configurable)
+- Streaming response support
+- Cost tracking integration
+
+Usage:
+
+```python
+import litellm
+import sentry_sdk
+
+# Initialize Sentry with the LiteLLM integration
+sentry_sdk.init(
+    dsn="your-dsn",
+    send_default_pii=True
+    integrations=[
+        sentry_sdk.integrations.LiteLLMIntegration(
+            include_prompts=True  # Set to False to exclude message content
+        )
+    ]
+)
+
+# All LiteLLM calls will now be monitored
+response = litellm.completion(
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+Configuration:
+- include_prompts (bool): Whether to include prompts and responses in spans.
+  Defaults to True. Set to False to exclude potentially sensitive data.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_af08d151ebe9c1aae62b985296cba7b70}\index{sentry\_sdk.integrations.litellm.LiteLLMIntegration@{sentry\_sdk.integrations.litellm.LiteLLMIntegration}!setup\_once@{setup\_once}}
+\index{setup\_once@{setup\_once}!sentry\_sdk.integrations.litellm.LiteLLMIntegration@{sentry\_sdk.integrations.litellm.LiteLLMIntegration}}
+\doxysubsubsection{\texorpdfstring{setup\_once()}{setup\_once()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1integrations_1_1litellm_1_1LiteLLMIntegration_af08d151ebe9c1aae62b985296cba7b70} 
+ None sentry\+\_\+sdk.\+integrations.\+litellm.\+Lite\+LLMIntegration.\+setup\+\_\+once (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Set up LiteLLM callbacks for monitoring.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1integrations_1_1Integration_a577a498f9be92552175a5565d5c11312}{sentry\+\_\+sdk.\+integrations.\+Integration}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+litellm.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,125 @@
+\doxysection{sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic}{}\label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+Inheritance diagram for sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.941704cm]{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_abe94917040fbb446ecfc5f0c29f63f51}{reset\+\_\+characteristic}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_aae1b51dd0dddf1d3e5d996861caccf08}{set\+\_\+characteristic}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn, Any value)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a1cf181178d39a5ebe4ec5c9510d50044}{set\+\_\+connection\+\_\+characteristic}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn, Any value)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a959c8f688cba8952efb87bd400739620}{get\+\_\+characteristic}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_ac1e755d50ea6990bb120b70a586887ce}{get\+\_\+connection\+\_\+characteristic}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} conn, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}} dbapi\+\_\+conn)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_af770e611925f3d180bcd77201778e754}\label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_af770e611925f3d180bcd77201778e754} 
+Class\+Var {\bfseries transactional} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An abstract base for an object that can set, get and reset a
+per-connection characteristic, typically one that gets reset when the
+connection is returned to the connection pool.
+
+transaction isolation is the canonical example, and the
+``IsolationLevelCharacteristic`` implementation provides this for the
+``DefaultDialect``.
+
+The ``ConnectionCharacteristic`` class should call upon the ``Dialect`` for
+the implementation of each method.   The object exists strictly to serve as
+a dialect visitor that can be placed into the
+``DefaultDialect.connection_characteristics`` dictionary where it will take
+effect for calls to :meth:`_engine.Connection.execution_options` and
+related APIs.
+
+.. versionadded:: 1.4
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a959c8f688cba8952efb87bd400739620}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}!get\_characteristic@{get\_characteristic}}
+\index{get\_characteristic@{get\_characteristic}!sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+\doxysubsubsection{\texorpdfstring{get\_characteristic()}{get\_characteristic()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a959c8f688cba8952efb87bd400739620} 
+ Any sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic.\+get\+\_\+characteristic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a DBAPI connection, get the current value of the
+characteristic.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDeferrableConnectionCharacteristic_abb47ad3a45ba1539bb14ba612c6e9fa0}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDeferrable\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGReadOnlyConnectionCharacteristic_a0e2f5cd812b81cf7605f42eae210456f}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGRead\+Only\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1IsolationLevelCharacteristic_acf5c08b1f41d458b23efb35e54e78f15}{sqlalchemy.\+engine.\+characteristics.\+Isolation\+Level\+Characteristic}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1LoggingTokenCharacteristic_a1771beee47fec7d16575b74163fc1273}{sqlalchemy.\+engine.\+characteristics.\+Logging\+Token\+Characteristic}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_ac1e755d50ea6990bb120b70a586887ce}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}!get\_connection\_characteristic@{get\_connection\_characteristic}}
+\index{get\_connection\_characteristic@{get\_connection\_characteristic}!sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+\doxysubsubsection{\texorpdfstring{get\_connection\_characteristic()}{get\_connection\_characteristic()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_ac1e755d50ea6990bb120b70a586887ce} 
+ Any sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic.\+get\+\_\+connection\+\_\+characteristic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a :class:`_engine.Connection`, get the current value of the
+characteristic.
+
+.. versionadded:: 2.0.30 - added to support elements that are local
+   to the :class:`_engine.Connection` itself.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1LoggingTokenCharacteristic_ae487dab053691090c32aa9f9279b510d}{sqlalchemy.\+engine.\+characteristics.\+Logging\+Token\+Characteristic}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_abe94917040fbb446ecfc5f0c29f63f51}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}!reset\_characteristic@{reset\_characteristic}}
+\index{reset\_characteristic@{reset\_characteristic}!sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+\doxysubsubsection{\texorpdfstring{reset\_characteristic()}{reset\_characteristic()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_abe94917040fbb446ecfc5f0c29f63f51} 
+ None sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic.\+reset\+\_\+characteristic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}     }]{dbapi\+\_\+conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reset the characteristic on the DBAPI connection to its default
+value.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDeferrableConnectionCharacteristic_a00acc188a139be9f955b0e9b0dc2ced1}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDeferrable\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGReadOnlyConnectionCharacteristic_a07c3b19ea2a4ec414adb5ff128adcad4}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGRead\+Only\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1IsolationLevelCharacteristic_a82f31f331154ce0c231637de800894fd}{sqlalchemy.\+engine.\+characteristics.\+Isolation\+Level\+Characteristic}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1LoggingTokenCharacteristic_a52af87f326addf64f1ddec09d3c1ff20}{sqlalchemy.\+engine.\+characteristics.\+Logging\+Token\+Characteristic}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_aae1b51dd0dddf1d3e5d996861caccf08}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}!set\_characteristic@{set\_characteristic}}
+\index{set\_characteristic@{set\_characteristic}!sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+\doxysubsubsection{\texorpdfstring{set\_characteristic()}{set\_characteristic()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_aae1b51dd0dddf1d3e5d996861caccf08} 
+ None sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic.\+set\+\_\+characteristic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+conn}{, }\item[{Any     }]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}set characteristic on the DBAPI connection to a given value.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGDeferrableConnectionCharacteristic_a596d3b5e67835a0aabb14863c063f8dc}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGDeferrable\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGReadOnlyConnectionCharacteristic_a788406c6ffc2353430ebc36a80fffc1c}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGRead\+Only\+Connection\+Characteristic}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1IsolationLevelCharacteristic_a654d4e06cf8ed3c414f589a8ad7748e1}{sqlalchemy.\+engine.\+characteristics.\+Isolation\+Level\+Characteristic}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1LoggingTokenCharacteristic_a455036d3a152a25ec43fec1c5fc2440d}{sqlalchemy.\+engine.\+characteristics.\+Logging\+Token\+Characteristic}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a1cf181178d39a5ebe4ec5c9510d50044}\index{sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}!set\_connection\_characteristic@{set\_connection\_characteristic}}
+\index{set\_connection\_characteristic@{set\_connection\_characteristic}!sqlalchemy.engine.characteristics.ConnectionCharacteristic@{sqlalchemy.engine.characteristics.ConnectionCharacteristic}}
+\doxysubsubsection{\texorpdfstring{set\_connection\_characteristic()}{set\_connection\_characteristic()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1characteristics_1_1ConnectionCharacteristic_a1cf181178d39a5ebe4ec5c9510d50044} 
+ None sqlalchemy.\+engine.\+characteristics.\+Connection\+Characteristic.\+set\+\_\+connection\+\_\+characteristic (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{conn}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}}]{dbapi\+\_\+conn}{, }\item[{Any}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}set characteristic on the :class:`_engine.Connection` to a given
+value.
+
+.. versionadded:: 2.0.30 - added to support elements that are local
+   to the :class:`_engine.Connection` itself.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1characteristics_1_1LoggingTokenCharacteristic_aebbc6517f4bde9fb1c7e2f365f9371e2}{sqlalchemy.\+engine.\+characteristics.\+Logging\+Token\+Characteristic}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+characteristics.\+py\end{DoxyCompactItemize}

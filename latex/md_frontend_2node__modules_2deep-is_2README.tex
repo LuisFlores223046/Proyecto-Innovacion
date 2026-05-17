@@ -1,0 +1,50 @@
+\chapter{deep-\/is }
+\hypertarget{md_frontend_2node__modules_2deep-is_2README}{}\label{md_frontend_2node__modules_2deep-is_2README}\index{deep-\/is@{deep-\/is}}
+Node\textquotesingle{}s {\ttfamily assert.\+deep\+Equal() algorithm} as a standalone module. Exactly like \href{https://github.com/substack/node-deep-equal}{\texttt{deep-\/equal}} except for the fact that {\ttfamily deep\+Equal(\+Na\+N, Na\+N) === true}.
+
+This module is around \href{https://gist.github.com/2790507}{\texttt{5 times faster}} than wrapping {\ttfamily assert.\+deep\+Equal()} in a {\ttfamily try/\+catch}.
+
+\href{http://ci.testling.com/thlorenz/deep-is}{\texttt{}}
+
+\href{http://travis-ci.org/thlorenz/deep-is}{\texttt{}}\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1857}{}\doxysection{\texorpdfstring{example}{example}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1857}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ equal\ =\ require('deep-\/is');}
+\DoxyCodeLine{console.dir([}
+\DoxyCodeLine{\ \ \ \ equal(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ a\ :\ [\ 2,\ 3\ ],\ b\ :\ [\ 4\ ]\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ a\ :\ [\ 2,\ 3\ ],\ b\ :\ [\ 4\ ]\ \}}
+\DoxyCodeLine{\ \ \ \ ),}
+\DoxyCodeLine{\ \ \ \ equal(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ x\ :\ 5,\ y\ :\ [6]\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ x\ :\ 5,\ y\ :\ 6\ \}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1858}{}\doxysection{\texorpdfstring{methods}{methods}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1858}
+var deep\+Is = require(\textquotesingle{}deep-\/is\textquotesingle{})\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1859}{}\doxysubsection{\texorpdfstring{deep\+Is(a, b)}{deep\+Is(a, b)}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1859}
+Compare objects {\ttfamily a} and {\ttfamily b}, returning whether they are equal according to a recursive equality algorithm.\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1860}{}\doxysection{\texorpdfstring{install}{install}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1860}
+With \href{http://npmjs.org}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ deep-\/is}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1861}{}\doxysection{\texorpdfstring{test}{test}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1861}
+With \href{http://npmjs.org}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ test}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2deep-is_2README_autotoc_md1862}{}\doxysection{\texorpdfstring{license}{license}}\label{md_frontend_2node__modules_2deep-is_2README_autotoc_md1862}
+Copyright (c) 2012, 2013 Thorsten Lorenz \href{mailto:thlorenz@gmx.de}{\texttt{thlorenz@gmx.\+de}} Copyright (c) 2012 James Halliday \href{mailto:mail@substack.net}{\texttt{mail@substack.\+net}}
+
+Derived largely from node\textquotesingle{}s assert module, which has the copyright statement:\+
+
+Copyright (c) 2009 Thomas Robinson \texorpdfstring{$<$}{<}280north.\+com\texorpdfstring{$>$}{>}
+
+Released under the MIT license, see LICENSE for details. 

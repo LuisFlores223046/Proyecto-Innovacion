@@ -1,0 +1,68 @@
+\doxysection{greenlet\+\_\+compiler\+\_\+compat.\+hpp}
+\hypertarget{greenlet__compiler__compat_8hpp_source}{}\label{greenlet__compiler__compat_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_compiler\_compat.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_compiler\_compat.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_COMPILER\_COMPAT\_HPP}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ GREENLET\_COMPILER\_COMPAT\_HPP}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ if\ defined(\_\_clang\_\_)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ define\ G\_FP\_TMPL\_STATIC\ static}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ GCC\ has\ no\ problem\ allowing\ static\ function\ pointers,\ but\ emits}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ tons\ of\ warnings\ about\ "{}whose\ type\ uses\ the\ anonymous\ namespace\ [-\/Wsubobject-\/linkage]"{}}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ define\ G\_FP\_TMPL\_STATIC}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ \ \ define\ G\_NO\_COPIES\_OF\_CLS(Cls)\ private:\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \ Cls(const\ Cls\&\ other)\ =\ delete;\ \(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ Cls\&\ operator=(const\ Cls\&\ other)\ =\ delete}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ \ define\ G\_NO\_ASSIGNMENT\_OF\_CLS(Cls)\ private:\ \ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ Cls\&\ operator=(const\ Cls\&\ other)\ =\ delete}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ \ define\ G\_NO\_COPY\_CONSTRUCTOR\_OF\_CLS(Cls)\ private:\ \(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ Cls(const\ Cls\&\ other)\ =\ delete;}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ CAUTION:\ MSVC\ is\ stupidly\ picky:}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ "{}The\ compiler\ ignores,\ without\ warning,\ any\ \_\_declspec\ keywords}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ placed\ after\ *\ or\ \&\ and\ in\ front\ of\ the\ variable\ identifier\ in\ a}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ declaration."{}}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ (https://docs.microsoft.com/en-\/us/cpp/cpp/declspec?view=msvc-\/160)}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ So\ pointer\ return\ types\ must\ be\ handled\ differently\ (because\ of\ the}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ trailing\ *),\ or\ you\ get\ inscrutable\ compiler\ warnings\ like\ "{}error}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ C2059:\ syntax\ error:\ ''"{}}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ In\ C++\ 11,\ there\ is\ a\ standard\ syntax\ for\ attributes,\ and}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ GCC\ defines\ an\ attribute\ to\ use\ with\ this:\ [[gnu:noinline]].}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ In\ the\ future,\ this\ is\ expected\ to\ become\ standard.}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ ||\ defined(\_\_clang\_\_)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{/*\ We\ used\ to\ check\ for\ GCC\ 4+\ or\ 3.4+,\ but\ those\ compilers\ are}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ laughably\ out\ of\ date.\ Just\ assume\ they\ support\ it.\ */}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_NOINLINE(name)\ \_\_attribute\_\_((noinline))\ name}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_NOINLINE\_P(rtype,\ name)\ rtype\ \_\_attribute\_\_((noinline))\ name}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ \ \ define\ UNUSED(x)\ UNUSED\_\ \#\#\ x\ \_\_attribute\_\_((\_\_unused\_\_))}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#elif\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00082\ \textcolor{comment}{/*\ We\ used\ to\ check\ for\ \ \&\&\ (\_MSC\_VER\ >=\ 1300)\ but\ that's\ also\ out\ of\ date.\ */}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_NOINLINE(name)\ \_\_declspec(noinline)\ name}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_NOINLINE\_P(rtype,\ name)\ \_\_declspec(noinline)\ rtype\ name}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#\ \ \ \ define\ UNUSED(x)\ UNUSED\_\ \#\#\ x}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ \ \ define\ G\_NOEXCEPT\_WIN32\ noexcept}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#\ \ \ \ define\ G\_NOEXCEPT\_WIN32}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

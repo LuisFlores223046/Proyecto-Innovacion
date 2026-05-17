@@ -1,0 +1,104 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name Class Reference}
+\hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName}{}\label{classpydantic__extra__types_1_1language__code_1_1LanguageName}\index{pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1language__code_1_1LanguageName}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1AfterValidatorFunctionSchema}{core\+\_\+schema.\+After\+Validator\+Function\+Schema}} \doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName_ac3afc8f29bee4f7b16e1aa2b912d8c48}{\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+}} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+Union\+[str, None]\+ \doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName_a6afffcbaebc133d1171a2c50d7eb5787}{alpha2}} (self)
+\item 
+str \doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName_aa69895b65979c5dbb5fcb05057c713b0}{alpha3}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName}{Language\+Name}} \doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName_a28dcbfe88e5ff2b83fd32e1e268726df}{\+\_\+validate}} (cls, str \+\_\+\+\_\+input\+\_\+value, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_a801348cdcf71c3a7692ff0cba31f2291}\label{classpydantic__extra__types_1_1language__code_1_1LanguageName_a801348cdcf71c3a7692ff0cba31f2291} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}LanguageName parses languages names listed in the [ISO 639-3 standard](https://en.wikipedia.org/wiki/ISO_639-3)
+format.
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types.language_code import LanguageName
+
+
+class Movie(BaseModel):
+    audio_lang: LanguageName
+    subtitles_lang: LanguageName
+
+
+movie = Movie(audio_lang='Dutch', subtitles_lang='Mandarin Chinese')
+print(movie)
+# > audio_lang='Dutch' subtitles_lang='Mandarin Chinese'
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1language__code_1_1LanguageName_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_ac3afc8f29bee4f7b16e1aa2b912d8c48}\index{pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}!\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}}
+\index{\_\_get\_pydantic\_core\_schema\_\_@{\_\_get\_pydantic\_core\_schema\_\_}!pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}}
+\doxysubsubsection{\texorpdfstring{\_\_get\_pydantic\_core\_schema\_\_()}{\_\_get\_pydantic\_core\_schema\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1language__code_1_1LanguageName_ac3afc8f29bee4f7b16e1aa2b912d8c48} 
+ \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1AfterValidatorFunctionSchema}{core\+\_\+schema.\+After\+Validator\+Function\+Schema}} pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name.\+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{type\+[Any]\+}]{source}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}}     }]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Pydantic CoreSchema with the language name validation.
+
+Args:
+    source: The source type.
+    handler: The handler to get the CoreSchema.
+
+Returns:
+    A Pydantic CoreSchema with the language name validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_a28dcbfe88e5ff2b83fd32e1e268726df}\index{pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1language__code_1_1LanguageName_a28dcbfe88e5ff2b83fd32e1e268726df} 
+ \doxymbox{\hyperlink{classpydantic__extra__types_1_1language__code_1_1LanguageName}{Language\+Name}} pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name.\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{\+\_\+\+\_\+input\+\_\+value}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate a language name from the provided str value.
+
+Args:
+    __input_value: The str value to be validated.
+    _: The Pydantic ValidationInfo.
+
+Returns:
+    The validated language name.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_a6afffcbaebc133d1171a2c50d7eb5787}\index{pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}!alpha2@{alpha2}}
+\index{alpha2@{alpha2}!pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}}
+\doxysubsubsection{\texorpdfstring{alpha2()}{alpha2()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1language__code_1_1LanguageName_a6afffcbaebc133d1171a2c50d7eb5787} 
+ Union\+[str, None]\+ pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name.\+alpha2 (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The language code in the [ISO 639-1 alpha-2](https://en.wikipedia.org/wiki/ISO_639-1) format. Does not exist for all languages.\end{DoxyVerb}
+ \Hypertarget{classpydantic__extra__types_1_1language__code_1_1LanguageName_aa69895b65979c5dbb5fcb05057c713b0}\index{pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}!alpha3@{alpha3}}
+\index{alpha3@{alpha3}!pydantic\_extra\_types.language\_code.LanguageName@{pydantic\_extra\_types.language\_code.LanguageName}}
+\doxysubsubsection{\texorpdfstring{alpha3()}{alpha3()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1language__code_1_1LanguageName_aa69895b65979c5dbb5fcb05057c713b0} 
+ str pydantic\+\_\+extra\+\_\+types.\+language\+\_\+code.\+Language\+Name.\+alpha3 (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The language code in the [ISO 639-3 alpha-3](https://en.wikipedia.org/wiki/ISO_639-3) format.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+language\+\_\+code.\+py\end{DoxyCompactItemize}

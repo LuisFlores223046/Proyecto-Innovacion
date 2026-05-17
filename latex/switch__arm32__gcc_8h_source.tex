@@ -1,0 +1,85 @@
+\doxysection{switch\+\_\+arm32\+\_\+gcc.\+h}
+\hypertarget{switch__arm32__gcc_8h_source}{}\label{switch__arm32__gcc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_arm32\_gcc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_arm32\_gcc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 14-\/Aug-\/06\ File\ creation.\ Ported\ from\ Arm\ Thumb.\ Sylvain\ Baro}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ 3-\/Sep-\/06\ Commented\ out\ saving\ of\ r1-\/r3\ (r4\ already\ commented\ out)\ as\ I}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ read\ that\ these\ do\ not\ need\ to\ be\ saved.\ \ Also\ added\ notes\ and}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ errors\ related\ to\ the\ frame\ pointer.\ Richard\ Tew.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ NOTES}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ \ \ It\ is\ not\ possible\ to\ detect\ if\ fp\ is\ used\ or\ not,\ so\ the\ supplied}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ switch\ function\ needs\ to\ support\ it,\ so\ that\ you\ can\ remove\ it\ if}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ it\ does\ not\ apply\ to\ you.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ POSSIBLE\ ERRORS}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ "{}fp\ cannot\ be\ used\ in\ asm\ here"{}}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ -\/\ Try\ commenting\ out\ "{}fp"{}\ in\ REGS\_TO\_SAVE.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ REG\_SP\ "{}sp"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ REG\_SPSP\ "{}sp,sp"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifdef\ \_\_thumb\_\_}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ REG\_FP\ "{}r7"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ REG\_FPFP\ "{}r7,r7"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\_GENERAL\ "{}r4"{},\ "{}r5"{},\ "{}r6"{},\ "{}r8"{},\ "{}r9"{},\ "{}r10"{},\ "{}r11"{},\ "{}lr"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ REG\_FP\ "{}fp"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ REG\_FPFP\ "{}fp,fp"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\_GENERAL\ "{}r4"{},\ "{}r5"{},\ "{}r6"{},\ "{}r7"{},\ "{}r8"{},\ "{}r9"{},\ "{}r10"{},\ "{}lr"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ defined(\_\_SOFTFP\_\_)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#elif\ defined(\_\_VFP\_FP\_\_)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL,\ "{}d8"{},\ "{}d9"{},\ "{}d10"{},\ "{}d11"{},\ \(\backslash\)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}d12"{},\ "{}d13"{},\ "{}d14"{},\ "{}d15"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#elif\ defined(\_\_MAVERICK\_\_)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL,\ "{}mvf4"{},\ "{}mvf5"{},\ "{}mvf6"{},\ "{}mvf7"{},\ \(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}mvf8"{},\ "{}mvf9"{},\ "{}mvf10"{},\ "{}mvf11"{},\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}mvf12"{},\ "{}mvf13"{},\ "{}mvf14"{},\ "{}mvf15"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL,\ "{}f4"{},\ "{}f5"{},\ "{}f6"{},\ "{}f7"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00054\ \_\_attribute\_\_((\doxymbox{\hyperlink{namespacejinja2_1_1optimizer_a463f07ae84fc1b9051dedd32be0bbf62}{optimize}}(\textcolor{stringliteral}{"{}no-\/omit-\/frame-\/pointer"{}})))}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *fp;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mov\ r0,"{}}\ REG\_FP\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)tstr\ r0,\%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}\ (fp)\ :\ :\ \textcolor{stringliteral}{"{}r0"{}});}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}mov\ \%0,"{}}\ REG\_SP\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref));}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ "{}}\ REG\_SPSP\ \textcolor{stringliteral}{"{},\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ "{}}\ REG\_FPFP\ \textcolor{stringliteral}{"{},\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}ldr\ r0,\%1\(\backslash\)n\(\backslash\)tmov\ "{}}\ REG\_FP\ \textcolor{stringliteral}{"{},r0\(\backslash\)n\(\backslash\)tmov\ \%0,\ \#0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (result)\ :\ \textcolor{stringliteral}{"{}m"{}}\ (fp)\ :\ \textcolor{stringliteral}{"{}r0"{}});}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

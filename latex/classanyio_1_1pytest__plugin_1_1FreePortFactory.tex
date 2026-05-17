@@ -1,0 +1,65 @@
+\doxysection{anyio.\+pytest\+\_\+plugin.\+Free\+Port\+Factory Class Reference}
+\hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory}{}\label{classanyio_1_1pytest__plugin_1_1FreePortFactory}\index{anyio.pytest\_plugin.FreePortFactory@{anyio.pytest\_plugin.FreePortFactory}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_a0f0806c30ddcca5316450c9b2c168e9d}\label{classanyio_1_1pytest__plugin_1_1FreePortFactory_a0f0806c30ddcca5316450c9b2c168e9d} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, socket.\+Socket\+Kind kind)
+\item 
+socket.\+Socket\+Kind \doxymbox{\hyperlink{classanyio_1_1pytest__plugin_1_1FreePortFactory_a1718f62fcc861994b5ca2bcbea8b262e}{kind}} (self)
+\item 
+int \doxymbox{\hyperlink{classanyio_1_1pytest__plugin_1_1FreePortFactory_a7d2ccbd38d92b2516f72c71e9cb9bced}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, socket.\+Address\+Family\texorpdfstring{$\vert$}{|}None family=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_a014332dfabf0ea98561dc39973fff39a}\label{classanyio_1_1pytest__plugin_1_1FreePortFactory_a014332dfabf0ea98561dc39973fff39a} 
+socket.\+Socket\+Kind {\bfseries \+\_\+kind} = \doxymbox{\hyperlink{classanyio_1_1pytest__plugin_1_1FreePortFactory_a1718f62fcc861994b5ca2bcbea8b262e}{kind}}
+\item 
+\Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_a47617e9fc30761f63def59f2700b67ce}\label{classanyio_1_1pytest__plugin_1_1FreePortFactory_a47617e9fc30761f63def59f2700b67ce} 
+{\bfseries \+\_\+generated} = set\+[int]\+()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Manages port generation based on specified socket kind, ensuring no duplicate
+ports are generated.
+
+This class provides functionality for generating available free ports on the
+system. It is initialized with a specific socket kind and can generate ports
+for given address families while avoiding reuse of previously generated ports.
+
+Users should not instantiate this class directly, but use the
+``free_tcp_port_factory`` and ``free_udp_port_factory`` fixtures instead. For simple
+uses cases, ``free_tcp_port`` and ``free_udp_port`` can be used instead.
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1pytest__plugin_1_1FreePortFactory_doc-func-members}
+\Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_a7d2ccbd38d92b2516f72c71e9cb9bced}\index{anyio.pytest\_plugin.FreePortFactory@{anyio.pytest\_plugin.FreePortFactory}!\_\_call\_\_@{\_\_call\_\_}}
+\index{\_\_call\_\_@{\_\_call\_\_}!anyio.pytest\_plugin.FreePortFactory@{anyio.pytest\_plugin.FreePortFactory}}
+\doxysubsubsection{\texorpdfstring{\_\_call\_\_()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily \label{classanyio_1_1pytest__plugin_1_1FreePortFactory_a7d2ccbd38d92b2516f72c71e9cb9bced} 
+ int anyio.\+pytest\+\_\+plugin.\+Free\+Port\+Factory.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{socket.\+Address\+Family \texorpdfstring{$\vert$}{|} None }]{family}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return an unbound port for the given address family.
+
+:param family: if omitted, both IPv4 and IPv6 addresses will be tried
+:return: a port number
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1pytest__plugin_1_1FreePortFactory_a1718f62fcc861994b5ca2bcbea8b262e}\index{anyio.pytest\_plugin.FreePortFactory@{anyio.pytest\_plugin.FreePortFactory}!kind@{kind}}
+\index{kind@{kind}!anyio.pytest\_plugin.FreePortFactory@{anyio.pytest\_plugin.FreePortFactory}}
+\doxysubsubsection{\texorpdfstring{kind()}{kind()}}
+{\footnotesize\ttfamily \label{classanyio_1_1pytest__plugin_1_1FreePortFactory_a1718f62fcc861994b5ca2bcbea8b262e} 
+ socket.\+Socket\+Kind anyio.\+pytest\+\_\+plugin.\+Free\+Port\+Factory.\+kind (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The type of socket connection (e.g., :data:`~socket.SOCK_STREAM` or
+:data:`~socket.SOCK_DGRAM`) used to bind for checking port availability
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+pytest\+\_\+plugin.\+py\end{DoxyCompactItemize}

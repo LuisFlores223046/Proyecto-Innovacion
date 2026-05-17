@@ -1,0 +1,69 @@
+\doxysection{sentry\+\_\+sdk.\+attachments.\+Attachment Class Reference}
+\hypertarget{classsentry__sdk_1_1attachments_1_1Attachment}{}\label{classsentry__sdk_1_1attachments_1_1Attachment}\index{sentry\_sdk.attachments.Attachment@{sentry\_sdk.attachments.Attachment}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_aded0a8f7d00ea671c741e5f5401145be}\label{classsentry__sdk_1_1attachments_1_1Attachment_aded0a8f7d00ea671c741e5f5401145be} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}Union\+[None, bytes, Callable\+[\+[$\,$]\+, bytes]\+]\+"{} bytes=None, "{}Optional\+[str]\+"{} filename=None, "{}Optional\+[str]\+"{} path=None, "{}Optional\+[str]\+"{} content\+\_\+type=None, bool add\+\_\+to\+\_\+transactions=False)
+\item 
+"{}Item"{} \doxymbox{\hyperlink{classsentry__sdk_1_1attachments_1_1Attachment_a7576b9c5a537f32c1a124381325ae291}{to\+\_\+envelope\+\_\+item}} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_a15718049b9d8a67046421e6130f12b13}\label{classsentry__sdk_1_1attachments_1_1Attachment_a15718049b9d8a67046421e6130f12b13} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_a126eb78366033b5970f62648d7f5c6c2}\label{classsentry__sdk_1_1attachments_1_1Attachment_a126eb78366033b5970f62648d7f5c6c2} 
+{\bfseries bytes} = bytes
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_a5376fa073e316381e3f5c5122d6cd4be}\label{classsentry__sdk_1_1attachments_1_1Attachment_a5376fa073e316381e3f5c5122d6cd4be} 
+{\bfseries filename} = filename
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_affce90447851c3d373a15771658fd19e}\label{classsentry__sdk_1_1attachments_1_1Attachment_affce90447851c3d373a15771658fd19e} 
+{\bfseries path} = path
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_a08d7d3e6b0a380bc3c0706992fd3c6d4}\label{classsentry__sdk_1_1attachments_1_1Attachment_a08d7d3e6b0a380bc3c0706992fd3c6d4} 
+{\bfseries content\+\_\+type} = content\+\_\+type
+\item 
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_aa750180a1fd9e1ca7f1cbfe0a571fe82}\label{classsentry__sdk_1_1attachments_1_1Attachment_aa750180a1fd9e1ca7f1cbfe0a571fe82} 
+{\bfseries add\+\_\+to\+\_\+transactions} = add\+\_\+to\+\_\+transactions
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Additional files/data to send along with an event.
+
+This class stores attachments that can be sent along with an event. Attachments are files or other data, e.g.
+config or log files, that are relevant to an event. Attachments are set on the ``Scope``, and are sent along with
+all non-transaction events (or all events including transactions if ``add_to_transactions`` is ``True``) that are
+captured within the ``Scope``.
+
+To add an attachment to a ``Scope``, use :py:meth:`sentry_sdk.Scope.add_attachment`. The parameters for
+``add_attachment`` are the same as the parameters for this class's constructor.
+
+:param bytes: Raw bytes of the attachment, or a function that returns the raw bytes. Must be provided unless
+              ``path`` is provided.
+:param filename: The filename of the attachment. Must be provided unless ``path`` is provided.
+:param path: Path to a file to attach. Must be provided unless ``bytes`` is provided.
+:param content_type: The content type of the attachment. If not provided, it will be guessed from the ``filename``
+                     parameter, if available, or the ``path`` parameter if ``filename`` is ``None``.
+:param add_to_transactions: Whether to add this attachment to transactions. Defaults to ``False``.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1attachments_1_1Attachment_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1attachments_1_1Attachment_a7576b9c5a537f32c1a124381325ae291}\index{sentry\_sdk.attachments.Attachment@{sentry\_sdk.attachments.Attachment}!to\_envelope\_item@{to\_envelope\_item}}
+\index{to\_envelope\_item@{to\_envelope\_item}!sentry\_sdk.attachments.Attachment@{sentry\_sdk.attachments.Attachment}}
+\doxysubsubsection{\texorpdfstring{to\_envelope\_item()}{to\_envelope\_item()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1attachments_1_1Attachment_a7576b9c5a537f32c1a124381325ae291} 
+ "{}Item"{} sentry\+\_\+sdk.\+attachments.\+Attachment.\+to\+\_\+envelope\+\_\+item (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns an envelope item for this attachment.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+attachments.\+py\end{DoxyCompactItemize}

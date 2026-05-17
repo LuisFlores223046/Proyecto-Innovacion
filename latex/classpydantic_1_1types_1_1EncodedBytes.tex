@@ -1,0 +1,123 @@
+\doxysection{pydantic.\+types.\+Encoded\+Bytes Class Reference}
+\hypertarget{classpydantic_1_1types_1_1EncodedBytes}{}\label{classpydantic_1_1types_1_1EncodedBytes}\index{pydantic.types.EncodedBytes@{pydantic.types.EncodedBytes}}
+Inheritance diagram for pydantic.\+types.\+Encoded\+Bytes:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1types_1_1EncodedBytes}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_a0700dcf225201a3723c50346c26846de}\label{classpydantic_1_1types_1_1EncodedBytes_a0700dcf225201a3723c50346c26846de} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (self, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_ae110a8e910c9e04178658da45a46340b}\label{classpydantic_1_1types_1_1EncodedBytes_ae110a8e910c9e04178658da45a46340b} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+bytes \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes_a9db6fa8647e0be2c64364e6dfa7edf63}{decode}} (self, bytes data, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\item 
+bytes \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes_a61fdec3432c7bfbdf31b8ddaaca6a74c}{encode}} (self, bytes value)
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_adf9efc7b45c8ba4c7aeb78298f416b9b}\label{classpydantic_1_1types_1_1EncodedBytes_adf9efc7b45c8ba4c7aeb78298f416b9b} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_ac8e8fb790f04399d4c756757047adf2a}\label{classpydantic_1_1types_1_1EncodedBytes_ac8e8fb790f04399d4c756757047adf2a} 
+type {\bfseries encoder} \+[\doxymbox{\hyperlink{classpydantic_1_1types_1_1EncoderProtocol}{Encoder\+Protocol}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A bytes type that is encoded and decoded using the specified encoder.
+
+`EncodedBytes` needs an encoder that implements `EncoderProtocol` to operate.
+
+```py
+from typing_extensions import Annotated
+
+from pydantic import BaseModel, EncodedBytes, EncoderProtocol, ValidationError
+
+class MyEncoder(EncoderProtocol):
+    @classmethod
+    def decode(cls, data: bytes) -> bytes:
+        if data == b'**undecodable**':
+            raise ValueError('Cannot decode data')
+        return data[13:]
+
+    @classmethod
+    def encode(cls, value: bytes) -> bytes:
+        return b'**encoded**: ' + value
+
+    @classmethod
+    def get_json_format(cls) -> str:
+        return 'my-encoder'
+
+MyEncodedBytes = Annotated[bytes, EncodedBytes(encoder=MyEncoder)]
+
+class Model(BaseModel):
+    my_encoded_bytes: MyEncodedBytes
+
+# Initialize the model with encoded data
+m = Model(my_encoded_bytes=b'**encoded**: some bytes')
+
+# Access decoded value
+print(m.my_encoded_bytes)
+#> b'some bytes'
+
+# Serialize into the encoded form
+print(m.model_dump())
+#> {'my_encoded_bytes': b'**encoded**: some bytes'}
+
+# Validate encoded data
+try:
+    Model(my_encoded_bytes=b'**undecodable**')
+except ValidationError as e:
+    print(e)
+    '''
+    1 validation error for Model
+    my_encoded_bytes
+      Value error, Cannot decode data [type=value_error, input_value=b'**undecodable**', input_type=bytes]
+    '''
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1types_1_1EncodedBytes_doc-func-members}
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1types_1_1EncodedBytes_a9db6fa8647e0be2c64364e6dfa7edf63}\index{pydantic.types.EncodedBytes@{pydantic.types.EncodedBytes}!decode@{decode}}
+\index{decode@{decode}!pydantic.types.EncodedBytes@{pydantic.types.EncodedBytes}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1EncodedBytes_a9db6fa8647e0be2c64364e6dfa7edf63} 
+ bytes pydantic.\+types.\+Encoded\+Bytes.\+decode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode the data using the specified encoder.
+
+Args:
+    data: The data to decode.
+
+Returns:
+    The decoded data.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1types_1_1EncodedBytes_a61fdec3432c7bfbdf31b8ddaaca6a74c}\index{pydantic.types.EncodedBytes@{pydantic.types.EncodedBytes}!encode@{encode}}
+\index{encode@{encode}!pydantic.types.EncodedBytes@{pydantic.types.EncodedBytes}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1EncodedBytes_a61fdec3432c7bfbdf31b8ddaaca6a74c} 
+ bytes pydantic.\+types.\+Encoded\+Bytes.\+encode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode the data using the specified encoder.
+
+Args:
+    value: The data to encode.
+
+Returns:
+    The encoded data.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+types.\+py\end{DoxyCompactItemize}

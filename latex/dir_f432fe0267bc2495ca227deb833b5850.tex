@@ -1,0 +1,210 @@
+\doxysection{frontend/\+node\+\_\+modules/\+asynckit Directory Reference}
+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850}{}\label{dir_f432fe0267bc2495ca227deb833b5850}\index{frontend/node\_modules/asynckit Directory Reference@{frontend/node\_modules/asynckit Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_0aa6938e915b6e0fab0e325266ed7897}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md166}{}\doxysubsection{\texorpdfstring{asynckit \+[!\+[NPM Module]\+(\href{https://img.shields.io/npm/v/asynckit.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+asynckit.\+svg?style=flat}})]\+(\href{https://www.npmjs.com/package/asynckit}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+asynckit}})}{asynckit \+[!\+[NPM Module]\+(\href{https://img.shields.io/npm/v/asynckit.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+asynckit.\+svg?style=flat}})]\+(\href{https://www.npmjs.com/package/asynckit}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+asynckit}})}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md166}
+Minimal async jobs utility library, with streams support.
+
+\href{https://travis-ci.org/alexindigo/asynckit}{\texttt{}} \href{https://travis-ci.org/alexindigo/asynckit}{\texttt{}} \href{https://ci.appveyor.com/project/alexindigo/asynckit}{\texttt{}}
+
+\href{https://coveralls.io/github/alexindigo/asynckit?branch=master}{\texttt{}} \href{https://david-dm.org/alexindigo/asynckit}{\texttt{}} \href{https://www.bithound.io/github/alexindigo/asynckit}{\texttt{}}
+
+Async\+Kit provides harness for {\ttfamily parallel} and {\ttfamily serial} iterators over list of items represented by arrays or objects. Optionally it accepts abort function (should be synchronously return by iterator for each item), and terminates left over jobs upon an error event. For specific iteration order built-\/in ({\ttfamily ascending} and {\ttfamily descending}) and custom sort helpers also supported, via {\ttfamily asynckit.\+serial\+Ordered} method.
+
+It ensures async operations to keep behavior more stable and prevent {\ttfamily Maximum call stack size exceeded} errors, from sync iterators.
+
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}compression  &\SetCell{r,bg=\tableheadbgcolor,font=\bfseries}size  \\
+asynckit.\+js  &\SetCell{r}12.\+34 kB  \\
+asynckit.\+min.\+js  &\SetCell{r}4.\+11 kB  \\
+asynckit.\+min.\+js.\+gz  &\SetCell{r}1.\+47 kB  \\
+\end{DoxyTable}
+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md167}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md167}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ asynckit}
+
+\end{DoxyCode}
+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md168}{}\doxysubsection{\texorpdfstring{Examples}{Examples}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md168}
+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md169}{}\doxysubsubsection{\texorpdfstring{Parallel Jobs}{Parallel Jobs}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md169}
+Runs iterator over provided array in parallel. Stores output in the {\ttfamily result} array, on the matching positions. In unlikely event of an error from one of the jobs, will terminate rest of the active jobs (if abort function is provided) and return error along with salvaged data to the main callback function.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md170}{}\doxysubsubsubsection{\texorpdfstring{Input Array}{Input Array}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md170}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parallel\ =\ require('asynckit').parallel}
+\DoxyCodeLine{\ \ ,\ assert\ \ \ =\ require('assert')}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ source\ \ \ \ \ \ \ \ \ =\ [\ 1,\ 1,\ 4,\ 16,\ 64,\ 32,\ 8,\ 2\ ]}
+\DoxyCodeLine{\ \ ,\ expectedResult\ =\ [\ 2,\ 2,\ 8,\ 32,\ 128,\ 64,\ 16,\ 4\ ]}
+\DoxyCodeLine{\ \ ,\ expectedTarget\ =\ [\ 1,\ 1,\ 2,\ 4,\ 8,\ 16,\ 32,\ 64\ ]}
+\DoxyCodeLine{\ \ ,\ target\ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{parallel(source,\ asyncJob,\ function(err,\ result)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ assert.deepEqual(result,\ expectedResult);}
+\DoxyCodeLine{\ \ assert.deepEqual(target,\ expectedTarget);}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ async\ job\ accepts\ one\ element\ from\ the\ array}
+\DoxyCodeLine{//\ and\ a\ callback\ function}
+\DoxyCodeLine{function\ asyncJob(item,\ cb)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ //\ different\ delays\ (in\ ms)\ per\ item}
+\DoxyCodeLine{\ \ var\ delay\ =\ item\ *\ 25;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ pretend\ different\ jobs\ take\ different\ time\ to\ finish}
+\DoxyCodeLine{\ \ //\ and\ not\ in\ consequential\ order}
+\DoxyCodeLine{\ \ var\ timeoutId\ =\ setTimeout(function()\ \{}
+\DoxyCodeLine{\ \ \ \ target.push(item);}
+\DoxyCodeLine{\ \ \ \ cb(null,\ item\ *\ 2);}
+\DoxyCodeLine{\ \ \},\ delay);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ allow\ to\ cancel\ "{}leftover"{}\ jobs\ upon\ error}
+\DoxyCodeLine{\ \ //\ return\ function,\ invoking\ of\ which\ will\ abort\ this\ job}
+\DoxyCodeLine{\ \ return\ clearTimeout.bind(null,\ timeoutId);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+More examples could be found in \href{test/test-parallel-array.js}{\texttt{test/\+test-\/parallel-\/array.\+js}}.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md171}{}\doxysubsubsubsection{\texorpdfstring{Input Object}{Input Object}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md171}
+Also it supports named jobs, listed via object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parallel\ =\ require('asynckit/parallel')}
+\DoxyCodeLine{\ \ ,\ assert\ \ \ =\ require('assert')}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ source\ \ \ \ \ \ \ \ \ =\ \{\ first:\ 1,\ one:\ 1,\ four:\ 4,\ sixteen:\ 16,\ sixtyFour:\ 64,\ thirtyTwo:\ 32,\ eight:\ 8,\ two:\ 2\ \}}
+\DoxyCodeLine{\ \ ,\ expectedResult\ =\ \{\ first:\ 2,\ one:\ 2,\ four:\ 8,\ sixteen:\ 32,\ sixtyFour:\ 128,\ thirtyTwo:\ 64,\ eight:\ 16,\ two:\ 4\ \}}
+\DoxyCodeLine{\ \ ,\ expectedTarget\ =\ [\ 1,\ 1,\ 2,\ 4,\ 8,\ 16,\ 32,\ 64\ ]}
+\DoxyCodeLine{\ \ ,\ expectedKeys\ \ \ =\ [\ 'first',\ 'one',\ 'two',\ 'four',\ 'eight',\ 'sixteen',\ 'thirtyTwo',\ 'sixtyFour'\ ]}
+\DoxyCodeLine{\ \ ,\ target\ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ,\ keys\ \ \ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{parallel(source,\ asyncJob,\ function(err,\ result)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ assert.deepEqual(result,\ expectedResult);}
+\DoxyCodeLine{\ \ assert.deepEqual(target,\ expectedTarget);}
+\DoxyCodeLine{\ \ assert.deepEqual(keys,\ expectedKeys);}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ supports\ full\ value,\ key,\ callback\ (shortcut)\ interface}
+\DoxyCodeLine{function\ asyncJob(item,\ key,\ cb)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ //\ different\ delays\ (in\ ms)\ per\ item}
+\DoxyCodeLine{\ \ var\ delay\ =\ item\ *\ 25;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ pretend\ different\ jobs\ take\ different\ time\ to\ finish}
+\DoxyCodeLine{\ \ //\ and\ not\ in\ consequential\ order}
+\DoxyCodeLine{\ \ var\ timeoutId\ =\ setTimeout(function()\ \{}
+\DoxyCodeLine{\ \ \ \ keys.push(key);}
+\DoxyCodeLine{\ \ \ \ target.push(item);}
+\DoxyCodeLine{\ \ \ \ cb(null,\ item\ *\ 2);}
+\DoxyCodeLine{\ \ \},\ delay);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ allow\ to\ cancel\ "{}leftover"{}\ jobs\ upon\ error}
+\DoxyCodeLine{\ \ //\ return\ function,\ invoking\ of\ which\ will\ abort\ this\ job}
+\DoxyCodeLine{\ \ return\ clearTimeout.bind(null,\ timeoutId);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+More examples could be found in \href{test/test-parallel-object.js}{\texttt{test/\+test-\/parallel-\/object.\+js}}.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md172}{}\doxysubsubsection{\texorpdfstring{Serial Jobs}{Serial Jobs}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md172}
+Runs iterator over provided array sequentially. Stores output in the {\ttfamily result} array, on the matching positions. In unlikely event of an error from one of the jobs, will not proceed to the rest of the items in the list and return error along with salvaged data to the main callback function.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md173}{}\doxysubsubsubsection{\texorpdfstring{Input Array}{Input Array}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md173}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ serial\ =\ require('asynckit/serial')}
+\DoxyCodeLine{\ \ ,\ assert\ =\ require('assert')}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ source\ \ \ \ \ \ \ \ \ =\ [\ 1,\ 1,\ 4,\ 16,\ 64,\ 32,\ 8,\ 2\ ]}
+\DoxyCodeLine{\ \ ,\ expectedResult\ =\ [\ 2,\ 2,\ 8,\ 32,\ 128,\ 64,\ 16,\ 4\ ]}
+\DoxyCodeLine{\ \ ,\ expectedTarget\ =\ [\ 0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\ ]}
+\DoxyCodeLine{\ \ ,\ target\ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{serial(source,\ asyncJob,\ function(err,\ result)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ assert.deepEqual(result,\ expectedResult);}
+\DoxyCodeLine{\ \ assert.deepEqual(target,\ expectedTarget);}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ extended\ interface\ (item,\ key,\ callback)}
+\DoxyCodeLine{//\ also\ supported\ for\ arrays}
+\DoxyCodeLine{function\ asyncJob(item,\ key,\ cb)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ target.push(key);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ it\ will\ be\ automatically\ made\ async}
+\DoxyCodeLine{\ \ //\ even\ it\ iterator\ "{}returns"{}\ in\ the\ same\ event\ loop}
+\DoxyCodeLine{\ \ cb(null,\ item\ *\ 2);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+More examples could be found in \href{test/test-serial-array.js}{\texttt{test/\+test-\/serial-\/array.\+js}}.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md174}{}\doxysubsubsubsection{\texorpdfstring{Input Object}{Input Object}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md174}
+Also it supports named jobs, listed via object.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ serial\ =\ require('asynckit').serial}
+\DoxyCodeLine{\ \ ,\ assert\ =\ require('assert')}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ source\ \ \ \ \ \ \ \ \ =\ [\ 1,\ 1,\ 4,\ 16,\ 64,\ 32,\ 8,\ 2\ ]}
+\DoxyCodeLine{\ \ ,\ expectedResult\ =\ [\ 2,\ 2,\ 8,\ 32,\ 128,\ 64,\ 16,\ 4\ ]}
+\DoxyCodeLine{\ \ ,\ expectedTarget\ =\ [\ 0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\ ]}
+\DoxyCodeLine{\ \ ,\ target\ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ source\ \ \ \ \ \ \ \ \ =\ \{\ first:\ 1,\ one:\ 1,\ four:\ 4,\ sixteen:\ 16,\ sixtyFour:\ 64,\ thirtyTwo:\ 32,\ eight:\ 8,\ two:\ 2\ \}}
+\DoxyCodeLine{\ \ ,\ expectedResult\ =\ \{\ first:\ 2,\ one:\ 2,\ four:\ 8,\ sixteen:\ 32,\ sixtyFour:\ 128,\ thirtyTwo:\ 64,\ eight:\ 16,\ two:\ 4\ \}}
+\DoxyCodeLine{\ \ ,\ expectedTarget\ =\ [\ 1,\ 1,\ 4,\ 16,\ 64,\ 32,\ 8,\ 2\ ]}
+\DoxyCodeLine{\ \ ,\ target\ \ \ \ \ \ \ \ \ =\ []}
+\DoxyCodeLine{\ \ ;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{serial(source,\ asyncJob,\ function(err,\ result)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ assert.deepEqual(result,\ expectedResult);}
+\DoxyCodeLine{\ \ assert.deepEqual(target,\ expectedTarget);}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ shortcut\ interface\ (item,\ callback)}
+\DoxyCodeLine{//\ works\ for\ object\ as\ well\ as\ for\ the\ arrays}
+\DoxyCodeLine{function\ asyncJob(item,\ cb)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ target.push(item);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ it\ will\ be\ automatically\ made\ async}
+\DoxyCodeLine{\ \ //\ even\ it\ iterator\ "{}returns"{}\ in\ the\ same\ event\ loop}
+\DoxyCodeLine{\ \ cb(null,\ item\ *\ 2);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+More examples could be found in \href{test/test-serial-object.js}{\texttt{test/\+test-\/serial-\/object.\+js}}.
+
+{\itshape Note:\+ Since \+\_\+object} is an {\itshape unordered} collection of properties, it may produce unexpected results with sequential iterations. Whenever order of the jobs\textquotesingle{} execution is important please use {\ttfamily serial\+Ordered} method.\+\_\+\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md175}{}\doxysubsubsection{\texorpdfstring{Ordered Serial Iterations}{Ordered Serial Iterations}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md175}
+TBD
+
+For example \+[compare-\/property]\+(compare-\/property) package.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md176}{}\doxysubsubsection{\texorpdfstring{Streaming interface}{Streaming interface}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md176}
+TBD\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md177}{}\doxysubsection{\texorpdfstring{Want to Know More?}{Want to Know More?}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md177}
+More examples can be found in \href{test/}{\texttt{test folder}}.
+
+Or open an \href{https://github.com/alexindigo/asynckit/issues}{\texttt{issue}} with questions and/\+or suggestions.\hypertarget{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md178}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_f432fe0267bc2495ca227deb833b5850_autotoc_md178}
+Async\+Kit is licensed under the MIT license. 

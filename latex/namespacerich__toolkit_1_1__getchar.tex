@@ -1,0 +1,46 @@
+\doxysection{rich\+\_\+toolkit.\+\_\+getchar Namespace Reference}
+\hypertarget{namespacerich__toolkit_1_1__getchar}{}\label{namespacerich__toolkit_1_1__getchar}\index{rich\_toolkit.\_getchar@{rich\_toolkit.\_getchar}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{namespacerich__toolkit_1_1__getchar_adf822780ab8e5f5ec9260b4f23b8733e}{getchar}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Unified getchar implementation for all platforms.
+
+Combines approaches from:
+- Textual (Unix/Linux): Copyright (c) 2023 Textualize Inc., MIT License
+- Click (Windows fallback): Copyright 2014 Pallets, BSD-3-Clause License
+\end{DoxyVerb}
+ 
+
+\label{namespacerich__toolkit_1_1__getchar_doc-func-members}
+\Hypertarget{namespacerich__toolkit_1_1__getchar_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacerich__toolkit_1_1__getchar_adf822780ab8e5f5ec9260b4f23b8733e}\index{rich\_toolkit.\_getchar@{rich\_toolkit.\_getchar}!getchar@{getchar}}
+\index{getchar@{getchar}!rich\_toolkit.\_getchar@{rich\_toolkit.\_getchar}}
+\doxysubsubsection{\texorpdfstring{getchar()}{getchar()}}
+{\footnotesize\ttfamily \label{namespacerich__toolkit_1_1__getchar_adf822780ab8e5f5ec9260b4f23b8733e} 
+ str getchar (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read input from stdin with support for longer pasted text.
+
+On Windows:
+- Uses msvcrt for native Windows console input
+- Handles special keys that send two-byte sequences
+- Reads up to 4096 characters for paste support
+
+On Unix/Linux:
+- Uses Textual's approach with manual termios configuration
+- Reads up to 4096 bytes with proper UTF-8 decoding
+- Provides fine-grained terminal control
+
+Returns:
+    str: The input character(s) read from stdin
+
+Raises:
+    KeyboardInterrupt: When CTRL+C is pressed
+\end{DoxyVerb}
+ 

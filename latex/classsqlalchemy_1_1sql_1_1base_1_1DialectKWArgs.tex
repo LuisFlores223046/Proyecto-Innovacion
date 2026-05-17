@@ -1,0 +1,173 @@
+\doxysection{sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs}{}\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+Inheritance diagram for sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.984529cm]{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aedae376954e04bd6e52273a969e5c390}{argument\+\_\+for}} (cls, dialect\+\_\+name, argument\+\_\+name, default)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a60b923f831bb8e525a15168a582d271b}{dialect\+\_\+kwargs}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aed4e8b4e252778f8ec4f8e5933c8f480}{kwargs}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a12400e63368aca4afabeb076239f5e51}{dialect\+\_\+options}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a44a6f39fabe61283b10e17b1da06ddc3}\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a44a6f39fabe61283b10e17b1da06ddc3} 
+{\bfseries \+\_\+kw\+\_\+reg\+\_\+for\+\_\+dialect\+\_\+cls} (self, dialect\+\_\+name)
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a5442d3cca421bf64876169b5b3641111}\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a5442d3cca421bf64876169b5b3641111} 
+None {\bfseries \+\_\+validate\+\_\+dialect\+\_\+kwargs} (self, Dict\+[str, Any]\+ kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a897df7e62808a4b52fc7395b477a4789}\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a897df7e62808a4b52fc7395b477a4789} 
+{\bfseries \+\_\+kw\+\_\+reg\+\_\+for\+\_\+dialect\+\_\+cls}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a121d2e1c3428b2ee42608322db531498}{\+\_\+dialect\+\_\+kwargs\+\_\+traverse\+\_\+internals}}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a8c12f0e4abb4d22f77e9815490f4fd71}\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a8c12f0e4abb4d22f77e9815490f4fd71} 
+{\bfseries \+\_\+kw\+\_\+registry} = \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1__collections_1_1PopulateDict}{util.\+Populate\+Dict}}(\+\_\+kw\+\_\+reg\+\_\+for\+\_\+dialect)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Establish the ability for a class to have dialect-specific arguments
+with defaults and constructor validation.
+
+The :class:`.DialectKWArgs` interacts with the
+:attr:`.DefaultDialect.construct_arguments` present on a dialect.
+
+.. seealso::
+
+    :attr:`.DefaultDialect.construct_arguments`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aedae376954e04bd6e52273a969e5c390}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}!argument\_for@{argument\_for}}
+\index{argument\_for@{argument\_for}!sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+\doxysubsubsection{\texorpdfstring{argument\_for()}{argument\_for()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aedae376954e04bd6e52273a969e5c390} 
+sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs.\+argument\+\_\+for (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{dialect\+\_\+name}{, }\item[{}]{argument\+\_\+name}{, }\item[{}]{default}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a new kind of dialect-specific keyword argument for this class.
+
+E.g.::
+
+    Index.argument_for("mydialect", "length", None)
+
+    some_index = Index('a', 'b', mydialect_length=5)
+
+The :meth:`.DialectKWArgs.argument_for` method is a per-argument
+way adding extra arguments to the
+:attr:`.DefaultDialect.construct_arguments` dictionary. This
+dictionary provides a list of argument names accepted by various
+schema-level constructs on behalf of a dialect.
+
+New dialects should typically specify this dictionary all at once as a
+data member of the dialect class.  The use case for ad-hoc addition of
+argument names is typically for end-user code that is also using
+a custom compilation scheme which consumes the additional arguments.
+
+:param dialect_name: name of a dialect.  The dialect must be
+ locatable, else a :class:`.NoSuchModuleError` is raised.   The
+ dialect must also include an existing
+ :attr:`.DefaultDialect.construct_arguments` collection, indicating
+ that it participates in the keyword-argument validation and default
+ system, else :class:`.ArgumentError` is raised.  If the dialect does
+ not include this collection, then any keyword argument can be
+ specified on behalf of this dialect already.  All dialects packaged
+ within SQLAlchemy include this collection, however for third party
+ dialects, support may vary.
+
+:param argument_name: name of the parameter.
+
+:param default: default value of the parameter.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a60b923f831bb8e525a15168a582d271b}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}!dialect\_kwargs@{dialect\_kwargs}}
+\index{dialect\_kwargs@{dialect\_kwargs}!sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+\doxysubsubsection{\texorpdfstring{dialect\_kwargs()}{dialect\_kwargs()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a60b923f831bb8e525a15168a582d271b} 
+sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs.\+dialect\+\_\+kwargs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A collection of keyword arguments specified as dialect-specific
+options to this construct.
+
+The arguments are present here in their original ``<dialect>_<kwarg>``
+format.  Only arguments that were actually passed are included;
+unlike the :attr:`.DialectKWArgs.dialect_options` collection, which
+contains all options known by this dialect including defaults.
+
+The collection is also writable; keys are accepted of the
+form ``<dialect>_<kwarg>`` where the value will be assembled
+into the list of options.
+
+.. seealso::
+
+    :attr:`.DialectKWArgs.dialect_options` - nested dictionary form
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a12400e63368aca4afabeb076239f5e51}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}!dialect\_options@{dialect\_options}}
+\index{dialect\_options@{dialect\_options}!sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+\doxysubsubsection{\texorpdfstring{dialect\_options()}{dialect\_options()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a12400e63368aca4afabeb076239f5e51} 
+sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs.\+dialect\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A collection of keyword arguments specified as dialect-specific
+options to this construct.
+
+This is a two-level nested registry, keyed to ``<dialect_name>``
+and ``<argument_name>``.  For example, the ``postgresql_where``
+argument would be locatable as::
+
+    arg = my_object.dialect_options['postgresql']['where']
+
+.. versionadded:: 0.9.2
+
+.. seealso::
+
+    :attr:`.DialectKWArgs.dialect_kwargs` - flat dictionary form
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aed4e8b4e252778f8ec4f8e5933c8f480}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}!kwargs@{kwargs}}
+\index{kwargs@{kwargs}!sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+\doxysubsubsection{\texorpdfstring{kwargs()}{kwargs()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_aed4e8b4e252778f8ec4f8e5933c8f480} 
+sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs.\+kwargs (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A synonym for :attr:`.DialectKWArgs.dialect_kwargs`.\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a121d2e1c3428b2ee42608322db531498}\index{sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}!\_dialect\_kwargs\_traverse\_internals@{\_dialect\_kwargs\_traverse\_internals}}
+\index{\_dialect\_kwargs\_traverse\_internals@{\_dialect\_kwargs\_traverse\_internals}!sqlalchemy.sql.base.DialectKWArgs@{sqlalchemy.sql.base.DialectKWArgs}}
+\doxysubsubsection{\texorpdfstring{\_dialect\_kwargs\_traverse\_internals}{\_dialect\_kwargs\_traverse\_internals}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1base_1_1DialectKWArgs_a121d2e1c3428b2ee42608322db531498} 
+list sqlalchemy.\+sql.\+base.\+Dialect\+KWArgs.\+\_\+dialect\+\_\+kwargs\+\_\+traverse\+\_\+internals\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}dialect\_options"{}},\ InternalTraversal.dp\_dialect\_options)}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+base.\+py\end{DoxyCompactItemize}

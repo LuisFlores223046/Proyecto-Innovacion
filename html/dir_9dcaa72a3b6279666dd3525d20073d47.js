@@ -1,0 +1,27 @@
+var dir_9dcaa72a3b6279666dd3525d20073d47 =
+[
+    [ "platform", "dir_3cd0b4a4882b9dd1785b5268ad62106b.html", "dir_3cd0b4a4882b9dd1785b5268ad62106b" ],
+    [ "greenlet.h", "lib_2python3_812_2site-packages_2greenlet_2greenlet_8h_source.html", null ],
+    [ "greenlet_allocator.hpp", "greenlet__allocator_8hpp_source.html", null ],
+    [ "greenlet_compiler_compat.hpp", "greenlet__compiler__compat_8hpp_source.html", null ],
+    [ "greenlet_cpython_add_pending.hpp", "greenlet__cpython__add__pending_8hpp_source.html", null ],
+    [ "greenlet_cpython_compat.hpp", "greenlet__cpython__compat_8hpp_source.html", null ],
+    [ "greenlet_exceptions.hpp", "greenlet__exceptions_8hpp_source.html", null ],
+    [ "greenlet_greenlet.hpp", "greenlet__greenlet_8hpp_source.html", null ],
+    [ "greenlet_internal.hpp", "greenlet__internal_8hpp_source.html", null ],
+    [ "greenlet_refs.hpp", "greenlet__refs_8hpp_source.html", null ],
+    [ "greenlet_slp_switch.hpp", "greenlet__slp__switch_8hpp_source.html", null ],
+    [ "greenlet_thread_state.hpp", "greenlet__thread__state_8hpp_source.html", null ],
+    [ "greenlet_thread_state_dict_cleanup.hpp", "greenlet__thread__state__dict__cleanup_8hpp_source.html", null ],
+    [ "greenlet_thread_support.hpp", "greenlet__thread__support_8hpp_source.html", null ],
+    [ "slp_platformselect.h", "slp__platformselect_8h_source.html", null ],
+    [ "TBrokenGreenlet.cpp", "TBrokenGreenlet_8cpp_source.html", null ],
+    [ "TExceptionState.cpp", "TExceptionState_8cpp_source.html", null ],
+    [ "TGreenlet.cpp", "TGreenlet_8cpp_source.html", null ],
+    [ "TGreenletGlobals.cpp", "TGreenletGlobals_8cpp_source.html", null ],
+    [ "TMainGreenlet.cpp", "TMainGreenlet_8cpp_source.html", null ],
+    [ "TPythonState.cpp", "TPythonState_8cpp_source.html", null ],
+    [ "TStackState.cpp", "TStackState_8cpp_source.html", null ],
+    [ "TThreadStateDestroy.cpp", "TThreadStateDestroy_8cpp_source.html", null ],
+    [ "TUserGreenlet.cpp", "TUserGreenlet_8cpp_source.html", null ]
+];

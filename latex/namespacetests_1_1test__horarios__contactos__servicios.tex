@@ -1,0 +1,55 @@
+\doxysection{tests.\+test\+\_\+horarios\+\_\+contactos\+\_\+servicios Namespace Reference}
+\hypertarget{namespacetests_1_1test__horarios__contactos__servicios}{}\label{namespacetests_1_1test__horarios__contactos__servicios}\index{tests.test\_horarios\_contactos\_servicios@{tests.test\_horarios\_contactos\_servicios}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestCrearHorario}{Test\+Crear\+Horario}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestActualizarHorario}{Test\+Actualizar\+Horario}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestEliminarHorario}{Test\+Eliminar\+Horario}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestCrearContacto}{Test\+Crear\+Contacto}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestEliminarContacto}{Test\+Eliminar\+Contacto}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestCrearServicio}{Test\+Crear\+Servicio}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__horarios__contactos__servicios_1_1TestEliminarServicio}{Test\+Eliminar\+Servicio}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__horarios__contactos__servicios_a1ed6787b02f05afeed2063dfee270e0b}\label{namespacetests_1_1test__horarios__contactos__servicios_a1ed6787b02f05afeed2063dfee270e0b} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_horarios_contactos_servicios.py — Tests de integración para
+/api/v1/horarios, /api/v1/contactos y /api/v1/servicios
+
+Estos routers son de soporte (datos anidados en EspacioCompleto).
+Se agrupan en un solo archivo por ser CRUD simples sin lógica de negocio compleja.
+
+Qué se valida — Horarios:
+  ✔ POST /horarios crea una franja horaria vinculada a un espacio.
+  ✔ POST /horarios sin token → 401/403.
+  ✔ PATCH /horarios/{id} actualiza los datos del horario.
+  ✔ PATCH /horarios/{id} inexistente → 404.
+  ✔ DELETE /horarios/{id} elimina el horario.
+  ✔ DELETE /horarios/{id} inexistente → 404.
+
+Qué se valida — Contactos:
+  ✔ POST /contactos crea un contacto para un espacio.
+  ✔ POST /contactos sin token → 401/403.
+  ✔ DELETE /contactos/{id} elimina el contacto.
+  ✔ DELETE /contactos/{id} inexistente → 404.
+
+Qué se valida — Servicios:
+  ✔ POST /servicios vincula un servicio a un espacio.
+  ✔ POST /servicios sin token → 401/403.
+  ✔ DELETE /servicios/{id} desvincula el servicio.
+  ✔ DELETE /servicios/{id} inexistente → 404.
+\end{DoxyVerb}
+ 

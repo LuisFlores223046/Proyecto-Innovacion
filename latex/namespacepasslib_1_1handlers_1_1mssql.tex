@@ -1,0 +1,87 @@
+\doxysection{passlib.\+handlers.\+mssql Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1mssql}{}\label{namespacepasslib_1_1handlers_1_1mssql}\index{passlib.handlers.mssql@{passlib.handlers.mssql}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1mssql_1_1mssql2000}{mssql2000}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1mssql_1_1mssql2005}{mssql2005}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_a10139e3e341c60d0bf1f85995eff82e8}\label{namespacepasslib_1_1handlers_1_1mssql_a10139e3e341c60d0bf1f85995eff82e8} 
+{\bfseries \+\_\+raw\+\_\+mssql} (secret, salt)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1mssql_af01f04b96213de33ea4335feda1ffb88}{\+\_\+ident\+\_\+mssql}} (hash, csize, bsize)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1mssql_a10c082e6da0007ccb9ba73b600f60623}{\+\_\+parse\+\_\+mssql}} (hash, csize, bsize, handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_afac7776d2caa331dd8447c19fae12338}\label{namespacepasslib_1_1handlers_1_1mssql_afac7776d2caa331dd8447c19fae12338} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_ab17251a0bc06e79a92860127a940fa26}\label{namespacepasslib_1_1handlers_1_1mssql_ab17251a0bc06e79a92860127a940fa26} 
+str {\bfseries BIDENT} = b"{}0x0100"{}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_a9689d010221b382fe922ea332f19d621}\label{namespacepasslib_1_1handlers_1_1mssql_a9689d010221b382fe922ea332f19d621} 
+{\bfseries UIDENT} = u("{}0x0100"{})
+\begin{DoxyCompactList}\small\item\em BIDENT2 = b("{}\textbackslash{}x01\textbackslash{}x00"{}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.mssql - MS-SQL Password Hash
+
+Notes
+=====
+MS-SQL has used a number of hash algs over the years,
+most of which were exposed through the undocumented
+'pwdencrypt' and 'pwdcompare' sql functions.
+
+Known formats
+-------------
+6.5
+    snefru hash, ascii encoded password
+    no examples found
+
+7.0
+    snefru hash, unicode (what encoding?)
+    saw ref that these blobs were 16 bytes in size
+    no examples found
+
+2000
+    byte string using displayed as 0x hex, using 0x0100 prefix.
+    contains hashes of password and upper-case password.
+
+2007
+    same as 2000, but without the upper-case hash.
+
+refs
+----------
+https://blogs.msdn.com/b/lcris/archive/2007/04/30/sql-server-2005-about-login-password-hashes.aspx?Redirected=true
+http://us.generation-nt.com/securing-passwords-hash-help-35429432.html
+http://forum.md5decrypter.co.uk/topic230-mysql-and-mssql-get-password-hashes.aspx
+http://www.theregister.co.uk/2002/07/08/cracking_ms_sql_server_passwords/
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1mssql_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1mssql_af01f04b96213de33ea4335feda1ffb88}\index{passlib.handlers.mssql@{passlib.handlers.mssql}!\_ident\_mssql@{\_ident\_mssql}}
+\index{\_ident\_mssql@{\_ident\_mssql}!passlib.handlers.mssql@{passlib.handlers.mssql}}
+\doxysubsubsection{\texorpdfstring{\_ident\_mssql()}{\_ident\_mssql()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1mssql_af01f04b96213de33ea4335feda1ffb88} 
+\+\_\+ident\+\_\+mssql (\begin{DoxyParamCaption}\item[{}]{hash}{, }\item[{}]{csize}{, }\item[{}]{bsize}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}common identify for mssql 2000/2005\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1handlers_1_1mssql_a10c082e6da0007ccb9ba73b600f60623}\index{passlib.handlers.mssql@{passlib.handlers.mssql}!\_parse\_mssql@{\_parse\_mssql}}
+\index{\_parse\_mssql@{\_parse\_mssql}!passlib.handlers.mssql@{passlib.handlers.mssql}}
+\doxysubsubsection{\texorpdfstring{\_parse\_mssql()}{\_parse\_mssql()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1mssql_a10c082e6da0007ccb9ba73b600f60623} 
+\+\_\+parse\+\_\+mssql (\begin{DoxyParamCaption}\item[{}]{hash}{, }\item[{}]{csize}{, }\item[{}]{bsize}{, }\item[{}]{handler}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}common parser for mssql 2000/2005; returns 4 byte salt + checksum\end{DoxyVerb}
+ 

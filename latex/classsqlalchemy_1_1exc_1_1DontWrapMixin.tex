@@ -1,0 +1,28 @@
+\doxysection{sqlalchemy.\+exc.\+Dont\+Wrap\+Mixin Class Reference}
+\hypertarget{classsqlalchemy_1_1exc_1_1DontWrapMixin}{}\label{classsqlalchemy_1_1exc_1_1DontWrapMixin}\index{sqlalchemy.exc.DontWrapMixin@{sqlalchemy.exc.DontWrapMixin}}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A mixin class which, when applied to a user-defined Exception class,
+will not be wrapped inside of :exc:`.StatementError` if the error is
+emitted within the process of executing a statement.
+
+E.g.::
+
+    from sqlalchemy.exc import DontWrapMixin
+
+    class MyCustomException(Exception, DontWrapMixin):
+        pass
+
+    class MySpecialType(TypeDecorator):
+        impl = String
+
+        def process_bind_param(self, value, dialect):
+            if value == 'invalid':
+                raise MyCustomException("invalid!")
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+exc.\+py\end{DoxyCompactItemize}

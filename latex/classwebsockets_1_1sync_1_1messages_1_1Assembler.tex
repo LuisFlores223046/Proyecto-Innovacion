@@ -1,0 +1,136 @@
+\doxysection{websockets.\+sync.\+messages.\+Assembler Class Reference}
+\hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler}{}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler}\index{websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a4ed3f2d18d798469bedfe3acfd5a38b1}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a4ed3f2d18d798469bedfe3acfd5a38b1} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+Data \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1messages_1_1Assembler_a29101075ce85617eb588ceb1c339c9b7}{get}} (self, Optional\+[float]\+ timeout=None)
+\item 
+Iterator\+[Data]\+ \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1messages_1_1Assembler_a640ee9a1fcadc2ce1d66b440b320cce9}{get\+\_\+iter}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1messages_1_1Assembler_a8908f8d6690eb05d7f227902ae5e8ad2}{put}} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}} frame)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1messages_1_1Assembler_a27f00111ce0c5a5482614c3d89011960}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a6d7299eee17cde15f0a7571ae1eb38b2}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a6d7299eee17cde15f0a7571ae1eb38b2} 
+{\bfseries mutex} = threading.\+Lock()
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a14d926d77e90d4882c476137d8c382fa}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a14d926d77e90d4882c476137d8c382fa} 
+{\bfseries message\+\_\+complete} = threading.\+Event()
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_af0af57f6ce2e4bd92c2b2899bfa1d95e}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_af0af57f6ce2e4bd92c2b2899bfa1d95e} 
+{\bfseries message\+\_\+fetched} = threading.\+Event()
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a03c3038e09cd940506b37d660346daeb}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a03c3038e09cd940506b37d660346daeb} 
+bool {\bfseries get\+\_\+in\+\_\+progress} = False
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a35e6132b49b9ff7d3ae97069426346c8}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a35e6132b49b9ff7d3ae97069426346c8} 
+bool {\bfseries put\+\_\+in\+\_\+progress} = False
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_ad37869b1ab4ee032ee37bdbf3b260ae6}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_ad37869b1ab4ee032ee37bdbf3b260ae6} 
+Optional\+[codecs.\+Incremental\+Decoder]\+ {\bfseries decoder} = None
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a1112437a96d1f8860a4f673d288af0c6}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a1112437a96d1f8860a4f673d288af0c6} 
+list {\bfseries chunks} = \+[$\,$]\+
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a1e02d0ced6d54d52fa587bfcfdfa32d3}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a1e02d0ced6d54d52fa587bfcfdfa32d3} 
+Optional\+[$\,$]\+ {\bfseries chunks\+\_\+queue} = None
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a96f1c6ac426c0e0e998e692fd5d2fabd}\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a96f1c6ac426c0e0e998e692fd5d2fabd} 
+bool {\bfseries closed} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Assemble messages from frames.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1sync_1_1messages_1_1Assembler_doc-func-members}
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a27f00111ce0c5a5482614c3d89011960}\index{websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}!close@{close}}
+\index{close@{close}!websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a27f00111ce0c5a5482614c3d89011960} 
+ None websockets.\+sync.\+messages.\+Assembler.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}End the stream of frames.
+
+Callling :meth:`close` concurrently with :meth:`get`, :meth:`get_iter`,
+or :meth:`put` is safe. They will raise :exc:`EOFError`.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a29101075ce85617eb588ceb1c339c9b7}\index{websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}!get@{get}}
+\index{get@{get}!websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a29101075ce85617eb588ceb1c339c9b7} 
+ Data websockets.\+sync.\+messages.\+Assembler.\+get (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[float]\+ }]{timeout}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read the next message.
+
+:meth:`get` returns a single :class:`str` or :class:`bytes`.
+
+If the message is fragmented, :meth:`get` waits until the last frame is
+received, then it reassembles the message and returns it. To receive
+messages frame by frame, use :meth:`get_iter` instead.
+
+Args:
+    timeout: If a timeout is provided and elapses before a complete
+        message is received, :meth:`get` raises :exc:`TimeoutError`.
+
+Raises:
+    EOFError: If the stream of frames has ended.
+    RuntimeError: If two threads run :meth:`get` or :meth:``get_iter`
+        concurrently.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a640ee9a1fcadc2ce1d66b440b320cce9}\index{websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}!get\_iter@{get\_iter}}
+\index{get\_iter@{get\_iter}!websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}}
+\doxysubsubsection{\texorpdfstring{get\_iter()}{get\_iter()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a640ee9a1fcadc2ce1d66b440b320cce9} 
+ Iterator\+[Data]\+ websockets.\+sync.\+messages.\+Assembler.\+get\+\_\+iter (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stream the next message.
+
+Iterating the return value of :meth:`get_iter` yields a :class:`str` or
+:class:`bytes` for each frame in the message.
+
+The iterator must be fully consumed before calling :meth:`get_iter` or
+:meth:`get` again. Else, :exc:`RuntimeError` is raised.
+
+This method only makes sense for fragmented messages. If messages aren't
+fragmented, use :meth:`get` instead.
+
+Raises:
+    EOFError: If the stream of frames has ended.
+    RuntimeError: If two threads run :meth:`get` or :meth:``get_iter`
+        concurrently.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1messages_1_1Assembler_a8908f8d6690eb05d7f227902ae5e8ad2}\index{websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}!put@{put}}
+\index{put@{put}!websockets.sync.messages.Assembler@{websockets.sync.messages.Assembler}}
+\doxysubsubsection{\texorpdfstring{put()}{put()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1messages_1_1Assembler_a8908f8d6690eb05d7f227902ae5e8ad2} 
+ None websockets.\+sync.\+messages.\+Assembler.\+put (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}}}]{frame}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add ``frame`` to the next message.
+
+When ``frame`` is the final frame in a message, :meth:`put` waits until
+the message is fetched, either by calling :meth:`get` or by fully
+consuming the return value of :meth:`get_iter`.
+
+:meth:`put` assumes that the stream of frames respects the protocol. If
+it doesn't, the behavior is undefined.
+
+Raises:
+    EOFError: If the stream of frames has ended.
+    RuntimeError: If two threads run :meth:`put` concurrently.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+sync/\+messages.\+py\end{DoxyCompactItemize}

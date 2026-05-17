@@ -1,0 +1,108 @@
+\doxysection{multipart.\+multipart.\+Base\+Parser Class Reference}
+\hypertarget{classmultipart_1_1multipart_1_1BaseParser}{}\label{classmultipart_1_1multipart_1_1BaseParser}\index{multipart.multipart.BaseParser@{multipart.multipart.BaseParser}}
+Inheritance diagram for multipart.\+multipart.\+Base\+Parser:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.630277cm]{classmultipart_1_1multipart_1_1BaseParser}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_a2f53585ef91b90cc9b7ab7ef6b01c1e9}\label{classmultipart_1_1multipart_1_1BaseParser_a2f53585ef91b90cc9b7ab7ef6b01c1e9} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser_a848700c93f3cfff210859147d70d02a1}{callback}} (self, str name, data=None, start=None, end=None)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser_a43c7d675ecaea97d26e84fd9e2cf8caa}{set\+\_\+callback}} (self, str name, new\+\_\+func)
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_adb4e68ea16dd15eda4bf023c03dec8f0}\label{classmultipart_1_1multipart_1_1BaseParser_adb4e68ea16dd15eda4bf023c03dec8f0} 
+{\bfseries close} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1BaseParser_a1532d93d8b64241f39e90948b731af9f}{finalize}} (self)
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_a271f4edb517dfb04663626d30305198a}\label{classmultipart_1_1multipart_1_1BaseParser_a271f4edb517dfb04663626d30305198a} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_ab295dcec1b7f534dbecf8e363aace302}\label{classmultipart_1_1multipart_1_1BaseParser_ab295dcec1b7f534dbecf8e363aace302} 
+{\bfseries logger} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class is the base class for all parsers.  It contains the logic for
+calling and adding callbacks.
+
+A callback can be one of two different forms.  "Notification callbacks" are
+callbacks that are called when something happens - for example, when a new
+part of a multipart message is encountered by the parser.  "Data callbacks"
+are called when we get some sort of data - for example, part of the body of
+a multipart chunk.  Notification callbacks are called with no parameters,
+whereas data callbacks are called with three, as follows::
+
+    data_callback(data, start, end)
+
+The "data" parameter is a bytestring (i.e. "foo" on Python 2, or b"foo" on
+Python 3).  "start" and "end" are integer indexes into the "data" string
+that represent the data of interest.  Thus, in a data callback, the slice
+`data[start:end]` represents the data that the callback is "interested in".
+The callback is not passed a copy of the data, since copying severely hurts
+performance.
+\end{DoxyVerb}
+ 
+
+\label{classmultipart_1_1multipart_1_1BaseParser_doc-func-members}
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_a848700c93f3cfff210859147d70d02a1}\index{multipart.multipart.BaseParser@{multipart.multipart.BaseParser}!callback@{callback}}
+\index{callback@{callback}!multipart.multipart.BaseParser@{multipart.multipart.BaseParser}}
+\doxysubsubsection{\texorpdfstring{callback()}{callback()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1BaseParser_a848700c93f3cfff210859147d70d02a1} 
+multipart.\+multipart.\+Base\+Parser.\+callback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{}]{data}{ = {\ttfamily None}, }\item[{}]{start}{ = {\ttfamily None}, }\item[{}]{end}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function calls a provided callback with some data.  If the
+callback is not set, will do nothing.
+
+:param name: The name of the callback to call (as a string).
+
+:param data: Data to pass to the callback.  If None, then it is
+             assumed that the callback is a notification callback,
+             and no parameters are given.
+
+:param end: An integer that is passed to the data callback.
+
+:param start: An integer that is passed to the data callback.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1BaseParser_a1532d93d8b64241f39e90948b731af9f}\index{multipart.multipart.BaseParser@{multipart.multipart.BaseParser}!finalize@{finalize}}
+\index{finalize@{finalize}!multipart.multipart.BaseParser@{multipart.multipart.BaseParser}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1BaseParser_a1532d93d8b64241f39e90948b731af9f} 
+multipart.\+multipart.\+Base\+Parser.\+finalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1MultipartParser_a7cd4139b61ecf5b9775488670fb025b3}{multipart.\+multipart.\+Multipart\+Parser}}, \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1OctetStreamParser_a2412c29066c03ec4698b00aa313bbea0}{multipart.\+multipart.\+Octet\+Stream\+Parser}}, and \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1QuerystringParser_ac956c25e48749bfe9a84fedc623cb271}{multipart.\+multipart.\+Querystring\+Parser}}.
+
+\Hypertarget{classmultipart_1_1multipart_1_1BaseParser_a43c7d675ecaea97d26e84fd9e2cf8caa}\index{multipart.multipart.BaseParser@{multipart.multipart.BaseParser}!set\_callback@{set\_callback}}
+\index{set\_callback@{set\_callback}!multipart.multipart.BaseParser@{multipart.multipart.BaseParser}}
+\doxysubsubsection{\texorpdfstring{set\_callback()}{set\_callback()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1BaseParser_a43c7d675ecaea97d26e84fd9e2cf8caa} 
+multipart.\+multipart.\+Base\+Parser.\+set\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{}]{new\+\_\+func}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update the function for a callback.  Removes from the callbacks dict
+if new_func is None.
+
+:param name: The name of the callback to call (as a string).
+
+:param new_func: The new function for the callback.  If None, then the
+                 callback will be removed (with no error if it does not
+                 exist).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+multipart/\+multipart.\+py\end{DoxyCompactItemize}

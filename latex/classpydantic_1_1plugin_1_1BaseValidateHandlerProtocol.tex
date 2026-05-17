@@ -1,0 +1,116 @@
+\doxysection{pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol Class Reference}
+\hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol}{}\label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol}\index{pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}}
+Inheritance diagram for pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.439024cm]{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a0c86a344f3da04d4172bc4f204fcac7a}{on\+\_\+success}} (self, Any result)
+\item 
+None \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a81acc9350276040d2921e832547ea265}{on\+\_\+error}} (self, Validation\+Error error)
+\item 
+None \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a4341e5e5a33297a0a71438af07305e92}{on\+\_\+exception}} (self, Exception exception)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1Protocol}{typing\+\_\+extensions.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1__ProtocolMeta}{typing\+\_\+extensions.\+\_\+\+Protocol\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (mcls, name, bases, namespace, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+{\bfseries \+\_\+\+\_\+subclasscheck\+\_\+\+\_\+} (cls, other)
+\item 
+{\bfseries \+\_\+\+\_\+instancecheck\+\_\+\+\_\+} (cls, instance)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (cls, other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Callable \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_abd3fff151f5b3a834f359aa9af7cf5ca}{on\+\_\+enter}} \+[..., None]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1Protocol}{typing\+\_\+extensions.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+protocol} = True
+\item 
+bool {\bfseries \+\_\+is\+\_\+runtime\+\_\+protocol} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for plugin callbacks protocols.
+
+You shouldn't implement this protocol directly, instead use one of the subclasses with adds the correctly
+typed `on_error` method.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_doc-func-members}
+\Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a81acc9350276040d2921e832547ea265}\index{pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}!on\_error@{on\_error}}
+\index{on\_error@{on\_error}!pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}}
+\doxysubsubsection{\texorpdfstring{on\_error()}{on\_error()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a81acc9350276040d2921e832547ea265} 
+ None pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol.\+on\+\_\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Validation\+Error}]{error}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback to be notified of validation errors.
+
+Args:
+    error: The validation error.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a4341e5e5a33297a0a71438af07305e92}\index{pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}!on\_exception@{on\_exception}}
+\index{on\_exception@{on\_exception}!pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}}
+\doxysubsubsection{\texorpdfstring{on\_exception()}{on\_exception()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a4341e5e5a33297a0a71438af07305e92} 
+ None pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol.\+on\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Exception}]{exception}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback to be notified of validation exceptions.
+
+Args:
+    exception: The exception raised during validation.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a0c86a344f3da04d4172bc4f204fcac7a}\index{pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}!on\_success@{on\_success}}
+\index{on\_success@{on\_success}!pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}}
+\doxysubsubsection{\texorpdfstring{on\_success()}{on\_success()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_a0c86a344f3da04d4172bc4f204fcac7a} 
+ None pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol.\+on\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{result}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Callback to be notified of successful validation.
+
+Args:
+    result: The result of the validation.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_doc-variable-members}
+\Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_abd3fff151f5b3a834f359aa9af7cf5ca}\index{pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}!on\_enter@{on\_enter}}
+\index{on\_enter@{on\_enter}!pydantic.plugin.BaseValidateHandlerProtocol@{pydantic.plugin.BaseValidateHandlerProtocol}}
+\doxysubsubsection{\texorpdfstring{on\_enter}{on\_enter}}
+{\footnotesize\ttfamily \label{classpydantic_1_1plugin_1_1BaseValidateHandlerProtocol_abd3fff151f5b3a834f359aa9af7cf5ca} 
+Callable pydantic.\+plugin.\+Base\+Validate\+Handler\+Protocol.\+on\+\_\+enter \+[..., None]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1ValidateJsonHandlerProtocol_acee79abca0f99a59568e72e3ed07da94}{pydantic.\+plugin.\+Validate\+Json\+Handler\+Protocol}}, \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1ValidatePythonHandlerProtocol_a04fcf4c8311d672587883ecde658ede4}{pydantic.\+plugin.\+Validate\+Python\+Handler\+Protocol}}, and \doxymbox{\hyperlink{classpydantic_1_1plugin_1_1ValidateStringsHandlerProtocol_abe090ceefb644cb440136452bd226b23}{pydantic.\+plugin.\+Validate\+Strings\+Handler\+Protocol}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+plugin/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,75 @@
+\doxysection{packaging.\+\_\+musllinux Namespace Reference}
+\hypertarget{namespacepackaging_1_1__musllinux}{}\label{namespacepackaging_1_1__musllinux}\index{packaging.\_musllinux@{packaging.\_musllinux}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpackaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepackaging_1_1__musllinux_a0fd5b1d1349789ea661bf362510d7667}\label{namespacepackaging_1_1__musllinux_a0fd5b1d1349789ea661bf362510d7667} 
+\doxymbox{\hyperlink{classpackaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+parse\+\_\+musl\+\_\+version} (str output)
+\item 
+\doxymbox{\hyperlink{classpackaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}}\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{namespacepackaging_1_1__musllinux_a2f2a6542ba31b5029ee3aca0de6d4008}{\+\_\+get\+\_\+musl\+\_\+version}} (str executable)
+\item 
+Iterator\+[str]\+ \doxymbox{\hyperlink{namespacepackaging_1_1__musllinux_aa7fcda322b80b982a4b1973928517950}{platform\+\_\+tags}} (Sequence\+[str]\+ archs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepackaging_1_1__musllinux_a15f489e2f02034d965ee777b5c8cc858}\label{namespacepackaging_1_1__musllinux_a15f489e2f02034d965ee777b5c8cc858} 
+{\bfseries plat} = sysconfig.\+get\+\_\+platform()
+\item 
+\Hypertarget{namespacepackaging_1_1__musllinux_aad969733a57fc63ae5dcb5526c2db626}\label{namespacepackaging_1_1__musllinux_aad969733a57fc63ae5dcb5526c2db626} 
+{\bfseries end}
+\item 
+\Hypertarget{namespacepackaging_1_1__musllinux_a443e31063cc51804165a7ab21ee977ce}\label{namespacepackaging_1_1__musllinux_a443e31063cc51804165a7ab21ee977ce} 
+{\bfseries t}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}PEP 656 support.
+
+This module implements logic to detect if the currently running Python is
+linked against musl, and what musl version is used.
+\end{DoxyVerb}
+ 
+
+\label{namespacepackaging_1_1__musllinux_doc-func-members}
+\Hypertarget{namespacepackaging_1_1__musllinux_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepackaging_1_1__musllinux_a2f2a6542ba31b5029ee3aca0de6d4008}\index{packaging.\_musllinux@{packaging.\_musllinux}!\_get\_musl\_version@{\_get\_musl\_version}}
+\index{\_get\_musl\_version@{\_get\_musl\_version}!packaging.\_musllinux@{packaging.\_musllinux}}
+\doxysubsubsection{\texorpdfstring{\_get\_musl\_version()}{\_get\_musl\_version()}}
+{\footnotesize\ttfamily \label{namespacepackaging_1_1__musllinux_a2f2a6542ba31b5029ee3aca0de6d4008} 
+ \doxymbox{\hyperlink{classpackaging_1_1__musllinux_1_1__MuslVersion}{\+\_\+\+Musl\+Version}} \texorpdfstring{$\vert$}{|} None \+\_\+get\+\_\+musl\+\_\+version (\begin{DoxyParamCaption}\item[{str}]{executable}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Detect currently-running musl runtime version.
+
+This is done by checking the specified executable's dynamic linking
+information, and invoking the loader to parse its output for a version
+string. If the loader is musl, the output would be something like::
+
+    musl libc (x86_64)
+    Version 1.2.2
+    Dynamic Program Loader
+\end{DoxyVerb}
+ \Hypertarget{namespacepackaging_1_1__musllinux_aa7fcda322b80b982a4b1973928517950}\index{packaging.\_musllinux@{packaging.\_musllinux}!platform\_tags@{platform\_tags}}
+\index{platform\_tags@{platform\_tags}!packaging.\_musllinux@{packaging.\_musllinux}}
+\doxysubsubsection{\texorpdfstring{platform\_tags()}{platform\_tags()}}
+{\footnotesize\ttfamily \label{namespacepackaging_1_1__musllinux_aa7fcda322b80b982a4b1973928517950} 
+ Iterator\+[str]\+ platform\+\_\+tags (\begin{DoxyParamCaption}\item[{Sequence\+[str]\+}]{archs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate musllinux tags compatible to the current platform.
+
+:param archs: Sequence of compatible architectures.
+    The first one shall be the closest to the actual architecture and be the part of
+    platform tag after the ``linux_`` prefix, e.g. ``x86_64``.
+    The ``linux_`` prefix is assumed as a prerequisite for the current platform to
+    be musllinux-compatible.
+
+:returns: An iterator of compatible musllinux tags.
+\end{DoxyVerb}
+ 

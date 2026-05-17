@@ -1,0 +1,86 @@
+\doxysection{anyio.\+abc.\+\_\+testing.\+Test\+Runner Class Reference}
+\hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner}{}\label{classanyio_1_1abc_1_1__testing_1_1TestRunner}\index{anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}}
+Inheritance diagram for anyio.\+abc.\+\_\+testing.\+Test\+Runner:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classanyio_1_1abc_1_1__testing_1_1TestRunner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_a51fa00528c94d7074d72bfb5ab3cdcf0}\label{classanyio_1_1abc_1_1__testing_1_1TestRunner_a51fa00528c94d7074d72bfb5ab3cdcf0} 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__testing_1_1TestRunner}{Test\+Runner}} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_ad77da901fa55fbd925524700eb30753c}\label{classanyio_1_1abc_1_1__testing_1_1TestRunner_ad77da901fa55fbd925524700eb30753c} 
+bool\texorpdfstring{$\vert$}{|}None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, types.\+Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\item 
+Iterable\+[\+\_\+T]\+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__testing_1_1TestRunner_a03dcfffb0c4c41dc7b3109351dacd1f5}{run\+\_\+asyncgen\+\_\+fixture}} (self, Callable\+[..., Async\+Generator\+[\+\_\+T, Any]\+]\+ fixture\+\_\+func, dict\+[str, Any]\+ kwargs)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classanyio_1_1abc_1_1__testing_1_1TestRunner_a01008198604d94163e2300c57e164c18}{run\+\_\+fixture}} (self, Callable\+[..., Coroutine\+[Any, Any, \+\_\+T]\+]\+ fixture\+\_\+func, dict\+[str, Any]\+ kwargs)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1abc_1_1__testing_1_1TestRunner_a4c9c51fef9f7fba6d0dea43d37eb9160}{run\+\_\+test}} (self, Callable\+[..., Coroutine\+[Any, Any, Any]\+]\+ test\+\_\+func, dict\+[str, Any]\+ kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Encapsulates a running event loop. Every call made through this object will use the
+same event loop.
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1abc_1_1__testing_1_1TestRunner_doc-func-members}
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_a03dcfffb0c4c41dc7b3109351dacd1f5}\index{anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}!run\_asyncgen\_fixture@{run\_asyncgen\_fixture}}
+\index{run\_asyncgen\_fixture@{run\_asyncgen\_fixture}!anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}}
+\doxysubsubsection{\texorpdfstring{run\_asyncgen\_fixture()}{run\_asyncgen\_fixture()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__testing_1_1TestRunner_a03dcfffb0c4c41dc7b3109351dacd1f5} 
+ Iterable\+[\+\_\+T]\+ anyio.\+abc.\+\_\+testing.\+Test\+Runner.\+run\+\_\+asyncgen\+\_\+fixture (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[..., Async\+Generator\+[\+\_\+T, Any]\+]\+}]{fixture\+\_\+func}{, }\item[{dict\+[str, Any]\+}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run an async generator fixture.
+
+:param fixture_func: the fixture function
+:param kwargs: keyword arguments to call the fixture function with
+:return: an iterator yielding the value yielded from the async generator
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TestRunner_a863afa4afd725d325468aeb335fc47a1}{anyio.\+\_\+backends.\+\_\+asyncio.\+Test\+Runner}}, and \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1TestRunner_a2a1eebb0cd3804e7a81292c084ed8b4e}{anyio.\+\_\+backends.\+\_\+trio.\+Test\+Runner}}.
+
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_a01008198604d94163e2300c57e164c18}\index{anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}!run\_fixture@{run\_fixture}}
+\index{run\_fixture@{run\_fixture}!anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}}
+\doxysubsubsection{\texorpdfstring{run\_fixture()}{run\_fixture()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__testing_1_1TestRunner_a01008198604d94163e2300c57e164c18} 
+ \+\_\+T anyio.\+abc.\+\_\+testing.\+Test\+Runner.\+run\+\_\+fixture (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[..., Coroutine\+[Any, Any, \+\_\+T]\+]\+}]{fixture\+\_\+func}{, }\item[{dict\+[str, Any]\+}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run an async fixture.
+
+:param fixture_func: the fixture function
+:param kwargs: keyword arguments to call the fixture function with
+:return: the return value of the fixture function
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TestRunner_a5dc1953c2487adc54006f9b7959e58d0}{anyio.\+\_\+backends.\+\_\+asyncio.\+Test\+Runner}}, and \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1TestRunner_a530c78bdf5304b078bb21c580de77485}{anyio.\+\_\+backends.\+\_\+trio.\+Test\+Runner}}.
+
+\Hypertarget{classanyio_1_1abc_1_1__testing_1_1TestRunner_a4c9c51fef9f7fba6d0dea43d37eb9160}\index{anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}!run\_test@{run\_test}}
+\index{run\_test@{run\_test}!anyio.abc.\_testing.TestRunner@{anyio.abc.\_testing.TestRunner}}
+\doxysubsubsection{\texorpdfstring{run\_test()}{run\_test()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__testing_1_1TestRunner_a4c9c51fef9f7fba6d0dea43d37eb9160} 
+ None anyio.\+abc.\+\_\+testing.\+Test\+Runner.\+run\+\_\+test (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[..., Coroutine\+[Any, Any, Any]\+]\+}]{test\+\_\+func}{, }\item[{dict\+[str, Any]\+     }]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run an async test function.
+
+:param test_func: the test function
+:param kwargs: keyword arguments to call the test function with
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TestRunner_ae8a92c06473ad7d4a9de9a2605e4b111}{anyio.\+\_\+backends.\+\_\+asyncio.\+Test\+Runner}}, and \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1TestRunner_adacfa5f961d5c0f8fa72692405373aff}{anyio.\+\_\+backends.\+\_\+trio.\+Test\+Runner}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+abc/\+\+\_\+testing.\+py\end{DoxyCompactItemize}

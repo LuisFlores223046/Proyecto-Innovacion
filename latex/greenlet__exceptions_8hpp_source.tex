@@ -1,0 +1,152 @@
+\doxysection{greenlet\+\_\+exceptions.\+hpp}
+\hypertarget{greenlet__exceptions_8hpp_source}{}\label{greenlet__exceptions_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_exceptions.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_exceptions.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_EXCEPTIONS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_EXCEPTIONS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ PY\_SSIZE\_T\_CLEAN}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ push}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ ignored\ "{}-\/Wunused-\/function"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }PyErrOccurred\ :\ \textcolor{keyword}{public}\ std::runtime\_error}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CAUTION:\ In\ debug\ builds,\ may\ run\ arbitrary\ Python\ code.}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ PyErrOccurred}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ from\_current()}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ assert(PyErr\_Occurred());}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ NDEBUG}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ not\ exception\ safe,\ and}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ not\ necessarily\ safe\ in\ general\ (what\ if\ it\ switches?)}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ But\ we\ only\ do\ this\ in\ debug\ mode,\ where\ we\ are\ in}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tight\ control\ of\ what\ exceptions\ are\ getting\ raised\ and}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ can\ prevent\ those\ issues.}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ can't\ call\ PyObject\_Str\ with\ a\ pending\ exception.}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ typ;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ val;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ tb;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Fetch(\&typ,\ \&val,\ \&tb);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ typs\ =\ PyObject\_Str(typ);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ vals\ =\ PyObject\_Str(val\ ?\ val\ :\ typ);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ typ\_msg\ =\ PyUnicode\_AsUTF8(typs);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ val\_msg\ =\ PyUnicode\_AsUTF8(vals);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Restore(typ,\ val,\ tb);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ msg(typ\_msg);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ +=\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ msg\ +=\ val\_msg;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ PyErrOccurred\ ex(msg);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(typs);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(vals);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ex;}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyErrOccurred();}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ PyErrOccurred()\ :\ std::runtime\_error(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ assert(PyErr\_Occurred());}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ PyErrOccurred(\textcolor{keyword}{const}\ std::string\&\ msg)\ :\ std::runtime\_error(msg)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ assert(PyErr\_Occurred());}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ PyErrOccurred(PyObject*\ exc\_kind,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ msg)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::runtime\_error(msg)}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_SetString(exc\_kind,\ msg);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ PyErrOccurred(PyObject*\ exc\_kind,\ \textcolor{keyword}{const}\ std::string\ msg)}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::runtime\_error(msg)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ copies\ the\ c\_str,\ so\ we\ don't\ have\ any\ lifetime}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ issues\ to\ worry\ about.}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_SetString(exc\_kind,\ msg.c\_str());}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{class\ }TypeError\ :\ \textcolor{keyword}{public}\ PyErrOccurred}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ TypeError(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ what)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyErrOccurred(PyExc\_TypeError,\ what)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ TypeError(\textcolor{keyword}{const}\ std::string\ what)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyErrOccurred(PyExc\_TypeError,\ what)}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{class\ }ValueError\ :\ \textcolor{keyword}{public}\ PyErrOccurred}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ ValueError(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ what)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyErrOccurred(PyExc\_ValueError,\ what)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{class\ }AttributeError\ :\ \textcolor{keyword}{public}\ PyErrOccurred}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ AttributeError(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ what)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyErrOccurred(PyExc\_AttributeError,\ what)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{class\ }PyFatalError\ :\ \textcolor{keyword}{public}\ std::runtime\_error}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ PyFatalError(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ msg)}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ :\ std::runtime\_error(msg)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_FatalError(msg);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ PyObject*}
+\DoxyCodeLine{00128\ \ \ \ \ Require(PyObject*\ p,\ \textcolor{keyword}{const}\ std::string\&\ msg=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00129\ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}(msg);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00134\ \ \ \ \ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00137\ \ \ \ \ Require(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ retval)}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (retval\ <\ 0)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ pop}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

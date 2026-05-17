@@ -1,0 +1,98 @@
+\doxysection{pydantic.\+type\+\_\+adapter Namespace Reference}
+\hypertarget{namespacepydantic_1_1type__adapter}{}\label{namespacepydantic_1_1type__adapter}\index{pydantic.type\_adapter@{pydantic.type\_adapter}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpydantic_1_1type__adapter_1_1TypeAdapter}{Type\+Adapter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Core\+Schema \doxymbox{\hyperlink{namespacepydantic_1_1type__adapter_ae3be9310ec9ea91a69c99c1d06203365}{\+\_\+get\+\_\+schema}} (Any type\+\_\+, \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}} config\+\_\+wrapper, int parent\+\_\+depth)
+\item 
+Any \doxymbox{\hyperlink{namespacepydantic_1_1type__adapter_a11ccfb57fd8f572aa5035df6911e9e6a}{\+\_\+getattr\+\_\+no\+\_\+parents}} (Any obj, str attribute)
+\item 
+bool \doxymbox{\hyperlink{namespacepydantic_1_1type__adapter_a2694de24d416b67a42df3d7e8039f2cc}{\+\_\+type\+\_\+has\+\_\+config}} (Any type\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepydantic_1_1type__adapter_a863692c7dc2dacec2a9f9c54558691a0}\label{namespacepydantic_1_1type__adapter_a863692c7dc2dacec2a9f9c54558691a0} 
+{\bfseries T} = Type\+Var(\textquotesingle{}T\textquotesingle{})
+\item 
+\Hypertarget{namespacepydantic_1_1type__adapter_a96ce9c20b64c283cfd4335d7e9e6176c}\label{namespacepydantic_1_1type__adapter_a96ce9c20b64c283cfd4335d7e9e6176c} 
+{\bfseries Inc\+Ex} = Union\+[Set\+[int]\+, Set\+[str]\+, Dict\+[int, Any]\+, Dict\+[str, Any]\+]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Type adapter specification.\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1type__adapter_doc-func-members}
+\Hypertarget{namespacepydantic_1_1type__adapter_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepydantic_1_1type__adapter_ae3be9310ec9ea91a69c99c1d06203365}\index{pydantic.type\_adapter@{pydantic.type\_adapter}!\_get\_schema@{\_get\_schema}}
+\index{\_get\_schema@{\_get\_schema}!pydantic.type\_adapter@{pydantic.type\_adapter}}
+\doxysubsubsection{\texorpdfstring{\_get\_schema()}{\_get\_schema()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1type__adapter_ae3be9310ec9ea91a69c99c1d06203365} 
+ Core\+Schema \+\_\+get\+\_\+schema (\begin{DoxyParamCaption}\item[{Any}]{type\+\_\+}{, }\item[{\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__config_1_1ConfigWrapper}{\+\_\+config.\+Config\+Wrapper}}}]{config\+\_\+wrapper}{, }\item[{int}]{parent\+\_\+depth}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}`BaseModel` uses its own `__module__` to find out where it was defined
+and then looks for symbols to resolve forward references in those globals.
+On the other hand this function can be called with arbitrary objects,
+including type aliases, where `__module__` (always `typing.py`) is not useful.
+So instead we look at the globals in our parent stack frame.
+
+This works for the case where this function is called in a module that
+has the target of forward references in its scope, but
+does not always work for more complex cases.
+
+For example, take the following:
+
+a.py
+```python
+from typing import Dict, List
+
+IntList = List[int]
+OuterDict = Dict[str, 'IntList']
+```
+
+b.py
+```python test="skip"
+from a import OuterDict
+
+from pydantic import TypeAdapter
+
+IntList = int  # replaces the symbol the forward reference is looking for
+v = TypeAdapter(OuterDict)
+v({'x': 1})  # should fail but doesn't
+```
+
+If `OuterDict` were a `BaseModel`, this would work because it would resolve
+the forward reference within the `a.py` namespace.
+But `TypeAdapter(OuterDict)` can't determine what module `OuterDict` came from.
+
+In other words, the assumption that _all_ forward references exist in the
+module we are being called from is not technically always true.
+Although most of the time it is and it works fine for recursive models and such,
+`BaseModel`'s behavior isn't perfect either and _can_ break in similar ways,
+so there is no right or wrong between the two.
+
+But at the very least this behavior is _subtly_ different from `BaseModel`'s.
+\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1type__adapter_a11ccfb57fd8f572aa5035df6911e9e6a}\index{pydantic.type\_adapter@{pydantic.type\_adapter}!\_getattr\_no\_parents@{\_getattr\_no\_parents}}
+\index{\_getattr\_no\_parents@{\_getattr\_no\_parents}!pydantic.type\_adapter@{pydantic.type\_adapter}}
+\doxysubsubsection{\texorpdfstring{\_getattr\_no\_parents()}{\_getattr\_no\_parents()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1type__adapter_a11ccfb57fd8f572aa5035df6911e9e6a} 
+ Any \+\_\+getattr\+\_\+no\+\_\+parents (\begin{DoxyParamCaption}\item[{Any}]{obj}{, }\item[{str}]{attribute}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Returns the attribute value without attempting to look up attributes from parent types.\end{DoxyVerb}
+ \Hypertarget{namespacepydantic_1_1type__adapter_a2694de24d416b67a42df3d7e8039f2cc}\index{pydantic.type\_adapter@{pydantic.type\_adapter}!\_type\_has\_config@{\_type\_has\_config}}
+\index{\_type\_has\_config@{\_type\_has\_config}!pydantic.type\_adapter@{pydantic.type\_adapter}}
+\doxysubsubsection{\texorpdfstring{\_type\_has\_config()}{\_type\_has\_config()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1type__adapter_a2694de24d416b67a42df3d7e8039f2cc} 
+ bool \+\_\+type\+\_\+has\+\_\+config (\begin{DoxyParamCaption}\item[{Any}]{type\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Returns whether the type has config.\end{DoxyVerb}
+ 

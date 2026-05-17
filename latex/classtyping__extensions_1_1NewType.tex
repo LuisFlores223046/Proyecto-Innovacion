@@ -1,0 +1,46 @@
+\doxysection{typing\+\_\+extensions.\+New\+Type Class Reference}
+\hypertarget{classtyping__extensions_1_1NewType}{}\label{classtyping__extensions_1_1NewType}\index{typing\_extensions.NewType@{typing\_extensions.NewType}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a7db2988d0430e3717407552a3ae09e47}\label{classtyping__extensions_1_1NewType_a7db2988d0430e3717407552a3ae09e47} 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, obj)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_aaf098220a7e667fea1a1c3a4470aab54}\label{classtyping__extensions_1_1NewType_aaf098220a7e667fea1a1c3a4470aab54} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, name, tp)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a40a20f03a6b9424b41b1a42737fc9af5}\label{classtyping__extensions_1_1NewType_a40a20f03a6b9424b41b1a42737fc9af5} 
+{\bfseries \+\_\+\+\_\+mro\+\_\+entries\+\_\+\+\_\+} (self, bases)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a01ed901c10facb9310decd7abe461ea8}\label{classtyping__extensions_1_1NewType_a01ed901c10facb9310decd7abe461ea8} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a35156aad0b8726af5742df65f3ac274a}\label{classtyping__extensions_1_1NewType_a35156aad0b8726af5742df65f3ac274a} 
+{\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a5f0e2a163c229fb204c95b904d312872}\label{classtyping__extensions_1_1NewType_a5f0e2a163c229fb204c95b904d312872} 
+{\bfseries \+\_\+\+\_\+or\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classtyping__extensions_1_1NewType_a5d6020a2e3c1cc3745a963af35fa81bb}\label{classtyping__extensions_1_1NewType_a5d6020a2e3c1cc3745a963af35fa81bb} 
+{\bfseries \+\_\+\+\_\+ror\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}NewType creates simple unique types with almost zero
+runtime overhead. NewType(name, tp) is considered a subtype of tp
+by static type checkers. At runtime, NewType(name, tp) returns
+a dummy callable that simply returns its argument. Usage::
+    UserId = NewType('UserId', int)
+    def name_by_id(user_id: UserId) -> str:
+        ...
+    UserId('user')          # Fails type check
+    name_by_id(42)          # Fails type check
+    name_by_id(UserId(42))  # OK
+    num = UserId(5) + 1     # type: int
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

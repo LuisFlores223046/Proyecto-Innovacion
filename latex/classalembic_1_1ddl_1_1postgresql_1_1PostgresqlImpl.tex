@@ -1,0 +1,346 @@
+\doxysection{alembic.\+ddl.\+postgresql.\+Postgresql\+Impl Class Reference}
+\hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl}{}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+Inheritance diagram for alembic.\+ddl.\+postgresql.\+Postgresql\+Impl:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a68070d5bcd0645da2f33b690efa38f74}{create\+\_\+index}} (self, Index index, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a0a697cd46d8f07e4a9f9e269aa2d592a}{prep\+\_\+table\+\_\+for\+\_\+batch}} (self, batch\+\_\+impl, table)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ae2e4ab37abc93b8cb3ac0d4930add90a}{compare\+\_\+server\+\_\+default}} (self, inspector\+\_\+column, metadata\+\_\+column, rendered\+\_\+metadata\+\_\+default, rendered\+\_\+inspector\+\_\+default)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aeb245e800f5b890bda43e10265958c21}{alter\+\_\+column}} (self, str table\+\_\+name, str column\+\_\+name, Optional\+[bool]\+ nullable=None, Union\+[\+\_\+\+Server\+Default, Literal\+[False]\+]\+ server\+\_\+default=False, Optional\+[str]\+ name=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ type\+\_\+=None, Optional\+[str]\+ schema=None, Optional\+[bool]\+ autoincrement=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ existing\+\_\+type=None, Optional\+[\+\_\+\+Server\+Default]\+ existing\+\_\+server\+\_\+default=None, Optional\+[bool]\+ existing\+\_\+nullable=None, Optional\+[bool]\+ existing\+\_\+autoincrement=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a01d983bf0cbe76be5338e13d0f4b2284}{autogen\+\_\+column\+\_\+reflect}} (self, inspector, table, column\+\_\+info)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aca124bce640be5ef4644de26f101005c}{correct\+\_\+for\+\_\+autogen\+\_\+constraints}} (self, conn\+\_\+unique\+\_\+constraints, conn\+\_\+indexes, metadata\+\_\+unique\+\_\+constraints, metadata\+\_\+indexes)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_af8079d275c10b1dc05855752a218d493}{compare\+\_\+indexes}} (self, Index metadata\+\_\+index, Index reflected\+\_\+index)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ab1e93e576fee605320414f4ee6b711d9}{compare\+\_\+unique\+\_\+constraint}} (self, Unique\+Constraint metadata\+\_\+constraint, Unique\+Constraint reflected\+\_\+constraint)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a2225521876e6c4cc0f7dbb755f8986e3}{adjust\+\_\+reflected\+\_\+dialect\+\_\+options}} (self, Dict\+[str, Any]\+ reflected\+\_\+options, str kind)
+\item 
+str \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a6592fd87dd23d0cecabb4be302430484}{render\+\_\+ddl\+\_\+sql\+\_\+expr}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}} expr, bool is\+\_\+server\+\_\+default=False, bool is\+\_\+index=False, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Union\+[str, Literal\+[False]\+]\+ \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aba5a0b97d2c90142f1add54d5e9e8b30}{render\+\_\+type}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}} type\+\_\+, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+ connection, bool as\+\_\+sql, Optional\+[bool]\+ transactional\+\_\+ddl, Optional\+[Text\+IO]\+ output\+\_\+buffer, Dict\+[str, Any]\+ context\+\_\+opts)
+\item 
+Type\+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}]\+ {\bfseries get\+\_\+by\+\_\+dialect} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect)
+\item 
+None {\bfseries static\+\_\+output} (self, str text)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a83d71629a27003ae0bf7b7db5e22aa82}{requires\+\_\+recreate\+\_\+in\+\_\+batch}} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}} batch\+\_\+op)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+ {\bfseries bind} (self)
+\item 
+None {\bfseries execute} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+ sql, Optional\+[dict\+[str, Any]\+]\+ execution\+\_\+options=None)
+\item 
+None {\bfseries add\+\_\+column} (self, str table\+\_\+name, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ column, Optional\+[Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+]\+ schema=None)
+\item 
+None {\bfseries drop\+\_\+column} (self, str table\+\_\+name, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ column, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+None {\bfseries add\+\_\+constraint} (self, Any const)
+\item 
+None {\bfseries drop\+\_\+constraint} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Constraint}{Constraint}} const)
+\item 
+None {\bfseries rename\+\_\+table} (self, str old\+\_\+table\+\_\+name, Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+ new\+\_\+table\+\_\+name, Optional\+[Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+]\+ schema=None)
+\item 
+None {\bfseries create\+\_\+table} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries drop\+\_\+table} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries create\+\_\+table\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries drop\+\_\+table\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries create\+\_\+column\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ column)
+\item 
+None {\bfseries drop\+\_\+index} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} index, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None {\bfseries bulk\+\_\+insert} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1TableClause}{Table\+Clause}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}]\+ table, List\+[dict]\+ rows, bool multiinsert=True)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_ae5002a0a496f3a9f7f61fc104f0abe9f}{compare\+\_\+type}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ inspector\+\_\+column, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}} metadata\+\_\+column)
+\item 
+{\bfseries cast\+\_\+for\+\_\+batch\+\_\+migrate} (self, existing, existing\+\_\+transfer, new\+\_\+type)
+\item 
+None {\bfseries correct\+\_\+for\+\_\+autogen\+\_\+foreignkeys} (self, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1ForeignKeyConstraint}{Foreign\+Key\+Constraint}}]\+ conn\+\_\+fks, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1ForeignKeyConstraint}{Foreign\+Key\+Constraint}}]\+ metadata\+\_\+fks)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a736c9ad7507e21f5271fc75479988fee}{start\+\_\+migrations}} (self)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a785adf45bbd09d97f624ad2ea20a2189}{emit\+\_\+begin}} (self)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a880469ff983d31a212db51a3eafffc2b}{emit\+\_\+commit}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1ImplMeta}{alembic.\+ddl.\+impl.\+Impl\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, str classname, Tuple\+[Type\+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}]\+]\+ bases, Dict\+[str, Any]\+ dict\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a7f014ea0a9720babbacd92474165643f}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a7f014ea0a9720babbacd92474165643f} 
+str {\bfseries \+\_\+cleanup\+\_\+index\+\_\+expr} (self, Index index, str expr)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_afcca8944ea498ac484e79f422dffece8}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_afcca8944ea498ac484e79f422dffece8} 
+Tuple\+[Any,...]\+ {\bfseries \+\_\+dialect\+\_\+options} (self, Union\+[Index, Unique\+Constraint]\+ item)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a92965cb5d8d70591bb946977cd2e5756}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a92965cb5d8d70591bb946977cd2e5756} 
+str {\bfseries \+\_\+compile\+\_\+element} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}}, str]\+ element)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ab5ecb85bcbfcc8daf95b21aca8fe8676}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ab5ecb85bcbfcc8daf95b21aca8fe8676} 
+str {\bfseries \+\_\+render\+\_\+\+HSTORE\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE}{HSTORE}} type\+\_\+, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a69dba0bde08e2d67148e36e07dd23d32}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a69dba0bde08e2d67148e36e07dd23d32} 
+str {\bfseries \+\_\+render\+\_\+\+ARRAY\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1array_1_1ARRAY}{ARRAY}} type\+\_\+, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a4dde6eb2f2c42c9055dadbe6b0faebdd}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a4dde6eb2f2c42c9055dadbe6b0faebdd} 
+str {\bfseries \+\_\+render\+\_\+\+JSON\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}{JSON}} type\+\_\+, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\item 
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a1270211c3d0da57ee9261f693d4d7cde}\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a1270211c3d0da57ee9261f693d4d7cde} 
+str {\bfseries \+\_\+render\+\_\+\+JSONB\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSONB}{JSONB}} type\+\_\+, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}]\+ {\bfseries \+\_\+exec} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+ construct, Optional\+[dict\+[str, Any]\+]\+ execution\+\_\+options=None, Sequence\+[dict]\+ multiparams=(), Dict\+[str, Any]\+ params=util.\+immutabledict())
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} {\bfseries \+\_\+tokenize\+\_\+column\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}} column)
+\item 
+bool {\bfseries \+\_\+column\+\_\+types\+\_\+match} (self, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} inspector\+\_\+params, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} metadata\+\_\+params)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a73a865071d3e9fb44f12fd3cb49157ef}{\+\_\+column\+\_\+args\+\_\+match}} (self, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} inspected\+\_\+params, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} meta\+\_\+params)
+\item 
+Callable {\bfseries \+\_\+compat\+\_\+autogen\+\_\+column\+\_\+reflect} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1Inspector}{Inspector}} inspector)
+\item 
+{\bfseries \+\_\+compare\+\_\+identity\+\_\+default} (self, metadata\+\_\+identity, inspector\+\_\+identity)
+\item 
+Optional\+[str]\+ {\bfseries \+\_\+compare\+\_\+index\+\_\+unique} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} metadata\+\_\+index, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} reflected\+\_\+index)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1__constraint__sig}{\+\_\+constraint\+\_\+sig}}\+[\+\_\+autogen.\+\_\+C]\+ {\bfseries \+\_\+create\+\_\+metadata\+\_\+constraint\+\_\+sig} (self, \+\_\+autogen.\+\_\+C constraint, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any opts)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1__constraint__sig}{\+\_\+constraint\+\_\+sig}}\+[\+\_\+autogen.\+\_\+C]\+ {\bfseries \+\_\+create\+\_\+reflected\+\_\+constraint\+\_\+sig} (self, \+\_\+autogen.\+\_\+C constraint, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any opts)
+\item 
+{\bfseries \+\_\+skip\+\_\+functional\+\_\+indexes} (self, metadata\+\_\+indexes, conn\+\_\+indexes)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \doxymbox{\hyperlink{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a3102e6fe71c8e38e8639319e6c3d864e}{\+\_\+default\+\_\+modifiers\+\_\+re}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1ImplMeta}{alembic.\+ddl.\+impl.\+Impl\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+dict {\bfseries \+\_\+impls} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries dialect} = dialect
+\item 
+{\bfseries connection} = connection
+\item 
+{\bfseries as\+\_\+sql} = as\+\_\+sql
+\item 
+{\bfseries literal\+\_\+binds} = context\+\_\+opts.\+get("{}literal\+\_\+binds"{}, False)
+\item 
+{\bfseries output\+\_\+buffer} = output\+\_\+buffer
+\item 
+dict {\bfseries memo} = \{\}
+\item 
+{\bfseries context\+\_\+opts} = context\+\_\+opts
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries transactional\+\_\+ddl} = False
+\item 
+str {\bfseries command\+\_\+terminator} = "{};"{}
+\item 
+tuple {\bfseries type\+\_\+synonyms} = (\{"{}NUMERIC"{}, "{}DECIMAL"{}\},)
+\item 
+tuple {\bfseries type\+\_\+arg\+\_\+extract} = ()
+\item 
+tuple {\bfseries identity\+\_\+attrs\+\_\+ignore} = ("{}order"{}, "{}on\+\_\+null"{})
+\end{DoxyCompactItemize}
+
+
+\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_doc-func-members}
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a2225521876e6c4cc0f7dbb755f8986e3}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!adjust\_reflected\_dialect\_options@{adjust\_reflected\_dialect\_options}}
+\index{adjust\_reflected\_dialect\_options@{adjust\_reflected\_dialect\_options}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{adjust\_reflected\_dialect\_options()}{adjust\_reflected\_dialect\_options()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a2225521876e6c4cc0f7dbb755f8986e3} 
+ Dict\+[str, Any]\+ alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+adjust\+\_\+reflected\+\_\+dialect\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\+[str, Any]\+}]{reflected\+\_\+options}{, }\item[{str     }]{kind}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aeb245e800f5b890bda43e10265958c21}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!alter\_column@{alter\_column}}
+\index{alter\_column@{alter\_column}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{alter\_column()}{alter\_column()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aeb245e800f5b890bda43e10265958c21} 
+ None alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+alter\+\_\+column (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{str}]{column\+\_\+name}{, }\item[{Optional\+[bool]\+ }]{nullable}{ = {\ttfamily None}, }\item[{Union\+[\+\_\+\+Server\+Default, Literal\+[False]\+]\+ }]{server\+\_\+default}{ = {\ttfamily False}, }\item[{Optional\+[str]\+ }]{name}{ = {\ttfamily None}, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ }]{type\+\_\+}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Optional\+[bool]\+ }]{autoincrement}{ = {\ttfamily None}, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ }]{existing\+\_\+type}{ = {\ttfamily None}, }\item[{Optional\+[\+\_\+\+Server\+Default]\+ }]{existing\+\_\+server\+\_\+default}{ = {\ttfamily None}, }\item[{Optional\+[bool]\+ }]{existing\+\_\+nullable}{ = {\ttfamily None}, }\item[{Optional\+[bool]\+ }]{existing\+\_\+autoincrement}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a01d983bf0cbe76be5338e13d0f4b2284}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!autogen\_column\_reflect@{autogen\_column\_reflect}}
+\index{autogen\_column\_reflect@{autogen\_column\_reflect}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{autogen\_column\_reflect()}{autogen\_column\_reflect()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a01d983bf0cbe76be5338e13d0f4b2284} 
+alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+autogen\+\_\+column\+\_\+reflect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{inspector}{, }\item[{}]{table}{, }\item[{}]{column\+\_\+info}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A hook that is attached to the 'column_reflect' event for when
+a Table is reflected from the database during the autogenerate
+process.
+
+Dialects can elect to modify the information gathered here.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_ac84f2efbb9fc891a8015b00702ae9436}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_af8079d275c10b1dc05855752a218d493}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!compare\_indexes@{compare\_indexes}}
+\index{compare\_indexes@{compare\_indexes}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{compare\_indexes()}{compare\_indexes()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_af8079d275c10b1dc05855752a218d493} 
+ \doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+compare\+\_\+indexes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Index}]{metadata\+\_\+index}{, }\item[{Index}]{reflected\+\_\+index}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Compare two indexes by comparing the signature generated by
+``create_index_sig``.
+
+This method returns a ``ComparisonResult``.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a29d34b1cde559e3c5903f6faf7c3049f}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ae2e4ab37abc93b8cb3ac0d4930add90a}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!compare\_server\_default@{compare\_server\_default}}
+\index{compare\_server\_default@{compare\_server\_default}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{compare\_server\_default()}{compare\_server\_default()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ae2e4ab37abc93b8cb3ac0d4930add90a} 
+alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+compare\+\_\+server\+\_\+default (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{inspector\+\_\+column}{, }\item[{}]{metadata\+\_\+column}{, }\item[{}]{rendered\+\_\+metadata\+\_\+default}{, }\item[{}]{rendered\+\_\+inspector\+\_\+default}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ab1e93e576fee605320414f4ee6b711d9}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!compare\_unique\_constraint@{compare\_unique\_constraint}}
+\index{compare\_unique\_constraint@{compare\_unique\_constraint}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{compare\_unique\_constraint()}{compare\_unique\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_ab1e93e576fee605320414f4ee6b711d9} 
+ \doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+compare\+\_\+unique\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Unique\+Constraint}]{metadata\+\_\+constraint}{, }\item[{Unique\+Constraint}]{reflected\+\_\+constraint}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Compare two unique constraints by comparing the two signatures.
+
+The arguments are two tuples that contain the unique constraint and
+the signatures generated by ``create_unique_constraint_sig``.
+
+This method returns a ``ComparisonResult``.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_adb2358059da3ed2a9bc1303d4643c1ff}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aca124bce640be5ef4644de26f101005c}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!correct\_for\_autogen\_constraints@{correct\_for\_autogen\_constraints}}
+\index{correct\_for\_autogen\_constraints@{correct\_for\_autogen\_constraints}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{correct\_for\_autogen\_constraints()}{correct\_for\_autogen\_constraints()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aca124bce640be5ef4644de26f101005c} 
+alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+correct\+\_\+for\+\_\+autogen\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{conn\+\_\+unique\+\_\+constraints}{, }\item[{}]{conn\+\_\+indexes}{, }\item[{}]{metadata\+\_\+unique\+\_\+constraints}{, }\item[{}]{metadata\+\_\+indexes}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a68070d5bcd0645da2f33b690efa38f74}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!create\_index@{create\_index}}
+\index{create\_index@{create\_index}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{create\_index()}{create\_index()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a68070d5bcd0645da2f33b690efa38f74} 
+ None alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+create\+\_\+index (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Index}]{index}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a0a697cd46d8f07e4a9f9e269aa2d592a}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!prep\_table\_for\_batch@{prep\_table\_for\_batch}}
+\index{prep\_table\_for\_batch@{prep\_table\_for\_batch}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{prep\_table\_for\_batch()}{prep\_table\_for\_batch()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a0a697cd46d8f07e4a9f9e269aa2d592a} 
+alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+prep\+\_\+table\+\_\+for\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{batch\+\_\+impl}{, }\item[{}]{table}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}perform any operations needed on a table before a new
+one is created to replace it in batch mode.
+
+the PG dialect uses this to drop constraints on the table
+before the new one uses those same names.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a7726b7a170425b7bb7bff8bb1ab7e64d}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a6592fd87dd23d0cecabb4be302430484}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!render\_ddl\_sql\_expr@{render\_ddl\_sql\_expr}}
+\index{render\_ddl\_sql\_expr@{render\_ddl\_sql\_expr}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{render\_ddl\_sql\_expr()}{render\_ddl\_sql\_expr()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a6592fd87dd23d0cecabb4be302430484} 
+ str alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+render\+\_\+ddl\+\_\+sql\+\_\+expr (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}}}]{expr}{, }\item[{bool }]{is\+\_\+server\+\_\+default}{ = {\ttfamily False}, }\item[{bool }]{is\+\_\+index}{ = {\ttfamily False}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Render a SQL expression that is typically a server default,
+index expression, etc.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a1df853d8284ad546750511b835603b5b}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aba5a0b97d2c90142f1add54d5e9e8b30}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!render\_type@{render\_type}}
+\index{render\_type@{render\_type}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{render\_type()}{render\_type()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_aba5a0b97d2c90142f1add54d5e9e8b30} 
+ Union\+[str, Literal\+[False]\+]\+ alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+render\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}}]{type\+\_\+}{, }\item[{\doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}}     }]{autogen\+\_\+context}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+
+
+\label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_doc-variable-members}
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a3102e6fe71c8e38e8639319e6c3d864e}\index{alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}!\_default\_modifiers\_re@{\_default\_modifiers\_re}}
+\index{\_default\_modifiers\_re@{\_default\_modifiers\_re}!alembic.ddl.postgresql.PostgresqlImpl@{alembic.ddl.postgresql.PostgresqlImpl}}
+\doxysubsubsection{\texorpdfstring{\_default\_modifiers\_re}{\_default\_modifiers\_re}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1postgresql_1_1PostgresqlImpl_a3102e6fe71c8e38e8639319e6c3d864e} 
+tuple alembic.\+ddl.\+postgresql.\+Postgresql\+Impl.\+\_\+default\+\_\+modifiers\+\_\+re\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (\ \ \textcolor{comment}{\#\ order\ of\ case\ 2\ and\ 5\ matters}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ re.compile(\textcolor{stringliteral}{"{}(\ asc\ nulls\ last)\$"{}}),\ \ \textcolor{comment}{\#\ case\ 5}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ re.compile(\textcolor{stringliteral}{"{}(?<!\ desc)(\ nulls\ last)\$"{}}),\ \ \textcolor{comment}{\#\ case\ 2}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ re.compile(\textcolor{stringliteral}{"{}(\ asc)\$"{}}),\ \ \textcolor{comment}{\#\ case\ 3}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ re.compile(\textcolor{stringliteral}{"{}(\ asc)\ nulls\ first\$"{}}),\ \ \textcolor{comment}{\#\ case\ 4}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ re.compile(\textcolor{stringliteral}{"{}\ desc(\ nulls\ first)\$"{}}),\ \ \textcolor{comment}{\#\ case\ 7}}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+ddl/\+postgresql.\+py\end{DoxyCompactItemize}

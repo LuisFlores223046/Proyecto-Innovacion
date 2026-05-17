@@ -1,0 +1,74 @@
+\doxysection{dns.\+resolver.\+Cache\+Base Class Reference}
+\hypertarget{classdns_1_1resolver_1_1CacheBase}{}\label{classdns_1_1resolver_1_1CacheBase}\index{dns.resolver.CacheBase@{dns.resolver.CacheBase}}
+Inheritance diagram for dns.\+resolver.\+Cache\+Base:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1resolver_1_1CacheBase}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1CacheBase_a31920f889dc2e3e1c4816b615789dcba}\label{classdns_1_1resolver_1_1CacheBase_a31920f889dc2e3e1c4816b615789dcba} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_a290e885748a0651f7c36da075ab488bb}{reset\+\_\+statistics}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_afd9f4a90d13f722ff1ccb7284985d16d}{hits}} (self)
+\item 
+int \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_ac0d171d6beb7bafe6db4a67c579e715f}{misses}} (self)
+\item 
+\doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}} \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheBase_af4c65e043752d8cadb14e85cb0b6f91d}{get\+\_\+statistics\+\_\+snapshot}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1resolver_1_1CacheBase_a3da117450b962809a2efb1e4f19d4571}\label{classdns_1_1resolver_1_1CacheBase_a3da117450b962809a2efb1e4f19d4571} 
+{\bfseries lock} = threading.\+Lock()
+\item 
+\Hypertarget{classdns_1_1resolver_1_1CacheBase_a85368346cd62254a3f03f768be54bf32}\label{classdns_1_1resolver_1_1CacheBase_a85368346cd62254a3f03f768be54bf32} 
+{\bfseries statistics} = \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}}()
+\end{DoxyCompactItemize}
+
+
+\label{classdns_1_1resolver_1_1CacheBase_doc-func-members}
+\Hypertarget{classdns_1_1resolver_1_1CacheBase_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1resolver_1_1CacheBase_af4c65e043752d8cadb14e85cb0b6f91d}\index{dns.resolver.CacheBase@{dns.resolver.CacheBase}!get\_statistics\_snapshot@{get\_statistics\_snapshot}}
+\index{get\_statistics\_snapshot@{get\_statistics\_snapshot}!dns.resolver.CacheBase@{dns.resolver.CacheBase}}
+\doxysubsubsection{\texorpdfstring{get\_statistics\_snapshot()}{get\_statistics\_snapshot()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1CacheBase_af4c65e043752d8cadb14e85cb0b6f91d} 
+ \doxymbox{\hyperlink{classdns_1_1resolver_1_1CacheStatistics}{Cache\+Statistics}} dns.\+resolver.\+Cache\+Base.\+get\+\_\+statistics\+\_\+snapshot (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a consistent snapshot of all the statistics.
+
+If running with multiple threads, it's better to take a
+snapshot than to call statistics methods such as hits() and
+misses() individually.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1CacheBase_afd9f4a90d13f722ff1ccb7284985d16d}\index{dns.resolver.CacheBase@{dns.resolver.CacheBase}!hits@{hits}}
+\index{hits@{hits}!dns.resolver.CacheBase@{dns.resolver.CacheBase}}
+\doxysubsubsection{\texorpdfstring{hits()}{hits()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1CacheBase_afd9f4a90d13f722ff1ccb7284985d16d} 
+ int dns.\+resolver.\+Cache\+Base.\+hits (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}How many hits has the cache had?\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1CacheBase_ac0d171d6beb7bafe6db4a67c579e715f}\index{dns.resolver.CacheBase@{dns.resolver.CacheBase}!misses@{misses}}
+\index{misses@{misses}!dns.resolver.CacheBase@{dns.resolver.CacheBase}}
+\doxysubsubsection{\texorpdfstring{misses()}{misses()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1CacheBase_ac0d171d6beb7bafe6db4a67c579e715f} 
+ int dns.\+resolver.\+Cache\+Base.\+misses (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}How many misses has the cache had?\end{DoxyVerb}
+ \Hypertarget{classdns_1_1resolver_1_1CacheBase_a290e885748a0651f7c36da075ab488bb}\index{dns.resolver.CacheBase@{dns.resolver.CacheBase}!reset\_statistics@{reset\_statistics}}
+\index{reset\_statistics@{reset\_statistics}!dns.resolver.CacheBase@{dns.resolver.CacheBase}}
+\doxysubsubsection{\texorpdfstring{reset\_statistics()}{reset\_statistics()}}
+{\footnotesize\ttfamily \label{classdns_1_1resolver_1_1CacheBase_a290e885748a0651f7c36da075ab488bb} 
+ None dns.\+resolver.\+Cache\+Base.\+reset\+\_\+statistics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reset all statistics to zero.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+resolver.\+py\end{DoxyCompactItemize}

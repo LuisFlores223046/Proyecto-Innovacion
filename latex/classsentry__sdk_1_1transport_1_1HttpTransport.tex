@@ -1,0 +1,154 @@
+\doxysection{sentry\+\_\+sdk.\+transport.\+Http\+Transport Class Reference}
+\hypertarget{classsentry__sdk_1_1transport_1_1HttpTransport}{}\label{classsentry__sdk_1_1transport_1_1HttpTransport}\index{sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}}
+Inheritance diagram for sentry\+\_\+sdk.\+transport.\+Http\+Transport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classsentry__sdk_1_1transport_1_1HttpTransport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+"{}Dict\+[str, Any]\+"{} \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1HttpTransport_a306def6f203c02d58b66c1229b181d30}{\+\_\+get\+\_\+pool\+\_\+options}} ("{}Self"{} self)
+\item 
+"{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1PoolManager}{Pool\+Manager}}, \doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1ProxyManager}{Proxy\+Manager}}]\+"{} \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1HttpTransport_a4867dd2e2271a4d4d080af90f5bbf2f5}{\+\_\+make\+\_\+pool}} ("{}Self"{} self)
+\item 
+"{}urllib3.\+Base\+HTTPResponse"{} \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1HttpTransport_a4df7c3fd1212a45be10cd85375d3097e}{\+\_\+request}} ("{}Self"{} self, str method, "{}Endpoint\+Type"{} endpoint\+\_\+type, "{}Any"{} body, "{}Mapping\+[str, str]\+"{} headers)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+"{}Optional\+[str]\+"{} {\bfseries \+\_\+get\+\_\+header\+\_\+value} ("{}Self"{} self, "{}Any"{} response, str header)
+\item 
+None {\bfseries \+\_\+update\+\_\+rate\+\_\+limits} ("{}Self"{} self, "{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1response_1_1BaseHTTPResponse}{urllib3.\+Base\+HTTPResponse}}, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{httpcore.\+Response}}]\+"{} response)
+\item 
+None {\bfseries \+\_\+send\+\_\+request} ("{}Self"{} self, bytes body, "{}Dict\+[str, str]\+"{} headers, "{}Endpoint\+Type"{} endpoint\+\_\+type=Endpoint\+Type.\+ENVELOPE, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+"{} envelope=None)
+\item 
+"{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} {\bfseries \+\_\+fetch\+\_\+pending\+\_\+client\+\_\+report} ("{}Self"{} self, bool force=False, int interval=60)
+\item 
+None {\bfseries \+\_\+flush\+\_\+client\+\_\+reports} ("{}Self"{} self, bool force=False)
+\item 
+bool {\bfseries \+\_\+check\+\_\+disabled} (self, str category)
+\item 
+bool {\bfseries \+\_\+is\+\_\+rate\+\_\+limited} ("{}Self"{} self)
+\item 
+bool {\bfseries \+\_\+is\+\_\+worker\+\_\+full} ("{}Self"{} self)
+\item 
+None {\bfseries \+\_\+send\+\_\+envelope} ("{}Self"{} self, "{}Envelope"{} envelope)
+\item 
+"{}tuple\+[Optional\+[str]\+, io.\+Bytes\+IO]\+"{} {\bfseries \+\_\+serialize\+\_\+envelope} ("{}Self"{} self, "{}Envelope"{} envelope)
+\item 
+bool {\bfseries \+\_\+in\+\_\+no\+\_\+proxy} ("{}Self"{} self, "{}Dsn"{} parsed\+\_\+dsn)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Dict\+[str, Any]\+"{} options)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a40f7cf7274179445f00b627ae6f1fee7}{record\+\_\+lost\+\_\+event}} (self, str reason, "{}Optional\+[Event\+Data\+Category]\+"{} data\+\_\+category=None, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} item=None, \texorpdfstring{$\ast$}{*}, int quantity=1)
+\item 
+None {\bfseries on\+\_\+dropped\+\_\+event} ("{}Self"{} self, str \+\_\+reason)
+\item 
+bool \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45e9cb51a2d6877084c2c643ddaa14b6}{is\+\_\+healthy}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a0913cc99dc9208d9c20bda332ec523ab}{capture\+\_\+envelope}} (self, "{}Envelope"{} envelope)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ae376d650737fcae044726ac63a03f845}{flush}} ("{}Self"{} self, float timeout, "{}Optional\+[Callable\+[\+[int, float]\+, None]\+]\+"{} callback=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8a367f3b7814bf81ed2fdc16e87a1dd8}{kill}} ("{}Self"{} self)
+\item 
+"{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{} \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a69460e0728d31b3d2cde8c8c07e2469f}{hub\+\_\+cls}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a123a829dece5043cdbc2078caeb77b17}{hub\+\_\+cls}} ("{}Self"{} self, "{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{} value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15}{capture\+\_\+event}} ("{}Self"{} self, "{}Event"{} event)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries options} = options
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries TIMEOUT} = 30
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries parsed\+\_\+dsn} = None
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8d2ba6fd992f33406fdd32c801739b72}{\+\_\+warn\+\_\+hub\+\_\+cls}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+worker} = \doxymbox{\hyperlink{classsentry__sdk_1_1worker_1_1BackgroundWorker}{Background\+Worker}}(queue\+\_\+size=options\+["{}transport\+\_\+queue\+\_\+size"{}]\+)
+\item 
+{\bfseries \+\_\+auth} = self.\+parsed\+\_\+dsn.\+to\+\_\+auth("{}sentry.\+python/\+\%s"{} \% VERSION)
+\item 
+dict {\bfseries \+\_\+disabled\+\_\+until} = \{\}
+\item 
+{\bfseries \+\_\+retry} = \doxymbox{\hyperlink{classurllib3_1_1util_1_1retry_1_1Retry}{urllib3.\+util.\+Retry}}()
+\item 
+tuple \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_acb3463d4b02e8885da96bb4a0fa6ef07}{\+\_\+discarded\+\_\+events}}
+\item 
+{\bfseries \+\_\+last\+\_\+client\+\_\+report\+\_\+sent} = time.\+time()
+\item 
+"{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1PoolManager}{Pool\+Manager}}, \doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1ProxyManager}{Proxy\+Manager}}, \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1SOCKSProxy}{httpcore.\+SOCKSProxy}}, httpcore.\+HTTPProxy, httpcore.\+Connection\+Pool]\+"{} {\bfseries \+\_\+pool} = self.\+\_\+make\+\_\+pool()
+\item 
+{\bfseries \+\_\+hub\+\_\+cls} = \doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}
+\item 
+int {\bfseries \+\_\+compression\+\_\+level} = 0
+\item 
+str {\bfseries \+\_\+compression\+\_\+algo} = None
+\end{DoxyCompactItemize}
+
+
+\label{classsentry__sdk_1_1transport_1_1HttpTransport_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1transport_1_1HttpTransport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1transport_1_1HttpTransport_a306def6f203c02d58b66c1229b181d30}\index{sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}!\_get\_pool\_options@{\_get\_pool\_options}}
+\index{\_get\_pool\_options@{\_get\_pool\_options}!sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}}
+\doxysubsubsection{\texorpdfstring{\_get\_pool\_options()}{\_get\_pool\_options()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1HttpTransport_a306def6f203c02d58b66c1229b181d30} 
+ "{}Dict\+[str, Any]\+"{} sentry\+\_\+sdk.\+transport.\+Http\+Transport.\+\_\+get\+\_\+pool\+\_\+options (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1HttpTransport_a4867dd2e2271a4d4d080af90f5bbf2f5}\index{sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}!\_make\_pool@{\_make\_pool}}
+\index{\_make\_pool@{\_make\_pool}!sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}}
+\doxysubsubsection{\texorpdfstring{\_make\_pool()}{\_make\_pool()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1HttpTransport_a4867dd2e2271a4d4d080af90f5bbf2f5} 
+ "{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1PoolManager}{Pool\+Manager}}, \doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1ProxyManager}{Proxy\+Manager}}]\+"{} sentry\+\_\+sdk.\+transport.\+Http\+Transport.\+\_\+make\+\_\+pool (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1HttpTransport_a4df7c3fd1212a45be10cd85375d3097e}\index{sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}!\_request@{\_request}}
+\index{\_request@{\_request}!sentry\_sdk.transport.HttpTransport@{sentry\_sdk.transport.HttpTransport}}
+\doxysubsubsection{\texorpdfstring{\_request()}{\_request()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1HttpTransport_a4df7c3fd1212a45be10cd85375d3097e} 
+ "{}urllib3.\+Base\+HTTPResponse"{} sentry\+\_\+sdk.\+transport.\+Http\+Transport.\+\_\+request (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{str}]{method}{, }\item[{"{}Endpoint\+Type"{}}]{endpoint\+\_\+type}{, }\item[{"{}Any"{}}]{body}{, }\item[{"{}Mapping\+[str, str]\+"{}}]{headers}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+transport.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,76 @@
+var namespacepip_1_1__vendor_1_1requests =
+[
+    [ "_internal_utils", "namespacepip_1_1__vendor_1_1requests_1_1__internal__utils.html", [
+      [ "to_native_string", "namespacepip_1_1__vendor_1_1requests_1_1__internal__utils.html#a6b17026d77d30fa7cedfcc6b8fd62264", null ],
+      [ "unicode_is_ascii", "namespacepip_1_1__vendor_1_1requests_1_1__internal__utils.html#a06796605f790840c983af48fc746bd01", null ]
+    ] ],
+    [ "adapters", "namespacepip_1_1__vendor_1_1requests_1_1adapters.html", "namespacepip_1_1__vendor_1_1requests_1_1adapters" ],
+    [ "api", "namespacepip_1_1__vendor_1_1requests_1_1api.html", [
+      [ "delete", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a8158142713d45f9ea5178d7b5b32708b", null ],
+      [ "get", "namespacepip_1_1__vendor_1_1requests_1_1api.html#aa8a014e0c2718ade6acdb391a15e4a91", null ],
+      [ "head", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a401af95a37520606e4edc3915d7b8825", null ],
+      [ "options", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a250905de5246112daa490c84e0cb9f25", null ],
+      [ "patch", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a1ed131a5c6a20c35767d8b65d3fa6364", null ],
+      [ "post", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a756d6fb7f3b7904e0c34995f9cfb5202", null ],
+      [ "put", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a0c11c4e91dfa5eaa9d212cef9a050faf", null ],
+      [ "request", "namespacepip_1_1__vendor_1_1requests_1_1api.html#a4fb1c6596e654d4d4f5baaa7ba6ee53c", null ]
+    ] ],
+    [ "auth", "namespacepip_1_1__vendor_1_1requests_1_1auth.html", "namespacepip_1_1__vendor_1_1requests_1_1auth" ],
+    [ "certs", "namespacepip_1_1__vendor_1_1requests_1_1certs.html", null ],
+    [ "compat", "namespacepip_1_1__vendor_1_1requests_1_1compat.html", null ],
+    [ "cookies", "namespacepip_1_1__vendor_1_1requests_1_1cookies.html", "namespacepip_1_1__vendor_1_1requests_1_1cookies" ],
+    [ "exceptions", "namespacepip_1_1__vendor_1_1requests_1_1exceptions.html", "namespacepip_1_1__vendor_1_1requests_1_1exceptions" ],
+    [ "help", "namespacepip_1_1__vendor_1_1requests_1_1help.html", [
+      [ "_implementation", "namespacepip_1_1__vendor_1_1requests_1_1help.html#aed8d6933956732bdfbc76c46a75cd7f7", null ],
+      [ "info", "namespacepip_1_1__vendor_1_1requests_1_1help.html#a8ece94e57064ea71801015df652bed08", null ],
+      [ "main", "namespacepip_1_1__vendor_1_1requests_1_1help.html#a51af30a60f9f02777c6396b8247e356f", null ]
+    ] ],
+    [ "hooks", "namespacepip_1_1__vendor_1_1requests_1_1hooks.html", [
+      [ "dispatch_hook", "namespacepip_1_1__vendor_1_1requests_1_1hooks.html#a747e370b81ca64d37bb957ebdeb3777b", null ]
+    ] ],
+    [ "models", "namespacepip_1_1__vendor_1_1requests_1_1models.html", "namespacepip_1_1__vendor_1_1requests_1_1models" ],
+    [ "sessions", "namespacepip_1_1__vendor_1_1requests_1_1sessions.html", "namespacepip_1_1__vendor_1_1requests_1_1sessions" ],
+    [ "status_codes", "namespacepip_1_1__vendor_1_1requests_1_1status__codes.html", null ],
+    [ "structures", "namespacepip_1_1__vendor_1_1requests_1_1structures.html", "namespacepip_1_1__vendor_1_1requests_1_1structures" ],
+    [ "utils", "namespacepip_1_1__vendor_1_1requests_1_1utils.html", [
+      [ "_parse_content_type_header", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#ab689cdd6bbf97bd0d7c28f88f23cf6d7", null ],
+      [ "add_dict_to_cookiejar", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a499f9ac6275abc123c1496adbd768d68", null ],
+      [ "address_in_network", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a254b6cfe67c9772cd9f7dfcf3d33f648", null ],
+      [ "atomic_open", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a0f23429bcdff4c2de6f03eab728b2c0a", null ],
+      [ "check_header_validity", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aae854d8c440f8d8974bf23f8cee92219", null ],
+      [ "default_headers", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a644cd0aa1d89c79740c528527dfe5cc5", null ],
+      [ "default_user_agent", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aae97d8192478dd847639586e2707de01", null ],
+      [ "dict_from_cookiejar", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a56b37dca84086de6fe997f319389e4fd", null ],
+      [ "dict_to_sequence", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a0678d603618134f12e427fa64f5d14f2", null ],
+      [ "dotted_netmask", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a80676747bb813ca87846558bd573b846", null ],
+      [ "extract_zipped_paths", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#af973676ed82e8e69a10e18c2de1dcd28", null ],
+      [ "from_key_val_list", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a7a0e9e121893cbaf1f2ef15c8dd6a489", null ],
+      [ "get_auth_from_url", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aa18f5fb3efeaa484ea22c9f82381fbf7", null ],
+      [ "get_encoding_from_headers", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a6b97cde196650e50488bd44695d5134b", null ],
+      [ "get_encodings_from_content", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a8b733b3a59b137796e1a11a075f34069", null ],
+      [ "get_environ_proxies", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a9b6d1c327b154cd5ea9491dec5633a36", null ],
+      [ "get_netrc_auth", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#ae05f144b0867649478c4db86fa29b2d5", null ],
+      [ "get_unicode_from_response", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aab476b60777a3ca1b03bf7d513b48554", null ],
+      [ "guess_filename", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#af525a9085b5fa77e42389a1c9b53b042", null ],
+      [ "guess_json_utf", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a821f4654dffa48cff4fe4c88552fb339", null ],
+      [ "is_ipv4_address", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a7ae3cea9d6f71c98d9816d3e8278368f", null ],
+      [ "is_valid_cidr", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#ade653c7c5cf7bad9a60a0f4a764bf3a4", null ],
+      [ "iter_slices", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#acb64ab67503d7cc048f65196eee0d42f", null ],
+      [ "parse_dict_header", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a5e1bcd7a51c5900dc839a86eaa1b230b", null ],
+      [ "parse_header_links", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a2e2b38e02512fd3e2644bb941ad74e2c", null ],
+      [ "parse_list_header", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aee0589c396c8d95d62cdad09470af128", null ],
+      [ "prepend_scheme_if_needed", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aae353531ba6692048c71d6c051fa0888", null ],
+      [ "proxy_bypass", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#adf08e388933b38fd3f296d7568c7afda", null ],
+      [ "requote_uri", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#ad77658d55b8ea46efa944ee01bb5a0da", null ],
+      [ "resolve_proxies", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a2aa44101c0ebecf72dab0adc291f74ac", null ],
+      [ "rewind_body", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aa0d61184bcd66a036eb41bc32a564566", null ],
+      [ "select_proxy", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#ad9200f59b19c01917749873fea1c8a9f", null ],
+      [ "set_environ", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a319dff7927e2f9bb797e249c947ca858", null ],
+      [ "should_bypass_proxies", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#af278f448e6ed591673d20248aab24249", null ],
+      [ "stream_decode_response_unicode", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a72b7a09a85ce5785efffb8f42e55354c", null ],
+      [ "to_key_val_list", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a6bc85013b51e4b52259868e79a9e22e9", null ],
+      [ "unquote_header_value", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#aa224a00b3cfe1a9a4f23c43425fbeb1a", null ],
+      [ "unquote_unreserved", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a7f58487bbfca84be2a82d5a948ddd34c", null ],
+      [ "urldefragauth", "namespacepip_1_1__vendor_1_1requests_1_1utils.html#a30c5132e9d474b8bd8a67f67f90f0fc7", null ]
+    ] ]
+];

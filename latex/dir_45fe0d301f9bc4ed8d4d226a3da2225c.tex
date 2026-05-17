@@ -1,0 +1,296 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fastq Directory Reference}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c}{}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c}\index{frontend/node\_modules/fastq Directory Reference@{frontend/node\_modules/fastq Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_c925178c14fc255fa8eabd4f2581bb63}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1016}{}\doxysubsection{\texorpdfstring{fastq}{fastq}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1016}
+ \href{https://badge.fury.io/js/fastq}{\texttt{}}
+
+Fast, in memory work queue.
+
+Benchmarks (1 million tasks):\+
+
+
+\begin{DoxyItemize}
+\item set\+Immediate:\+ 812ms
+\item fastq:\+ 854ms
+\item async.\+queue:\+ 1298ms
+\item neo\+Async.\+queue:\+ 1249ms
+\end{DoxyItemize}
+
+Obtained on node 12.\+16.\+1, on a dedicated server.
+
+If you need zero-\/overhead series function call, check out \href{http://npm.im/fastseries}{\texttt{fastseries}}. For zero-\/overhead parallel function call, check out \href{http://npm.im/fastparallel}{\texttt{fastparallel}}.
+
+
+\begin{DoxyItemize}
+\item \href{\#install}{\texttt{Installation}}
+\item \href{\#usage}{\texttt{Usage}}
+\item \href{\#api}{\texttt{API}}
+\item \href{\#license}{\texttt{Licence \& copyright}}
+\end{DoxyItemize}\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1017}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1017}
+{\ttfamily npm i fastq -\/-\/save}\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1018}{}\doxysubsection{\texorpdfstring{Usage (callback API)}{Usage (callback API)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1018}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ queue\ =\ require('fastq')(worker,\ 1)}
+\DoxyCodeLine{}
+\DoxyCodeLine{queue.push(42,\ function\ (err,\ result)\ \{}
+\DoxyCodeLine{\ \ if\ (err)\ \{\ throw\ err\ \}}
+\DoxyCodeLine{\ \ console.log('the\ result\ is',\ result)}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ worker\ (arg,\ cb)\ \{}
+\DoxyCodeLine{\ \ cb(null,\ arg\ *\ 2)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1019}{}\doxysubsection{\texorpdfstring{Usage (promise API)}{Usage (promise API)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1019}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ queue\ =\ require('fastq').promise(worker,\ 1)}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ worker\ (arg)\ \{}
+\DoxyCodeLine{\ \ return\ arg\ *\ 2}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ run\ ()\ \{}
+\DoxyCodeLine{\ \ const\ result\ =\ await\ queue.push(42)}
+\DoxyCodeLine{\ \ console.log('the\ result\ is',\ result)}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{run()}
+
+\end{DoxyCode}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1020}{}\doxysubsubsection{\texorpdfstring{Setting "{}this"{}}{Setting "{}this"{}}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1020}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict'}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ that\ =\ \{\ hello:\ 'world'\ \}}
+\DoxyCodeLine{const\ queue\ =\ require('fastq')(that,\ worker,\ 1)}
+\DoxyCodeLine{}
+\DoxyCodeLine{queue.push(42,\ function\ (err,\ result)\ \{}
+\DoxyCodeLine{\ \ if\ (err)\ \{\ throw\ err\ \}}
+\DoxyCodeLine{\ \ console.log(this)}
+\DoxyCodeLine{\ \ console.log('the\ result\ is',\ result)}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ worker\ (arg,\ cb)\ \{}
+\DoxyCodeLine{\ \ console.log(this)}
+\DoxyCodeLine{\ \ cb(null,\ arg\ *\ 2)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1021}{}\doxysubsubsection{\texorpdfstring{Using with Type\+Script (callback API)}{Using with Type\+Script (callback API)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1021}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict'}
+\DoxyCodeLine{}
+\DoxyCodeLine{import\ *\ as\ fastq\ from\ "{}fastq"{};}
+\DoxyCodeLine{import\ type\ \{\ queue,\ done\ \}\ from\ "{}fastq"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ Task\ =\ \{}
+\DoxyCodeLine{\ \ id:\ number}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ q:\ queue<Task>\ =\ fastq(worker,\ 1)}
+\DoxyCodeLine{}
+\DoxyCodeLine{q.push(\{\ id:\ 42\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ worker\ (arg:\ Task,\ cb:\ done)\ \{}
+\DoxyCodeLine{\ \ console.log(arg.id)}
+\DoxyCodeLine{\ \ cb(null)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1022}{}\doxysubsubsection{\texorpdfstring{Using with Type\+Script (promise API)}{Using with Type\+Script (promise API)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1022}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{'use\ strict'}
+\DoxyCodeLine{}
+\DoxyCodeLine{import\ *\ as\ fastq\ from\ "{}fastq"{};}
+\DoxyCodeLine{import\ type\ \{\ queueAsPromised\ \}\ from\ "{}fastq"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ Task\ =\ \{}
+\DoxyCodeLine{\ \ id:\ number}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ q:\ queueAsPromised<Task>\ =\ fastq.promise(asyncWorker,\ 1)}
+\DoxyCodeLine{}
+\DoxyCodeLine{q.push(\{\ id:\ 42\}).catch((err)\ =>\ console.error(err))}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ asyncWorker\ (arg:\ Task):\ Promise<void>\ \{}
+\DoxyCodeLine{\ \ //\ No\ need\ for\ a\ try-\/catch\ block,\ fastq\ handles\ errors\ automatically}
+\DoxyCodeLine{\ \ console.log(arg.id)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1023}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1023}
+
+\begin{DoxyItemize}
+\item \href{\#fastqueue}{\texttt{{\ttfamily fastqueue()}}}
+\item \href{\#push}{\texttt{{\ttfamily queue\#{\bfseries{push()}}}}}
+\item \href{\#unshift}{\texttt{{\ttfamily queue\#{\bfseries{unshift()}}}}}
+\item \href{\#pause}{\texttt{{\ttfamily queue\#{\bfseries{pause()}}}}}
+\item \href{\#resume}{\texttt{{\ttfamily queue\#{\bfseries{resume()}}}}}
+\item \href{\#idle}{\texttt{{\ttfamily queue\#{\bfseries{idle()}}}}}
+\item \href{\#length}{\texttt{{\ttfamily queue\#{\bfseries{length()}}}}}
+\item \href{\#getQueue}{\texttt{{\ttfamily queue\#{\bfseries{get\+Queue()}}}}}
+\item \href{\#kill}{\texttt{{\ttfamily queue\#{\bfseries{kill()}}}}}
+\item \href{\#killAndDrain}{\texttt{{\ttfamily queue\#{\bfseries{kill\+And\+Drain()}}}}}
+\item \href{\#error}{\texttt{{\ttfamily queue\#{\bfseries{error()}}}}}
+\item \href{\#concurrency}{\texttt{{\ttfamily queue\#{\bfseries{concurrency}}}}}
+\item \href{\#drain}{\texttt{{\ttfamily queue\#{\bfseries{drain}}}}}
+\item \href{\#empty}{\texttt{{\ttfamily queue\#{\bfseries{empty}}}}}
+\item \href{\#saturated}{\texttt{{\ttfamily queue\#{\bfseries{saturated}}}}}
+\item \href{\#promise}{\texttt{{\ttfamily fastqueue.\+promise()}}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_fastqueue}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_fastqueue}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1025}{}\doxysubsubsection{\texorpdfstring{fastqueue(\+[that]\+, worker, concurrency)}{fastqueue(\+[that]\+, worker, concurrency)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1025}
+Creates a new queue.
+
+Arguments:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily that}, optional context of the {\ttfamily worker} function.
+\item {\ttfamily worker}, worker function, it would be called with {\ttfamily that} as {\ttfamily this}, if that is specified.
+\item {\ttfamily concurrency}, number of concurrent tasks that could be executed in parallel.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_push}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_push}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1027}{}\doxysubsubsection{\texorpdfstring{queue.\+push(task, done)}{queue.\+push(task, done)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1027}
+Add a task at the end of the queue. {\ttfamily done(err, result)} will be called when the task was processed.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_unshift}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_unshift}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1029}{}\doxysubsubsection{\texorpdfstring{queue.\+unshift(task, done)}{queue.\+unshift(task, done)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1029}
+Add a task at the beginning of the queue. {\ttfamily done(err, result)} will be called when the task was processed.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_pause}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_pause}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1031}{}\doxysubsubsection{\texorpdfstring{queue.\+pause()}{queue.\+pause()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1031}
+Pause the processing of tasks. Currently worked tasks are not stopped.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_resume}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_resume}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1033}{}\doxysubsubsection{\texorpdfstring{queue.\+resume()}{queue.\+resume()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1033}
+Resume the processing of tasks.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_idle}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_idle}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1035}{}\doxysubsubsection{\texorpdfstring{queue.\+idle()}{queue.\+idle()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1035}
+Returns {\ttfamily false} if there are tasks being processed or waiting to be processed. {\ttfamily true} otherwise.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_length}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_length}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1037}{}\doxysubsubsection{\texorpdfstring{queue.\+length()}{queue.\+length()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1037}
+Returns the number of tasks waiting to be processed (in the queue).
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_getQueue}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_getQueue}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1039}{}\doxysubsubsection{\texorpdfstring{queue.\+get\+Queue()}{queue.\+get\+Queue()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1039}
+Returns all the tasks be processed (in the queue). Returns empty array when there are no tasks
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_kill}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_kill}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1041}{}\doxysubsubsection{\texorpdfstring{queue.\+kill()}{queue.\+kill()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1041}
+Removes all tasks waiting to be processed, and reset {\ttfamily drain} to an empty function.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_killAndDrain}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_killAndDrain}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1043}{}\doxysubsubsection{\texorpdfstring{queue.\+kill\+And\+Drain()}{queue.\+kill\+And\+Drain()}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1043}
+Same than {\ttfamily kill} but the {\ttfamily drain} function will be called before reset to empty.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_error}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_error}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1045}{}\doxysubsubsection{\texorpdfstring{queue.\+error(handler)}{queue.\+error(handler)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1045}
+Set a global error handler. {\ttfamily handler(err, task)} will be called each time a task is completed, {\ttfamily err} will be not null if the task has thrown an error.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_concurrency}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_concurrency}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1047}{}\doxysubsubsection{\texorpdfstring{queue.\+concurrency}{queue.\+concurrency}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1047}
+Property that returns the number of concurrent tasks that could be executed in parallel. It can be altered at runtime.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_paused}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_paused}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1049}{}\doxysubsubsection{\texorpdfstring{queue.\+paused}{queue.\+paused}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1049}
+Property (Read-\/\+Only) that returns {\ttfamily true} when the queue is in a paused state.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_drain}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_drain}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1051}{}\doxysubsubsection{\texorpdfstring{queue.\+drain}{queue.\+drain}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1051}
+Function that will be called when the last item from the queue has been processed by a worker. It can be altered at runtime.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_empty}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_empty}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1053}{}\doxysubsubsection{\texorpdfstring{queue.\+empty}{queue.\+empty}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1053}
+Function that will be called when the last item from the queue has been assigned to a worker. It can be altered at runtime.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_saturated}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_saturated}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1055}{}\doxysubsubsection{\texorpdfstring{queue.\+saturated}{queue.\+saturated}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1055}
+Function that will be called when the queue hits the concurrency limit. It can be altered at runtime.
+
+\DoxyHorRuler{0}
+ \label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_promise}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_promise}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1057}{}\doxysubsubsection{\texorpdfstring{fastqueue.\+promise(\+[that]\+, worker(arg), concurrency)}{fastqueue.\+promise(\+[that]\+, worker(arg), concurrency)}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1057}
+Creates a new queue with {\ttfamily Promise} apis. It also offers all the methods and properties of the object returned by \doxylink{dir_45fe0d301f9bc4ed8d4d226a3da2225c_fastqueue}{\`{}fastqueue\`{}}{\ttfamily fastqueue} with the modified \doxylink{dir_45fe0d301f9bc4ed8d4d226a3da2225c_pushPromise}{\`{}push\`{}}{\ttfamily push} and \doxylink{dir_45fe0d301f9bc4ed8d4d226a3da2225c_unshiftPromise}{\`{}unshift\`{}}{\ttfamily unshift} methods.
+
+Node v10+ is required to use the promisified version.
+
+Arguments:\+
+\begin{DoxyItemize}
+\item {\ttfamily that}, optional context of the {\ttfamily worker} function.
+\item {\ttfamily worker}, worker function, it would be called with {\ttfamily that} as {\ttfamily this}, if that is specified. It MUST return a {\ttfamily Promise}.
+\item {\ttfamily concurrency}, number of concurrent tasks that could be executed in parallel.
+\end{DoxyItemize}
+
+\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_pushPromise}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_pushPromise}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1058}{}\doxysubsubsubsection{\texorpdfstring{queue.\+push(task) =\texorpdfstring{$>$}{>} Promise}{queue.\+push(task) =\texorpdfstring{$>$}{>} Promise}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1058}
+Add a task at the end of the queue. The returned {\ttfamily Promise} will be fulfilled (rejected) when the task is completed successfully (unsuccessfully).
+
+This promise could be ignored as it will not lead to a {\ttfamily \textquotesingle{}unhandled\+Rejection\textquotesingle{}}.
+
+\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_unshiftPromise}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_unshiftPromise}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1059}{}\doxysubsubsubsection{\texorpdfstring{queue.\+unshift(task) =\texorpdfstring{$>$}{>} Promise}{queue.\+unshift(task) =\texorpdfstring{$>$}{>} Promise}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1059}
+Add a task at the beginning of the queue. The returned {\ttfamily Promise} will be fulfilled (rejected) when the task is completed successfully (unsuccessfully).
+
+This promise could be ignored as it will not lead to a {\ttfamily \textquotesingle{}unhandled\+Rejection\textquotesingle{}}.
+
+\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_drained}%
+\Hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_drained}%
+ \hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1060}{}\doxysubsubsubsection{\texorpdfstring{queue.\+drained() =\texorpdfstring{$>$}{>} Promise}{queue.\+drained() =\texorpdfstring{$>$}{>} Promise}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1060}
+Wait for the queue to be drained. The returned {\ttfamily Promise} will be resolved when all tasks in the queue have been processed by a worker.
+
+This promise could be ignored as it will not lead to a {\ttfamily \textquotesingle{}unhandled\+Rejection\textquotesingle{}}.\hypertarget{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1061}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_45fe0d301f9bc4ed8d4d226a3da2225c_autotoc_md1061}
+ISC 

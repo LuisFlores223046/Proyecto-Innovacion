@@ -1,0 +1,556 @@
+\doxysection{\+\_\+embedding.\+h}
+\hypertarget{__embedding_8h_source}{}\label{__embedding_8h_source}\index{venv/lib/python3.12/site-\/packages/cffi/\_embedding.h@{venv/lib/python3.12/site-\/packages/cffi/\_embedding.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{/*****\ Support\ code\ for\ embedding\ *****/}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#\ \ define\ CFFI\_DLLEXPORT\ \ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#\ \ define\ CFFI\_DLLEXPORT\ \ \_\_attribute\_\_((visibility("{}default"{})))}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ \ define\ CFFI\_DLLEXPORT\ \ }\textcolor{comment}{/*\ nothing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*\ There\ are\ two\ global\ variables\ of\ type\ \_cffi\_call\_python\_fnptr:}}
+\DoxyCodeLine{00019\ \textcolor{comment}{}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ *\ \_cffi\_call\_python,\ which\ we\ declare\ just\ below,\ is\ the\ one\ called}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ \ by\ \`{}\`{}extern\ "{}Python"{}``\ implementations.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ *\ \_cffi\_call\_python\_org,\ which\ on\ CPython\ is\ actually\ part\ of\ the}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ \ \_cffi\_exports[]\ array,\ is\ the\ function\ pointer\ copied\ from}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \_cffi\_backend.\ \ If\ \_cffi\_start\_python()\ fails,\ then\ this\ is\ set}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ to\ NULL;\ otherwise,\ it\ should\ never\ be\ NULL.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ After\ initialization\ is\ complete,\ both\ are\ equal.\ \ However,\ the}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ first\ one\ remains\ equal\ to\ \&\_cffi\_start\_and\_call\_python\ until\ the}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ very\ end\ of\ initialization,\ when\ we\ are\ (or\ should\ be)\ sure\ that}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ concurrent\ threads\ also\ see\ a\ completely\ initialized\ world,\ and}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ only\ then\ is\ it\ changed.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#undef\ \_cffi\_call\_python}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ void\ (*\_cffi\_call\_python\_fnptr)(\textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__externpy__s}{\_cffi\_externpy\_s}}\ *,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00036\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_start\_and\_call\_python(\textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__externpy__s}{\_cffi\_externpy\_s}}\ *,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00037\ \textcolor{keyword}{static}\ \_cffi\_call\_python\_fnptr\ \_cffi\_call\_python\ =\ \&\_cffi\_start\_and\_call\_python;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00041\ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Assuming\ a\ GCC\ not\ infinitely\ old\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ define\ cffi\_compare\_and\_swap(l,o,n)\ \ \_\_sync\_bool\_compare\_and\_swap(l,o,n)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ define\ cffi\_write\_barrier()\ \ \ \ \ \ \ \ \ \ \_\_sync\_synchronize()}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ if\ !defined(\_\_amd64\_\_)\ \&\&\ !defined(\_\_x86\_64\_\_)\ \&\&\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \ !defined(\_\_i386\_\_)\ \&\&\ !defined(\_\_i386)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ \ define\ cffi\_read\_barrier()\ \ \ \ \ \ \ \ \ \_\_sync\_synchronize()}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ define\ cffi\_read\_barrier()\ \ \ \ \ \ \ \ \ (void)0}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Windows\ threads\ version\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ include\ <Windows.h>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ define\ cffi\_compare\_and\_swap(l,o,n)\ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (InterlockedCompareExchangePointer(l,n,o)\ ==\ (o))}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ define\ cffi\_write\_barrier()\ \ \ \ \ \ \ InterlockedCompareExchange(\&\_cffi\_dummy,0,0)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ define\ cffi\_read\_barrier()\ \ \ \ \ \ \ \ \ \ \ (void)0}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{static}\ \textcolor{keyword}{volatile}\ LONG\ \_cffi\_dummy;}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifdef\ WITH\_THREAD}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ include\ <pthread.h>}}
+\DoxyCodeLine{00063\ \ \ \ \textcolor{keyword}{static}\ pthread\_mutex\_t\ \_cffi\_embed\_startup\_lock;}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00065\ \ \ \ \textcolor{keyword}{static}\ CRITICAL\_SECTION\ \_cffi\_embed\_startup\_lock;}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ \_cffi\_embed\_startup\_lock\_ready\ =\ 0;}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_acquire\_reentrant\_mutex(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\textcolor{keyword}{volatile}\ lock\ =\ NULL;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{while}\ (!cffi\_compare\_and\_swap(\&lock,\ NULL,\ (\textcolor{keywordtype}{void}\ *)1))\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ should\ ideally\ do\ a\ spin\ loop\ instruction\ here,\ but}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ hard\ to\ do\ it\ portably\ and\ doesn't\ really\ matter\ I}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ think:\ pthread\_mutex\_init()\ should\ be\ very\ fast,\ and}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ this\ is\ only\ run\ at\ start-\/up\ anyway.\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#ifdef\ WITH\_THREAD}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\_cffi\_embed\_startup\_lock\_ready)\ \{}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ pthread\_mutexattr\_t\ attr;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ pthread\_mutexattr\_init(\&attr);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ pthread\_mutexattr\_settype(\&attr,\ PTHREAD\_MUTEX\_RECURSIVE);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ pthread\_mutex\_init(\&\_cffi\_embed\_startup\_lock,\ \&attr);}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ InitializeCriticalSection(\&\_cffi\_embed\_startup\_lock);}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \_cffi\_embed\_startup\_lock\_ready\ =\ 1;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{while}\ (!cffi\_compare\_and\_swap(\&lock,\ (\textcolor{keywordtype}{void}\ *)1,\ NULL))}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00099\ \ \ \ \ pthread\_mutex\_lock(\&\_cffi\_embed\_startup\_lock);}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00101\ \ \ \ \ EnterCriticalSection(\&\_cffi\_embed\_startup\_lock);}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_release\_reentrant\_mutex(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#ifndef\ \_MSC\_VER}}
+\DoxyCodeLine{00108\ \ \ \ \ pthread\_mutex\_unlock(\&\_cffi\_embed\_startup\_lock);}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00110\ \ \ \ \ LeaveCriticalSection(\&\_cffi\_embed\_startup\_lock);}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{/**********\ \ CPython-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifndef\ PYPY\_VERSION}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#include\ "{}\_cffi\_errors.h"{}}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ \_cffi\_call\_python\_org\ \ \_cffi\_exports[\_CFFI\_CPIDX]}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ PyMODINIT\_FUNC\ \_CFFI\_PYTHON\_STARTUP\_FUNC(\textcolor{keywordtype}{void});\ \ \ \textcolor{comment}{/*\ forward\ */}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \_cffi\_py\_initialize(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{/*\ XXX\ use\ initsigs=0,\ which\ "{}skips\ initialization\ registration\ of}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ \ \ \ signal\ handlers,\ which\ might\ be\ useful\ when\ Python\ is}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ \ \ embedded"{}\ according\ to\ the\ Python\ docs.\ \ But\ review\ and\ think}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ \ \ \ if\ it\ should\ be\ a\ user-\/controllable\ setting.}}
+\DoxyCodeLine{00131\ \textcolor{comment}{}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ \ \ \ \ \ \ XXX\ we\ should\ also\ give\ a\ way\ to\ write\ errors\ to\ a\ buffer}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ \ \ \ \ \ \ instead\ of\ to\ stderr.}}
+\DoxyCodeLine{00134\ \textcolor{comment}{}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ \ \ \ \ \ XXX\ if\ importing\ 'site'\ fails,\ CPython\ (any\ version)\ calls}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ \ \ \ \ \ \ exit().\ \ Should\ we\ try\ to\ work\ around\ this\ behavior\ here?}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00138\ \ \ \ \ Py\_InitializeEx(0);}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_cffi\_initialize\_python(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{/*\ This\ initializes\ Python,\ imports\ \_cffi\_backend,\ and\ then\ the}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ \ \ present\ .dll/.so\ is\ set\ up\ as\ a\ CPython\ C\ extension\ module.}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{int}\ result;}
+\DoxyCodeLine{00147\ \ \ \ \ PyGILState\_STATE\ state;}
+\DoxyCodeLine{00148\ \ \ \ \ PyObject\ *pycode=NULL,\ *global\_dict=NULL,\ *x;}
+\DoxyCodeLine{00149\ \ \ \ \ PyObject\ *builtins;}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ state\ =\ PyGILState\_Ensure();}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*\ Call\ the\ initxxx()\ function\ from\ the\ present\ module.\ \ It\ will}}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ \ \ \ \ \ \ create\ and\ initialize\ us\ as\ a\ CPython\ extension\ module,\ instead}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ \ \ \ \ \ \ of\ letting\ the\ startup\ Python\ code\ do\ it-\/-\/-\/it\ might\ reimport}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ \ \ \ \ \ \ the\ same\ .dll/.so\ and\ get\ maybe\ confused\ on\ some\ platforms.}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ \ \ \ \ \ \ It\ might\ also\ have\ troubles\ locating\ the\ .dll/.so\ again\ for\ all}}
+\DoxyCodeLine{00158\ \textcolor{comment}{\ \ \ \ \ \ \ I\ know.}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00160\ \ \ \ \ (void)\_CFFI\_PYTHON\_STARTUP\_FUNC();}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (PyErr\_Occurred())}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{/*\ Now\ run\ the\ Python\ code\ provided\ to\ ffi.embedding\_init\_code().}}
+\DoxyCodeLine{00165\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00166\ \ \ \ \ pycode\ =\ Py\_CompileString(\_CFFI\_PYTHON\_STARTUP\_CODE,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}<init\ code\ for\ '"{}}\ \_CFFI\_MODULE\_NAME\ \textcolor{stringliteral}{"{}'>"{}},}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_file\_input);}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{if}\ (pycode\ ==\ NULL)}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00171\ \ \ \ \ global\_dict\ =\ PyDict\_New();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (global\_dict\ ==\ NULL)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00174\ \ \ \ \ builtins\ =\ PyEval\_GetBuiltins();}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}\ (builtins\ ==\ NULL)}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (PyDict\_SetItemString(global\_dict,\ \textcolor{stringliteral}{"{}\_\_builtins\_\_"{}},\ builtins)\ <\ 0)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00179\ \ \ \ \ x\ =\ PyEval\_EvalCode(}
+\DoxyCodeLine{00180\ \#\textcolor{keywordflow}{if}\ PY\_MAJOR\_VERSION\ <\ 3}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (PyCodeObject\ *)}
+\DoxyCodeLine{00182\ \#endif}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pycode,\ global\_dict,\ global\_dict);}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ NULL)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ error;}
+\DoxyCodeLine{00186\ \ \ \ \ Py\_DECREF(x);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{/*\ Done!\ \ Now\ if\ we've\ been\ called\ from}}
+\DoxyCodeLine{00189\ \textcolor{comment}{\ \ \ \ \ \ \ \_cffi\_start\_and\_call\_python()\ in\ an\ \`{}\`{}extern\ "{}Python"{}``,\ we\ can}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ only\ hope\ that\ the\ Python\ code\ did\ correctly\ set\ up\ the}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ \ \ corresponding\ @ffi.def\_extern()\ function.\ \ Otherwise,\ the}}
+\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ \ \ general\ logic\ of\ \`{}\`{}extern\ "{}Python"{}``\ functions\ (inside\ the}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ \ \ \ \ \ \ \_cffi\_backend\ module)\ will\ find\ that\ the\ reference\ is\ still}}
+\DoxyCodeLine{00194\ \textcolor{comment}{\ \ \ \ \ \ \ missing\ and\ print\ an\ error.}}
+\DoxyCodeLine{00195\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00196\ \ \ \ \ result\ =\ 0;}
+\DoxyCodeLine{00197\ \ done:}
+\DoxyCodeLine{00198\ \ \ \ \ Py\_XDECREF(pycode);}
+\DoxyCodeLine{00199\ \ \ \ \ Py\_XDECREF(global\_dict);}
+\DoxyCodeLine{00200\ \ \ \ \ PyGILState\_Release(state);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ error:;}
+\DoxyCodeLine{00204\ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Print\ as\ much\ information\ as\ potentially\ useful.}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Debugging\ load-\/time\ failures\ with\ embedding\ is\ not\ fun}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ PyObject\ *ecap;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ PyObject\ *exception,\ *v,\ *tb,\ *f,\ *modules,\ *mod;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ PyErr\_Fetch(\&exception,\ \&v,\ \&tb);}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ ecap\ =\ \_cffi\_start\_error\_capture();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ f\ =\ PySys\_GetObject((\textcolor{keywordtype}{char}\ *)\textcolor{stringliteral}{"{}stderr"{}});}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (f\ !=\ NULL\ \&\&\ f\ !=\ Py\_None)\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteString(}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Failed\ to\ initialize\ the\ Python-\/CFFI\ embedding\ logic:\(\backslash\)n\(\backslash\)n"{}},\ f);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (exception\ !=\ NULL)\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_NormalizeException(\&exception,\ \&v,\ \&tb);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Display(exception,\ v,\ tb);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ Py\_XDECREF(exception);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ Py\_XDECREF(v);}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ Py\_XDECREF(tb);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (f\ !=\ NULL\ \&\&\ f\ !=\ Py\_None)\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteString(\textcolor{stringliteral}{"{}\(\backslash\)nFrom:\ "{}}\ \_CFFI\_MODULE\_NAME}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)ncompiled\ with\ cffi\ version:\ 2.0.0"{}}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)n\_cffi\_backend\ module:\ "{}},\ f);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ modules\ =\ PyImport\_GetModuleDict();}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ mod\ =\ PyDict\_GetItemString(modules,\ \textcolor{stringliteral}{"{}\_cffi\_backend"{}});}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mod\ ==\ NULL)\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteString(\textcolor{stringliteral}{"{}not\ loaded"{}},\ f);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ PyObject\_GetAttrString(mod,\ \textcolor{stringliteral}{"{}\_\_file\_\_"{}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteObject(v,\ f,\ 0);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(v);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteString(\textcolor{stringliteral}{"{}\(\backslash\)nsys.path:\ "{}},\ f);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteObject(PySys\_GetObject((\textcolor{keywordtype}{char}\ *)\textcolor{stringliteral}{"{}path"{}}),\ f,\ 0);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ PyFile\_WriteString(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n"{}},\ f);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \_cffi\_stop\_error\_capture(ecap);}
+\DoxyCodeLine{00245\ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ result\ =\ -\/1;}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{goto}\ done;}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x03080000}}
+\DoxyCodeLine{00251\ PyAPI\_DATA(\textcolor{keywordtype}{char}\ *)\ \_PyParser\_TokenNames[];\ \ \textcolor{comment}{/*\ from\ CPython\ */}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_cffi\_carefully\_make\_gil(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{/*\ This\ does\ the\ basic\ initialization\ of\ Python.\ \ It\ can\ be\ called}}
+\DoxyCodeLine{00257\ \textcolor{comment}{\ \ \ \ \ \ \ completely\ concurrently\ from\ unrelated\ threads.\ \ It\ assumes}}
+\DoxyCodeLine{00258\ \textcolor{comment}{\ \ \ \ \ \ \ that\ we\ don't\ hold\ the\ GIL\ before\ (if\ it\ exists),\ and\ we\ don't}}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ \ \ \ hold\ it\ afterwards.}}
+\DoxyCodeLine{00260\ \textcolor{comment}{}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ \ \ \ \ \ \ (What\ it\ really\ does\ used\ to\ be\ completely\ different\ in\ Python\ 2}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ \ \ and\ Python\ 3,\ with\ the\ Python\ 2\ solution\ avoiding\ the\ spin-\/lock}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ \ \ around\ the\ Py\_InitializeEx()\ call.\ \ However,\ after\ recent\ changes}}
+\DoxyCodeLine{00264\ \textcolor{comment}{\ \ \ \ \ \ \ to\ CPython\ 2.7\ (issue\ \#358)\ it\ no\ longer\ works.\ \ So\ we\ use\ the}}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ \ \ \ \ \ \ Python\ 3\ solution\ everywhere.)}}
+\DoxyCodeLine{00266\ \textcolor{comment}{}}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ \ \ This\ initializes\ Python\ by\ calling\ Py\_InitializeEx().}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \ \ \ Important:\ this\ must\ not\ be\ called\ concurrently\ at\ all.}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ So\ we\ use\ a\ global\ variable\ as\ a\ simple\ spin\ lock.\ \ This\ global}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ \ \ variable\ must\ be\ from\ 'libpythonX.Y.so',\ not\ from\ this}}
+\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ \ \ \ cffi-\/based\ extension\ module,\ because\ it\ must\ be\ shared\ from}}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ \ \ different\ cffi-\/based\ extension\ modules.}}
+\DoxyCodeLine{00273\ \textcolor{comment}{}}
+\DoxyCodeLine{00274\ \textcolor{comment}{\ \ \ \ \ \ \ In\ Python\ <\ 3.8,\ we\ choose}}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ \ \ \ \_PyParser\_TokenNames[0]\ as\ a\ completely\ arbitrary\ pointer\ value}}
+\DoxyCodeLine{00276\ \textcolor{comment}{\ \ \ \ \ \ \ that\ is\ never\ written\ to.\ \ The\ default\ is\ to\ point\ to\ the}}
+\DoxyCodeLine{00277\ \textcolor{comment}{\ \ \ \ \ \ \ string\ "{}ENDMARKER"{}.\ \ We\ change\ it\ temporarily\ to\ point\ to\ the}}
+\DoxyCodeLine{00278\ \textcolor{comment}{\ \ \ \ \ \ \ next\ character\ in\ that\ string.\ \ (Yes,\ I\ know\ it's\ REALLY}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ \ \ \ obscure.)}}
+\DoxyCodeLine{00280\ \textcolor{comment}{}}
+\DoxyCodeLine{00281\ \textcolor{comment}{\ \ \ \ \ \ \ In\ Python\ >=\ 3.8,\ this\ string\ array\ is\ no\ longer\ writable,\ so}}
+\DoxyCodeLine{00282\ \textcolor{comment}{\ \ \ \ \ \ \ instead\ we\ pick\ PyCapsuleType.tp\_version\_tag.\ \ We\ can't\ change}}
+\DoxyCodeLine{00283\ \textcolor{comment}{\ \ \ \ \ \ \ Python\ <\ 3.8\ because\ someone\ might\ use\ a\ mixture\ of\ cffi}}
+\DoxyCodeLine{00284\ \textcolor{comment}{\ \ \ \ \ \ \ embedded\ modules,\ some\ of\ which\ were\ compiled\ before\ this\ file}}
+\DoxyCodeLine{00285\ \textcolor{comment}{\ \ \ \ \ \ \ changed.}}
+\DoxyCodeLine{00286\ \textcolor{comment}{}}
+\DoxyCodeLine{00287\ \textcolor{comment}{\ \ \ \ \ \ \ In\ Python\ >=\ 3.12,\ this\ stopped\ working\ because\ that\ particular}}
+\DoxyCodeLine{00288\ \textcolor{comment}{\ \ \ \ \ \ \ tp\_version\_tag\ gets\ modified\ during\ interpreter\ startup.\ \ It's}}
+\DoxyCodeLine{00289\ \textcolor{comment}{\ \ \ \ \ \ \ arguably\ a\ bad\ idea\ before\ 3.12\ too,\ but\ again\ we\ can't\ change}}
+\DoxyCodeLine{00290\ \textcolor{comment}{\ \ \ \ \ \ \ that\ because\ someone\ might\ use\ a\ mixture\ of\ cffi\ embedded}}
+\DoxyCodeLine{00291\ \textcolor{comment}{\ \ \ \ \ \ \ modules,\ and\ no-\/one\ reported\ a\ bug\ so\ far.\ \ In\ Python\ >=\ 3.12}}
+\DoxyCodeLine{00292\ \textcolor{comment}{\ \ \ \ \ \ \ we\ go\ instead\ for\ PyCapsuleType.tp\_as\_buffer,\ which\ is\ supposed}}
+\DoxyCodeLine{00293\ \textcolor{comment}{\ \ \ \ \ \ \ to\ always\ be\ NULL.\ \ We\ write\ to\ it\ temporarily\ a\ pointer\ to}}
+\DoxyCodeLine{00294\ \textcolor{comment}{\ \ \ \ \ \ \ a\ struct\ full\ of\ NULLs,\ which\ is\ semantically\ the\ same.}}
+\DoxyCodeLine{00295\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#ifdef\ WITH\_THREAD}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#\ if\ PY\_VERSION\_HEX\ <\ 0x03080000}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{char}\ *\textcolor{keyword}{volatile}\ *lock\ =\ (\textcolor{keywordtype}{char}\ *\textcolor{keyword}{volatile}\ *)\_PyParser\_TokenNames;}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordtype}{char}\ *old\_value,\ *locked\_value;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{\ \ \ \ \textcolor{comment}{/*\ spin\ loop\ */}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ old\_value\ =\ *lock;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ locked\_value\ =\ old\_value\ +\ 1;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\_value[0]\ ==\ \textcolor{charliteral}{'E'})\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ assert(old\_value[1]\ ==\ \textcolor{charliteral}{'N'});}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cffi\_compare\_and\_swap(lock,\ old\_value,\ locked\_value))}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ assert(old\_value[0]\ ==\ \textcolor{charliteral}{'N'});}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ should\ ideally\ do\ a\ spin\ loop\ instruction\ here,\ but}}
+\DoxyCodeLine{00313\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hard\ to\ do\ it\ portably\ and\ doesn't\ really\ matter\ I}}
+\DoxyCodeLine{00314\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ think:\ PyEval\_InitThreads()\ should\ be\ very\ fast,\ and}}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this\ is\ only\ run\ at\ start-\/up\ anyway.\ */}}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#\ \ if\ PY\_VERSION\_HEX\ <\ 0x030C0000}}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keyword}{volatile}\ *lock\ =\ (\textcolor{keywordtype}{int}\ \textcolor{keyword}{volatile}\ *)\&PyCapsule\_Type.tp\_version\_tag;}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{int}\ old\_value,\ locked\_value\ =\ -\/42;}
+\DoxyCodeLine{00322\ \ \ \ \ assert(!(PyCapsule\_Type.tp\_flags\ \&\ Py\_TPFLAGS\_HAVE\_VERSION\_TAG));}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }ebp\_s\ \{\ PyBufferProcs\ buf;\ \textcolor{keywordtype}{int}\ mark;\ \}\ empty\_buffer\_procs;}
+\DoxyCodeLine{00325\ \ \ \ \ empty\_buffer\_procs.mark\ =\ -\/42;}
+\DoxyCodeLine{00326\ \ \ \ \ PyBufferProcs\ *\textcolor{keyword}{volatile}\ *lock\ =\ (PyBufferProcs\ *\textcolor{keyword}{volatile}\ *)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \&PyCapsule\_Type.tp\_as\_buffer;}
+\DoxyCodeLine{00328\ \ \ \ \ PyBufferProcs\ *old\_value,\ *locked\_value\ =\ \&empty\_buffer\_procs.buf;}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{\ \ \ \ \textcolor{comment}{/*\ spin\ loop\ */}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ old\_value\ =\ *lock;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (old\_value\ ==\ 0)\ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cffi\_compare\_and\_swap(lock,\ old\_value,\ locked\_value))}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\#\ \ if\ PY\_VERSION\_HEX\ <\ 0x030C0000}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ assert(old\_value\ ==\ locked\_value);}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ The\ pointer\ should\ point\ to\ a\ possibly\ different}}
+\DoxyCodeLine{00342\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ empty\_buffer\_procs\ from\ another\ C\ extension\ module\ */}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ assert(((\textcolor{keyword}{struct}\ ebp\_s\ *)old\_value)-\/>mark\ ==\ -\/42);}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ should\ ideally\ do\ a\ spin\ loop\ instruction\ here,\ but}}
+\DoxyCodeLine{00346\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hard\ to\ do\ it\ portably\ and\ doesn't\ really\ matter\ I}}
+\DoxyCodeLine{00347\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ think:\ PyEval\_InitThreads()\ should\ be\ very\ fast,\ and}}
+\DoxyCodeLine{00348\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this\ is\ only\ run\ at\ start-\/up\ anyway.\ */}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{comment}{/*\ call\ Py\_InitializeEx()\ */}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{if}\ (!Py\_IsInitialized())\ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \_cffi\_py\_initialize();}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x03070000}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ PyEval\_InitThreads();}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ PyEval\_SaveThread();\ \ \textcolor{comment}{/*\ release\ the\ GIL\ */}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ the\ returned\ tstate\ must\ be\ the\ one\ that\ has\ been\ stored\ into\ the}}
+\DoxyCodeLine{00362\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ autoTLSkey\ by\ \_PyGILState\_Init()\ called\ from\ Py\_Initialize().\ */}}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x03070000}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ PyEval\_InitThreads()\ is\ always\ a\ no-\/op\ from\ CPython\ 3.7\ */}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ PyGILState\_STATE\ state\ =\ PyGILState\_Ensure();}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ PyEval\_InitThreads();}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ PyGILState\_Release(state);}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#ifdef\ WITH\_THREAD}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{comment}{/*\ release\ the\ lock\ */}}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordflow}{while}\ (!cffi\_compare\_and\_swap(lock,\ locked\_value,\ old\_value))}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00380\ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \textcolor{comment}{/**********\ \ end\ CPython-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{comment}{/**********\ \ PyPy-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ PyMODINIT\_FUNC\ \_CFFI\_PYTHON\_STARTUP\_FUNC(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *[]);\ \ \ \textcolor{comment}{/*\ forward\ */}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{keyword}{static}\ \textcolor{keyword}{struct\ }\_cffi\_pypy\_init\_s\ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keywordtype}{void}\ *func;\ \ \ \ \textcolor{comment}{/*\ function\ pointer\ */}}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *code;}
+\DoxyCodeLine{00396\ \}\ \_cffi\_pypy\_init\ =\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \_CFFI\_MODULE\_NAME,}
+\DoxyCodeLine{00398\ \ \ \ \ \_CFFI\_PYTHON\_STARTUP\_FUNC,}
+\DoxyCodeLine{00399\ \ \ \ \ \_CFFI\_PYTHON\_STARTUP\_CODE,}
+\DoxyCodeLine{00400\ \};}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ pypy\_carefully\_make\_gil(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00403\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ pypy\_init\_embedded\_cffi\_module(\textcolor{keywordtype}{int},\ \textcolor{keyword}{struct}\ \_cffi\_pypy\_init\_s\ *);}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_cffi\_carefully\_make\_gil(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00406\ \{}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{return}\ pypy\_carefully\_make\_gil(\_CFFI\_MODULE\_NAME);}
+\DoxyCodeLine{00408\ \}}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_cffi\_initialize\_python(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00411\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keywordflow}{return}\ pypy\_init\_embedded\_cffi\_module(0xB011,\ \&\_cffi\_pypy\_init);}
+\DoxyCodeLine{00413\ \}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \textcolor{comment}{/**********\ \ end\ PyPy-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00422\ \_\_attribute\_\_((noinline))}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00424\ \textcolor{keyword}{static}\ \_cffi\_call\_python\_fnptr\ \_cffi\_start\_python(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00425\ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{comment}{/*\ Delicate\ logic\ to\ initialize\ Python.\ \ This\ function\ can\ be}}
+\DoxyCodeLine{00427\ \textcolor{comment}{\ \ \ \ \ \ \ called\ multiple\ times\ concurrently,\ e.g.\ when\ the\ process\ calls}}
+\DoxyCodeLine{00428\ \textcolor{comment}{\ \ \ \ \ \ \ its\ first\ \`{}\`{}extern\ "{}Python"{}``\ functions\ in\ multiple\ threads\ at}}
+\DoxyCodeLine{00429\ \textcolor{comment}{\ \ \ \ \ \ \ once.\ \ It\ can\ also\ be\ called\ recursively,\ in\ which\ case\ we\ must}}
+\DoxyCodeLine{00430\ \textcolor{comment}{\ \ \ \ \ \ \ ignore\ it.\ \ We\ also\ have\ to\ consider\ what\ occurs\ if\ several}}
+\DoxyCodeLine{00431\ \textcolor{comment}{\ \ \ \ \ \ \ different\ cffi-\/based\ extensions\ reach\ this\ code\ in\ parallel}}
+\DoxyCodeLine{00432\ \textcolor{comment}{\ \ \ \ \ \ \ threads-\/-\/-\/it\ is\ a\ different\ copy\ of\ the\ code,\ then,\ and\ we}}
+\DoxyCodeLine{00433\ \textcolor{comment}{\ \ \ \ \ \ \ can't\ have\ any\ shared\ global\ variable\ unless\ it\ comes\ from}}
+\DoxyCodeLine{00434\ \textcolor{comment}{\ \ \ \ \ \ \ 'libpythonX.Y.so'.}}
+\DoxyCodeLine{00435\ \textcolor{comment}{}}
+\DoxyCodeLine{00436\ \textcolor{comment}{\ \ \ \ \ \ \ Idea:}}
+\DoxyCodeLine{00437\ \textcolor{comment}{}}
+\DoxyCodeLine{00438\ \textcolor{comment}{\ \ \ \ \ \ \ *\ \_cffi\_carefully\_make\_gil():\ "{}carefully"{}\ call}}
+\DoxyCodeLine{00439\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ PyEval\_InitThreads()\ (possibly\ with\ Py\_InitializeEx()\ first).}}
+\DoxyCodeLine{00440\ \textcolor{comment}{}}
+\DoxyCodeLine{00441\ \textcolor{comment}{\ \ \ \ \ \ \ *\ then\ we\ use\ a\ (local)\ custom\ lock\ to\ make\ sure\ that\ a\ call\ to\ this}}
+\DoxyCodeLine{00442\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ cffi-\/based\ extension\ will\ wait\ if\ another\ call\ to\ the\ *same*}}
+\DoxyCodeLine{00443\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ extension\ is\ running\ the\ initialization\ in\ another\ thread.}}
+\DoxyCodeLine{00444\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ It\ is\ reentrant,\ so\ that\ a\ recursive\ call\ will\ not\ block,\ but}}
+\DoxyCodeLine{00445\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ only\ one\ from\ a\ different\ thread.}}
+\DoxyCodeLine{00446\ \textcolor{comment}{}}
+\DoxyCodeLine{00447\ \textcolor{comment}{\ \ \ \ \ \ \ *\ then\ we\ grab\ the\ GIL\ and\ (Python\ 2)\ we\ call\ Py\_InitializeEx().}}
+\DoxyCodeLine{00448\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ At\ this\ point,\ concurrent\ calls\ to\ Py\_InitializeEx()\ are\ not}}
+\DoxyCodeLine{00449\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ possible:\ we\ have\ the\ GIL.}}
+\DoxyCodeLine{00450\ \textcolor{comment}{}}
+\DoxyCodeLine{00451\ \textcolor{comment}{\ \ \ \ \ \ \ *\ do\ the\ rest\ of\ the\ specific\ initialization,\ which\ may}}
+\DoxyCodeLine{00452\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ temporarily\ release\ the\ GIL\ but\ not\ the\ custom\ lock.}}
+\DoxyCodeLine{00453\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ Only\ release\ the\ custom\ lock\ when\ we\ are\ done.}}
+\DoxyCodeLine{00454\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ called\ =\ 0;}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_cffi\_carefully\_make\_gil()\ !=\ 0)}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \_cffi\_acquire\_reentrant\_mutex();}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{comment}{/*\ Here\ the\ GIL\ exists,\ but\ we\ don't\ have\ it.\ \ We're\ only\ protected}}
+\DoxyCodeLine{00463\ \textcolor{comment}{\ \ \ \ \ \ \ from\ concurrency\ by\ the\ reentrant\ mutex.\ */}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{comment}{/*\ This\ file\ only\ initializes\ the\ embedded\ module\ once,\ the\ first}}
+\DoxyCodeLine{00466\ \textcolor{comment}{\ \ \ \ \ \ \ time\ this\ is\ called,\ even\ if\ there\ are\ subinterpreters.\ */}}
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordflow}{if}\ (!called)\ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ called\ =\ 1;\ \ \textcolor{comment}{/*\ invoke\ \_cffi\_initialize\_python()\ only\ once,}}
+\DoxyCodeLine{00469\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ but\ don't\ set\ '\_cffi\_call\_python'\ right\ now,}}
+\DoxyCodeLine{00470\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ otherwise\ concurrent\ threads\ won't\ call}}
+\DoxyCodeLine{00471\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this\ function\ at\ all\ (we\ need\ them\ to\ wait)\ */}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_cffi\_initialize\_python()\ ==\ 0)\ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ now\ initialization\ is\ finished.\ \ Switch\ to\ the\ fast-\/path.\ */}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ We\ would\ like\ nobody\ to\ see\ the\ new\ value\ of}}
+\DoxyCodeLine{00476\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ '\_cffi\_call\_python'\ without\ also\ seeing\ the\ rest\ of\ the}}
+\DoxyCodeLine{00477\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ initialized.\ \ However,\ this\ is\ not\ possible.\ \ But}}
+\DoxyCodeLine{00478\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ new\ value\ of\ '\_cffi\_call\_python'\ is\ the\ function}}
+\DoxyCodeLine{00479\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 'cffi\_call\_python()'\ from\ \_cffi\_backend.\ \ So:\ \ */}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ cffi\_write\_barrier();}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \string^\string^\string^\ we\ put\ a\ write\ barrier\ here,\ and\ a\ corresponding}}
+\DoxyCodeLine{00482\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ read\ barrier\ at\ the\ start\ of\ cffi\_call\_python().\ \ This}}
+\DoxyCodeLine{00483\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ensures\ that\ after\ that\ read\ barrier,\ we\ see\ everything}}
+\DoxyCodeLine{00484\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ done\ here\ before\ the\ write\ barrier.}}
+\DoxyCodeLine{00485\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ assert(\_cffi\_call\_python\_org\ !=\ NULL);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \_cffi\_call\_python\ =\ (\_cffi\_call\_python\_fnptr)\_cffi\_call\_python\_org;}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ initialization\ failed.\ \ Reset\ this\ to\ NULL,\ even\ if\ it\ was}}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ already\ set\ to\ some\ other\ value.\ \ Future\ calls\ to}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_cffi\_start\_python()\ are\ still\ forced\ to\ occur,\ and\ will}}
+\DoxyCodeLine{00494\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ always\ return\ NULL\ from\ now\ on.\ */}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \_cffi\_call\_python\_org\ =\ NULL;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \_cffi\_release\_reentrant\_mutex();}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordflow}{return}\ (\_cffi\_call\_python\_fnptr)\_cffi\_call\_python\_org;}
+\DoxyCodeLine{00502\ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \textcolor{keyword}{static}}
+\DoxyCodeLine{00505\ \textcolor{keywordtype}{void}\ \_cffi\_start\_and\_call\_python(\textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__externpy__s}{\_cffi\_externpy\_s}}\ *externpy,\ \textcolor{keywordtype}{char}\ *args)}
+\DoxyCodeLine{00506\ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \_cffi\_call\_python\_fnptr\ fnptr;}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordtype}{int}\ current\_err\ =\ errno;}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordtype}{int}\ current\_lasterr\ =\ GetLastError();}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00512\ \ \ \ \ fnptr\ =\ \_cffi\_start\_python();}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordflow}{if}\ (fnptr\ ==\ NULL)\ \{}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}function\ \%s()\ called,\ but\ initialization\ code\ "{}}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}failed.\ \ Returning\ 0.\(\backslash\)n"{}},\ externpy-\/>name);}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ memset(args,\ 0,\ externpy-\/>size\_of\_result);}
+\DoxyCodeLine{00517\ \ \ \ \ \}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00519\ \ \ \ \ SetLastError(current\_lasterr);}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00521\ \ \ \ \ errno\ =\ current\_err;}
+\DoxyCodeLine{00522\ }
+\DoxyCodeLine{00523\ \ \ \ \ \textcolor{keywordflow}{if}\ (fnptr\ !=\ NULL)}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ fnptr(externpy,\ args);}
+\DoxyCodeLine{00525\ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \textcolor{comment}{/*\ The\ cffi\_start\_python()\ function\ makes\ sure\ Python\ is\ initialized}}
+\DoxyCodeLine{00529\ \textcolor{comment}{\ \ \ and\ our\ cffi\ module\ is\ set\ up.\ \ It\ can\ be\ called\ manually\ from\ the}}
+\DoxyCodeLine{00530\ \textcolor{comment}{\ \ \ user\ C\ code.\ \ The\ same\ effect\ is\ obtained\ automatically\ from\ any}}
+\DoxyCodeLine{00531\ \textcolor{comment}{\ \ \ dll-\/exported\ \`{}\`{}extern\ "{}Python"{}``\ function.\ \ This\ function\ returns}}
+\DoxyCodeLine{00532\ \textcolor{comment}{\ \ \ -\/1\ if\ initialization\ failed,\ 0\ if\ all\ is\ OK.\ \ */}}
+\DoxyCodeLine{00533\ \_CFFI\_UNUSED\_FN}
+\DoxyCodeLine{00534\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ cffi\_start\_python(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00535\ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_cffi\_call\_python\ ==\ \&\_cffi\_start\_and\_call\_python)\ \{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_cffi\_start\_python()\ ==\ NULL)}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \ \ \ \ cffi\_read\_barrier();}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00542\ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#undef\ cffi\_compare\_and\_swap}}
+\DoxyCodeLine{00545\ \textcolor{preprocessor}{\#undef\ cffi\_write\_barrier}}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#undef\ cffi\_read\_barrier}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00549\ \}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

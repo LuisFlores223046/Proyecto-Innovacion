@@ -1,0 +1,82 @@
+\doxysection{fastapi.\+applications.\+Fast\+API Class Reference}
+\hypertarget{classfastapi_1_1applications_1_1FastAPI}{}\label{classfastapi_1_1applications_1_1FastAPI}\index{fastapi.applications.FastAPI@{fastapi.applications.FastAPI}}
+Inheritance diagram for fastapi.\+applications.\+Fast\+API:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classfastapi_1_1applications_1_1FastAPI}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette}{starlette.\+applications.\+Starlette}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (App\+Type self, bool debug=False, typing.\+Sequence\+[\doxymbox{\hyperlink{classstarlette_1_1routing_1_1BaseRoute}{Base\+Route}}]\+\texorpdfstring{$\vert$}{|}None routes=None, typing.\+Sequence\+[Middleware]\+\texorpdfstring{$\vert$}{|}None middleware=None, typing.\+Mapping\+[typing.\+Any, Exception\+Handler]\+\texorpdfstring{$\vert$}{|}None exception\+\_\+handlers=None, typing.\+Sequence\+[typing.\+Callable\+[\+[$\,$]\+, typing.\+Any]\+]\+\texorpdfstring{$\vert$}{|}None on\+\_\+startup=None, typing.\+Sequence\+[typing.\+Callable\+[\+[$\,$]\+, typing.\+Any]\+]\+\texorpdfstring{$\vert$}{|}None on\+\_\+shutdown=None, Lifespan\+[App\+Type]\+\texorpdfstring{$\vert$}{|}None lifespan=None)
+\item 
+ASGIApp {\bfseries build\+\_\+middleware\+\_\+stack} (self)
+\item 
+list\+[\doxymbox{\hyperlink{classstarlette_1_1routing_1_1BaseRoute}{Base\+Route}}]\+ {\bfseries routes} (self)
+\item 
+\doxymbox{\hyperlink{classstarlette_1_1datastructures_1_1URLPath}{URLPath}} {\bfseries url\+\_\+path\+\_\+for} (self, str name, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}typing.\+Any path\+\_\+params)
+\item 
+None {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, Scope scope, Receive receive, Send send)
+\item 
+typing.\+Callable {\bfseries on\+\_\+event} (self, str event\+\_\+type)
+\item 
+None {\bfseries mount} (self, str path, ASGIApp app, str\texorpdfstring{$\vert$}{|}None name=None)
+\item 
+None {\bfseries host} (self, str host, ASGIApp app, str\texorpdfstring{$\vert$}{|}None name=None)
+\item 
+None {\bfseries add\+\_\+middleware} (self, type\+[\doxymbox{\hyperlink{classstarlette_1_1middleware_1_1__MiddlewareClass}{\+\_\+\+Middleware\+Class}}\+[P]\+]\+ middleware\+\_\+class, \texorpdfstring{$\ast$}{*}P.\+args args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}P.\+kwargs kwargs)
+\item 
+None {\bfseries add\+\_\+exception\+\_\+handler} (self, int\texorpdfstring{$\vert$}{|}type\+[Exception]\+ exc\+\_\+class\+\_\+or\+\_\+status\+\_\+code, Exception\+Handler handler)
+\item 
+None {\bfseries add\+\_\+event\+\_\+handler} (self, str event\+\_\+type, typing.\+Callable func)
+\item 
+None {\bfseries add\+\_\+route} (self, str path, typing.\+Callable\+[\+[\doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}}]\+, typing.\+Awaitable\+[\doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{Response}}]\+\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{Response}}]\+ route, list\+[str]\+\texorpdfstring{$\vert$}{|}None methods=None, str\texorpdfstring{$\vert$}{|}None name=None, bool include\+\_\+in\+\_\+schema=True)
+\item 
+None {\bfseries add\+\_\+websocket\+\_\+route} (self, str path, typing.\+Callable\+[\+[\doxymbox{\hyperlink{classstarlette_1_1websockets_1_1WebSocket}{Web\+Socket}}]\+, typing.\+Awaitable\+[None]\+]\+ route, str\texorpdfstring{$\vert$}{|}None name=None)
+\item 
+typing.\+Callable {\bfseries exception\+\_\+handler} (self, int\texorpdfstring{$\vert$}{|}type\+[Exception]\+ exc\+\_\+class\+\_\+or\+\_\+status\+\_\+code)
+\item 
+typing.\+Callable \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_ae2fc93646642a53fc3d4c380115dcc05}{route}} (self, str path, list\+[str]\+\texorpdfstring{$\vert$}{|}None methods=None, str\texorpdfstring{$\vert$}{|}None name=None, bool include\+\_\+in\+\_\+schema=True)
+\item 
+typing.\+Callable \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_abc45cead89d7cf5e812ea8d318969888}{websocket\+\_\+route}} (self, str path, str\texorpdfstring{$\vert$}{|}None name=None)
+\item 
+typing.\+Callable \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_a3151759f053f0217210dbdf9c7706e6f}{middleware}} (self, str middleware\+\_\+type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette}{starlette.\+applications.\+Starlette}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries debug} = debug
+\item 
+{\bfseries state} = \doxymbox{\hyperlink{classstarlette_1_1datastructures_1_1State}{State}}()
+\item 
+\doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_afa24b66a7559ae0ef2fc6a607ee69fd6}{router}}
+\item 
+tuple \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_a8a9a561558deaa7850332455e6175b75}{exception\+\_\+handlers}}
+\item 
+list {\bfseries user\+\_\+middleware} = \+[$\,$]\+ if \doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_a3151759f053f0217210dbdf9c7706e6f}{middleware}} is None else list(\doxymbox{\hyperlink{classstarlette_1_1applications_1_1Starlette_a3151759f053f0217210dbdf9c7706e6f}{middleware}})
+\item 
+ASGIApp\texorpdfstring{$\vert$}{|}None {\bfseries middleware\+\_\+stack} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}`FastAPI` app class, the main entrypoint to use FastAPI.
+
+Read more in the
+[FastAPI docs for First Steps](https://fastapi.tiangolo.com/tutorial/first-steps/).
+
+## Example
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+applications.\+py\end{DoxyCompactItemize}

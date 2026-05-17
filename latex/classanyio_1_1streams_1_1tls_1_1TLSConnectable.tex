@@ -1,0 +1,91 @@
+\doxysection{anyio.\+streams.\+tls.\+TLSConnectable Class Reference}
+\hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable}{}\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable}\index{anyio.streams.tls.TLSConnectable@{anyio.streams.tls.TLSConnectable}}
+Inheritance diagram for anyio.\+streams.\+tls.\+TLSConnectable:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classanyio_1_1streams_1_1tls_1_1TLSConnectable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_adaa88e30c8f4d020db38f5fc5f885bac}\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_adaa88e30c8f4d020db38f5fc5f885bac} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Any\+Byte\+Stream\+Connectable connectable, \texorpdfstring{$\ast$}{*}, str\texorpdfstring{$\vert$}{|}None hostname=None, ssl.\+SSLContext\texorpdfstring{$\vert$}{|}None ssl\+\_\+context=None, bool standard\+\_\+compatible=True)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSStream}{TLSStream}} \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSConnectable_a40a45922b6a00b2e1a5d6aa4492e034a}{connect}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_aab01b740bda8c518ec4cadf8b9d58274}\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_aab01b740bda8c518ec4cadf8b9d58274} 
+{\bfseries connectable} = connectable
+\item 
+SSLContext \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSConnectable_ae67cd14ec7ffbe0ee2276820e48d3bcd}{ssl\+\_\+context}}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_a8104db93e03c9dce447a7b44217d0972}\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_a8104db93e03c9dce447a7b44217d0972} 
+{\bfseries hostname} = hostname
+\item 
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_ac328b6bb19b3a8673fac99e74dff0c24}\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_ac328b6bb19b3a8673fac99e74dff0c24} 
+{\bfseries standard\+\_\+compatible} = standard\+\_\+compatible
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1ByteStreamConnectable}{anyio.\+abc.\+\_\+streams.\+Byte\+Stream\+Connectable}}}
+\begin{DoxyCompactItemize}
+\item 
+Type\+Alias \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1ByteStreamConnectable_acabb986347e974b454e4c359f2bf012b}{Any\+Byte\+Stream\+Connectable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wraps another connectable and does TLS negotiation after a successful connection.
+
+:param connectable: the connectable to wrap
+:param hostname: host name of the server (if host name checking is desired)
+:param ssl_context: the SSLContext object to use (if not provided, a secure default
+    will be created)
+:param standard_compatible: if ``False``, skip the closing handshake when closing
+    the connection, and don't raise an exception if the server does the same
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_doc-func-members}
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_a40a45922b6a00b2e1a5d6aa4492e034a}\index{anyio.streams.tls.TLSConnectable@{anyio.streams.tls.TLSConnectable}!connect@{connect}}
+\index{connect@{connect}!anyio.streams.tls.TLSConnectable@{anyio.streams.tls.TLSConnectable}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_a40a45922b6a00b2e1a5d6aa4492e034a} 
+ \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSStream}{TLSStream}} anyio.\+streams.\+tls.\+TLSConnectable.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to the remote endpoint.
+
+:return: a bytestream connected to the remote end
+:raises ConnectionFailed: if the connection fails
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1ByteStreamConnectable_a67309e59618e916d26cb78e988a57ffb}{anyio.\+abc.\+\_\+streams.\+Byte\+Stream\+Connectable}}.
+
+
+
+\label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_doc-variable-members}
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classanyio_1_1streams_1_1tls_1_1TLSConnectable_ae67cd14ec7ffbe0ee2276820e48d3bcd}\index{anyio.streams.tls.TLSConnectable@{anyio.streams.tls.TLSConnectable}!ssl\_context@{ssl\_context}}
+\index{ssl\_context@{ssl\_context}!anyio.streams.tls.TLSConnectable@{anyio.streams.tls.TLSConnectable}}
+\doxysubsubsection{\texorpdfstring{ssl\_context}{ssl\_context}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1tls_1_1TLSConnectable_ae67cd14ec7ffbe0ee2276820e48d3bcd} 
+anyio.\+streams.\+tls.\+TLSConnectable.\+ssl\+\_\+context}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ssl\_context\ \textcolor{keywordflow}{or}\ ssl.create\_default\_context(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ssl.Purpose.SERVER\_AUTH}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+streams/\+tls.\+py\end{DoxyCompactItemize}

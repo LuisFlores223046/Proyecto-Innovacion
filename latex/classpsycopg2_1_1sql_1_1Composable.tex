@@ -1,0 +1,81 @@
+\doxysection{psycopg2.\+sql.\+Composable Class Reference}
+\hypertarget{classpsycopg2_1_1sql_1_1Composable}{}\label{classpsycopg2_1_1sql_1_1Composable}\index{psycopg2.sql.Composable@{psycopg2.sql.Composable}}
+Inheritance diagram for psycopg2.\+sql.\+Composable:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.341317cm]{classpsycopg2_1_1sql_1_1Composable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a258de4a07917ff696b081eafca8591e5}\label{classpsycopg2_1_1sql_1_1Composable_a258de4a07917ff696b081eafca8591e5} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, wrapped)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a0c38f4deed5187f1d014e83a82ba7df1}\label{classpsycopg2_1_1sql_1_1Composable_a0c38f4deed5187f1d014e83a82ba7df1} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composable_a910ee7a2d7b24ba13fb756bf946c2879}{as\+\_\+string}} (self, context)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_abc0540c306923c0b65e3043c5050a472}\label{classpsycopg2_1_1sql_1_1Composable_abc0540c306923c0b65e3043c5050a472} 
+{\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a1346334d5d9c91208200ee2c98047121}\label{classpsycopg2_1_1sql_1_1Composable_a1346334d5d9c91208200ee2c98047121} 
+{\bfseries \+\_\+\+\_\+mul\+\_\+\+\_\+} (self, n)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a03a561a7c7a9f4a26fc68aee08a6994f}\label{classpsycopg2_1_1sql_1_1Composable_a03a561a7c7a9f4a26fc68aee08a6994f} 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_ad29a8082341b1eda6cff7c3302a71ecb}\label{classpsycopg2_1_1sql_1_1Composable_ad29a8082341b1eda6cff7c3302a71ecb} 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a98d10180b3b85b4bd843a5fdf1beec4c}\label{classpsycopg2_1_1sql_1_1Composable_a98d10180b3b85b4bd843a5fdf1beec4c} 
+{\bfseries \+\_\+wrapped} = wrapped
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Abstract base class for objects that can be used to compose an SQL string.
+
+`!Composable` objects can be passed directly to `~cursor.execute()`,
+`~cursor.executemany()`, `~cursor.copy_expert()` in place of the query
+string.
+
+`!Composable` objects can be joined using the ``+`` operator: the result
+will be a `Composed` instance containing the objects joined. The operator
+``*`` is also supported with an integer argument: the result is a
+`!Composed` instance containing the left argument repeated as many times as
+requested.
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1sql_1_1Composable_doc-func-members}
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1sql_1_1Composable_a910ee7a2d7b24ba13fb756bf946c2879}\index{psycopg2.sql.Composable@{psycopg2.sql.Composable}!as\_string@{as\_string}}
+\index{as\_string@{as\_string}!psycopg2.sql.Composable@{psycopg2.sql.Composable}}
+\doxysubsubsection{\texorpdfstring{as\_string()}{as\_string()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1sql_1_1Composable_a910ee7a2d7b24ba13fb756bf946c2879} 
+psycopg2.\+sql.\+Composable.\+as\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the string value of the object.
+
+:param context: the context to evaluate the string into.
+:type context: `connection` or `cursor`
+
+The method is automatically invoked by `~cursor.execute()`,
+`~cursor.executemany()`, `~cursor.copy_expert()` if a `!Composable` is
+passed instead of the query string.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Composed_a330b83ddbec3c49fb5d6875d8afa4b22}{psycopg2.\+sql.\+Composed}}, \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Identifier_aeda79c4e3d40fce4e361aa0004a2a9da}{psycopg2.\+sql.\+Identifier}}, \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Literal_a02e2abdea40e68beb069c50f0527ee5c}{psycopg2.\+sql.\+Literal}}, \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1Placeholder_a6d6984fee2f30dd1d83d710fe36c2a83}{psycopg2.\+sql.\+Placeholder}}, and \doxymbox{\hyperlink{classpsycopg2_1_1sql_1_1SQL_a9e317e098ee747061603ad12f212eb23}{psycopg2.\+sql.\+SQL}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+sql.\+py\end{DoxyCompactItemize}

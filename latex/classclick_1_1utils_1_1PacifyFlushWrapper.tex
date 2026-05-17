@@ -1,0 +1,35 @@
+\doxysection{click.\+utils.\+Pacify\+Flush\+Wrapper Class Reference}
+\hypertarget{classclick_1_1utils_1_1PacifyFlushWrapper}{}\label{classclick_1_1utils_1_1PacifyFlushWrapper}\index{click.utils.PacifyFlushWrapper@{click.utils.PacifyFlushWrapper}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1utils_1_1PacifyFlushWrapper_a4f17b37a849716439be316342dc52e52}\label{classclick_1_1utils_1_1PacifyFlushWrapper_a4f17b37a849716439be316342dc52e52} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+IO\+[t.\+Any]\+ wrapped)
+\item 
+\Hypertarget{classclick_1_1utils_1_1PacifyFlushWrapper_ac0c71b52fd0106f2818ea468f1a98244}\label{classclick_1_1utils_1_1PacifyFlushWrapper_ac0c71b52fd0106f2818ea468f1a98244} 
+None {\bfseries flush} (self)
+\item 
+\Hypertarget{classclick_1_1utils_1_1PacifyFlushWrapper_ad935c79955b8d4c8d5942b05cc2d8600}\label{classclick_1_1utils_1_1PacifyFlushWrapper_ad935c79955b8d4c8d5942b05cc2d8600} 
+t.\+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str attr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1utils_1_1PacifyFlushWrapper_ac1d5e2abb66704b2e9a74e11b0050a7b}\label{classclick_1_1utils_1_1PacifyFlushWrapper_ac1d5e2abb66704b2e9a74e11b0050a7b} 
+{\bfseries wrapped} = wrapped
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This wrapper is used to catch and suppress BrokenPipeErrors resulting
+from ``.flush()`` being called on broken pipe during the shutdown/final-GC
+of the Python interpreter. Notably ``.flush()`` is always called on
+``sys.stdout`` and ``sys.stderr``. So as to have minimal impact on any
+other cleanup code, and the case where the underlying file is not a broken
+pipe, all calls and attributes are proxied.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+click/\+utils.\+py\end{DoxyCompactItemize}

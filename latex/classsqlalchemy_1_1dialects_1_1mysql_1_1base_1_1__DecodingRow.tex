@@ -1,0 +1,66 @@
+\doxysection{sqlalchemy.\+dialects.\+mysql.\+base.\+\_\+\+Decoding\+Row Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow}{}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow}\index{sqlalchemy.dialects.mysql.base.\_DecodingRow@{sqlalchemy.dialects.mysql.base.\_DecodingRow}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ad41b8e666cd1251c107c8ee0a85f5c4c}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ad41b8e666cd1251c107c8ee0a85f5c4c} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, rowproxy, charset)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ad33ad7533ec94b1512b529d32f8efd95}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ad33ad7533ec94b1512b529d32f8efd95} 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, index)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_a100ad082baa4b67953d5bad336acac24}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_a100ad082baa4b67953d5bad336acac24} 
+{\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, attr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_aacd95f65a5bf4be632a63b10e3297ff7}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_aacd95f65a5bf4be632a63b10e3297ff7} 
+{\bfseries rowproxy} = rowproxy
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ab2bb2f246797de7de7fb729ac9c3bf15}\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_ab2bb2f246797de7de7fb729ac9c3bf15} 
+dict {\bfseries charset} = self.\+\_\+encoding\+\_\+compat.\+get(charset, charset)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_a8324116687cd1e37bda671e635fc8ee1}{\+\_\+encoding\+\_\+compat}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Return unicode-decoded values based on type inspection.
+
+Smooth over data type issues (esp. with alpha driver versions) and
+normalize strings as Unicode regardless of user-configured driver
+encoding settings.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_a8324116687cd1e37bda671e635fc8ee1}\index{sqlalchemy.dialects.mysql.base.\_DecodingRow@{sqlalchemy.dialects.mysql.base.\_DecodingRow}!\_encoding\_compat@{\_encoding\_compat}}
+\index{\_encoding\_compat@{\_encoding\_compat}!sqlalchemy.dialects.mysql.base.\_DecodingRow@{sqlalchemy.dialects.mysql.base.\_DecodingRow}}
+\doxysubsubsection{\texorpdfstring{\_encoding\_compat}{\_encoding\_compat}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1__DecodingRow_a8324116687cd1e37bda671e635fc8ee1} 
+dict sqlalchemy.\+dialects.\+mysql.\+base.\+\_\+\+Decoding\+Row.\+\_\+encoding\+\_\+compat\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}koi8r"{}}:\ \textcolor{stringliteral}{"{}koi8\_r"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}koi8u"{}}:\ \textcolor{stringliteral}{"{}koi8\_u"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}utf16"{}}:\ \textcolor{stringliteral}{"{}utf-\/16-\/be"{}},\ \ \textcolor{comment}{\#\ MySQL's\ uft16\ is\ always\ bigendian}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}utf8mb4"{}}:\ \textcolor{stringliteral}{"{}utf8"{}},\ \ \textcolor{comment}{\#\ real\ utf8}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}utf8mb3"{}}:\ \textcolor{stringliteral}{"{}utf8"{}},\ \ \textcolor{comment}{\#\ real\ utf8;\ saw\ this\ happen\ on\ CI\ but\ I\ cannot}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ reproduce,\ possibly\ mariadb10.6\ related}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}eucjpms"{}}:\ \textcolor{stringliteral}{"{}ujis"{}},}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+mysql/\+base.\+py\end{DoxyCompactItemize}

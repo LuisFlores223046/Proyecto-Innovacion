@@ -1,0 +1,63 @@
+\doxysection{urllib3.\+\_\+collections.\+HTTPHeader\+Dict\+Item\+View Class Reference}
+\hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView}{}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView}\index{urllib3.\_collections.HTTPHeaderDictItemView@{urllib3.\_collections.HTTPHeaderDictItemView}}
+Inheritance diagram for urllib3.\+\_\+collections.\+HTTPHeader\+Dict\+Item\+View:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ab4d93d0cacdb5f02e5cbeb52bd0508ec}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ab4d93d0cacdb5f02e5cbeb52bd0508ec} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classurllib3_1_1__collections_1_1HTTPHeaderDict}{HTTPHeader\+Dict}} headers)
+\item 
+\Hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_aa530c727e3b627284724feff57fab967}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_aa530c727e3b627284724feff57fab967} 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ad4ab86887eef35f5edcda667d93cef84}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ad4ab86887eef35f5edcda667d93cef84} 
+typing.\+Iterator\+[tuple\+[str, str]\+]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ac3460263faf9747c2ee22bf667aa5231}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_ac3460263faf9747c2ee22bf667aa5231} 
+bool {\bfseries \+\_\+\+\_\+contains\+\_\+\+\_\+} (self, object item)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_aeacd3ea47c798cc98bf9d827c213783a}\label{classurllib3_1_1__collections_1_1HTTPHeaderDictItemView_aeacd3ea47c798cc98bf9d827c213783a} 
+{\bfseries \+\_\+headers} = headers
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}HTTPHeaderDict is unusual for a Mapping[str, str] in that it has two modes of
+address.
+
+If we directly try to get an item with a particular name, we will get a string
+back that is the concatenated version of all the values:
+
+>>> d['X-Header-Name']
+'Value1, Value2, Value3'
+
+However, if we iterate over an HTTPHeaderDict's items, we will optionally combine
+these values based on whether combine=True was called when building up the dictionary
+
+>>> d = HTTPHeaderDict({"A": "1", "B": "foo"})
+>>> d.add("A", "2", combine=True)
+>>> d.add("B", "bar")
+>>> list(d.items())
+[
+    ('A', '1, 2'),
+    ('B', 'foo'),
+    ('B', 'bar'),
+]
+
+This class conforms to the interface required by the MutableMapping ABC while
+also giving us the nonstandard iteration behavior we want; items with duplicate
+keys, ordered by time of first insertion.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+urllib3/\+\+\_\+collections.\+py\end{DoxyCompactItemize}

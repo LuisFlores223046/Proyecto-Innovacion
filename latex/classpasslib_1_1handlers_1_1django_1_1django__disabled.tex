@@ -1,0 +1,68 @@
+\doxysection{passlib.\+handlers.\+django.\+django\+\_\+disabled Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled}{}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled}\index{passlib.handlers.django.django\_disabled@{passlib.handlers.django.django\_disabled}}
+Inheritance diagram for passlib.\+handlers.\+django.\+django\+\_\+disabled:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1django_1_1django__disabled}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_a51b918b0797632065de693d155ceb6a6}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_a51b918b0797632065de693d155ceb6a6} 
+{\bfseries identify} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_a8aad593fdd2e391441e288c3b5d6d498}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_a8aad593fdd2e391441e288c3b5d6d498} 
+{\bfseries verify} (cls, secret, hash)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_a8c27955978c5b05ab5c9ed19e64a2270}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_a8c27955978c5b05ab5c9ed19e64a2270} 
+str {\bfseries name} = "{}django\+\_\+disabled"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_a1aa3910415a21cdf1c63d4baf1d1e9d7}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_a1aa3910415a21cdf1c63d4baf1d1e9d7} 
+int {\bfseries suffix\+\_\+length} = 40
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_a0d54a2ba133c722b8bd09fc8f2cff7b0}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_a0d54a2ba133c722b8bd09fc8f2cff7b0} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1django_1_1django__disabled_aece6e744ccb5da7c3a3252efb1bdc539}\label{classpasslib_1_1handlers_1_1django_1_1django__disabled_aece6e744ccb5da7c3a3252efb1bdc539} 
+{\bfseries \+\_\+hash\+\_\+prefix} = u("{}!"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class provides disabled password behavior for Django, and follows the :ref:`password-hash-api`.
+
+This class does not implement a hash, but instead
+claims the special hash string ``"!"`` which Django uses
+to indicate an account's password has been disabled.
+
+* newly encrypted passwords will hash to ``"!"``.
+* it rejects all passwords.
+
+.. note::
+
+    Django 1.6 prepends a randomly generated 40-char alphanumeric string
+    to each unusuable password. This class recognizes such strings,
+    but for backwards compatibility, still returns ``"!"``.
+
+    See `<https://code.djangoproject.com/ticket/20079>`_ for why
+    Django appends an alphanumeric string.
+
+.. versionchanged:: 1.6.2 added Django 1.6 support
+
+.. versionchanged:: 1.7 started appending an alphanumeric string.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+django.\+py\end{DoxyCompactItemize}

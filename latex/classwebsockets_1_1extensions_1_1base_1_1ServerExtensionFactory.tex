@@ -1,0 +1,55 @@
+\doxysection{websockets.\+extensions.\+base.\+Server\+Extension\+Factory Class Reference}
+\hypertarget{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory}{}\label{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory}\index{websockets.extensions.base.ServerExtensionFactory@{websockets.extensions.base.ServerExtensionFactory}}
+Inheritance diagram for websockets.\+extensions.\+base.\+Server\+Extension\+Factory:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[List\+[Extension\+Parameter]\+, \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+ \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory_aa60eb9722b4a277c1625e9735e1ed7c6}{process\+\_\+request\+\_\+params}} (self, Sequence\+[Extension\+Parameter]\+ params, Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+ accepted\+\_\+extensions)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for server-side extension factories.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory_doc-func-members}
+\Hypertarget{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory_aa60eb9722b4a277c1625e9735e1ed7c6}\index{websockets.extensions.base.ServerExtensionFactory@{websockets.extensions.base.ServerExtensionFactory}!process\_request\_params@{process\_request\_params}}
+\index{process\_request\_params@{process\_request\_params}!websockets.extensions.base.ServerExtensionFactory@{websockets.extensions.base.ServerExtensionFactory}}
+\doxysubsubsection{\texorpdfstring{process\_request\_params()}{process\_request\_params()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory_aa60eb9722b4a277c1625e9735e1ed7c6} 
+ Tuple\+[List\+[Extension\+Parameter]\+, \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+ websockets.\+extensions.\+base.\+Server\+Extension\+Factory.\+process\+\_\+request\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Sequence\+[Extension\+Parameter]\+}]{params}{, }\item[{Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+}]{accepted\+\_\+extensions}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Process parameters received from the client.
+
+Args:
+    params (Sequence[ExtensionParameter]): parameters received from
+        the client for this extension.
+    accepted_extensions (Sequence[Extension]): list of previously
+        accepted extensions.
+
+Returns:
+    Tuple[List[ExtensionParameter], Extension]: To accept the offer,
+    parameters to send to the client for this extension and an
+    extension instance.
+
+Raises:
+    NegotiationError: to reject the offer, if parameters received from
+        the client aren't acceptable.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1permessage__deflate_1_1ServerPerMessageDeflateFactory_a7fbbdac64f11dfb67ffa70dc9912762f}{websockets.\+extensions.\+permessage\+\_\+deflate.\+Server\+Per\+Message\+Deflate\+Factory}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+extensions/\+base.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,124 @@
+\doxysection{sqlalchemy.\+ext.\+mutable.\+Mutable Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable}{}\label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable}\index{sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}}
+Inheritance diagram for sqlalchemy.\+ext.\+mutable.\+Mutable:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.477876cm]{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a370a88fb13a64f458bf98075e4c628ba}{changed}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a5924e70eceee6f636e80add5d33886ca}{associate\+\_\+with\+\_\+attribute}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+O]\+ attribute)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a3487391f38e37655e3563e5f007fccaf}{associate\+\_\+with}} (cls, type sqltype)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_abcfa19fd906ac75452e55a16aea505d3}{as\+\_\+mutable}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ sqltype)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aac3670b34f661d84c394dcb0edb1af27}{coerce}} (cls, str key, Any value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Weak\+Key\+Dictionary\+[Any, Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a4da9d37afbc63cad3f5357e616c6363e}{\+\_\+parents}} (self)
+\item 
+Set\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aa3412eb14cbd80dea1676d537d3c0470}{\+\_\+get\+\_\+listen\+\_\+keys}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+ attribute)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a1a4c97ba0645624383c0946feae06ee8}{\+\_\+listen\+\_\+on\+\_\+attribute}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+ attribute, bool coerce, \+\_\+\+External\+Entity\+Type\+[Any]\+ parent\+\_\+cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin that defines transparent propagation of change
+events to a parent object.
+
+See the example in :ref:`mutable_scalars` for usage information.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_abcfa19fd906ac75452e55a16aea505d3}\index{sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}!as\_mutable@{as\_mutable}}
+\index{as\_mutable@{as\_mutable}!sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}}
+\doxysubsubsection{\texorpdfstring{as\_mutable()}{as\_mutable()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_abcfa19fd906ac75452e55a16aea505d3} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+ sqlalchemy.\+ext.\+mutable.\+Mutable.\+as\+\_\+mutable (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[\+\_\+T]\+}]{sqltype}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Associate a SQL type with this mutable Python type.
+
+This establishes listeners that will detect ORM mappings against
+the given type, adding mutation event trackers to those mappings.
+
+The type is returned, unconditionally as an instance, so that
+:meth:`.as_mutable` can be used inline::
+
+    Table('mytable', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('data', MyMutableType.as_mutable(PickleType))
+    )
+
+Note that the returned type is always an instance, even if a class
+is given, and that only columns which are declared specifically with
+that type instance receive additional instrumentation.
+
+To associate a particular mutable type with all occurrences of a
+particular type, use the :meth:`.Mutable.associate_with` classmethod
+of the particular :class:`.Mutable` subclass to establish a global
+association.
+
+.. warning::
+
+   The listeners established by this method are *global*
+   to all mappers, and are *not* garbage collected.   Only use
+   :meth:`.as_mutable` for types that are permanent to an application,
+   not with ad-hoc types else this will cause unbounded growth
+   in memory usage.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a3487391f38e37655e3563e5f007fccaf}\index{sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}!associate\_with@{associate\_with}}
+\index{associate\_with@{associate\_with}!sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}}
+\doxysubsubsection{\texorpdfstring{associate\_with()}{associate\_with()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a3487391f38e37655e3563e5f007fccaf} 
+ None sqlalchemy.\+ext.\+mutable.\+Mutable.\+associate\+\_\+with (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{type}]{sqltype}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Associate this wrapper with all future mapped columns
+of the given type.
+
+This is a convenience method that calls
+``associate_with_attribute`` automatically.
+
+.. warning::
+
+   The listeners established by this method are *global*
+   to all mappers, and are *not* garbage collected.   Only use
+   :meth:`.associate_with` for types that are permanent to an
+   application, not with ad-hoc types else this will cause unbounded
+   growth in memory usage.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a5924e70eceee6f636e80add5d33886ca}\index{sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}!associate\_with\_attribute@{associate\_with\_attribute}}
+\index{associate\_with\_attribute@{associate\_with\_attribute}!sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}}
+\doxysubsubsection{\texorpdfstring{associate\_with\_attribute()}{associate\_with\_attribute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a5924e70eceee6f636e80add5d33886ca} 
+ None sqlalchemy.\+ext.\+mutable.\+Mutable.\+associate\+\_\+with\+\_\+attribute (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1InstrumentedAttribute}{Instrumented\+Attribute}}\+[\+\_\+O]\+     }]{attribute}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish this type as a mutation listener for the given
+mapped descriptor.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a370a88fb13a64f458bf98075e4c628ba}\index{sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}!changed@{changed}}
+\index{changed@{changed}!sqlalchemy.ext.mutable.Mutable@{sqlalchemy.ext.mutable.Mutable}}
+\doxysubsubsection{\texorpdfstring{changed()}{changed()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable_a370a88fb13a64f458bf98075e4c628ba} 
+ None sqlalchemy.\+ext.\+mutable.\+Mutable.\+changed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses should call this method whenever change events occur.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+mutable.\+py\end{DoxyCompactItemize}

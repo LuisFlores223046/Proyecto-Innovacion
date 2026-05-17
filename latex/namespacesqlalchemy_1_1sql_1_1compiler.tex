@@ -1,0 +1,235 @@
+\doxysection{sqlalchemy.\+sql.\+compiler Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1sql_1_1compiler}{}\label{namespacesqlalchemy_1_1sql_1_1compiler}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1ResultColumnsEntry}{Result\+Columns\+Entry}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__ResultMapAppender}{\+\_\+\+Result\+Map\+Appender}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__BaseCompilerStackEntry}{\+\_\+\+Base\+Compiler\+Stack\+Entry}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__CompilerStackEntry}{\+\_\+\+Compiler\+Stack\+Entry}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState}{Expanded\+State}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__InsertManyValues}{\+\_\+\+Insert\+Many\+Values}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__InsertManyValuesBatch}{\+\_\+\+Insert\+Many\+Values\+Batch}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1InsertmanyvaluesSentinelOpts}{Insertmanyvalues\+Sentinel\+Opts}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1CompilerState}{Compiler\+State}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1Linting}{Linting}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1FromLinter}{From\+Linter}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1Compiled}{Compiled}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1TypeCompiler}{Type\+Compiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__CompileLabel}{\+\_\+\+Compile\+Label}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1ilike__case__insensitive}{ilike\+\_\+case\+\_\+insensitive}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1SQLCompiler}{SQLCompiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1StrSQLCompiler}{Str\+SQLCompiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1DDLCompiler}{DDLCompiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1GenericTypeCompiler}{Generic\+Type\+Compiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1StrSQLTypeCompiler}{Str\+SQLType\+Compiler}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__SchemaForObjectCallable}{\+\_\+\+Schema\+For\+Object\+Callable}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1__BindNameForColProtocol}{\+\_\+\+Bind\+Name\+For\+Col\+Protocol}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1IdentifierPreparer}{Identifier\+Preparer}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a547d0f15f124402c79d191d2bb0e1aa5}\label{namespacesqlalchemy_1_1sql_1_1compiler_a547d0f15f124402c79d191d2bb0e1aa5} 
+{\bfseries \+\_\+\+From\+Hints\+Type} = Dict\+["{}From\+Clause"{}, str]\+
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_aa9d21bca3111a93b88099c3cdc995397}\label{namespacesqlalchemy_1_1sql_1_1compiler_aa9d21bca3111a93b88099c3cdc995397} 
+dict {\bfseries RESERVED\+\_\+\+WORDS}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a32a1cf899a10e3fe636a0f29c8ac05c6}\label{namespacesqlalchemy_1_1sql_1_1compiler_a32a1cf899a10e3fe636a0f29c8ac05c6} 
+{\bfseries LEGAL\+\_\+\+CHARACTERS} = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}\+[A-\/Z0-\/9\+\_\+\$]\++\$"{}, re.\+I)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a41f091ed78751d015eb8ada01770a5b1}\label{namespacesqlalchemy_1_1sql_1_1compiler_a41f091ed78751d015eb8ada01770a5b1} 
+{\bfseries LEGAL\+\_\+\+CHARACTERS\+\_\+\+PLUS\+\_\+\+SPACE} = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}\+[A-\/Z0-\/9\+\_\+ \$]\++\$"{}, re.\+I)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a3ebba558fb4baf830bf6f57ef1426187}\label{namespacesqlalchemy_1_1sql_1_1compiler_a3ebba558fb4baf830bf6f57ef1426187} 
+dict {\bfseries ILLEGAL\+\_\+\+INITIAL\+\_\+\+CHARACTERS} = \{str(x) for x in range(0, 10)\}.union(\+["{}\$"{}]\+)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a69104ac83c677d51326ef14b96aab243}{FK\+\_\+\+ON\+\_\+\+DELETE}}
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a4fe797cd8e5234ec8c7d8cf1c85fa4d3}{FK\+\_\+\+ON\+\_\+\+UPDATE}}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a131045d219ebe0da50caa3ef3580e102}\label{namespacesqlalchemy_1_1sql_1_1compiler_a131045d219ebe0da50caa3ef3580e102} 
+{\bfseries FK\+\_\+\+INITIALLY} = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}(?:\+DEFERRED\texorpdfstring{$\vert$}{|}IMMEDIATE)\$"{}, re.\+I)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a7c80a632758347fe2334edce3265e040}\label{namespacesqlalchemy_1_1sql_1_1compiler_a7c80a632758347fe2334edce3265e040} 
+{\bfseries BIND\+\_\+\+PARAMS} = re.\+compile(r"{}(?$<$!\+[:\+\textbackslash{}w\textbackslash{}\$\textbackslash{}x5c]\+):\+(\+[\textbackslash{}w\textbackslash{}\$]\++)(?!\+[:\+\textbackslash{}w\textbackslash{}\$]\+)"{}, re.\+UNICODE)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_aa4658c3640c21639eec8ab58e6dd982b}\label{namespacesqlalchemy_1_1sql_1_1compiler_aa4658c3640c21639eec8ab58e6dd982b} 
+{\bfseries BIND\+\_\+\+PARAMS\+\_\+\+ESC} = re.\+compile(r"{}\textbackslash{}x5c(:\+\+[\textbackslash{}w\textbackslash{}\$]\+\texorpdfstring{$\ast$}{*})(?!\+[:\+\textbackslash{}w\textbackslash{}\$]\+)"{}, re.\+UNICODE)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_ade092a9177d67d9a280a3a9d9d47ed3f}\label{namespacesqlalchemy_1_1sql_1_1compiler_ade092a9177d67d9a280a3a9d9d47ed3f} 
+str {\bfseries \+\_\+pyformat\+\_\+template} = "{}\%\%(\%(name)s)s"{}
+\item 
+dict \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a4cc16786122e8bfc3da90759011011ce}{BIND\+\_\+\+TEMPLATES}}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a89d848f2c2f071c40f4455c3b10b40d4}\label{namespacesqlalchemy_1_1sql_1_1compiler_a89d848f2c2f071c40f4455c3b10b40d4} 
+dict {\bfseries OPERATORS}
+\item 
+dict \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a3ee75889a2e57d3876dd64d1ac7100d8}{FUNCTIONS}}
+\item 
+dict \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a1fc3a1be3249feb89359d6bab38ca468}{EXTRACT\+\_\+\+MAP}}
+\item 
+dict \doxymbox{\hyperlink{namespacesqlalchemy_1_1sql_1_1compiler_a94c7eee9025670dcfb5183a0a5473d42}{COMPOUND\+\_\+\+KEYWORDS}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base SQL and DDL compiler implementations.
+
+Classes provided include:
+
+:class:`.compiler.SQLCompiler` - renders SQL
+strings
+
+:class:`.compiler.DDLCompiler` - renders DDL
+(data definition language) strings
+
+:class:`.compiler.GenericTypeCompiler` - renders
+type specification strings.
+
+To generate user-defined SQL strings, see
+:doc:`/ext/compiler`.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1sql_1_1compiler_doc-var-members}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a4cc16786122e8bfc3da90759011011ce}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!BIND\_TEMPLATES@{BIND\_TEMPLATES}}
+\index{BIND\_TEMPLATES@{BIND\_TEMPLATES}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{BIND\_TEMPLATES}{BIND\_TEMPLATES}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a4cc16786122e8bfc3da90759011011ce} 
+dict sqlalchemy.\+sql.\+compiler.\+BIND\+\_\+\+TEMPLATES}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}pyformat"{}}:\ \_pyformat\_template,}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}qmark"{}}:\ \textcolor{stringliteral}{"{}?"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}format"{}}:\ \textcolor{stringliteral}{"{}\%\%s"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}numeric"{}}:\ \textcolor{stringliteral}{"{}:[\_POSITION]"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}numeric\_dollar"{}}:\ \textcolor{stringliteral}{"{}\$[\_POSITION]"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}named"{}}:\ \textcolor{stringliteral}{"{}:\%(name)s"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a94c7eee9025670dcfb5183a0a5473d42}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!COMPOUND\_KEYWORDS@{COMPOUND\_KEYWORDS}}
+\index{COMPOUND\_KEYWORDS@{COMPOUND\_KEYWORDS}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{COMPOUND\_KEYWORDS}{COMPOUND\_KEYWORDS}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a94c7eee9025670dcfb5183a0a5473d42} 
+dict sqlalchemy.\+sql.\+compiler.\+COMPOUND\+\_\+\+KEYWORDS}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.UNION:\ \textcolor{stringliteral}{"{}UNION"{}},}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.UNION\_ALL:\ \textcolor{stringliteral}{"{}UNION\ ALL"{}},}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.EXCEPT:\ \textcolor{stringliteral}{"{}EXCEPT"{}},}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.EXCEPT\_ALL:\ \textcolor{stringliteral}{"{}EXCEPT\ ALL"{}},}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.INTERSECT:\ \textcolor{stringliteral}{"{}INTERSECT"{}},}
+\DoxyCodeLine{\ \ \ \ selectable.\_CompoundSelectKeyword.INTERSECT\_ALL:\ \textcolor{stringliteral}{"{}INTERSECT\ ALL"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a1fc3a1be3249feb89359d6bab38ca468}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!EXTRACT\_MAP@{EXTRACT\_MAP}}
+\index{EXTRACT\_MAP@{EXTRACT\_MAP}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{EXTRACT\_MAP}{EXTRACT\_MAP}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a1fc3a1be3249feb89359d6bab38ca468} 
+dict sqlalchemy.\+sql.\+compiler.\+EXTRACT\+\_\+\+MAP}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}month"{}}:\ \textcolor{stringliteral}{"{}month"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}day"{}}:\ \textcolor{stringliteral}{"{}day"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}year"{}}:\ \textcolor{stringliteral}{"{}year"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}second"{}}:\ \textcolor{stringliteral}{"{}second"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}hour"{}}:\ \textcolor{stringliteral}{"{}hour"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}doy"{}}:\ \textcolor{stringliteral}{"{}doy"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}minute"{}}:\ \textcolor{stringliteral}{"{}minute"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}quarter"{}}:\ \textcolor{stringliteral}{"{}quarter"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}dow"{}}:\ \textcolor{stringliteral}{"{}dow"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}week"{}}:\ \textcolor{stringliteral}{"{}week"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}epoch"{}}:\ \textcolor{stringliteral}{"{}epoch"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}milliseconds"{}}:\ \textcolor{stringliteral}{"{}milliseconds"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}microseconds"{}}:\ \textcolor{stringliteral}{"{}microseconds"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}timezone\_hour"{}}:\ \textcolor{stringliteral}{"{}timezone\_hour"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}timezone\_minute"{}}:\ \textcolor{stringliteral}{"{}timezone\_minute"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a69104ac83c677d51326ef14b96aab243}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!FK\_ON\_DELETE@{FK\_ON\_DELETE}}
+\index{FK\_ON\_DELETE@{FK\_ON\_DELETE}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{FK\_ON\_DELETE}{FK\_ON\_DELETE}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a69104ac83c677d51326ef14b96aab243} 
+sqlalchemy.\+sql.\+compiler.\+FK\+\_\+\+ON\+\_\+\+DELETE}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r"{}\string^(?:RESTRICT|CASCADE|SET\ NULL|NO\ ACTION|SET\ DEFAULT)\$"{}},\ re.I}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a4fe797cd8e5234ec8c7d8cf1c85fa4d3}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!FK\_ON\_UPDATE@{FK\_ON\_UPDATE}}
+\index{FK\_ON\_UPDATE@{FK\_ON\_UPDATE}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{FK\_ON\_UPDATE}{FK\_ON\_UPDATE}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a4fe797cd8e5234ec8c7d8cf1c85fa4d3} 
+sqlalchemy.\+sql.\+compiler.\+FK\+\_\+\+ON\+\_\+\+UPDATE}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ re.compile(}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{r"{}\string^(?:RESTRICT|CASCADE|SET\ NULL|NO\ ACTION|SET\ DEFAULT)\$"{}},\ re.I}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacesqlalchemy_1_1sql_1_1compiler_a3ee75889a2e57d3876dd64d1ac7100d8}\index{sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}!FUNCTIONS@{FUNCTIONS}}
+\index{FUNCTIONS@{FUNCTIONS}!sqlalchemy.sql.compiler@{sqlalchemy.sql.compiler}}
+\doxysubsubsection{\texorpdfstring{FUNCTIONS}{FUNCTIONS}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1sql_1_1compiler_a3ee75889a2e57d3876dd64d1ac7100d8} 
+dict sqlalchemy.\+sql.\+compiler.\+FUNCTIONS}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ functions.coalesce:\ \textcolor{stringliteral}{"{}coalesce"{}},}
+\DoxyCodeLine{\ \ \ \ functions.current\_date:\ \textcolor{stringliteral}{"{}CURRENT\_DATE"{}},}
+\DoxyCodeLine{\ \ \ \ functions.current\_time:\ \textcolor{stringliteral}{"{}CURRENT\_TIME"{}},}
+\DoxyCodeLine{\ \ \ \ functions.current\_timestamp:\ \textcolor{stringliteral}{"{}CURRENT\_TIMESTAMP"{}},}
+\DoxyCodeLine{\ \ \ \ functions.current\_user:\ \textcolor{stringliteral}{"{}CURRENT\_USER"{}},}
+\DoxyCodeLine{\ \ \ \ functions.localtime:\ \textcolor{stringliteral}{"{}LOCALTIME"{}},}
+\DoxyCodeLine{\ \ \ \ functions.localtimestamp:\ \textcolor{stringliteral}{"{}LOCALTIMESTAMP"{}},}
+\DoxyCodeLine{\ \ \ \ functions.random:\ \textcolor{stringliteral}{"{}random"{}},}
+\DoxyCodeLine{\ \ \ \ functions.sysdate:\ \textcolor{stringliteral}{"{}sysdate"{}},}
+\DoxyCodeLine{\ \ \ \ functions.session\_user:\ \textcolor{stringliteral}{"{}SESSION\_USER"{}},}
+\DoxyCodeLine{\ \ \ \ functions.user:\ \textcolor{stringliteral}{"{}USER"{}},}
+\DoxyCodeLine{\ \ \ \ functions.cube:\ \textcolor{stringliteral}{"{}CUBE"{}},}
+\DoxyCodeLine{\ \ \ \ functions.rollup:\ \textcolor{stringliteral}{"{}ROLLUP"{}},}
+\DoxyCodeLine{\ \ \ \ functions.grouping\_sets:\ \textcolor{stringliteral}{"{}GROUPING\ SETS"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,80 @@
+\doxysection{sqlalchemy.\+dialects.\+postgresql.\+json.\+JSONB Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSONB}{}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSONB}\index{sqlalchemy.dialects.postgresql.json.JSONB@{sqlalchemy.dialects.postgresql.json.JSONB}}
+Inheritance diagram for sqlalchemy.\+dialects.\+postgresql.\+json.\+JSONB:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.656805cm]{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSONB}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSONB_1_1Comparator}{Comparator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}{sqlalchemy.\+dialects.\+postgresql.\+json.\+JSON}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON_ae164fc9b3ca52913b102938dda3b1af3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, none\+\_\+as\+\_\+null=False, astext\+\_\+type=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1json_1_1JSON}{sqlalchemy.\+dialects.\+postgresql.\+json.\+JSON}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries astext\+\_\+type} = sqltypes.\+Text()
+\item 
+{\bfseries comparator\+\_\+factory}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent the PostgreSQL JSONB type.
+
+The :class:`_postgresql.JSONB` type stores arbitrary JSONB format data,
+e.g.::
+
+    data_table = Table('data_table', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('data', JSONB)
+    )
+
+    with engine.connect() as conn:
+        conn.execute(
+            data_table.insert(),
+            data = {"key1": "value1", "key2": "value2"}
+        )
+
+The :class:`_postgresql.JSONB` type includes all operations provided by
+:class:`_types.JSON`, including the same behaviors for indexing
+operations.
+It also adds additional operators specific to JSONB, including
+:meth:`.JSONB.Comparator.has_key`, :meth:`.JSONB.Comparator.has_all`,
+:meth:`.JSONB.Comparator.has_any`, :meth:`.JSONB.Comparator.contains`,
+:meth:`.JSONB.Comparator.contained_by`,
+:meth:`.JSONB.Comparator.delete_path`,
+:meth:`.JSONB.Comparator.path_exists` and
+:meth:`.JSONB.Comparator.path_match`.
+
+Like the :class:`_types.JSON` type, the :class:`_postgresql.JSONB`
+type does not detect
+in-place changes when used with the ORM, unless the
+:mod:`sqlalchemy.ext.mutable` extension is used.
+
+Custom serializers and deserializers
+are shared with the :class:`_types.JSON` class,
+using the ``json_serializer``
+and ``json_deserializer`` keyword arguments.  These must be specified
+at the dialect level using :func:`_sa.create_engine`.  When using
+psycopg2, the serializers are associated with the jsonb type using
+``psycopg2.extras.register_default_jsonb`` on a per-connection basis,
+in the same way that ``psycopg2.extras.register_default_json`` is used
+to register these handlers with the json type.
+
+.. seealso::
+
+    :class:`_types.JSON`
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+postgresql/\+json.\+py\end{DoxyCompactItemize}

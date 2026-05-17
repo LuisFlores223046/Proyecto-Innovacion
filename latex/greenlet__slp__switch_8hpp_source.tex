@@ -1,0 +1,105 @@
+\doxysection{greenlet\+\_\+slp\+\_\+switch.\+hpp}
+\hypertarget{greenlet__slp__switch_8hpp_source}{}\label{greenlet__slp__switch_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_slp\_switch.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_slp\_switch.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_SLP\_SWITCH\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_SLP\_SWITCH\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}greenlet\_compiler\_compat.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}greenlet\_refs.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ the\ following\ macros\ are\ spliced\ into\ the\ OS/compiler}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ specific\ code,\ in\ order\ to\ simplify\ maintenance.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ We\ can\ save\ about\ 10\%\ of\ the\ time\ it\ takes\ to\ switch\ greenlets\ if}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ we\ thread\ the\ thread\ state\ through\ the\ slp\_save\_state()\ and\ the}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ following\ slp\_restore\_state()\ calls\ from}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ slp\_switch()-\/>g\_switchstack()\ (which\ already\ needs\ to\ access\ it).}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ However:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ that\ requires\ changing\ the\ prototypes\ and\ implementations\ of\ the}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ switching\ functions.\ If\ we\ just\ change\ the\ prototype\ of}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ slp\_switch()\ to\ accept\ the\ argument\ and\ update\ the\ macros,\ without}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ changing\ the\ implementation\ of\ slp\_switch(),\ we\ get\ crashes\ on}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ 64-\/bit\ Linux\ and\ 32-\/bit\ x86\ (for\ reasons\ that\ aren't\ 100\%\ clear);}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ on\ the\ other\ hand,\ 64-\/bit\ macOS\ seems\ to\ be\ fine.\ Also,\ 64-\/bit}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ windows\ is\ an\ issue\ because\ slp\_switch\ is\ written\ fully\ in\ assembly}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ and\ currently\ ignores\ its\ argument\ so\ some\ code\ would\ have\ to\ be}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ adjusted\ there\ to\ pass\ the\ argument\ on\ to\ the}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \`{}\`{}slp\_save\_state\_asm()``\ function\ (but\ interestingly,\ because\ of}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ the\ calling\ convention,\ the\ extra\ argument\ is\ just\ ignored\ and}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ things\ function\ fine,\ albeit\ slower,\ if\ we\ just\ modify}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \`{}\`{}slp\_save\_state\_asm`()`\ to\ fetch\ the\ pointer\ to\ pass\ to\ the}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ macro.)}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Our\ compromise\ is\ to\ use\ a\ *glabal*,\ untracked,\ weak,\ pointer}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ to\ the\ necessary\ thread\ state\ during\ the\ process\ of\ switching\ only.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ This\ is\ safe\ because\ we're\ protected\ by\ the\ GIL,\ and\ if\ we're}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ running\ this\ code,\ the\ thread\ isn't\ exiting.\ This\ also\ nets\ us\ a}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ 10-\/12\%\ speed\ improvement.}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{greenlet::Greenlet}}*\ \textcolor{keyword}{volatile}\ switching\_thread\_state\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ GREENLET\_NOINLINE(slp\_save\_state\_trampoline)(\textcolor{keywordtype}{char}*\ stackref);}
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ GREENLET\_NOINLINE(slp\_restore\_state\_trampoline)();}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SLP\_SAVE\_STATE(stackref,\ stsizediff)\ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{do\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \ \ assert(switching\_thread\_state);\ \ \(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ stackref\ +=\ STACK\_MAGIC;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ if\ (slp\_save\_state\_trampoline((char*)stackref))\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ if\ (!switching\_thread\_state-\/>active())\ \(\backslash\)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ return\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ stsizediff\ =\ switching\_thread\_state-\/>stack\_start()\ -\/\ (char*)stackref;\ \(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\}\ while\ (0)}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ SLP\_RESTORE\_STATE()\ slp\_restore\_state\_trampoline()}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ SLP\_EVAL}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ slp\_switch\ GREENLET\_NOINLINE(slp\_switch)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#include\ "{}slp\_platformselect.h"{}}}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#undef\ slp\_switch}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#ifndef\ STACK\_MAGIC}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ \ \ error\ \(\backslash\)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ "{}greenlet\ needs\ to\ be\ ported\ to\ this\ platform,\ or\ taught\ how\ to\ detect\ your\ compiler\ properly."{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !STACK\_MAGIC\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#ifdef\ EXTERNAL\_ASM}}
+\DoxyCodeLine{00076\ \textcolor{comment}{/*\ CCP\ addition:\ Make\ these\ functions,\ to\ be\ called\ from\ assembler.}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ *\ The\ token\ include\ file\ for\ the\ given\ platform\ should\ enable\ the}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ *\ EXTERNAL\_ASM\ define\ so\ that\ this\ is\ included.}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00081\ intptr\_t}
+\DoxyCodeLine{00082\ slp\_save\_state\_asm(intptr\_t*\ ref)}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ intptr\_t\ diff;}
+\DoxyCodeLine{00085\ \ \ \ \ SLP\_SAVE\_STATE(ref,\ diff);}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ diff;}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00090\ slp\_restore\_state\_asm(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ slp\_switch(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00096\ \};}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

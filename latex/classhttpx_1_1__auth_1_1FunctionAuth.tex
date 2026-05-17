@@ -1,0 +1,83 @@
+\doxysection{httpx.\+\_\+auth.\+Function\+Auth Class Reference}
+\hypertarget{classhttpx_1_1__auth_1_1FunctionAuth}{}\label{classhttpx_1_1__auth_1_1FunctionAuth}\index{httpx.\_auth.FunctionAuth@{httpx.\_auth.FunctionAuth}}
+Inheritance diagram for httpx.\+\_\+auth.\+Function\+Auth:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpx_1_1__auth_1_1FunctionAuth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1FunctionAuth_aeb8a08b985852dbea92a1ded0e7eb027}\label{classhttpx_1_1__auth_1_1FunctionAuth_aeb8a08b985852dbea92a1ded0e7eb027} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, typing.\+Callable\+[\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}]\+, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}]\+ func)
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1FunctionAuth_a88e9317b9fa6b8092a07b716fd1b7cd4}{auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_ac8e4533e21789a47bb38d7261b9c7cab}{sync\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\item 
+typing.\+Async\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a4f242babe9e3b3cd6d9045162db2aca4}{async\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1FunctionAuth_aedde90ebcd5784fa84b0c25bfd589b7b}\label{classhttpx_1_1__auth_1_1FunctionAuth_aedde90ebcd5784fa84b0c25bfd589b7b} 
+{\bfseries \+\_\+func} = func
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries requires\+\_\+request\+\_\+body} = False
+\item 
+bool {\bfseries requires\+\_\+response\+\_\+body} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Allows the 'auth' argument to be passed as a simple callable function,
+that takes the request, and returns a new, modified request.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__auth_1_1FunctionAuth_doc-func-members}
+\Hypertarget{classhttpx_1_1__auth_1_1FunctionAuth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__auth_1_1FunctionAuth_a88e9317b9fa6b8092a07b716fd1b7cd4}\index{httpx.\_auth.FunctionAuth@{httpx.\_auth.FunctionAuth}!auth\_flow@{auth\_flow}}
+\index{auth\_flow@{auth\_flow}!httpx.\_auth.FunctionAuth@{httpx.\_auth.FunctionAuth}}
+\doxysubsubsection{\texorpdfstring{auth\_flow()}{auth\_flow()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__auth_1_1FunctionAuth_a88e9317b9fa6b8092a07b716fd1b7cd4} 
+ typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ httpx.\+\_\+auth.\+Function\+Auth.\+auth\+\_\+flow (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute the authentication flow.
+
+To dispatch a request, `yield` it:
+
+```
+yield request
+```
+
+The client will `.send()` the response back into the flow generator. You can
+access it like so:
+
+```
+response = yield request
+```
+
+A `return` (or reaching the end of the generator) will result in the
+client returning the last response obtained from the server.
+
+You can dispatch as many requests as is necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a2ff3aabb4549b3f076574aff075fd30d}{httpx.\+\_\+auth.\+Auth}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+auth.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,151 @@
+\doxysection{frontend/\+node\+\_\+modules/\+convert-\/source-\/map Directory Reference}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d}{}\label{dir_d45233dd003dbe5b1deb8f62074cb19d}\index{frontend/node\_modules/convert-\/source-\/map Directory Reference@{frontend/node\_modules/convert-\/source-\/map Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1739}{}\doxysubsection{\texorpdfstring{convert-\/source-\/map \+[!\+[Build Status]\+\+[ci-\/image]\+]\+\+[ci-\/url]\+}{convert-\/source-\/map \+[!\+[Build Status]\+\+[ci-\/image]\+]\+\+[ci-\/url]\+}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1739}
+Converts a source-\/map from/\+to different formats and allows adding/\+changing properties.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ convert\ =\ require('convert-\/source-\/map');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ json\ =\ convert}
+\DoxyCodeLine{\ \ .fromComment('//\#\ sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnVpbGQvZm9vLm1pbi5qcyIsInNvdXJjZXMiOlsic3JjL2Zvby5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')}
+\DoxyCodeLine{\ \ .toJSON();}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ modified\ =\ convert}
+\DoxyCodeLine{\ \ .fromComment('//\#\ sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnVpbGQvZm9vLm1pbi5qcyIsInNvdXJjZXMiOlsic3JjL2Zvby5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSIsInNvdXJjZVJvb3QiOiIvIn0=')}
+\DoxyCodeLine{\ \ .setProperty('sources',\ [\ 'SRC/FOO.JS'\ ])}
+\DoxyCodeLine{\ \ .toJSON();}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(json);}
+\DoxyCodeLine{console.log(modified);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{"{}version"{}:3,"{}file"{}:"{}build/foo.min.js"{},"{}sources"{}:["{}src/foo.js"{}],"{}names"{}:[],"{}mappings"{}:"{}AAAA"{},"{}sourceRoot"{}:"{}/"{}\}}
+\DoxyCodeLine{\{"{}version"{}:3,"{}file"{}:"{}build/foo.min.js"{},"{}sources"{}:["{}SRC/FOO.JS"{}],"{}names"{}:[],"{}mappings"{}:"{}AAAA"{},"{}sourceRoot"{}:"{}/"{}\}}
+
+\end{DoxyCode}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1740}{}\doxysubsection{\texorpdfstring{Upgrading}{Upgrading}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1740}
+Prior to v2.\+0.\+0, the {\ttfamily from\+Map\+File\+Comment} and {\ttfamily from\+Map\+File\+Source} functions took a String directory path and used that to resolve \& read the source map file from the filesystem. However, this made the library limited to nodejs environments and broke on sources with querystrings.
+
+In v2.\+0.\+0, you now need to pass a function that does the file reading. It will receive the source filename as a String that you can resolve to a filesystem path, URL, or anything else.
+
+If you are using {\ttfamily convert-\/source-\/map} in nodejs and want the previous behavior, you\textquotesingle{}ll use a function like such:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+\ var\ fs\ =\ require('fs');\ //\ Import\ the\ fs\ module\ to\ read\ a\ file}
+\DoxyCodeLine{+\ var\ path\ =\ require('path');\ //\ Import\ the\ path\ module\ to\ resolve\ a\ path\ against\ your\ directory}
+\DoxyCodeLine{-\/\ var\ conv\ =\ convert.fromMapFileSource(css,\ '../my-\/dir');}
+\DoxyCodeLine{+\ var\ conv\ =\ convert.fromMapFileSource(css,\ function\ (filename)\ \{}
+\DoxyCodeLine{+\ \ \ return\ fs.readFileSync(path.resolve('../my-\/dir',\ filename),\ 'utf-\/8');}
+\DoxyCodeLine{+\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1741}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1741}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1742}{}\doxysubsubsection{\texorpdfstring{from\+Object(obj)}{from\+Object(obj)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1742}
+Returns source map converter from given object.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1743}{}\doxysubsubsection{\texorpdfstring{from\+JSON(json)}{from\+JSON(json)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1743}
+Returns source map converter from given json string.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1744}{}\doxysubsubsection{\texorpdfstring{from\+URI(uri)}{from\+URI(uri)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1744}
+Returns source map converter from given uri encoded json string.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1745}{}\doxysubsubsection{\texorpdfstring{from\+Base64(base64)}{from\+Base64(base64)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1745}
+Returns source map converter from given base64 encoded json string.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1746}{}\doxysubsubsection{\texorpdfstring{from\+Comment(comment)}{from\+Comment(comment)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1746}
+Returns source map converter from given base64 or uri encoded json string prefixed with {\ttfamily /\+/\+\# source\+Mapping\+URL=...}.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1747}{}\doxysubsubsection{\texorpdfstring{from\+Map\+File\+Comment(comment, read\+Map)}{from\+Map\+File\+Comment(comment, read\+Map)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1747}
+Returns source map converter from given {\ttfamily filename} by parsing {\ttfamily /\+/\+\# source\+Mapping\+URL=filename}.
+
+{\ttfamily read\+Map} must be a function which receives the source map filename and returns either a String or Buffer of the source map (if read synchronously), or a {\ttfamily Promise} containing a String or Buffer of the source map (if read asynchronously).
+
+If {\ttfamily read\+Map} doesn\textquotesingle{}t return a {\ttfamily Promise}, {\ttfamily from\+Map\+File\+Comment} will return a source map converter synchronously.
+
+If {\ttfamily read\+Map} returns a {\ttfamily Promise}, {\ttfamily from\+Map\+File\+Comment} will also return {\ttfamily Promise}. The {\ttfamily Promise} will be either resolved with the source map converter or rejected with an error.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1748}{}\doxysubsubsubsection{\texorpdfstring{Examples}{Examples}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1748}
+{\bfseries{Synchronous read in Node.\+js:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ convert\ =\ require('convert-\/source-\/map');}
+\DoxyCodeLine{var\ fs\ =\ require('fs');}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ readMap(filename)\ \{}
+\DoxyCodeLine{\ \ return\ fs.readFileSync(filename,\ 'utf8');}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ json\ =\ convert}
+\DoxyCodeLine{\ \ .fromMapFileComment('//\#\ sourceMappingURL=map-\/file-\/comment.css.map',\ readMap)}
+\DoxyCodeLine{\ \ .toJSON();}
+\DoxyCodeLine{console.log(json);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Asynchronous read in Node.\+js:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ convert\ =\ require('convert-\/source-\/map');}
+\DoxyCodeLine{var\ \{\ promises:\ fs\ \}\ =\ require('fs');\ //\ Notice\ the\ \`{}promises`\ import}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ readMap(filename)\ \{}
+\DoxyCodeLine{\ \ return\ fs.readFile(filename,\ 'utf8');}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ converter\ =\ await\ convert.fromMapFileComment('//\#\ sourceMappingURL=map-\/file-\/comment.css.map',\ readMap)}
+\DoxyCodeLine{var\ json\ =\ converter.toJSON();}
+\DoxyCodeLine{console.log(json);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Asynchronous read in the browser:\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ convert\ =\ require('convert-\/source-\/map');}
+\DoxyCodeLine{}
+\DoxyCodeLine{async\ function\ readMap(url)\ \{}
+\DoxyCodeLine{\ \ const\ res\ =\ await\ fetch(url);}
+\DoxyCodeLine{\ \ return\ res.text();}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ converter\ =\ await\ convert.fromMapFileComment('//\#\ sourceMappingURL=map-\/file-\/comment.css.map',\ readMap)}
+\DoxyCodeLine{var\ json\ =\ converter.toJSON();}
+\DoxyCodeLine{console.log(json);}
+
+\end{DoxyCode}
+\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1749}{}\doxysubsubsection{\texorpdfstring{from\+Source(source)}{from\+Source(source)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1749}
+Finds last sourcemap comment in file and returns source map converter or returns {\ttfamily null} if no source map comment was found.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1750}{}\doxysubsubsection{\texorpdfstring{from\+Map\+File\+Source(source, read\+Map)}{from\+Map\+File\+Source(source, read\+Map)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1750}
+Finds last sourcemap comment in file and returns source map converter or returns {\ttfamily null} if no source map comment was found.
+
+{\ttfamily read\+Map} must be a function which receives the source map filename and returns either a String or Buffer of the source map (if read synchronously), or a {\ttfamily Promise} containing a String or Buffer of the source map (if read asynchronously).
+
+If {\ttfamily read\+Map} doesn\textquotesingle{}t return a {\ttfamily Promise}, {\ttfamily from\+Map\+File\+Source} will return a source map converter synchronously.
+
+If {\ttfamily read\+Map} returns a {\ttfamily Promise}, {\ttfamily from\+Map\+File\+Source} will also return {\ttfamily Promise}. The {\ttfamily Promise} will be either resolved with the source map converter or rejected with an error.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1751}{}\doxysubsubsection{\texorpdfstring{to\+Object()}{to\+Object()}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1751}
+Returns a copy of the underlying source map.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1752}{}\doxysubsubsection{\texorpdfstring{to\+JSON(\+[space]\+)}{to\+JSON(\+[space]\+)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1752}
+Converts source map to json string. If {\ttfamily space} is given (optional), this will be passed to \href{https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify}{\texttt{JSON.\+stringify}} when the JSON string is generated.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1753}{}\doxysubsubsection{\texorpdfstring{to\+URI()}{to\+URI()}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1753}
+Converts source map to uri encoded json string.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1754}{}\doxysubsubsection{\texorpdfstring{to\+Base64()}{to\+Base64()}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1754}
+Converts source map to base64 encoded json string.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1755}{}\doxysubsubsection{\texorpdfstring{to\+Comment(\+[options]\+)}{to\+Comment(\+[options]\+)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1755}
+Converts source map to an inline comment that can be appended to the source-\/file.
+
+By default, the comment is formatted like:\+ {\ttfamily /\+/\+\# source\+Mapping\+URL=...}, which you would normally see in a JS source file.
+
+When {\ttfamily options.\+encoding == \textquotesingle{}uri\textquotesingle{}}, the data will be uri encoded, otherwise they will be base64 encoded.
+
+When {\ttfamily options.\+multiline == true}, the comment is formatted like:\+ {\ttfamily /\+\texorpdfstring{$\ast$}{*}\# source\+Mapping\+URL=... \texorpdfstring{$\ast$}{*}/\+}, which you would find in a CSS source file.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1756}{}\doxysubsubsection{\texorpdfstring{add\+Property(key, value)}{add\+Property(key, value)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1756}
+Adds given property to the source map. Throws an error if property already exists.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1757}{}\doxysubsubsection{\texorpdfstring{set\+Property(key, value)}{set\+Property(key, value)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1757}
+Sets given property to the source map. If property doesn\textquotesingle{}t exist it is added, otherwise its value is updated.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1758}{}\doxysubsubsection{\texorpdfstring{get\+Property(key)}{get\+Property(key)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1758}
+Gets given property of the source map.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1759}{}\doxysubsubsection{\texorpdfstring{remove\+Comments(src)}{remove\+Comments(src)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1759}
+Returns {\ttfamily src} with all source map comments removed\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1760}{}\doxysubsubsection{\texorpdfstring{remove\+Map\+File\+Comments(src)}{remove\+Map\+File\+Comments(src)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1760}
+Returns {\ttfamily src} with all source map comments pointing to map files removed.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1761}{}\doxysubsubsection{\texorpdfstring{comment\+Regex}{comment\+Regex}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1761}
+Provides {\bfseries{a fresh}} Reg\+Exp each time it is accessed. Can be used to find source map comments.
+
+Breaks down a source map comment into groups:\+ Groups:\+ 1:\+ media type, 2:\+ MIME type, 3:\+ charset, 4:\+ encoding, 5:\+ data.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1762}{}\doxysubsubsection{\texorpdfstring{map\+File\+Comment\+Regex}{map\+File\+Comment\+Regex}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1762}
+Provides {\bfseries{a fresh}} Reg\+Exp each time it is accessed. Can be used to find source map comments pointing to map files.\hypertarget{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1763}{}\doxysubsubsection{\texorpdfstring{generate\+Map\+File\+Comment(file, \+[options]\+)}{generate\+Map\+File\+Comment(file, \+[options]\+)}}\label{dir_d45233dd003dbe5b1deb8f62074cb19d_autotoc_md1763}
+Returns a comment that links to an external source map via {\ttfamily file}.
+
+By default, the comment is formatted like:\+ {\ttfamily /\+/\+\# source\+Mapping\+URL=...}, which you would normally see in a JS source file.
+
+When {\ttfamily options.\+multiline == true}, the comment is formatted like:\+ {\ttfamily /\+\texorpdfstring{$\ast$}{*}\# source\+Mapping\+URL=... \texorpdfstring{$\ast$}{*}/\+}, which you would find in a CSS source file. 

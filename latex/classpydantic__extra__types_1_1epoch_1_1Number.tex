@@ -1,0 +1,78 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+epoch.\+Number Class Reference}
+\hypertarget{classpydantic__extra__types_1_1epoch_1_1Number}{}\label{classpydantic__extra__types_1_1epoch_1_1Number}\index{pydantic\_extra\_types.epoch.Number@{pydantic\_extra\_types.epoch.Number}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+epoch.\+Number:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpydantic__extra__types_1_1epoch_1_1Number}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1Number_aafb6ebab5de03840c3afe1e2c3576ece}{\+\_\+f}} (cls, Any value, Callable\+[\+[float]\+, float]\+ serializer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1__Base}{pydantic\+\_\+extra\+\_\+types.\+epoch.\+\_\+\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+datetime.\+datetime {\bfseries \+\_\+validate} (cls, Any \+\_\+\+\_\+input\+\_\+value, Any \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1__Base}{pydantic\+\_\+extra\+\_\+types.\+epoch.\+\_\+\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ source, Callable\+[\+[Any]\+, Core\+Schema]\+ handler)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1__Base}{pydantic\+\_\+extra\+\_\+types.\+epoch.\+\_\+\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries TYPE} = \textquotesingle{}\textquotesingle{}
+\item 
+pydantic\+\_\+core {\bfseries SCHEMA} .core\+\_\+schema.\+Core\+Schema
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1__Base}{pydantic\+\_\+extra\+\_\+types.\+epoch.\+\_\+\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}epoch.Number parses unix timestamp as float and converts it to datetime.
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types import epoch
+
+
+class LogEntry(BaseModel):
+    timestamp: epoch.Number
+
+
+logentry = LogEntry(timestamp=1.1)
+print(logentry)
+# > timestamp=datetime.datetime(1970, 1, 1, 0, 0, 1, 100000, tzinfo=datetime.timezone.utc)
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1epoch_1_1Number_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1epoch_1_1Number_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1epoch_1_1Number_aafb6ebab5de03840c3afe1e2c3576ece}\index{pydantic\_extra\_types.epoch.Number@{pydantic\_extra\_types.epoch.Number}!\_f@{\_f}}
+\index{\_f@{\_f}!pydantic\_extra\_types.epoch.Number@{pydantic\_extra\_types.epoch.Number}}
+\doxysubsubsection{\texorpdfstring{\_f()}{\_f()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1epoch_1_1Number_aafb6ebab5de03840c3afe1e2c3576ece} 
+ float pydantic\+\_\+extra\+\_\+types.\+epoch.\+Number.\+\_\+f (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Any}]{value}{, }\item[{Callable\+[\+[float]\+, float]\+}]{serializer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpydantic__extra__types_1_1epoch_1_1__Base}{pydantic\+\_\+extra\+\_\+types.\+epoch.\+\_\+\+Base}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+epoch.\+py\end{DoxyCompactItemize}

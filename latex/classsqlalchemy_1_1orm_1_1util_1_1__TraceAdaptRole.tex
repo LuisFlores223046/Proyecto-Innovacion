@@ -1,0 +1,72 @@
+\doxysection{sqlalchemy.\+orm.\+util.\+\_\+\+Trace\+Adapt\+Role Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole}{}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole}\index{sqlalchemy.orm.util.\_TraceAdaptRole@{sqlalchemy.orm.util.\_TraceAdaptRole}}
+Inheritance diagram for sqlalchemy.\+orm.\+util.\+\_\+\+Trace\+Adapt\+Role:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a6a7d53e5761b61d194273600485ae1df}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a6a7d53e5761b61d194273600485ae1df} 
+{\bfseries ALIASED\+\_\+\+INSP} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a0587703615899ceded82a5b3de619adc}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a0587703615899ceded82a5b3de619adc} 
+{\bfseries JOINEDLOAD\+\_\+\+USER\+\_\+\+DEFINED\+\_\+\+ALIAS} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a587828afeeb9f107a5eb72c7bf36834e}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a587828afeeb9f107a5eb72c7bf36834e} 
+{\bfseries JOINEDLOAD\+\_\+\+PATH\+\_\+\+WITH\+\_\+\+POLYMORPHIC} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a5b31aeab4223ee4a5d7f5f33f27a34b3}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a5b31aeab4223ee4a5d7f5f33f27a34b3} 
+{\bfseries JOINEDLOAD\+\_\+\+MEMOIZED\+\_\+\+ADAPTER} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_ae7280e3e84d21577d3e6c014e461f400}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_ae7280e3e84d21577d3e6c014e461f400} 
+{\bfseries MAPPER\+\_\+\+POLYMORPHIC\+\_\+\+ADAPTER} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a7aa5ed9bde5ba0bf090a3b2f87f13160}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a7aa5ed9bde5ba0bf090a3b2f87f13160} 
+{\bfseries WITH\+\_\+\+POLYMORPHIC\+\_\+\+ADAPTER} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_af0e5d0256268bd9ed0a38d4d8a62e679}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_af0e5d0256268bd9ed0a38d4d8a62e679} 
+{\bfseries WITH\+\_\+\+POLYMORPHIC\+\_\+\+ADAPTER\+\_\+\+RIGHT\+\_\+\+JOIN} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a41b72282e3e4ac285303b4040dcd955d}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a41b72282e3e4ac285303b4040dcd955d} 
+{\bfseries DEPRECATED\+\_\+\+JOIN\+\_\+\+ADAPT\+\_\+\+RIGHT\+\_\+\+SIDE} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_ad1549a84a8bbf0d85be4cb6909d3a3e8}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_ad1549a84a8bbf0d85be4cb6909d3a3e8} 
+{\bfseries ADAPT\+\_\+\+FROM\+\_\+\+STATEMENT} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a9cb5c3571e89482df8312eb6ccdb299a}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a9cb5c3571e89482df8312eb6ccdb299a} 
+{\bfseries COMPOUND\+\_\+\+EAGER\+\_\+\+STATEMENT} = enum.\+auto()
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a89b1e1600e4da4ef74b8c5d9dc939e5f}\label{classsqlalchemy_1_1orm_1_1util_1_1__TraceAdaptRole_a89b1e1600e4da4ef74b8c5d9dc939e5f} 
+{\bfseries LEGACY\+\_\+\+SELECT\+\_\+\+FROM\+\_\+\+ALIAS} = enum.\+auto()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Enumeration of all the use cases for ORMAdapter.
+
+ORMAdapter remains one of the most complicated aspects of the ORM, as it is
+used for in-place adaption of column expressions to be applied to a SELECT,
+replacing :class:`.Table` and other objects that are mapped to classes with
+aliases of those tables in the case of joined eager loading, or in the case
+of polymorphic loading as used with concrete mappings or other custom "with
+polymorphic" parameters, with whole user-defined subqueries. The
+enumerations provide an overview of all the use cases used by ORMAdapter, a
+layer of formality as to the introduction of new ORMAdapter use cases (of
+which none are anticipated), as well as a means to trace the origins of a
+particular ORMAdapter within runtime debugging.
+
+SQLAlchemy 2.0 has greatly scaled back ORM features which relied heavily on
+open-ended statement adaption, including the ``Query.with_polymorphic()``
+method and the ``Query.select_from_entity()`` methods, favoring
+user-explicit aliasing schemes using the ``aliased()`` and
+``with_polymorphic()`` standalone constructs; these still use adaption,
+however the adaption is applied in a narrower scope.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+util.\+py\end{DoxyCompactItemize}

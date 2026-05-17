@@ -1,0 +1,26 @@
+var dir_3cd0b4a4882b9dd1785b5268ad62106b =
+[
+    [ "switch_aarch64_gcc.h", "switch__aarch64__gcc_8h_source.html", null ],
+    [ "switch_alpha_unix.h", "switch__alpha__unix_8h_source.html", null ],
+    [ "switch_amd64_unix.h", "switch__amd64__unix_8h_source.html", null ],
+    [ "switch_arm32_gcc.h", "switch__arm32__gcc_8h_source.html", null ],
+    [ "switch_arm32_ios.h", "switch__arm32__ios_8h_source.html", null ],
+    [ "switch_arm64_msvc.h", "switch__arm64__msvc_8h_source.html", null ],
+    [ "switch_csky_gcc.h", "switch__csky__gcc_8h_source.html", null ],
+    [ "switch_loongarch64_linux.h", "switch__loongarch64__linux_8h_source.html", null ],
+    [ "switch_m68k_gcc.h", "switch__m68k__gcc_8h_source.html", null ],
+    [ "switch_mips_unix.h", "switch__mips__unix_8h_source.html", null ],
+    [ "switch_ppc64_aix.h", "switch__ppc64__aix_8h_source.html", null ],
+    [ "switch_ppc64_linux.h", "switch__ppc64__linux_8h_source.html", null ],
+    [ "switch_ppc_aix.h", "switch__ppc__aix_8h_source.html", null ],
+    [ "switch_ppc_linux.h", "switch__ppc__linux_8h_source.html", null ],
+    [ "switch_ppc_macosx.h", "switch__ppc__macosx_8h_source.html", null ],
+    [ "switch_ppc_unix.h", "switch__ppc__unix_8h_source.html", null ],
+    [ "switch_riscv_unix.h", "switch__riscv__unix_8h_source.html", null ],
+    [ "switch_s390_unix.h", "switch__s390__unix_8h_source.html", null ],
+    [ "switch_sparc_sun_gcc.h", "switch__sparc__sun__gcc_8h_source.html", null ],
+    [ "switch_x32_unix.h", "switch__x32__unix_8h_source.html", null ],
+    [ "switch_x64_msvc.h", "switch__x64__msvc_8h_source.html", null ],
+    [ "switch_x86_msvc.h", "switch__x86__msvc_8h_source.html", null ],
+    [ "switch_x86_unix.h", "switch__x86__unix_8h_source.html", null ]
+];

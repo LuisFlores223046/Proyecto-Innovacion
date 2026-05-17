@@ -1,0 +1,156 @@
+\doxysection{frontend/\+node\+\_\+modules/\+punycode Directory Reference}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15}{}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15}\index{frontend/node\_modules/punycode Directory Reference@{frontend/node\_modules/punycode Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4049}{}\doxysubsection{\texorpdfstring{Punycode.\+js \+[!\+[punycode on npm]\+(\href{https://img.shields.io/npm/v/punycode}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+punycode}})]\+(\href{https://www.npmjs.com/package/punycode}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+punycode}}) \+[!\+[]\+(\href{https://data.jsdelivr.com/v1/package/npm/punycode/badge}{\texttt{https:\+/\+/\+data.\+jsdelivr.\+com/\+v1/\+package/\+npm/\+punycode/\+badge}})]\+(\href{https://www.jsdelivr.com/package/npm/punycode}{\texttt{https:\+/\+/\+www.\+jsdelivr.\+com/\+package/\+npm/\+punycode}})}{Punycode.\+js \+[!\+[punycode on npm]\+(\href{https://img.shields.io/npm/v/punycode}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+punycode}})]\+(\href{https://www.npmjs.com/package/punycode}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+punycode}}) \+[!\+[]\+(\href{https://data.jsdelivr.com/v1/package/npm/punycode/badge}{\texttt{https:\+/\+/\+data.\+jsdelivr.\+com/\+v1/\+package/\+npm/\+punycode/\+badge}})]\+(\href{https://www.jsdelivr.com/package/npm/punycode}{\texttt{https:\+/\+/\+www.\+jsdelivr.\+com/\+package/\+npm/\+punycode}})}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4049}
+Punycode.\+js is a robust Punycode converter that fully complies to \href{https://tools.ietf.org/html/rfc3492}{\texttt{RFC 3492}} and \href{https://tools.ietf.org/html/rfc5891}{\texttt{RFC 5891}}.
+
+This Java\+Script library is the result of comparing, optimizing and documenting different open-\/source implementations of the Punycode algorithm:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://tools.ietf.org/html/rfc3492\#appendix-C}{\texttt{The C example code from RFC 3492}}
+\item \href{http://opensource.apple.com/source/ICU/ICU-400.42/icuSources/common/punycode.c}{\texttt{{\ttfamily punycode.\+c} by {\itshape Markus W. Scherer} (IBM)}}
+\item \href{https://github.com/bnoordhuis/punycode/blob/master/punycode.c}{\texttt{{\ttfamily punycode.\+c} by {\itshape Ben Noordhuis}}}
+\item \href{http://stackoverflow.com/questions/183485/can-anyone-recommend-a-good-free-javascript-for-punycode-to-unicode-conversion/301287\#301287}{\texttt{Java\+Script implementation by {\itshape some}}}
+\item \href{https://github.com/joyent/node/blob/426298c8c1c0d5b5224ac3658c41e7c2a3fe9377/lib/punycode.js}{\texttt{{\ttfamily punycode.\+js} by {\itshape Ben Noordhuis}}} (note:\+ \href{https://github.com/joyent/node/issues/2072}{\texttt{not fully compliant}})
+\end{DoxyItemize}
+
+This project was \href{https://github.com/joyent/node/blob/master/lib/punycode.js}{\texttt{bundled}} with Node.\+js from \href{https://github.com/joyent/node/compare/975f1930b1...61e796decc}{\texttt{v0.\+6.\+2+}} until \href{https://github.com/nodejs/node/pull/7941}{\texttt{v7}} (soft-\/deprecated).
+
+This project provides a Common\+JS module that uses ES2015+ features and Java\+Script module, which work in modern Node.\+js versions and browsers. For the old Punycode.\+js version that offers the same functionality in a UMD build with support for older pre-\/\+ES2015 runtimes, including Rhino, Ringo, and Narwhal, see \href{https://github.com/mathiasbynens/punycode.js/releases/tag/v1.4.1}{\texttt{v1.\+4.\+1}}.\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4050}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4050}
+Via \href{https://www.npmjs.com/}{\texttt{npm}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ punycode\ -\/-\/save}
+
+\end{DoxyCode}
+
+
+In \href{https://nodejs.org/}{\texttt{Node.\+js}}:\+
+
+\begin{quote}
+⚠️ Note that userland modules don\textquotesingle{}t hide core modules. For example, {\ttfamily require(\textquotesingle{}punycode\textquotesingle{})} still imports the deprecated core module even if you executed {\ttfamily npm install punycode}. Use {\ttfamily require(\textquotesingle{}punycode/\+\textquotesingle{})} to import userland modules rather than core modules. \end{quote}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ punycode\ =\ require('punycode/');}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4051}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4051}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4052}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+decode(string)}}{{\ttfamily punycode.\+decode(string)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4052}
+Converts a Punycode string of ASCII symbols to a string of Unicode symbols.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ decode\ domain\ name\ parts}
+\DoxyCodeLine{punycode.decode('maana-\/pta');\ //\ 'mañana'}
+\DoxyCodeLine{punycode.decode('-\/-\/dqo34k');\ //\ '☃-\/⌘'}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4053}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+encode(string)}}{{\ttfamily punycode.\+encode(string)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4053}
+Converts a string of Unicode symbols to a Punycode string of ASCII symbols.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ encode\ domain\ name\ parts}
+\DoxyCodeLine{punycode.encode('mañana');\ //\ 'maana-\/pta'}
+\DoxyCodeLine{punycode.encode('☃-\/⌘');\ //\ '-\/-\/dqo34k'}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4054}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+to\+Unicode(input)}}{{\ttfamily punycode.\+to\+Unicode(input)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4054}
+Converts a Punycode string representing a domain name or an email address to Unicode. Only the Punycoded parts of the input will be converted, i.\+e. it doesn’t matter if you call it on a string that has already been converted to Unicode.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ decode\ domain\ names}
+\DoxyCodeLine{punycode.toUnicode('xn-\/-\/maana-\/pta.com');}
+\DoxyCodeLine{//\ →\ 'mañana.com'}
+\DoxyCodeLine{punycode.toUnicode('xn-\/-\/-\/-\/dqo34k.com');}
+\DoxyCodeLine{//\ →\ '☃-\/⌘.com'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ decode\ email\ addresses}
+\DoxyCodeLine{punycode.toUnicode('джумла@xn-\/-\/p-\/8sbkgc5ag7bhce.xn-\/-\/ba-\/lmcq');}
+\DoxyCodeLine{//\ →\ 'джумла@джpумлатест.bрфa'}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4055}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+to\+ASCII(input)}}{{\ttfamily punycode.\+to\+ASCII(input)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4055}
+Converts a lowercased Unicode string representing a domain name or an email address to Punycode. Only the non-\/\+ASCII parts of the input will be converted, i.\+e. it doesn’t matter if you call it with a domain that’s already in ASCII.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ encode\ domain\ names}
+\DoxyCodeLine{punycode.toASCII('mañana.com');}
+\DoxyCodeLine{//\ →\ 'xn-\/-\/maana-\/pta.com'}
+\DoxyCodeLine{punycode.toASCII('☃-\/⌘.com');}
+\DoxyCodeLine{//\ → 'xn-\/-\/-\/-\/dqo34k.com'}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ encode\ email\ addresses}
+\DoxyCodeLine{punycode.toASCII('джумла@джpумлатест.bрфa');}
+\DoxyCodeLine{//\ →\ 'джумла@xn-\/-\/p-\/8sbkgc5ag7bhce.xn-\/-\/ba-\/lmcq'}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4056}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+ucs2}}{{\ttfamily punycode.\+ucs2}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4056}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4057}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily punycode.\+ucs2.\+decode(string)}}{{\ttfamily punycode.\+ucs2.\+decode(string)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4057}
+Creates an array containing the numeric code point values of each Unicode symbol in the string. While \href{https://mathiasbynens.be/notes/javascript-encoding}{\texttt{Java\+Script uses UCS-\/2 internally}}, this function will convert a pair of surrogate halves (each of which UCS-\/2 exposes as separate characters) into a single code point, matching UTF-\/16.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{punycode.ucs2.decode('abc');}
+\DoxyCodeLine{//\ →\ [0x61,\ 0x62,\ 0x63]}
+\DoxyCodeLine{//\ surrogate\ pair\ for\ U+1D306\ TETRAGRAM\ FOR\ CENTRE:}
+\DoxyCodeLine{punycode.ucs2.decode('\(\backslash\)uD834\(\backslash\)uDF06');}
+\DoxyCodeLine{//\ →\ [0x1D306]}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4058}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily punycode.\+ucs2.\+encode(code\+Points)}}{{\ttfamily punycode.\+ucs2.\+encode(code\+Points)}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4058}
+Creates a string based on an array of numeric code point values.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{punycode.ucs2.encode([0x61,\ 0x62,\ 0x63]);}
+\DoxyCodeLine{//\ →\ 'abc'}
+\DoxyCodeLine{punycode.ucs2.encode([0x1D306]);}
+\DoxyCodeLine{//\ →\ '\(\backslash\)uD834\(\backslash\)uDF06'}
+
+\end{DoxyCode}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4059}{}\doxysubsubsection{\texorpdfstring{{\ttfamily punycode.\+version}}{{\ttfamily punycode.\+version}}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4059}
+A string representing the current Punycode.\+js version number.\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4060}{}\doxysubsection{\texorpdfstring{For maintainers}{For maintainers}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4060}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4061}{}\doxysubsubsection{\texorpdfstring{How to publish a new release}{How to publish a new release}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4061}
+
+\begin{DoxyEnumerate}
+\item On the {\ttfamily main} branch, bump the version number in {\ttfamily package.\+json}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ version\ patch\ -\/m\ 'Release\ v\%s'}
+
+\end{DoxyCode}
+
+
+Instead of {\ttfamily patch}, use {\ttfamily minor} or {\ttfamily major} \href{https://semver.org/}{\texttt{as needed}}.
+
+Note that this produces a Git commit + tag.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Push the release commit and tag:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ push\ \&\&\ git\ push\ -\/-\/tags}
+
+\end{DoxyCode}
+
+
+Our CI then automatically publishes the new release to npm, under both the \href{https://www.npmjs.com/package/punycode}{\texttt{{\ttfamily punycode}}} and \href{https://www.npmjs.com/package/punycode.js}{\texttt{{\ttfamily punycode.\+js}}} names.
+\end{DoxyEnumerate}\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4062}{}\doxysubsection{\texorpdfstring{Author}{Author}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4062}
+
+\begin{DoxyTable}{1}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}\href{https://twitter.com/mathias}{\texttt{}}  \\
+\href{https://mathiasbynens.be/}{\texttt{Mathias Bynens}}  \\
+\end{DoxyTable}
+\hypertarget{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4063}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_5746f966a50cf4dfff4ee3c0ee1a5a15_autotoc_md4063}
+Punycode.\+js is available under the \href{https://mths.be/mit}{\texttt{MIT}} license. 

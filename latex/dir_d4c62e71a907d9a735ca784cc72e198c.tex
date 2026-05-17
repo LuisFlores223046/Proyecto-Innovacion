@@ -1,0 +1,136 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@nodelib/\+fs.stat Directory Reference}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c}{}\label{dir_d4c62e71a907d9a735ca784cc72e198c}\index{frontend/node\_modules/"@nodelib/fs.stat Directory Reference@{frontend/node\_modules/"@nodelib/fs.stat Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_5b066300837039c113bd4d415be7576e}{out}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md46}{}\doxysubsection{\texorpdfstring{@nodelib/\+fs.stat}{@nodelib/\+fs.stat}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md46}
+\begin{quote}
+Get the status of a file with some features. \end{quote}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md47}{}\doxysubsection{\texorpdfstring{:\+bulb:\+ Highlights}{:\+bulb:\+ Highlights}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md47}
+Wrapper around standard method {\ttfamily fs.\+lstat} and {\ttfamily fs.\+stat} with some features.
+
+
+\begin{DoxyItemize}
+\item :\+beginner:\+ Normally follows symbolic link.
+\item :\+gear:\+ Can safely work with broken symbolic link.
+\end{DoxyItemize}\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md48}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md48}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @nodelib/fs.stat}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md49}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md49}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ fsStat\ from\ '@nodelib/fs.stat';}
+\DoxyCodeLine{}
+\DoxyCodeLine{fsStat.stat('path',\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md50}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md50}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{.stat(path, \+[options\+Or\+Settings]\+, callback)}{.stat(path, \+[options\+Or\+Settings]\+, callback)}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md51}
+Returns an instance of {\ttfamily fs.\+Stats} class for provided path with standard callback-\/style.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fsStat.stat('path',\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsStat.stat('path',\ \{\},\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsStat.stat('path',\ new\ fsStat.Settings(),\ (error,\ stats)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md52}{}\doxysubsubsection{\texorpdfstring{.stat\+Sync(path, \+[options\+Or\+Settings]\+)}{.stat\+Sync(path, \+[options\+Or\+Settings]\+)}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md52}
+Returns an instance of {\ttfamily fs.\+Stats} class for provided path.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path');}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ \{\});}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ new\ fsStat.Settings());}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md53}{}\doxysubsubsubsection{\texorpdfstring{path}{path}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md53}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily true}
+\item Type:\+ {\ttfamily string \texorpdfstring{$\vert$}{|} Buffer \texorpdfstring{$\vert$}{|} URL}
+\end{DoxyItemize}
+
+A path to a file. If a URL is provided, it must use the {\ttfamily file:\+} protocol.\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md54}{}\doxysubsubsubsection{\texorpdfstring{options\+Or\+Settings}{options\+Or\+Settings}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md54}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily false}
+\item Type:\+ {\ttfamily Options \texorpdfstring{$\vert$}{|} Settings}
+\item Default:\+ An instance of {\ttfamily Settings} class
+\end{DoxyItemize}
+
+An \`{}\+Options\`{}{\ttfamily Options} object or an instance of \`{}\+Settings\`{}{\ttfamily Settings} class.
+
+\begin{quote}
+:\+book:\+ When you pass a plain object, an instance of the {\ttfamily Settings} class will be created automatically. If you plan to call the method frequently, use a pre-\/created instance of the {\ttfamily Settings} class. \end{quote}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{Settings(\+[options]\+)}{Settings(\+[options]\+)}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md55}
+A class of full settings of the package.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ settings\ =\ new\ fsStat.Settings(\{\ followSymbolicLink:\ false\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ stats\ =\ fsStat.stat('path',\ settings);}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md56}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md56}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{{\ttfamily follow\+Symbolic\+Link}}{{\ttfamily follow\+Symbolic\+Link}}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md57}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily true}
+\end{DoxyItemize}
+
+Follow symbolic link or not. Call {\ttfamily fs.\+stat} on symbolic link if {\ttfamily true}.\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md58}{}\doxysubsubsection{\texorpdfstring{{\ttfamily mark\+Symbolic\+Link}}{{\ttfamily mark\+Symbolic\+Link}}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md58}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Mark symbolic link by setting the return value of {\ttfamily is\+Symbolic\+Link} function to always {\ttfamily true} (even after {\ttfamily fs.\+stat}).
+
+\begin{quote}
+:\+book:\+ Can be used if you want to know what is hidden behind a symbolic link, but still continue to know that it is a symbolic link. \end{quote}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md59}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily true}
+\end{DoxyItemize}
+
+Throw an error when symbolic link is broken if {\ttfamily true} or safely return {\ttfamily lstat} call if {\ttfamily false}.\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md60}{}\doxysubsubsection{\texorpdfstring{{\ttfamily fs}}{{\ttfamily fs}}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md60}
+
+\begin{DoxyItemize}
+\item Type:\+ \href{./src/adapters/fs.ts}{\texttt{{\ttfamily File\+System\+Adapter}}}
+\item Default:\+ A default FS methods
+\end{DoxyItemize}
+
+By default, the built-\/in Node.\+js module ({\ttfamily fs}) is used to work with the file system. You can replace any method with your own.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ FileSystemAdapter\ \{}
+\DoxyCodeLine{\ \ \ \ lstat?:\ typeof\ fs.lstat;}
+\DoxyCodeLine{\ \ \ \ stat?:\ typeof\ fs.stat;}
+\DoxyCodeLine{\ \ \ \ lstatSync?:\ typeof\ fs.lstatSync;}
+\DoxyCodeLine{\ \ \ \ statSync?:\ typeof\ fs.statSync;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ settings\ =\ new\ fsStat.Settings(\{}
+\DoxyCodeLine{\ \ \ \ fs:\ \{\ lstat:\ fakeLstat\ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md61}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md61}
+See the \href{https://github.com/nodelib/nodelib/releases}{\texttt{Releases section of our Git\+Hub project}} for changelog for each release version.\hypertarget{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md62}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_d4c62e71a907d9a735ca784cc72e198c_autotoc_md62}
+This software is released under the terms of the MIT license. 

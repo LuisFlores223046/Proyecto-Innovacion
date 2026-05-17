@@ -1,0 +1,83 @@
+\doxysection{sqlalchemy.\+dialects.\+sqlite.\+base.\+DATE Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE}{}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE}\index{sqlalchemy.dialects.sqlite.base.DATE@{sqlalchemy.dialects.sqlite.base.DATE}}
+Inheritance diagram for sqlalchemy.\+dialects.\+sqlite.\+base.\+DATE:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.537765cm]{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE_a725902a36c8149370082213c9d5bd8bf}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE_a725902a36c8149370082213c9d5bd8bf} 
+{\bfseries bind\+\_\+processor} (self, dialect)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE_a640034ce51150511b43a5a5fb5515b1f}\label{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1DATE_a640034ce51150511b43a5a5fb5515b1f} 
+{\bfseries result\+\_\+processor} (self, dialect, coltype)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin}{sqlalchemy.\+dialects.\+sqlite.\+base.\+\_\+\+Date\+Time\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, storage\+\_\+format=None, regexp=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin_a9524d10d56ca45fab18ab067a4384c40}{format\+\_\+is\+\_\+text\+\_\+affinity}} (self)
+\item 
+{\bfseries adapt} (self, cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+{\bfseries literal\+\_\+processor} (self, dialect)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1sqlite_1_1base_1_1__DateTimeMixin}{sqlalchemy.\+dialects.\+sqlite.\+base.\+\_\+\+Date\+Time\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+reg} = None
+\item 
+{\bfseries \+\_\+storage\+\_\+format} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent a Python date object in SQLite using a string.
+
+The default string storage format is::
+
+    "%(year)04d-%(month)02d-%(day)02d"
+
+e.g.::
+
+    2011-03-15
+
+The incoming storage format is by default parsed using the
+Python ``date.fromisoformat()`` function.
+
+.. versionchanged:: 2.0  ``date.fromisoformat()`` is used for default
+   date string parsing.
+
+
+The storage format can be customized to some degree using the
+``storage_format`` and ``regexp`` parameters, such as::
+
+    import re
+    from sqlalchemy.dialects.sqlite import DATE
+
+    d = DATE(
+            storage_format="%(month)02d/%(day)02d/%(year)04d",
+            regexp=re.compile("(?P<month>\d+)/(?P<day>\d+)/(?P<year>\d+)")
+        )
+
+:param storage_format: format string which will be applied to the
+ dict with keys year, month, and day.
+
+:param regexp: regular expression which will be applied to
+ incoming result rows, replacing the use of ``date.fromisoformat()`` to
+ parse incoming strings. If the regexp contains named groups, the resulting
+ match dict is applied to the Python date() constructor as keyword
+ arguments. Otherwise, if positional groups are used, the date()
+ constructor is called with positional arguments via
+ ``*map(int, match_obj.groups(0))``.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+sqlite/\+base.\+py\end{DoxyCompactItemize}

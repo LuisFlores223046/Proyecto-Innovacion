@@ -1,0 +1,78 @@
+\doxysection{dns.\+namedict.\+Name\+Dict Class Reference}
+\hypertarget{classdns_1_1namedict_1_1NameDict}{}\label{classdns_1_1namedict_1_1NameDict}\index{dns.namedict.NameDict@{dns.namedict.NameDict}}
+Inheritance diagram for dns.\+namedict.\+Name\+Dict:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1namedict_1_1NameDict}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_aafb79cbf72e8271e44a3fb1e95c14c56}\label{classdns_1_1namedict_1_1NameDict_aafb79cbf72e8271e44a3fb1e95c14c56} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_abb14e1585755dddd007d6b55f27bd2be}\label{classdns_1_1namedict_1_1NameDict_abb14e1585755dddd007d6b55f27bd2be} 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, key)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a57422c2394683469ba93ef21da2e245e}\label{classdns_1_1namedict_1_1NameDict_a57422c2394683469ba93ef21da2e245e} 
+{\bfseries \+\_\+\+\_\+setitem\+\_\+\+\_\+} (self, key, value)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a58c9369e47ecbcf9a93ac3a3e07e3f40}\label{classdns_1_1namedict_1_1NameDict_a58c9369e47ecbcf9a93ac3a3e07e3f40} 
+{\bfseries \+\_\+\+\_\+delitem\+\_\+\+\_\+} (self, key)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a0d6905716df7208c20bde5f9a08d9685}\label{classdns_1_1namedict_1_1NameDict_a0d6905716df7208c20bde5f9a08d9685} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_aef6373d44e585d28f520d5e76c7b6b6d}\label{classdns_1_1namedict_1_1NameDict_aef6373d44e585d28f520d5e76c7b6b6d} 
+{\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a2f5d8531e8fa3b7042fb568ca0d2fe14}\label{classdns_1_1namedict_1_1NameDict_a2f5d8531e8fa3b7042fb568ca0d2fe14} 
+{\bfseries has\+\_\+key} (self, key)
+\item 
+\doxymbox{\hyperlink{classdns_1_1namedict_1_1NameDict_a7774c0d0038306f0e29fa484bf937650}{get\+\_\+deepest\+\_\+match}} (self, name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a72e3ca0df056f15fe94357eadeed238e}\label{classdns_1_1namedict_1_1NameDict_a72e3ca0df056f15fe94357eadeed238e} 
+int {\bfseries max\+\_\+depth} = 0
+\item 
+\Hypertarget{classdns_1_1namedict_1_1NameDict_aab0c1a8f847f77247c9b79fee3e47d74}\label{classdns_1_1namedict_1_1NameDict_aab0c1a8f847f77247c9b79fee3e47d74} 
+int {\bfseries max\+\_\+depth\+\_\+items} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A dictionary whose keys are dns.name.Name objects.
+
+In addition to being like a regular Python dictionary, this
+dictionary can also get the deepest match for a given key.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1namedict_1_1NameDict_doc-func-members}
+\Hypertarget{classdns_1_1namedict_1_1NameDict_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1namedict_1_1NameDict_a7774c0d0038306f0e29fa484bf937650}\index{dns.namedict.NameDict@{dns.namedict.NameDict}!get\_deepest\_match@{get\_deepest\_match}}
+\index{get\_deepest\_match@{get\_deepest\_match}!dns.namedict.NameDict@{dns.namedict.NameDict}}
+\doxysubsubsection{\texorpdfstring{get\_deepest\_match()}{get\_deepest\_match()}}
+{\footnotesize\ttfamily \label{classdns_1_1namedict_1_1NameDict_a7774c0d0038306f0e29fa484bf937650} 
+dns.\+namedict.\+Name\+Dict.\+get\+\_\+deepest\+\_\+match (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find the deepest match to *name* in the dictionary.
+
+The deepest match is the longest name in the dictionary which is
+a superdomain of *name*.  Note that *superdomain* includes matching
+*name* itself.
+
+*name*, a ``dns.name.Name``, the name to find.
+
+Returns a ``(key, value)`` where *key* is the deepest
+``dns.name.Name``, and *value* is the value associated with *key*.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+namedict.\+py\end{DoxyCompactItemize}

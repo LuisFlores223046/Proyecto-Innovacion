@@ -1,0 +1,583 @@
+\doxysection{pycparser.\+c\+\_\+parser.\+CParser Class Reference}
+\hypertarget{classpycparser_1_1c__parser_1_1CParser}{}\label{classpycparser_1_1c__parser_1_1CParser}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_adcd6a7a3aab1ac9f70e4b26ff35d3e38}\label{classpycparser_1_1c__parser_1_1CParser_adcd6a7a3aab1ac9f70e4b26ff35d3e38} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bool lex\+\_\+optimize=True, type\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1CLexer}{CLexer}}]\+ lexer=\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1CLexer}{CLexer}}, str lextab="{}pycparser.\+lextab"{}, bool yacc\+\_\+optimize=True, str yacctab="{}pycparser.\+yacctab"{}, bool yacc\+\_\+debug=False, str taboutputdir="{}"{})
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1FileAST}{c\+\_\+ast.\+File\+AST}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_aa039d02d2269426119309367f64509a6}{parse}} (self, str text, str filename="{}"{}, bool debug=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1CLexer}{CLexer}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_ac17236b4a60ca510df5c2856e0e0a3f7}{clex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ad16b54839ae7518588269b12e6ec615c}\label{classpycparser_1_1c__parser_1_1CParser_ad16b54839ae7518588269b12e6ec615c} 
+\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}} {\bfseries \+\_\+coord} (self, int lineno, Optional\+[int]\+ column=None)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a475904b2835549455a57e2a29d4bed48}\label{classpycparser_1_1c__parser_1_1CParser_a475904b2835549455a57e2a29d4bed48} 
+No\+Return {\bfseries \+\_\+parse\+\_\+error} (self, str msg, \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}None coord)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ae510d8a8ae03569ef9c586faa55ff030}\label{classpycparser_1_1c__parser_1_1CParser_ae510d8a8ae03569ef9c586faa55ff030} 
+None {\bfseries \+\_\+push\+\_\+scope} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_addcfc6b5e86cd2225121a4b3a4f3d93a}\label{classpycparser_1_1c__parser_1_1CParser_addcfc6b5e86cd2225121a4b3a4f3d93a} 
+None {\bfseries \+\_\+pop\+\_\+scope} (self)
+\item 
+None \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a5ed2d677a9fbcaf8f202e0ec0a420bab}{\+\_\+add\+\_\+typedef\+\_\+name}} (self, str name, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+ coord)
+\item 
+None \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_aba10d6e2f0a5365549f86098d6b69a09}{\+\_\+add\+\_\+identifier}} (self, str name, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+ coord)
+\item 
+bool \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a6c63b575957a53b9c65783ac6e7f4674}{\+\_\+is\+\_\+type\+\_\+in\+\_\+scope}} (self, str name)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a25a2a6d464476d8e4fe3ddaf1932d321}\label{classpycparser_1_1c__parser_1_1CParser_a25a2a6d464476d8e4fe3ddaf1932d321} 
+None {\bfseries \+\_\+lex\+\_\+error\+\_\+func} (self, str msg, int line, int column)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_af2bddb7f45ebac72a41ba587946792b1}\label{classpycparser_1_1c__parser_1_1CParser_af2bddb7f45ebac72a41ba587946792b1} 
+None {\bfseries \+\_\+lex\+\_\+on\+\_\+lbrace\+\_\+func} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a2441b4487f53eaf956e36e7c55581741}\label{classpycparser_1_1c__parser_1_1CParser_a2441b4487f53eaf956e36e7c55581741} 
+None {\bfseries \+\_\+lex\+\_\+on\+\_\+rbrace\+\_\+func} (self)
+\item 
+bool \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a8ca13b307e783a33e30f22eb82bee4e9}{\+\_\+lex\+\_\+type\+\_\+lookup\+\_\+func}} (self, str name)
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a50e850290264c03c38e65784f535bde8}{\+\_\+type\+\_\+modify\+\_\+decl}} (self, Any decl, Any modifier)
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Decl}{c\+\_\+ast.\+Decl}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typedef}{c\+\_\+ast.\+Typedef}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a641aa40a96fb6521dfe1445f19f81d92}{\+\_\+fix\+\_\+decl\+\_\+name\+\_\+type}} (self, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Decl}{c\+\_\+ast.\+Decl}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typedef}{c\+\_\+ast.\+Typedef}}\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}} decl, List\+[Any]\+ typename)
+\item 
+"{}\+\_\+\+Decl\+Spec"{} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a0a67dc628cb2521c985dc909dad70b37}{\+\_\+add\+\_\+declaration\+\_\+specifier}} (self, Optional\+["{}\+\_\+\+Decl\+Spec"{}]\+ declspec, Any newspec, "{}\+\_\+\+Decl\+Spec\+Kind"{} kind, bool append=False)
+\item 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_aeb9e162bf79d4da52f9b548c2d7b1852}{\+\_\+build\+\_\+declarations}} (self, "{}\+\_\+\+Decl\+Spec"{} spec, List\+["{}\+\_\+\+Decl\+Info"{}]\+ decls, bool typedef\+\_\+namespace=False)
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a8871bd27d64cfdc43bf4923afadba151}{\+\_\+build\+\_\+function\+\_\+definition}} (self, "{}\+\_\+\+Decl\+Spec"{} spec, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} decl, Optional\+[List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+]\+ param\+\_\+decls, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} body)
+\item 
+type \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_afcb71b9a775a58150e604ab6b4601964}{\+\_\+select\+\_\+struct\+\_\+union\+\_\+class}} (self, str token)
+\item 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a1116e2a870421b117c8460f2547e31f2}{\+\_\+peek}} (self, int k=1)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_aef00aed1f0fc29ea3684eee02e763dc8}{\+\_\+peek\+\_\+type}} (self, int k=1)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a4d1d3163c77ffc3c14b34031c4b388b9}\label{classpycparser_1_1c__parser_1_1CParser_a4d1d3163c77ffc3c14b34031c4b388b9} 
+\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}} {\bfseries \+\_\+advance} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a24d8791021cb8adc4bee66c10e469923}{\+\_\+accept}} (self, str token\+\_\+type)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_af806e5fc3b96a062536ac1d1bc30330f}\label{classpycparser_1_1c__parser_1_1CParser_af806e5fc3b96a062536ac1d1bc30330f} 
+\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}} {\bfseries \+\_\+expect} (self, str token\+\_\+type)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9d774d791f32a98345e9e36f16a35322}\label{classpycparser_1_1c__parser_1_1CParser_a9d774d791f32a98345e9e36f16a35322} 
+int {\bfseries \+\_\+mark} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a40309dd41cf41c927b6dbca658cdc8eb}\label{classpycparser_1_1c__parser_1_1CParser_a40309dd41cf41c927b6dbca658cdc8eb} 
+None {\bfseries \+\_\+reset} (self, int mark)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aedaf995e8ddd3634565c965bcf65f639}\label{classpycparser_1_1c__parser_1_1CParser_aedaf995e8ddd3634565c965bcf65f639} 
+\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}} {\bfseries \+\_\+tok\+\_\+coord} (self, \doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}} tok)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a00afddd5af78f06dcd4768552aed4f4c}\label{classpycparser_1_1c__parser_1_1CParser_a00afddd5af78f06dcd4768552aed4f4c} 
+bool {\bfseries \+\_\+starts\+\_\+declaration} (self, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ tok=None)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_af747188cef0d47e3ef7a1dec243dada8}\label{classpycparser_1_1c__parser_1_1CParser_af747188cef0d47e3ef7a1dec243dada8} 
+bool {\bfseries \+\_\+starts\+\_\+expression} (self, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ tok=None)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a89f9aeaa67b2fa274312e2e29e087d9c}\label{classpycparser_1_1c__parser_1_1CParser_a89f9aeaa67b2fa274312e2e29e087d9c} 
+bool {\bfseries \+\_\+starts\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a1d2d37422a0b05757e50912bbf01a429}\label{classpycparser_1_1c__parser_1_1CParser_a1d2d37422a0b05757e50912bbf01a429} 
+bool {\bfseries \+\_\+starts\+\_\+declarator} (self, bool id\+\_\+only=False)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aac2bd96ae7c2b1e8d7da1a02cd6c52bb}\label{classpycparser_1_1c__parser_1_1CParser_aac2bd96ae7c2b1e8d7da1a02cd6c52bb} 
+Tuple\+[Optional\+[str]\+, bool]\+ {\bfseries \+\_\+peek\+\_\+declarator\+\_\+name\+\_\+info} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a22f8ed40854e2e38b441f2549981e1ca}\label{classpycparser_1_1c__parser_1_1CParser_a22f8ed40854e2e38b441f2549981e1ca} 
+Tuple\+[Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+, bool]\+ {\bfseries \+\_\+parse\+\_\+any\+\_\+declarator} (self, bool allow\+\_\+abstract=False, bool typeid\+\_\+paren\+\_\+as\+\_\+abstract=False)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a976afa101f0f5d3cfbf1ca975345e3ac}\label{classpycparser_1_1c__parser_1_1CParser_a976afa101f0f5d3cfbf1ca975345e3ac} 
+Tuple\+[Optional\+[str]\+, bool]\+ {\bfseries \+\_\+scan\+\_\+declarator\+\_\+name\+\_\+info} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a035054e70934149ecc8871220ec93f45}\label{classpycparser_1_1c__parser_1_1CParser_a035054e70934149ecc8871220ec93f45} 
+bool {\bfseries \+\_\+starts\+\_\+direct\+\_\+abstract\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a549e2d8932dd3a642de0d78e476a3f98}\label{classpycparser_1_1c__parser_1_1CParser_a549e2d8932dd3a642de0d78e476a3f98} 
+bool {\bfseries \+\_\+is\+\_\+assignment\+\_\+op} (self)
+\item 
+Optional\+[Tuple\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}}, int, \doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a6e941a4b8148934060d358686664ac10}{\+\_\+try\+\_\+parse\+\_\+paren\+\_\+type\+\_\+name}} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ae238c289b23f6ecd2400d6bf3ed52534}\label{classpycparser_1_1c__parser_1_1CParser_ae238c289b23f6ecd2400d6bf3ed52534} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1FileAST}{c\+\_\+ast.\+File\+AST}} {\bfseries \+\_\+parse\+\_\+translation\+\_\+unit\+\_\+or\+\_\+empty} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ace682f101f4f28f1df07c3a1f6f181d9}\label{classpycparser_1_1c__parser_1_1CParser_ace682f101f4f28f1df07c3a1f6f181d9} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+translation\+\_\+unit} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a2e5629d7cb4f56ac7b09ac2118e3d003}\label{classpycparser_1_1c__parser_1_1CParser_a2e5629d7cb4f56ac7b09ac2118e3d003} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+external\+\_\+declaration} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a589c48394250ecf298e79ea04dd74ac3}\label{classpycparser_1_1c__parser_1_1CParser_a589c48394250ecf298e79ea04dd74ac3} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+declaration} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_abd7a0c8486098ed23cc3d5570b80d11c}\label{classpycparser_1_1c__parser_1_1CParser_abd7a0c8486098ed23cc3d5570b80d11c} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+decl\+\_\+body} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aefbdfb08dee324c8adb9e5e6468d4880}\label{classpycparser_1_1c__parser_1_1CParser_aefbdfb08dee324c8adb9e5e6468d4880} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+decl\+\_\+body\+\_\+with\+\_\+spec} (self, "{}\+\_\+\+Decl\+Spec"{} spec, bool saw\+\_\+type)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ab7eee0aaef1eecde7f4a7f83396084d3}\label{classpycparser_1_1c__parser_1_1CParser_ab7eee0aaef1eecde7f4a7f83396084d3} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+declaration\+\_\+list} (self)
+\item 
+Tuple\+["{}\+\_\+\+Decl\+Spec"{}, bool, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+]\+ \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_af5d3b272b9ad50a1110e76223a8d719c}{\+\_\+parse\+\_\+declaration\+\_\+specifiers}} (self, bool allow\+\_\+no\+\_\+type=False)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a5548041c0395356617db9c674ff2b73b}\label{classpycparser_1_1c__parser_1_1CParser_a5548041c0395356617db9c674ff2b73b} 
+"{}\+\_\+\+Decl\+Spec"{} {\bfseries \+\_\+parse\+\_\+specifier\+\_\+qualifier\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ac821abec2dd3813edb6b2af562eae66c}\label{classpycparser_1_1c__parser_1_1CParser_ac821abec2dd3813edb6b2af562eae66c} 
+List\+[str]\+ {\bfseries \+\_\+parse\+\_\+type\+\_\+qualifier\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9eaf3d3eb4fceade71edd517882931bb}\label{classpycparser_1_1c__parser_1_1CParser_a9eaf3d3eb4fceade71edd517882931bb} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+alignment\+\_\+specifier} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_abf03e9e07b70b699559bfaceb7216b75}\label{classpycparser_1_1c__parser_1_1CParser_abf03e9e07b70b699559bfaceb7216b75} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+atomic\+\_\+specifier} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a405ee36785dbe3d3058d71e9183ba1e9}\label{classpycparser_1_1c__parser_1_1CParser_a405ee36785dbe3d3058d71e9183ba1e9} 
+List\+["{}\+\_\+\+Decl\+Info"{}]\+ {\bfseries \+\_\+parse\+\_\+init\+\_\+declarator\+\_\+list} (self, Optional\+["{}\+\_\+\+Decl\+Info"{}]\+ first=None, bool id\+\_\+only=False)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_acc89c2b032b7883585778f51bb08bbd6}\label{classpycparser_1_1c__parser_1_1CParser_acc89c2b032b7883585778f51bb08bbd6} 
+"{}\+\_\+\+Decl\+Info"{} {\bfseries \+\_\+parse\+\_\+init\+\_\+declarator} (self, bool id\+\_\+only=False)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a576e497bcb2c9533fea63fb8d4d2b1c1}\label{classpycparser_1_1c__parser_1_1CParser_a576e497bcb2c9533fea63fb8d4d2b1c1} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+struct\+\_\+or\+\_\+union\+\_\+specifier} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_af017db27ee04792b9fb28283b4ef6ef7}\label{classpycparser_1_1c__parser_1_1CParser_af017db27ee04792b9fb28283b4ef6ef7} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+struct\+\_\+declaration\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aeb3fea48b202589111c77ac913e55b06}\label{classpycparser_1_1c__parser_1_1CParser_aeb3fea48b202589111c77ac913e55b06} 
+Optional\+[List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+]\+ {\bfseries \+\_\+parse\+\_\+struct\+\_\+declaration} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a63d045d1359aea32402dea8364cfe98a}\label{classpycparser_1_1c__parser_1_1CParser_a63d045d1359aea32402dea8364cfe98a} 
+List\+["{}\+\_\+\+Decl\+Info"{}]\+ {\bfseries \+\_\+parse\+\_\+struct\+\_\+declarator\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a79258853e0a09511c2c68f669cc49ea2}\label{classpycparser_1_1c__parser_1_1CParser_a79258853e0a09511c2c68f669cc49ea2} 
+"{}\+\_\+\+Decl\+Info"{} {\bfseries \+\_\+parse\+\_\+struct\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aa455b0ae4e0a3d0d42672298118c3a24}\label{classpycparser_1_1c__parser_1_1CParser_aa455b0ae4e0a3d0d42672298118c3a24} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+enum\+\_\+specifier} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9687a63470246540a3334f7daa0eadbc}\label{classpycparser_1_1c__parser_1_1CParser_a9687a63470246540a3334f7daa0eadbc} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+enumerator\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a6b1c70e53eaa876b798696e69555e8aa}\label{classpycparser_1_1c__parser_1_1CParser_a6b1c70e53eaa876b798696e69555e8aa} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+enumerator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ad54420fdd22b9e3e9b380b3b1048f71c}\label{classpycparser_1_1c__parser_1_1CParser_ad54420fdd22b9e3e9b380b3b1048f71c} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a8f30cab5828dde427ef941aa0f93e49b}\label{classpycparser_1_1c__parser_1_1CParser_a8f30cab5828dde427ef941aa0f93e49b} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+id\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a3938a2885039fe656f25528ec3f4fb31}\label{classpycparser_1_1c__parser_1_1CParser_a3938a2885039fe656f25528ec3f4fb31} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+typeid\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a99886b4e5437d17f75d3044f2590ed25}\label{classpycparser_1_1c__parser_1_1CParser_a99886b4e5437d17f75d3044f2590ed25} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+typeid\+\_\+noparen\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a3a83f58c85a45d6e1af27b6ebca73a59}\label{classpycparser_1_1c__parser_1_1CParser_a3a83f58c85a45d6e1af27b6ebca73a59} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+declarator\+\_\+kind} (self, str kind, bool allow\+\_\+paren)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a68b8742d4acce1420e407124259f80c3}\label{classpycparser_1_1c__parser_1_1CParser_a68b8742d4acce1420e407124259f80c3} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+direct\+\_\+declarator} (self, str kind, bool allow\+\_\+paren=True)
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a10489473a550c844bb5aaf44d8bdedf6}{\+\_\+parse\+\_\+decl\+\_\+suffixes}} (self, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} decl)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_acd28c1f639f757c928ba73f842671246}\label{classpycparser_1_1c__parser_1_1CParser_acd28c1f639f757c928ba73f842671246} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+array\+\_\+decl} (self, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} base\+\_\+decl)
+\item 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1CParser_a24486886c9142f6e7896cd58e617cbfc}{\+\_\+parse\+\_\+array\+\_\+decl\+\_\+common}} (self, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ base\+\_\+type, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+ coord=None)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a09b9bab4d16382f7f80c087d544a9cef}\label{classpycparser_1_1c__parser_1_1CParser_a09b9bab4d16382f7f80c087d544a9cef} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+function\+\_\+decl} (self, \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} base\+\_\+decl)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a547f5fdba5af7649db86d694e21aaaa4}\label{classpycparser_1_1c__parser_1_1CParser_a547f5fdba5af7649db86d694e21aaaa4} 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+pointer} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a7edd5b7db70ee04cf3aeba6413762d12}\label{classpycparser_1_1c__parser_1_1CParser_a7edd5b7db70ee04cf3aeba6413762d12} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1ParamList}{c\+\_\+ast.\+Param\+List}} {\bfseries \+\_\+parse\+\_\+parameter\+\_\+type\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a5ec6c9a1bb1510ab0761073f45067a04}\label{classpycparser_1_1c__parser_1_1CParser_a5ec6c9a1bb1510ab0761073f45067a04} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1ParamList}{c\+\_\+ast.\+Param\+List}} {\bfseries \+\_\+parse\+\_\+parameter\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9c6a8676d074356f7768863af2087f3f}\label{classpycparser_1_1c__parser_1_1CParser_a9c6a8676d074356f7768863af2087f3f} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+parameter\+\_\+declaration} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a85ab7bb65a99556a849cb48fda82d3c2}\label{classpycparser_1_1c__parser_1_1CParser_a85ab7bb65a99556a849cb48fda82d3c2} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+build\+\_\+parameter\+\_\+declaration} (self, "{}\+\_\+\+Decl\+Spec"{} spec, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ decl, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+ spec\+\_\+coord)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a33539c24e331a1c69d68bf957300848e}\label{classpycparser_1_1c__parser_1_1CParser_a33539c24e331a1c69d68bf957300848e} 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+identifier\+\_\+list\+\_\+opt} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a7fb827ba29c8214685b51e6ba9db4970}\label{classpycparser_1_1c__parser_1_1CParser_a7fb827ba29c8214685b51e6ba9db4970} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+identifier\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a124a1a163be7de0eab6cb0091b01070b}\label{classpycparser_1_1c__parser_1_1CParser_a124a1a163be7de0eab6cb0091b01070b} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}} {\bfseries \+\_\+parse\+\_\+type\+\_\+name} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a71f7bd00af064acaabc73dcd94fae56a}\label{classpycparser_1_1c__parser_1_1CParser_a71f7bd00af064acaabc73dcd94fae56a} 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+abstract\+\_\+declarator\+\_\+opt} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aabe4d1ca15739e33404cf5d0cfce58cc}\label{classpycparser_1_1c__parser_1_1CParser_aabe4d1ca15739e33404cf5d0cfce58cc} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+direct\+\_\+abstract\+\_\+declarator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a754e5215fc5a4041de43083df9a10668}\label{classpycparser_1_1c__parser_1_1CParser_a754e5215fc5a4041de43083df9a10668} 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1ParamList}{c\+\_\+ast.\+Param\+List}}]\+ {\bfseries \+\_\+parse\+\_\+parameter\+\_\+type\+\_\+list\+\_\+opt} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a891bd34dfd0261f9e4510a6ee4984ead}\label{classpycparser_1_1c__parser_1_1CParser_a891bd34dfd0261f9e4510a6ee4984ead} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+abstract\+\_\+array\+\_\+base} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a78c146fdcffda9b984e0073a62f2eb28}\label{classpycparser_1_1c__parser_1_1CParser_a78c146fdcffda9b984e0073a62f2eb28} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}\texorpdfstring{$\vert$}{|}List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a01b7844dabcb95661575cdb6a15df0ed}\label{classpycparser_1_1c__parser_1_1CParser_a01b7844dabcb95661575cdb6a15df0ed} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}\texorpdfstring{$\vert$}{|}List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+pragmacomp\+\_\+or\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a440c118b5adda450e8e09394a981748a}\label{classpycparser_1_1c__parser_1_1CParser_a440c118b5adda450e8e09394a981748a} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}\texorpdfstring{$\vert$}{|}List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+block\+\_\+item} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a97e6d4c78e2d6d93bc08b90726bd4598}\label{classpycparser_1_1c__parser_1_1CParser_a97e6d4c78e2d6d93bc08b90726bd4598} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+block\+\_\+item\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_af77a6cb8cc3b87d50926375f276dd56e}\label{classpycparser_1_1c__parser_1_1CParser_af77a6cb8cc3b87d50926375f276dd56e} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+compound\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a174ab498fd07f905169678b4c8a3d5ef}\label{classpycparser_1_1c__parser_1_1CParser_a174ab498fd07f905169678b4c8a3d5ef} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+labeled\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a67abe4f370da88f7f0bb0f11991c4799}\label{classpycparser_1_1c__parser_1_1CParser_a67abe4f370da88f7f0bb0f11991c4799} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+selection\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a671a9bd720738d84acb40cda5b826543}\label{classpycparser_1_1c__parser_1_1CParser_a671a9bd720738d84acb40cda5b826543} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+iteration\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_afee86df9066623299d4fea0b6bb5f3d7}\label{classpycparser_1_1c__parser_1_1CParser_afee86df9066623299d4fea0b6bb5f3d7} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+jump\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ad8ef16d52a5cdf629336f27d723f0d5f}\label{classpycparser_1_1c__parser_1_1CParser_ad8ef16d52a5cdf629336f27d723f0d5f} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+expression\+\_\+statement} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a24a6d06a0fce14dcab6e9aafb0626216}\label{classpycparser_1_1c__parser_1_1CParser_a24a6d06a0fce14dcab6e9aafb0626216} 
+Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+expression\+\_\+opt} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9b4ccf5606c21ece32b2167f23774f86}\label{classpycparser_1_1c__parser_1_1CParser_a9b4ccf5606c21ece32b2167f23774f86} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_afaf60dfd0fbe0d2d4b0d5170993224cc}\label{classpycparser_1_1c__parser_1_1CParser_afaf60dfd0fbe0d2d4b0d5170993224cc} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+assignment\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aebb2edf2f2fc273887b1bd556fd0d799}\label{classpycparser_1_1c__parser_1_1CParser_aebb2edf2f2fc273887b1bd556fd0d799} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+conditional\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a56ac2e30579404416ddd95d4ce95efea}\label{classpycparser_1_1c__parser_1_1CParser_a56ac2e30579404416ddd95d4ce95efea} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+binary\+\_\+expression} (self, int min\+\_\+prec=0, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ lhs=None)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a00fd75eaa78cd2a444169eaff411b92a}\label{classpycparser_1_1c__parser_1_1CParser_a00fd75eaa78cd2a444169eaff411b92a} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+cast\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a9dfe48ab7f40082aa7f21ea6d894e385}\label{classpycparser_1_1c__parser_1_1CParser_a9dfe48ab7f40082aa7f21ea6d894e385} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+unary\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ac6f8e7e36cf252e1a3e911005dcd8286}\label{classpycparser_1_1c__parser_1_1CParser_ac6f8e7e36cf252e1a3e911005dcd8286} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+postfix\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a08735043717fbd5fe1f1caaf8a2021e6}\label{classpycparser_1_1c__parser_1_1CParser_a08735043717fbd5fe1f1caaf8a2021e6} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+primary\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a808d9d530552034e8f72cfe8d8cb475b}\label{classpycparser_1_1c__parser_1_1CParser_a808d9d530552034e8f72cfe8d8cb475b} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+offsetof\+\_\+member\+\_\+designator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a2f113aa619b50de967e2a74d9fdb63e7}\label{classpycparser_1_1c__parser_1_1CParser_a2f113aa619b50de967e2a74d9fdb63e7} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+argument\+\_\+expression\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aa6e865f24417a40e669917f5636854b0}\label{classpycparser_1_1c__parser_1_1CParser_aa6e865f24417a40e669917f5636854b0} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+constant\+\_\+expression} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aa42c44b80970e3eddb0f4652148e9d5f}\label{classpycparser_1_1c__parser_1_1CParser_aa42c44b80970e3eddb0f4652148e9d5f} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+identifier} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a7a092fd1572228202310fa14a32ae228}\label{classpycparser_1_1c__parser_1_1CParser_a7a092fd1572228202310fa14a32ae228} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+identifier\+\_\+or\+\_\+typeid} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ac4a89e79fe061e9f6594b93db4b310d7}\label{classpycparser_1_1c__parser_1_1CParser_ac4a89e79fe061e9f6594b93db4b310d7} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+constant} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a084f28da4df53077bc7cbe6b5b314de9}\label{classpycparser_1_1c__parser_1_1CParser_a084f28da4df53077bc7cbe6b5b314de9} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+unified\+\_\+string\+\_\+literal} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ac88bb0f1c357096972633abd41eca708}\label{classpycparser_1_1c__parser_1_1CParser_ac88bb0f1c357096972633abd41eca708} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+unified\+\_\+wstring\+\_\+literal} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ae953a0e8c9275c58e2d5d315431f3d64}\label{classpycparser_1_1c__parser_1_1CParser_ae953a0e8c9275c58e2d5d315431f3d64} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+initializer} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aa51a5b314ac081948ca158f1107f74cc}\label{classpycparser_1_1c__parser_1_1CParser_aa51a5b314ac081948ca158f1107f74cc} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+initializer\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a8037189e5babca2c2fe28a1a755b8a0d}\label{classpycparser_1_1c__parser_1_1CParser_a8037189e5babca2c2fe28a1a755b8a0d} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+initializer\+\_\+item} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_aed4356cf3bce34526195eeb980b6df9d}\label{classpycparser_1_1c__parser_1_1CParser_aed4356cf3bce34526195eeb980b6df9d} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+designation} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a069893ebf44d0fd98e762a0a1fccc237}\label{classpycparser_1_1c__parser_1_1CParser_a069893ebf44d0fd98e762a0a1fccc237} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+designator\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a7fffabf30b3b711e5c2c6ef40c1ec8aa}\label{classpycparser_1_1c__parser_1_1CParser_a7fffabf30b3b711e5c2c6ef40c1ec8aa} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+designator} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a228a3e709b98c44311c00ec887e1d195}\label{classpycparser_1_1c__parser_1_1CParser_a228a3e709b98c44311c00ec887e1d195} 
+No\+Return {\bfseries \+\_\+parse\+\_\+pp\+\_\+directive} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a602ae33abb63aac430cafc458286e35d}\label{classpycparser_1_1c__parser_1_1CParser_a602ae33abb63aac430cafc458286e35d} 
+\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} {\bfseries \+\_\+parse\+\_\+pppragma\+\_\+directive} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a46abfeac3b3838121367e1aa149f7d2d}\label{classpycparser_1_1c__parser_1_1CParser_a46abfeac3b3838121367e1aa149f7d2d} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+pppragma\+\_\+directive\+\_\+list} (self)
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_abab95ff8005913b01e192829472f040c}\label{classpycparser_1_1c__parser_1_1CParser_abab95ff8005913b01e192829472f040c} 
+List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ {\bfseries \+\_\+parse\+\_\+static\+\_\+assert} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a51606dbed1cff2b3733467bb74f49eb6}\label{classpycparser_1_1c__parser_1_1CParser_a51606dbed1cff2b3733467bb74f49eb6} 
+list {\bfseries \+\_\+scope\+\_\+stack} = \+[dict()]\+
+\item 
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a829d04cb0a56f18836bb4ccdfedd19cd}\label{classpycparser_1_1c__parser_1_1CParser_a829d04cb0a56f18836bb4ccdfedd19cd} 
+\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1__TokenStream}{\+\_\+\+Token\+Stream}} {\bfseries \+\_\+tokens} = \doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1__TokenStream}{\+\_\+\+Token\+Stream}}(self.\+clex)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Recursive-descent C parser.
+
+Usage:
+    parser = CParser()
+    ast = parser.parse(text, filename)
+
+The `lexer` parameter lets you inject a lexer class (defaults to CLexer).
+The parameters after `lexer` are accepted for backward compatibility with
+the old PLY-based parser and are otherwise unused.
+\end{DoxyVerb}
+ 
+
+\label{classpycparser_1_1c__parser_1_1CParser_doc-func-members}
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_a24d8791021cb8adc4bee66c10e469923}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_accept@{\_accept}}
+\index{\_accept@{\_accept}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_accept()}{\_accept()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a24d8791021cb8adc4bee66c10e469923} 
+ Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+accept (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{token\+\_\+type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Conditionally consume next token, only if it's of token_type.
+
+If it is of the expected type, consume and return it.
+Otherwise, leaves the token intact and returns None.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a0a67dc628cb2521c985dc909dad70b37}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_add\_declaration\_specifier@{\_add\_declaration\_specifier}}
+\index{\_add\_declaration\_specifier@{\_add\_declaration\_specifier}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_add\_declaration\_specifier()}{\_add\_declaration\_specifier()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a0a67dc628cb2521c985dc909dad70b37} 
+ "{}\+\_\+\+Decl\+Spec"{} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+add\+\_\+declaration\+\_\+specifier (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+["{}\+\_\+\+Decl\+Spec"{}]\+}]{declspec}{, }\item[{Any}]{newspec}{, }\item[{"{}\+\_\+\+Decl\+Spec\+Kind"{}}]{kind}{, }\item[{bool }]{append}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}See _DeclSpec for the specifier dictionary layout.\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_aba10d6e2f0a5365549f86098d6b69a09}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_add\_identifier@{\_add\_identifier}}
+\index{\_add\_identifier@{\_add\_identifier}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_add\_identifier()}{\_add\_identifier()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_aba10d6e2f0a5365549f86098d6b69a09} 
+ None pycparser.\+c\+\_\+parser.\+CParser.\+\_\+add\+\_\+identifier (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+}]{coord}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Add a new object, function, or enum member name (ie an ID) to the
+current scope
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a5ed2d677a9fbcaf8f202e0ec0a420bab}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_add\_typedef\_name@{\_add\_typedef\_name}}
+\index{\_add\_typedef\_name@{\_add\_typedef\_name}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_add\_typedef\_name()}{\_add\_typedef\_name()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a5ed2d677a9fbcaf8f202e0ec0a420bab} 
+ None pycparser.\+c\+\_\+parser.\+CParser.\+\_\+add\+\_\+typedef\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+}]{coord}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Add a new typedef name (ie a TYPEID) to the current scope\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_aeb9e162bf79d4da52f9b548c2d7b1852}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_build\_declarations@{\_build\_declarations}}
+\index{\_build\_declarations@{\_build\_declarations}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_build\_declarations()}{\_build\_declarations()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_aeb9e162bf79d4da52f9b548c2d7b1852} 
+ List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+build\+\_\+declarations (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Decl\+Spec"{}}]{spec}{, }\item[{List\+["{}\+\_\+\+Decl\+Info"{}]\+}]{decls}{, }\item[{bool }]{typedef\+\_\+namespace}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Builds a list of declarations all sharing the given specifiers.
+If typedef_namespace is true, each declared name is added
+to the "typedef namespace", which also includes objects,
+functions, and enum constants.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a8871bd27d64cfdc43bf4923afadba151}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_build\_function\_definition@{\_build\_function\_definition}}
+\index{\_build\_function\_definition@{\_build\_function\_definition}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_build\_function\_definition()}{\_build\_function\_definition()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a8871bd27d64cfdc43bf4923afadba151} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+build\+\_\+function\+\_\+definition (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}\+\_\+\+Decl\+Spec"{}}]{spec}{, }\item[{\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}}]{decl}{, }\item[{Optional\+[List\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+]\+}]{param\+\_\+decls}{, }\item[{\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}}]{body}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Builds a function definition.\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a641aa40a96fb6521dfe1445f19f81d92}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_fix\_decl\_name\_type@{\_fix\_decl\_name\_type}}
+\index{\_fix\_decl\_name\_type@{\_fix\_decl\_name\_type}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_fix\_decl\_name\_type()}{\_fix\_decl\_name\_type()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a641aa40a96fb6521dfe1445f19f81d92} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Decl}{c\+\_\+ast.\+Decl}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typedef}{c\+\_\+ast.\+Typedef}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+fix\+\_\+decl\+\_\+name\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Decl}{c\+\_\+ast.\+Decl}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typedef}{c\+\_\+ast.\+Typedef}} \texorpdfstring{$\vert$}{|} \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}}}]{decl}{, }\item[{List\+[Any]\+}]{typename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Fixes a declaration. Modifies decl.\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a6c63b575957a53b9c65783ac6e7f4674}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_is\_type\_in\_scope@{\_is\_type\_in\_scope}}
+\index{\_is\_type\_in\_scope@{\_is\_type\_in\_scope}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_is\_type\_in\_scope()}{\_is\_type\_in\_scope()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a6c63b575957a53b9c65783ac6e7f4674} 
+ bool pycparser.\+c\+\_\+parser.\+CParser.\+\_\+is\+\_\+type\+\_\+in\+\_\+scope (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Is *name* a typedef-name in the current scope?\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a8ca13b307e783a33e30f22eb82bee4e9}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_lex\_type\_lookup\_func@{\_lex\_type\_lookup\_func}}
+\index{\_lex\_type\_lookup\_func@{\_lex\_type\_lookup\_func}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_lex\_type\_lookup\_func()}{\_lex\_type\_lookup\_func()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a8ca13b307e783a33e30f22eb82bee4e9} 
+ bool pycparser.\+c\+\_\+parser.\+CParser.\+\_\+lex\+\_\+type\+\_\+lookup\+\_\+func (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Looks up types that were previously defined with
+typedef.
+Passed to the lexer for recognizing identifiers that
+are types.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a24486886c9142f6e7896cd58e617cbfc}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_parse\_array\_decl\_common@{\_parse\_array\_decl\_common}}
+\index{\_parse\_array\_decl\_common@{\_parse\_array\_decl\_common}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_array\_decl\_common()}{\_parse\_array\_decl\_common()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a24486886c9142f6e7896cd58e617cbfc} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+parse\+\_\+array\+\_\+decl\+\_\+common (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}]\+}]{base\+\_\+type}{, }\item[{Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+ }]{coord}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse an array declarator suffix and return an ArrayDecl node.
+
+base_type:
+    Base declarator node to attach (None for direct-declarator parsing,
+    TypeDecl for abstract declarators).
+
+coord:
+    Coordinate to use for the ArrayDecl. If None, uses the '[' token.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a10489473a550c844bb5aaf44d8bdedf6}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_parse\_decl\_suffixes@{\_parse\_decl\_suffixes}}
+\index{\_parse\_decl\_suffixes@{\_parse\_decl\_suffixes}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_decl\_suffixes()}{\_parse\_decl\_suffixes()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a10489473a550c844bb5aaf44d8bdedf6} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+parse\+\_\+decl\+\_\+suffixes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}}}]{decl}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse a chain of array/function suffixes and attach them to decl.\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_af5d3b272b9ad50a1110e76223a8d719c}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_parse\_declaration\_specifiers@{\_parse\_declaration\_specifiers}}
+\index{\_parse\_declaration\_specifiers@{\_parse\_declaration\_specifiers}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_parse\_declaration\_specifiers()}{\_parse\_declaration\_specifiers()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_af5d3b272b9ad50a1110e76223a8d719c} 
+ Tuple\+["{}\+\_\+\+Decl\+Spec"{}, bool, Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__parser_1_1Coord}{Coord}}]\+]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+parse\+\_\+declaration\+\_\+specifiers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{allow\+\_\+no\+\_\+type}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse declaration-specifier sequence.
+
+allow_no_type:
+    If True, allow a missing type specifier without error.
+
+Returns:
+    (spec, saw_type, first_coord) where spec is a dict with
+    qual/storage/type/function/alignment entries, saw_type is True
+    if a type specifier was consumed, and first_coord is the coord
+    of the first specifier token (used for diagnostics).
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a1116e2a870421b117c8460f2547e31f2}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_peek@{\_peek}}
+\index{\_peek@{\_peek}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_peek()}{\_peek()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a1116e2a870421b117c8460f2547e31f2} 
+ Optional\+[\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+peek (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{k}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Return the k-th next token without consuming it (1-based).\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_aef00aed1f0fc29ea3684eee02e763dc8}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_peek\_type@{\_peek\_type}}
+\index{\_peek\_type@{\_peek\_type}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_peek\_type()}{\_peek\_type()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_aef00aed1f0fc29ea3684eee02e763dc8} 
+ Optional\+[str]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+peek\+\_\+type (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{k}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Return the type of the k-th next token, or None if absent (1-based).\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_afcb71b9a775a58150e604ab6b4601964}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_select\_struct\_union\_class@{\_select\_struct\_union\_class}}
+\index{\_select\_struct\_union\_class@{\_select\_struct\_union\_class}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_select\_struct\_union\_class()}{\_select\_struct\_union\_class()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_afcb71b9a775a58150e604ab6b4601964} 
+ type pycparser.\+c\+\_\+parser.\+CParser.\+\_\+select\+\_\+struct\+\_\+union\+\_\+class (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{token}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Given a token (either STRUCT or UNION), selects the
+appropriate AST class.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a6e941a4b8148934060d358686664ac10}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_try\_parse\_paren\_type\_name@{\_try\_parse\_paren\_type\_name}}
+\index{\_try\_parse\_paren\_type\_name@{\_try\_parse\_paren\_type\_name}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_try\_parse\_paren\_type\_name()}{\_try\_parse\_paren\_type\_name()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a6e941a4b8148934060d358686664ac10} 
+ Optional\+[Tuple\+[\doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Typename}{c\+\_\+ast.\+Typename}}, int, \doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1__Token}{\+\_\+\+Token}}]\+]\+ pycparser.\+c\+\_\+parser.\+CParser.\+\_\+try\+\_\+parse\+\_\+paren\+\_\+type\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse and return a parenthesized type name if present.
+
+Returns (typ, mark, lparen_tok) when the next tokens look like
+'(' type_name ')', where typ is the parsed type name, mark is the
+token-stream position before parsing, and lparen_tok is the LPAREN
+token. Returns None if no parenthesized type name is present.
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_a50e850290264c03c38e65784f535bde8}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!\_type\_modify\_decl@{\_type\_modify\_decl}}
+\index{\_type\_modify\_decl@{\_type\_modify\_decl}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{\_type\_modify\_decl()}{\_type\_modify\_decl()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_a50e850290264c03c38e65784f535bde8} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1Node}{c\+\_\+ast.\+Node}} pycparser.\+c\+\_\+parser.\+CParser.\+\_\+type\+\_\+modify\+\_\+decl (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{decl}{, }\item[{Any}]{modifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Tacks a type modifier on a declarator, and returns
+the modified declarator.
+
+Note: the declarator and modifier may be modified
+\end{DoxyVerb}
+ \Hypertarget{classpycparser_1_1c__parser_1_1CParser_aa039d02d2269426119309367f64509a6}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!parse@{parse}}
+\index{parse@{parse}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_aa039d02d2269426119309367f64509a6} 
+ \doxymbox{\hyperlink{classpycparser_1_1c__ast_1_1FileAST}{c\+\_\+ast.\+File\+AST}} pycparser.\+c\+\_\+parser.\+CParser.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{text}{, }\item[{str }]{filename}{ = {\ttfamily "{}"{}}, }\item[{bool }]{debug}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parses C code and returns an AST.
+
+text:
+    A string containing the C source code
+
+filename:
+    Name of the file being parsed (for meaningful
+    error messages)
+
+debug:
+    Deprecated debug flag (unused); for backwards compatibility.
+\end{DoxyVerb}
+ 
+
+\label{classpycparser_1_1c__parser_1_1CParser_doc-variable-members}
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpycparser_1_1c__parser_1_1CParser_ac17236b4a60ca510df5c2856e0e0a3f7}\index{pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}!clex@{clex}}
+\index{clex@{clex}!pycparser.c\_parser.CParser@{pycparser.c\_parser.CParser}}
+\doxysubsubsection{\texorpdfstring{clex}{clex}}
+{\footnotesize\ttfamily \label{classpycparser_1_1c__parser_1_1CParser_ac17236b4a60ca510df5c2856e0e0a3f7} 
+\doxymbox{\hyperlink{classpycparser_1_1c__lexer_1_1CLexer}{CLexer}} pycparser.\+c\+\_\+parser.\+CParser.\+clex}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ lexer(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ error\_func=self.\_lex\_error\_func,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ on\_lbrace\_func=self.\_lex\_on\_lbrace\_func,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ on\_rbrace\_func=self.\_lex\_on\_rbrace\_func,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ type\_lookup\_func=self.\_lex\_type\_lookup\_func,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pycparser/\+c\+\_\+parser.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,354 @@
+\doxysection{passlib.\+context.\+Crypt\+Policy Class Reference}
+\hypertarget{classpasslib_1_1context_1_1CryptPolicy}{}\label{classpasslib_1_1context_1_1CryptPolicy}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+Inheritance diagram for passlib.\+context.\+Crypt\+Policy:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1context_1_1CryptPolicy}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a37a9fc39e3eea03a932f7e345562e4e1}{from\+\_\+path}} (cls, path, section="{}passlib"{}, encoding="{}utf-\/8"{})
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a17706d671caeaa6594dd25e12571b1b5}{from\+\_\+string}} (cls, source, section="{}passlib"{}, encoding="{}utf-\/8"{})
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_ae8ca61cd3ff65471a3c832f66c25ef3a}{from\+\_\+source}} (cls, source, \+\_\+warn=True)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a68cd53800df3af7a61119054f945269d}{from\+\_\+sources}} (cls, sources, \+\_\+warn=True)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a75598bfad56189fc1ddb801741221943}{replace}} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a398152abbbaca6fb511ab15396bdcea6}\label{classpasslib_1_1context_1_1CryptPolicy_a398152abbbaca6fb511ab15396bdcea6} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a5921d521c666968ce6b5adcf773e33cd}{has\+\_\+schemes}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a90b5bd38cdbb519f9997d51712ed2f0b}{iter\+\_\+handlers}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a4d4b238dc18d5be34a41b6b021fb136b}{schemes}} (self, resolve=False)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_aee4d4d2aa226437897d6501be0d3e4fc}{get\+\_\+handler}} (self, name=None, category=None, required=False)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_afd30f3369349e17075ae383e42b188f3}{get\+\_\+min\+\_\+verify\+\_\+time}} (self, category=None)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a9bb01648fa91e62c1566d1a9bdd44b1f}{get\+\_\+options}} (self, name, category=None)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a122c12dd52813ed6110028191d31c350}{handler\+\_\+is\+\_\+deprecated}} (self, name, category=None)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_ad0c533f7b05e4b6229018d173710aa84}{iter\+\_\+config}} (self, ini=False, resolve=False)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a411fdc13c27149e77c5720bb49336a4d}{to\+\_\+dict}} (self, resolve=False)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a7a8c44c5246310dc67499adb3b2947f8}{to\+\_\+file}} (self, stream, section="{}passlib"{})
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1context_1_1CryptPolicy_a5d13901b76009dbbf37cb131c063d796}{to\+\_\+string}} (self, section="{}passlib"{}, encoding=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1context_1_1CryptPolicy_ab228aa7a44bf5123be15ad8af4ae0736}\label{classpasslib_1_1context_1_1CryptPolicy_ab228aa7a44bf5123be15ad8af4ae0736} 
+{\bfseries \+\_\+context} = None
+\item 
+\Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a5f51810f5f0d85b8507ec75dab416037}\label{classpasslib_1_1context_1_1CryptPolicy_a5f51810f5f0d85b8507ec75dab416037} 
+bool {\bfseries \+\_\+stub\+\_\+policy} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. deprecated:: 1.6
+    This class has been deprecated, and will be removed in Passlib 1.8.
+    All of its functionality has been rolled into :class:`CryptContext`.
+
+This class previously stored the configuration options for the
+CryptContext class. In the interest of interface simplification,
+all of this class' functionality has been rolled into the CryptContext
+class itself.
+The documentation for this class is now focused on  documenting how to
+migrate to the new api. Additionally, where possible, the deprecation
+warnings issued by the CryptPolicy methods will list the replacement call
+that should be used.
+
+Constructors
+============
+CryptPolicy objects can be constructed directly using any of
+the keywords accepted by :class:`CryptContext`. Direct uses of the
+:class:`!CryptPolicy` constructor should either pass the keywords
+directly into the CryptContext constructor, or to :meth:`CryptContext.update`
+if the policy object was being used to update an existing context object.
+
+In addition to passing in keywords directly,
+CryptPolicy objects can be constructed by the following methods:
+
+.. automethod:: from_path
+.. automethod:: from_string
+.. automethod:: from_source
+.. automethod:: from_sources
+.. automethod:: replace
+
+Introspection
+=============
+All of the informational methods provided by this class have been deprecated
+by identical or similar methods in the :class:`CryptContext` class:
+
+.. automethod:: has_schemes
+.. automethod:: schemes
+.. automethod:: iter_handlers
+.. automethod:: get_handler
+.. automethod:: get_options
+.. automethod:: handler_is_deprecated
+.. automethod:: get_min_verify_time
+
+Exporting
+=========
+.. automethod:: iter_config
+.. automethod:: to_dict
+.. automethod:: to_file
+.. automethod:: to_string
+
+.. note::
+    CryptPolicy are immutable.
+    Use the :meth:`replace` method to mutate existing instances.
+
+.. deprecated:: 1.6
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1context_1_1CryptPolicy_doc-func-members}
+\Hypertarget{classpasslib_1_1context_1_1CryptPolicy_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a37a9fc39e3eea03a932f7e345562e4e1}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!from\_path@{from\_path}}
+\index{from\_path@{from\_path}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{from\_path()}{from\_path()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a37a9fc39e3eea03a932f7e345562e4e1} 
+passlib.\+context.\+Crypt\+Policy.\+from\+\_\+path (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{path}{, }\item[{}]{section}{ = {\ttfamily "{}passlib"{}}, }\item[{}]{encoding}{ = {\ttfamily "{}utf-\/8"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a CryptPolicy instance from a local file.
+
+.. deprecated:: 1.6
+
+Creating a new CryptContext from a file, which was previously done via
+``CryptContext(policy=CryptPolicy.from_path(path))``, can now be
+done via ``CryptContext.from_path(path)``.
+See :meth:`CryptContext.from_path` for details.
+
+Updating an existing CryptContext from a file, which was previously done
+``context.policy = CryptPolicy.from_path(path)``, can now be
+done via ``context.load_path(path)``.
+See :meth:`CryptContext.load_path` for details.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_ae8ca61cd3ff65471a3c832f66c25ef3a}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!from\_source@{from\_source}}
+\index{from\_source@{from\_source}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{from\_source()}{from\_source()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_ae8ca61cd3ff65471a3c832f66c25ef3a} 
+passlib.\+context.\+Crypt\+Policy.\+from\+\_\+source (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{source}{, }\item[{}]{\+\_\+warn}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a CryptPolicy instance from some source.
+
+this method autodetects the source type, and invokes
+the appropriate constructor automatically. it attempts
+to detect whether the source is a configuration string, a filepath,
+a dictionary, or an existing CryptPolicy instance.
+
+.. deprecated:: 1.6
+
+Create a new CryptContext, which could previously be done via
+``CryptContext(policy=CryptPolicy.from_source(source))``, should
+now be done using an explicit method: the :class:`CryptContext`
+constructor itself, :meth:`CryptContext.from_path`,
+or :meth:`CryptContext.from_string`.
+
+Updating an existing CryptContext, which could previously be done via
+``context.policy = CryptPolicy.from_source(source)``, should
+now be done using an explicit method: :meth:`CryptContext.update`,
+or :meth:`CryptContext.load`.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a68cd53800df3af7a61119054f945269d}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!from\_sources@{from\_sources}}
+\index{from\_sources@{from\_sources}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{from\_sources()}{from\_sources()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a68cd53800df3af7a61119054f945269d} 
+passlib.\+context.\+Crypt\+Policy.\+from\+\_\+sources (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{sources}{, }\item[{}]{\+\_\+warn}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a CryptPolicy instance by merging multiple sources.
+
+each source is interpreted as by :meth:`from_source`,
+and the results are merged together.
+
+.. deprecated:: 1.6
+    Instead of using this method to merge multiple policies together,
+    a :class:`CryptContext` instance should be created, and then
+    the multiple sources merged together via :meth:`CryptContext.load`.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a17706d671caeaa6594dd25e12571b1b5}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!from\_string@{from\_string}}
+\index{from\_string@{from\_string}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{from\_string()}{from\_string()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a17706d671caeaa6594dd25e12571b1b5} 
+passlib.\+context.\+Crypt\+Policy.\+from\+\_\+string (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{source}{, }\item[{}]{section}{ = {\ttfamily "{}passlib"{}}, }\item[{}]{encoding}{ = {\ttfamily "{}utf-\/8"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a CryptPolicy instance from a string.
+
+.. deprecated:: 1.6
+
+Creating a new CryptContext from a string, which was previously done via
+``CryptContext(policy=CryptPolicy.from_string(data))``, can now be
+done via ``CryptContext.from_string(data)``.
+See :meth:`CryptContext.from_string` for details.
+
+Updating an existing CryptContext from a string, which was previously done
+``context.policy = CryptPolicy.from_string(data)``, can now be
+done via ``context.load(data)``.
+See :meth:`CryptContext.load` for details.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_aee4d4d2aa226437897d6501be0d3e4fc}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!get\_handler@{get\_handler}}
+\index{get\_handler@{get\_handler}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{get\_handler()}{get\_handler()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_aee4d4d2aa226437897d6501be0d3e4fc} 
+passlib.\+context.\+Crypt\+Policy.\+get\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{ = {\ttfamily None}, }\item[{}]{category}{ = {\ttfamily None}, }\item[{}]{required}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return handler as specified by name, or default handler.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.handler` instead,
+    though note that the ``required`` keyword has been removed,
+    and the new method will always act as if ``required=True``.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_afd30f3369349e17075ae383e42b188f3}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!get\_min\_verify\_time@{get\_min\_verify\_time}}
+\index{get\_min\_verify\_time@{get\_min\_verify\_time}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{get\_min\_verify\_time()}{get\_min\_verify\_time()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_afd30f3369349e17075ae383e42b188f3} 
+passlib.\+context.\+Crypt\+Policy.\+get\+\_\+min\+\_\+verify\+\_\+time (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{category}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}get min_verify_time setting for policy.
+
+.. deprecated:: 1.6
+    min_verify_time option will be removed entirely in passlib 1.8
+
+.. versionchanged:: 1.7
+    this method now always returns the value automatically
+    calculated by :meth:`CryptContext.min_verify_time`,
+    any value specified by policy is ignored.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a9bb01648fa91e62c1566d1a9bdd44b1f}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!get\_options@{get\_options}}
+\index{get\_options@{get\_options}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{get\_options()}{get\_options()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a9bb01648fa91e62c1566d1a9bdd44b1f} 
+passlib.\+context.\+Crypt\+Policy.\+get\+\_\+options (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{, }\item[{}]{category}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return dictionary of options specific to a given handler.
+
+.. deprecated:: 1.6
+    this method has no direct replacement in the 1.6 api, as there
+    is not a clearly defined use-case. however, examining the output of
+    :meth:`CryptContext.to_dict` should serve as the closest alternative.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a122c12dd52813ed6110028191d31c350}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!handler\_is\_deprecated@{handler\_is\_deprecated}}
+\index{handler\_is\_deprecated@{handler\_is\_deprecated}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{handler\_is\_deprecated()}{handler\_is\_deprecated()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a122c12dd52813ed6110028191d31c350} 
+passlib.\+context.\+Crypt\+Policy.\+handler\+\_\+is\+\_\+deprecated (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{name}{, }\item[{}]{category}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}check if handler has been deprecated by policy.
+
+.. deprecated:: 1.6
+    this method has no direct replacement in the 1.6 api, as there
+    is not a clearly defined use-case. however, examining the output of
+    :meth:`CryptContext.to_dict` should serve as the closest alternative.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a5921d521c666968ce6b5adcf773e33cd}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!has\_schemes@{has\_schemes}}
+\index{has\_schemes@{has\_schemes}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{has\_schemes()}{has\_schemes()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a5921d521c666968ce6b5adcf773e33cd} 
+passlib.\+context.\+Crypt\+Policy.\+has\+\_\+schemes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return True if policy defines *any* schemes for use.
+
+.. deprecated:: 1.6
+    applications should use ``bool(context.schemes())`` instead.
+    see :meth:`CryptContext.schemes`.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_ad0c533f7b05e4b6229018d173710aa84}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!iter\_config@{iter\_config}}
+\index{iter\_config@{iter\_config}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{iter\_config()}{iter\_config()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_ad0c533f7b05e4b6229018d173710aa84} 
+passlib.\+context.\+Crypt\+Policy.\+iter\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{ini}{ = {\ttfamily False}, }\item[{}]{resolve}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}iterate over key/value pairs representing the policy object.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.to_dict` instead.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a90b5bd38cdbb519f9997d51712ed2f0b}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!iter\_handlers@{iter\_handlers}}
+\index{iter\_handlers@{iter\_handlers}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{iter\_handlers()}{iter\_handlers()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a90b5bd38cdbb519f9997d51712ed2f0b} 
+passlib.\+context.\+Crypt\+Policy.\+iter\+\_\+handlers (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return iterator over handlers defined in policy.
+
+.. deprecated:: 1.6
+    applications should use ``context.schemes(resolve=True))`` instead.
+    see :meth:`CryptContext.schemes`.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a75598bfad56189fc1ddb801741221943}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!replace@{replace}}
+\index{replace@{replace}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{replace()}{replace()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a75598bfad56189fc1ddb801741221943} 
+passlib.\+context.\+Crypt\+Policy.\+replace (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwds}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}create a new CryptPolicy, optionally updating parts of the
+existing configuration.
+
+.. deprecated:: 1.6
+    Callers of this method should :meth:`CryptContext.update` or
+    :meth:`CryptContext.copy` instead.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a4d4b238dc18d5be34a41b6b021fb136b}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!schemes@{schemes}}
+\index{schemes@{schemes}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{schemes()}{schemes()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a4d4b238dc18d5be34a41b6b021fb136b} 
+passlib.\+context.\+Crypt\+Policy.\+schemes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{resolve}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}return list of schemes defined in policy.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.schemes` instead.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a411fdc13c27149e77c5720bb49336a4d}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a411fdc13c27149e77c5720bb49336a4d} 
+passlib.\+context.\+Crypt\+Policy.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{resolve}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}export policy object as dictionary of options.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.to_dict` instead.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a7a8c44c5246310dc67499adb3b2947f8}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!to\_file@{to\_file}}
+\index{to\_file@{to\_file}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{to\_file()}{to\_file()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a7a8c44c5246310dc67499adb3b2947f8} 
+passlib.\+context.\+Crypt\+Policy.\+to\+\_\+file (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{stream}{, }\item[{}]{section}{ = {\ttfamily "{}passlib"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}export policy to file.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.to_string` instead,
+    and then write the output to a file as desired.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1context_1_1CryptPolicy_a5d13901b76009dbbf37cb131c063d796}\index{passlib.context.CryptPolicy@{passlib.context.CryptPolicy}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!passlib.context.CryptPolicy@{passlib.context.CryptPolicy}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1context_1_1CryptPolicy_a5d13901b76009dbbf37cb131c063d796} 
+passlib.\+context.\+Crypt\+Policy.\+to\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section}{ = {\ttfamily "{}passlib"{}}, }\item[{}]{encoding}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}export policy to file.
+
+.. deprecated:: 1.6
+    applications should use :meth:`CryptContext.to_string` instead.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+context.\+py\end{DoxyCompactItemize}

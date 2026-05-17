@@ -1,0 +1,59 @@
+\doxysection{pip.\+\_\+vendor.\+pyparsing.\+testing.\+pyparsing\+\_\+test.\+reset\+\_\+pyparsing\+\_\+context Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context}{}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context}\index{pip.\_vendor.pyparsing.testing.pyparsing\_test.reset\_pyparsing\_context@{pip.\_vendor.pyparsing.testing.pyparsing\_test.reset\_pyparsing\_context}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a01241bbbeb349f45d6ccacd8921fc238}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a01241bbbeb349f45d6ccacd8921fc238} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a24918e896e66cb0fda66a16e17030f7f}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a24918e896e66cb0fda66a16e17030f7f} 
+{\bfseries save} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a7149b9a3b598a90072e83084ff47a451}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a7149b9a3b598a90072e83084ff47a451} 
+{\bfseries restore} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a8b358db76145f5a96a157c60b10c0042}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a8b358db76145f5a96a157c60b10c0042} 
+{\bfseries copy} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a3d39d97a0d95a9b46c987e6dff52b7c0}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a3d39d97a0d95a9b46c987e6dff52b7c0} 
+{\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_ab562c22734bdef068a342f946ecd042f}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_ab562c22734bdef068a342f946ecd042f} 
+{\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a38cd1fb46822c9d438468ec59de782f7}\label{classpip_1_1__vendor_1_1pyparsing_1_1testing_1_1pyparsing__test_1_1reset__pyparsing__context_a38cd1fb46822c9d438468ec59de782f7} 
+dict {\bfseries \+\_\+save\+\_\+context} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Context manager to be used when writing unit tests that modify pyparsing config values:
+- packrat parsing
+- bounded recursion parsing
+- default whitespace characters.
+- default keyword characters
+- literal string auto-conversion class
+- __diag__ settings
+
+Example::
+
+    with reset_pyparsing_context():
+        # test that literals used to construct a grammar are automatically suppressed
+        ParserElement.inlineLiteralsUsing(Suppress)
+
+        term = Word(alphas) | Word(nums)
+        group = Group('(' + term[...] + ')')
+
+        # assert that the '()' characters are not included in the parsed tokens
+        self.assertParseAndCheckList(group, "(abc 123 def)", ['abc', '123', 'def'])
+
+    # after exiting context manager, literals are converted to Literal expressions again
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+pyparsing/\+testing.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,88 @@
+\doxysection{jinja2.\+bccache.\+Bucket Class Reference}
+\hypertarget{classjinja2_1_1bccache_1_1Bucket}{}\label{classjinja2_1_1bccache_1_1Bucket}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a13ef02639f967770a0475038ce26eacb}\label{classjinja2_1_1bccache_1_1Bucket_a13ef02639f967770a0475038ce26eacb} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}Environment"{} environment, str key, str checksum)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket_a943161d1989a92ac78341b32fa68573b}{reset}} (self)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket_ad4931db3a7cf4b1e93f0805e3c9295ff}{load\+\_\+bytecode}} (self, t.\+Binary\+IO f)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket_a456e2bc80078da0487d05dadeb7e158d}{write\+\_\+bytecode}} (self, t.\+IO\+[bytes]\+ f)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket_a4861fedc81ca46a580757a5644e135bd}{bytecode\+\_\+from\+\_\+string}} (self, bytes string)
+\item 
+bytes \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket_a1c786eaaab7a8e532adf5bdb100052d0}{bytecode\+\_\+to\+\_\+string}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a743b44f587392e3763a67f1dc879de00}\label{classjinja2_1_1bccache_1_1Bucket_a743b44f587392e3763a67f1dc879de00} 
+{\bfseries environment} = environment
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a9659433333e4d95b546e6cba8f65a43a}\label{classjinja2_1_1bccache_1_1Bucket_a9659433333e4d95b546e6cba8f65a43a} 
+{\bfseries key} = key
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a7e189fa12510d2cf4158a53abfed44af}\label{classjinja2_1_1bccache_1_1Bucket_a7e189fa12510d2cf4158a53abfed44af} 
+{\bfseries checksum} = checksum
+\item 
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a1511adfa583bd95d6ba8d5bd9524a33d}\label{classjinja2_1_1bccache_1_1Bucket_a1511adfa583bd95d6ba8d5bd9524a33d} 
+t.\+Optional\+[Code\+Type]\+ {\bfseries code} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Buckets are used to store the bytecode for one template.  It's created
+and initialized by the bytecode cache and passed to the loading functions.
+
+The buckets get an internal checksum from the cache assigned and use this
+to automatically reject outdated cache material.  Individual bytecode
+cache subclasses don't have to care about cache invalidation.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1bccache_1_1Bucket_doc-func-members}
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1bccache_1_1Bucket_a4861fedc81ca46a580757a5644e135bd}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}!bytecode\_from\_string@{bytecode\_from\_string}}
+\index{bytecode\_from\_string@{bytecode\_from\_string}!jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection{\texorpdfstring{bytecode\_from\_string()}{bytecode\_from\_string()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1Bucket_a4861fedc81ca46a580757a5644e135bd} 
+ None jinja2.\+bccache.\+Bucket.\+bytecode\+\_\+from\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{string}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Load bytecode from bytes.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1Bucket_a1c786eaaab7a8e532adf5bdb100052d0}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}!bytecode\_to\_string@{bytecode\_to\_string}}
+\index{bytecode\_to\_string@{bytecode\_to\_string}!jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection{\texorpdfstring{bytecode\_to\_string()}{bytecode\_to\_string()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1Bucket_a1c786eaaab7a8e532adf5bdb100052d0} 
+ bytes jinja2.\+bccache.\+Bucket.\+bytecode\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the bytecode as bytes.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1Bucket_ad4931db3a7cf4b1e93f0805e3c9295ff}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}!load\_bytecode@{load\_bytecode}}
+\index{load\_bytecode@{load\_bytecode}!jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection{\texorpdfstring{load\_bytecode()}{load\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1Bucket_ad4931db3a7cf4b1e93f0805e3c9295ff} 
+ None jinja2.\+bccache.\+Bucket.\+load\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{t.\+Binary\+IO}]{f}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loads bytecode from a file or file like object.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1Bucket_a943161d1989a92ac78341b32fa68573b}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}!reset@{reset}}
+\index{reset@{reset}!jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1Bucket_a943161d1989a92ac78341b32fa68573b} 
+ None jinja2.\+bccache.\+Bucket.\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resets the bucket (unloads the bytecode).\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1Bucket_a456e2bc80078da0487d05dadeb7e158d}\index{jinja2.bccache.Bucket@{jinja2.bccache.Bucket}!write\_bytecode@{write\_bytecode}}
+\index{write\_bytecode@{write\_bytecode}!jinja2.bccache.Bucket@{jinja2.bccache.Bucket}}
+\doxysubsubsection{\texorpdfstring{write\_bytecode()}{write\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1Bucket_a456e2bc80078da0487d05dadeb7e158d} 
+ None jinja2.\+bccache.\+Bucket.\+write\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{t.\+IO\+[bytes]\+}]{f}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Dump the bytecode into the file or file like object passed.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+bccache.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,390 @@
+\doxysection{websockets.\+server.\+Server\+Protocol Class Reference}
+\hypertarget{classwebsockets_1_1server_1_1ServerProtocol}{}\label{classwebsockets_1_1server_1_1ServerProtocol}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+Inheritance diagram for websockets.\+server.\+Server\+Protocol:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classwebsockets_1_1server_1_1ServerProtocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_aadabcd4d92eae0b8b79482338397e2fd}\label{classwebsockets_1_1server_1_1ServerProtocol_aadabcd4d92eae0b8b79482338397e2fd} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[Optional\+[Origin]\+]\+]\+ origins=None, Optional\+[Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1ServerExtensionFactory}{Server\+Extension\+Factory}}]\+]\+ extensions=None, Optional\+[Sequence\+[Subprotocol]\+]\+ subprotocols=None, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol}{Server\+Protocol}}, Sequence\+[Subprotocol]\+]\+, Optional\+[Subprotocol]\+,]\+]\+ select\+\_\+subprotocol=None, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} state=CONNECTING, Optional\+[int]\+ max\+\_\+size=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}20, Optional\+[Logger\+Like]\+ logger=None)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}} \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_aca749cd9f36827c6448e3931d3dd2c28}{accept}} (self, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}} request)
+\item 
+Tuple\+[str, Optional\+[str]\+, Optional\+[str]\+]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_a098205cde7daa058e453da315a9ddf65}{process\+\_\+request}} (self, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}} request)
+\item 
+Optional\+[Origin]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_afa4dd0f17b19260887c57d994432b187}{process\+\_\+origin}} (self, \doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}} headers)
+\item 
+Tuple\+[Optional\+[str]\+, List\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_afff84b0ffaa8074e1b93d1a937cf2916}{process\+\_\+extensions}} (self, \doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}} headers)
+\item 
+Optional\+[Subprotocol]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_ab3d0295313de8b3f86d621f4e7e9d780}{process\+\_\+subprotocol}} (self, \doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}} headers)
+\item 
+Optional\+[Subprotocol]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_a965df16fdfd7381fa6cc4203c311dbeb}{select\+\_\+subprotocol}} (self, Sequence\+[Subprotocol]\+ subprotocols)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}} \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_add1366c2ac83377782b393513df27dc2}{reject}} (self, Status\+Like status, str text)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_a79a284df516eab62b8b31711518e8e09}{send\+\_\+response}} (self, \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}} response)
+\item 
+Generator\+[None, None, None]\+ \doxymbox{\hyperlink{classwebsockets_1_1server_1_1ServerProtocol_aa30bbc4e3d05a53aeba1f9dd5021f6f7}{parse}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol}{websockets.\+protocol.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Side}{Side}} side, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} state=OPEN, Optional\+[int]\+ max\+\_\+size=2 \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}20, Optional\+[Logger\+Like]\+ logger=None)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a760171786643aa4f90ea90670a6ec301}{state}} (self)
+\item 
+None {\bfseries state} (self, \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} state)
+\item 
+Optional\+[int]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a6d75ac1acff9bbe2d19a40f2711d585e}{close\+\_\+code}} (self)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a952417585a56cba78a0878dc96436b6c}{close\+\_\+reason}} (self)
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1exceptions_1_1ConnectionClosed}{Connection\+Closed}} \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a474c4a2d3d92476c9a81c67f86686430}{close\+\_\+exc}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aba13b11895dec3053f2fb5bcf7436e75}{receive\+\_\+data}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aa5b6b70865237efff07bd75aa898e78d}{receive\+\_\+eof}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a1ba895e0129a5c67cf038578e2a72398}{send\+\_\+continuation}} (self, bytes data, bool fin)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_afe7f4e71ca990383164c5726f4b1ede7}{send\+\_\+text}} (self, bytes data, bool fin=True)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a85783ca54eb2d0de3510ad6ec6e23bb0}{send\+\_\+binary}} (self, bytes data, bool fin=True)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a73c8b6597fc2baa781707def17b3313f}{send\+\_\+close}} (self, Optional\+[int]\+ code=None, str reason="{}"{})
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_ad5ec46f569c3771bab1a4c81fec90a53}{send\+\_\+ping}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a5cb03d49e347124a8cdf61ae08d99de9}{send\+\_\+pong}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a713e2ec03bae3423fb279a58c6c9c29c}{fail}} (self, int code, str reason="{}"{})
+\item 
+List\+[Event]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a8b0a2683eacfb92a6c2c623e6957d0a7}{events\+\_\+received}} (self)
+\item 
+List\+[bytes]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a3a0c7270b47448e3bcfbe108d2b79ebc}{data\+\_\+to\+\_\+send}} (self)
+\item 
+bool \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_acc1cc961273791eb31a48540bc8a9e65}{close\+\_\+expected}} (self)
+\item 
+Generator\+[None, None, None]\+ \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a740b58eed1c139cf2cdf71c06f6cc288}{discard}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_a1d002a3eff8c5d46cc6275ed9cf6a931}{recv\+\_\+frame}} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}} frame)
+\item 
+None {\bfseries send\+\_\+frame} (self, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}} frame)
+\item 
+None {\bfseries send\+\_\+eof} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_a21450df2909db0c6fa7b0bd18e6b9c13}\label{classwebsockets_1_1server_1_1ServerProtocol_a21450df2909db0c6fa7b0bd18e6b9c13} 
+{\bfseries origins} = origins
+\item 
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_a17c2b7b975eaf8ec46a5b96609eee896}\label{classwebsockets_1_1server_1_1ServerProtocol_a17c2b7b975eaf8ec46a5b96609eee896} 
+{\bfseries available\+\_\+extensions} = extensions
+\item 
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_afd2e6a9194db308d22363547e8e2a8d0}\label{classwebsockets_1_1server_1_1ServerProtocol_afd2e6a9194db308d22363547e8e2a8d0} 
+\+\# None or empty list {\bfseries available\+\_\+subprotocols} = subprotocols
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol}{websockets.\+protocol.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+uuid.\+UUID {\bfseries id} = uuid.\+uuid4()
+\item 
+Logger\+Like {\bfseries logger} = logger
+\item 
+Logger\+Like {\bfseries debug} = logger.\+is\+Enabled\+For(logging.\+DEBUG)
+\item 
+{\bfseries side} = side
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} {\bfseries state} = state
+\item 
+{\bfseries max\+\_\+size} = max\+\_\+size
+\item 
+Optional\+[int]\+ {\bfseries cur\+\_\+size} = None
+\item 
+bool {\bfseries expect\+\_\+continuation\+\_\+frame} = False
+\item 
+Optional\+[Origin]\+ {\bfseries origin} = None
+\item 
+list {\bfseries extensions} = \+[$\,$]\+
+\item 
+Optional\+[Subprotocol]\+ {\bfseries subprotocol} = None
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+rcvd} = None
+\item 
+Optional\+[\doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Close}{Close}}]\+ {\bfseries close\+\_\+sent} = None
+\item 
+Optional\+[bool]\+ {\bfseries close\+\_\+rcvd\+\_\+then\+\_\+sent} = None
+\item 
+Optional\+[Exception]\+ {\bfseries handshake\+\_\+exc} = None
+\item 
+bool {\bfseries eof\+\_\+sent} = False
+\item 
+{\bfseries reader} = \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader}{Stream\+Reader}}()
+\item 
+list {\bfseries events} = \+[$\,$]\+
+\item 
+list {\bfseries writes} = \+[$\,$]\+
+\item 
+Generator\+[None, None, None]\+ {\bfseries parser} = self.\+parse()
+\item 
+Optional\+[Exception]\+ {\bfseries parser\+\_\+exc} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol}{websockets.\+protocol.\+Protocol}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1State}{State}} {\bfseries \+\_\+state} = state
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Sans-I/O implementation of a WebSocket server connection.
+
+Args:
+    origins: acceptable values of the ``Origin`` header; include
+        :obj:`None` in the list if the lack of an origin is acceptable.
+        This is useful for defending against Cross-Site WebSocket
+        Hijacking attacks.
+    extensions: list of supported extensions, in order in which they
+        should be tried.
+    subprotocols: list of supported subprotocols, in order of decreasing
+        preference.
+    select_subprotocol: Callback for selecting a subprotocol among
+        those supported by the client and the server. It has the same
+        signature as the :meth:`select_subprotocol` method, including a
+        :class:`ServerProtocol` instance as first argument.
+    state: initial state of the WebSocket connection.
+    max_size: maximum size of incoming messages in bytes;
+        :obj:`None` disables the limit.
+    logger: logger for this connection;
+        defaults to ``logging.getLogger("websockets.client")``;
+        see the :doc:`logging guide <../../topics/logging>` for details.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1server_1_1ServerProtocol_doc-func-members}
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_aca749cd9f36827c6448e3931d3dd2c28}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!accept@{accept}}
+\index{accept@{accept}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_aca749cd9f36827c6448e3931d3dd2c28} 
+ \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}} websockets.\+server.\+Server\+Protocol.\+accept (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a handshake response to accept the connection.
+
+If the connection cannot be established, the handshake response
+actually rejects the handshake.
+
+You must send the handshake response with :meth:`send_response`.
+
+You may modify it before sending it, for example to add HTTP headers.
+
+Args:
+    request: WebSocket handshake request event received from the client.
+
+Returns:
+    WebSocket handshake response event to send to the client.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_aa30bbc4e3d05a53aeba1f9dd5021f6f7}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!parse@{parse}}
+\index{parse@{parse}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_aa30bbc4e3d05a53aeba1f9dd5021f6f7} 
+ Generator\+[None, None, None]\+ websockets.\+server.\+Server\+Protocol.\+parse (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse incoming data into frames.
+
+:meth:`receive_data` and :meth:`receive_eof` run this generator
+coroutine until it needs more data or reaches EOF.
+
+:meth:`parse` never raises an exception. Instead, it sets the
+:attr:`parser_exc` and yields control.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classwebsockets_1_1protocol_1_1Protocol_aed46fe98c9396f9ee20b9dad6465c243}{websockets.\+protocol.\+Protocol}}.
+
+\Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_afff84b0ffaa8074e1b93d1a937cf2916}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!process\_extensions@{process\_extensions}}
+\index{process\_extensions@{process\_extensions}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{process\_extensions()}{process\_extensions()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_afff84b0ffaa8074e1b93d1a937cf2916} 
+ Tuple\+[Optional\+[str]\+, List\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{Extension}}]\+]\+ websockets.\+server.\+Server\+Protocol.\+process\+\_\+extensions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}}}]{headers}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle the Sec-WebSocket-Extensions HTTP request header.
+
+Accept or reject each extension proposed in the client request.
+Negotiate parameters for accepted extensions.
+
+Per :rfc:`6455`, negotiation rules are defined by the specification of
+each extension.
+
+To provide this level of flexibility, for each extension proposed by
+the client, we check for a match with each extension available in the
+server configuration. If no match is found, the extension is ignored.
+
+If several variants of the same extension are proposed by the client,
+it may be accepted several times, which won't make sense in general.
+Extensions must implement their own requirements. For this purpose,
+the list of previously accepted extensions is provided.
+
+This process doesn't allow the server to reorder extensions. It can
+only select a subset of the extensions proposed by the client.
+
+Other requirements, for example related to mandatory extensions or the
+order of extensions, may be implemented by overriding this method.
+
+Args:
+    headers: WebSocket handshake request headers.
+
+Returns:
+    Tuple[Optional[str], List[Extension]]: ``Sec-WebSocket-Extensions``
+    HTTP response header and list of accepted extensions.
+
+Raises:
+    InvalidHandshake: if the Sec-WebSocket-Extensions header is invalid.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_afa4dd0f17b19260887c57d994432b187}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!process\_origin@{process\_origin}}
+\index{process\_origin@{process\_origin}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{process\_origin()}{process\_origin()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_afa4dd0f17b19260887c57d994432b187} 
+ Optional\+[Origin]\+ websockets.\+server.\+Server\+Protocol.\+process\+\_\+origin (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}}}]{headers}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle the Origin HTTP request header.
+
+Args:
+    headers: WebSocket handshake request headers.
+
+Returns:
+   Optional[Origin]: origin, if it is acceptable.
+
+Raises:
+    InvalidHandshake: if the Origin header is invalid.
+    InvalidOrigin: if the origin isn't acceptable.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_a098205cde7daa058e453da315a9ddf65}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!process\_request@{process\_request}}
+\index{process\_request@{process\_request}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{process\_request()}{process\_request()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_a098205cde7daa058e453da315a9ddf65} 
+ Tuple\+[str, Optional\+[str]\+, Optional\+[str]\+]\+ websockets.\+server.\+Server\+Protocol.\+process\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check a handshake request and negotiate extensions and subprotocol.
+
+This function doesn't verify that the request is an HTTP/1.1 or higher
+GET request and doesn't check the ``Host`` header. These controls are
+usually performed earlier in the HTTP request handling code. They're
+the responsibility of the caller.
+
+Args:
+    request: WebSocket handshake request received from the client.
+
+Returns:
+    Tuple[str, Optional[str], Optional[str]]:
+    ``Sec-WebSocket-Accept``, ``Sec-WebSocket-Extensions``, and
+    ``Sec-WebSocket-Protocol`` headers for the handshake response.
+
+Raises:
+    InvalidHandshake: if the handshake request is invalid;
+        then the server must return 400 Bad Request error.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_ab3d0295313de8b3f86d621f4e7e9d780}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!process\_subprotocol@{process\_subprotocol}}
+\index{process\_subprotocol@{process\_subprotocol}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{process\_subprotocol()}{process\_subprotocol()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_ab3d0295313de8b3f86d621f4e7e9d780} 
+ Optional\+[Subprotocol]\+ websockets.\+server.\+Server\+Protocol.\+process\+\_\+subprotocol (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1datastructures_1_1Headers}{Headers}}}]{headers}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle the Sec-WebSocket-Protocol HTTP request header.
+
+Args:
+    headers: WebSocket handshake request headers.
+
+Returns:
+   Optional[Subprotocol]: Subprotocol, if one was selected; this is
+   also the value of the ``Sec-WebSocket-Protocol`` response header.
+
+Raises:
+    InvalidHandshake: if the Sec-WebSocket-Subprotocol header is invalid.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_add1366c2ac83377782b393513df27dc2}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!reject@{reject}}
+\index{reject@{reject}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{reject()}{reject()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_add1366c2ac83377782b393513df27dc2} 
+ \doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}} websockets.\+server.\+Server\+Protocol.\+reject (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Status\+Like}]{status}{, }\item[{str}]{text}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a handshake response to reject the connection.
+
+A short plain text response is the best fallback when failing to
+establish a WebSocket connection.
+
+You must send the handshake response with :meth:`send_response`.
+
+You can modify it before sending it, for example to alter HTTP headers.
+
+Args:
+    status: HTTP status code.
+    text: HTTP response body; will be encoded to UTF-8.
+
+Returns:
+    Response: WebSocket handshake response event to send to the client.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_a965df16fdfd7381fa6cc4203c311dbeb}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!select\_subprotocol@{select\_subprotocol}}
+\index{select\_subprotocol@{select\_subprotocol}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{select\_subprotocol()}{select\_subprotocol()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_a965df16fdfd7381fa6cc4203c311dbeb} 
+ Optional\+[Subprotocol]\+ websockets.\+server.\+Server\+Protocol.\+select\+\_\+subprotocol (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Sequence\+[Subprotocol]\+}]{subprotocols}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Pick a subprotocol among those offered by the client.
+
+If several subprotocols are supported by both the client and the server,
+pick the first one in the list declared the server.
+
+If the server doesn't support any subprotocols, continue without a
+subprotocol, regardless of what the client offers.
+
+If the server supports at least one subprotocol and the client doesn't
+offer any, abort the handshake with an HTTP 400 error.
+
+You provide a ``select_subprotocol`` argument to :class:`ServerProtocol`
+to override this logic. For example, you could accept the connection
+even if client doesn't offer a subprotocol, rather than reject it.
+
+Here's how to negotiate the ``chat`` subprotocol if the client supports
+it and continue without a subprotocol otherwise::
+
+    def select_subprotocol(protocol, subprotocols):
+        if "chat" in subprotocols:
+            return "chat"
+
+Args:
+    subprotocols: list of subprotocols offered by the client.
+
+Returns:
+    Optional[Subprotocol]: Selected subprotocol, if a common subprotocol
+    was found.
+
+    :obj:`None` to continue without a subprotocol.
+
+Raises:
+    NegotiationError: custom implementations may raise this exception
+        to abort the handshake with an HTTP 400 error.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1server_1_1ServerProtocol_a79a284df516eab62b8b31711518e8e09}\index{websockets.server.ServerProtocol@{websockets.server.ServerProtocol}!send\_response@{send\_response}}
+\index{send\_response@{send\_response}!websockets.server.ServerProtocol@{websockets.server.ServerProtocol}}
+\doxysubsubsection{\texorpdfstring{send\_response()}{send\_response()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1server_1_1ServerProtocol_a79a284df516eab62b8b31711518e8e09} 
+ None websockets.\+server.\+Server\+Protocol.\+send\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classwebsockets_1_1http11_1_1Response}{Response}}}]{response}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send a handshake response to the client.
+
+Args:
+    response: WebSocket handshake response event to send.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+server.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,56 @@
+\doxysection{sqlalchemy.\+orm.\+unitofwork Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1orm_1_1unitofwork}{}\label{namespacesqlalchemy_1_1orm_1_1unitofwork}\index{sqlalchemy.orm.unitofwork@{sqlalchemy.orm.unitofwork}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1UOWTransaction}{UOWTransaction}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1IterateMappersMixin}{Iterate\+Mappers\+Mixin}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1Preprocess}{Preprocess}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1PostSortRec}{Post\+Sort\+Rec}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1ProcessAll}{Process\+All}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1PostUpdateAll}{Post\+Update\+All}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1SaveUpdateAll}{Save\+Update\+All}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1DeleteAll}{Delete\+All}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1ProcessState}{Process\+State}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1SaveUpdateState}{Save\+Update\+State}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1unitofwork_1_1DeleteState}{Delete\+State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1orm_1_1unitofwork_a95b71d811f35511f53e901426a2b4adb}{track\+\_\+cascade\+\_\+events}} (descriptor, prop)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The internals for the unit of work system.
+
+The session's flush() process passes objects to a contextual object
+here, which assembles flush tasks based on mappers and their properties,
+organizes them in order of dependency, and executes.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1orm_1_1unitofwork_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1unitofwork_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1unitofwork_a95b71d811f35511f53e901426a2b4adb}\index{sqlalchemy.orm.unitofwork@{sqlalchemy.orm.unitofwork}!track\_cascade\_events@{track\_cascade\_events}}
+\index{track\_cascade\_events@{track\_cascade\_events}!sqlalchemy.orm.unitofwork@{sqlalchemy.orm.unitofwork}}
+\doxysubsubsection{\texorpdfstring{track\_cascade\_events()}{track\_cascade\_events()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1orm_1_1unitofwork_a95b71d811f35511f53e901426a2b4adb} 
+track\+\_\+cascade\+\_\+events (\begin{DoxyParamCaption}\item[{}]{descriptor}{, }\item[{}]{prop}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish event listeners on object attributes which handle
+cascade-on-set/append.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,125 @@
+\doxysection{frontend/\+node\+\_\+modules/\+reusify Directory Reference}
+\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb}{}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb}\index{frontend/node\_modules/reusify Directory Reference@{frontend/node\_modules/reusify Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_d63efa8b7cffbedd8b1ec263991dbbc0}{benchmarks}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2528}{}\doxysubsection{\texorpdfstring{reusify}{reusify}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2528}
+\href{https://badge.fury.io/js/reusify}{\texttt{}}
+
+Reuse your objects and functions for maximum speed. This technique will make any function run \texorpdfstring{$\sim$}{\string~}10\% faster. You call your functions a lot, and it adds up quickly in hot code paths.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ node\ benchmarks/createNoCodeFunction.js}
+\DoxyCodeLine{Total\ time\ 53133}
+\DoxyCodeLine{Total\ iterations\ 100000000}
+\DoxyCodeLine{Iteration/s\ 1882069.5236482036}
+\DoxyCodeLine{}
+\DoxyCodeLine{\$\ node\ benchmarks/reuseNoCodeFunction.js}
+\DoxyCodeLine{Total\ time\ 50617}
+\DoxyCodeLine{Total\ iterations\ 100000000}
+\DoxyCodeLine{Iteration/s\ 1975620.838848608}
+
+\end{DoxyCode}
+
+
+The above benchmark uses fibonacci to simulate a real high-\/cpu load. The actual numbers might differ for your use case, but the difference should not.
+
+The benchmark was taken using Node v6.\+10.\+0.
+
+This library was extracted from \href{http://npm.im/fastparallel}{\texttt{fastparallel}}.\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2529}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2529}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ reusify\ =\ require('reusify')}
+\DoxyCodeLine{var\ fib\ =\ require('reusify/benchmarks/fib')}
+\DoxyCodeLine{var\ instance\ =\ reusify(MyObject)}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ get\ an\ object\ from\ the\ cache,}
+\DoxyCodeLine{//\ or\ creates\ a\ new\ one\ when\ cache\ is\ empty}
+\DoxyCodeLine{var\ obj\ =\ instance.get()}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ set\ the\ state}
+\DoxyCodeLine{obj.num\ =\ 100}
+\DoxyCodeLine{obj.func()}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ reset\ the\ state.}
+\DoxyCodeLine{//\ if\ the\ state\ contains\ any\ external\ object}
+\DoxyCodeLine{//\ do\ not\ use\ delete\ operator\ (it\ is\ slow)}
+\DoxyCodeLine{//\ prefer\ set\ them\ to\ null}
+\DoxyCodeLine{obj.num\ =\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ store\ an\ object\ in\ the\ cache}
+\DoxyCodeLine{instance.release(obj)}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ MyObject\ ()\ \{}
+\DoxyCodeLine{\ \ //\ you\ need\ to\ define\ this\ property}
+\DoxyCodeLine{\ \ //\ so\ V8\ can\ compile\ MyObject\ into\ an}
+\DoxyCodeLine{\ \ //\ hidden\ class}
+\DoxyCodeLine{\ \ this.next\ =\ null}
+\DoxyCodeLine{\ \ this.num\ =\ 0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ var\ that\ =\ this}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ this\ function\ is\ never\ reallocated,}
+\DoxyCodeLine{\ \ //\ so\ it\ can\ be\ optimized\ by\ V8}
+\DoxyCodeLine{\ \ this.func\ =\ function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (null)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ do\ nothing}
+\DoxyCodeLine{\ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ calculates\ fibonacci}
+\DoxyCodeLine{\ \ \ \ \ \ fib(that.num)}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The above example was intended for synchronous code, let\textquotesingle{}s see async:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ reusify\ =\ require('reusify')}
+\DoxyCodeLine{var\ instance\ =\ reusify(MyObject)}
+\DoxyCodeLine{}
+\DoxyCodeLine{for\ (var\ i\ =\ 0;\ i\ <\ 100;\ i++)\ \{}
+\DoxyCodeLine{\ \ getData(i,\ console.log)}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ getData\ (value,\ cb)\ \{}
+\DoxyCodeLine{\ \ var\ obj\ =\ instance.get()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ obj.value\ =\ value}
+\DoxyCodeLine{\ \ obj.cb\ =\ cb}
+\DoxyCodeLine{\ \ obj.run()}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ MyObject\ ()\ \{}
+\DoxyCodeLine{\ \ this.next\ =\ null}
+\DoxyCodeLine{\ \ this.value\ =\ null}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ var\ that\ =\ this}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ this.run\ =\ function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ asyncOperation(that.value,\ that.handle)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ this.handle\ =\ function\ (err,\ result)\ \{}
+\DoxyCodeLine{\ \ \ \ that.cb(err,\ result)}
+\DoxyCodeLine{\ \ \ \ that.value\ =\ null}
+\DoxyCodeLine{\ \ \ \ that.cb\ =\ null}
+\DoxyCodeLine{\ \ \ \ instance.release(that)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Also note how in the above examples, the code, that consumes an instance of {\ttfamily My\+Object}, reset the state to initial condition, just before storing it in the cache. That\textquotesingle{}s needed so that every subsequent request for an instance from the cache, could get a clean instance.\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2530}{}\doxysubsection{\texorpdfstring{Why}{Why}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2530}
+It is faster because V8 doesn\textquotesingle{}t have to collect all the functions you create. On a short-\/lived benchmark, it is as fast as creating the nested function, but on a longer time frame it creates less pressure on the garbage collector.\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2531}{}\doxysubsection{\texorpdfstring{Other examples}{Other examples}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2531}
+If you want to see some complex example, checkout \href{https://github.com/fastify/middie}{\texttt{middie}} and \href{https://github.com/mcollina/steed}{\texttt{steed}}.\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2532}{}\doxysubsection{\texorpdfstring{Acknowledgements}{Acknowledgements}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2532}
+Thanks to \href{https://github.com/trevnorris}{\texttt{Trevor Norris}} for getting me down the rabbit hole of performance, and thanks to \href{http://github.com/mafintosh}{\texttt{Mathias Buss}} for suggesting me to share this trick.\hypertarget{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2533}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_1d3c6f960694dfa38cbe6ac5360433fb_autotoc_md2533}
+MIT 

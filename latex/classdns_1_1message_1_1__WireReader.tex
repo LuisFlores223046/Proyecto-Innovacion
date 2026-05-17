@@ -1,0 +1,110 @@
+\doxysection{dns.\+message.\+\_\+\+Wire\+Reader Class Reference}
+\hypertarget{classdns_1_1message_1_1__WireReader}{}\label{classdns_1_1message_1_1__WireReader}\index{dns.message.\_WireReader@{dns.message.\_WireReader}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_aab506ef6baad88c5ac1957f1c063a4cd}\label{classdns_1_1message_1_1__WireReader_aab506ef6baad88c5ac1957f1c063a4cd} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, wire, initialize\+\_\+message, question\+\_\+only=False, one\+\_\+rr\+\_\+per\+\_\+rrset=False, ignore\+\_\+trailing=False, keyring=None, multi=False, continue\+\_\+on\+\_\+error=False)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1__WireReader_a5caa986c06a0b5705b985ca86a0c54b1}{read}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a32a741cb8c59c43c990e6895fbed0a33}\label{classdns_1_1message_1_1__WireReader_a32a741cb8c59c43c990e6895fbed0a33} 
+{\bfseries parser} = \doxymbox{\hyperlink{classdns_1_1wire_1_1Parser}{dns.\+wire.\+Parser}}(wire)
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a8d4ba7b12f3616888caa0c40f8990cf4}\label{classdns_1_1message_1_1__WireReader_a8d4ba7b12f3616888caa0c40f8990cf4} 
+{\bfseries message} = None
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_ab59832ebe4122f34d372e4022ed1f696}\label{classdns_1_1message_1_1__WireReader_ab59832ebe4122f34d372e4022ed1f696} 
+{\bfseries initialize\+\_\+message} = initialize\+\_\+message
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a90f32ee087542f52d48de6e82a01c8ce}\label{classdns_1_1message_1_1__WireReader_a90f32ee087542f52d48de6e82a01c8ce} 
+{\bfseries question\+\_\+only} = question\+\_\+only
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_abf065c447b60efea699db7687fea715e}\label{classdns_1_1message_1_1__WireReader_abf065c447b60efea699db7687fea715e} 
+{\bfseries one\+\_\+rr\+\_\+per\+\_\+rrset} = one\+\_\+rr\+\_\+per\+\_\+rrset
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a6863bea57952c53ea47d8cd84549bd3a}\label{classdns_1_1message_1_1__WireReader_a6863bea57952c53ea47d8cd84549bd3a} 
+{\bfseries ignore\+\_\+trailing} = ignore\+\_\+trailing
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a4fdb2c71906980dd50e450eb6a5e0684}\label{classdns_1_1message_1_1__WireReader_a4fdb2c71906980dd50e450eb6a5e0684} 
+{\bfseries keyring} = keyring
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_af959782ef0488035b5f9df9da7843c00}\label{classdns_1_1message_1_1__WireReader_af959782ef0488035b5f9df9da7843c00} 
+{\bfseries multi} = multi
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a02b134c41f75823b3716f935a28204db}\label{classdns_1_1message_1_1__WireReader_a02b134c41f75823b3716f935a28204db} 
+{\bfseries continue\+\_\+on\+\_\+error} = continue\+\_\+on\+\_\+error
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a6ff8cd26255e093b9a15f98b4490d898}\label{classdns_1_1message_1_1__WireReader_a6ff8cd26255e093b9a15f98b4490d898} 
+list {\bfseries errors} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1__WireReader_a036faaf9dd068c716f644d4df582dcbb}{\+\_\+get\+\_\+question}} (self, section\+\_\+number, qcount)
+\item 
+\Hypertarget{classdns_1_1message_1_1__WireReader_a16090a5b9b96ee02e8cca32a1e8ad816}\label{classdns_1_1message_1_1__WireReader_a16090a5b9b96ee02e8cca32a1e8ad816} 
+{\bfseries \+\_\+add\+\_\+error} (self, e)
+\item 
+\doxymbox{\hyperlink{classdns_1_1message_1_1__WireReader_a9c5fe46f1697a9e9ef9fbf0c8775f564}{\+\_\+get\+\_\+section}} (self, section\+\_\+number, count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wire format reader.
+
+parser: the binary parser
+message: The message object being built
+initialize_message: Callback to set message parsing options
+question_only: Are we only reading the question?
+one_rr_per_rrset: Put each RR into its own RRset?
+keyring: TSIG keyring
+ignore_trailing: Ignore trailing junk at end of request?
+multi: Is this message part of a multi-message sequence?
+DNS dynamic updates.
+continue_on_error: try to extract as much information as possible from
+the message, accumulating MessageErrors in the *errors* attribute instead of
+raising them.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1message_1_1__WireReader_doc-func-members}
+\Hypertarget{classdns_1_1message_1_1__WireReader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1message_1_1__WireReader_a036faaf9dd068c716f644d4df582dcbb}\index{dns.message.\_WireReader@{dns.message.\_WireReader}!\_get\_question@{\_get\_question}}
+\index{\_get\_question@{\_get\_question}!dns.message.\_WireReader@{dns.message.\_WireReader}}
+\doxysubsubsection{\texorpdfstring{\_get\_question()}{\_get\_question()}}
+{\footnotesize\ttfamily \label{classdns_1_1message_1_1__WireReader_a036faaf9dd068c716f644d4df582dcbb} 
+dns.\+message.\+\_\+\+Wire\+Reader.\+\_\+get\+\_\+question (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section\+\_\+number}{, }\item[{}]{qcount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Read the next *qcount* records from the wire data and add them to
+the question section.
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1message_1_1__WireReader_a9c5fe46f1697a9e9ef9fbf0c8775f564}\index{dns.message.\_WireReader@{dns.message.\_WireReader}!\_get\_section@{\_get\_section}}
+\index{\_get\_section@{\_get\_section}!dns.message.\_WireReader@{dns.message.\_WireReader}}
+\doxysubsubsection{\texorpdfstring{\_get\_section()}{\_get\_section()}}
+{\footnotesize\ttfamily \label{classdns_1_1message_1_1__WireReader_a9c5fe46f1697a9e9ef9fbf0c8775f564} 
+dns.\+message.\+\_\+\+Wire\+Reader.\+\_\+get\+\_\+section (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{section\+\_\+number}{, }\item[{}]{count}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Read the next I{count} records from the wire data and add them to
+the specified section.
+
+section_number: the section of the message to which to add records
+count: the number of records to read
+\end{DoxyVerb}
+ \Hypertarget{classdns_1_1message_1_1__WireReader_a5caa986c06a0b5705b985ca86a0c54b1}\index{dns.message.\_WireReader@{dns.message.\_WireReader}!read@{read}}
+\index{read@{read}!dns.message.\_WireReader@{dns.message.\_WireReader}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classdns_1_1message_1_1__WireReader_a5caa986c06a0b5705b985ca86a0c54b1} 
+dns.\+message.\+\_\+\+Wire\+Reader.\+read (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a wire format DNS message and build a dns.message.Message
+object.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+message.\+py\end{DoxyCompactItemize}

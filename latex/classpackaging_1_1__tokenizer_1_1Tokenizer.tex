@@ -1,0 +1,97 @@
+\doxysection{packaging.\+\_\+tokenizer.\+Tokenizer Class Reference}
+\hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer}{}\label{classpackaging_1_1__tokenizer_1_1Tokenizer}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_ae4712b52c9a54886742b258a86691188}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_ae4712b52c9a54886742b258a86691188} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str source, \texorpdfstring{$\ast$}{*}, Mapping\+[str, re.\+Pattern\+[str]\+]\+ rules)
+\item 
+None \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Tokenizer_aff74eaccaae690982aaaba5cb9a4d051}{consume}} (self, str name)
+\item 
+bool \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Tokenizer_a6c4529c0615ee80330bf28db87789ab6}{check}} (self, str name, \texorpdfstring{$\ast$}{*}, bool peek=False)
+\item 
+\doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Token}{Token}} \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Tokenizer_a151b21b99f387eddd422cd0dcf2064dd}{expect}} (self, str name, \texorpdfstring{$\ast$}{*}, str expected)
+\item 
+\doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Token}{Token}} \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Tokenizer_a0338e1186dd1574082f047fdff9b3b2d}{read}} (self)
+\item 
+No\+Return \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Tokenizer_ada56238a9429c16510f207c95f22645f}{raise\+\_\+syntax\+\_\+error}} (self, str message, \texorpdfstring{$\ast$}{*}, int\texorpdfstring{$\vert$}{|}None span\+\_\+start=None, int\texorpdfstring{$\vert$}{|}None span\+\_\+end=None)
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a9e33eaeb1644a5d39500290db929ca0a}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_a9e33eaeb1644a5d39500290db929ca0a} 
+Generator\+[None, None, None]\+ {\bfseries enclosing\+\_\+tokens} (self, str open\+\_\+token, str close\+\_\+token, \texorpdfstring{$\ast$}{*}, str around)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_ac59ba1bb77d052cf509b55868fd8a8ac}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_ac59ba1bb77d052cf509b55868fd8a8ac} 
+{\bfseries source} = source
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a37276fa7c417730f020c9838b9ad431c}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_a37276fa7c417730f020c9838b9ad431c} 
+{\bfseries rules} = rules
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a7ab04f8b5294885f9420b83231982240}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_a7ab04f8b5294885f9420b83231982240} 
+\doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Token}{Token}}\texorpdfstring{$\vert$}{|}None {\bfseries next\+\_\+token} = None
+\item 
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a1ce175ba4f8e8fa56c5d564bccf80e83}\label{classpackaging_1_1__tokenizer_1_1Tokenizer_a1ce175ba4f8e8fa56c5d564bccf80e83} 
+int {\bfseries position} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Context-sensitive token parsing.
+
+Provides methods to examine the input stream to check whether the next token
+matches.
+\end{DoxyVerb}
+ 
+
+\label{classpackaging_1_1__tokenizer_1_1Tokenizer_doc-func-members}
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a6c4529c0615ee80330bf28db87789ab6}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}!check@{check}}
+\index{check@{check}!packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily \label{classpackaging_1_1__tokenizer_1_1Tokenizer_a6c4529c0615ee80330bf28db87789ab6} 
+ bool packaging.\+\_\+tokenizer.\+Tokenizer.\+check (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{peek}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check whether the next token has the provided name.
+
+By default, if the check succeeds, the token *must* be read before
+another check. If `peek` is set to `True`, the token is not loaded and
+would need to be checked again.
+\end{DoxyVerb}
+ \Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_aff74eaccaae690982aaaba5cb9a4d051}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}!consume@{consume}}
+\index{consume@{consume}!packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection{\texorpdfstring{consume()}{consume()}}
+{\footnotesize\ttfamily \label{classpackaging_1_1__tokenizer_1_1Tokenizer_aff74eaccaae690982aaaba5cb9a4d051} 
+ None packaging.\+\_\+tokenizer.\+Tokenizer.\+consume (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Move beyond provided token name, if at current position.\end{DoxyVerb}
+ \Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a151b21b99f387eddd422cd0dcf2064dd}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}!expect@{expect}}
+\index{expect@{expect}!packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection{\texorpdfstring{expect()}{expect()}}
+{\footnotesize\ttfamily \label{classpackaging_1_1__tokenizer_1_1Tokenizer_a151b21b99f387eddd422cd0dcf2064dd} 
+ \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Token}{Token}} packaging.\+\_\+tokenizer.\+Tokenizer.\+expect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{str}]{expected}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Expect a certain token name next, failing with a syntax error otherwise.
+
+The token is *not* read.
+\end{DoxyVerb}
+ \Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_ada56238a9429c16510f207c95f22645f}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}!raise\_syntax\_error@{raise\_syntax\_error}}
+\index{raise\_syntax\_error@{raise\_syntax\_error}!packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection{\texorpdfstring{raise\_syntax\_error()}{raise\_syntax\_error()}}
+{\footnotesize\ttfamily \label{classpackaging_1_1__tokenizer_1_1Tokenizer_ada56238a9429c16510f207c95f22645f} 
+ No\+Return packaging.\+\_\+tokenizer.\+Tokenizer.\+raise\+\_\+syntax\+\_\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{message}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int \texorpdfstring{$\vert$}{|} None }]{span\+\_\+start}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{span\+\_\+end}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Raise ParserSyntaxError at the given position.\end{DoxyVerb}
+ \Hypertarget{classpackaging_1_1__tokenizer_1_1Tokenizer_a0338e1186dd1574082f047fdff9b3b2d}\index{packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}!read@{read}}
+\index{read@{read}!packaging.\_tokenizer.Tokenizer@{packaging.\_tokenizer.Tokenizer}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classpackaging_1_1__tokenizer_1_1Tokenizer_a0338e1186dd1574082f047fdff9b3b2d} 
+ \doxymbox{\hyperlink{classpackaging_1_1__tokenizer_1_1Token}{Token}} packaging.\+\_\+tokenizer.\+Tokenizer.\+read (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Consume the next token and return it.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+packaging/\+\+\_\+tokenizer.\+py\end{DoxyCompactItemize}

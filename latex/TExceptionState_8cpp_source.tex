@@ -1,0 +1,68 @@
+\doxysection{TException\+State.\+cpp}
+\hypertarget{TExceptionState_8cpp_source}{}\label{TExceptionState_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TExceptionState.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TExceptionState.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_EXCEPTION\_STATE\_CPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_EXCEPTION\_STATE\_CPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ ExceptionState::ExceptionState()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ this-\/>clear();}
+\DoxyCodeLine{00013\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ ExceptionState::operator<<(\textcolor{keyword}{const}\ PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ this-\/>exc\_info\ =\ tstate-\/>exc\_info;}
+\DoxyCodeLine{00018\ \ \ \ \ this-\/>exc\_state\ =\ tstate-\/>exc\_state;}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ ExceptionState::operator>>(PyThreadState\ *\textcolor{keyword}{const}\ tstate)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ tstate-\/>exc\_state\ =\ this-\/>exc\_state;}
+\DoxyCodeLine{00024\ \ \ \ \ tstate-\/>exc\_info\ =}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ this-\/>exc\_info\ ?\ this-\/>exc\_info\ :\ \&tstate-\/>exc\_state;}
+\DoxyCodeLine{00026\ \ \ \ \ this-\/>clear();}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ ExceptionState::clear()\ noexcept}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ this-\/>exc\_info\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00032\ \ \ \ \ this-\/>exc\_state.exc\_value\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ !GREENLET\_PY311}}
+\DoxyCodeLine{00034\ \ \ \ \ this-\/>exc\_state.exc\_type\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00035\ \ \ \ \ this-\/>exc\_state.exc\_traceback\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ \ \ \ \ this-\/>exc\_state.previous\_item\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{int}\ ExceptionState::tp\_traverse(visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ Py\_VISIT(this-\/>exc\_state.exc\_value);}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ !GREENLET\_PY311}}
+\DoxyCodeLine{00044\ \ \ \ \ Py\_VISIT(this-\/>exc\_state.exc\_type);}
+\DoxyCodeLine{00045\ \ \ \ \ Py\_VISIT(this-\/>exc\_state.exc\_traceback);}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ ExceptionState::tp\_clear()\ noexcept}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ Py\_CLEAR(this-\/>exc\_state.exc\_value);}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ !GREENLET\_PY311}}
+\DoxyCodeLine{00054\ \ \ \ \ Py\_CLEAR(this-\/>exc\_state.exc\_type);}
+\DoxyCodeLine{00055\ \ \ \ \ Py\_CLEAR(this-\/>exc\_state.exc\_traceback);}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \};\ \textcolor{comment}{//\ namespace\ greenlet}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ GREENLET\_EXCEPTION\_STATE\_CPP}}
+
+\end{DoxyCode}

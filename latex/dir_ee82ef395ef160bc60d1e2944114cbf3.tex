@@ -1,0 +1,274 @@
+\doxysection{frontend/\+node\+\_\+modules/\+eslint-\/plugin-\/react-\/refresh Directory Reference}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3}{}\label{dir_ee82ef395ef160bc60d1e2944114cbf3}\index{frontend/node\_modules/eslint-\/plugin-\/react-\/refresh Directory Reference@{frontend/node\_modules/eslint-\/plugin-\/react-\/refresh Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2017}{}\doxysubsection{\texorpdfstring{eslint-\/plugin-\/react-\/refresh \+[!\+[npm]\+(\href{https://img.shields.io/npm/v/eslint-plugin-react-refresh}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+eslint-\/plugin-\/react-\/refresh}})]\+(\href{https://www.npmjs.com/package/eslint-plugin-react-refresh}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+eslint-\/plugin-\/react-\/refresh}})}{eslint-\/plugin-\/react-\/refresh \+[!\+[npm]\+(\href{https://img.shields.io/npm/v/eslint-plugin-react-refresh}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+eslint-\/plugin-\/react-\/refresh}})]\+(\href{https://www.npmjs.com/package/eslint-plugin-react-refresh}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+eslint-\/plugin-\/react-\/refresh}})}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2017}
+Validate that your components can safely be updated with Fast Refresh.\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2018}{}\doxysubsection{\texorpdfstring{Explainer}{Explainer}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2018}
+"{}\+Fast Refresh"{}, also known as "{}hot reloading"{}, is a feature in many modern bundlers. If you update some React component(s) on disk, then the bundler will know to update only the impacted parts of your page -- without a full page reload.
+
+{\ttfamily eslint-\/plugin-\/react-\/refresh} enforces that your components are structured in a way that integrations such as \href{https://www.npmjs.com/package/react-refresh}{\texttt{react-\/refresh}} expect.\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2019}{}\doxysubsubsection{\texorpdfstring{Limitations}{Limitations}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2019}
+⚠️ To avoid false positives, by default this plugin is only applied on {\ttfamily tsx} \& {\ttfamily jsx} files. See OptionsOptions to run on JS files. ⚠️
+
+The plugin relies on naming conventions (i.\+e. use Pascal\+Case for components, camel\+Case for util functions). This is why there are some limitations:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily export \texorpdfstring{$\ast$}{*}} are not supported and will be reported as an error
+\item Anonymous function are not supported (i.\+e {\ttfamily export default function() \{\}})
+\item Class components are not supported
+\item All-\/uppercase function export is considered an error when not using direct named export (ex {\ttfamily const CMS = () =\texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}\texorpdfstring{$<$}{<}/\+\texorpdfstring{$>$}{>}; export \{ CMS \}})
+\end{DoxyItemize}\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2020}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2020}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/D\ eslint-\/plugin-\/react-\/refresh}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2021}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2021}
+This plugin provides a single rule, {\ttfamily react-\/refresh/\+only-\/export-\/components}. There are multiple ways to enable it.\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2022}{}\doxysubsubsection{\texorpdfstring{Recommended config}{Recommended config}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2022}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{import\ reactRefresh\ from\ "{}eslint-\/plugin-\/react-\/refresh"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig(}
+\DoxyCodeLine{\ \ /*\ Main\ config\ */}
+\DoxyCodeLine{\ \ reactRefresh.configs.recommended,}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2023}{}\doxysubsubsection{\texorpdfstring{Vite config}{Vite config}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2023}
+This enables the {\ttfamily allow\+Constant\+Export} option which is supported by Vite React plugins.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{import\ reactRefresh\ from\ "{}eslint-\/plugin-\/react-\/refresh"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig(}
+\DoxyCodeLine{\ \ /*\ Main\ config\ */}
+\DoxyCodeLine{\ \ reactRefresh.configs.vite,}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2024}{}\doxysubsubsection{\texorpdfstring{Next config 
+\footnotesize (v0.\+4.\+21)
+\normalsize }{Next config 
+\footnotesize (v0.\+4.\+21)
+\normalsize }}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2024}
+This allows exports like {\ttfamily fetch\+Cache} and {\ttfamily revalidate} which are used in Page or Layout components and don\textquotesingle{}t trigger a full page reload.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{import\ reactRefresh\ from\ "{}eslint-\/plugin-\/react-\/refresh"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig(}
+\DoxyCodeLine{\ \ /*\ Main\ config\ */}
+\DoxyCodeLine{\ \ reactRefresh.configs.next,}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2025}{}\doxysubsubsection{\texorpdfstring{Without config}{Without config}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2025}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{import\ reactRefresh\ from\ "{}eslint-\/plugin-\/react-\/refresh"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig(\{}
+\DoxyCodeLine{\ \ //\ in\ main\ config\ for\ TSX/JSX\ source\ files}
+\DoxyCodeLine{\ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}react-\/refresh"{}:\ reactRefresh,}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}react-\/refresh/only-\/export-\/components"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2026}{}\doxysubsubsection{\texorpdfstring{Legacy config}{Legacy config}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2026}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}plugins"{}:\ ["{}react-\/refresh"{}],}
+\DoxyCodeLine{\ \ "{}rules"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}react-\/refresh/only-\/export-\/components"{}:\ "{}error"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2027}{}\doxysubsection{\texorpdfstring{Examples}{Examples}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2027}
+These examples are from enabling {\ttfamily react-\/refresh/\+only-\/exports-\/components}.\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2028}{}\doxysubsubsection{\texorpdfstring{Fail}{Fail}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2028}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ const\ foo\ =\ ()\ =>\ \{\};}
+\DoxyCodeLine{export\ const\ Bar\ =\ ()\ =>\ <></>;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ function\ ()\ \{\}}
+\DoxyCodeLine{export\ default\ compose()(MainComponent)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ *\ from\ "{}./foo"{};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ Tab\ =\ ()\ =>\ \{\};}
+\DoxyCodeLine{export\ const\ tabs\ =\ [<Tab\ />,\ <Tab\ />];}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ App\ =\ ()\ =>\ \{\};}
+\DoxyCodeLine{createRoot(document.getElementById("{}root"{})).render(<App\ />);}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2029}{}\doxysubsubsection{\texorpdfstring{Pass}{Pass}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2029}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ function\ Foo()\ \{}
+\DoxyCodeLine{\ \ return\ <></>;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ foo\ =\ ()\ =>\ \{\};}
+\DoxyCodeLine{export\ const\ Bar\ =\ ()\ =>\ <></>;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ App\ \}\ from\ "{}./App"{};}
+\DoxyCodeLine{createRoot(document.getElementById("{}root"{})).render(<App\ />);}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2030}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2030}
+These options are all present on {\ttfamily react-\/refresh/\+only-\/exports-\/components}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ Options\ \{}
+\DoxyCodeLine{\ \ allowExportNames?:\ string[];}
+\DoxyCodeLine{\ \ allowConstantExport?:\ boolean;}
+\DoxyCodeLine{\ \ customHOCs?:\ string[];}
+\DoxyCodeLine{\ \ checkJS?:\ boolean;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ defaultOptions:\ Options\ =\ \{}
+\DoxyCodeLine{\ \ allowExportNames:\ [],}
+\DoxyCodeLine{\ \ allowConstantExport:\ false,}
+\DoxyCodeLine{\ \ customHOCs:\ [],}
+\DoxyCodeLine{\ \ checkJS:\ false,}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2031}{}\doxysubsubsection{\texorpdfstring{allow\+Export\+Names 
+\footnotesize (v0.\+4.\+4)
+\normalsize }{allow\+Export\+Names 
+\footnotesize (v0.\+4.\+4)
+\normalsize }}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2031}
+\begin{quote}
+Default:\+ {\ttfamily \+[]\+} \end{quote}
+
+
+If you use a framework that handles HMR of some specific exports, you can use this option to avoid warning for them.
+
+Example for \href{https://remix.run/docs/en/main/discussion/hot-module-replacement\#supported-exports}{\texttt{Remix}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}react-\/refresh/only-\/export-\/components"{}:\ [}
+\DoxyCodeLine{\ \ \ \ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \{\ "{}allowExportNames"{}:\ ["{}meta"{},\ "{}links"{},\ "{}headers"{},\ "{}loader"{},\ "{}action"{}]\ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2032}{}\doxysubsubsection{\texorpdfstring{allow\+Constant\+Export 
+\footnotesize (v0.\+4.\+0)
+\normalsize }{allow\+Constant\+Export 
+\footnotesize (v0.\+4.\+0)
+\normalsize }}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2032}
+\begin{quote}
+Default:\+ {\ttfamily false} ({\ttfamily true} in {\ttfamily vite} config) \end{quote}
+
+
+Don\textquotesingle{}t warn when a constant (string, number, boolean, template\+Literal) is exported aside one or more components.
+
+This should be enabled if the fast refresh implementation correctly handles this case (HMR when the constant doesn\textquotesingle{}t change, propagate update to importers when the constant changes.). Vite supports it, PR welcome if you notice other integrations works well.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}react-\/refresh/only-\/export-\/components"{}:\ [}
+\DoxyCodeLine{\ \ \ \ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \{\ "{}allowConstantExport"{}:\ true\ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Enabling this option allows code such as the following:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ const\ CONSTANT\ =\ 3;}
+\DoxyCodeLine{export\ const\ Foo\ =\ ()\ =>\ <></>;}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2033}{}\doxysubsubsection{\texorpdfstring{check\+JS 
+\footnotesize (v0.\+3.\+3)
+\normalsize }{check\+JS 
+\footnotesize (v0.\+3.\+3)
+\normalsize }}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2033}
+\begin{quote}
+Default:\+ {\ttfamily false} \end{quote}
+
+
+If you\textquotesingle{}re using JSX inside {\ttfamily .js} files (which I don\textquotesingle{}t recommend because it forces you to configure every tool you use to switch the parser), you can still use the plugin by enabling this option. To reduce the number of false positive, only files importing {\ttfamily react} are checked.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}react-\/refresh/only-\/export-\/components"{}:\ ["{}error"{},\ \{\ "{}checkJS"{}:\ true\ \}]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2034}{}\doxysubsubsection{\texorpdfstring{custom\+HOCs 
+\footnotesize (v0.\+4.\+15)
+\normalsize }{custom\+HOCs 
+\footnotesize (v0.\+4.\+15)
+\normalsize }}\label{dir_ee82ef395ef160bc60d1e2944114cbf3_autotoc_md2034}
+If you\textquotesingle{}re exporting a component wrapped in a custom HOC, you can use this option to avoid false positives.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}react-\/refresh/only-\/export-\/components"{}:\ [}
+\DoxyCodeLine{\ \ \ \ "{}error"{},}
+\DoxyCodeLine{\ \ \ \ \{\ "{}customHOCs"{}:\ ["{}observer"{},\ "{}withAuth"{}]\ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

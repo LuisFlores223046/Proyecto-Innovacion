@@ -1,0 +1,63 @@
+\doxysection{frontend/\+node\+\_\+modules/\+import-\/fresh Directory Reference}
+\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69}{}\label{dir_e8245ae60998cc9172ddc44eafb0da69}\index{frontend/node\_modules/import-\/fresh Directory Reference@{frontend/node\_modules/import-\/fresh Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2797}{}\doxysubsection{\texorpdfstring{import-\/fresh}{import-\/fresh}}\label{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2797}
+\begin{quote}
+Import a module while bypassing the \href{https://nodejs.org/api/modules.html\#modules_caching}{\texttt{cache}} \end{quote}
+
+
+Useful for testing purposes when you need to freshly import a module.\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2798}{}\doxysubsection{\texorpdfstring{ESM}{ESM}}\label{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2798}
+For ESM, you can use this snippet:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ importFresh\ =\ moduleName\ =>\ import(`\$\{moduleName\}?\$\{Date.now()\}`);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{default:\ foo\}\ =\ await\ importFresh('foo');}
+
+\end{DoxyCode}
+
+
+{\bfseries{This snippet causes a memory leak, so only use it for short-\/lived tests.}}\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2799}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2799}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ import-\/fresh}
+
+\end{DoxyCode}
+\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2800}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2800}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.js}
+\DoxyCodeLine{let\ i\ =\ 0;}
+\DoxyCodeLine{module.exports\ =\ ()\ =>\ ++i;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ importFresh\ =\ require('import-\/fresh');}
+\DoxyCodeLine{}
+\DoxyCodeLine{require('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{require('./foo')();}
+\DoxyCodeLine{//=>\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{importFresh('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+\DoxyCodeLine{}
+\DoxyCodeLine{importFresh('./foo')();}
+\DoxyCodeLine{//=>\ 1}
+
+\end{DoxyCode}
+\hypertarget{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2801}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_e8245ae60998cc9172ddc44eafb0da69_autotoc_md2801}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/clear-module}{\texttt{clear-\/module}} -\/ Clear a module from the import cache
+\item \href{https://github.com/sindresorhus/import-from}{\texttt{import-\/from}} -\/ Import a module from a given path
+\item \href{https://github.com/sindresorhus/import-cwd}{\texttt{import-\/cwd}} -\/ Import a module from the current working directory
+\item \href{https://github.com/sindresorhus/import-lazy}{\texttt{import-\/lazy}} -\/ Import modules lazily 
+\end{DoxyItemize}

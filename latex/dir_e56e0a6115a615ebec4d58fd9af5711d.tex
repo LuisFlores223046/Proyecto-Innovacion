@@ -1,0 +1,524 @@
+\doxysection{frontend/\+node\+\_\+modules/\+baseline-\/browser-\/mapping Directory Reference}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d}{}\label{dir_e56e0a6115a615ebec4d58fd9af5711d}\index{frontend/node\_modules/baseline-\/browser-\/mapping Directory Reference@{frontend/node\_modules/baseline-\/browser-\/mapping Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_b7f35ea462c3b6b6513f41b54ab87874}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1447}{}\doxysubsection{\texorpdfstring{\+[\`{}baseline-\/browser-\/mapping\`{}]\+(\href{https://github.com/web-platform-dx/web-features/packages/baseline-browser-mapping}{\texttt{https:\+/\+/\+github.\+com/\+web-\/platform-\/dx/\+web-\/features/\+packages/\+baseline-\/browser-\/mapping}})}{\+[\`{}baseline-\/browser-\/mapping\`{}]\+(\href{https://github.com/web-platform-dx/web-features/packages/baseline-browser-mapping}{\texttt{https:\+/\+/\+github.\+com/\+web-\/platform-\/dx/\+web-\/features/\+packages/\+baseline-\/browser-\/mapping}})}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1447}
+By the \href{https://www.w3.org/community/webdx/}{\texttt{W3C Web\+DX Community Group}} and contributors.
+
+{\ttfamily baseline-\/browser-\/mapping} provides:\+
+
+
+\begin{DoxyItemize}
+\item An {\ttfamily Array} of browsers compatible with Baseline Widely available and Baseline year feature sets via the \`{}get\+Compatible\+Versions()\`{} function{\ttfamily get\+Compatible\+Versions()} function
+\end{DoxyItemize}.
+\begin{DoxyItemize}
+\item An {\ttfamily Array}, {\ttfamily Object} or {\ttfamily CSV} as a string describing the Baseline feature set support of all browser versions included in the module\textquotesingle{}s data set via the \`{}get\+All\+Versions()\`{} function{\ttfamily get\+All\+Versions()} function
+\end{DoxyItemize}.
+
+You can use {\ttfamily baseline-\/browser-\/mapping} to help you determine minimum browser version support for your chosen Baseline feature set; or to analyse the level of support for different Baseline feature sets in your site\textquotesingle{}s traffic by joining the data with your analytics data.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1448}{}\doxysubsection{\texorpdfstring{Install for local development}{Install for local development}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1448}
+To install the package, run:\+
+
+{\ttfamily npm install -\/-\/save-\/dev baseline-\/browser-\/mapping}
+
+The minimum supported Node\+JS version for {\ttfamily baseline-\/browser-\/mapping} is v8 in alignment with {\ttfamily browserslist}. For Node\+JS versions earlier than v13.\+2, the \href{https://nodejs.org/api/modules.html\#requireid}{\texttt{{\ttfamily require(\textquotesingle{}baseline-\/browser-\/mapping\textquotesingle{})}}} syntax should be used to import the module.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1449}{}\doxysubsection{\texorpdfstring{Keeping {\ttfamily baseline-\/browser-\/mapping} up to date}{Keeping {\ttfamily baseline-\/browser-\/mapping} up to date}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1449}
+{\ttfamily baseline-\/browser-\/mapping} depends on {\ttfamily web-\/features} and {\ttfamily @mdn/\+browser-\/compat-\/data} for core browser version selection, but the data is pre-\/packaged and minified. This package checks for updates to those modules and the supported downstream browsersdownstream browsers on a daily basis and is updated frequently.
+
+If you are only using this module to generate minimum browser versions for Baseline Widely available or Baseline year feature sets, you don\textquotesingle{}t need to update this module frequently, as the backward looking data is reasonably stable.
+
+However, if you are targeting Newly available, using the \`{}get\+All\+Versions()\`{}{\ttfamily get\+All\+Versions()} function or heavily relying on the data for downstream browsers, you should update this module more frequently. If you target a feature cut off date within the last two months and your installed version of {\ttfamily baseline-\/browser-\/mapping} has data that is more than 2 months old, you will receive a console warning advising you to update to the latest version when you call {\ttfamily get\+Compatible\+Versions()} or {\ttfamily get\+All\+Versions()}.
+
+If you want to suppress the console warnings mentioned above you can use the {\ttfamily suppress\+Warnings:\+ true} option in the configuration object passed to {\ttfamily get\+Compatible\+Versions()} or {\ttfamily get\+All\+Versions()}. Alternatively, you can use the {\ttfamily BASELINE\+\_\+\+BROWSER\+\_\+\+MAPPING\+\_\+\+IGNORE\+\_\+\+OLD\+\_\+\+DATA=true} environment variable when running your build process. This module also respects the {\ttfamily BROWSERSLIST\+\_\+\+IGNORE\+\_\+\+OLD\+\_\+\+DATA=true} environment variable. Environment variables can also be provided in a {\ttfamily .env} file from Node 20 onwards; however, this module does not load .env files automatically to avoid conflicts with other libraries with different requirements. You will need to use {\ttfamily process.\+load\+Env\+File()} or a library like {\ttfamily dotenv} to load .env files before {\ttfamily baseline-\/browser-\/mapping} is called.
+
+If you\textquotesingle{}re building a tool that uses this module, consider suppressing the warnings but building a process into your tool that automatically updates this module. See, for example, \href{https://github.com/browserslist/browserslist/blob/main/node.js\#L471}{\texttt{{\ttfamily browserslist}}} and its \href{https://github.com/browserslist/update-db}{\texttt{{\ttfamily update-\/browserslist-\/db}}} package.
+
+If you\textquotesingle{}re implementing {\ttfamily baseline-\/browser-\/mapping} directly, you should add a script to your {\ttfamily package.\+json} to update {\ttfamily baseline-\/browser-\/mapping} and use it as part of your build process to ensure your data is as up to date as possible. For example, if you are using NPM for package management:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}scripts"{}:\ [}
+\DoxyCodeLine{\ \ "{}refresh-\/baseline-\/browser-\/mapping"{}:\ "{}npm\ i\ baseline-\/browser-\/mapping@latest\ -\/D"{}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+If you want to ensure \href{https://www.wikiwand.com/en/articles/Reproducible_builds}{\texttt{reproducible builds}}, we strongly recommend using the {\ttfamily widely\+Available\+On\+Date} option to fix the Widely available date on a per build basis to ensure dependent tools provide the same output and you do not produce data staleness warnings. If you are using \href{https://github.com/browserslist/browserslist}{\texttt{{\ttfamily browserslist}}} to target Baseline Widely available, consider automatically updating your {\ttfamily browserslist} configuration in {\ttfamily package.\+json} or {\ttfamily .browserslistrc} to {\ttfamily baseline widely available on \{YYYY-\/\+MM-\/\+DD\}} as part of your build process to ensure the same or sufficiently similar list of minimum browsers is reproduced for historical builds.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1450}{}\doxysubsection{\texorpdfstring{Importing {\ttfamily baseline-\/browser-\/mapping}}{Importing {\ttfamily baseline-\/browser-\/mapping}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1450}
+This module exposes two functions:\+ {\ttfamily get\+Compatible\+Versions()} and {\ttfamily get\+All\+Versions()}, both which can be imported directly from {\ttfamily baseline-\/browser-\/mapping}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{}
+\DoxyCodeLine{\ \ getCompatibleVersions,}
+\DoxyCodeLine{\ \ getAllVersions,}
+\DoxyCodeLine{\}\ from\ "{}baseline-\/browser-\/mapping"{};}
+
+\end{DoxyCode}
+
+
+If you want to load the script and data directly in a web page without hosting it yourself, consider using a CDN:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{<script\ type="{}module"{}>}
+\DoxyCodeLine{\ \ import\ \{}
+\DoxyCodeLine{\ \ \ \ getCompatibleVersions,}
+\DoxyCodeLine{\ \ \ \ getAllVersions,}
+\DoxyCodeLine{\ \ \}\ from\ "{}https://cdn.jsdelivr.net/npm/baseline-\/browser-\/mapping"{};}
+\DoxyCodeLine{</script>}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1451}{}\doxysubsection{\texorpdfstring{Get Baseline Widely available browser versions or Baseline year browser versions}{Get Baseline Widely available browser versions or Baseline year browser versions}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1451}
+To get the current list of minimum browser versions compatible with Baseline Widely available features from the core browser set, call the {\ttfamily get\+Compatible\+Versions()} function:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions();}
+
+\end{DoxyCode}
+
+
+Executed on 7th March 2025, the above code returns the following browser versions:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}chrome"{},\ version:\ "{}105"{},\ release\_date:\ "{}2022-\/09-\/02"{}\ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}chrome\_android"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}105"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2022-\/09-\/02"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}edge"{},\ version:\ "{}105"{},\ release\_date:\ "{}2022-\/09-\/02"{}\ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}firefox"{},\ version:\ "{}104"{},\ release\_date:\ "{}2022-\/08-\/23"{}\ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}firefox\_android"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}104"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2022-\/08-\/23"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}safari"{},\ version:\ "{}15.6"{},\ release\_date:\ "{}2022-\/09-\/02"{}\ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}safari\_ios"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}15.6"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2022-\/09-\/02"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+The minimum versions of each browser are not necessarily the final release before the Widely available cutoff date of {\ttfamily TODAY -\/ 30 MONTHS}. Some earlier versions will have supported the full Widely available feature set.
+\end{DoxyNote}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1452}{}\doxysubsubsection{\texorpdfstring{{\ttfamily get\+Compatible\+Versions()} configuration options}{{\ttfamily get\+Compatible\+Versions()} configuration options}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1452}
+{\ttfamily get\+Compatible\+Versions()} accepts an {\ttfamily Object} as an argument with configuration options. The defaults are as follows:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ targetYear:\ undefined,}
+\DoxyCodeLine{\ \ widelyAvailableOnDate:\ undefined,}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ false,}
+\DoxyCodeLine{\ \ listAllCompatibleVersions:\ false,}
+\DoxyCodeLine{\ \ suppressWarnings:\ false}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1453}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily target\+Year}}{{\ttfamily target\+Year}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1453}
+The {\ttfamily target\+Year} option returns the minimum browser versions compatible with all {\bfseries{Baseline Newly available}} features at the end of the specified calendar year. For example, calling:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ targetYear:\ 2020,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Returns the following versions:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}chrome"{},\ version:\ "{}87"{},\ release\_date:\ "{}2020-\/11-\/19"{}\ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}chrome\_android"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}87"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2020-\/11-\/19"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}edge"{},\ version:\ "{}87"{},\ release\_date:\ "{}2020-\/11-\/19"{}\ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}firefox"{},\ version:\ "{}83"{},\ release\_date:\ "{}2020-\/11-\/17"{}\ \},}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}firefox\_android"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}83"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2020-\/11-\/17"{},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}safari"{},\ version:\ "{}14"{},\ release\_date:\ "{}2020-\/09-\/16"{}\ \},}
+\DoxyCodeLine{\ \ \{\ browser:\ "{}safari\_ios"{},\ version:\ "{}14"{},\ release\_date:\ "{}2020-\/09-\/16"{}\ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+The minimum version of each browser is not necessarily the final version released in that calendar year. In the above example, Firefox 84 was the final version released in 2020; however Firefox 83 supported all of the features that were interoperable at the end of 2020. \+[!\+WARNING]\+ You cannot use {\ttfamily target\+Year} and {\ttfamily widely\+Aavailable\+Date} together. Please only use one of these options at a time.
+\end{DoxyNote}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1454}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily widely\+Available\+On\+Date}}{{\ttfamily widely\+Available\+On\+Date}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1454}
+The {\ttfamily widely\+Available\+On\+Date} option returns the minimum versions compatible with Baseline Widely available on a specified date in the format {\ttfamily YYYY-\/\+MM-\/\+DD}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ widelyAvailableOnDate:\ \`{}2023-\/04-\/05`,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+\begin{DoxyRemark}{Remarks}
+This option is useful if you provide a versioned library that targets Baseline Widely available on each version\textquotesingle{}s release date and you need to provide a statement on minimum supported browser versions in your documentation.
+\end{DoxyRemark}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1455}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily include\+Downstream\+Browsers}}{{\ttfamily include\+Downstream\+Browsers}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1455}
+Setting {\ttfamily include\+Downstream\+Browsers} to {\ttfamily true} will include browsers outside of the Baseline core browser set where it is possible to map those browsers to an upstream Chromium or Gecko version:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+For more information on downstream browsers, see the section on downstream browsersthe section on downstream browsers below.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1456}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily include\+Kai\+OS}}{{\ttfamily include\+Kai\+OS}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1456}
+Kai\+OS is an operating system and app framework based on the Gecko engine from Firefox. Kai\+OS is based on the Gecko engine and feature support can be derived from the upstream Gecko version that each Kai\+OS version implements. However Kai\+OS requires other considerations beyond feature compatibility to ensure a good user experience as it runs on device types that do not have either mouse and keyboard or touch screen input in the way that all the other browsers supported by this module do.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ true,}
+\DoxyCodeLine{\ \ includeKaiOS:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+Including Kai\+OS requires you to include all downstream browsers using the {\ttfamily include\+Downstream\+Browsers} option.
+\end{DoxyNote}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1457}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily list\+All\+Compatible\+Versions}}{{\ttfamily list\+All\+Compatible\+Versions}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1457}
+Setting {\ttfamily list\+All\+Compatible\+Versions} to true will include the minimum versions of each compatible browser, and all the subsequent versions:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ listAllCompatibleVersions:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1458}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily suppress\+Warnings}}{{\ttfamily suppress\+Warnings}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1458}
+Setting {\ttfamily suppress\+Warnings} to {\ttfamily true} will suppress the console warning about old data:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getCompatibleVersions(\{}
+\DoxyCodeLine{\ \ suppressWarnings:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1459}{}\doxysubsection{\texorpdfstring{Get data for all browser versions}{Get data for all browser versions}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1459}
+You may want to obtain data on all the browser versions available in this module for use in an analytics solution or dashboard. To get details of each browser version\textquotesingle{}s level of Baseline support, call the {\ttfamily get\+All\+Versions()} function:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ getAllVersions\ \}\ from\ "{}baseline-\/browser-\/mapping"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{getAllVersions();}
+
+\end{DoxyCode}
+
+
+By default, this function returns an {\ttfamily Array} of {\ttfamily Objects} and excludes downstream browsers:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}firefox\_android"{},\ //\ Browser\ name}
+\DoxyCodeLine{\ \ \ \ version:\ "{}125"{},\ //\ Browser\ version}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2024-\/04-\/16"{},\ //\ Release\ date}
+\DoxyCodeLine{\ \ \ \ year:\ 2023,\ //\ Baseline\ year\ feature\ set\ the\ version\ supports}
+\DoxyCodeLine{\ \ \ \ wa\_compatible:\ true\ //\ Whether\ the\ browser\ version\ supports\ Widely\ available}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+For browser versions in {\ttfamily @mdn/\+browser-\/compat-\/data} that were released before Baseline can be defined, i.\+e. Baseline 2015, the {\ttfamily year} property is always the string:\+ {\ttfamily "{}pre\+\_\+baseline"{}}.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1460}{}\doxysubsubsection{\texorpdfstring{Understanding which browsers support Newly available features}{Understanding which browsers support Newly available features}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1460}
+You may want to understand which recent browser versions support all Newly available features. You can replace the {\ttfamily wa\+\_\+compatible} property with a {\ttfamily supports} property using the {\ttfamily use\+Support} option:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ useSupports:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+The {\ttfamily supports} property is optional and has two possible values:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily widely} for browser versions that support all Widely available features.
+\item {\ttfamily newly} for browser versions that support all Newly available features.
+\end{DoxyItemize}
+
+Browser versions that do not support Widely or Newly available will not include the {\ttfamily support} property in the {\ttfamily array} or {\ttfamily object} outputs, and in the CSV output, the {\ttfamily support} column will contain an empty string. Browser versions that support all Newly available features also support all Widely available features.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1461}{}\doxysubsubsection{\texorpdfstring{{\ttfamily get\+All\+Versions()} Configuration options}{{\ttfamily get\+All\+Versions()} Configuration options}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1461}
+{\ttfamily get\+All\+Versions()} accepts an {\ttfamily Object} as an argument with configuration options. The defaults are as follows:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ false,}
+\DoxyCodeLine{\ \ outputFormat:\ "{}array"{},}
+\DoxyCodeLine{\ \ suppressWarnings:\ false}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1462}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily include\+Downstream\+Browsers} (in {\ttfamily get\+All\+Versions()} output)}{{\ttfamily include\+Downstream\+Browsers} (in {\ttfamily get\+All\+Versions()} output)}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1462}
+As with {\ttfamily get\+Compatible\+Versions()}, you can set {\ttfamily include\+Downstream\+Browsers} to {\ttfamily true} to include the Chromium and Gecko downstream browsers listed belowlisted below.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+Downstream browsers include the same properties as core browsers, as well as the {\ttfamily engine}they use and {\ttfamily engine\+\_\+version}, for example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ browser:\ "{}samsunginternet\_android"{},}
+\DoxyCodeLine{\ \ \ \ version:\ "{}27.0"{},}
+\DoxyCodeLine{\ \ \ \ release\_date:\ "{}2024-\/11-\/06"{},}
+\DoxyCodeLine{\ \ \ \ engine:\ "{}Blink"{},}
+\DoxyCodeLine{\ \ \ \ engine\_version:\ "{}125"{},}
+\DoxyCodeLine{\ \ \ \ year:\ 2023,}
+\DoxyCodeLine{\ \ \ \ supports:\ "{}widely"{}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1463}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily include\+Kai\+OS} (in {\ttfamily get\+All\+Versions()} output)}{{\ttfamily include\+Kai\+OS} (in {\ttfamily get\+All\+Versions()} output)}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1463}
+As with {\ttfamily get\+Compatible\+Versions()} you can include Kai\+OS in your output. The same requirement to have {\ttfamily include\+Downstream\+Browsers:\+ true} applies.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ includeDownstreamBrowsers:\ true,}
+\DoxyCodeLine{\ \ includeKaiOS:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1464}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily suppress\+Warnings} (in {\ttfamily get\+All\+Versions()} output)}{{\ttfamily suppress\+Warnings} (in {\ttfamily get\+All\+Versions()} output)}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1464}
+As with {\ttfamily get\+Compatible\+Versions()}, you can set {\ttfamily suppress\+Warnings} to {\ttfamily true} to suppress the console warning about old data:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ suppressWarnings:\ true,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1465}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily output\+Format}}{{\ttfamily output\+Format}}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1465}
+By default, this function returns an {\ttfamily Array} of {\ttfamily Objects} which can be manipulated in Javascript or output to JSON.
+
+To return an {\ttfamily Object} that nests keys , set {\ttfamily output\+Format} to {\ttfamily object}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ outputFormat:\ "{}object"{},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+In thise case, {\ttfamily get\+All\+Versions()} returns a nested object with the browser IDs listed belowIDs listed below as keys, and versions as keys within them:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}chrome"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}53"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}year"{}:\ 2016,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}release\_date"{}:\ "{}2016-\/09-\/07"{}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Downstream browsers will include extra fields for {\ttfamily engine} and {\ttfamily engine\+\_\+versions}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\ \ "{}webview\_android"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}53"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ "{}year"{}:\ 2016,}
+\DoxyCodeLine{\ \ \ \ \ \ "{}release\_date"{}:\ "{}2016-\/09-\/07"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}engine"{}:\ "{}Blink"{},}
+\DoxyCodeLine{\ \ \ \ \ \ "{}engine\_version"{}:\ "{}53"{}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ ...}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+To return a {\ttfamily String} in CSV format, set {\ttfamily output\+Format} to {\ttfamily csv}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{getAllVersions(\{}
+\DoxyCodeLine{\ \ outputFormat:\ "{}csv"{},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+{\ttfamily get\+All\+Versions} returns a {\ttfamily String} with a header row and comma-\/separated values for each browser version that you can write to a file or pass to another service. Core browsers will have "{}\+NULL"{} as the value for their {\ttfamily engine} and {\ttfamily engine\+\_\+version}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{"{}browser"{},"{}version"{},"{}year"{},"{}supports"{},"{}release\_date"{},"{}engine"{},"{}engine\_version"{}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{"{}chrome"{},"{}24"{},"{}pre\_baseline"{},"{}"{},"{}2013-\/01-\/10"{},"{}NULL"{},"{}NULL"{}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{"{}chrome"{},"{}53"{},"{}2016"{},"{}"{},"{}2016-\/09-\/07"{},"{}NULL"{},"{}NULL"{}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{"{}firefox"{},"{}135"{},"{}2024"{},"{}widely"{},"{}2025-\/02-\/04"{},"{}NULL"{},"{}NULL"{}}
+\DoxyCodeLine{"{}firefox"{},"{}136"{},"{}2024"{},"{}newly"{},"{}2025-\/03-\/04"{},"{}NULL"{},"{}NULL"{}}
+\DoxyCodeLine{...}
+\DoxyCodeLine{"{}ya\_android"{},"{}20.12"{},"{}2020"{},"{}year\_only"{},"{}2020-\/12-\/20"{},"{}Blink"{},"{}87"{}}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Note}
+The above example uses {\ttfamily "{}include\+Downstream\+Browsers"{}:\+ true}
+\end{DoxyNote}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1466}{}\doxysubsubsection{\texorpdfstring{Static resources}{Static resources}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1466}
+The outputs of {\ttfamily get\+All\+Versions()} are available as JSON or CSV files generated on a daily basis and hosted on Git\+Hub pages:\+
+
+
+\begin{DoxyItemize}
+\item Core browsers only
+\begin{DoxyItemize}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions_array.json}{\texttt{Array}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions_object.json}{\texttt{Object}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions.csv}{\texttt{CSV}}
+\end{DoxyItemize}
+\item Core browsers only, with {\ttfamily supports} property
+\begin{DoxyItemize}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions_array_with_supports.json}{\texttt{Array}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions_object_with_supports.json}{\texttt{Object}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/all_versions_with_supports.csv}{\texttt{CSV}}
+\end{DoxyItemize}
+\item Including downstream browsers
+\begin{DoxyItemize}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions_array.json}{\texttt{Array}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions_object.json}{\texttt{Object}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions.csv}{\texttt{CSV}}
+\end{DoxyItemize}
+\item Including downstream browsers with {\ttfamily supports} property
+\begin{DoxyItemize}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions_array_with_supports.json}{\texttt{Array}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions_object_with_supports.json}{\texttt{Object}}
+\item \href{https://web-platform-dx.github.io/baseline-browser-mapping/with_downstream/all_versions_with_supports.csv}{\texttt{CSV}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+These files are updated on a daily basis.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1467}{}\doxysubsection{\texorpdfstring{CLI}{CLI}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1467}
+{\ttfamily baseline-\/browser-\/mapping} includes a command line interface that exposes the same data and options as the {\ttfamily get\+Compatible\+Versions()} function. To learn more about using the CLI, run:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npx\ baseline-\/browser-\/mapping\ -\/-\/help}
+
+\end{DoxyCode}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1468}{}\doxysubsection{\texorpdfstring{Downstream browsers}{Downstream browsers}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1468}
+\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1469}{}\doxysubsubsection{\texorpdfstring{Limitations}{Limitations}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1469}
+The browser versions in this module come from two different sources:\+
+
+
+\begin{DoxyItemize}
+\item MDN\textquotesingle{}s {\ttfamily browser-\/compat-\/data} module.
+\item Parsed user agent strings provided by \href{https://useragents.io/}{\texttt{useragents.\+io}}
+\end{DoxyItemize}
+
+MDN {\ttfamily browser-\/compat-\/data} is an authoritative source of information for the browsers it contains. The release dates for the Baseline core browser set and the mapping of downstream browsers to Chromium versions should be considered accurate.
+
+Browser mappings from useragents.\+io are provided on a best effort basis. They assume that browser vendors are accurately stating the Chromium version they have implemented. The initial set of version mappings was derived from a bulk export in November 2024. This version was iterated over with a Regex match looking for a major Chrome version and a corresponding version of the browser in question, e.\+g.:\+
+
+{\ttfamily Mozilla/\+5.\+0 (Linux; U; Android 10; en-\/\+US; STK-\/\+L21 Build/\+\+HUAWEISTK-\/\+L21) Apple\+Web\+Kit/\+537.\+36 (KHTML, like Gecko) Version/\+4.\+0 Chrome/\+100.\+0.\+4896.\+58 UCBrowser/\+13.\+8.\+2.\+1324 Mobile Safari/\+537.\+36}
+
+Shows UC Browser Mobile 13.\+8 implementing Chromium 100, and:\+
+
+{\ttfamily Mozilla/\+5.\+0 (Linux; arm\+\_\+64; Android 11; Redmi Note 8 Pro) Apple\+Web\+Kit/\+537.\+36 (KHTML, like Gecko) Chrome/\+128.\+0.\+6613.\+123 Ya\+Browser/\+24.\+10.\+2.\+123.\+00 SA/\+3 Mobile Safari/\+537.\+36}
+
+Shows Yandex Browser Mobile 24.\+10 implementing Chromium 128. The Chromium version from this string is mapped to the corresponding Chrome version from MDN {\ttfamily browser-\/compat-\/data}.
+
+\begin{DoxyNote}{Note}
+Where possible, approximate release dates have been included based on useragents.\+io "{}first seen"{} data. useragents.\+io does not have "{}first seen"{} dates prior to June 2020. However, these browsers\textquotesingle{} Baseline compatibility is determined by their Chromium or Gecko version, so their release dates are more informative than critical.
+\end{DoxyNote}
+This data is updated on a daily basis using a \href{https://github.com/web-platform-dx/web-features/tree/main/scripts/refresh-downstream.ts}{\texttt{script}} triggered by a Git\+Hub \href{https://github.com/web-platform-dx/web-features/tree/main/.github/workflows/refresh_downstream.yml}{\texttt{action}}. Useragents.\+io provides a private API for this module which exposes the last 7 days of newly seen user agents for the currently tracked browsers. If a new major version of one of the tracked browsers is encountered with a Chromium version that meets or exceeds the previous latest version of that browser, it is added to the \href{src/data/downstream-browsers.json}{\texttt{src/\+data/\+downstream-\/browsers.\+json}} file with the date it was first seen by useragents.\+io as its release date.
+
+Kai\+OS is an exception -\/ its upstream version mappings are handled separately from the other browsers because they happen very infrequently.\hypertarget{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1470}{}\doxysubsubsection{\texorpdfstring{List of downstream browsers}{List of downstream browsers}}\label{dir_e56e0a6115a615ebec4d58fd9af5711d_autotoc_md1470}
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Browser  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}ID  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Core  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}Source  \\
+Chrome  &{\ttfamily chrome}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Chrome for Android  &{\ttfamily chrome\+\_\+android}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Edge  &{\ttfamily edge}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Firefox  &{\ttfamily firefox}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Firefox for Android  &{\ttfamily firefox\+\_\+android}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Safari  &{\ttfamily safari}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Safari on i\+OS  &{\ttfamily safari\+\_\+ios}  &{\ttfamily true}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Opera  &{\ttfamily opera}  &{\ttfamily false}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Opera Android  &{\ttfamily opera\+\_\+android}  &{\ttfamily false}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Samsung Internet  &{\ttfamily samsunginternet\+\_\+android}  &{\ttfamily false}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+Web\+View Android  &{\ttfamily webview\+\_\+android}  &{\ttfamily false}  &MDN {\ttfamily browser-\/compat-\/data}  \\
+QQ Browser Mobile  &{\ttfamily qq\+\_\+android}  &{\ttfamily false}  &useragents.\+io  \\
+UC Browser Mobile  &{\ttfamily uc\+\_\+android}  &{\ttfamily false}  &useragents.\+io  \\
+Yandex Browser Mobile  &{\ttfamily ya\+\_\+android}  &{\ttfamily false}  &useragents.\+io  \\
+Kai\+OS  &{\ttfamily kai\+\_\+os}  &{\ttfamily false}  &Manual  \\
+Facebook for Android  &{\ttfamily facebook\+\_\+android}  &{\ttfamily false}  &useragents.\+io  \\
+Instagram for Android  &{\ttfamily instagram\+\_\+android}  &{\ttfamily false}  &useragents.\+io  \\
+\end{DoxyTable}
+
+
+\begin{DoxyNote}{Note}
+All the non-\/core browsers currently included implement Chromium or Gecko. Their inclusion in any of the above methods is based on the Baseline feature set supported by the Chromium or Gecko version they implement, not their release date. 
+\end{DoxyNote}

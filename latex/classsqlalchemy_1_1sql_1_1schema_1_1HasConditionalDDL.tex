@@ -1,0 +1,71 @@
+\doxysection{sqlalchemy.\+sql.\+schema.\+Has\+Conditional\+DDL Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL}{}\label{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL}\index{sqlalchemy.sql.schema.HasConditionalDDL@{sqlalchemy.sql.schema.HasConditionalDDL}}
+Inheritance diagram for sqlalchemy.\+sql.\+schema.\+Has\+Conditional\+DDL:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.417722cm]{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_abd83e496e282329c67ea7460a30938f9}{ddl\+\_\+if}} (self, Optional\+[str]\+ dialect=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1ddl_1_1DDLIfCallable}{ddl.\+DDLIf\+Callable}}]\+ callable\+\_\+=None, Optional\+[Any]\+ state=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_a3607e68cce0170247ea7f23b02b9b7b3}\label{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_a3607e68cce0170247ea7f23b02b9b7b3} 
+Optional {\bfseries \+\_\+ddl\+\_\+if} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}define a class that includes the :meth:`.HasConditionalDDL.ddl_if`
+method, allowing for conditional rendering of DDL.
+
+Currently applies to constraints and indexes.
+
+.. versionadded:: 2.0
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_abd83e496e282329c67ea7460a30938f9}\index{sqlalchemy.sql.schema.HasConditionalDDL@{sqlalchemy.sql.schema.HasConditionalDDL}!ddl\_if@{ddl\_if}}
+\index{ddl\_if@{ddl\_if}!sqlalchemy.sql.schema.HasConditionalDDL@{sqlalchemy.sql.schema.HasConditionalDDL}}
+\doxysubsubsection{\texorpdfstring{ddl\_if()}{ddl\_if()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1schema_1_1HasConditionalDDL_abd83e496e282329c67ea7460a30938f9} 
+ Self sqlalchemy.\+sql.\+schema.\+Has\+Conditional\+DDL.\+ddl\+\_\+if (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+ }]{dialect}{ = {\ttfamily None}, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1ddl_1_1DDLIfCallable}{ddl.\+DDLIf\+Callable}}]\+ }]{callable\+\_\+}{ = {\ttfamily None}, }\item[{Optional\+[Any]\+ }]{state}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}apply a conditional DDL rule to this schema item.
+
+    These rules work in a similar manner to the
+    :meth:`.ExecutableDDLElement.execute_if` callable, with the added
+    feature that the criteria may be checked within the DDL compilation
+    phase for a construct such as :class:`.CreateTable`.
+    :meth:`.HasConditionalDDL.ddl_if` currently applies towards the
+    :class:`.Index` construct as well as all :class:`.Constraint`
+    constructs.
+
+    :param dialect: string name of a dialect, or a tuple of string names
+     to indicate multiple dialect types.
+
+    :param callable\_: a callable that is constructed using the same form
+     as that described in
+     :paramref:`.ExecutableDDLElement.execute_if.callable_`.
+
+    :param state: any arbitrary object that will be passed to the
+     callable, if present.
+
+    .. versionadded:: 2.0
+
+    .. seealso::
+
+        :ref:`schema_ddl_ddl_if` - background and usage examples
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+schema.\+py\end{DoxyCompactItemize}

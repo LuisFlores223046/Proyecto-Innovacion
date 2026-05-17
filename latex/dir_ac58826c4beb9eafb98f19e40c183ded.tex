@@ -1,0 +1,54 @@
+\doxysection{frontend/\+node\+\_\+modules/\+which Directory Reference}
+\hypertarget{dir_ac58826c4beb9eafb98f19e40c183ded}{}\label{dir_ac58826c4beb9eafb98f19e40c183ded}\index{frontend/node\_modules/which Directory Reference@{frontend/node\_modules/which Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4920}{}\doxysubsection{\texorpdfstring{which}{which}}\label{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4920}
+Like the unix {\ttfamily which} utility.
+
+Finds the first instance of a specified executable in the PATH environment variable. Does not cache the results, so {\ttfamily hash -\/r} is not needed when the PATH changes.\hypertarget{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4921}{}\doxysubsection{\texorpdfstring{USAGE}{USAGE}}\label{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4921}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ which\ =\ require('which')}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ async\ usage}
+\DoxyCodeLine{which('node',\ function\ (er,\ resolvedPath)\ \{}
+\DoxyCodeLine{\ \ //\ er\ is\ returned\ if\ no\ "{}node"{}\ is\ found\ on\ the\ PATH}
+\DoxyCodeLine{\ \ //\ if\ it\ is\ found,\ then\ the\ absolute\ path\ to\ the\ exec\ is\ returned}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or\ promise}
+\DoxyCodeLine{which('node').then(resolvedPath\ =>\ \{\ ...\ \}).catch(er\ =>\ \{\ ...\ not\ found\ ...\ \})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ sync\ usage}
+\DoxyCodeLine{//\ throws\ if\ not\ found}
+\DoxyCodeLine{var\ resolved\ =\ which.sync('node')}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ if\ nothrow\ option\ is\ used,\ returns\ null\ if\ not\ found}
+\DoxyCodeLine{resolved\ =\ which.sync('node',\ \{nothrow:\ true\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Pass\ options\ to\ override\ the\ PATH\ and\ PATHEXT\ environment\ vars.}
+\DoxyCodeLine{which('node',\ \{\ path:\ someOtherPath\ \},\ function\ (er,\ resolved)\ \{}
+\DoxyCodeLine{\ \ if\ (er)}
+\DoxyCodeLine{\ \ \ \ throw\ er}
+\DoxyCodeLine{\ \ console.log('found\ at\ \%j',\ resolved)}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+\hypertarget{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4922}{}\doxysubsection{\texorpdfstring{CLI USAGE}{CLI USAGE}}\label{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4922}
+Same as the BSD {\ttfamily which(1)} binary.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{usage:\ which\ [-\/as]\ program\ ...}
+
+\end{DoxyCode}
+\hypertarget{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4923}{}\doxysubsection{\texorpdfstring{OPTIONS}{OPTIONS}}\label{dir_ac58826c4beb9eafb98f19e40c183ded_autotoc_md4923}
+You may pass an options object as the second argument.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily path}:\+ Use instead of the {\ttfamily PATH} environment variable.
+\item {\ttfamily path\+Ext}:\+ Use instead of the {\ttfamily PATHEXT} environment variable.
+\item {\ttfamily all}:\+ Return all matches, instead of just the first one. Note that this means the function returns an array of strings instead of a single string. 
+\end{DoxyItemize}

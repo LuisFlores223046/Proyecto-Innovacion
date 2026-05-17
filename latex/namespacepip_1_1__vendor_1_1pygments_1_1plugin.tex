@@ -1,0 +1,77 @@
+\doxysection{pip.\+\_\+vendor.\+pygments.\+plugin Namespace Reference}
+\hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin}{}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin}\index{pip.\_vendor.pygments.plugin@{pip.\_vendor.pygments.plugin}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_ada30b495b23627be4a9938dd6d24c7f6}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_ada30b495b23627be4a9938dd6d24c7f6} 
+{\bfseries iter\+\_\+entry\+\_\+points} (group\+\_\+name)
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a8eaba152627df0c7dddbe3cee7d05257}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a8eaba152627df0c7dddbe3cee7d05257} 
+{\bfseries find\+\_\+plugin\+\_\+lexers} ()
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a6d075fd40e2a85afd3d806c6a82a2086}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a6d075fd40e2a85afd3d806c6a82a2086} 
+{\bfseries find\+\_\+plugin\+\_\+formatters} ()
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_aa50086f61d8ab2de43201ca4e3ad0a9f}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_aa50086f61d8ab2de43201ca4e3ad0a9f} 
+{\bfseries find\+\_\+plugin\+\_\+styles} ()
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a849c397dbef0e2b84573a68f8b33ce5d}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a849c397dbef0e2b84573a68f8b33ce5d} 
+{\bfseries find\+\_\+plugin\+\_\+filters} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a4f34dbbd5fe8a6f905cbf9087c7776d0}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a4f34dbbd5fe8a6f905cbf9087c7776d0} 
+str {\bfseries LEXER\+\_\+\+ENTRY\+\_\+\+POINT} = \textquotesingle{}\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1lexers}{pygments.\+lexers}}\textquotesingle{}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a98c7ee31ef6e77d248221768e196fff3}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_a98c7ee31ef6e77d248221768e196fff3} 
+str {\bfseries FORMATTER\+\_\+\+ENTRY\+\_\+\+POINT} = \textquotesingle{}\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1formatters}{pygments.\+formatters}}\textquotesingle{}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_aa4c86a7888e9039e7afef0ddd913da0f}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_aa4c86a7888e9039e7afef0ddd913da0f} 
+str {\bfseries STYLE\+\_\+\+ENTRY\+\_\+\+POINT} = \textquotesingle{}\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1styles}{pygments.\+styles}}\textquotesingle{}
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1plugin_adb15ed4f5000e07213bc55827c104288}\label{namespacepip_1_1__vendor_1_1pygments_1_1plugin_adb15ed4f5000e07213bc55827c104288} 
+str {\bfseries FILTER\+\_\+\+ENTRY\+\_\+\+POINT} = \textquotesingle{}\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1filters}{pygments.\+filters}}\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}    pygments.plugin
+    ~~~~~~~~~~~~~~~
+
+    Pygments plugin interface. By default, this tries to use
+    ``importlib.metadata``, which is in the Python standard
+    library since Python 3.8, or its ``importlib_metadata``
+    backport for earlier versions of Python. It falls back on
+    ``pkg_resources`` if not found. Finally, if ``pkg_resources``
+    is not found either, no plugins are loaded at all.
+
+    lexer plugins::
+
+        [pygments.lexers]
+        yourlexer = yourmodule:YourLexer
+
+    formatter plugins::
+
+        [pygments.formatters]
+        yourformatter = yourformatter:YourFormatter
+        /.ext = yourformatter:YourFormatter
+
+    As you can see, you can define extensions for the formatter
+    with a leading slash.
+
+    syntax plugins::
+
+        [pygments.styles]
+        yourstyle = yourstyle:YourStyle
+
+    filter plugin::
+
+        [pygments.filter]
+        yourfilter = yourfilter:YourFilter
+
+
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+\end{DoxyVerb}
+ 

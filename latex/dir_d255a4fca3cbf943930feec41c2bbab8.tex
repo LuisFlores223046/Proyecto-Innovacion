@@ -1,0 +1,400 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+config-\/array Directory Reference}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8}{}\label{dir_d255a4fca3cbf943930feec41c2bbab8}\index{frontend/node\_modules/"@eslint/config-\/array Directory Reference@{frontend/node\_modules/"@eslint/config-\/array Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md209}{}\doxysubsection{\texorpdfstring{Config Array}{Config Array}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md209}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md210}{}\doxysubsection{\texorpdfstring{Description}{Description}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md210}
+A config array is a way of managing configurations that are based on glob pattern matching of filenames. Each config array contains the information needed to determine the correct configuration for any file based on the filename.
+
+{\bfseries{Note:\+}} This is a generic package that can be used outside of ESLint. It contains no ESLint-\/specific functionality.\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md211}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md211}
+For Node.\+js and compatible runtimes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/config-\/array}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/config-\/array}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/config-\/array}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ @eslint/config-\/array}
+
+\end{DoxyCode}
+
+
+For Deno:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{deno\ add\ @eslint/config-\/array}
+
+\end{DoxyCode}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md212}{}\doxysubsection{\texorpdfstring{Background}{Background}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md212}
+The basic idea is that all configuration, including overrides, can be represented by a single array where each item in the array is a config object. Config objects appearing later in the array override config objects appearing earlier in the array. You can calculate a config for a given file by traversing all config objects in the array to find the ones that match the filename. Matching is done by specifying glob patterns in {\ttfamily files} and {\ttfamily ignores} properties on each config object. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{\ \ \ \ //\ match\ all\ JSON\ files}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}JSON\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ jsonHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ match\ only\ package.json}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}package.json\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}package.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ packageJsonHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+In this example, there are two config objects:\+ the first matches all JSON files in all directories and the second matches just {\ttfamily package.\+json} in the base path directory (all the globs are evaluated as relative to a base path that can be specified). When you retrieve a configuration for {\ttfamily foo.\+json}, only the first config object matches so {\ttfamily handler} is equal to {\ttfamily json\+Handler}; when you retrieve a configuration for {\ttfamily package.\+json}, {\ttfamily handler} is equal to {\ttfamily package\+Json\+Handler} (because both config objects match, the second one wins).\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md213}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md213}
+First, import the {\ttfamily Config\+Array} constructor:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ConfigArray\ \}\ from\ "{}@eslint/config-\/array"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or\ using\ CommonJS}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ \{\ ConfigArray\ \}\ =\ require("{}@eslint/config-\/array"{});}
+
+\end{DoxyCode}
+
+
+When you create a new instance of {\ttfamily Config\+Array}, you must pass in two arguments:\+ an array of configs and an options object. The array of configs is most likely read in from a configuration file, so here\textquotesingle{}s a typical example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ configFilename\ =\ path.resolve(process.cwd(),\ "{}my.config.js"{});}
+\DoxyCodeLine{const\ \{\ default:\ rawConfigs\ \}\ =\ await\ import(configFilename);}
+\DoxyCodeLine{const\ configs\ =\ new\ ConfigArray(rawConfigs,\ \{}
+\DoxyCodeLine{\ \ \ \ //\ the\ path\ to\ match\ filenames\ from}
+\DoxyCodeLine{\ \ \ \ basePath:\ process.cwd(),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ additional\ items\ in\ each\ config}
+\DoxyCodeLine{\ \ \ \ schema:\ mySchema,}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+This example reads in an object or array from {\ttfamily my.\+config.\+js} and passes it into the {\ttfamily Config\+Array} constructor as the first argument. The second argument is an object specifying the {\ttfamily base\+Path} (the directory in which {\ttfamily my.\+config.\+js} is found) and a {\ttfamily schema} to define the additional properties of a config object beyond {\ttfamily files}, {\ttfamily ignores}, {\ttfamily base\+Path}, and {\ttfamily name}.\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md214}{}\doxysubsubsection{\texorpdfstring{Specifying a Schema}{Specifying a Schema}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md214}
+The {\ttfamily schema} option is required for you to use additional properties in config objects. The schema is an object that follows the format of an \href{https://npmjs.com/package/@eslint/object-schema}{\texttt{{\ttfamily Object\+Schema}}}. The schema specifies both validation and merge rules that the {\ttfamily Config\+Array} instance needs to combine configs when there are multiple matches. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ configFilename\ =\ path.resolve(process.cwd(),\ "{}my.config.js"{});}
+\DoxyCodeLine{const\ \{\ default:\ rawConfigs\ \}\ =\ await\ import(configFilename);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ mySchema\ =\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ define\ the\ handler\ key\ in\ configs}
+\DoxyCodeLine{\ \ \ \ handler:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ required:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge(a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (!b)\ return\ a;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (!a)\ return\ b;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (typeof\ value\ !==\ "{}function"{})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ TypeError("{}Function\ expected."{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ configs\ =\ new\ ConfigArray(rawConfigs,\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ the\ path\ to\ match\ filenames\ from}
+\DoxyCodeLine{\ \ \ \ basePath:\ process.cwd(),}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ additional\ item\ schemas\ in\ each\ config}
+\DoxyCodeLine{\ \ \ \ schema:\ mySchema,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ additional\ config\ types\ supported\ (default:\ [])}
+\DoxyCodeLine{\ \ \ \ extraConfigTypes:\ ["{}array"{},\ "{}function"{}];}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md215}{}\doxysubsubsection{\texorpdfstring{Config Arrays}{Config Arrays}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md215}
+Config arrays can be multidimensional, so it\textquotesingle{}s possible for a config array to contain another config array when {\ttfamily extra\+Config\+Types} contains {\ttfamily "{}array"{}}, such as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{\ \ \ \ //\ JS\ config}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ jsHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ JSON\ configs}
+\DoxyCodeLine{\ \ \ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ match\ all\ JSON\ files}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ name:\ "{}JSON\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ files:\ ["{}**/*.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ handler:\ jsonHandler,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ match\ only\ package.json}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ name:\ "{}package.json\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ files:\ ["{}package.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ handler:\ packageJsonHandler,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ filename\ must\ match\ function}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ [filePath\ =>\ filePath.endsWith("{}.md"{})],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ markdownHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ filename\ must\ match\ all\ patterns\ in\ subarray}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ [["{}*.test.*"{},\ "{}*.js"{}]],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ jsTestHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ filename\ must\ not\ match\ patterns\ beginning\ with\ !}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}Non-\/JS\ files"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}!*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ settings:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ js:\ false,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ specific\ settings\ for\ files\ inside\ \`{}src`\ directory}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}Source\ files"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ basePath:\ "{}src"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ settings:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ source:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+In this example, the array contains both config objects and a config array. When a config array is normalized (see details below), it is flattened so only config objects remain. However, the order of evaluation remains the same.
+
+If the {\ttfamily files} array contains a function, then that function is called with the path of the file as it was passed in. The function is expected to return {\ttfamily true} if there is a match and {\ttfamily false} if not. (The {\ttfamily ignores} array can also contain functions.)
+
+If the {\ttfamily files} array contains an item that is an array of strings and functions, then all patterns must match in order for the config to match. In the preceding examples, both {\ttfamily \texorpdfstring{$\ast$}{*}.test.\texorpdfstring{$\ast$}{*}} and {\ttfamily \texorpdfstring{$\ast$}{*}.js} must match in order for the config object to be used.
+
+If a pattern in the files array begins with {\ttfamily !} then it excludes that pattern. In the preceding example, any filename that doesn\textquotesingle{}t end with {\ttfamily .js} will automatically get a {\ttfamily settings.\+js} property set to {\ttfamily false}.
+
+You can also specify an {\ttfamily ignores} key that will force files matching those patterns to not be included. If the {\ttfamily ignores} key is in a config object without any other keys, then those ignores will always be applied; otherwise those ignores act as exclusions. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Always\ ignored}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ignores:\ ["{}**/.git/**"{},\ "{}**/node\_modules/**"{}]}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ .eslintrc.js\ file\ is\ ignored\ only\ when\ .js\ file\ matches}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ignores:\ ["{}.eslintrc.js"{}]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ jsHandler}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+You can use negated patterns in {\ttfamily ignores} to exclude a file that was already ignored, such as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{\ \ \ \ //\ Ignore\ all\ JSON\ files\ except\ tsconfig.json}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ignores:\ ["{}**/*.json"{},\ "{}!tsconfig.json"{}],}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md216}{}\doxysubsubsection{\texorpdfstring{Config Functions}{Config Functions}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md216}
+Config arrays can also include config functions when {\ttfamily extra\+Config\+Types} contains {\ttfamily "{}function"{}}. A config function accepts a single parameter, {\ttfamily context} (defined by you), and must return either a config object or a config array (it cannot return another function). Config functions allow end users to execute code in the creation of appropriate config objects. Here\textquotesingle{}s an example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ [}
+\DoxyCodeLine{\ \ \ \ //\ JS\ config}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ handler:\ jsHandler,}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ JSON\ configs}
+\DoxyCodeLine{\ \ \ \ function\ (context)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ match\ all\ JSON\ files}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name:\ context.name\ +\ "{}\ JSON\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files:\ ["{}**/*.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler:\ jsonHandler,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ match\ only\ package.json}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name:\ context.name\ +\ "{}\ package.json\ Handler"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ files:\ ["{}package.json"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ handler:\ packageJsonHandler,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ];}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{];}
+
+\end{DoxyCode}
+
+
+When a config array is normalized, each function is executed and replaced in the config array with the return value.
+
+{\bfseries{Note:\+}} Config functions can also be async.\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md217}{}\doxysubsubsection{\texorpdfstring{Normalizing Config Arrays}{Normalizing Config Arrays}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md217}
+Once a config array has been created and loaded with all of the raw config data, it must be normalized before it can be used. The normalization process goes through and flattens the config array as well as executing all config functions to get their final values.
+
+To normalize a config array, call the {\ttfamily normalize()} method and pass in a context object:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{await\ configs.normalize(\{}
+\DoxyCodeLine{\ \ \ \ name:\ "{}MyApp"{},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+The {\ttfamily normalize()} method returns a promise, so be sure to use the {\ttfamily await} operator. The config array instance is normalized in-\/place, so you don\textquotesingle{}t need to create a new variable.
+
+If you want to disallow async config functions, you can call {\ttfamily normalize\+Sync()} instead. This method is completely synchronous and does not require using the {\ttfamily await} operator as it does not return a promise:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{await\ configs.normalizeSync(\{}
+\DoxyCodeLine{\ \ \ \ name:\ "{}MyApp"{},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+{\bfseries{Important:\+}} Once a {\ttfamily Config\+Array} is normalized, it cannot be changed further. You can, however, create a new {\ttfamily Config\+Array} and pass in the normalized instance to create an unnormalized copy.\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md218}{}\doxysubsubsection{\texorpdfstring{Getting Config for a File}{Getting Config for a File}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md218}
+To get the config for a file, use the {\ttfamily get\+Config()} method on a normalized config array and pass in the filename to get a config for:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ pass\ in\ filename}
+\DoxyCodeLine{const\ fileConfig\ =\ configs.getConfig(}
+\DoxyCodeLine{\ \ \ \ path.resolve(process.cwd(),\ "{}package.json"{}),}
+\DoxyCodeLine{);}
+
+\end{DoxyCode}
+
+
+The config array always returns an object, even if there are no configs matching the given filename. You can then inspect the returned config object to determine how to proceed.
+
+A few things to keep in mind:\+
+
+
+\begin{DoxyItemize}
+\item If a filename is not an absolute path, it will be resolved relative to the base path directory.
+\item The returned config object never has {\ttfamily files}, {\ttfamily ignores}, {\ttfamily base\+Path}, or {\ttfamily name} properties; the only properties on the object will be the other configuration options specified.
+\item The config array caches configs, so subsequent calls to {\ttfamily get\+Config()} with the same filename will return in a fast lookup rather than another calculation.
+\item A config will only be generated if the filename matches an entry in a {\ttfamily files} key. A config will not be generated without matching a {\ttfamily files} key (configs without a {\ttfamily files} key are only applied when another config with a {\ttfamily files} key is applied; configs without {\ttfamily files} are never applied on their own). Any config with a {\ttfamily files} key entry that is {\ttfamily \texorpdfstring{$\ast$}{*}} or ends with {\ttfamily /\+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} or {\ttfamily /\+\texorpdfstring{$\ast$}{*}} will only be applied if another entry in the same {\ttfamily files} key matches or another config matches.
+\end{DoxyItemize}\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md219}{}\doxysubsection{\texorpdfstring{Determining Ignored Paths}{Determining Ignored Paths}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md219}
+You can determine if a file is ignored by using the {\ttfamily is\+File\+Ignored()} method and passing in the path of any file, as in this example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ignored\ =\ configs.isFileIgnored("{}/foo/bar/baz.txt"{});}
+
+\end{DoxyCode}
+
+
+A file is considered ignored if any of the following is true:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{It\textquotesingle{}s parent directory is ignored.}} For example, if {\ttfamily foo} is in {\ttfamily ignores}, then {\ttfamily foo/\+a.\+js} is considered ignored.
+\item {\bfseries{It has an ancestor directory that is ignored.}} For example, if {\ttfamily foo} is in {\ttfamily ignores}, then {\ttfamily foo/\+baz/\+a.\+js} is considered ignored.
+\item {\bfseries{It matches an ignored file pattern.}} For example, if {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+a.js} is in {\ttfamily ignores}, then {\ttfamily foo/\+a.\+js} and {\ttfamily foo/\+baz/\+a.\+js} are considered ignored.
+\item {\bfseries{If it matches an entry in {\ttfamily files} and also in {\ttfamily ignores}.}} For example, if {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+\texorpdfstring{$\ast$}{*}.js} is in {\ttfamily files} and {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+a.js} is in {\ttfamily ignores}, then {\ttfamily foo/\+a.\+js} and {\ttfamily foo/\+baz/\+a.\+js} are considered ignored.
+\item {\bfseries{The file is outside the {\ttfamily base\+Path}.}} If the {\ttfamily base\+Path} is {\ttfamily /\+usr/\+me}, then {\ttfamily /\+foo/\+a.js} is considered ignored.
+\end{DoxyItemize}
+
+For directories, use the {\ttfamily is\+Directory\+Ignored()} method and pass in the path of any directory, as in this example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ignored\ =\ configs.isDirectoryIgnored("{}/foo/bar/"{});}
+
+\end{DoxyCode}
+
+
+A directory is considered ignored if any of the following is true:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{It\textquotesingle{}s parent directory is ignored.}} For example, if {\ttfamily foo} is in {\ttfamily ignores}, then {\ttfamily foo/\+baz} is considered ignored.
+\item {\bfseries{It has an ancestor directory that is ignored.}} For example, if {\ttfamily foo} is in {\ttfamily ignores}, then {\ttfamily foo/\+bar/\+baz/\+a.\+js} is considered ignored.
+\item {\bfseries{It matches and ignored file pattern.}} For example, if {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+a.js} is in {\ttfamily ignores}, then {\ttfamily foo/\+a.\+js} and {\ttfamily foo/\+baz/\+a.\+js} are considered ignored.
+\item {\bfseries{If it matches an entry in {\ttfamily files} and also in {\ttfamily ignores}.}} For example, if {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+\texorpdfstring{$\ast$}{*}.js} is in {\ttfamily files} and {\ttfamily \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/\+a.js} is in {\ttfamily ignores}, then {\ttfamily foo/\+a.\+js} and {\ttfamily foo/\+baz/\+a.\+js} are considered ignored.
+\item {\bfseries{The file is outside the {\ttfamily base\+Path}.}} If the {\ttfamily base\+Path} is {\ttfamily /\+usr/\+me}, then {\ttfamily /\+foo/\+a.js} is considered ignored.
+\end{DoxyItemize}
+
+{\bfseries{Important:\+}} A pattern such as {\ttfamily foo/\+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}} means that {\ttfamily foo} and {\ttfamily foo/\+} are {\itshape not} ignored whereas {\ttfamily foo/\+bar} is ignored. If you want to ignore {\ttfamily foo} and all of its subdirectories, use the pattern {\ttfamily foo} or {\ttfamily foo/\+} in {\ttfamily ignores}.\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md220}{}\doxysubsection{\texorpdfstring{Caching Mechanisms}{Caching Mechanisms}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md220}
+Each {\ttfamily Config\+Array} aggressively caches configuration objects to avoid unnecessary work. This caching occurs in two ways:\+
+
+
+\begin{DoxyEnumerate}
+\item {\bfseries{File-\/based Caching.}} For each filename that is passed into a method, the resulting config is cached against that filename so you\textquotesingle{}re always guaranteed to get the same object returned from {\ttfamily get\+Config()} whenever you pass the same filename in.
+\item {\bfseries{Index-\/based Caching.}} Whenever a config is calculated, the config elements that were used to create the config are also cached. So if a given filename matches elements 1, 5, and 7, the resulting config is cached with a key of {\ttfamily 1,5,7}. That way, if another file is passed that matches the same config elements, the result is already known and doesn\textquotesingle{}t have to be recalculated. That means two files that match all the same elements will return the same config from {\ttfamily get\+Config()}.
+\end{DoxyEnumerate}\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md221}{}\doxysubsection{\texorpdfstring{Acknowledgements}{Acknowledgements}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md221}
+The design of this project was influenced by feedback on the ESLint RFC, and incorporates ideas from:\+
+
+
+\begin{DoxyItemize}
+\item Teddy Katz (@not-\/an-\/aardvark)
+\item Toru Nagashima (@mysticatea)
+\item Kai Cataldo (@kaicataldo)
+\end{DoxyItemize}\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md222}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md222}
+Apache 2.\+0\hypertarget{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md223}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_d255a4fca3cbf943930feec41c2bbab8_autotoc_md223}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://sentry.io}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

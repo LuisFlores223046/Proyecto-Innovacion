@@ -1,0 +1,85 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+currency\+\_\+code.\+ISO4217 Class Reference}
+\hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217}{}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217}\index{pydantic\_extra\_types.currency\_code.ISO4217@{pydantic\_extra\_types.currency\_code.ISO4217}}
+Inheritance diagram for pydantic\+\_\+extra\+\_\+types.\+currency\+\_\+code.\+ISO4217:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic__extra__types_1_1currency__code_1_1ISO4217}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a8aded8619d2b870d52dd89fc7b4bf7b2}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a8aded8619d2b870d52dd89fc7b4bf7b2} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ \+\_\+, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} \+\_\+\+\_\+)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a8e3255310991ffe5c826cdab0a4c80b2}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a8e3255310991ffe5c826cdab0a4c80b2} 
+dict\+[str, Any]\+ {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a4580168cdb36f5cf86f9c25a76613e10}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a4580168cdb36f5cf86f9c25a76613e10} 
+list {\bfseries allowed\+\_\+countries\+\_\+list} = \+[country.\+alpha\+\_\+3 for \doxymbox{\hyperlink{namespacepydantic__extra__types_1_1country}{country}} in pycountry.\+currencies]\+
+\item 
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a1a70771b7c19c07fb887f68d3f953c0f}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a1a70771b7c19c07fb887f68d3f953c0f} 
+{\bfseries allowed\+\_\+currencies} = set(allowed\+\_\+countries\+\_\+list)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a9866952e28d573a6679bd0c6708d804b}{\+\_\+validate}} (cls, str currency\+\_\+code, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_ae2aabb368603526165bd7baca71b5fbf}\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_ae2aabb368603526165bd7baca71b5fbf} 
+{\bfseries \+\_\+validate}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ISO4217 parses Currency in the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format.
+
+```py
+from pydantic import BaseModel
+
+from pydantic_extra_types.currency_code import ISO4217
+
+
+class Currency(BaseModel):
+    alpha_3: ISO4217
+
+
+currency = Currency(alpha_3='AED')
+print(currency)
+# > alpha_3='AED'
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_doc-func-members}
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a9866952e28d573a6679bd0c6708d804b}\index{pydantic\_extra\_types.currency\_code.ISO4217@{pydantic\_extra\_types.currency\_code.ISO4217}!\_validate@{\_validate}}
+\index{\_validate@{\_validate}!pydantic\_extra\_types.currency\_code.ISO4217@{pydantic\_extra\_types.currency\_code.ISO4217}}
+\doxysubsubsection{\texorpdfstring{\_validate()}{\_validate()}}
+{\footnotesize\ttfamily \label{classpydantic__extra__types_1_1currency__code_1_1ISO4217_a9866952e28d573a6679bd0c6708d804b} 
+ str pydantic\+\_\+extra\+\_\+types.\+currency\+\_\+code.\+ISO4217.\+\_\+validate (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{currency\+\_\+code}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Validate a ISO 4217 language code from the provided str value.
+
+Args:
+    currency_code: The str value to be validated.
+    _: The Pydantic ValidationInfo.
+
+Returns:
+    The validated ISO 4217 currency code.
+
+Raises:
+    PydanticCustomError: If the ISO 4217 currency code is not valid.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+currency\+\_\+code.\+py\end{DoxyCompactItemize}

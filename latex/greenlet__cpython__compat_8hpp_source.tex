@@ -1,0 +1,130 @@
+\doxysection{greenlet\+\_\+cpython\+\_\+compat.\+hpp}
+\hypertarget{greenlet__cpython__compat_8hpp_source}{}\label{greenlet__cpython__compat_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_cpython\_compat.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_cpython\_compat.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_CPYTHON\_COMPAT\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ GREENLET\_CPYTHON\_COMPAT\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PY\_SSIZE\_T\_CLEAN}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Python.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ >=\ 0x30A00B1}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY310\ 1}}
+\DoxyCodeLine{00015\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00016\ \textcolor{comment}{Python\ 3.10\ beta\ 1\ changed\ tstate-\/>use\_tracing\ to\ a\ nested\ cframe\ member.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{See\ https://github.com/python/cpython/pull/25276}}
+\DoxyCodeLine{00018\ \textcolor{comment}{We\ have\ to\ save\ and\ restore\ this\ as\ well.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_USE\_CFRAME\ 1}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_USE\_CFRAME\ 0}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY310\ 0}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ >=\ 0x30B00A4}}
+\DoxyCodeLine{00029\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00030\ \textcolor{comment}{Greenlet\ won't\ compile\ on\ anything\ older\ than\ Python\ 3.11\ alpha\ 4\ (see}}
+\DoxyCodeLine{00031\ \textcolor{comment}{https://bugs.python.org/issue46090).\ Summary\ of\ breaking\ internal\ changes:}}
+\DoxyCodeLine{00032\ \textcolor{comment}{-\/\ Python\ 3.11\ alpha\ 1\ changed\ how\ frame\ objects\ are\ represented\ internally.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ -\/\ https://github.com/python/cpython/pull/30122}}
+\DoxyCodeLine{00034\ \textcolor{comment}{-\/\ Python\ 3.11\ alpha\ 3\ changed\ how\ recursion\ limits\ are\ stored.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ -\/\ https://github.com/python/cpython/pull/29524}}
+\DoxyCodeLine{00036\ \textcolor{comment}{-\/\ Python\ 3.11\ alpha\ 4\ changed\ how\ exception\ state\ is\ stored.\ It\ also\ includes\ a}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ change\ to\ help\ greenlet\ save\ and\ restore\ the\ interpreter\ frame\ "{}data\ stack"{}.}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ -\/\ https://github.com/python/cpython/pull/30122}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ -\/\ https://github.com/python/cpython/pull/30234}}
+\DoxyCodeLine{00040\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY311\ 1}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY311\ 0}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ >=\ 0x30C0000}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY312\ 1}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ \ \ define\ GREENLET\_PY312\ 0}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ Py\_SET\_REFCNT}}
+\DoxyCodeLine{00054\ \textcolor{comment}{/*\ Py\_REFCNT\ and\ Py\_SIZE\ macros\ are\ converted\ to\ functions}}
+\DoxyCodeLine{00055\ \textcolor{comment}{https://bugs.python.org/issue39573\ */}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ \ define\ Py\_SET\_REFCNT(obj,\ refcnt)\ Py\_REFCNT(obj)\ =\ (refcnt)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifndef\ \_Py\_DEC\_REFTOTAL}}
+\DoxyCodeLine{00060\ \textcolor{comment}{/*\ \_Py\_DEC\_REFTOTAL\ macro\ has\ been\ removed\ from\ Python\ 3.9\ by:}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ https://github.com/python/cpython/commit/49932fec62c616ec88da52642339d83ae719e924}}
+\DoxyCodeLine{00062\ \textcolor{comment}{}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ The\ symbol\ we\ use\ to\ replace\ it\ was\ removed\ by\ at\ least\ 3.12.}}
+\DoxyCodeLine{00064\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ Py\_REF\_DEBUG}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ \ \ \ \ if\ GREENLET\_PY312}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ \ define\ \_Py\_DEC\_REFTOTAL}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ \ \ \ \ else}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ \_Py\_DEC\_REFTOTAL\ \_Py\_RefTotal-\/-\/}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ \ \ \ endif}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ \ \ else}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ \_Py\_DEC\_REFTOTAL}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ Define\ these\ flags\ like\ Cython\ does\ if\ we're\ on\ an\ old\ version.}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifndef\ Py\_TPFLAGS\_CHECKTYPES}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \#define\ Py\_TPFLAGS\_CHECKTYPES\ 0}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#ifndef\ Py\_TPFLAGS\_HAVE\_INDEX}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \#define\ Py\_TPFLAGS\_HAVE\_INDEX\ 0}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#ifndef\ Py\_TPFLAGS\_HAVE\_NEWBUFFER}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \#define\ Py\_TPFLAGS\_HAVE\_NEWBUFFER\ 0}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#ifndef\ Py\_TPFLAGS\_HAVE\_VERSION\_TAG}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ \ \#define\ Py\_TPFLAGS\_HAVE\_VERSION\_TAG\ 0}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ G\_TPFLAGS\_DEFAULT\ Py\_TPFLAGS\_DEFAULT\ |\ Py\_TPFLAGS\_HAVE\_VERSION\_TAG\ |\ Py\_TPFLAGS\_CHECKTYPES\ |\ Py\_TPFLAGS\_HAVE\_NEWBUFFER\ |\ Py\_TPFLAGS\_HAVE\_GC}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x03090000}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ The\ official\ version\ only\ became\ available\ in\ 3.9}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#\ \ \ \ define\ PyObject\_GC\_IsTracked(o)\ \_PyObject\_GC\_IS\_TRACKED(o)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ bpo-\/43760\ added\ PyThreadState\_EnterTracing()\ to\ Python\ 3.11.0a2}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x030B00A2\ \&\&\ !defined(PYPY\_VERSION)}}
+\DoxyCodeLine{00101\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PyThreadState\_EnterTracing(PyThreadState\ *tstate)}
+\DoxyCodeLine{00102\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ tstate-\/>tracing++;}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ >=\ 0x030A00A1}}
+\DoxyCodeLine{00105\ \ \ \ \ tstate-\/>cframe-\/>use\_tracing\ =\ 0;}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00107\ \ \ \ \ tstate-\/>use\_tracing\ =\ 0;}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ \}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ bpo-\/43760\ added\ PyThreadState\_LeaveTracing()\ to\ Python\ 3.11.0a2}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ <\ 0x030B00A2\ \&\&\ !defined(PYPY\_VERSION)}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ PyThreadState\_LeaveTracing(PyThreadState\ *tstate)}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ tstate-\/>tracing-\/-\/;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{int}\ use\_tracing\ =\ (tstate-\/>c\_tracefunc\ !=\ NULL}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ tstate-\/>c\_profilefunc\ !=\ NULL);}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#if\ PY\_VERSION\_HEX\ >=\ 0x030A00A1}}
+\DoxyCodeLine{00120\ \ \ \ \ tstate-\/>cframe-\/>use\_tracing\ =\ use\_tracing;}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00122\ \ \ \ \ tstate-\/>use\_tracing\ =\ use\_tracing;}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ \}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ GREENLET\_CPYTHON\_COMPAT\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

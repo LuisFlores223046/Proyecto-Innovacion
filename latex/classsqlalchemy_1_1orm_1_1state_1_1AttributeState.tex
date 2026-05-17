@@ -1,0 +1,132 @@
+\doxysection{sqlalchemy.\+orm.\+state.\+Attribute\+State Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState}{}\label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState}\index{sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a278db84b5703481b870f55b24d6d4de4}\label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a278db84b5703481b870f55b24d6d4de4} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, str key)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ae5810f4a708ff85758db792a5ebf7215}{loaded\+\_\+value}} (self)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ad4c76a118cf8e12dcc9870b180d4b591}{value}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1History}{History}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_af6866c0eb9022c8eaddace95e90dfdf0}{history}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1History}{History}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a6ec64949f240819dab5be2e039e433fe}{load\+\_\+history}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a82c3d7d7b83aef6f9fda4fee9876774e}\label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a82c3d7d7b83aef6f9fda4fee9876774e} 
+{\bfseries key} = key
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a8ec2292d001cd2a68f3aab1f7caa3d23}\label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a8ec2292d001cd2a68f3aab1f7caa3d23} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}} {\bfseries state} \+[Any]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Provide an inspection interface corresponding
+to a particular attribute on a particular mapped object.
+
+The :class:`.AttributeState` object is accessed
+via the :attr:`.InstanceState.attrs` collection
+of a particular :class:`.InstanceState`::
+
+    from sqlalchemy import inspect
+
+    insp = inspect(some_mapped_object)
+    attr_state = insp.attrs.some_attribute
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_af6866c0eb9022c8eaddace95e90dfdf0}\index{sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}!history@{history}}
+\index{history@{history}!sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}}
+\doxysubsubsection{\texorpdfstring{history()}{history()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_af6866c0eb9022c8eaddace95e90dfdf0} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1History}{History}} sqlalchemy.\+orm.\+state.\+Attribute\+State.\+history (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current **pre-flush** change history for
+this attribute, via the :class:`.History` interface.
+
+This method will **not** emit loader callables if the value of the
+attribute is unloaded.
+
+.. note::
+
+    The attribute history system tracks changes on a **per flush
+    basis**. Each time the :class:`.Session` is flushed, the history
+    of each attribute is reset to empty.   The :class:`.Session` by
+    default autoflushes each time a :class:`_query.Query` is invoked.
+    For
+    options on how to control this, see :ref:`session_flushing`.
+
+
+.. seealso::
+
+    :meth:`.AttributeState.load_history` - retrieve history
+    using loader callables if the value is not locally present.
+
+    :func:`.attributes.get_history` - underlying function
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a6ec64949f240819dab5be2e039e433fe}\index{sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}!load\_history@{load\_history}}
+\index{load\_history@{load\_history}!sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}}
+\doxysubsubsection{\texorpdfstring{load\_history()}{load\_history()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_a6ec64949f240819dab5be2e039e433fe} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1History}{History}} sqlalchemy.\+orm.\+state.\+Attribute\+State.\+load\+\_\+history (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current **pre-flush** change history for
+this attribute, via the :class:`.History` interface.
+
+This method **will** emit loader callables if the value of the
+attribute is unloaded.
+
+.. note::
+
+    The attribute history system tracks changes on a **per flush
+    basis**. Each time the :class:`.Session` is flushed, the history
+    of each attribute is reset to empty.   The :class:`.Session` by
+    default autoflushes each time a :class:`_query.Query` is invoked.
+    For
+    options on how to control this, see :ref:`session_flushing`.
+
+.. seealso::
+
+    :attr:`.AttributeState.history`
+
+    :func:`.attributes.get_history` - underlying function
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ae5810f4a708ff85758db792a5ebf7215}\index{sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}!loaded\_value@{loaded\_value}}
+\index{loaded\_value@{loaded\_value}!sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}}
+\doxysubsubsection{\texorpdfstring{loaded\_value()}{loaded\_value()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ae5810f4a708ff85758db792a5ebf7215} 
+ Any sqlalchemy.\+orm.\+state.\+Attribute\+State.\+loaded\+\_\+value (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The current value of this attribute as loaded from the database.
+
+If the value has not been loaded, or is otherwise not present
+in the object's dictionary, returns NO_VALUE.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ad4c76a118cf8e12dcc9870b180d4b591}\index{sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}!value@{value}}
+\index{value@{value}!sqlalchemy.orm.state.AttributeState@{sqlalchemy.orm.state.AttributeState}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1state_1_1AttributeState_ad4c76a118cf8e12dcc9870b180d4b591} 
+ Any sqlalchemy.\+orm.\+state.\+Attribute\+State.\+value (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the value of this attribute.
+
+This operation is equivalent to accessing the object's
+attribute directly or via ``getattr()``, and will fire
+off any pending loader callables if needed.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+state.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,74 @@
+\doxysection{dns.\+reversename Namespace Reference}
+\hypertarget{namespacedns_1_1reversename}{}\label{namespacedns_1_1reversename}\index{dns.reversename@{dns.reversename}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} \doxymbox{\hyperlink{namespacedns_1_1reversename_aa8e98af7d3c54801e6638f30b93fe43a}{from\+\_\+address}} (str text, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} v4\+\_\+origin=ipv4\+\_\+reverse\+\_\+domain, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} v6\+\_\+origin=ipv6\+\_\+reverse\+\_\+domain)
+\item 
+str \doxymbox{\hyperlink{namespacedns_1_1reversename_ac35017f85ffce3d41da0191c042d79cf}{to\+\_\+address}} (\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} name, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} v4\+\_\+origin=ipv4\+\_\+reverse\+\_\+domain, \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} v6\+\_\+origin=ipv6\+\_\+reverse\+\_\+domain)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacedns_1_1reversename_a53aa90be0847d0fa094bcc2f739999de}\label{namespacedns_1_1reversename_a53aa90be0847d0fa094bcc2f739999de} 
+{\bfseries ipv4\+\_\+reverse\+\_\+domain} = \doxymbox{\hyperlink{namespacedns_1_1name_a85a0ee34daddbe4549eecf9a7ae80f08}{dns.\+name.\+from\+\_\+text}}("{}in-\/addr.\+arpa."{})
+\item 
+\Hypertarget{namespacedns_1_1reversename_a37dac4afd0e8207f75b007d8a1783fcb}\label{namespacedns_1_1reversename_a37dac4afd0e8207f75b007d8a1783fcb} 
+{\bfseries ipv6\+\_\+reverse\+\_\+domain} = \doxymbox{\hyperlink{namespacedns_1_1name_a85a0ee34daddbe4549eecf9a7ae80f08}{dns.\+name.\+from\+\_\+text}}("{}ip6.\+arpa."{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}DNS Reverse Map Names.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1reversename_doc-func-members}
+\Hypertarget{namespacedns_1_1reversename_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1reversename_aa8e98af7d3c54801e6638f30b93fe43a}\index{dns.reversename@{dns.reversename}!from\_address@{from\_address}}
+\index{from\_address@{from\_address}!dns.reversename@{dns.reversename}}
+\doxysubsubsection{\texorpdfstring{from\_address()}{from\_address()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1reversename_aa8e98af7d3c54801e6638f30b93fe43a} 
+ \doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} from\+\_\+address (\begin{DoxyParamCaption}\item[{str}]{text}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} }]{v4\+\_\+origin}{ = {\ttfamily ipv4\+\_\+reverse\+\_\+domain}, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} }]{v6\+\_\+origin}{ = {\ttfamily ipv6\+\_\+reverse\+\_\+domain}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert an IPv4 or IPv6 address in textual form into a Name object whose
+value is the reverse-map domain name of the address.
+
+*text*, a ``str``, is an IPv4 or IPv6 address in textual form
+(e.g. '127.0.0.1', '::1')
+
+*v4_origin*, a ``dns.name.Name`` to append to the labels corresponding to
+the address if the address is an IPv4 address, instead of the default
+(in-addr.arpa.)
+
+*v6_origin*, a ``dns.name.Name`` to append to the labels corresponding to
+the address if the address is an IPv6 address, instead of the default
+(ip6.arpa.)
+
+Raises ``dns.exception.SyntaxError`` if the address is badly formed.
+
+Returns a ``dns.name.Name``.
+\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1reversename_ac35017f85ffce3d41da0191c042d79cf}\index{dns.reversename@{dns.reversename}!to\_address@{to\_address}}
+\index{to\_address@{to\_address}!dns.reversename@{dns.reversename}}
+\doxysubsubsection{\texorpdfstring{to\_address()}{to\_address()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1reversename_ac35017f85ffce3d41da0191c042d79cf} 
+ str to\+\_\+address (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}}]{name}{, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} }]{v4\+\_\+origin}{ = {\ttfamily ipv4\+\_\+reverse\+\_\+domain}, }\item[{\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}} }]{v6\+\_\+origin}{ = {\ttfamily ipv6\+\_\+reverse\+\_\+domain}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a reverse map domain name into textual address form.
+
+*name*, a ``dns.name.Name``, an IPv4 or IPv6 address in reverse-map name
+form.
+
+*v4_origin*, a ``dns.name.Name`` representing the top-level domain for
+IPv4 addresses, instead of the default (in-addr.arpa.)
+
+*v6_origin*, a ``dns.name.Name`` representing the top-level domain for
+IPv4 addresses, instead of the default (ip6.arpa.)
+
+Raises ``dns.exception.SyntaxError`` if the name does not have a
+reverse-map form.
+
+Returns a ``str``.
+\end{DoxyVerb}
+ 

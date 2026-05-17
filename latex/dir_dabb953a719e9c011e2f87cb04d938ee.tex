@@ -1,0 +1,85 @@
+\doxysection{frontend/\+node\+\_\+modules/\+fdir Directory Reference}
+\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee}{}\label{dir_dabb953a719e9c011e2f87cb04d938ee}\index{frontend/node\_modules/fdir Directory Reference@{frontend/node\_modules/fdir Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+
+
+
+
+\doxysubsection*{The Fastest Directory Crawler \& Globber for Node\+JS}
+
+
+
+\href{https://www.npmjs.com/package/fdir}{\texttt{}} \href{https://www.npmjs.com/package/fdir}{\texttt{}} \href{https://codeclimate.com/github/thecodrr/fdir/maintainability}{\texttt{}} \href{https://coveralls.io/github/thecodrr/fdir?branch=master}{\texttt{}} \href{https://www.npmjs.com/package/fdir}{\texttt{}} \href{https://www.producthunt.com/posts/fdir-every-millisecond-matters}{\texttt{}} \href{https://dev.to/thecodrr/how-i-wrote-the-fastest-directory-crawler-ever-3p9c}{\texttt{}} \href{./LICENSE}{\texttt{}} 
+
+⚡ {\bfseries{The Fastest:\+}} Nothing similar (in the Node\+JS world) beats {\ttfamily fdir} in speed. It can easily crawl a directory containing {\bfseries{1 million files in \texorpdfstring{$<$}{<} 1 second.}}
+
+💡 {\bfseries{Stupidly Easy:\+}} {\ttfamily fdir} uses expressive Builder pattern to build the crawler increasing code readability.
+
+🤖 {\bfseries{Zero Dependencies\texorpdfstring{$\ast$}{*}:\+}} {\ttfamily fdir} only uses Node\+JS {\ttfamily fs} \& {\ttfamily path} modules.
+
+🕺 {\bfseries{Astonishingly Small:\+}} \texorpdfstring{$<$}{<} 2KB in size gzipped \& minified.
+
+🖮 {\bfseries{Hackable:\+}} Extending {\ttfamily fdir} is extremely simple now that the new Builder API is here. Feel free to experiment around.
+
+{\itshape \texorpdfstring{$\ast$}{*} {\ttfamily picomatch} must be installed manually by the user to support globbing.}\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2324}{}\doxysubsubsection{\texorpdfstring{🚄 Quickstart}{🚄 Quickstart}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2324}
+\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2325}{}\doxysubsubsubsection{\texorpdfstring{Installation}{Installation}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2325}
+You can install using {\ttfamily npm}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ i\ fdir}
+
+\end{DoxyCode}
+
+
+or Yarn:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ yarn\ add\ fdir}
+
+\end{DoxyCode}
+\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2326}{}\doxysubsubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2326}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ fdir\ \}\ from\ "{}fdir"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ the\ builder}
+\DoxyCodeLine{const\ api\ =\ new\ fdir().withFullPaths().crawl("{}path/to/dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ get\ all\ files\ in\ a\ directory\ synchronously}
+\DoxyCodeLine{const\ files\ =\ api.sync();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ or\ asynchronously}
+\DoxyCodeLine{api.withPromise().then((files)\ =>\ \{}
+\DoxyCodeLine{\ \ //\ do\ something\ with\ the\ result\ here.}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2327}{}\doxysubsubsection{\texorpdfstring{Documentation:\+}{Documentation:\+}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2327}
+Documentation for all methods is available here.\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2328}{}\doxysubsubsection{\texorpdfstring{📊 Benchmarks:\+}{📊 Benchmarks:\+}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2328}
+Please check the benchmark against the latest version here.\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2329}{}\doxysubsubsection{\texorpdfstring{🙏\+Used by:\+}{🙏\+Used by:\+}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2329}
+{\ttfamily fdir} is downloaded over 200k+ times a week by projects around the world. Here\textquotesingle{}s a list of some notable projects using {\ttfamily fdir} in production:\+
+
+\begin{quote}
+Note:\+ if you think your project should be here, feel free to open an issue. Notable is anything with a considerable amount of Git\+Hub stars. \end{quote}
+
+
+
+\begin{DoxyEnumerate}
+\item \href{https://github.com/rollup/plugins}{\texttt{rollup/\+plugins}}
+\item \href{https://github.com/SuperchupuDev/tinyglobby}{\texttt{Superchupu\+Dev/\+tinyglobby}}
+\item \href{https://github.com/pulumi/pulumi}{\texttt{pulumi/\+pulumi}}
+\item \href{https://github.com/dotenvx/dotenvx}{\texttt{dotenvx/\+dotenvx}}
+\item \href{https://github.com/mdn/yari}{\texttt{mdn/\+yari}}
+\item \href{https://github.com/streetwriters/notesnook}{\texttt{streetwriters/\+notesnook}}
+\item \href{https://github.com/imba/imba}{\texttt{imba/\+imba}}
+\item \href{https://github.com/moroshko/react-scanner}{\texttt{moroshko/\+react-\/scanner}}
+\item \href{https://github.com/netlify/build}{\texttt{netlify/\+build}}
+\item \href{https://github.com/yassinedoghri/astro-i18next}{\texttt{yassinedoghri/\+astro-\/i18next}}
+\item \href{https://github.com/selfrefactor/rambda}{\texttt{selfrefactor/\+rambda}}
+\item \href{https://github.com/whyboris/Video-Hub-App}{\texttt{whyboris/\+\+Video-\/\+Hub-\/\+App}}
+\end{DoxyEnumerate}\hypertarget{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2330}{}\doxysubsubsection{\texorpdfstring{🦮 LICENSE}{🦮 LICENSE}}\label{dir_dabb953a719e9c011e2f87cb04d938ee_autotoc_md2330}
+Copyright \copyright{} 2024 Abdullah Atta under MIT. \href{https://github.com/thecodrr/fdir/raw/master/LICENSE}{\texttt{Read full text here.}} 

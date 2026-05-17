@@ -1,0 +1,38 @@
+\doxysection{sqlalchemy.\+util.\+queue Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1util_1_1queue}{}\label{namespacesqlalchemy_1_1util_1_1queue}\index{sqlalchemy.util.queue@{sqlalchemy.util.queue}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Empty}{Empty}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Full}{Full}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1QueueCommon}{Queue\+Common}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1Queue}{Queue}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1AsyncAdaptedQueue}{Async\+Adapted\+Queue}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1queue_1_1FallbackAsyncAdaptedQueue}{Fallback\+Async\+Adapted\+Queue}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1util_1_1queue_a9cb56ed4d99de241a8ce0320d6b4158b}\label{namespacesqlalchemy_1_1util_1_1queue_a9cb56ed4d99de241a8ce0320d6b4158b} 
+{\bfseries \+\_\+T} = Type\+Var("{}\+\_\+\+T"{}, bound=Any)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An adaptation of Py2.3/2.4's Queue module which supports reentrant
+behavior, using RLock instead of Lock for its mutex object.  The
+Queue object is used exclusively by the sqlalchemy.pool.QueuePool
+class.
+
+This is to support the connection pool's usage of weakref callbacks to return
+connections to the underlying Queue, which can in extremely
+rare cases be invoked within the ``get()`` method of the Queue itself,
+producing a ``put()`` inside the ``get()`` and therefore a reentrant
+condition.
+\end{DoxyVerb}
+ 

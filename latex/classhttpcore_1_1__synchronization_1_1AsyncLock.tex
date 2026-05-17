@@ -1,0 +1,55 @@
+\doxysection{httpcore.\+\_\+synchronization.\+Async\+Lock Class Reference}
+\hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock}{}\label{classhttpcore_1_1__synchronization_1_1AsyncLock}\index{httpcore.\_synchronization.AsyncLock@{httpcore.\_synchronization.AsyncLock}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_a837c5494ec1dcc9b9d81c245e2f8a0d5}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_a837c5494ec1dcc9b9d81c245e2f8a0d5} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1AsyncLock_addb792d6afd11b2e07a5a9c2d620af1a}{setup}} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_a8dbe96be7bd3ecf8522de82e0e28220d}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_a8dbe96be7bd3ecf8522de82e0e28220d} 
+\doxymbox{\hyperlink{classhttpcore_1_1__synchronization_1_1AsyncLock}{Async\+Lock}} {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_ac2edfc321a193d37211f7b48eecb24a4}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_ac2edfc321a193d37211f7b48eecb24a4} 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type=None, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+value=None, types.\+Traceback\+Type\texorpdfstring{$\vert$}{|}None traceback=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_ad9360759f42b3677268a386e747bfbbd}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_ad9360759f42b3677268a386e747bfbbd} 
+str {\bfseries \+\_\+backend} = "{}"{}
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_a754634c403ea0039ddf0d77981929c25}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_a754634c403ea0039ddf0d77981929c25} 
+{\bfseries \+\_\+trio\+\_\+lock} = trio.\+Lock()
+\item 
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_afd150b98ef48f140436fd234121e9a1f}\label{classhttpcore_1_1__synchronization_1_1AsyncLock_afd150b98ef48f140436fd234121e9a1f} 
+{\bfseries \+\_\+anyio\+\_\+lock} = \doxymbox{\hyperlink{classanyio_1_1__core_1_1__synchronization_1_1Lock}{anyio.\+Lock}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This is a standard lock.
+
+In the sync case `Lock` provides thread locking.
+In the async case `AsyncLock` provides async locking.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__synchronization_1_1AsyncLock_doc-func-members}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpcore_1_1__synchronization_1_1AsyncLock_addb792d6afd11b2e07a5a9c2d620af1a}\index{httpcore.\_synchronization.AsyncLock@{httpcore.\_synchronization.AsyncLock}!setup@{setup}}
+\index{setup@{setup}!httpcore.\_synchronization.AsyncLock@{httpcore.\_synchronization.AsyncLock}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__synchronization_1_1AsyncLock_addb792d6afd11b2e07a5a9c2d620af1a} 
+ None httpcore.\+\_\+synchronization.\+Async\+Lock.\+setup (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Detect if we're running under 'asyncio' or 'trio' and create
+a lock with the correct implementation.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+synchronization.\+py\end{DoxyCompactItemize}

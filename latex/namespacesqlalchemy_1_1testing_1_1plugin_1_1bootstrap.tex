@@ -1,0 +1,37 @@
+\doxysection{sqlalchemy.\+testing.\+plugin.\+bootstrap Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap}{}\label{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap}\index{sqlalchemy.testing.plugin.bootstrap@{sqlalchemy.testing.plugin.bootstrap}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a99c5acae857508c3570bc8be51aaa0c1}\label{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a99c5acae857508c3570bc8be51aaa0c1} 
+{\bfseries load\+\_\+file\+\_\+as\+\_\+module} (name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a5bf1deb10961ad5169cb6de55ed6daf0}\label{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a5bf1deb10961ad5169cb6de55ed6daf0} 
+{\bfseries bootstrap\+\_\+file} = locals()\+["{}bootstrap\+\_\+file"{}]\+
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a2b912bfa0ad0f7650c1ebd188606b23d}\label{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_a2b912bfa0ad0f7650c1ebd188606b23d} 
+{\bfseries to\+\_\+bootstrap} = locals()\+["{}to\+\_\+bootstrap"{}]\+
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_adf96898246e9618684dfecf8612ea036}\label{namespacesqlalchemy_1_1testing_1_1plugin_1_1bootstrap_adf96898246e9618684dfecf8612ea036} 
+{\bfseries bootstrapped\+\_\+as\+\_\+sqlalchemy}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Bootstrapper for test framework plugins.
+
+The entire rationale for this system is to get the modules in plugin/
+imported without importing all of the supporting library, so that we can
+set up things for testing before coverage starts.
+
+The rationale for all of plugin/ being *in* the supporting library in the
+first place is so that the testing and plugin suite is available to other
+libraries, mainly external SQLAlchemy and Alembic dialects, to make use
+of the same test environment and standard suites available to
+SQLAlchemy/Alembic themselves without the need to ship/install a separate
+package outside of SQLAlchemy.
+\end{DoxyVerb}
+ 

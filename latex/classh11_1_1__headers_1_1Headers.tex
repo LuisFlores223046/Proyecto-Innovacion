@@ -1,0 +1,68 @@
+\doxysection{h11.\+\_\+headers.\+Headers Class Reference}
+\hypertarget{classh11_1_1__headers_1_1Headers}{}\label{classh11_1_1__headers_1_1Headers}\index{h11.\_headers.Headers@{h11.\_headers.Headers}}
+Inheritance diagram for h11.\+\_\+headers.\+Headers:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classh11_1_1__headers_1_1Headers}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_a795c755f602563ec9b39f1b925527827}\label{classh11_1_1__headers_1_1Headers_a795c755f602563ec9b39f1b925527827} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, List\+[Tuple\+[bytes, bytes, bytes]\+]\+ full\+\_\+items)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_a631e4406d586a5f8af7d9e6a5785b47a}\label{classh11_1_1__headers_1_1Headers_a631e4406d586a5f8af7d9e6a5785b47a} 
+bool {\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_a50558f72f4c43f23193955aaeb6865c1}\label{classh11_1_1__headers_1_1Headers_a50558f72f4c43f23193955aaeb6865c1} 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, object other)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_af2d78047888303f4f45197713b3143bf}\label{classh11_1_1__headers_1_1Headers_af2d78047888303f4f45197713b3143bf} 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_a06bbfdba572b7192ca23ab04e488b85a}\label{classh11_1_1__headers_1_1Headers_a06bbfdba572b7192ca23ab04e488b85a} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_aec74cab438ba127b1738295e1339d01a}\label{classh11_1_1__headers_1_1Headers_aec74cab438ba127b1738295e1339d01a} 
+Tuple\+[bytes, bytes]\+ {\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, int idx)
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_af8b6544e9b6dc1bdb0475f50b0f2fd2f}\label{classh11_1_1__headers_1_1Headers_af8b6544e9b6dc1bdb0475f50b0f2fd2f} 
+List\+[Tuple\+[bytes, bytes]\+]\+ {\bfseries raw\+\_\+items} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__headers_1_1Headers_ad1251997a82388614a2c65cdb01d5ca6}\label{classh11_1_1__headers_1_1Headers_ad1251997a82388614a2c65cdb01d5ca6} 
+{\bfseries \+\_\+full\+\_\+items} = full\+\_\+items
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A list-like interface that allows iterating over headers as byte-pairs
+of (lowercased-name, value).
+
+Internally we actually store the representation as three-tuples,
+including both the raw original casing, in order to preserve casing
+over-the-wire, and the lowercased name, for case-insensitive comparisions.
+
+r = Request(
+    method="GET",
+    target="/",
+    headers=[("Host", "example.org"), ("Connection", "keep-alive")],
+    http_version="1.1",
+)
+assert r.headers == [
+    (b"host", b"example.org"),
+    (b"connection", b"keep-alive")
+]
+assert r.headers.raw_items() == [
+    (b"Host", b"example.org"),
+    (b"Connection", b"keep-alive")
+]
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+h11/\+\+\_\+headers.\+py\end{DoxyCompactItemize}

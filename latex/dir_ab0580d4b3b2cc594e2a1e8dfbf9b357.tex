@@ -1,0 +1,54 @@
+\doxysection{frontend/\+node\+\_\+modules/\+get-\/intrinsic Directory Reference}
+\hypertarget{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357}{}\label{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357}\index{frontend/node\_modules/get-\/intrinsic Directory Reference@{frontend/node\_modules/get-\/intrinsic Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_5bfe89965a86feca6b371ec45b068a77}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1348}{}\doxysubsection{\texorpdfstring{get-\/intrinsic \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}{get-\/intrinsic \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}}\label{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1348}
+\href{https://github.com/ljharb/get-intrinsic/actions}{\texttt{}} \href{https://app.codecov.io/gh/ljharb/get-intrinsic/}{\texttt{}} \href{https://david-dm.org/ljharb/get-intrinsic}{\texttt{}} \href{https://david-dm.org/ljharb/get-intrinsic\#info=devDependencies}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npm-stat.com/charts.html?package=get-intrinsic}{\texttt{}}
+
+\href{https://npmjs.org/package/get-intrinsic}{\texttt{}}
+
+Get and robustly cache all JS language-\/level intrinsics at first require time.
+
+See the syntax described \href{https://tc39.es/ecma262/\#sec-well-known-intrinsic-objects}{\texttt{in the JS spec}} for reference.\hypertarget{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1349}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1349}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ GetIntrinsic\ =\ require('get-\/intrinsic');}
+\DoxyCodeLine{var\ assert\ =\ require('assert');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ static\ methods}
+\DoxyCodeLine{assert.equal(GetIntrinsic('\%Math.pow\%'),\ Math.pow);}
+\DoxyCodeLine{assert.equal(Math.pow(2,\ 3),\ 8);}
+\DoxyCodeLine{assert.equal(GetIntrinsic('\%Math.pow\%')(2,\ 3),\ 8);}
+\DoxyCodeLine{delete\ Math.pow;}
+\DoxyCodeLine{assert.equal(GetIntrinsic('\%Math.pow\%')(2,\ 3),\ 8);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ instance\ methods}
+\DoxyCodeLine{var\ arr\ =\ [1];}
+\DoxyCodeLine{assert.equal(GetIntrinsic('\%Array.prototype.push\%'),\ Array.prototype.push);}
+\DoxyCodeLine{assert.deepEqual(arr,\ [1]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{arr.push(2);}
+\DoxyCodeLine{assert.deepEqual(arr,\ [1,\ 2]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{GetIntrinsic('\%Array.prototype.push\%').call(arr,\ 3);}
+\DoxyCodeLine{assert.deepEqual(arr,\ [1,\ 2,\ 3]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{delete\ Array.prototype.push;}
+\DoxyCodeLine{GetIntrinsic('\%Array.prototype.push\%').call(arr,\ 4);}
+\DoxyCodeLine{assert.deepEqual(arr,\ [1,\ 2,\ 3,\ 4]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ missing\ features}
+\DoxyCodeLine{delete\ JSON.parse;\ //\ to\ simulate\ a\ real\ intrinsic\ that\ is\ missing\ in\ the\ environment}
+\DoxyCodeLine{assert.throws(()\ =>\ GetIntrinsic('\%JSON.parse\%'));}
+\DoxyCodeLine{assert.equal(undefined,\ GetIntrinsic('\%JSON.parse\%',\ true));}
+
+\end{DoxyCode}
+\hypertarget{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1350}{}\doxysubsection{\texorpdfstring{Tests}{Tests}}\label{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1350}
+Simply clone the repo, {\ttfamily npm install}, and run {\ttfamily npm test}\hypertarget{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1351}{}\doxysubsection{\texorpdfstring{Security}{Security}}\label{dir_ab0580d4b3b2cc594e2a1e8dfbf9b357_autotoc_md1351}
+Please email \href{https://github.com/ljharb}{\texttt{@ljharb}} or see \href{https://tidelift.com/security}{\texttt{https:\+/\+/\+tidelift.\+com/\+security}} if you have a potential security vulnerability to report. 

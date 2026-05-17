@@ -1,0 +1,100 @@
+\doxysection{frontend/\+node\+\_\+modules/\+lilconfig Directory Reference}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294}{}\label{dir_21167eace1b07f2244665a69faa19294}\index{frontend/node\_modules/lilconfig Directory Reference@{frontend/node\_modules/lilconfig Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_cc21a97be58e34695f9649ecae250720}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1680}{}\doxysubsection{\texorpdfstring{Lilconfig ⚙️}{Lilconfig ⚙️}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1680}
+\href{https://badge.fury.io/js/lilconfig}{\texttt{}} \href{https://packagephobia.now.sh/result?p=lilconfig}{\texttt{}} \href{https://coveralls.io/github/antonk52/lilconfig}{\texttt{}}
+
+A zero-\/dependency alternative to \href{https://www.npmjs.com/package/cosmiconfig}{\texttt{cosmiconfig}} with the same API.\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1681}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1681}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ lilconfig}
+
+\end{DoxyCode}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1682}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1682}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{lilconfig,\ lilconfigSync\}\ from\ 'lilconfig';}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ all\ keys\ are\ optional}
+\DoxyCodeLine{const\ options\ =\ \{}
+\DoxyCodeLine{\ \ \ \ stopDir:\ '/Users/you/some/dir',}
+\DoxyCodeLine{\ \ \ \ searchPlaces:\ ['package.json',\ 'myapp.conf.js'],}
+\DoxyCodeLine{\ \ \ \ ignoreEmptySearchPlaces:\ false}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{lilconfig(}
+\DoxyCodeLine{\ \ \ \ 'myapp',}
+\DoxyCodeLine{\ \ \ \ options\ //\ optional}
+\DoxyCodeLine{).search()\ //\ Promise<LilconfigResult>}
+\DoxyCodeLine{}
+\DoxyCodeLine{lilconfigSync(}
+\DoxyCodeLine{\ \ \ \ 'myapp',}
+\DoxyCodeLine{\ \ \ \ options\ //\ optional}
+\DoxyCodeLine{).load(pathToConfig)\ //\ LilconfigResult}
+\DoxyCodeLine{}
+\DoxyCodeLine{/**}
+\DoxyCodeLine{\ *\ LilconfigResult}
+\DoxyCodeLine{\ *\ \{}
+\DoxyCodeLine{\ *\ \ \ config:\ any;\ //\ your\ config}
+\DoxyCodeLine{\ *\ \ \ filepath:\ string;}
+\DoxyCodeLine{\ *\ \}}
+\DoxyCodeLine{\ */}
+
+\end{DoxyCode}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1683}{}\doxysubsection{\texorpdfstring{ESM}{ESM}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1683}
+ESM configs can be loaded with {\bfseries{async API only}}. Specifically {\ttfamily js} files in projects with {\ttfamily "{}type"{}:\+ "{}module"{}} in {\ttfamily package.\+json} or {\ttfamily mjs} files.\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1684}{}\doxysubsection{\texorpdfstring{Difference to {\ttfamily cosmiconfig}}{Difference to {\ttfamily cosmiconfig}}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1684}
+Lilconfig does not intend to be 100\% compatible with {\ttfamily cosmiconfig} but tries to mimic it where possible. The key difference is {\bfseries{no}} support for yaml files out of the box({\ttfamily lilconfig} attempts to parse files with no extension as JSON instead of YAML). You can still add the support for YAML files by providing a loader, see an exampleexample below.\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1685}{}\doxysubsubsection{\texorpdfstring{Options difference between the two.}{Options difference between the two.}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1685}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}cosmiconfig option  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}lilconfig  \\
+cache  &✅  \\
+loaders  &✅  \\
+ignore\+Empty\+Search\+Places  &✅  \\
+package\+Prop  &✅  \\
+search\+Places  &✅  \\
+stop\+Dir  &✅  \\
+transform  &✅  \\
+\end{DoxyTable}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1686}{}\doxysubsection{\texorpdfstring{Loaders examples}{Loaders examples}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1686}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1687}{}\doxysubsubsection{\texorpdfstring{Yaml loader}{Yaml loader}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1687}
+If you need the YAML support you can provide your own loader
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{lilconfig\}\ from\ 'lilconfig';}
+\DoxyCodeLine{import\ yaml\ from\ 'yaml';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ loadYaml(filepath,\ content)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ yaml.parse(content);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ options\ =\ \{}
+\DoxyCodeLine{\ \ \ \ loaders:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ '.yaml':\ loadYaml,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ '.yml':\ loadYaml,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ loader\ for\ files\ with\ no\ extension}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ noExt:\ loadYaml}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{lilconfig('myapp',\ options)}
+\DoxyCodeLine{\ \ \ \ .search()}
+\DoxyCodeLine{\ \ \ \ .then(result\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ result\ //\ \{config,\ filepath\}}
+\DoxyCodeLine{\ \ \ \ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_21167eace1b07f2244665a69faa19294_autotoc_md1688}{}\doxysubsection{\texorpdfstring{Version correlation}{Version correlation}}\label{dir_21167eace1b07f2244665a69faa19294_autotoc_md1688}
+
+\begin{DoxyItemize}
+\item lilconig v1 → cosmiconfig v6
+\item lilconig v2 → cosmiconfig v7
+\item lilconig v3 → cosmiconfig v8 
+\end{DoxyItemize}

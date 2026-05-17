@@ -1,0 +1,88 @@
+\doxysection{psycopg2.\+tz.\+Fixed\+Offset\+Timezone Class Reference}
+\hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone}{}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone}\index{psycopg2.tz.FixedOffsetTimezone@{psycopg2.tz.FixedOffsetTimezone}}
+Inheritance diagram for psycopg2.\+tz.\+Fixed\+Offset\+Timezone:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpsycopg2_1_1tz_1_1FixedOffsetTimezone}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a4e8b47f422294328343a047ecee86d62}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a4e8b47f422294328343a047ecee86d62} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, offset=None, name=None)
+\item 
+\doxymbox{\hyperlink{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a069b80a1f674008b656434ed781797b1}{\+\_\+\+\_\+new\+\_\+\+\_\+}} (cls, offset=None, name=None)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a0a2394652ac4b23dba3cab4a2bd8243b}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a0a2394652ac4b23dba3cab4a2bd8243b} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a26231bfa2b52aa0fdcdbb5bbed78542b}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a26231bfa2b52aa0fdcdbb5bbed78542b} 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a50dfce31138718ffe383fd5b316323ad}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a50dfce31138718ffe383fd5b316323ad} 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a9c1bacec30c950ebaf63aaf57cd4c2d6}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a9c1bacec30c950ebaf63aaf57cd4c2d6} 
+{\bfseries \+\_\+\+\_\+getinitargs\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a76a75fe273fc30041b4d77b9d47f6670}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a76a75fe273fc30041b4d77b9d47f6670} 
+{\bfseries utcoffset} (self, dt)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a7d0217234b2cc51b5664668cdfe78007}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a7d0217234b2cc51b5664668cdfe78007} 
+{\bfseries tzname} (self, dt)
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a1feb3a663b6894e449a1f6ae9045e01b}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a1feb3a663b6894e449a1f6ae9045e01b} 
+{\bfseries dst} (self, dt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a2c030cd16541dcb47d0dfbbd257ccf3b}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a2c030cd16541dcb47d0dfbbd257ccf3b} 
+{\bfseries \+\_\+name} = None
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a4f2f968d7a4cf26ed4a63a1984263d8e}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a4f2f968d7a4cf26ed4a63a1984263d8e} 
+{\bfseries \+\_\+offset} = ZERO
+\item 
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_af791ab40c0e4ee49f443a8dd7866be42}\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_af791ab40c0e4ee49f443a8dd7866be42} 
+dict {\bfseries \+\_\+cache} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Fixed offset in minutes east from UTC.
+
+This is exactly the implementation__ found in Python 2.3.x documentation,
+with a small change to the `!__init__()` method to allow for pickling
+and a default name in the form ``sHH:MM`` (``s`` is the sign.).
+
+The implementation also caches instances. During creation, if a
+FixedOffsetTimezone instance has previously been created with the same
+offset and name that instance will be returned. This saves memory and
+improves comparability.
+
+.. versionchanged:: 2.9
+
+    The constructor can take either a timedelta or a number of minutes of
+    offset. Previously only minutes were supported.
+
+.. __: https://docs.python.org/library/datetime.html
+\end{DoxyVerb}
+ 
+
+\label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_doc-func-members}
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a069b80a1f674008b656434ed781797b1}\index{psycopg2.tz.FixedOffsetTimezone@{psycopg2.tz.FixedOffsetTimezone}!\_\_new\_\_@{\_\_new\_\_}}
+\index{\_\_new\_\_@{\_\_new\_\_}!psycopg2.tz.FixedOffsetTimezone@{psycopg2.tz.FixedOffsetTimezone}}
+\doxysubsubsection{\texorpdfstring{\_\_new\_\_()}{\_\_new\_\_()}}
+{\footnotesize\ttfamily \label{classpsycopg2_1_1tz_1_1FixedOffsetTimezone_a069b80a1f674008b656434ed781797b1} 
+psycopg2.\+tz.\+Fixed\+Offset\+Timezone.\+\_\+\+\_\+new\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{offset}{ = {\ttfamily None}, }\item[{}]{name}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a suitable instance created earlier if it exists
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+psycopg2/\+tz.\+py\end{DoxyCompactItemize}

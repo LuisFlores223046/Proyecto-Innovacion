@@ -1,0 +1,165 @@
+\doxysection{frontend/\+node\+\_\+modules/\+gensync Directory Reference}
+\hypertarget{dir_5a8c856a1f9d60b7d124e32b7c2e5075}{}\label{dir_5a8c856a1f9d60b7d124e32b7c2e5075}\index{frontend/node\_modules/gensync Directory Reference@{frontend/node\_modules/gensync Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_b83a3edde419f3de2fd7791c42e3631f}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_5a8c856a1f9d60b7d124e32b7c2e5075_autotoc_md2651}{}\doxysubsection{\texorpdfstring{gensync}{gensync}}\label{dir_5a8c856a1f9d60b7d124e32b7c2e5075_autotoc_md2651}
+This module allows for developers to write common code that can share implementation details, hiding whether an underlying request happens synchronously or asynchronously. This is in contrast with many current Node APIs which explicitly implement the same API twice, once with calls to synchronous functions, and once with asynchronous functions.
+
+Take for example {\ttfamily fs.\+read\+File} and {\ttfamily fs.\+read\+File\+Sync}, if you\textquotesingle{}re writing an API that loads a file and then performs a synchronous operation on the data, it can be frustrating to maintain two parallel functions.\hypertarget{dir_5a8c856a1f9d60b7d124e32b7c2e5075_autotoc_md2652}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_5a8c856a1f9d60b7d124e32b7c2e5075_autotoc_md2652}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ fs\ =\ require("{}fs"{});}
+\DoxyCodeLine{const\ gensync\ =\ require("{}gensync"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ readFile\ =\ gensync(\{}
+\DoxyCodeLine{\ \ sync:\ fs.readFileSync,}
+\DoxyCodeLine{\ \ errback:\ fs.readFile,}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ myOperation\ =\ gensync(function*\ (filename)\ \{}
+\DoxyCodeLine{\ \ const\ code\ =\ yield*\ readFile(filename,\ "{}utf8"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ "{}//\ some\ custom\ prefix\(\backslash\)n"{}\ +\ code;}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Load\ and\ add\ the\ prefix\ synchronously:}
+\DoxyCodeLine{const\ result\ =\ myOperation.sync("{}./some-\/file.js"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Load\ and\ add\ the\ prefix\ asynchronously\ with\ promises:}
+\DoxyCodeLine{myOperation.async("{}./some-\/file.js"{}).then(result\ =>\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Load\ and\ add\ the\ prefix\ asynchronously\ with\ promises:}
+\DoxyCodeLine{myOperation.errback("{}./some-\/file.js"{},\ (err,\ result)\ =>\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+This could even be exposed as your official API by doing 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Using\ the\ common\ 'Sync'\ suffix\ for\ sync\ functions,\ and\ 'Async'\ suffix\ for}
+\DoxyCodeLine{//\ promise-\/returning\ versions.}
+\DoxyCodeLine{exports.myOperationSync\ =\ myOperation.sync;}
+\DoxyCodeLine{exports.myOperationAsync\ =\ myOperation.async;}
+\DoxyCodeLine{exports.myOperation\ =\ myOperation.errback;}
+
+\end{DoxyCode}
+ or potentially expose one of the async versions as the default, with a {\ttfamily .sync} property on the function to expose the synchronous version. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{module.exports\ =\ myOperation.errback;}
+\DoxyCodeLine{module.exports.sync\ =\ myOperation.sync;}
+\DoxyCodeLine{\`{}\`{}\`{}\`{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ API}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ gensync(generatorFnOrOptions)}
+\DoxyCodeLine{}
+\DoxyCodeLine{Returns\ a\ function\ that\ can\ be\ "{}await"{}-\/ed\ in\ another\ \`{}gensync`\ generator}
+\DoxyCodeLine{function,\ or\ executed\ via}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}.sync(...args)`\ -\/\ Returns\ the\ computed\ value,\ or\ throws.}
+\DoxyCodeLine{*\ \`{}.async(...args)`\ -\/\ Returns\ a\ promise\ for\ the\ computed\ value.}
+\DoxyCodeLine{*\ \`{}.errback(...args,\ (err,\ result)\ =>\ \{\})`\ -\/\ Calls\ the\ callback\ with\ the\ computed\ value,\ or\ error.}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\ Passed\ a\ generator}
+\DoxyCodeLine{}
+\DoxyCodeLine{Wraps\ the\ generator\ to\ populate\ the\ \`{}.sync`/`.async`/`.errback`\ helpers\ above\ to}
+\DoxyCodeLine{allow\ for\ evaluation\ of\ the\ generator\ for\ the\ final\ value.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\#\ Example}
+
+\end{DoxyCode}
+ js const read\+File = function\texorpdfstring{$\ast$}{*} () \{ return 42; \};
+
+const read\+File\+And\+More = gensync(function\texorpdfstring{$\ast$}{*} ()\{ const val = yield\texorpdfstring{$\ast$}{*} read\+File(); return 42 + val; \});
+
+/\+/\+ In general cases const code = read\+File\+And\+More.\+sync("{}./\+file.\+js"{}, "{}utf8"{}); read\+File\+And\+More.\+async("{}./\+file.\+js"{}, "{}utf8"{}).then(code =\texorpdfstring{$>$}{>} \{\}) read\+File\+And\+More.\+errback("{}./\+file.\+js"{}, "{}utf8"{}, (err, code) =\texorpdfstring{$>$}{>} \{\});
+
+/\+/\+ In a generator being called indirectly with .sync/\+.async/\+.errback const code = yield\texorpdfstring{$\ast$}{*} read\+File\+And\+More("{}./\+file.\+js"{}, "{}utf8"{}); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\#\ Passed\ an\ options\ object}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}opts.sync`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Example:\ \`{}(...args)\ =>\ 4`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ A\ function\ that\ will\ be\ called\ when\ \`{}.sync()`\ is\ called\ on\ the\ \`{}gensync()`}
+\DoxyCodeLine{\ \ result,\ or\ when\ the\ result\ is\ passed\ to\ \`{}yield*`\ in\ another\ generator\ that}
+\DoxyCodeLine{\ \ is\ being\ run\ synchronously.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Also\ called\ for\ \`{}.async()`\ calls\ if\ no\ async\ handlers\ are\ provided.}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}opts.async`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Example:\ \`{}async\ (...args)\ =>\ 4`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ A\ function\ that\ will\ be\ called\ when\ \`{}.async()`\ or\ \`{}.errback()`\ is\ called\ on}
+\DoxyCodeLine{\ \ the\ \`{}gensync()`\ result,\ or\ when\ the\ result\ is\ passed\ to\ \`{}yield*`\ in\ another}
+\DoxyCodeLine{\ \ generator\ that\ is\ being\ run\ asynchronously.}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}opts.errback`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Example:\ \`{}(...args,\ cb)\ =>\ cb(null,\ 4)`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ A\ function\ that\ will\ be\ called\ when\ \`{}.async()`\ or\ \`{}.errback()`\ is\ called\ on}
+\DoxyCodeLine{\ \ the\ \`{}gensync()`\ result,\ or\ when\ the\ result\ is\ passed\ to\ \`{}yield*`\ in\ another}
+\DoxyCodeLine{\ \ generator\ that\ is\ being\ run\ asynchronously.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ This\ option\ allows\ for\ simpler\ compatibility\ with\ many\ existing\ Node\ APIs,}
+\DoxyCodeLine{\ \ and\ also\ avoids\ introducing\ the\ extra\ even\ loop\ turns\ that\ promises\ introduce}
+\DoxyCodeLine{\ \ to\ access\ the\ result\ value.}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}opts.name`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Example:\ \`{}"{}readFile"{}`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ A\ string\ name\ to\ apply\ to\ the\ returned\ function.\ If\ no\ value\ is\ provided,}
+\DoxyCodeLine{\ \ the\ name\ of\ \`{}errback`/`async`/`sync`\ functions\ will\ be\ used,\ with\ any}
+\DoxyCodeLine{\ \ \`{}Sync`\ or\ \`{}Async`\ suffix\ stripped\ off.\ If\ the\ callback\ is\ simply\ named}
+\DoxyCodeLine{\ \ with\ ES6\ inference\ (same\ name\ as\ the\ options\ property),\ the\ name\ is\ ignored.}
+\DoxyCodeLine{}
+\DoxyCodeLine{*\ \`{}opts.arity`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ Example:\ \`{}4`}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ A\ number\ for\ the\ length\ to\ set\ on\ the\ returned\ function.\ If\ no\ value}
+\DoxyCodeLine{\ \ is\ provided,\ the\ length\ will\ be\ carried\ over\ from\ the\ \`{}sync`\ function's}
+\DoxyCodeLine{\ \ \`{}length`\ value.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\#\ Example}
+
+\end{DoxyCode}
+ js const read\+File = gensync(\{ sync:\+ fs.\+read\+File\+Sync, errback:\+ fs.\+read\+File, \});
+
+const code = read\+File.\+sync("{}./\+file.\+js"{}, "{}utf8"{}); read\+File.\+async("{}./\+file.\+js"{}, "{}utf8"{}).then(code =\texorpdfstring{$>$}{>} \{\}) read\+File.\+errback("{}./\+file.\+js"{}, "{}utf8"{}, (err, code) =\texorpdfstring{$>$}{>} \{\}); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\ gensync.all(iterable)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\`{}Promise.all`-\/like\ combinator\ that\ works\ with\ an\ iterable\ of\ generator\ objects}
+\DoxyCodeLine{that\ could\ be\ passed\ to\ \`{}yield*`\ within\ a\ gensync\ generator.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\ Example}
+
+\end{DoxyCode}
+ js const load\+Files = gensync(function\texorpdfstring{$\ast$}{*} () \{ return yield\texorpdfstring{$\ast$}{*} gensync.\+all(\+[ read\+File("{}./\+one.\+js"{}), read\+File("{}./\+two.\+js"{}), read\+File("{}./\+three.\+js"{}), ]\+); \}); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\#\ gensync.race(iterable)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\`{}Promise.race`-\/like\ combinator\ that\ works\ with\ an\ iterable\ of\ generator\ objects}
+\DoxyCodeLine{that\ could\ be\ passed\ to\ \`{}yield*`\ within\ a\ gensync\ generator.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\ Example}
+
+\end{DoxyCode}
+ js const load\+Files = gensync(function\texorpdfstring{$\ast$}{*} () \{ return yield\texorpdfstring{$\ast$}{*} gensync.\+race(\+[ read\+File("{}./\+one.\+js"{}), read\+File("{}./\+two.\+js"{}), read\+File("{}./\+three.\+js"{}), ]\+); \}); \`{}\`{}\`{} 

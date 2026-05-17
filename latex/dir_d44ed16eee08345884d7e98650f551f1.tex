@@ -1,0 +1,46 @@
+\doxysection{frontend/\+node\+\_\+modules/\+call-\/bind-\/apply-\/helpers Directory Reference}
+\hypertarget{dir_d44ed16eee08345884d7e98650f551f1}{}\label{dir_d44ed16eee08345884d7e98650f551f1}\index{frontend/node\_modules/call-\/bind-\/apply-\/helpers Directory Reference@{frontend/node\_modules/call-\/bind-\/apply-\/helpers Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_d42de4c71f53ca989a58cbe3d9dcce77}{test}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md608}{}\doxysubsection{\texorpdfstring{call-\/bind-\/apply-\/helpers \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}{call-\/bind-\/apply-\/helpers \textsuperscript{\+[!\+[Version Badge]\+\+[npm-\/version-\/svg]\+]\+\+[package-\/url]\+}}}\label{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md608}
+\href{https://github.com/ljharb/call-bind-apply-helpers/actions}{\texttt{}} \href{https://app.codecov.io/gh/ljharb/call-bind-apply-helpers/}{\texttt{}} \href{https://david-dm.org/ljharb/call-bind-apply-helpers}{\texttt{}} \href{https://david-dm.org/ljharb/call-bind-apply-helpers\#info=devDependencies}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npm-stat.com/charts.html?package=call-bind-apply-helpers}{\texttt{}}
+
+\href{https://npmjs.org/package/call-bind-apply-helpers}{\texttt{}}
+
+Helper functions around Function call/\+apply/\+bind, for use in {\ttfamily call-\/bind}.
+
+The only packages that should likely ever use this package directly are {\ttfamily call-\/bind} and {\ttfamily get-\/intrinsic}. Please use {\ttfamily call-\/bind} unless you have a very good reason not to.\hypertarget{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md609}{}\doxysubsection{\texorpdfstring{Getting started}{Getting started}}\label{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md609}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ -\/-\/save\ call-\/bind-\/apply-\/helpers}
+
+\end{DoxyCode}
+\hypertarget{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md610}{}\doxysubsection{\texorpdfstring{Usage/\+\+Examples}{Usage/\+\+Examples}}\label{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md610}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ assert\ =\ require('assert');}
+\DoxyCodeLine{const\ callBindBasic\ =\ require('call-\/bind-\/apply-\/helpers');}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ f(a,\ b)\ \{}
+\DoxyCodeLine{\ \ \ \ assert.equal(this,\ 1);}
+\DoxyCodeLine{\ \ \ \ assert.equal(a,\ 2);}
+\DoxyCodeLine{\ \ \ \ assert.equal(b,\ 3);}
+\DoxyCodeLine{\ \ \ \ assert.equal(arguments.length,\ 2);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ fBound\ =\ callBindBasic([f,\ 1]);}
+\DoxyCodeLine{}
+\DoxyCodeLine{delete\ Function.prototype.call;}
+\DoxyCodeLine{delete\ Function.prototype.bind;}
+\DoxyCodeLine{}
+\DoxyCodeLine{fBound(2,\ 3);}
+
+\end{DoxyCode}
+\hypertarget{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md611}{}\doxysubsection{\texorpdfstring{Tests}{Tests}}\label{dir_d44ed16eee08345884d7e98650f551f1_autotoc_md611}
+Clone the repo, {\ttfamily npm install}, and run {\ttfamily npm test} 

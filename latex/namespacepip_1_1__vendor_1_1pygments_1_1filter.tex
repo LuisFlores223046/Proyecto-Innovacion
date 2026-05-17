@@ -1,0 +1,56 @@
+\doxysection{pip.\+\_\+vendor.\+pygments.\+filter Namespace Reference}
+\hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1filter}{}\label{namespacepip_1_1__vendor_1_1pygments_1_1filter}\index{pip.\_vendor.pygments.filter@{pip.\_vendor.pygments.filter}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__vendor_1_1pygments_1_1filter_1_1Filter}{Filter}}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__vendor_1_1pygments_1_1filter_1_1FunctionFilter}{Function\+Filter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ea4ba67e06838fd80058897a0c7d6ef}{apply\+\_\+filters}} (stream, filters, lexer=None)
+\item 
+\doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ceeabd04634e5fb7ca248cd4ebfc234}{simplefilter}} (f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}    pygments.filter
+    ~~~~~~~~~~~~~~~
+
+    Module that implements the default filter.
+
+    :copyright: Copyright 2006-2023 by the Pygments team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__vendor_1_1pygments_1_1filter_doc-func-members}
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1filter_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ea4ba67e06838fd80058897a0c7d6ef}\index{pip.\_vendor.pygments.filter@{pip.\_vendor.pygments.filter}!apply\_filters@{apply\_filters}}
+\index{apply\_filters@{apply\_filters}!pip.\_vendor.pygments.filter@{pip.\_vendor.pygments.filter}}
+\doxysubsubsection{\texorpdfstring{apply\_filters()}{apply\_filters()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ea4ba67e06838fd80058897a0c7d6ef} 
+apply\+\_\+filters (\begin{DoxyParamCaption}\item[{}]{stream}{, }\item[{}]{filters}{, }\item[{}]{lexer}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Use this method to apply an iterable of filters to
+a stream. If lexer is given it's forwarded to the
+filter, otherwise the filter receives `None`.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ceeabd04634e5fb7ca248cd4ebfc234}\index{pip.\_vendor.pygments.filter@{pip.\_vendor.pygments.filter}!simplefilter@{simplefilter}}
+\index{simplefilter@{simplefilter}!pip.\_vendor.pygments.filter@{pip.\_vendor.pygments.filter}}
+\doxysubsubsection{\texorpdfstring{simplefilter()}{simplefilter()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1pygments_1_1filter_a8ceeabd04634e5fb7ca248cd4ebfc234} 
+simplefilter (\begin{DoxyParamCaption}\item[{}]{f}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decorator that converts a function into a filter::
+
+    @simplefilter
+    def lowercase(self, lexer, stream, options):
+        for ttype, value in stream:
+            yield ttype, value.lower()
+\end{DoxyVerb}
+ 

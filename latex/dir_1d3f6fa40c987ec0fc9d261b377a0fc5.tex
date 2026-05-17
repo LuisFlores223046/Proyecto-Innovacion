@@ -1,0 +1,45 @@
+\doxysection{frontend/\+node\+\_\+modules/\+path-\/exists Directory Reference}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5}{}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5}\index{frontend/node\_modules/path-\/exists Directory Reference@{frontend/node\_modules/path-\/exists Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3750}{}\doxysubsection{\texorpdfstring{path-\/exists \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/path-exists.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+path-\/exists.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/path-exists}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+path-\/exists}})}{path-\/exists \+[!\+[Build Status]\+(\href{https://travis-ci.org/sindresorhus/path-exists.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+path-\/exists.\+svg?branch=master}})]\+(\href{https://travis-ci.org/sindresorhus/path-exists}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+sindresorhus/\+path-\/exists}})}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3750}
+\begin{quote}
+Check if a path exists \end{quote}
+
+
+NOTE:\+ {\ttfamily fs.\+exists\+Sync} has been un-\/deprecated in Node.\+js since 6.\+8.\+0. If you only need to check synchronously, this module is not needed.
+
+While \href{https://nodejs.org/api/fs.html\#fs_fs_exists_path_callback}{\texttt{{\ttfamily fs.\+exists()}}} is being \href{https://github.com/iojs/io.js/issues/103}{\texttt{deprecated}}, there\textquotesingle{}s still a genuine use-\/case of being able to check if a path exists for other purposes than doing IO with it.
+
+Never use this before handling a file though:\+
+
+\begin{quote}
+In particular, checking if a file exists before opening it is an anti-\/pattern that leaves you vulnerable to race conditions:\+ another process may remove the file between the calls to {\ttfamily fs.\+exists()} and {\ttfamily fs.\+open()}. Just open the file and handle the error when it\textquotesingle{}s not there. \end{quote}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3751}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3751}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ path-\/exists}
+
+\end{DoxyCode}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3752}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3752}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ foo.js}
+\DoxyCodeLine{const\ pathExists\ =\ require('path-\/exists');}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ pathExists('foo.js'));}
+\DoxyCodeLine{\ \ \ \ //=>\ true}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3753}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3753}
+\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3754}{}\doxysubsubsection{\texorpdfstring{path\+Exists(path)}{path\+Exists(path)}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3754}
+Returns a {\ttfamily Promise\texorpdfstring{$<$}{<}boolean\texorpdfstring{$>$}{>}} of whether the path exists.\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3755}{}\doxysubsubsection{\texorpdfstring{path\+Exists.\+sync(path)}{path\+Exists.\+sync(path)}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3755}
+Returns a {\ttfamily boolean} of whether the path exists.\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3756}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3756}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/path-exists-cli}{\texttt{path-\/exists-\/cli}} -\/ CLI for this module
+\end{DoxyItemize}\hypertarget{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3757}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_1d3f6fa40c987ec0fc9d261b377a0fc5_autotoc_md3757}
+MIT © \href{https://sindresorhus.com}{\texttt{Sindre Sorhus}} 

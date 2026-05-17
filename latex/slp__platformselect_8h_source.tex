@@ -1,0 +1,77 @@
+\doxysection{slp\+\_\+platformselect.\+h}
+\hypertarget{slp__platformselect_8h_source}{}\label{slp__platformselect_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/slp\_platformselect.h@{venv/lib/python3.12/site-\/packages/greenlet/slp\_platformselect.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ Platform\ Selection\ for\ Stackless\ Python}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#if\ \ \ defined(MS\_WIN32)\ \&\&\ !defined(MS\_WIN64)\ \&\&\ defined(\_M\_IX86)\ \&\&\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_x86\_msvc.h"{}}\ \textcolor{comment}{/*\ MS\ Visual\ Studio\ on\ X86\ */}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#elif\ defined(MS\_WIN64)\ \&\&\ defined(\_M\_X64)\ \&\&\ defined(\_MSC\_VER)\ ||\ defined(\_\_MINGW64\_\_)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_x64\_msvc.h"{}}\ \textcolor{comment}{/*\ MS\ Visual\ Studio\ on\ X64\ */}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#elif\ \ defined(MS\_WIN64)\ \&\&\ defined(\_M\_ARM64)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_arm64\_msvc.h"{}}\ \textcolor{comment}{/*\ MS\ Visual\ Studio\ on\ ARM64\ */}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_amd64\_\_)\ \&\&\ defined(\_\_ILP32\_\_)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_x32\_unix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ amd64\ with\ x32\ ABI\ */}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_amd64\_\_)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_amd64\_unix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ amd64\ */}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_i386\_\_)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_x86\_unix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ X86\ */}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_powerpc64\_\_)\ \&\&\ (defined(\_\_linux\_\_)\ ||\ defined(\_\_FreeBSD\_\_))}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_ppc64\_linux.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ PowerPC\ 64-\/bit\ */}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_PPC\_\_)\ \&\&\ (defined(\_\_linux\_\_)\ ||\ defined(\_\_FreeBSD\_\_))}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_ppc\_linux.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ PowerPC\ */}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_ppc\_\_)\ \&\&\ defined(\_\_APPLE\_\_)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_ppc\_macosx.h"{}}\ \textcolor{comment}{/*\ Apple\ MacOS\ X\ on\ PowerPC\ */}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_powerpc64\_\_)\ \&\&\ defined(\_AIX)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_ppc64\_aix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ AIX/PowerPC\ 64-\/bit\ */}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_ARCH\_PPC)\ \&\&\ defined(\_AIX)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_ppc\_aix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ AIX/PowerPC\ */}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(sparc)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_sparc\_sun\_gcc.h"{}}\ \textcolor{comment}{/*\ SunOS\ sparc\ with\ gcc\ */}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#elif\ defined(\_\_SUNPRO\_C)\ \&\&\ defined(sparc)\ \&\&\ defined(sun)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ iiclude\ "{}platform/switch\_sparc\_sun\_gcc.h"{}\ }\textcolor{comment}{/*\ SunStudio\ on\ amd64\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#elif\ defined(\_\_SUNPRO\_C)\ \&\&\ defined(\_\_amd64\_\_)\ \&\&\ defined(sun)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_amd64\_unix.h"{}}\ \textcolor{comment}{/*\ SunStudio\ on\ amd64\ */}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#elif\ defined(\_\_SUNPRO\_C)\ \&\&\ defined(\_\_i386\_\_)\ \&\&\ defined(sun)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_x86\_unix.h"{}}\ \textcolor{comment}{/*\ SunStudio\ on\ x86\ */}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_s390\_\_)\ \&\&\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_s390\_unix.h"{}}\ \textcolor{comment}{/*\ Linux/S390\ */}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_s390x\_\_)\ \&\&\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_s390\_unix.h"{}}\ \textcolor{comment}{/*\ Linux/S390\ zSeries\ (64-\/bit)\ */}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_arm\_\_)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ ifdef\ \_\_APPLE\_\_}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ include\ <TargetConditionals.h>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ if\ TARGET\_OS\_IPHONE}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ include\ "{}platform/switch\_arm32\_ios.h"{}}\ \textcolor{comment}{/*\ iPhone\ OS\ on\ arm32\ */}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ include\ "{}platform/switch\_arm32\_gcc.h"{}}\ \textcolor{comment}{/*\ gcc\ using\ arm32\ */}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_mips\_\_)\ \&\&\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_mips\_unix.h"{}}\ \textcolor{comment}{/*\ Linux/MIPS\ */}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_aarch64\_\_)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_aarch64\_gcc.h"{}}\ \textcolor{comment}{/*\ Aarch64\ ABI\ */}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_mc68000\_\_)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_m68k\_gcc.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ m68k\ */}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_csky\_\_)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#include\ "{}platform/switch\_csky\_gcc.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ csky\ */}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_riscv)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_riscv\_unix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ RISC-\/V\ */}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_alpha\_\_)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_alpha\_unix.h"{}}\ \textcolor{comment}{/*\ gcc\ on\ DEC\ Alpha\ */}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#elif\ defined(MS\_WIN32)\ \&\&\ defined(\_\_llvm\_\_)\ \&\&\ defined(\_\_aarch64\_\_)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_aarch64\_gcc.h"{}}\ \textcolor{comment}{/*\ LLVM\ Aarch64\ ABI\ for\ Windows\ */}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#elif\ defined(\_\_GNUC\_\_)\ \&\&\ defined(\_\_loongarch64)\ \&\&\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ include\ "{}platform/switch\_loongarch64\_linux.h"{}}\ \textcolor{comment}{/*\ LoongArch64\ */}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

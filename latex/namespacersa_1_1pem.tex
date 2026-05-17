@@ -1,0 +1,77 @@
+\doxysection{rsa.\+pem Namespace Reference}
+\hypertarget{namespacersa_1_1pem}{}\label{namespacersa_1_1pem}\index{rsa.pem@{rsa.pem}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Tuple\+[bytes, bytes]\+ \doxymbox{\hyperlink{namespacersa_1_1pem_a91c24d2827a8322024c56079cfc847fa}{\+\_\+markers}} (Flexi\+Text pem\+\_\+marker)
+\item 
+typing.\+Iterator\+[bytes]\+ \doxymbox{\hyperlink{namespacersa_1_1pem_a780e01d4b0c0eda489f3f4a720fbbd3d}{\+\_\+pem\+\_\+lines}} (bytes contents, bytes pem\+\_\+start, bytes pem\+\_\+end)
+\item 
+bytes \doxymbox{\hyperlink{namespacersa_1_1pem_ada5b676c7dfb3e9f31875bd4b740998e}{load\+\_\+pem}} (Flexi\+Text contents, Flexi\+Text pem\+\_\+marker)
+\item 
+bytes \doxymbox{\hyperlink{namespacersa_1_1pem_a97c2e32b7327d7652f72e2c8a2a99ad8}{save\+\_\+pem}} (bytes contents, Flexi\+Text pem\+\_\+marker)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacersa_1_1pem_a91f73295b83b81f34ce934129e929aed}\label{namespacersa_1_1pem_a91f73295b83b81f34ce934129e929aed} 
+{\bfseries Flexi\+Text} = typing.\+Union\+[str, bytes]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions that load and write PEM-encoded files.\end{DoxyVerb}
+ 
+
+\label{namespacersa_1_1pem_doc-func-members}
+\Hypertarget{namespacersa_1_1pem_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacersa_1_1pem_a91c24d2827a8322024c56079cfc847fa}\index{rsa.pem@{rsa.pem}!\_markers@{\_markers}}
+\index{\_markers@{\_markers}!rsa.pem@{rsa.pem}}
+\doxysubsubsection{\texorpdfstring{\_markers()}{\_markers()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1pem_a91c24d2827a8322024c56079cfc847fa} 
+ typing.\+Tuple\+[bytes, bytes]\+ \+\_\+markers (\begin{DoxyParamCaption}\item[{Flexi\+Text}]{pem\+\_\+marker}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Returns the start and end PEM markers, as bytes.
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1pem_a780e01d4b0c0eda489f3f4a720fbbd3d}\index{rsa.pem@{rsa.pem}!\_pem\_lines@{\_pem\_lines}}
+\index{\_pem\_lines@{\_pem\_lines}!rsa.pem@{rsa.pem}}
+\doxysubsubsection{\texorpdfstring{\_pem\_lines()}{\_pem\_lines()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1pem_a780e01d4b0c0eda489f3f4a720fbbd3d} 
+ typing.\+Iterator\+[bytes]\+ \+\_\+pem\+\_\+lines (\begin{DoxyParamCaption}\item[{bytes}]{contents}{, }\item[{bytes}]{pem\+\_\+start}{, }\item[{bytes}]{pem\+\_\+end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Generator over PEM lines between pem_start and pem_end.\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1pem_ada5b676c7dfb3e9f31875bd4b740998e}\index{rsa.pem@{rsa.pem}!load\_pem@{load\_pem}}
+\index{load\_pem@{load\_pem}!rsa.pem@{rsa.pem}}
+\doxysubsubsection{\texorpdfstring{load\_pem()}{load\_pem()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1pem_ada5b676c7dfb3e9f31875bd4b740998e} 
+ bytes load\+\_\+pem (\begin{DoxyParamCaption}\item[{Flexi\+Text}]{contents}{, }\item[{Flexi\+Text}]{pem\+\_\+marker}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loads a PEM file.
+
+:param contents: the contents of the file to interpret
+:param pem_marker: the marker of the PEM content, such as 'RSA PRIVATE KEY'
+    when your file has '-----BEGIN RSA PRIVATE KEY-----' and
+    '-----END RSA PRIVATE KEY-----' markers.
+
+:return: the base64-decoded content between the start and end markers.
+
+@raise ValueError: when the content is invalid, for example when the start
+    marker cannot be found.
+\end{DoxyVerb}
+ \Hypertarget{namespacersa_1_1pem_a97c2e32b7327d7652f72e2c8a2a99ad8}\index{rsa.pem@{rsa.pem}!save\_pem@{save\_pem}}
+\index{save\_pem@{save\_pem}!rsa.pem@{rsa.pem}}
+\doxysubsubsection{\texorpdfstring{save\_pem()}{save\_pem()}}
+{\footnotesize\ttfamily \label{namespacersa_1_1pem_a97c2e32b7327d7652f72e2c8a2a99ad8} 
+ bytes save\+\_\+pem (\begin{DoxyParamCaption}\item[{bytes}]{contents}{, }\item[{Flexi\+Text}]{pem\+\_\+marker}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Saves a PEM file.
+
+:param contents: the contents to encode in PEM format
+:param pem_marker: the marker of the PEM content, such as 'RSA PRIVATE KEY'
+    when your file has '-----BEGIN RSA PRIVATE KEY-----' and
+    '-----END RSA PRIVATE KEY-----' markers.
+
+:return: the base64-encoded content between the start and end markers, as bytes.
+\end{DoxyVerb}
+ 

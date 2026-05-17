@@ -1,0 +1,1102 @@
+\doxysection{greenlet\+\_\+refs.\+hpp}
+\hypertarget{greenlet__refs_8hpp_source}{}\label{greenlet__refs_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_refs.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_refs.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_REFS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_REFS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ PY\_SSIZE\_T\_CLEAN}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}greenlet\_internal.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}greenlet\_compiler\_compat.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}greenlet\_cpython\_compat.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}greenlet\_exceptions.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__greenlet}{\_greenlet}};}
+\DoxyCodeLine{00012\ \textcolor{keyword}{struct\ }\_PyMainGreenlet;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__greenlet}{\_greenlet}}\ PyGreenlet;}
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ PyTypeObject\ PyGreenlet\_Type;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifdef\ \ GREENLET\_USE\_STDIO}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ }std::cerr;}
+\DoxyCodeLine{00021\ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{namespace\ }refs}
+\DoxyCodeLine{00029\ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Type\ checkers\ throw\ a\ TypeError\ if\ the\ argument\ is\ not}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ null,\ and\ isn't\ of\ the\ required\ Python\ type.}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (We\ can't\ use\ most\ of\ the\ defined\ type\ checkers}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ like\ PyList\_Check,\ etc,\ directly,\ because\ they\ are}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ implemented\ as\ macros.)}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ void\ (*TypeChecker)(\textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ NoOpChecker(\textcolor{keywordtype}{void}*)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ GreenletChecker(\textcolor{keywordtype}{void}\ *p)}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ PyTypeObject*\ typ\ =\ Py\_TYPE(p);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fast,\ common\ path.\ (PyObject\_TypeCheck\ is\ a\ macro\ or}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ static\ inline\ function,\ and\ it\ also\ does\ a}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ direct\ comparison\ of\ the\ type\ pointers,\ but\ its\ fast}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ path\ only\ handles\ one\ type)}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (typ\ ==\ \&PyGreenlet\_Type)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!PyObject\_TypeCheck(p,\ \&PyGreenlet\_Type))\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ err(\textcolor{stringliteral}{"{}GreenletChecker:\ Expected\ any\ type\ of\ greenlet,\ not\ "{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\ +=\ Py\_TYPE(p)-\/>tp\_name;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ TypeError(err);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ MainGreenletExactChecker(\textcolor{keywordtype}{void}\ *p);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ TypeChecker>}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{PyObjectPointer}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker>}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedReference}{OwnedReference}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker>}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedReference}{BorrowedReference}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedReference}{BorrowedReference<PyObject,\ NoOpChecker>}}\ BorrowedObject;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedReference}{OwnedReference<PyObject,\ NoOpChecker>}}\ OwnedObject;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{ImmortalObject}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalString}{ImmortalString}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__OwnedGreenlet}{\_OwnedGreenlet}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__OwnedGreenlet}{\_OwnedGreenlet<PyGreenlet,\ GreenletChecker>}}\ OwnedGreenlet;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__OwnedGreenlet}{\_OwnedGreenlet<PyGreenlet,\ MainGreenletExactChecker>}}\ OwnedMainGreenlet;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__BorrowedGreenlet}{\_BorrowedGreenlet}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__BorrowedGreenlet}{\_BorrowedGreenlet<PyGreenlet,\ GreenletChecker>}}\ BorrowedGreenlet;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ ContextExactChecker(\textcolor{keywordtype}{void}\ *p)}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!PyContext\_CheckExact(p))\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ TypeError(}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}greenlet\ context\ must\ be\ a\ contextvars.Context\ or\ None"{}}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedReference}{OwnedReference<PyObject,\ ContextExactChecker>}}\ OwnedContext;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{namespace\ }refs\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ A\ set\ of\ classes\ to\ make\ reference\ counting\ rules\ in\ python}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ code\ explicit.}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Rules\ of\ use:}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ (1)\ Functions\ returning\ a\ new\ reference\ that\ the\ caller\ of\ the}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//\ function\ is\ expected\ to\ dispose\ of\ should\ return\ a}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}OwnedObject``\ object.\ This\ object\ automatically\ releases\ its}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ reference\ when\ it\ goes\ out\ of\ scope.\ It\ works\ like\ a\ \`{}\`{}std::shared\_ptr``}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ and\ can\ be\ copied\ or\ used\ as\ a\ function\ parameter\ (but\ don't\ do}}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ that).\ Note\ that\ constructing\ a\ \`{}\`{}OwnedObject``\ from\ a}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ PyObject*\ steals\ the\ reference.}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{//\ (2)\ Parameters\ to\ functions\ should\ be\ either\ a}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}OwnedObject\&``,\ or,\ more\ generally,\ a\ \`{}\`{}PyObjectPointer\&``.}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ If\ the\ function\ needs\ to\ create\ its\ own\ new\ reference,\ it\ can}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ do\ so\ by\ copying\ to\ a\ local\ \`{}\`{}OwnedObject``.}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ (3)\ Functions\ returning\ an\ existing\ pointer\ that\ is\ NOT}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ incref'd,\ and\ which\ the\ caller\ MUST\ NOT\ decref,}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ should\ return\ a\ \`{}\`{}BorrowedObject``.}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ For\ a\ class\ with\ a\ single\ pointer\ member,\ whose\ constructor}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{//\ does\ nothing\ but\ copy\ a\ pointer\ parameter\ into\ the\ member,\ and}}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ which\ can\ then\ be\ converted\ back\ to\ the\ pointer\ type,\ compilers}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ generate\ code\ that's\ the\ same\ as\ just\ passing\ the\ pointer.}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ That\ is,\ func(BorrowedObject\ x)\ called\ like\ \`{}\`{}PyObject*\ p\ =}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ ...;\ f(p)``\ has\ 0\ overhead.\ Similarly,\ they\ "{}unpack"{}\ to\ the}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ pointer\ type\ with\ 0\ overhead.}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ If\ there\ are\ no\ virtual\ functions,\ no\ complex\ inheritance\ (maybe?)\ and}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ no\ destructor,\ these\ can\ be\ directly\ used\ as\ parameters\ in}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Python\ callbacks\ like\ tp\_init:\ the\ layout\ is\ the\ same\ as\ a}}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ single\ pointer.\ Only\ subclasses\ with\ trivial\ constructors\ that}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ do\ nothing\ but\ set\ the\ single\ pointer\ member\ are\ safe\ to\ use}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ that\ way.}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ This\ is\ the\ base\ class\ for\ things\ that\ can\ be\ done\ with\ a}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ PyObject\ pointer.\ It\ assumes\ nothing\ about\ memory\ management.}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Nothing\ is\ virtual,\ so\ subclasses\ shouldn't\ add\ new}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ storage\ fields\ or\ try\ to\ override\ these\ methods.}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T=PyObject,\ TypeChecker\ TC=NoOpChecker>}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{class\ }PyObjectPointer}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ T\ PyType;}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ T*\ p;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ PyObjectPointer(T*\ it=\textcolor{keyword}{nullptr})\ :\ p(it)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ TC(p);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ don't\ allow\ automatic\ casting\ to\ PyObject*\ at\ this}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ level,\ because\ then\ we\ could\ be\ passed\ to\ Py\_DECREF/INCREF,}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ but\ we\ want\ nothing\ to\ do\ with\ memory\ management.\ If\ you}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ know\ better,\ then\ you\ can\ use\ the\ get()\ method,\ like\ on\ a}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::shared\_ptr.\ Except\ we\ name\ it\ borrow()\ to\ clarify\ that}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ is\ a\ reference-\/tracked\ object,\ the\ pointer\ you\ get}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ back\ will\ go\ away\ when\ the\ object\ does.}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ This\ should\ probably\ not\ exist\ here,\ but\ be\ moved}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ down\ to\ relevant\ sub-\/types.}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ T*\ borrow()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ PyObject*\ borrow\_o()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ T*\ operator-\/>()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_None()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p\ ==\ Py\_None;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ PyObject*\ acquire\_or\_None()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ result\ =\ this-\/>p\ ?\ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p)\ :\ Py\_None;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_INCREF(result);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \textcolor{keyword}{operator}\ bool()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p\ !=\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ Py\_ssize\_t\ REFCNT()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p\ ?\ Py\_REFCNT(p)\ :\ -\/42;}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ PyTypeObject*\ TYPE()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p\ ?\ Py\_TYPE(p)\ :\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyStr()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ as\_str()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyGetAttr(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{ImmortalObject}}\&\ name)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyRequireAttr(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyRequireAttr(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalString}{ImmortalString}}\&\ name)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyCall(\textcolor{keyword}{const}\ BorrowedObject\&\ arg)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyCall(PyGreenlet*\ arg)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyCall(PyObject*\ arg)\ \textcolor{keyword}{const}\ ;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PyObject\_Call(this,\ args,\ kwargs);}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyCall(\textcolor{keyword}{const}\ BorrowedObject\ args,}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BorrowedObject\ kwargs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyCall(\textcolor{keyword}{const}\ OwnedObject\&\ args,}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedObject\&\ kwargs)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_set\_raw\_pointer(\textcolor{keywordtype}{void}*\ t)}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ TC(t);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(t);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \_get\_raw\_pointer()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00243\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \};}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#ifdef\ GREENLET\_USE\_STDIO}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ std::ostream\&\ operator<<(std::ostream\&\ os,\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{PyObjectPointer<T,\ TC>}}\&\ s)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::type\_info\&\ t\ =\ \textcolor{keyword}{typeid}(s);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ t.name()}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}(addr="{}}\ <<\ s.borrow()}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ refcnt="{}}\ <<\ s.REFCNT()}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ value="{}}\ <<\ s.as\_str()}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ os;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ PyObjectPointer<T,\ TC>\&\ lhs,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{const}\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.borrow\_o()\ ==\ rhs;}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC,\ \textcolor{keyword}{typename}\ X,\ TypeChecker\ XC>}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ operator==(\textcolor{keyword}{const}\ PyObjectPointer<T,\ TC>\&\ lhs,\ \textcolor{keyword}{const}\ PyObjectPointer<X,\ XC>\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00271\ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.borrow\_o()\ ==\ rhs.borrow\_o();}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC,\ \textcolor{keyword}{typename}\ X,\ TypeChecker\ XC>}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{PyObjectPointer<T,\ TC>}}\&\ lhs,}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{PyObjectPointer<X,\ XC>}}\&\ rhs)\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lhs.borrow\_o()\ !=\ rhs.borrow\_o();}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T=PyObject,\ TypeChecker\ TC=NoOpChecker>}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{class\ }OwnedReference\ :\ \textcolor{keyword}{public}\ PyObjectPointer<T,\ TC>}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }OwnedList;}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ OwnedReference(T*\ it)\ :\ PyObjectPointer<T,\ TC>(it)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructors}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ OwnedReference<T,\ TC>\ consuming(PyObject*\ p)}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedReference<T,\ TC>(\textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(p));}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ OwnedReference<T,\ TC>\ owning(T*\ p)}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>\ result(p);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(result.p);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ OwnedReference()\ :\ PyObjectPointer<T,\ TC>(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ OwnedReference(\textcolor{keyword}{const}\ PyObjectPointer<>\&\ other)}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyObjectPointer<T,\ TC>(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ op\ =\ other.borrow();}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ TC(op);}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ other.borrow();}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(this-\/>p);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ It\ would\ be\ good\ to\ make\ use\ of\ the\ C++11\ distinction}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ between\ move\ and\ copy\ operations,\ e.g.,\ constructing\ from\ a}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pointer\ should\ be\ a\ move\ operation.}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ the\ common\ case\ of\ \`{}\`{}OwnedObject\ x\ =\ Py\_SomeFunction()``,}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ call\ to\ the\ copy\ constructor\ will\ be\ elided\ completely.}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ OwnedReference(\textcolor{keyword}{const}\ OwnedReference<T,\ TC>\&\ other)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyObjectPointer<T,\ TC>(other.p)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(this-\/>p);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ OwnedReference<PyObject>\ None()}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_INCREF(Py\_None);}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedReference<PyObject>(Py\_None);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ assign\ from\ exactly\ our\ type\ without\ any\ extra\ checking}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ OwnedReference<T,\ TC>\&\ other)}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(other.p);}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ T*\ tmp\ =\ this-\/>p;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ other.p;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(tmp);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedReference}{BorrowedReference<T,\ TC>}}\ other)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>operator=(other.borrow());}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>\&\ operator=(T*\ \textcolor{keyword}{const}\ other)}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ TC(other);}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(other);}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ tmp\ =\ this-\/>p;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ other;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(tmp);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ can\ assign\ from\ an\ arbitrary\ reference\ type}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ it\ passes\ our\ check.}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ X,\ TypeChecker\ XC>}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ OwnedReference<X,\ XC>\&\ other)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ X*\ op\ =\ other.borrow();}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ TC(op);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>operator=(\textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(op));}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ steal(T*\ other)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ assert(this-\/>p\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ TC(other);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ other;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ T*\ relinquish\_ownership()}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ result\ =\ this-\/>p;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ T*\ acquire()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00388\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ a\ new\ reference.}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ This\ may\ go\ away\ when\ we\ have\ reference\ objects}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ throughout\ the\ code.}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XINCREF(this-\/>p);}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nothing\ else\ declares\ a\ destructor,\ we're\ the\ leaf,\ so\ we}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ should\ be\ able\ to\ get\ away\ without\ virtual.}}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \string~OwnedReference()}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_CLEAR(this-\/>p);}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ CLEAR()}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_CLEAR(this-\/>p);}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ assert(this-\/>p\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordtype}{void}\ operator<<=(PyObject*\&\ target,\ OwnedObject\&\ o)}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ target\ =\ o.relinquish\_ownership();}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{class\ }NewReference\ :\ \textcolor{keyword}{public}\ OwnedObject}
+\DoxyCodeLine{00417\ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(NewReference);}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Consumes\ the\ reference.\ Only\ use\ this}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ API\ return\ values.}}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ NewReference(PyObject*\ it)\ :\ OwnedObject(it)}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \};}
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00428\ \ \ \ \ \textcolor{keyword}{class\ }NewDictReference\ :\ \textcolor{keyword}{public}\ NewReference}
+\DoxyCodeLine{00429\ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(NewDictReference);}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ NewDictReference()\ :\ NewReference(PyDict\_New())}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>p)\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}();}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SetItem(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ key,\ PyObject*\ value)}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ Require(PyDict\_SetItemString(this-\/>p,\ key,\ value));}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ SetItem(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyObjectPointer}{PyObjectPointer<>}}\&\ key,\ PyObject*\ value)}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ Require(PyDict\_SetItem(this-\/>p,\ key.borrow\_o(),\ value));}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \};}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T=PyGreenlet,\ TypeChecker\ TC=GreenletChecker>}
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keyword}{class\ }\_OwnedGreenlet:\ \textcolor{keyword}{public}\ OwnedReference<T,\ TC>}
+\DoxyCodeLine{00453\ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \_OwnedGreenlet(T*\ it)\ :\ OwnedReference<T,\ TC>(it)}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \_OwnedGreenlet()\ :\ OwnedReference<T,\ TC>()}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \_OwnedGreenlet(\textcolor{keyword}{const}\ \_OwnedGreenlet<T,\ TC>\&\ other)\ :\ OwnedReference<T,\ TC>(other)}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \_OwnedGreenlet(OwnedMainGreenlet\&\ other)\ :}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>(\textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(other.acquire()))}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \_OwnedGreenlet(\textcolor{keyword}{const}\ BorrowedGreenlet\&\ other);}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Steals\ a\ reference.}}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \_OwnedGreenlet<T,\ TC>\ consuming(PyGreenlet*\ it)}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_OwnedGreenlet<T,\ TC>(\textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(it));}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \_OwnedGreenlet<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ OwnedGreenlet\&\ other)}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>operator=(other.borrow());}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \_OwnedGreenlet<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ BorrowedGreenlet\&\ other);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \_OwnedGreenlet<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ OwnedMainGreenlet\&\ other)}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ PyGreenlet*\ owned\ =\ other.acquire();}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(this-\/>p);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ \textcolor{keyword}{reinterpret\_cast<}T*\textcolor{keyword}{>}(owned);}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \_OwnedGreenlet<T,\ TC>\&\ operator=(T*\ \textcolor{keyword}{const}\ other)}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedReference<T,\ TC>::operator=(other);}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ T*\ relinquish\_ownership()}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ T*\ result\ =\ this-\/>p;}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ PyObject*\ relinquish\_ownership\_o()}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(relinquish\_ownership());}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}}*\ operator-\/>()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}}*()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00512\ \ \ \ \ \};}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T=PyObject,\ TypeChecker\ TC=NoOpChecker>}
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keyword}{class\ }BorrowedReference\ :\ \textcolor{keyword}{public}\ PyObjectPointer<T,\ TC>}
+\DoxyCodeLine{00516\ \ \ \ \ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Allow\ implicit\ creation\ from\ PyObject*\ pointers\ as\ we}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ transition\ to\ using\ these\ classes.\ Also\ allow\ automatic}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ conversion\ to\ PyObject*\ for\ passing\ to\ C\ API\ calls\ and\ even}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ Py\_INCREF/DECREF,\ because\ we\ ourselves\ do\ no\ memory\ management.}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ BorrowedReference(T*\ it)\ :\ PyObjectPointer<T,\ TC>(it)}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ BorrowedReference(\textcolor{keyword}{const}\ PyObjectPointer<T>\&\ ref)\ :\ PyObjectPointer<T,\ TC>(ref.borrow())}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ BorrowedReference()\ :\ PyObjectPointer<T,\ TC>(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ T*()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00535\ \ \ \ \ \};}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1BorrowedReference}{BorrowedReference<PyObject>}}\ BorrowedObject;}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{comment}{//typedef\ BorrowedReference<PyGreenlet>\ BorrowedGreenlet;}}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T=PyGreenlet,\ TypeChecker\ TC=GreenletChecker>}
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{class\ }\_BorrowedGreenlet\ :\ \textcolor{keyword}{public}\ BorrowedReference<T,\ TC>}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \_BorrowedGreenlet()\ :}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ BorrowedReference<T,\ TC>(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \_BorrowedGreenlet(T*\ it)\ :}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ BorrowedReference<T,\ TC>(it)}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \_BorrowedGreenlet(\textcolor{keyword}{const}\ BorrowedObject\&\ it);}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \_BorrowedGreenlet(\textcolor{keyword}{const}\ OwnedGreenlet\&\ it)\ :}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ BorrowedReference<T,\ TC>(it.borrow())}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \_BorrowedGreenlet<T,\ TC>\&\ operator=(\textcolor{keyword}{const}\ BorrowedObject\&\ other);}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ get\ one\ of\ these\ for\ PyGreenlet,\ but\ one\ for\ PyObject}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ handy\ as\ well}}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ PyObject*()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p);}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}}*\ operator-\/>()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet}{Greenlet}}*()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00568\ \ \ \ \ \};}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1__BorrowedGreenlet}{\_BorrowedGreenlet<PyGreenlet>}}\ BorrowedGreenlet;}
+\DoxyCodeLine{00571\ }
+\DoxyCodeLine{00572\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00573\ \ \ \ \ \_OwnedGreenlet<T,\ TC>::\_OwnedGreenlet(\textcolor{keyword}{const}\ BorrowedGreenlet\&\ other)}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedReference}{OwnedReference}}<T,\ TC>(reinterpret\_cast<T*>(other.borrow()))}
+\DoxyCodeLine{00575\ \ \ \ \ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ Py\_XINCREF(this-\/>p);}
+\DoxyCodeLine{00577\ \ \ \ \ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \textcolor{keyword}{class\ }BorrowedMainGreenlet}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{public}\ \_BorrowedGreenlet<PyGreenlet,\ MainGreenletExactChecker>}
+\DoxyCodeLine{00582\ \ \ \ \ \{}
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ BorrowedMainGreenlet(\textcolor{keyword}{const}\ OwnedMainGreenlet\&\ it)\ :}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \_BorrowedGreenlet<PyGreenlet,\ MainGreenletExactChecker>(it.borrow())}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ BorrowedMainGreenlet(PyGreenlet*\ it=\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \_BorrowedGreenlet<PyGreenlet,\ MainGreenletExactChecker>(it)}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00590\ \ \ \ \ \};}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00593\ \ \ \ \ \_OwnedGreenlet<T,\ TC>\&\ \_OwnedGreenlet<T,\ TC>::operator=(\textcolor{keyword}{const}\ BorrowedGreenlet\&\ other)}
+\DoxyCodeLine{00594\ \ \ \ \ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>operator=(other.borrow());}
+\DoxyCodeLine{00596\ \ \ \ \ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keyword}{class\ }ImmortalObject\ :\ \textcolor{keyword}{public}\ PyObjectPointer<>}
+\DoxyCodeLine{00600\ \ \ \ \ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ G\_NO\_ASSIGNMENT\_OF\_CLS(ImmortalObject);}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ ImmortalObject(PyObject*\ it)\ :\ PyObjectPointer<>(it)}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00607\ }
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ ImmortalObject(\textcolor{keyword}{const}\ ImmortalObject\&\ other)}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ :\ PyObjectPointer<>(other.p)}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ ImmortalObject\&\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject_a70a83497aa1a39c18988e53232a5acab}{operator=}}(PyObject*\ it)}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ assert(this-\/>p\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ it;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{ImmortalObject}}\ consuming(PyObject*\ it)}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{ImmortalObject}}(it);}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00629\ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ PyObject*()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \ \ \};}
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{keyword}{class\ }ImmortalString\ :\ \textcolor{keyword}{public}\ ImmortalObject}
+\DoxyCodeLine{00637\ \ \ \ \ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(ImmortalString);}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str;}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ ImmortalString(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ str)\ :}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ ImmortalObject(str\ ?\ Require(PyUnicode\_InternFromString(str))\ :\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>str\ =\ str;}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00647\ }
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ ImmortalString\&\ operator=(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ str)}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>p)\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ Require(PyUnicode\_InternFromString(str));}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>str\ =\ str;}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(this-\/>str\ ==\ str);}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ std::string()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00661\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>str;}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \ \ \};}
+\DoxyCodeLine{00666\ }
+\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keyword}{class\ }ImmortalEventName\ :\ \textcolor{keyword}{public}\ ImmortalString}
+\DoxyCodeLine{00668\ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(ImmortalEventName);}
+\DoxyCodeLine{00671\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ ImmortalEventName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ str)\ :\ ImmortalString(str)}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00674\ \ \ \ \ \};}
+\DoxyCodeLine{00675\ }
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keyword}{class\ }ImmortalException\ :\ \textcolor{keyword}{public}\ ImmortalObject}
+\DoxyCodeLine{00677\ \ \ \ \ \{}
+\DoxyCodeLine{00678\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(ImmortalException);}
+\DoxyCodeLine{00680\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ ImmortalException(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ name,\ PyObject*\ base=\textcolor{keyword}{nullptr})\ :}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ ImmortalObject(name}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Python\ 2.7\ isn't\ const\ correct}}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ Require(PyErr\_NewException((\textcolor{keywordtype}{char}*)name,\ base,\ \textcolor{keyword}{nullptr}))}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \{\}}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ PyExceptionMatches()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00689\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyErr\_ExceptionMatches(this-\/>p)\ >\ 0;}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \ \ \ \ \};}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00696\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyStr()\ const\ noexcept}
+\DoxyCodeLine{00697\ \ \ \ \ \{}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!this-\/>p)\ \{}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject();}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(PyObject\_Str(\textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p)));}
+\DoxyCodeLine{00702\ \ \ \ \ \}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ std::string\ PyObjectPointer<T,\ TC>::as\_str()\ const\ noexcept}
+\DoxyCodeLine{00706\ \ \ \ \ \{}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NOTE:\ This\ is\ not\ Python\ exception\ safe.}}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>p)\ \{}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ Python\ APIs\ return\ a\ cached\ char*\ value\ that's\ only\ valid}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ long\ as\ the\ original\ object\ stays\ around,\ and\ we're}}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ about\ to\ (probably)\ toss\ it.\ Hence\ the\ copy\ to\ std::string.}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedObject\ py\_str\ =\ this-\/>PyStr();}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!py\_str)\ \{}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}(nil)"{}};}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyUnicode\_AsUTF8(py\_str.borrow());}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}(nil)"{}};}
+\DoxyCodeLine{00719\ \ \ \ \ \}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyGetAttr(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{ImmortalObject}}\&\ name)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00723\ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(PyObject\_GetAttr(\textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p),\ name));}
+\DoxyCodeLine{00726\ \ \ \ \ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00729\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyRequireAttr(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ name)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00730\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(Require(PyObject\_GetAttrString(this-\/>p,\ name),\ name));}
+\DoxyCodeLine{00733\ \ \ \ \ \}}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00736\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyRequireAttr(\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalString}{ImmortalString}}\&\ name)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00737\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(Require(}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\_GetAttr(}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(this-\/>p),}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{00746\ \ \ \ \ \}}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00749\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyCall(\textcolor{keyword}{const}\ BorrowedObject\&\ arg)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00750\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>PyCall(arg.borrow());}
+\DoxyCodeLine{00752\ \ \ \ \ \}}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00754\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00755\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyCall(PyGreenlet*\ arg)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00756\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>PyCall(\textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(arg));}
+\DoxyCodeLine{00758\ \ \ \ \ \}}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyCall(PyObject*\ arg)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00762\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(PyObject\_CallFunctionObjArgs(this-\/>p,\ arg,\ NULL));}
+\DoxyCodeLine{00765\ \ \ \ \ \}}
+\DoxyCodeLine{00766\ }
+\DoxyCodeLine{00767\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00768\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyCall(\textcolor{keyword}{const}\ BorrowedObject\ args,}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ BorrowedObject\ kwargs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00770\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(PyObject\_Call(this-\/>p,\ args,\ kwargs));}
+\DoxyCodeLine{00773\ \ \ \ \ \}}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,\ TypeChecker\ TC>}
+\DoxyCodeLine{00776\ \ \ \ \ \textcolor{keyword}{inline}\ OwnedObject\ PyObjectPointer<T,\ TC>::PyCall(\textcolor{keyword}{const}\ OwnedObject\&\ args,}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ OwnedObject\&\ kwargs)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00778\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ assert(this-\/>p);}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OwnedObject::consuming(PyObject\_Call(this-\/>p,\ args.borrow(),\ kwargs.borrow()));}
+\DoxyCodeLine{00781\ \ \ \ \ \}}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \ \ \ \ G\_FP\_TMPL\_STATIC\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00784\ \ \ \ \ ListChecker(\textcolor{keywordtype}{void}\ *\ p)}
+\DoxyCodeLine{00785\ \ \ \ \ \{}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!p)\ \{}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!PyList\_Check(p))\ \{}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ TypeError(\textcolor{stringliteral}{"{}Expected\ a\ list"{}});}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00792\ \ \ \ \ \}}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{keyword}{class\ }OwnedList\ :\ \textcolor{keyword}{public}\ OwnedReference<PyObject,\ ListChecker>}
+\DoxyCodeLine{00795\ \ \ \ \ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ G\_NO\_ASSIGNMENT\_OF\_CLS(OwnedList);}
+\DoxyCodeLine{00798\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ Would\ like\ to\ use\ move.}}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ OwnedList(\textcolor{keyword}{const}\ OwnedObject\&\ other)}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ :\ OwnedReference<PyObject,\ ListChecker>(other)}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00804\ }
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ OwnedList\&\ operator=(\textcolor{keyword}{const}\ OwnedObject\&\ other)}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (other\ \&\&\ PyList\_Check(other.p))\ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Valid\ list.\ Own\ a\ new\ reference\ to\ it,\ discard\ the}}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reference\ to\ what\ we\ did\ own.}}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ new\_ptr\ =\ other.p;}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_INCREF(new\_ptr);}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(this-\/>p);}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ new\_ptr;}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Either\ the\ other\ object\ was\ NULL\ (an\ error)\ or\ it}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ wasn't\ a\ list.\ Either\ way,\ we're\ now\ invalidated.}}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(this-\/>p);}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ empty()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00825\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyList\_GET\_SIZE(p)\ ==\ 0;}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ Py\_ssize\_t\ size()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00830\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyList\_GET\_SIZE(p);}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ BorrowedObject\ at(\textcolor{keyword}{const}\ Py\_ssize\_t\ index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00835\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ PyList\_GET\_ITEM(p,\ index);}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ clear()}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ PyList\_SetSlice(p,\ 0,\ PyList\_GET\_SIZE(p),\ NULL);}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00843\ \ \ \ \ \};}
+\DoxyCodeLine{00844\ }
+\DoxyCodeLine{00845\ \ \ \ \ \textcolor{comment}{//\ Use\ this\ to\ represent\ the\ module\ object\ used\ at\ module\ init}}
+\DoxyCodeLine{00846\ \ \ \ \ \textcolor{comment}{//\ time.}}
+\DoxyCodeLine{00847\ \ \ \ \ \textcolor{comment}{//\ This\ could\ either\ be\ a\ borrowed\ (Py2)\ or\ new\ (Py3)\ reference;}}
+\DoxyCodeLine{00848\ \ \ \ \ \textcolor{comment}{//\ either\ way,\ we\ don't\ want\ to\ do\ any\ memory\ management}}
+\DoxyCodeLine{00849\ \ \ \ \ \textcolor{comment}{//\ on\ it\ here,\ Python\ itself\ will\ handle\ that.}}
+\DoxyCodeLine{00850\ \ \ \ \ \textcolor{comment}{//\ XXX:\ Actually,\ that's\ not\ quite\ right.\ On\ Python\ 3,\ if\ an}}
+\DoxyCodeLine{00851\ \ \ \ \ \textcolor{comment}{//\ exception\ occurs\ before\ we\ return\ to\ the\ interpreter,\ this\ will}}
+\DoxyCodeLine{00852\ \ \ \ \ \textcolor{comment}{//\ leak;\ but\ all\ previous\ versions\ also\ had\ that\ problem.}}
+\DoxyCodeLine{00853\ \ \ \ \ \textcolor{keyword}{class\ }CreatedModule\ :\ \textcolor{keyword}{public}\ PyObjectPointer<>}
+\DoxyCodeLine{00854\ \ \ \ \ \{}
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(CreatedModule);}
+\DoxyCodeLine{00857\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ CreatedModule(PyModuleDef\&\ mod\_def)\ :\ PyObjectPointer<>(}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ Require(PyModule\_Create(\&mod\_def)))}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PyAddObject():\ Add\ a\ reference\ to\ the\ object\ to\ the\ module.}}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ On\ return,\ the\ reference\ count\ of\ the\ object\ is\ unchanged.}}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ docs\ warn\ that\ PyModule\_AddObject\ only\ steals\ the}}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reference\ on\ success,\ so\ if\ it\ fails\ after\ we've\ incref'd}}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ or\ allocated,\ we're\ responsible\ for\ the\ decref.}}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyAddObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ new\_bool)}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ OwnedObject\ p\ =\ OwnedObject::consuming(Require(PyBool\_FromLong(new\_bool)));}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>PyAddObject(name,\ p);}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00874\ }
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyAddObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ OwnedObject\&\ new\_object)}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ caller\ already\ owns\ a\ reference\ they\ will\ decref}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ when\ their\ variable\ goes\ out\ of\ scope,\ we\ still\ need\ to}}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ incref/decref.}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>PyAddObject(name,\ new\_object.borrow());}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00882\ }
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyAddObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ ImmortalObject\&\ new\_object)}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>PyAddObject(name,\ new\_object.borrow());}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00887\ }
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyAddObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ PyTypeObject\&\ type)}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>PyAddObject(name,\ \textcolor{keyword}{reinterpret\_cast<}PyObject*\textcolor{keyword}{>}(\&type));}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00892\ }
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyAddObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ PyObject*\ new\_object)}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_INCREF(new\_object);}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Require(PyModule\_AddObject(this-\/>p,\ name,\ new\_object));}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (\textcolor{keyword}{const}\ \doxymbox{\hyperlink{classPyErrOccurred}{PyErrOccurred}}\&)\ \{}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_DECREF(p);}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00904\ \ \ \ \ \};}
+\DoxyCodeLine{00905\ }
+\DoxyCodeLine{00906\ \ \ \ \ \textcolor{keyword}{class\ }PyErrFetchParam\ :\ \textcolor{keyword}{public}\ PyObjectPointer<>}
+\DoxyCodeLine{00907\ \ \ \ \ \{}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Not\ an\ owned\ object,\ because\ we\ can't\ be\ initialized\ with}}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ one,\ and\ we\ only\ sometimes\ acquire\ ownership.}}
+\DoxyCodeLine{00910\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(PyErrFetchParam);}
+\DoxyCodeLine{00912\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ allow\ declaring\ these\ and\ passing\ them\ to}}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PyErr\_Fetch\ we\ implement\ the\ empty\ constructor,}}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ the\ address\ operator.}}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ PyErrFetchParam()\ :\ PyObjectPointer<>(\textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00919\ }
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ PyObject**\ operator\&()}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&this-\/>p;}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00924\ }
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ allows\ us\ to\ pass\ one\ directly\ without\ the\ \&,}}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BUT\ it\ has\ higher\ precedence\ than\ the\ bool\ operator}}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ it's\ not\ explicit.}}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ PyObject**()}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&this-\/>p;}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00932\ }
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ don't\ want\ to\ be\ able\ to\ pass\ these\ to\ Py\_DECREF\ and}}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ such\ so\ we\ don't\ have\ the\ implicit\ PyObject*\ conversion.}}
+\DoxyCodeLine{00935\ }
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ PyObject*\ relinquish\_ownership()}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ PyObject*\ result\ =\ this-\/>p;}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>p\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00942\ }
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \string~PyErrFetchParam()}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ Py\_XDECREF(p);}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00947\ \ \ \ \ \};}
+\DoxyCodeLine{00948\ }
+\DoxyCodeLine{00949\ \ \ \ \ \textcolor{keyword}{class\ }OwnedErrPiece\ :\ \textcolor{keyword}{public}\ OwnedObject}
+\DoxyCodeLine{00950\ \ \ \ \ \{}
+\DoxyCodeLine{00951\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00952\ }
+\DoxyCodeLine{00953\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unlike\ OwnedObject,\ this\ increments\ the\ refcount.}}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ OwnedErrPiece(PyObject*\ p=\textcolor{keyword}{nullptr})\ :\ OwnedObject(p)}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>acquire();}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00959\ }
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ PyObject**\ operator\&()}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&this-\/>p;}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00964\ }
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{operator}\ PyObject*()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>p;}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00969\ }
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \textcolor{keyword}{operator}\ PyTypeObject*()\ \textcolor{keyword}{const}}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}PyTypeObject*\textcolor{keyword}{>}(this-\/>p);}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00974\ \ \ \ \ \};}
+\DoxyCodeLine{00975\ }
+\DoxyCodeLine{00976\ \ \ \ \ \textcolor{keyword}{class\ }PyErrPieces}
+\DoxyCodeLine{00977\ \ \ \ \ \{}
+\DoxyCodeLine{00978\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedErrPiece}{OwnedErrPiece}}\ type;}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedErrPiece}{OwnedErrPiece}}\ instance;}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1OwnedErrPiece}{OwnedErrPiece}}\ traceback;}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ restored;}
+\DoxyCodeLine{00983\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Takes\ new\ references;\ if\ we're\ destroyed\ before}}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ restoring\ the\ error,\ we\ drop\ the\ references.}}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ PyErrPieces(PyObject*\ t,\ PyObject*\ v,\ PyObject*\ tb)\ :}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ type(t),}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ instance(v),}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ traceback(tb),}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ restored(0)}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>normalize();}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00994\ }
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ PyErrPieces()\ :}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ restored(0)}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PyErr\_Fetch\ transfers\ ownership\ to\ us,\ so}}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ don't\ actually\ need\ to\ INCREF;\ but\ we\ *do*}}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ need\ to\ DECREF\ if\ we're\ not\ restored.}}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1PyErrFetchParam}{PyErrFetchParam}}\ t,\ v,\ tb;}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Fetch(\&t,\ \&v,\ \&tb);}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ type.steal(t.relinquish\_ownership());}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ instance.steal(v.relinquish\_ownership());}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ traceback.steal(tb.relinquish\_ownership());}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01007\ }
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ PyErrRestore()}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ can\ only\ do\ this\ once}}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ assert(!this-\/>restored);}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>restored\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Restore(}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>type.relinquish\_ownership(),}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>instance.relinquish\_ownership(),}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>traceback.relinquish\_ownership());}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ assert(!this-\/>type\ \&\&\ !this-\/>instance\ \&\&\ !this-\/>traceback);}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01019\ }
+\DoxyCodeLine{01020\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ normalize()}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First,\ check\ the\ traceback\ argument,\ replacing\ None,}}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ with\ NULL}}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (traceback.is\_None())\ \{}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ traceback\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01028\ }
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (traceback\ \&\&\ !PyTraceBack\_Check(traceback.borrow()))\ \{}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}(PyExc\_TypeError,}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}throw()\ third\ argument\ must\ be\ a\ traceback\ object"{}});}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01033\ }
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (PyExceptionClass\_Check(type))\ \{}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ just\ had\ a\ type,\ we'll\ now\ have\ a\ type\ and}}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ instance.}}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ type's\ refcount\ will\ have\ gone\ up\ by\ one}}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ because\ of\ the\ instance\ and\ the\ instance\ will\ have}}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ refcount\ of\ one.\ Either\ way,\ we\ owned,\ and\ still}}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ own,\ exactly\ one\ reference.}}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_NormalizeException(\&type,\ \&instance,\ \&traceback);}
+\DoxyCodeLine{01042\ }
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (PyExceptionInstance\_Check(type))\ \{}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Raising\ an\ instance\ -\/-\/-\/\ usually\ that\ means\ an}}
+\DoxyCodeLine{01046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ object\ that\ is\ a\ subclass\ of\ BaseException,\ but\ on}}
+\DoxyCodeLine{01047\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Python\ 2,\ that\ can\ also\ mean\ an\ arbitrary\ old-\/style}}
+\DoxyCodeLine{01048\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ object.\ The\ value\ should\ be\ a\ dummy.\ */}}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (instance\ \&\&\ !instance.is\_None())\ \{}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}(}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyExc\_TypeError,}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}instance\ exception\ may\ not\ have\ a\ separate\ value"{}});}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Normalize\ to\ raise\ <class>,\ <instance>\ */}}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>instance\ =\ this-\/>type;}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>type\ =\ PyExceptionInstance\_Class(instance.borrow());}
+\DoxyCodeLine{01057\ }
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{01059\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ It\ would\ be\ tempting\ to\ do\ this:}}
+\DoxyCodeLine{01060\ \textcolor{comment}{}}
+\DoxyCodeLine{01061\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_ssize\_t\ type\_count\ =\ Py\_REFCNT(Py\_TYPE(instance.borrow()));}}
+\DoxyCodeLine{01062\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>type\ =\ PyExceptionInstance\_Class(instance.borrow());}}
+\DoxyCodeLine{01063\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ assert(this-\/>type.REFCNT()\ ==\ type\_count\ +\ 1);}}
+\DoxyCodeLine{01064\ \textcolor{comment}{}}
+\DoxyCodeLine{01065\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ But\ that\ doesn't\ work\ on\ Python\ 2\ in\ the\ case\ of}}
+\DoxyCodeLine{01066\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ old-\/style\ instances:\ The\ result\ of\ Py\_TYPE\ is\ going\ to}}
+\DoxyCodeLine{01067\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ be\ the\ global\ shared\ <type\ instance>\ that\ all}}
+\DoxyCodeLine{01068\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ old-\/style\ classes\ have,\ while\ the\ return\ of\ Instance\_Class()}}
+\DoxyCodeLine{01069\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ will\ be\ the\ Python-\/level\ class\ object.\ The\ two\ are\ unrelated.}}
+\DoxyCodeLine{01070\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Not\ something\ you\ can\ raise.\ throw()\ fails.\ */}}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyErr\_Format(PyExc\_TypeError,}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}exceptions\ must\ be\ classes,\ or\ instances,\ not\ \%s"{}},}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Py\_TYPE(type.borrow())-\/>tp\_name);}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \doxymbox{\hyperlink{classgreenlet_1_1PyErrOccurred}{PyErrOccurred}}();}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01080\ \ \ \ \ \};}
+\DoxyCodeLine{01081\ }
+\DoxyCodeLine{01082\ \ \ \ \ \textcolor{comment}{//\ PyArg\_Parse's\ O\ argument\ returns\ a\ borrowed\ reference.}}
+\DoxyCodeLine{01083\ \ \ \ \ \textcolor{keyword}{class\ }PyArgParseParam\ :\ \textcolor{keyword}{public}\ BorrowedObject}
+\DoxyCodeLine{01084\ \ \ \ \ \{}
+\DoxyCodeLine{01085\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ G\_NO\_COPIES\_OF\_CLS(PyArgParseParam);}
+\DoxyCodeLine{01087\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ PyArgParseParam(PyObject*\ p=\textcolor{keyword}{nullptr})\ :\ BorrowedObject(p)}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01091\ }
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ PyObject**\ operator\&()}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&this-\/>p;}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01096\ \ \ \ \ \};}
+\DoxyCodeLine{01097\ }
+\DoxyCodeLine{01098\ \};\};}
+\DoxyCodeLine{01099\ }
+\DoxyCodeLine{01100\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

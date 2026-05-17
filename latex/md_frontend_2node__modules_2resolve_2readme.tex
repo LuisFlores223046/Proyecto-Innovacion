@@ -1,0 +1,285 @@
+\chapter{resolve \textsuperscript{\href{https://npmjs.org/package/resolve}{\texttt{}}} }
+\hypertarget{md_frontend_2node__modules_2resolve_2readme}{}\label{md_frontend_2node__modules_2resolve_2readme}\index{resolve $<$sup$>$$<$a href="{}https://npmjs.org/package/resolve"{} $>$$<$img src="{}https://versionbadg.es/browserify/resolve.svg"{} alt="{}Version Badge"{}/$>$$<$/a$>$$<$/sup$>$@{resolve $<$sup$>$$<$a href=""https://npmjs.org/package/resolve"" $>$$<$img src=""https://versionbadg.es/browserify/resolve.svg"" alt=""Version Badge""/$>$$<$/a$>$$<$/sup$>$}}
+\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2518}%
+\Hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2518}%
+
+
+implements the \href{https://nodejs.org/api/modules.html\#modules_all_together}{\texttt{node {\ttfamily require.\+resolve()} algorithm}} such that you can {\ttfamily require.\+resolve()} on behalf of a file asynchronously and synchronously
+
+\href{https://github.com/browserify/resolve/actions}{\texttt{}} \href{https://app.codecov.io/gh/browserify/resolve/}{\texttt{}} \href{https://david-dm.org/browserify/resolve}{\texttt{}} \href{https://david-dm.org/browserify/resolve\#info=devDependencies}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npm-stat.com/charts.html?package=resolve}{\texttt{}}
+
+\href{https://npmjs.org/package/resolve}{\texttt{}}\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2519}{}\doxysection{\texorpdfstring{example}{example}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2519}
+asynchronously resolve:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ resolve\ =\ require('resolve/async');\ //\ or,\ require('resolve')}
+\DoxyCodeLine{resolve('tap',\ \{\ basedir:\ \_\_dirname\ \},\ function\ (err,\ res)\ \{}
+\DoxyCodeLine{\ \ \ \ if\ (err)\ console.error(err);}
+\DoxyCodeLine{\ \ \ \ else\ console.log(res);}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ node\ example/async.js}
+\DoxyCodeLine{/home/substack/projects/node-\/resolve/node\_modules/tap/lib/main.js}
+
+\end{DoxyCode}
+
+
+synchronously resolve:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ resolve\ =\ require('resolve/sync');\ //\ or,\ \`{}require('resolve').sync}
+\DoxyCodeLine{var\ res\ =\ resolve('tap',\ \{\ basedir:\ \_\_dirname\ \});}
+\DoxyCodeLine{console.log(res);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ node\ example/sync.js}
+\DoxyCodeLine{/home/substack/projects/node-\/resolve/node\_modules/tap/lib/main.js}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2520}{}\doxysection{\texorpdfstring{methods}{methods}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2520}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ resolve\ =\ require('resolve');}
+\DoxyCodeLine{var\ async\ =\ require('resolve/async');}
+\DoxyCodeLine{var\ sync\ =\ require('resolve/sync');}
+
+\end{DoxyCode}
+
+
+For both the synchronous and asynchronous methods, errors may have any of the following {\ttfamily err.\+code} values:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily MODULE\+\_\+\+NOT\+\_\+\+FOUND}:\+ the given path string ({\ttfamily id}) could not be resolved to a module
+\item {\ttfamily INVALID\+\_\+\+BASEDIR}:\+ the specified {\ttfamily opts.\+basedir} doesn\textquotesingle{}t exist, or is not a directory
+\item {\ttfamily INVALID\+\_\+\+PACKAGE\+\_\+\+MAIN}:\+ a {\ttfamily package.\+json} was encountered with an invalid {\ttfamily main} property (eg. not a string)
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2521}{}\doxysubsection{\texorpdfstring{resolve(id, opts=\{\}, cb)}{resolve(id, opts=\{\}, cb)}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2521}
+Asynchronously resolve the module path string {\ttfamily id} into {\ttfamily cb(err, res \+[, pkg]\+)}, where {\ttfamily pkg} (if defined) is the data from {\ttfamily package.\+json}.
+
+options are:\+
+
+
+\begin{DoxyItemize}
+\item opts.\+basedir -\/ directory to begin resolving from
+\item opts.\+package -\/ {\ttfamily package.\+json} data applicable to the module being loaded
+\item opts.\+extensions -\/ array of file extensions to search in order
+\item opts.\+include\+Core\+Modules -\/ set to {\ttfamily false} to exclude node core modules (e.\+g. {\ttfamily fs}) from the search
+\item opts.\+read\+File -\/ how to read files asynchronously
+\item opts.\+is\+File -\/ function to asynchronously test whether a file exists
+\item opts.\+is\+Directory -\/ function to asynchronously test whether a file exists and is a directory
+\item opts.\+realpath -\/ function to asynchronously resolve a potential symlink to its real path
+\item {\ttfamily opts.\+read\+Package(read\+File, pkgfile, cb)} -\/ function to asynchronously read and parse a package.\+json file
+\begin{DoxyItemize}
+\item read\+File -\/ the passed {\ttfamily opts.\+read\+File} or {\ttfamily fs.\+read\+File} if not specified
+\item pkgfile -\/ path to package.\+json
+\item cb -\/ callback
+\end{DoxyItemize}
+\item {\ttfamily opts.\+package\+Filter(pkg, pkgfile, dir)} -\/ transform the parsed package.\+json contents before looking at the "{}main"{} field
+\begin{DoxyItemize}
+\item pkg -\/ package data
+\item pkgfile -\/ path to package.\+json
+\item dir -\/ directory that contains package.\+json
+\end{DoxyItemize}
+\item {\ttfamily opts.\+path\+Filter(pkg, path, relative\+Path)} -\/ transform a path within a package
+\begin{DoxyItemize}
+\item pkg -\/ package data
+\item path -\/ the path being resolved
+\item relative\+Path -\/ the path relative from the package.\+json location
+\item returns -\/ a relative path that will be joined from the package.\+json location
+\end{DoxyItemize}
+\item opts.\+paths -\/ require.\+paths array to use if nothing is found on the normal {\ttfamily node\+\_\+modules} recursive walk (probably don\textquotesingle{}t use this)
+
+For advanced users, {\ttfamily paths} can also be a {\ttfamily opts.\+paths(request, start, opts)} function
+\begin{DoxyItemize}
+\item request -\/ the import specifier being resolved
+\item start -\/ lookup path
+\item get\+Node\+Modules\+Dirs -\/ a thunk (no-\/argument function) that returns the paths using standard {\ttfamily node\+\_\+modules} resolution
+\item opts -\/ the resolution options
+\end{DoxyItemize}
+\item {\ttfamily opts.\+package\+Iterator(request, start, opts)} -\/ return the list of candidate paths where the packages sources may be found (probably don\textquotesingle{}t use this)
+\begin{DoxyItemize}
+\item request -\/ the import specifier being resolved
+\item start -\/ lookup path
+\item get\+Package\+Candidates -\/ a thunk (no-\/argument function) that returns the paths using standard {\ttfamily node\+\_\+modules} resolution
+\item opts -\/ the resolution options
+\end{DoxyItemize}
+\item opts.\+module\+Directory -\/ directory (or directories) in which to recursively look for modules. default:\+ {\ttfamily "{}node\+\_\+modules"{}}
+\item opts.\+preserve\+Symlinks -\/ if true, doesn\textquotesingle{}t resolve {\ttfamily basedir} to real path before resolving. This is the way Node resolves dependencies when executed with the \href{https://nodejs.org/api/all.html\#cli_preserve_symlinks}{\texttt{--preserve-\/symlinks}} flag. {\bfseries{Note:\+}} this property is currently {\ttfamily true} by default but it will be changed to {\ttfamily false} in the next major version because {\itshape Node\textquotesingle{}s resolution algorithm does not preserve symlinks by default}.
+\end{DoxyItemize}
+
+default {\ttfamily opts} values:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ paths:\ [],}
+\DoxyCodeLine{\ \ \ \ basedir:\ \_\_dirname,}
+\DoxyCodeLine{\ \ \ \ extensions:\ ['.js'],}
+\DoxyCodeLine{\ \ \ \ includeCoreModules:\ true,}
+\DoxyCodeLine{\ \ \ \ readFile:\ fs.readFile,}
+\DoxyCodeLine{\ \ \ \ isFile:\ function\ isFile(file,\ cb)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fs.stat(file,\ function\ (err,\ stat)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (!err)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ cb(null,\ stat.isFile()\ ||\ stat.isFIFO());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (err.code\ ===\ 'ENOENT'\ ||\ err.code\ ===\ 'ENOTDIR')\ return\ cb(null,\ false);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ cb(err);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ isDirectory:\ function\ isDirectory(dir,\ cb)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fs.stat(dir,\ function\ (err,\ stat)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (!err)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ cb(null,\ stat.isDirectory());}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (err.code\ ===\ 'ENOENT'\ ||\ err.code\ ===\ 'ENOTDIR')\ return\ cb(null,\ false);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ cb(err);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ realpath:\ function\ realpath(file,\ cb)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ var\ realpath\ =\ typeof\ fs.realpath.native\ ===\ 'function'\ ?\ fs.realpath.native\ :\ fs.realpath;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ realpath(file,\ function\ (realPathErr,\ realPath)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (realPathErr\ \&\&\ realPathErr.code\ !==\ 'ENOENT')\ cb(realPathErr);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ else\ cb(null,\ realPathErr\ ?\ file\ :\ realPath);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ readPackage:\ function\ defaultReadPackage(readFile,\ pkgfile,\ cb)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ readFile(pkgfile,\ function\ (readFileErr,\ body)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (readFileErr)\ cb(readFileErr);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ else\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\ pkg\ =\ JSON.parse(body);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cb(null,\ pkg);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (jsonErr)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cb(null);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ moduleDirectory:\ 'node\_modules',}
+\DoxyCodeLine{\ \ \ \ preserveSymlinks:\ true}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2522}{}\doxysubsection{\texorpdfstring{resolve.\+sync(id, opts)}{resolve.\+sync(id, opts)}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2522}
+Synchronously resolve the module path string {\ttfamily id}, returning the result and throwing an error when {\ttfamily id} can\textquotesingle{}t be resolved.
+
+options are:\+
+
+
+\begin{DoxyItemize}
+\item opts.\+basedir -\/ directory to begin resolving from
+\item opts.\+extensions -\/ array of file extensions to search in order
+\item opts.\+include\+Core\+Modules -\/ set to {\ttfamily false} to exclude node core modules (e.\+g. {\ttfamily fs}) from the search
+\item opts.\+read\+File\+Sync -\/ how to read files synchronously
+\item opts.\+is\+File -\/ function to synchronously test whether a file exists
+\item opts.\+is\+Directory -\/ function to synchronously test whether a file exists and is a directory
+\item opts.\+realpath\+Sync -\/ function to synchronously resolve a potential symlink to its real path
+\item {\ttfamily opts.\+read\+Package\+Sync(read\+File\+Sync, pkgfile)} -\/ function to synchronously read and parse a package.\+json file
+\begin{DoxyItemize}
+\item read\+File\+Sync -\/ the passed {\ttfamily opts.\+read\+File\+Sync} or {\ttfamily fs.\+read\+File\+Sync} if not specified
+\item pkgfile -\/ path to package.\+json
+\end{DoxyItemize}
+\item {\ttfamily opts.\+package\+Filter(pkg, dir)} -\/ transform the parsed package.\+json contents before looking at the "{}main"{} field
+\begin{DoxyItemize}
+\item pkg -\/ package data
+\item dir -\/ directory that contains package.\+json (Note:\+ the second argument will change to "{}pkgfile"{} in v2)
+\end{DoxyItemize}
+\item {\ttfamily opts.\+path\+Filter(pkg, path, relative\+Path)} -\/ transform a path within a package
+\begin{DoxyItemize}
+\item pkg -\/ package data
+\item path -\/ the path being resolved
+\item relative\+Path -\/ the path relative from the package.\+json location
+\item returns -\/ a relative path that will be joined from the package.\+json location
+\end{DoxyItemize}
+\item opts.\+paths -\/ require.\+paths array to use if nothing is found on the normal {\ttfamily node\+\_\+modules} recursive walk (probably don\textquotesingle{}t use this)
+
+For advanced users, {\ttfamily paths} can also be a {\ttfamily opts.\+paths(request, start, opts)} function
+\begin{DoxyItemize}
+\item request -\/ the import specifier being resolved
+\item start -\/ lookup path
+\item get\+Node\+Modules\+Dirs -\/ a thunk (no-\/argument function) that returns the paths using standard {\ttfamily node\+\_\+modules} resolution
+\item opts -\/ the resolution options
+\end{DoxyItemize}
+\item {\ttfamily opts.\+package\+Iterator(request, start, opts)} -\/ return the list of candidate paths where the packages sources may be found (probably don\textquotesingle{}t use this)
+\begin{DoxyItemize}
+\item request -\/ the import specifier being resolved
+\item start -\/ lookup path
+\item get\+Package\+Candidates -\/ a thunk (no-\/argument function) that returns the paths using standard {\ttfamily node\+\_\+modules} resolution
+\item opts -\/ the resolution options
+\end{DoxyItemize}
+\item opts.\+module\+Directory -\/ directory (or directories) in which to recursively look for modules. default:\+ {\ttfamily "{}node\+\_\+modules"{}}
+\item opts.\+preserve\+Symlinks -\/ if true, doesn\textquotesingle{}t resolve {\ttfamily basedir} to real path before resolving. This is the way Node resolves dependencies when executed with the \href{https://nodejs.org/api/all.html\#cli_preserve_symlinks}{\texttt{--preserve-\/symlinks}} flag. {\bfseries{Note:\+}} this property is currently {\ttfamily true} by default but it will be changed to {\ttfamily false} in the next major version because {\itshape Node\textquotesingle{}s resolution algorithm does not preserve symlinks by default}.
+\end{DoxyItemize}
+
+default {\ttfamily opts} values:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ paths:\ [],}
+\DoxyCodeLine{\ \ \ \ basedir:\ \_\_dirname,}
+\DoxyCodeLine{\ \ \ \ extensions:\ ['.js'],}
+\DoxyCodeLine{\ \ \ \ includeCoreModules:\ true,}
+\DoxyCodeLine{\ \ \ \ readFileSync:\ fs.readFileSync,}
+\DoxyCodeLine{\ \ \ \ isFile:\ function\ isFile(file)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ var\ stat\ =\ fs.statSync(file);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ catch\ (e)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (e\ \&\&\ (e.code\ ===\ 'ENOENT'\ ||\ e.code\ ===\ 'ENOTDIR'))\ return\ false;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ throw\ e;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ stat.isFile()\ ||\ stat.isFIFO();}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ isDirectory:\ function\ isDirectory(dir)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ var\ stat\ =\ fs.statSync(dir);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ catch\ (e)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (e\ \&\&\ (e.code\ ===\ 'ENOENT'\ ||\ e.code\ ===\ 'ENOTDIR'))\ return\ false;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ throw\ e;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ stat.isDirectory();}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ realpathSync:\ function\ realpathSync(file)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ var\ realpath\ =\ typeof\ fs.realpathSync.native\ ===\ 'function'\ ?\ fs.realpathSync.native\ :\ fs.realpathSync;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ realpath(file);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ catch\ (realPathErr)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (realPathErr.code\ !==\ 'ENOENT')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ realPathErr;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ file;}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ readPackageSync:\ function\ defaultReadPackageSync(readFileSync,\ pkgfile)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ var\ body\ =\ readFileSync(pkgfile);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ var\ pkg\ =\ JSON.parse(body);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ pkg;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ catch\ (jsonErr)\ \{\}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ moduleDirectory:\ 'node\_modules',}
+\DoxyCodeLine{\ \ \ \ preserveSymlinks:\ true}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2523}{}\doxysection{\texorpdfstring{install}{install}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2523}
+With \href{https://npmjs.org}{\texttt{npm}} do:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ resolve}
+
+\end{DoxyCode}
+\hypertarget{md_frontend_2node__modules_2resolve_2readme_autotoc_md2524}{}\doxysection{\texorpdfstring{license}{license}}\label{md_frontend_2node__modules_2resolve_2readme_autotoc_md2524}
+MIT 

@@ -1,0 +1,119 @@
+\doxysection{websockets.\+frames.\+Frame Class Reference}
+\hypertarget{classwebsockets_1_1frames_1_1Frame}{}\label{classwebsockets_1_1frames_1_1Frame}\index{websockets.frames.Frame@{websockets.frames.Frame}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame_a974cab31e4489a45507625998d869c67}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
+\item 
+Generator\+[None, None, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}}]\+ \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame_a57e030245cf66bd1a13c5363be8927e2}{parse}} (cls, Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+ read\+\_\+exact, \texorpdfstring{$\ast$}{*}, bool mask, Optional\+[int]\+ max\+\_\+size=None, Optional\+[Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{extensions.\+Extension}}]\+]\+ extensions=None)
+\item 
+bytes \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame_a81b6aa51f67a831ca930e51a72921c1f}{serialize}} (self, \texorpdfstring{$\ast$}{*}, bool mask, Optional\+[Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{extensions.\+Extension}}]\+]\+ extensions=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame_a115f9eac306e39ac27da377544dc0101}{check}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_a1410d6be1b6d7875546e35677f3d163f}\label{classwebsockets_1_1frames_1_1Frame_a1410d6be1b6d7875546e35677f3d163f} 
+{\bfseries data}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_a2131623b16e412758a945e831be966bd}\label{classwebsockets_1_1frames_1_1Frame_a2131623b16e412758a945e831be966bd} 
+bool {\bfseries fin} = True
+\item 
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_ab8258e819c7991a5ffb463127916af0d}\label{classwebsockets_1_1frames_1_1Frame_ab8258e819c7991a5ffb463127916af0d} 
+bool {\bfseries rsv1} = False
+\item 
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_a59cc6cd20b25d137101c41388f2ad5d3}\label{classwebsockets_1_1frames_1_1Frame_a59cc6cd20b25d137101c41388f2ad5d3} 
+bool {\bfseries rsv2} = False
+\item 
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_a01ce3a7b6ac6eff879218fbf096782c3}\label{classwebsockets_1_1frames_1_1Frame_a01ce3a7b6ac6eff879218fbf096782c3} 
+bool {\bfseries rsv3} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}WebSocket frame.
+
+Attributes:
+    opcode: Opcode.
+    data: Payload data.
+    fin: FIN bit.
+    rsv1: RSV1 bit.
+    rsv2: RSV2 bit.
+    rsv3: RSV3 bit.
+
+Only these fields are needed. The MASK bit, payload length and masking-key
+are handled on the fly when parsing and serializing frames.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1frames_1_1Frame_doc-func-members}
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1frames_1_1Frame_a974cab31e4489a45507625998d869c67}\index{websockets.frames.Frame@{websockets.frames.Frame}!\_\_str\_\_@{\_\_str\_\_}}
+\index{\_\_str\_\_@{\_\_str\_\_}!websockets.frames.Frame@{websockets.frames.Frame}}
+\doxysubsubsection{\texorpdfstring{\_\_str\_\_()}{\_\_str\_\_()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1frames_1_1Frame_a974cab31e4489a45507625998d869c67} 
+ str websockets.\+frames.\+Frame.\+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a human-readable representation of a frame.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1frames_1_1Frame_a115f9eac306e39ac27da377544dc0101}\index{websockets.frames.Frame@{websockets.frames.Frame}!check@{check}}
+\index{check@{check}!websockets.frames.Frame@{websockets.frames.Frame}}
+\doxysubsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1frames_1_1Frame_a115f9eac306e39ac27da377544dc0101} 
+ None websockets.\+frames.\+Frame.\+check (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check that reserved bits and opcode have acceptable values.
+
+Raises:
+    ProtocolError: if a reserved bit or the opcode is invalid.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1frames_1_1Frame_a57e030245cf66bd1a13c5363be8927e2}\index{websockets.frames.Frame@{websockets.frames.Frame}!parse@{parse}}
+\index{parse@{parse}!websockets.frames.Frame@{websockets.frames.Frame}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1frames_1_1Frame_a57e030245cf66bd1a13c5363be8927e2} 
+ Generator\+[None, None, \doxymbox{\hyperlink{classwebsockets_1_1frames_1_1Frame}{Frame}}]\+ websockets.\+frames.\+Frame.\+parse (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Callable\+[\+[int]\+, Generator\+[None, None, bytes]\+]\+}]{read\+\_\+exact}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool}]{mask}{, }\item[{Optional\+[int]\+ }]{max\+\_\+size}{ = {\ttfamily None}, }\item[{Optional\+[Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{extensions.\+Extension}}]\+]\+ }]{extensions}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse a WebSocket frame.
+
+This is a generator-based coroutine.
+
+Args:
+    read_exact: generator-based coroutine that reads the requested
+        bytes or raises an exception if there isn't enough data.
+    mask: whether the frame should be masked i.e. whether the read
+        happens on the server side.
+    max_size: maximum payload size in bytes.
+    extensions: list of extensions, applied in reverse order.
+
+Raises:
+    EOFError: if the connection is closed without a full WebSocket frame.
+    UnicodeDecodeError: if the frame contains invalid UTF-8.
+    PayloadTooBig: if the frame's payload size exceeds ``max_size``.
+    ProtocolError: if the frame contains incorrect values.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1frames_1_1Frame_a81b6aa51f67a831ca930e51a72921c1f}\index{websockets.frames.Frame@{websockets.frames.Frame}!serialize@{serialize}}
+\index{serialize@{serialize}!websockets.frames.Frame@{websockets.frames.Frame}}
+\doxysubsubsection{\texorpdfstring{serialize()}{serialize()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1frames_1_1Frame_a81b6aa51f67a831ca930e51a72921c1f} 
+ bytes websockets.\+frames.\+Frame.\+serialize (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool}]{mask}{, }\item[{Optional\+[Sequence\+[\doxymbox{\hyperlink{classwebsockets_1_1extensions_1_1base_1_1Extension}{extensions.\+Extension}}]\+]\+ }]{extensions}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Serialize a WebSocket frame.
+
+Args:
+    mask: whether the frame should be masked i.e. whether the write
+        happens on the client side.
+    extensions: list of extensions, applied in order.
+
+Raises:
+    ProtocolError: if the frame contains incorrect values.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+frames.\+py\end{DoxyCompactItemize}

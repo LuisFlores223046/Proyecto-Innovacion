@@ -1,0 +1,269 @@
+\doxysection{sqlalchemy.\+orm.\+collections.\+collection Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection}{}\label{classsqlalchemy_1_1orm_1_1collections_1_1collection}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_ac955c1b9ffe731127a3f3835d21779da}{appender}} (fn)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa6d4a13bccb207b9723a5db668da1857}{remover}} (fn)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa13ab68f2344d1a7965c4a38e95376f6}{iterator}} (fn)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_a61004b8897cf7233c453056851825a1f}{internally\+\_\+instrumented}} (fn)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_a0a8160b751550073fdcb6129192a1fd0}{converter}} (fn)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_a97838f38c44e85eb85da48eb26a26dcb}{adds}} (arg)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_a30c06552bd181c40cb07f023b26480e5}{replaces}} (arg)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_aee91db1d5d81ecc8a4b55f977880ab97}{removes}} (arg)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1collections_1_1collection_a4eeefcebb5b8729f67f296f61969ad24}{removes\+\_\+return}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Decorators for entity collection classes.
+
+The decorators fall into two groups: annotations and interception recipes.
+
+The annotating decorators (appender, remover, iterator, converter,
+internally_instrumented) indicate the method's purpose and take no
+arguments.  They are not written with parens::
+
+    @collection.appender
+    def append(self, append): ...
+
+The recipe decorators all require parens, even those that take no
+arguments::
+
+    @collection.adds('entity')
+    def insert(self, position, entity): ...
+
+    @collection.removes_return()
+    def popitem(self): ...
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1orm_1_1collections_1_1collection_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_a97838f38c44e85eb85da48eb26a26dcb}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!adds@{adds}}
+\index{adds@{adds}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{adds()}{adds()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_a97838f38c44e85eb85da48eb26a26dcb} 
+sqlalchemy.\+orm.\+collections.\+collection.\+adds (\begin{DoxyParamCaption}\item[{}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Mark the method as adding an entity to the collection.
+
+Adds "add to collection" handling to the method.  The decorator
+argument indicates which method argument holds the SQLAlchemy-relevant
+value.  Arguments can be specified positionally (i.e. integer) or by
+name::
+
+    @collection.adds(1)
+    def push(self, item): ...
+
+    @collection.adds('entity')
+    def do_stuff(self, thing, entity=None): ...
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_ac955c1b9ffe731127a3f3835d21779da}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!appender@{appender}}
+\index{appender@{appender}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{appender()}{appender()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_ac955c1b9ffe731127a3f3835d21779da} 
+sqlalchemy.\+orm.\+collections.\+collection.\+appender (\begin{DoxyParamCaption}\item[{}]{fn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Tag the method as the collection appender.
+
+The appender method is called with one positional argument: the value
+to append. The method will be automatically decorated with 'adds(1)'
+if not already decorated::
+
+    @collection.appender
+    def add(self, append): ...
+
+    # or, equivalently
+    @collection.appender
+    @collection.adds(1)
+    def add(self, append): ...
+
+    # for mapping type, an 'append' may kick out a previous value
+    # that occupies that slot.  consider d['a'] = 'foo'- any previous
+    # value in d['a'] is discarded.
+    @collection.appender
+    @collection.replaces(1)
+    def add(self, entity):
+        key = some_key_func(entity)
+        previous = None
+        if key in self:
+            previous = self[key]
+        self[key] = entity
+        return previous
+
+If the value to append is not allowed in the collection, you may
+raise an exception.  Something to remember is that the appender
+will be called for each object mapped by a database query.  If the
+database contains rows that violate your collection semantics, you
+will need to get creative to fix the problem, as access via the
+collection will not work.
+
+If the appender method is internally instrumented, you must also
+receive the keyword argument '_sa_initiator' and ensure its
+promulgation to collection events.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_a0a8160b751550073fdcb6129192a1fd0}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!converter@{converter}}
+\index{converter@{converter}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{converter()}{converter()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_a0a8160b751550073fdcb6129192a1fd0} 
+sqlalchemy.\+orm.\+collections.\+collection.\+converter (\begin{DoxyParamCaption}\item[{}]{fn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Tag the method as the collection converter.
+
+This optional method will be called when a collection is being
+replaced entirely, as in::
+
+    myobj.acollection = [newvalue1, newvalue2]
+
+The converter method will receive the object being assigned and should
+return an iterable of values suitable for use by the ``appender``
+method.  A converter must not assign values or mutate the collection,
+its sole job is to adapt the value the user provides into an iterable
+of values for the ORM's use.
+
+The default converter implementation will use duck-typing to do the
+conversion.  A dict-like collection will be convert into an iterable
+of dictionary values, and other types will simply be iterated::
+
+    @collection.converter
+    def convert(self, other): ...
+
+If the duck-typing of the object does not match the type of this
+collection, a TypeError is raised.
+
+Supply an implementation of this method if you want to expand the
+range of possible types that can be assigned in bulk or perform
+validation on the values about to be assigned.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_a61004b8897cf7233c453056851825a1f}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!internally\_instrumented@{internally\_instrumented}}
+\index{internally\_instrumented@{internally\_instrumented}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{internally\_instrumented()}{internally\_instrumented()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_a61004b8897cf7233c453056851825a1f} 
+sqlalchemy.\+orm.\+collections.\+collection.\+internally\+\_\+instrumented (\begin{DoxyParamCaption}\item[{}]{fn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Tag the method as instrumented.
+
+This tag will prevent any decoration from being applied to the
+method. Use this if you are orchestrating your own calls to
+:func:`.collection_adapter` in one of the basic SQLAlchemy
+interface methods, or to prevent an automatic ABC method
+decoration from wrapping your implementation::
+
+    # normally an 'extend' method on a list-like class would be
+    # automatically intercepted and re-implemented in terms of
+    # SQLAlchemy events and append().  your implementation will
+    # never be called, unless:
+    @collection.internally_instrumented
+    def extend(self, items): ...
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa13ab68f2344d1a7965c4a38e95376f6}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!iterator@{iterator}}
+\index{iterator@{iterator}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{iterator()}{iterator()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa13ab68f2344d1a7965c4a38e95376f6} 
+sqlalchemy.\+orm.\+collections.\+collection.\+iterator (\begin{DoxyParamCaption}\item[{}]{fn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Tag the method as the collection remover.
+
+The iterator method is called with no arguments.  It is expected to
+return an iterator over all collection members::
+
+    @collection.iterator
+    def __iter__(self): ...
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa6d4a13bccb207b9723a5db668da1857}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!remover@{remover}}
+\index{remover@{remover}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{remover()}{remover()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_aa6d4a13bccb207b9723a5db668da1857} 
+sqlalchemy.\+orm.\+collections.\+collection.\+remover (\begin{DoxyParamCaption}\item[{}]{fn}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Tag the method as the collection remover.
+
+The remover method is called with one positional argument: the value
+to remove. The method will be automatically decorated with
+:meth:`removes_return` if not already decorated::
+
+    @collection.remover
+    def zap(self, entity): ...
+
+    # or, equivalently
+    @collection.remover
+    @collection.removes_return()
+    def zap(self, ): ...
+
+If the value to remove is not present in the collection, you may
+raise an exception or return None to ignore the error.
+
+If the remove method is internally instrumented, you must also
+receive the keyword argument '_sa_initiator' and ensure its
+promulgation to collection events.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_aee91db1d5d81ecc8a4b55f977880ab97}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!removes@{removes}}
+\index{removes@{removes}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{removes()}{removes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_aee91db1d5d81ecc8a4b55f977880ab97} 
+sqlalchemy.\+orm.\+collections.\+collection.\+removes (\begin{DoxyParamCaption}\item[{}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Mark the method as removing an entity in the collection.
+
+Adds "remove from collection" handling to the method.  The decorator
+argument indicates which method argument holds the SQLAlchemy-relevant
+value to be removed. Arguments can be specified positionally (i.e.
+integer) or by name::
+
+    @collection.removes(1)
+    def zap(self, item): ...
+
+For methods where the value to remove is not known at call-time, use
+collection.removes_return.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_a4eeefcebb5b8729f67f296f61969ad24}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!removes\_return@{removes\_return}}
+\index{removes\_return@{removes\_return}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{removes\_return()}{removes\_return()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_a4eeefcebb5b8729f67f296f61969ad24} 
+sqlalchemy.\+orm.\+collections.\+collection.\+removes\+\_\+return (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Mark the method as removing an entity in the collection.
+
+Adds "remove from collection" handling to the method.  The return
+value of the method, if any, is considered the value to remove.  The
+method arguments are not inspected::
+
+    @collection.removes_return()
+    def pop(self): ...
+
+For methods where the value to remove is known at call-time, use
+collection.remove.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1orm_1_1collections_1_1collection_a30c06552bd181c40cb07f023b26480e5}\index{sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}!replaces@{replaces}}
+\index{replaces@{replaces}!sqlalchemy.orm.collections.collection@{sqlalchemy.orm.collections.collection}}
+\doxysubsubsection{\texorpdfstring{replaces()}{replaces()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1collections_1_1collection_a30c06552bd181c40cb07f023b26480e5} 
+sqlalchemy.\+orm.\+collections.\+collection.\+replaces (\begin{DoxyParamCaption}\item[{}]{arg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Mark the method as replacing an entity in the collection.
+
+Adds "add to collection" and "remove from collection" handling to
+the method.  The decorator argument indicates which method argument
+holds the SQLAlchemy-relevant value to be added, and return value, if
+any will be considered the value to remove.
+
+Arguments can be specified positionally (i.e. integer) or by name::
+
+    @collection.replaces(2)
+    def __setitem__(self, index, item): ...
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+collections.\+py\end{DoxyCompactItemize}

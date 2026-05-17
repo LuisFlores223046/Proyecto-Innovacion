@@ -1,0 +1,87 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@humanwhocodes/\+module-\/importer Directory Reference}
+\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac}{}\label{dir_6726cd132da7bb69aebabd282b8951ac}\index{frontend/node\_modules/"@humanwhocodes/module-\/importer Directory Reference@{frontend/node\_modules/"@humanwhocodes/module-\/importer Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_ebb633f0c96a009592a255f996818ab8}{dist}}
+\item 
+directory \doxymbox{\hyperlink{dir_d16567f596a97c7034396c48c663e0bd}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md293}{}\doxysubsection{\texorpdfstring{Module\+Importer}{Module\+Importer}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md293}
+by \href{https://humanwhocodes.com}{\texttt{Nicholas C. Zakas}}
+
+If you find this useful, please consider supporting my work with a \href{https://humanwhocodes.com/donate}{\texttt{donation}}.\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md294}{}\doxysubsection{\texorpdfstring{Description}{Description}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md294}
+A utility for seamlessly importing modules in Node.\+js regardless if they are Common\+JS or ESM format. Under the hood, this uses {\ttfamily import()} and relies on Node.\+js\textquotesingle{}s Common\+JS compatibility to work correctly. This ensures that the correct locations and formats are used for Common\+JS so you can call one method and not worry about any compatibility issues.
+
+The problem with the default {\ttfamily import()} is that it always resolves relative to the file location in which it is called. If you want to resolve from a different location, you need to jump through a few hoops to achieve that. This package makes it easy to both resolve and import modules from any directory.\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md295}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md295}
+\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md296}{}\doxysubsubsection{\texorpdfstring{Node.\+js}{Node.\+js}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md296}
+Install using \href{https://npmjs.com/}{\texttt{npm}} or \href{https://yarnpkg.com/}{\texttt{yarn}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @humanwhocodes/module-\/importer}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{yarn\ add\ @humanwhocodes/module-\/importer}
+
+\end{DoxyCode}
+
+
+Import into your Node.\+js project:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ CommonJS}
+\DoxyCodeLine{const\ \{\ ModuleImporter\ \}\ =\ require("{}@humanwhocodes/module-\/importer"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ ESM}
+\DoxyCodeLine{import\ \{\ ModuleImporter\ \}\ from\ "{}@humanwhocodes/module-\/importer"{};}
+
+\end{DoxyCode}
+\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md297}{}\doxysubsubsection{\texorpdfstring{Bun}{Bun}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md297}
+Install using this command:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{bun\ add\ @humanwhocodes/module-\/importer}
+
+\end{DoxyCode}
+
+
+Import into your Bun project:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ ModuleImporter\ \}\ from\ "{}@humanwhocodes/module-\/importer"{};}
+
+\end{DoxyCode}
+\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md298}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md298}
+After importing, create a new instance of {\ttfamily Module\+Importer} to start emitting events:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ cwd\ can\ be\ omitted\ to\ use\ process.cwd()}
+\DoxyCodeLine{const\ importer\ =\ new\ ModuleImporter(cwd);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ you\ can\ resolve\ the\ location\ of\ any\ package}
+\DoxyCodeLine{const\ location\ =\ importer.resolve("{}./some-\/file.cjs"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ you\ can\ also\ import\ directly}
+\DoxyCodeLine{const\ module\ =\ importer.import("{}./some-\/file.cjs"{});}
+
+\end{DoxyCode}
+
+
+For both {\ttfamily resolve()} and {\ttfamily import()}, you can pass in package names and filenames.\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md299}{}\doxysubsection{\texorpdfstring{Developer Setup}{Developer Setup}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md299}
+
+\begin{DoxyEnumerate}
+\item Fork the repository
+\item Clone your fork
+\item Run {\ttfamily npm install} to setup dependencies
+\item Run {\ttfamily npm test} to run tests
+\end{DoxyEnumerate}\hypertarget{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md300}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_6726cd132da7bb69aebabd282b8951ac_autotoc_md300}
+Apache 2.\+0 

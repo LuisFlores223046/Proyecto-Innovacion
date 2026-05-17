@@ -1,0 +1,101 @@
+\doxysection{httpx.\+\_\+utils.\+URLPattern Class Reference}
+\hypertarget{classhttpx_1_1__utils_1_1URLPattern}{}\label{classhttpx_1_1__utils_1_1URLPattern}\index{httpx.\_utils.URLPattern@{httpx.\_utils.URLPattern}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_a965825f25a542183a471df085ca9fd1b}\label{classhttpx_1_1__utils_1_1URLPattern_a965825f25a542183a471df085ca9fd1b} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str pattern)
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_a15f919ee45ac86e2247624c57df66640}\label{classhttpx_1_1__utils_1_1URLPattern_a15f919ee45ac86e2247624c57df66640} 
+bool {\bfseries matches} (self, \doxymbox{\hyperlink{classhttpx_1_1__urls_1_1URL}{URL}} other)
+\item 
+tuple\+[int, int, int]\+ \doxymbox{\hyperlink{classhttpx_1_1__utils_1_1URLPattern_a13bfe3cc05ccd81caddb1cebd5e6aa89}{priority}} (self)
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_abaf125562923b9a9054e4651bc17b806}\label{classhttpx_1_1__utils_1_1URLPattern_abaf125562923b9a9054e4651bc17b806} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_af0e19b70be568de7556af3dbee101bab}\label{classhttpx_1_1__utils_1_1URLPattern_af0e19b70be568de7556af3dbee101bab} 
+bool {\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classhttpx_1_1__utils_1_1URLPattern}{URLPattern}} other)
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_abe971bd7f7bfb3cce6f9c558a0cd2598}\label{classhttpx_1_1__utils_1_1URLPattern_abe971bd7f7bfb3cce6f9c558a0cd2598} 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, typing.\+Any other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_ab2c0f4b0ad6d9e6319f7b9fda55a3ca2}\label{classhttpx_1_1__utils_1_1URLPattern_ab2c0f4b0ad6d9e6319f7b9fda55a3ca2} 
+{\bfseries pattern} = pattern
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_af3fc4553a9f2998b7bb56344f49d8ddb}\label{classhttpx_1_1__utils_1_1URLPattern_af3fc4553a9f2998b7bb56344f49d8ddb} 
+str {\bfseries scheme} = "{}all"{} else url.\+scheme
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_a795dbc9c228af5ec0c9230c273fbd682}\label{classhttpx_1_1__utils_1_1URLPattern_a795dbc9c228af5ec0c9230c273fbd682} 
+str {\bfseries host} = "{}\texorpdfstring{$\ast$}{*}"{} else url.\+host
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_ad3e25883b6473882b4e0142c626e5867}\label{classhttpx_1_1__utils_1_1URLPattern_ad3e25883b6473882b4e0142c626e5867} 
+{\bfseries port} = url.\+port
+\item 
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_a68aa07456f00ca0d4233de9ba6441403}\label{classhttpx_1_1__utils_1_1URLPattern_a68aa07456f00ca0d4233de9ba6441403} 
+typing.\+Pattern\+[str]\+\texorpdfstring{$\vert$}{|}None {\bfseries host\+\_\+regex} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A utility class currently used for making lookups against proxy keys...
+
+# Wildcard matching...
+>>> pattern = URLPattern("all://")
+>>> pattern.matches(httpx.URL("http://example.com"))
+True
+
+# Witch scheme matching...
+>>> pattern = URLPattern("https://")
+>>> pattern.matches(httpx.URL("https://example.com"))
+True
+>>> pattern.matches(httpx.URL("http://example.com"))
+False
+
+# With domain matching...
+>>> pattern = URLPattern("https://example.com")
+>>> pattern.matches(httpx.URL("https://example.com"))
+True
+>>> pattern.matches(httpx.URL("http://example.com"))
+False
+>>> pattern.matches(httpx.URL("https://other.com"))
+False
+
+# Wildcard scheme, with domain matching...
+>>> pattern = URLPattern("all://example.com")
+>>> pattern.matches(httpx.URL("https://example.com"))
+True
+>>> pattern.matches(httpx.URL("http://example.com"))
+True
+>>> pattern.matches(httpx.URL("https://other.com"))
+False
+
+# With port matching...
+>>> pattern = URLPattern("https://example.com:1234")
+>>> pattern.matches(httpx.URL("https://example.com:1234"))
+True
+>>> pattern.matches(httpx.URL("https://example.com"))
+False
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__utils_1_1URLPattern_doc-func-members}
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__utils_1_1URLPattern_a13bfe3cc05ccd81caddb1cebd5e6aa89}\index{httpx.\_utils.URLPattern@{httpx.\_utils.URLPattern}!priority@{priority}}
+\index{priority@{priority}!httpx.\_utils.URLPattern@{httpx.\_utils.URLPattern}}
+\doxysubsubsection{\texorpdfstring{priority()}{priority()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__utils_1_1URLPattern_a13bfe3cc05ccd81caddb1cebd5e6aa89} 
+ tuple\+[int, int, int]\+ httpx.\+\_\+utils.\+URLPattern.\+priority (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The priority allows URLPattern instances to be sortable, so that
+we can match from most specific to least specific.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+utils.\+py\end{DoxyCompactItemize}

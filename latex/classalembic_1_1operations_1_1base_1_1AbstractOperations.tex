@@ -1,0 +1,447 @@
+\doxysection{alembic.\+operations.\+base.\+Abstract\+Operations Class Reference}
+\hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations}{}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+Inheritance diagram for alembic.\+operations.\+base.\+Abstract\+Operations:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classalembic_1_1operations_1_1base_1_1AbstractOperations}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a947b8ad1ad8fc1540bb98f03e586712c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} migration\+\_\+context, Optional\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}]\+ impl=None)
+\item 
+Callable\+[\+[Type\+[\+\_\+T]\+]\+, Type\+[\+\_\+T]\+]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d8edfa2af92833d20d263b1f34d94d}{register\+\_\+operation}} (cls, str name, Optional\+[str]\+ sourcename=None)
+\item 
+Callable\+[\+[\+\_\+C]\+, \+\_\+C]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_aac74a50f78b09deb8bd499eb2989c796}{implementation\+\_\+for}} (cls, Any op\+\_\+cls)
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_af1560247e48dc1c5be68ab27f9c07c27}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_af1560247e48dc1c5be68ab27f9c07c27} 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1Operations}{Operations}}]\+ {\bfseries context} (cls, \doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} migration\+\_\+context)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1BatchOperations}{Batch\+Operations}}]\+ \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a00caf2e89e818b785bb0889fb6ac1f75}{batch\+\_\+alter\+\_\+table}} (self, str table\+\_\+name, Optional\+[str]\+ schema=None, Literal\+["{}auto"{}, "{}always"{}, "{}never"{}]\+ recreate="{}auto"{}, Optional\+[Tuple\+[Any,...]\+]\+ partial\+\_\+reordering=None, Optional\+[Table]\+ copy\+\_\+from=None, Tuple\+[Any,...]\+ table\+\_\+args=(), Mapping\+[str, Any]\+ table\+\_\+kwargs=util.\+immutabledict(), Tuple\+[Any,...]\+ reflect\+\_\+args=(), Mapping\+[str, Any]\+ reflect\+\_\+kwargs=util.\+immutabledict(), Optional\+[Dict\+[str, str]\+]\+ naming\+\_\+convention=None)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a844c707571ac64844fd6e91a73062b08}{get\+\_\+context}} (self)
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1315b0d8622bb07eb816dfd709c14ff9}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1315b0d8622bb07eb816dfd709c14ff9} 
+Table {\bfseries invoke} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateTableOp}{Create\+Table\+Op}} operation)
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d340fdf41d33bafed60013c7aa0772}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d340fdf41d33bafed60013c7aa0772} 
+None {\bfseries invoke} (self, Union\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AddConstraintOp}{Add\+Constraint\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropConstraintOp}{Drop\+Constraint\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateIndexOp}{Create\+Index\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropIndexOp}{Drop\+Index\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AddColumnOp}{Add\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AlterColumnOp}{Alter\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1AlterTableOp}{Alter\+Table\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1CreateTableCommentOp}{Create\+Table\+Comment\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropTableCommentOp}{Drop\+Table\+Comment\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropColumnOp}{Drop\+Column\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1BulkInsertOp}{Bulk\+Insert\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1DropTableOp}{Drop\+Table\+Op}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1ExecuteSQLOp}{Execute\+SQLOp}},]\+ operation)
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0} 
+Any {\bfseries invoke} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1MigrateOperation}{Migrate\+Operation}} operation)
+\item 
+Any \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0}{invoke}} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1MigrateOperation}{Migrate\+Operation}} operation)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1conv}{conv}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1fc933cd260025955c812b4643fe53cc}{f}} (self, str name)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1util_1_1sqla__compat_1_1__literal__bindparam}{\+\_\+literal\+\_\+bindparam}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a05a44ae5e502c351a25323c6d61f6efa}{inline\+\_\+literal}} (self, Union\+[str, int]\+ value, Optional\+[Type\+Engine\+[Any]\+]\+ type\+\_\+=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1f461b9ab073a6a3136f62d4668569f5}{get\+\_\+bind}} (self)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1AbstractOperations_a48e942839b64b4a4e7d127417ba5d3fa}{run\+\_\+async}} (self, Callable\+[..., Awaitable\+[\+\_\+T]\+]\+ async\+\_\+function, \texorpdfstring{$\ast$}{*}Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw\+\_\+args)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries create\+\_\+module\+\_\+class\+\_\+proxy} (cls, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1__ModuleClsMeta}{alembic.\+util.\+langhelpers.\+\_\+\+Module\+Cls\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+setattr\+\_\+\+\_\+} (cls, str key, Callable\+[..., Any]\+ value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_ae367cbc68109a49e66997976a61e65d8}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_ae367cbc68109a49e66997976a61e65d8} 
+{\bfseries migration\+\_\+context} = migration\+\_\+context
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_aa2bf31f697215c8a958090f18e95be7d}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_aa2bf31f697215c8a958090f18e95be7d} 
+{\bfseries schema\+\_\+obj} = \doxymbox{\hyperlink{classalembic_1_1operations_1_1schemaobj_1_1SchemaObjects}{schemaobj.\+Schema\+Objects}}(migration\+\_\+context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_af82857fcbeb4be50aa870ecb2d0891e6}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_af82857fcbeb4be50aa870ecb2d0891e6} 
+Union {\bfseries impl} \+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}, \doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a4b1dff56721014b96a8d98284d5a4816}\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a4b1dff56721014b96a8d98284d5a4816} 
+{\bfseries \+\_\+to\+\_\+impl} = \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1Dispatcher}{util.\+Dispatcher}}()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+Dict {\bfseries \+\_\+setups} = collections.\+defaultdict(lambda:\+ (set(), \+[$\,$]\+))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1util_1_1langhelpers_1_1ModuleClsProxy}{alembic.\+util.\+langhelpers.\+Module\+Cls\+Proxy}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+update\+\_\+module\+\_\+proxies} (cls, str name)
+\item 
+None {\bfseries \+\_\+install\+\_\+proxy} (self)
+\item 
+None {\bfseries \+\_\+remove\+\_\+proxy} (self)
+\item 
+None {\bfseries \+\_\+setup\+\_\+proxy} (cls, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+, Set\+[str]\+ attr\+\_\+names)
+\item 
+None {\bfseries \+\_\+add\+\_\+proxied\+\_\+attribute} (cls, str methname, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+, Set\+[str]\+ attr\+\_\+names)
+\item 
+Callable\+[..., Any]\+ {\bfseries \+\_\+create\+\_\+method\+\_\+proxy} (cls, str name, Mutable\+Mapping\+[str, Any]\+ globals\+\_\+, Mutable\+Mapping\+[str, Any]\+ locals\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for Operations and BatchOperations.
+
+.. versionadded:: 1.11.0
+\end{DoxyVerb}
+ 
+
+\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_doc-constructors}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a947b8ad1ad8fc1540bb98f03e586712c}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a947b8ad1ad8fc1540bb98f03e586712c} 
+ None alembic.\+operations.\+base.\+Abstract\+Operations.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}}}]{migration\+\_\+context}{, }\item[{Optional\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}]\+ }]{impl}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a new :class:`.Operations`
+
+:param migration_context: a :class:`.MigrationContext`
+ instance.
+\end{DoxyVerb}
+ 
+
+\label{classalembic_1_1operations_1_1base_1_1AbstractOperations_doc-func-members}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a00caf2e89e818b785bb0889fb6ac1f75}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!batch\_alter\_table@{batch\_alter\_table}}
+\index{batch\_alter\_table@{batch\_alter\_table}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{batch\_alter\_table()}{batch\_alter\_table()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a00caf2e89e818b785bb0889fb6ac1f75} 
+ Iterator\+[\doxymbox{\hyperlink{classalembic_1_1operations_1_1base_1_1BatchOperations}{Batch\+Operations}}]\+ alembic.\+operations.\+base.\+Abstract\+Operations.\+batch\+\_\+alter\+\_\+table (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{table\+\_\+name}{, }\item[{Optional\+[str]\+ }]{schema}{ = {\ttfamily None}, }\item[{Literal\+["{}auto"{}, "{}always"{}, "{}never"{}]\+ }]{recreate}{ = {\ttfamily "{}auto"{}}, }\item[{Optional\+[Tuple\+[Any, ...]\+]\+ }]{partial\+\_\+reordering}{ = {\ttfamily None}, }\item[{Optional\+[Table]\+ }]{copy\+\_\+from}{ = {\ttfamily None}, }\item[{Tuple\+[Any, ...]\+ }]{table\+\_\+args}{ = {\ttfamily ()}, }\item[{Mapping\+[str, Any]\+ }]{table\+\_\+kwargs}{ = {\ttfamily util.immutabledict()}, }\item[{Tuple\+[Any, ...]\+ }]{reflect\+\_\+args}{ = {\ttfamily ()}, }\item[{Mapping\+[str, Any]\+ }]{reflect\+\_\+kwargs}{ = {\ttfamily util.immutabledict()}, }\item[{Optional\+[Dict\+[str, str]\+]\+ }]{naming\+\_\+convention}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invoke a series of per-table migrations in batch.
+
+Batch mode allows a series of operations specific to a table
+to be syntactically grouped together, and allows for alternate
+modes of table migration, in particular the "recreate" style of
+migration required by SQLite.
+
+"recreate" style is as follows:
+
+1. A new table is created with the new specification, based on the
+   migration directives within the batch, using a temporary name.
+
+2. the data copied from the existing table to the new table.
+
+3. the existing table is dropped.
+
+4. the new table is renamed to the existing table name.
+
+The directive by default will only use "recreate" style on the
+SQLite backend, and only if directives are present which require
+this form, e.g. anything other than ``add_column()``.   The batch
+operation on other backends will proceed using standard ALTER TABLE
+operations.
+
+The method is used as a context manager, which returns an instance
+of :class:`.BatchOperations`; this object is the same as
+:class:`.Operations` except that table names and schema names
+are omitted.  E.g.::
+
+    with op.batch_alter_table("some_table") as batch_op:
+        batch_op.add_column(Column("foo", Integer))
+        batch_op.drop_column("bar")
+
+The operations within the context manager are invoked at once
+when the context is ended.   When run against SQLite, if the
+migrations include operations not supported by SQLite's ALTER TABLE,
+the entire table will be copied to a new one with the new
+specification, moving all data across as well.
+
+The copy operation by default uses reflection to retrieve the current
+structure of the table, and therefore :meth:`.batch_alter_table`
+in this mode requires that the migration is run in "online" mode.
+The ``copy_from`` parameter may be passed which refers to an existing
+:class:`.Table` object, which will bypass this reflection step.
+
+.. note::  The table copy operation will currently not copy
+   CHECK constraints, and may not copy UNIQUE constraints that are
+   unnamed, as is possible on SQLite.   See the section
+   :ref:`sqlite_batch_constraints` for workarounds.
+
+:param table_name: name of table
+:param schema: optional schema name.
+:param recreate: under what circumstances the table should be
+ recreated. At its default of ``"auto"``, the SQLite dialect will
+ recreate the table if any operations other than ``add_column()``,
+ ``create_index()``, or ``drop_index()`` are
+ present. Other options include ``"always"`` and ``"never"``.
+:param copy_from: optional :class:`~sqlalchemy.schema.Table` object
+ that will act as the structure of the table being copied.  If omitted,
+ table reflection is used to retrieve the structure of the table.
+
+ .. seealso::
+
+    :ref:`batch_offline_mode`
+
+    :paramref:`~.Operations.batch_alter_table.reflect_args`
+
+    :paramref:`~.Operations.batch_alter_table.reflect_kwargs`
+
+:param reflect_args: a sequence of additional positional arguments that
+ will be applied to the table structure being reflected / copied;
+ this may be used to pass column and constraint overrides to the
+ table that will be reflected, in lieu of passing the whole
+ :class:`~sqlalchemy.schema.Table` using
+ :paramref:`~.Operations.batch_alter_table.copy_from`.
+:param reflect_kwargs: a dictionary of additional keyword arguments
+ that will be applied to the table structure being copied; this may be
+ used to pass additional table and reflection options to the table that
+ will be reflected, in lieu of passing the whole
+ :class:`~sqlalchemy.schema.Table` using
+ :paramref:`~.Operations.batch_alter_table.copy_from`.
+:param table_args: a sequence of additional positional arguments that
+ will be applied to the new :class:`~sqlalchemy.schema.Table` when
+ created, in addition to those copied from the source table.
+ This may be used to provide additional constraints such as CHECK
+ constraints that may not be reflected.
+:param table_kwargs: a dictionary of additional keyword arguments
+ that will be applied to the new :class:`~sqlalchemy.schema.Table`
+ when created, in addition to those copied from the source table.
+ This may be used to provide for additional table options that may
+ not be reflected.
+:param naming_convention: a naming convention dictionary of the form
+ described at :ref:`autogen_naming_conventions` which will be applied
+ to the :class:`~sqlalchemy.schema.MetaData` during the reflection
+ process.  This is typically required if one wants to drop SQLite
+ constraints, as these constraints will not have names when
+ reflected on this backend.  Requires SQLAlchemy **0.9.4** or greater.
+
+ .. seealso::
+
+    :ref:`dropping_sqlite_foreign_keys`
+
+:param partial_reordering: a list of tuples, each suggesting a desired
+ ordering of two or more columns in the newly created table.  Requires
+ that :paramref:`.batch_alter_table.recreate` is set to ``"always"``.
+ Examples, given a table with columns "a", "b", "c", and "d":
+
+ Specify the order of all columns::
+
+    with op.batch_alter_table(
+        "some_table",
+        recreate="always",
+        partial_reordering=[("c", "d", "a", "b")],
+    ) as batch_op:
+        pass
+
+ Ensure "d" appears before "c", and "b", appears before "a"::
+
+    with op.batch_alter_table(
+        "some_table",
+        recreate="always",
+        partial_reordering=[("d", "c"), ("b", "a")],
+    ) as batch_op:
+        pass
+
+ The ordering of columns not included in the partial_reordering
+ set is undefined.   Therefore it is best to specify the complete
+ ordering of all columns for best results.
+
+.. note:: batch mode requires SQLAlchemy 0.8 or above.
+
+.. seealso::
+
+    :ref:`batch_migrations`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1fc933cd260025955c812b4643fe53cc}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!f@{f}}
+\index{f@{f}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{f()}{f()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1fc933cd260025955c812b4643fe53cc} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1conv}{conv}} alembic.\+operations.\+base.\+Abstract\+Operations.\+f (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Indicate a string name that has already had a naming convention
+applied to it.
+
+This feature combines with the SQLAlchemy ``naming_convention`` feature
+to disambiguate constraint names that have already had naming
+conventions applied to them, versus those that have not.  This is
+necessary in the case that the ``"%(constraint_name)s"`` token
+is used within a naming convention, so that it can be identified
+that this particular name should remain fixed.
+
+If the :meth:`.Operations.f` is used on a constraint, the naming
+convention will not take effect::
+
+    op.add_column("t", "x", Boolean(name=op.f("ck_bool_t_x")))
+
+Above, the CHECK constraint generated will have the name
+``ck_bool_t_x`` regardless of whether or not a naming convention is
+in use.
+
+Alternatively, if a naming convention is in use, and 'f' is not used,
+names will be converted along conventions.  If the ``target_metadata``
+contains the naming convention
+``{"ck": "ck_bool_%(table_name)s_%(constraint_name)s"}``, then the
+output of the following:
+
+    op.add_column("t", "x", Boolean(name="x"))
+
+will be::
+
+    CONSTRAINT ck_bool_t_x CHECK (x in (1, 0)))
+
+The function is rendered in the output of autogenerate when
+a particular constraint name is already converted.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1f461b9ab073a6a3136f62d4668569f5}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!get\_bind@{get\_bind}}
+\index{get\_bind@{get\_bind}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{get\_bind()}{get\_bind()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a1f461b9ab073a6a3136f62d4668569f5} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} alembic.\+operations.\+base.\+Abstract\+Operations.\+get\+\_\+bind (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current 'bind'.
+
+Under normal circumstances, this is the
+:class:`~sqlalchemy.engine.Connection` currently being used
+to emit SQL to the database.
+
+In a SQL script context, this value is ``None``. [TODO: verify this]
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a844c707571ac64844fd6e91a73062b08}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!get\_context@{get\_context}}
+\index{get\_context@{get\_context}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{get\_context()}{get\_context()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a844c707571ac64844fd6e91a73062b08} 
+ \doxymbox{\hyperlink{classalembic_1_1runtime_1_1migration_1_1MigrationContext}{Migration\+Context}} alembic.\+operations.\+base.\+Abstract\+Operations.\+get\+\_\+context (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the :class:`.MigrationContext` object that's
+currently in use.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_aac74a50f78b09deb8bd499eb2989c796}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!implementation\_for@{implementation\_for}}
+\index{implementation\_for@{implementation\_for}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{implementation\_for()}{implementation\_for()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_aac74a50f78b09deb8bd499eb2989c796} 
+ Callable\+[\+[\+\_\+C]\+, \+\_\+C]\+ alembic.\+operations.\+base.\+Abstract\+Operations.\+implementation\+\_\+for (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Any}]{op\+\_\+cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register an implementation for a given :class:`.MigrateOperation`.
+
+This is part of the operation extensibility API.
+
+.. seealso::
+
+    :ref:`operation_plugins` - example of use
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a05a44ae5e502c351a25323c6d61f6efa}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!inline\_literal@{inline\_literal}}
+\index{inline\_literal@{inline\_literal}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{inline\_literal()}{inline\_literal()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a05a44ae5e502c351a25323c6d61f6efa} 
+ \doxymbox{\hyperlink{classalembic_1_1util_1_1sqla__compat_1_1__literal__bindparam}{\+\_\+literal\+\_\+bindparam}} alembic.\+operations.\+base.\+Abstract\+Operations.\+inline\+\_\+literal (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Union\+[str, int]\+}]{value}{, }\item[{Optional\+[Type\+Engine\+[Any]\+]\+ }]{type\+\_\+}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Produce an 'inline literal' expression, suitable for
+using in an INSERT, UPDATE, or DELETE statement.
+
+When using Alembic in "offline" mode, CRUD operations
+aren't compatible with SQLAlchemy's default behavior surrounding
+literal values,
+which is that they are converted into bound values and passed
+separately into the ``execute()`` method of the DBAPI cursor.
+An offline SQL
+script needs to have these rendered inline.  While it should
+always be noted that inline literal values are an **enormous**
+security hole in an application that handles untrusted input,
+a schema migration is not run in this context, so
+literals are safe to render inline, with the caveat that
+advanced types like dates may not be supported directly
+by SQLAlchemy.
+
+See :meth:`.Operations.execute` for an example usage of
+:meth:`.Operations.inline_literal`.
+
+The environment can also be configured to attempt to render
+"literal" values inline automatically, for those simple types
+that are supported by the dialect; see
+:paramref:`.EnvironmentContext.configure.literal_binds` for this
+more recently added feature.
+
+:param value: The value to render.  Strings, integers, and simple
+ numerics should be supported.   Other types like boolean,
+ dates, etc. may or may not be supported yet by various
+ backends.
+:param type\_: optional - a :class:`sqlalchemy.types.TypeEngine`
+ subclass stating the type of this value.  In SQLAlchemy
+ expressions, this is usually derived automatically
+ from the Python type of the value itself, as well as
+ based on the context in which the value is used.
+
+.. seealso::
+
+    :paramref:`.EnvironmentContext.configure.literal_binds`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!invoke@{invoke}}
+\index{invoke@{invoke}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{invoke()}{invoke()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a2751bc3497d94e42b2e2319253df72c0} 
+ Any alembic.\+operations.\+base.\+Abstract\+Operations.\+invoke (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classalembic_1_1operations_1_1ops_1_1MigrateOperation}{Migrate\+Operation}}}]{operation}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a :class:`.MigrateOperation`, invoke it in terms of
+this :class:`.Operations` instance.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d8edfa2af92833d20d263b1f34d94d}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!register\_operation@{register\_operation}}
+\index{register\_operation@{register\_operation}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{register\_operation()}{register\_operation()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a24d8edfa2af92833d20d263b1f34d94d} 
+ Callable\+[\+[Type\+[\+\_\+T]\+]\+, Type\+[\+\_\+T]\+]\+ alembic.\+operations.\+base.\+Abstract\+Operations.\+register\+\_\+operation (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{name}{, }\item[{Optional\+[str]\+ }]{sourcename}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register a new operation for this class.
+
+This method is normally used to add new operations
+to the :class:`.Operations` class, and possibly the
+:class:`.BatchOperations` class as well.   All Alembic migration
+operations are implemented via this system, however the system
+is also available as a public API to facilitate adding custom
+operations.
+
+.. seealso::
+
+    :ref:`operation_plugins`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1operations_1_1base_1_1AbstractOperations_a48e942839b64b4a4e7d127417ba5d3fa}\index{alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}!run\_async@{run\_async}}
+\index{run\_async@{run\_async}!alembic.operations.base.AbstractOperations@{alembic.operations.base.AbstractOperations}}
+\doxysubsubsection{\texorpdfstring{run\_async()}{run\_async()}}
+{\footnotesize\ttfamily \label{classalembic_1_1operations_1_1base_1_1AbstractOperations_a48e942839b64b4a4e7d127417ba5d3fa} 
+ \+\_\+T alembic.\+operations.\+base.\+Abstract\+Operations.\+run\+\_\+async (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[..., Awaitable\+[\+\_\+T]\+]\+}]{async\+\_\+function}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw\+\_\+args}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Invoke the given asynchronous callable, passing an asynchronous
+:class:`~sqlalchemy.ext.asyncio.AsyncConnection` as the first
+argument.
+
+This method allows calling async functions from within the
+synchronous ``upgrade()`` or ``downgrade()`` alembic migration
+method.
+
+The async connection passed to the callable shares the same
+transaction as the connection running in the migration context.
+
+Any additional arg or kw_arg passed to this function are passed
+to the provided async function.
+
+.. versionadded: 1.11
+
+.. note::
+
+    This method can be called only when alembic is called using
+    an async dialect.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+operations/\+base.\+py\end{DoxyCompactItemize}

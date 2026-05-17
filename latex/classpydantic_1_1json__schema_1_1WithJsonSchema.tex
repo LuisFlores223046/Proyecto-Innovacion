@@ -1,0 +1,40 @@
+\doxysection{pydantic.\+json\+\_\+schema.\+With\+Json\+Schema Class Reference}
+\hypertarget{classpydantic_1_1json__schema_1_1WithJsonSchema}{}\label{classpydantic_1_1json__schema_1_1WithJsonSchema}\index{pydantic.json\_schema.WithJsonSchema@{pydantic.json\_schema.WithJsonSchema}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1WithJsonSchema_aa3ac4e732a9e91ca08adb17183fbded0}\label{classpydantic_1_1json__schema_1_1WithJsonSchema_aa3ac4e732a9e91ca08adb17183fbded0} 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (self, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1WithJsonSchema_a1cbdf6fe73d05627fd6e4e726f42c5c3}\label{classpydantic_1_1json__schema_1_1WithJsonSchema_a1cbdf6fe73d05627fd6e4e726f42c5c3} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1WithJsonSchema_a1b9e687e81bf3feeb4a156b6947e9530}\label{classpydantic_1_1json__schema_1_1WithJsonSchema_a1b9e687e81bf3feeb4a156b6947e9530} 
+Json\+Schema\+Value {\bfseries json\+\_\+schema} \texorpdfstring{$\vert$}{|} None
+\item 
+\Hypertarget{classpydantic_1_1json__schema_1_1WithJsonSchema_a0aadda42cb8f104507845d1d5adc0a13}\label{classpydantic_1_1json__schema_1_1WithJsonSchema_a0aadda42cb8f104507845d1d5adc0a13} 
+Literal {\bfseries mode} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/json_schema/#withjsonschema-annotation
+
+Add this as an annotation on a field to override the (base) JSON schema that would be generated for that field.
+This provides a way to set a JSON schema for types that would otherwise raise errors when producing a JSON schema,
+such as Callable, or types that have an is-instance core schema, without needing to go so far as creating a
+custom subclass of pydantic.json_schema.GenerateJsonSchema.
+Note that any _modifications_ to the schema that would normally be made (such as setting the title for model fields)
+will still be performed.
+
+If `mode` is set this will only apply to that schema generation mode, allowing you
+to set different json schemas for validation and serialization.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+json\+\_\+schema.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,188 @@
+\doxysection{frontend/\+node\+\_\+modules/\+acorn Directory Reference}
+\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f}{}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f}\index{frontend/node\_modules/acorn Directory Reference@{frontend/node\_modules/acorn Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_342de7ecee27520383b91ccfcb735411}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md818}{}\doxysubsection{\texorpdfstring{Acorn}{Acorn}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md818}
+A tiny, fast Java\+Script parser written in Java\+Script.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md819}{}\doxysubsection{\texorpdfstring{Community}{Community}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md819}
+Acorn is open source software released under an \href{https://github.com/acornjs/acorn/blob/master/acorn/LICENSE}{\texttt{MIT license}}.
+
+You are welcome to \href{https://github.com/acornjs/acorn/issues}{\texttt{report bugs}} or create pull requests on \href{https://github.com/acornjs/acorn}{\texttt{github}}.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md820}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md820}
+The easiest way to install acorn is from \href{https://www.npmjs.com/}{\texttt{{\ttfamily npm}}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ acorn}
+
+\end{DoxyCode}
+
+
+Alternately, you can download the source and build acorn yourself:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/acornjs/acorn.git}
+\DoxyCodeLine{cd\ acorn}
+\DoxyCodeLine{npm\ install}
+
+\end{DoxyCode}
+ \hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md821}{}\doxysubsection{\texorpdfstring{Importing acorn}{Importing acorn}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md821}
+ESM as well as Common\+JS is supported for all 3:\+ {\ttfamily acorn}, {\ttfamily acorn-\/walk} and {\ttfamily acorn-\/loose}.
+
+ESM example for {\ttfamily acorn}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ acorn\ from\ "{}acorn"{}}
+
+\end{DoxyCode}
+
+
+Common\+JS example for {\ttfamily acorn}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{let\ acorn\ =\ require("{}acorn"{})}
+
+\end{DoxyCode}
+
+
+ESM is preferred, as it allows better editor auto-\/completions by offering Type\+Script support. For this reason, following examples will use ESM imports.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md822}{}\doxysubsection{\texorpdfstring{Interface}{Interface}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md822}
+{\bfseries{parse}}{\ttfamily (input, options)} is the main interface to the library. The {\ttfamily input} parameter is a string, {\ttfamily options} must be an object setting some of the options listed below. The return value will be an abstract syntax tree object as specified by the \href{https://github.com/estree/estree}{\texttt{ESTree spec}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ acorn\ from\ "{}acorn"{}}
+\DoxyCodeLine{console.log(acorn.parse("{}1\ +\ 1"{},\ \{ecmaVersion:\ 2020\}))}
+
+\end{DoxyCode}
+
+
+When encountering a syntax error, the parser will raise a {\ttfamily Syntax\+Error} object with a meaningful message. The error object will have a {\ttfamily pos} property that indicates the string offset at which the error occurred, and a {\ttfamily loc} object that contains a {\ttfamily \{line, column\}} object referring to that same position.
+
+Options are provided by in a second argument, which should be an object containing any of these fields (only {\ttfamily ecma\+Version} is required):\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{ecma\+Version}}:\+ Indicates the ECMAScript version to parse. Can be a number, either in year ({\ttfamily 2022}) or plain version number ({\ttfamily 6}) form, or {\ttfamily "{}latest"{}} (the latest the library supports). This influences support for strict mode, the set of reserved words, and support for new syntax features.
+
+{\bfseries{NOTE}}:\+ Only \textquotesingle{}stage 4\textquotesingle{} (finalized) ECMAScript features are being implemented by Acorn. Other proposed new features must be implemented through plugins.
+\item {\bfseries{source\+Type}}:\+ Indicate the mode the code should be parsed in. Can be either {\ttfamily "{}script"{}}, {\ttfamily "{}module"{}} or {\ttfamily "{}commonjs"{}}. This influences global strict mode and parsing of {\ttfamily import} and {\ttfamily export} declarations.
+
+{\bfseries{NOTE}}:\+ If set to {\ttfamily "{}module"{}}, then static {\ttfamily import} /\+ {\ttfamily export} syntax will be valid, even if {\ttfamily ecma\+Version} is less than 6. If set to {\ttfamily "{}commonjs"{}}, it is the same as {\ttfamily "{}script"{}} except that the top-\/level scope behaves like a function.
+\item {\bfseries{on\+Inserted\+Semicolon}}:\+ If given a callback, that callback will be called whenever a missing semicolon is inserted by the parser. The callback will be given the character offset of the point where the semicolon is inserted as argument, and if {\ttfamily locations} is on, also a {\ttfamily \{line, column\}} object representing this position.
+\item {\bfseries{on\+Trailing\+Comma}}:\+ Like {\ttfamily on\+Inserted\+Semicolon}, but for trailing commas.
+\item {\bfseries{allow\+Reserved}}:\+ If {\ttfamily false}, using a reserved word will generate an error. Defaults to {\ttfamily true} for {\ttfamily ecma\+Version} 3, {\ttfamily false} for higher versions. When given the value {\ttfamily "{}never"{}}, reserved words and keywords can also not be used as property names (as in Internet Explorer\textquotesingle{}s old parser).
+\item {\bfseries{allow\+Return\+Outside\+Function}}:\+ By default, a return statement at the top level raises an error. Set this to {\ttfamily true} to accept such code.
+\item {\bfseries{allow\+Import\+Export\+Everywhere}}:\+ By default, {\ttfamily import} and {\ttfamily export} declarations can only appear at a program\textquotesingle{}s top level. Setting this option to {\ttfamily true} allows them anywhere where a statement is allowed, and also allows {\ttfamily import.\+meta} expressions to appear in scripts (when {\ttfamily source\+Type} is not {\ttfamily "{}module"{}}).
+\item {\bfseries{allow\+Await\+Outside\+Function}}:\+ If {\ttfamily false}, {\ttfamily await} expressions can only appear inside {\ttfamily async} functions. Defaults to {\ttfamily true} in modules for {\ttfamily ecma\+Version} 2022 and later, {\ttfamily false} for lower versions. Setting this option to {\ttfamily true} allows to have top-\/level {\ttfamily await} expressions. They are still not allowed in non-\/{\ttfamily async} functions, though. Setting this option to {\ttfamily true} is not allowed when {\ttfamily source\+Type:\+ "{}commonjs"{}}.
+\item {\bfseries{allow\+Super\+Outside\+Method}}:\+ By default, {\ttfamily super} outside a method raises an error. Set this to {\ttfamily true} to accept such code.
+\item {\bfseries{allow\+Hash\+Bang}}:\+ When this is enabled, if the code starts with the characters {\ttfamily \#!} (as in a shellscript), the first line will be treated as a comment. Defaults to true when {\ttfamily ecma\+Version} \texorpdfstring{$>$}{>}= 2023.
+\item {\bfseries{check\+Private\+Fields}}:\+ By default, the parser will verify that private properties are only used in places where they are valid and have been declared. Set this to false to turn such checks off.
+\item {\bfseries{locations}}:\+ When {\ttfamily true}, each node has a {\ttfamily loc} object attached with {\ttfamily start} and {\ttfamily end} subobjects, each of which contains the one-\/based line and zero-\/based column numbers in {\ttfamily \{line, column\}} form. Default is {\ttfamily false}.
+\item {\bfseries{on\+Token}}:\+ If a function is passed for this option, each found token will be passed in same format as tokens returned from {\ttfamily tokenizer().get\+Token()}.
+
+If array is passed, each found token is pushed to it.
+
+Note that you are not allowed to call the parser from the callback—that will corrupt its internal state.
+\item {\bfseries{on\+Comment}}:\+ If a function is passed for this option, whenever a comment is encountered the function will be called with the following parameters:\+
+\begin{DoxyItemize}
+\item {\ttfamily block}:\+ {\ttfamily true} if the comment is a block comment, false if it is a line comment.
+\item {\ttfamily text}:\+ The content of the comment.
+\item {\ttfamily start}:\+ Character offset of the start of the comment.
+\item {\ttfamily end}:\+ Character offset of the end of the comment.
+\end{DoxyItemize}
+
+When the {\ttfamily locations} options is on, the {\ttfamily \{line, column\}} locations of the comment’s start and end are passed as two additional parameters.
+
+If array is passed for this option, each found comment is pushed to it as object in Esprima format:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ "{}type"{}:\ "{}Line"{}\ |\ "{}Block"{},}
+\DoxyCodeLine{\ \ "{}value"{}:\ "{}comment\ text"{},}
+\DoxyCodeLine{\ \ "{}start"{}:\ Number,}
+\DoxyCodeLine{\ \ "{}end"{}:\ Number,}
+\DoxyCodeLine{\ \ //\ If\ \`{}locations`\ option\ is\ on:}
+\DoxyCodeLine{\ \ "{}loc"{}:\ \{}
+\DoxyCodeLine{\ \ \ \ "{}start"{}:\ \{line:\ Number,\ column:\ Number\}}
+\DoxyCodeLine{\ \ \ \ "{}end"{}:\ \{line:\ Number,\ column:\ Number\}}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ //\ If\ \`{}ranges`\ option\ is\ on:}
+\DoxyCodeLine{\ \ "{}range"{}:\ [Number,\ Number]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Note that you are not allowed to call the parser from the callback—that will corrupt its internal state.
+\item {\bfseries{ranges}}:\+ Nodes have their start and end characters offsets recorded in {\ttfamily start} and {\ttfamily end} properties (directly on the node, rather than the {\ttfamily loc} object, which holds line/\+column data. To also add a \href{https://bugzilla.mozilla.org/show_bug.cgi?id=745678}{\texttt{semi-\/standardized}} {\ttfamily range} property holding a {\ttfamily \+[start, end]\+} array with the same numbers, set the {\ttfamily ranges} option to {\ttfamily true}.
+\item {\bfseries{program}}:\+ It is possible to parse multiple files into a single AST by passing the tree produced by parsing the first file as the {\ttfamily program} option in subsequent parses. This will add the toplevel forms of the parsed file to the "{}\+Program"{} (top) node of an existing parse tree.
+\item {\bfseries{source\+File}}:\+ When the {\ttfamily locations} option is {\ttfamily true}, you can pass this option to add a {\ttfamily source} attribute in every node’s {\ttfamily loc} object. Note that the contents of this option are not examined or processed in any way; you are free to use whatever format you choose.
+\item {\bfseries{direct\+Source\+File}}:\+ Like {\ttfamily source\+File}, but a {\ttfamily source\+File} property will be added (regardless of the {\ttfamily location} option) directly to the nodes, rather than the {\ttfamily loc} object.
+\item {\bfseries{preserve\+Parens}}:\+ If this option is {\ttfamily true}, parenthesized expressions are represented by (non-\/standard) {\ttfamily Parenthesized\+Expression} nodes that have a single {\ttfamily expression} property containing the expression inside parentheses.
+\end{DoxyItemize}
+
+{\bfseries{parse\+Expression\+At}}{\ttfamily (input, offset, options)} will parse a single expression in a string, and return its AST. It will not complain if there is more of the string left after the expression.
+
+{\bfseries{tokenizer}}{\ttfamily (input, options)} returns an object with a {\ttfamily get\+Token} method that can be called repeatedly to get the next token, a {\ttfamily \{start, end, type, value\}} object (with added {\ttfamily loc} property when the {\ttfamily locations} option is enabled and {\ttfamily range} property when the {\ttfamily ranges} option is enabled). When the token\textquotesingle{}s type is {\ttfamily tok\+Types.\+eof}, you should stop calling the method, since it will keep returning that same token forever.
+
+Note that tokenizing Java\+Script without parsing it is, in modern versions of the language, not really possible due to the way syntax is overloaded in ways that can only be disambiguated by the parse context. This package applies a bunch of heuristics to try and do a reasonable job, but you are advised to use {\ttfamily parse} with the {\ttfamily on\+Token} option instead of this.
+
+In ES6 environment, returned result can be used as any other protocol-\/compliant iterable:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{for\ (let\ token\ of\ acorn.tokenizer(str))\ \{}
+\DoxyCodeLine{\ \ //\ iterate\ over\ the\ tokens}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ transform\ code\ to\ array\ of\ tokens:}
+\DoxyCodeLine{var\ tokens\ =\ [...acorn.tokenizer(str)]}
+
+\end{DoxyCode}
+
+
+{\bfseries{tok\+Types}} holds an object mapping names to the token type objects that end up in the {\ttfamily type} properties of tokens.
+
+{\bfseries{get\+Line\+Info}}{\ttfamily (input, offset)} can be used to get a {\ttfamily \{line, column\}} object for a given program string and offset.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md823}{}\doxysubsubsection{\texorpdfstring{The {\ttfamily Parser} class}{The {\ttfamily Parser} class}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md823}
+Instances of the {\bfseries{{\ttfamily Parser}}} class contain all the state and logic that drives a parse. It has static methods {\ttfamily parse}, {\ttfamily parse\+Expression\+At}, and {\ttfamily tokenizer} that match the top-\/level functions by the same name.
+
+When extending the parser with plugins, you need to call these methods on the extended version of the class. To extend a parser with plugins, you can use its static {\ttfamily extend} method.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ acorn\ =\ require("{}acorn"{})}
+\DoxyCodeLine{var\ jsx\ =\ require("{}acorn-\/jsx"{})}
+\DoxyCodeLine{var\ JSXParser\ =\ acorn.Parser.extend(jsx())}
+\DoxyCodeLine{JSXParser.parse("{}foo(<bar/>)"{},\ \{ecmaVersion:\ 2020\})}
+
+\end{DoxyCode}
+
+
+The {\ttfamily extend} method takes any number of plugin values, and returns a new {\ttfamily Parser} class that includes the extra parser logic provided by the plugins.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md824}{}\doxysubsection{\texorpdfstring{Command line interface}{Command line interface}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md824}
+The {\ttfamily bin/\+acorn} utility can be used to parse a file from the command line. It accepts as arguments its input file and the following options:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily -\/-\/ecma3\texorpdfstring{$\vert$}{|}-\/-\/ecma5\texorpdfstring{$\vert$}{|}-\/-\/ecma6\texorpdfstring{$\vert$}{|}-\/-\/ecma7\texorpdfstring{$\vert$}{|}-\/-\/ecma8\texorpdfstring{$\vert$}{|}-\/-\/ecma9\texorpdfstring{$\vert$}{|}-\/-\/ecma10}:\+ Sets the ECMAScript version to parse. Default is version 9.
+\item {\ttfamily -\/-\/module}:\+ Sets the parsing mode to {\ttfamily "{}module"{}}. Is set to {\ttfamily "{}script"{}} otherwise.
+\item {\ttfamily -\/-\/locations}:\+ Attaches a "{}loc"{} object to each node with "{}start"{} and "{}end"{} subobjects, each of which contains the one-\/based line and zero-\/based column numbers in {\ttfamily \{line, column\}} form.
+\item {\ttfamily -\/-\/allow-\/hash-\/bang}:\+ If the code starts with the characters \#! (as in a shellscript), the first line will be treated as a comment.
+\item {\ttfamily -\/-\/allow-\/await-\/outside-\/function}:\+ Allows top-\/level {\ttfamily await} expressions. See the {\ttfamily allow\+Await\+Outside\+Function} option for more information.
+\item {\ttfamily -\/-\/compact}:\+ No whitespace is used in the AST output.
+\item {\ttfamily -\/-\/silent}:\+ Do not output the AST, just return the exit status.
+\item {\ttfamily -\/-\/help}:\+ Print the usage information and quit.
+\end{DoxyItemize}
+
+The utility spits out the syntax tree as JSON data.\hypertarget{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md825}{}\doxysubsection{\texorpdfstring{Existing plugins}{Existing plugins}}\label{dir_afe96e60983867cb1450c4f7c5dd9a0f_autotoc_md825}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/RReverser/acorn-jsx}{\texttt{{\ttfamily acorn-\/jsx}}}:\+ Parse \href{https://github.com/facebook/jsx}{\texttt{Facebook JSX syntax extensions}} 
+\end{DoxyItemize}

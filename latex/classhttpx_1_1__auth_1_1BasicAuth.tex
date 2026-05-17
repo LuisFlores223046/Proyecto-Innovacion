@@ -1,0 +1,89 @@
+\doxysection{httpx.\+\_\+auth.\+Basic\+Auth Class Reference}
+\hypertarget{classhttpx_1_1__auth_1_1BasicAuth}{}\label{classhttpx_1_1__auth_1_1BasicAuth}\index{httpx.\_auth.BasicAuth@{httpx.\_auth.BasicAuth}}
+Inheritance diagram for httpx.\+\_\+auth.\+Basic\+Auth:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhttpx_1_1__auth_1_1BasicAuth}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1BasicAuth_a5b63e4976b4bcc5edf4f5586f4fcaba9}\label{classhttpx_1_1__auth_1_1BasicAuth_a5b63e4976b4bcc5edf4f5586f4fcaba9} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str\texorpdfstring{$\vert$}{|}bytes username, str\texorpdfstring{$\vert$}{|}bytes password)
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1BasicAuth_ac835c11945d62401b2016d0b23d3f66f}{auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_ac8e4533e21789a47bb38d7261b9c7cab}{sync\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\item 
+typing.\+Async\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}]\+ \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a4f242babe9e3b3cd6d9045162db2aca4}{async\+\_\+auth\+\_\+flow}} (self, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1BasicAuth_a2e14e966f8894ba1a79c2f3b0adb1a91}\label{classhttpx_1_1__auth_1_1BasicAuth_a2e14e966f8894ba1a79c2f3b0adb1a91} 
+str {\bfseries \+\_\+build\+\_\+auth\+\_\+header} (self, str\texorpdfstring{$\vert$}{|}bytes username, str\texorpdfstring{$\vert$}{|}bytes password)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__auth_1_1BasicAuth_a39d189bd5b8728f8e3348e59e1b53920}\label{classhttpx_1_1__auth_1_1BasicAuth_a39d189bd5b8728f8e3348e59e1b53920} 
+str {\bfseries \+\_\+auth\+\_\+header} = self.\+\_\+build\+\_\+auth\+\_\+header(username, password)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth}{httpx.\+\_\+auth.\+Auth}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries requires\+\_\+request\+\_\+body} = False
+\item 
+bool {\bfseries requires\+\_\+response\+\_\+body} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Allows the 'auth' argument to be passed as a (username, password) pair,
+and uses HTTP Basic authentication.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__auth_1_1BasicAuth_doc-func-members}
+\Hypertarget{classhttpx_1_1__auth_1_1BasicAuth_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhttpx_1_1__auth_1_1BasicAuth_ac835c11945d62401b2016d0b23d3f66f}\index{httpx.\_auth.BasicAuth@{httpx.\_auth.BasicAuth}!auth\_flow@{auth\_flow}}
+\index{auth\_flow@{auth\_flow}!httpx.\_auth.BasicAuth@{httpx.\_auth.BasicAuth}}
+\doxysubsubsection{\texorpdfstring{auth\_flow()}{auth\_flow()}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__auth_1_1BasicAuth_ac835c11945d62401b2016d0b23d3f66f} 
+ typing.\+Generator\+[\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}, \doxymbox{\hyperlink{classhttpx_1_1__models_1_1Response}{Response}}, None]\+ httpx.\+\_\+auth.\+Basic\+Auth.\+auth\+\_\+flow (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classhttpx_1_1__models_1_1Request}{Request}}}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Execute the authentication flow.
+
+To dispatch a request, `yield` it:
+
+```
+yield request
+```
+
+The client will `.send()` the response back into the flow generator. You can
+access it like so:
+
+```
+response = yield request
+```
+
+A `return` (or reaching the end of the generator) will result in the
+client returning the last response obtained from the server.
+
+You can dispatch as many requests as is necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classhttpx_1_1__auth_1_1Auth_a2ff3aabb4549b3f076574aff075fd30d}{httpx.\+\_\+auth.\+Auth}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+auth.\+py\end{DoxyCompactItemize}

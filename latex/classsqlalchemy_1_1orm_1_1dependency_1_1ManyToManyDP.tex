@@ -1,0 +1,168 @@
+\doxysection{sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP}{}\label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+Inheritance diagram for sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_adcd95d356e31df30279db07a46828261}\label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_adcd95d356e31df30279db07a46828261} 
+{\bfseries per\+\_\+property\+\_\+dependencies} (self, uow, parent\+\_\+saves, child\+\_\+saves, parent\+\_\+deletes, child\+\_\+deletes, after\+\_\+save, before\+\_\+delete)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_ae91ebab06448a479423cc697755a9be1}\label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_ae91ebab06448a479423cc697755a9be1} 
+{\bfseries per\+\_\+state\+\_\+dependencies} (self, uow, save\+\_\+parent, delete\+\_\+parent, child\+\_\+action, after\+\_\+save, before\+\_\+delete, isdelete, childisdelete)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_abb6dc118c35a715c66400b1f4f6ae0c2}{presort\+\_\+deletes}} (self, uowcommit, states)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a5627c5cfe0d7688e6fbb03179020aad1}{presort\+\_\+saves}} (self, uowcommit, states)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a8924167e542a090aa8b5438dc6637409}{process\+\_\+deletes}} (self, uowcommit, states)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a3847fde82e76ef90a8ba68f46d6ff8d6}{process\+\_\+saves}} (self, uowcommit, states)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, prop)
+\item 
+{\bfseries from\+\_\+relationship} (cls, prop)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor_ab9cd6f3f77eba90045b7ac0506437a56}{hasparent}} (self, state)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor_a2dc5619d21286772ab4e28fa7f8fdd8b}{per\+\_\+property\+\_\+preprocessors}} (self, uow)
+\item 
+{\bfseries per\+\_\+property\+\_\+flush\+\_\+actions} (self, uow)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor_a54fe35df116887e9cb210915b975a0be}{per\+\_\+state\+\_\+flush\+\_\+actions}} (self, uow, states, isdelete)
+\item 
+{\bfseries prop\+\_\+has\+\_\+changes} (self, uowcommit, states, isdelete)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_aa3d43d278bd19f54392d4d2b2afa4548}\label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_aa3d43d278bd19f54392d4d2b2afa4548} 
+{\bfseries \+\_\+run\+\_\+crud} (self, uowcommit, secondary\+\_\+insert, secondary\+\_\+update, secondary\+\_\+delete)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a2e262e2f64e34d46a4a88f921195771b}{\+\_\+synchronize}} (self, state, child, associationrow, clearkeys, uowcommit, operation)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a1b9168097086514cebce0e6d74c81a97}{\+\_\+pks\+\_\+changed}} (self, uowcommit, state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+verify\+\_\+canload} (self, state)
+\item 
+{\bfseries \+\_\+get\+\_\+reversed\+\_\+processed\+\_\+set} (self, uow)
+\item 
+{\bfseries \+\_\+post\+\_\+update} (self, state, uowcommit, related, is\+\_\+m2o\+\_\+delete=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries prop} = prop
+\item 
+{\bfseries cascade} = prop.\+cascade
+\item 
+{\bfseries mapper} = prop.\+mapper
+\item 
+{\bfseries parent} = prop.\+parent
+\item 
+{\bfseries secondary} = prop.\+secondary
+\item 
+{\bfseries direction} = prop.\+direction
+\item 
+{\bfseries post\+\_\+update} = prop.\+post\+\_\+update
+\item 
+{\bfseries passive\+\_\+deletes} = prop.\+passive\+\_\+deletes
+\item 
+{\bfseries passive\+\_\+updates} = prop.\+passive\+\_\+updates
+\item 
+{\bfseries enable\+\_\+typechecks} = prop.\+enable\+\_\+typechecks
+\item 
+str {\bfseries sort\+\_\+key} = "{}\%s\+\_\+\%s"{} \% (self.\+parent.\+\_\+sort\+\_\+key, prop.\+key)
+\item 
+{\bfseries key} = prop.\+key
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+passive\+\_\+delete\+\_\+flag} = attributes.\+PASSIVE\+\_\+\+NO\+\_\+\+INITIALIZE
+\item 
+{\bfseries \+\_\+passive\+\_\+update\+\_\+flag} = attributes.\+PASSIVE\+\_\+\+NO\+\_\+\+INITIALIZE
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a1b9168097086514cebce0e6d74c81a97}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!\_pks\_changed@{\_pks\_changed}}
+\index{\_pks\_changed@{\_pks\_changed}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{\_pks\_changed()}{\_pks\_changed()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a1b9168097086514cebce0e6d74c81a97} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+\_\+pks\+\_\+changed (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uowcommit}{, }\item[{}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a2e262e2f64e34d46a4a88f921195771b}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!\_synchronize@{\_synchronize}}
+\index{\_synchronize@{\_synchronize}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{\_synchronize()}{\_synchronize()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a2e262e2f64e34d46a4a88f921195771b} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+\_\+synchronize (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{state}{, }\item[{}]{child}{, }\item[{}]{associationrow}{, }\item[{}]{clearkeys}{, }\item[{}]{uowcommit}{, }\item[{}]{operation}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_abb6dc118c35a715c66400b1f4f6ae0c2}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!presort\_deletes@{presort\_deletes}}
+\index{presort\_deletes@{presort\_deletes}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{presort\_deletes()}{presort\_deletes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_abb6dc118c35a715c66400b1f4f6ae0c2} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+presort\+\_\+deletes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uowcommit}{, }\item[{}]{states}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a5627c5cfe0d7688e6fbb03179020aad1}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!presort\_saves@{presort\_saves}}
+\index{presort\_saves@{presort\_saves}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{presort\_saves()}{presort\_saves()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a5627c5cfe0d7688e6fbb03179020aad1} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+presort\+\_\+saves (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uowcommit}{, }\item[{}]{states}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a8924167e542a090aa8b5438dc6637409}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!process\_deletes@{process\_deletes}}
+\index{process\_deletes@{process\_deletes}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{process\_deletes()}{process\_deletes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a8924167e542a090aa8b5438dc6637409} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+process\+\_\+deletes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uowcommit}{, }\item[{}]{states}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+\Hypertarget{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a3847fde82e76ef90a8ba68f46d6ff8d6}\index{sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}!process\_saves@{process\_saves}}
+\index{process\_saves@{process\_saves}!sqlalchemy.orm.dependency.ManyToManyDP@{sqlalchemy.orm.dependency.ManyToManyDP}}
+\doxysubsubsection{\texorpdfstring{process\_saves()}{process\_saves()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1orm_1_1dependency_1_1ManyToManyDP_a3847fde82e76ef90a8ba68f46d6ff8d6} 
+sqlalchemy.\+orm.\+dependency.\+Many\+To\+Many\+DP.\+process\+\_\+saves (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{uowcommit}{, }\item[{}]{states}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1dependency_1_1DependencyProcessor}{sqlalchemy.\+orm.\+dependency.\+Dependency\+Processor}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+dependency.\+py\end{DoxyCompactItemize}

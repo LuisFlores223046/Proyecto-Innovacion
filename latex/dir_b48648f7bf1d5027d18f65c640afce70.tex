@@ -1,0 +1,98 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@typescript-\/eslint/\+typescript-\/estree/\+node\+\_\+modules/\+brace-\/expansion Directory Reference}
+\hypertarget{dir_b48648f7bf1d5027d18f65c640afce70}{}\label{dir_b48648f7bf1d5027d18f65c640afce70}\index{frontend/node\_modules/"@typescript-\/eslint/typescript-\/estree/node\_modules/brace-\/expansion Directory Reference@{frontend/node\_modules/"@typescript-\/eslint/typescript-\/estree/node\_modules/brace-\/expansion Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md508}{}\doxysubsection{\texorpdfstring{brace-\/expansion}{brace-\/expansion}}\label{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md508}
+\href{https://www.gnu.org/software/bash/manual/html_node/Brace-Expansion.html}{\texttt{Brace expansion}}, as known from sh/\+bash, in Java\+Script.
+
+\href{https://github.com/juliangruber/brace-expansion/actions/workflows/ci.yml}{\texttt{}} \href{https://www.npmjs.org/package/brace-expansion}{\texttt{}}\hypertarget{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md509}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md509}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ expand\ \}\ from\ 'brace-\/expansion'}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file-\/\{a,b,c\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file-\/a.jpg',\ 'file-\/b.jpg',\ 'file-\/c.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('-\/v\{,,\}')}
+\DoxyCodeLine{//\ =>\ ['-\/v',\ '-\/v',\ '-\/v']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file\{0..2\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file0.jpg',\ 'file1.jpg',\ 'file2.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file-\/\{a..c\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file-\/a.jpg',\ 'file-\/b.jpg',\ 'file-\/c.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file\{2..0\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file2.jpg',\ 'file1.jpg',\ 'file0.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file\{0..4..2\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file0.jpg',\ 'file2.jpg',\ 'file4.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file-\/\{a..e..2\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file-\/a.jpg',\ 'file-\/c.jpg',\ 'file-\/e.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('file\{00..10..5\}.jpg')}
+\DoxyCodeLine{//\ =>\ ['file00.jpg',\ 'file05.jpg',\ 'file10.jpg']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('\{\{A..C\},\{a..c\}\}')}
+\DoxyCodeLine{//\ =>\ ['A',\ 'B',\ 'C',\ 'a',\ 'b',\ 'c']}
+\DoxyCodeLine{}
+\DoxyCodeLine{expand('ppp\{,config,oe\{,conf\}\}')}
+\DoxyCodeLine{//\ =>\ ['ppp',\ 'pppconfig',\ 'pppoe',\ 'pppoeconf']}
+
+\end{DoxyCode}
+\hypertarget{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md510}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md510}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ expand\ \}\ from\ 'brace-\/expansion'}
+
+\end{DoxyCode}
+\hypertarget{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md511}{}\doxysubsubsection{\texorpdfstring{const expanded = expand(str, \+[options]\+)}{const expanded = expand(str, \+[options]\+)}}\label{dir_b48648f7bf1d5027d18f65c640afce70_autotoc_md511}
+Return an array of all possible and valid expansions of {\ttfamily str}. If none are found, {\ttfamily \+[str]\+} is returned.
+
+The {\ttfamily options} object can provide a {\ttfamily max} value to cap the number of expansions allowed. This is limited to {\ttfamily 100\+\_\+000} by default, to prevent DoS attacks.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ expansions\ =\ expand('\{1..100\}'.repeat(5),\ \{}
+\DoxyCodeLine{\ \ max:\ 100,}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{//\ expansions.length\ will\ be\ 100,\ not\ 100\string^5}
+
+\end{DoxyCode}
+
+
+Valid expansions are:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{;/\string^(.*,)+(.+)?\$/}
+\DoxyCodeLine{//\ \{a,b,...\}}
+
+\end{DoxyCode}
+
+
+A comma separated list of options, like {\ttfamily \{a,b\}} or {\ttfamily \{a,\{b,c\}\}} or {\ttfamily \{,a,\}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{;/\string^-\/?\(\backslash\)d+\(\backslash\).\(\backslash\).-\/?\(\backslash\)d+(\(\backslash\).\(\backslash\).-\/?\(\backslash\)d+)?\$/}
+\DoxyCodeLine{//\ \{x..y[..incr]\}}
+
+\end{DoxyCode}
+
+
+A numeric sequence from {\ttfamily x} to {\ttfamily y} inclusive, with optional increment. If {\ttfamily x} or {\ttfamily y} start with a leading {\ttfamily 0}, all the numbers will be padded to have equal length. Negative numbers and backwards iteration work too.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{;/\string^-\/?\(\backslash\)d+\(\backslash\).\(\backslash\).-\/?\(\backslash\)d+(\(\backslash\).\(\backslash\).-\/?\(\backslash\)d+)?\$/}
+\DoxyCodeLine{//\ \{x..y[..incr]\}}
+
+\end{DoxyCode}
+
+
+An alphabetic sequence from {\ttfamily x} to {\ttfamily y} inclusive, with optional increment. {\ttfamily x} and {\ttfamily y} must be exactly one character, and if given, {\ttfamily incr} must be a number.
+
+For compatibility reasons, the string {\ttfamily \$\{} is not eligible for brace expansion. 

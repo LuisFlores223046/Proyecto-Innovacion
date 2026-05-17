@@ -1,0 +1,462 @@
+\doxysection{sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession}{}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession}\index{sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}}
+Inheritance diagram for sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.837838cm]{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_ad108ebbe4b9b540fc4f5e20fbc04de34}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardChooser}{Shard\+Chooser}} shard\+\_\+chooser, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1IdentityChooser}{Identity\+Chooser}}]\+ identity\+\_\+chooser=None, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1ORMExecuteState}{ORMExecute\+State}}]\+, Iterable\+[Any]\+]\+]\+ execute\+\_\+chooser=None, Optional\+[Dict\+[str, Any]\+]\+ shards=None, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[\+\_\+T]\+]\+ query\+\_\+cls=\doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedQuery}{Sharded\+Query}}, \texorpdfstring{$\ast$}{*}, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[\+\_\+T]\+, Iterable\+[\+\_\+T]\+]\+, Iterable\+[Any]\+]\+]\+ id\+\_\+chooser=None, Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}]\+, Iterable\+[Any]\+]\+]\+ query\+\_\+chooser=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a367187f8c76812dcd799970a38753fed}{connection\+\_\+callable}} (self, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+T]\+]\+ mapper=None, Optional\+[Any]\+ instance=None, Optional\+[Shard\+Identifier]\+ shard\+\_\+id=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\+\_\+\+Session\+Bind \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_af801074f7a4518409824ffb066a843ec}{get\+\_\+bind}} (self, Optional\+[\+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+]\+ mapper=None, \texorpdfstring{$\ast$}{*}, Optional\+[Shard\+Identifier]\+ shard\+\_\+id=None, Optional\+[Any]\+ instance=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}}]\+ clause=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a503026b00239cf5f512abe55696664c0}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a503026b00239cf5f512abe55696664c0} 
+None {\bfseries bind\+\_\+shard} (self, Shard\+Identifier shard\+\_\+id, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1OptionEngine}{Option\+Engine}}]\+ bind)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a7e2f75399de2d7b248789d896755a24d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[\+\_\+\+Session\+Bind]\+ bind=None, \texorpdfstring{$\ast$}{*}, bool autoflush=True, Literal\+[True]\+ future=True, bool expire\+\_\+on\+\_\+commit=True, bool autobegin=True, bool twophase=False, Optional\+[Dict\+[\+\_\+\+Session\+Bind\+Key, \+\_\+\+Session\+Bind]\+]\+ binds=None, bool enable\+\_\+baked\+\_\+queries=True, Optional\+[\+\_\+\+Info\+Type]\+ info=None, Optional\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[Any]\+]\+]\+ query\+\_\+cls=None, Literal\+[False]\+ autocommit=False, Join\+Transaction\+Mode join\+\_\+transaction\+\_\+mode="{}conditional\+\_\+savepoint"{}, Union\+[bool, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1__NoArg}{\+\_\+\+No\+Arg}}]\+ close\+\_\+resets\+\_\+only=\+\_\+\+No\+Arg.\+NO\+\_\+\+ARG)
+\item 
+\+\_\+S {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (\+\_\+S self)
+\item 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Any type\+\_\+, Any value, Any traceback)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ae4ca4c6583695571825ece266bd5d8b8}{in\+\_\+transaction}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a2d81c0995523b7082b27eb994a8da3c7}{in\+\_\+nested\+\_\+transaction}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a1863167b3d44ea8bd6cc5cefaf222f42}{get\+\_\+transaction}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_aade117cc64dba1e07b2f26181dea46b4}{get\+\_\+nested\+\_\+transaction}} (self)
+\item 
+\+\_\+\+Info\+Type \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a58bafd20973ecb39c0387755b43d836b}{info}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_aecf0406432902a5818cfd3f41ad4c7d1}{begin}} (self, bool nested=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a9aede905e68ebb33f731567afa6a4f96}{begin\+\_\+nested}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a0a11a82590708e182c6ed4d84a083d61}{rollback}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a0177fb39072ffef1831aa6c48e1d8e93}{commit}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a2826758b47756a15eea1fd7756115488}{prepare}} (self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a391100aa0c4b009a6a3b645bd0202f47}{connection}} (self, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Core\+Execute\+Options\+Parameter]\+ execution\+\_\+options=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[\+\_\+T]\+ {\bfseries execute} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1TypedReturnsRows}{Typed\+Returns\+Rows}}\+[\+\_\+T]\+ statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}\+[Any]\+ {\bfseries execute} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1dml_1_1UpdateBase}{Update\+Base}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+ {\bfseries execute} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a1b539f4866ca7974b3efd85f99a6c8a8}{execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None)
+\item 
+Optional\+[\+\_\+T]\+ {\bfseries scalar} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1TypedReturnsRows}{Typed\+Returns\+Rows}}\+[Tuple\+[\+\_\+T]\+]\+ statement, Optional\+[\+\_\+\+Core\+Single\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Any {\bfseries scalar} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Single\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a7ce1401ab09cdcefd1a023ff4189ce36}{scalar}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Single\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1ScalarResult}{Scalar\+Result}}\+[\+\_\+T]\+ {\bfseries scalars} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1TypedReturnsRows}{Typed\+Returns\+Rows}}\+[Tuple\+[\+\_\+T]\+]\+ statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1ScalarResult}{Scalar\+Result}}\+[Any]\+ {\bfseries scalars} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1ScalarResult}{Scalar\+Result}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a04d37acdb87d4bf10d51b99fef837e37}{scalars}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_af48580e0e9e48dc3d0f2bf7fc53cc683}{close}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a211f3d3b203b0d004a39ce24a44bb5db}{reset}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a214e57cdb1d9841a3ddd0c02cbd16662}{invalidate}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ac3e796b93ccbf4538db2e0d8226d583c}{expunge\+\_\+all}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a65d2e9cbbec20307036a68abb570d47d}{bind\+\_\+mapper}} (self, \+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+ mapper, \+\_\+\+Session\+Bind bind)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_af849ab909a08b95a5739dd079e138008}{bind\+\_\+table}} (self, Table\+Clause table, \+\_\+\+Session\+Bind bind)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[\+\_\+O]\+ {\bfseries query} (self, \+\_\+\+Entity\+Type\+[\+\_\+O]\+ \+\_\+entity)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+T]\+]\+ {\bfseries query} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1roles_1_1TypedColumnsClauseRole}{Typed\+Columns\+Clause\+Role}}\+[\+\_\+T]\+ \+\_\+colexpr)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2, \+\_\+\+T3]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2, \+\_\+\+TCCA\+[\+\_\+\+T3]\+ \+\_\+\+\_\+ent3)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2, \+\_\+\+T3, \+\_\+\+T4]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2, \+\_\+\+TCCA\+[\+\_\+\+T3]\+ \+\_\+\+\_\+ent3, \+\_\+\+TCCA\+[\+\_\+\+T4]\+ \+\_\+\+\_\+ent4)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2, \+\_\+\+T3, \+\_\+\+T4, \+\_\+\+T5]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2, \+\_\+\+TCCA\+[\+\_\+\+T3]\+ \+\_\+\+\_\+ent3, \+\_\+\+TCCA\+[\+\_\+\+T4]\+ \+\_\+\+\_\+ent4, \+\_\+\+TCCA\+[\+\_\+\+T5]\+ \+\_\+\+\_\+ent5)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2, \+\_\+\+T3, \+\_\+\+T4, \+\_\+\+T5, \+\_\+\+T6]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2, \+\_\+\+TCCA\+[\+\_\+\+T3]\+ \+\_\+\+\_\+ent3, \+\_\+\+TCCA\+[\+\_\+\+T4]\+ \+\_\+\+\_\+ent4, \+\_\+\+TCCA\+[\+\_\+\+T5]\+ \+\_\+\+\_\+ent5, \+\_\+\+TCCA\+[\+\_\+\+T6]\+ \+\_\+\+\_\+ent6)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1RowReturningQuery}{Row\+Returning\+Query}}\+[Tuple\+[\+\_\+\+T0, \+\_\+\+T1, \+\_\+\+T2, \+\_\+\+T3, \+\_\+\+T4, \+\_\+\+T5, \+\_\+\+T6, \+\_\+\+T7]\+]\+ {\bfseries query} (self, \+\_\+\+TCCA\+[\+\_\+\+T0]\+ \+\_\+\+\_\+ent0, \+\_\+\+TCCA\+[\+\_\+\+T1]\+ \+\_\+\+\_\+ent1, \+\_\+\+TCCA\+[\+\_\+\+T2]\+ \+\_\+\+\_\+ent2, \+\_\+\+TCCA\+[\+\_\+\+T3]\+ \+\_\+\+\_\+ent3, \+\_\+\+TCCA\+[\+\_\+\+T4]\+ \+\_\+\+\_\+ent4, \+\_\+\+TCCA\+[\+\_\+\+T5]\+ \+\_\+\+\_\+ent5, \+\_\+\+TCCA\+[\+\_\+\+T6]\+ \+\_\+\+\_\+ent6, \+\_\+\+TCCA\+[\+\_\+\+T7]\+ \+\_\+\+\_\+ent7)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[Any]\+ {\bfseries query} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Columns\+Clause\+Argument\+[Any]\+ entities, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a09dac4c9a800e88f5cce27fee0c92283}{query}} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Columns\+Clause\+Argument\+[Any]\+ entities, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a269d3fbfd7a8df067be09b3d39df6307}{no\+\_\+autoflush}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ac11c051aa34bc14b6bb433a883ab8d13}{refresh}} (self, object instance, Optional\+[Iterable\+[str]\+]\+ attribute\+\_\+names=None, For\+Update\+Parameter with\+\_\+for\+\_\+update=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a61b84298f6416fdb77fbd8f21653cf86}{expire\+\_\+all}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a384d8c897934d371a32fe9f6376c69a9}{expire}} (self, object instance, Optional\+[Iterable\+[str]\+]\+ attribute\+\_\+names=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a53513889880612ab7f96e728cc787c6a}{expunge}} (self, object instance)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a28403bb56652e1fce78cf9cb6983a795}{add}} (self, object instance, bool \+\_\+warn=True)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a73aa42e8a0ebe3c4be32b7d1620aed4b}{add\+\_\+all}} (self, Iterable\+[object]\+ instances)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a290d20249056beabee6fb2ab16771eb5}{delete}} (self, object instance)
+\item 
+Optional\+[\+\_\+O]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a88251d8c765fd9ea2da94adfae7cc5c3}{get}} (self, \+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+ entity, \+\_\+\+PKIdentity\+Argument ident, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1ORMOption}{ORMOption}}]\+]\+ options=None, bool populate\+\_\+existing=False, For\+Update\+Parameter with\+\_\+for\+\_\+update=None, Optional\+[Any]\+ identity\+\_\+token=None, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None)
+\item 
+\+\_\+O \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a446ff1b61ee8c4b498542904d203c438}{get\+\_\+one}} (self, \+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+ entity, \+\_\+\+PKIdentity\+Argument ident, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1ORMOption}{ORMOption}}]\+]\+ options=None, bool populate\+\_\+existing=False, For\+Update\+Parameter with\+\_\+for\+\_\+update=None, Optional\+[Any]\+ identity\+\_\+token=None, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None)
+\item 
+\+\_\+O \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a4dfaab70b7fff0dfc4d38355fdd0764c}{merge}} (self, \+\_\+O instance, \texorpdfstring{$\ast$}{*}, bool load=True, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1ORMOption}{ORMOption}}]\+]\+ options=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_adbd1ac1c29004537dbd22700e19ff54e}{enable\+\_\+relationship\+\_\+loading}} (self, object obj)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_aa9899f3dd09659bd0f294891d76f994d}{\+\_\+\+\_\+contains\+\_\+\+\_\+}} (self, object instance)
+\item 
+Iterator\+[object]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_afa6d10c55587f7084654cef584643a4a}{\+\_\+\+\_\+iter\+\_\+\+\_\+}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_afbaa7450189961e64d0d834e7a6f103e}{flush}} (self, Optional\+[Sequence\+[Any]\+]\+ objects=None)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a8d964e65672de9b4655c56341c9dfb1d}{bulk\+\_\+save\+\_\+objects}} (self, Iterable\+[object]\+ objects, bool return\+\_\+defaults=False, bool update\+\_\+changed\+\_\+only=True, bool preserve\+\_\+order=True)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a7a0ab5152777ebe5efb2a978e1a01955}{bulk\+\_\+insert\+\_\+mappings}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper, Iterable\+[Dict\+[str, Any]\+]\+ mappings, bool return\+\_\+defaults=False, bool render\+\_\+nulls=False)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ae0d40815232553a5fe62ef40928dfeeb}{bulk\+\_\+update\+\_\+mappings}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[Any]\+ mapper, Iterable\+[Dict\+[str, Any]\+]\+ mappings)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a870049af0198ed2587b83d6cb7dc44ba}{is\+\_\+modified}} (self, object instance, bool include\+\_\+collections=True)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ad8327a39eaf678dae330ec25fef86fd5}{is\+\_\+active}} (self)
+\item 
+Identity\+Set \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a885f93494f7391cc1f39d93e3fb060e3}{dirty}} (self)
+\item 
+Identity\+Set {\bfseries deleted} (self)
+\item 
+Identity\+Set {\bfseries new} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1__SessionClassMethods}{sqlalchemy.\+orm.\+session.\+\_\+\+Session\+Class\+Methods}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1__SessionClassMethods_af92ff8fe5205100386865680da3e0cfc}{close\+\_\+all}} (cls)
+\item 
+\+\_\+\+Identity\+Key\+Type\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1__SessionClassMethods_a9c4685b3cc1640c8c6765fad2485f986}{identity\+\_\+key}} (cls, Optional\+[Type\+[Any]\+]\+ class\+\_\+=None, Union\+[Any, Tuple\+[Any,...]\+]\+ ident=None, \texorpdfstring{$\ast$}{*}, Optional\+[Any]\+ instance=None, Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1row_1_1Row}{Row}}\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1row_1_1RowMapping}{Row\+Mapping}}]\+]\+ row=None, Optional\+[Any]\+ identity\+\_\+token=None)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1__SessionClassMethods_a8cba4efb0844e0f044c34bd665b98c42}{object\+\_\+session}} (cls, object instance)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_aba586d2334e64128f00bf41c05c45cb5}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_aba586d2334e64128f00bf41c05c45cb5} 
+{\bfseries shard\+\_\+chooser} = shard\+\_\+chooser
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a0cd4d5b21d4855112c253678e511d023}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a0cd4d5b21d4855112c253678e511d023} 
+{\bfseries identity\+\_\+chooser} = \+\_\+legacy\+\_\+identity\+\_\+chooser
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries identity\+\_\+map} = \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1identity_1_1WeakInstanceDict}{identity.\+Weak\+Instance\+Dict}}()
+\item 
+{\bfseries hash\+\_\+key} = \+\_\+new\+\_\+sessionid()
+\item 
+{\bfseries autobegin} = autobegin
+\item 
+bool {\bfseries autoflush} = autoflush
+\item 
+{\bfseries expire\+\_\+on\+\_\+commit} = expire\+\_\+on\+\_\+commit
+\item 
+{\bfseries enable\+\_\+baked\+\_\+queries} = enable\+\_\+baked\+\_\+queries
+\item 
+{\bfseries join\+\_\+transaction\+\_\+mode} = join\+\_\+transaction\+\_\+mode
+\item 
+{\bfseries twophase} = twophase
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a1dae2c76b54a9c525fad5fa90bf68532}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a1dae2c76b54a9c525fad5fa90bf68532} 
+Callable {\bfseries execute\+\_\+chooser} \+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1ORMExecuteState}{ORMExecute\+State}}]\+, Iterable\+[Any]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries bind} \+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1EventTarget}{sqlalchemy.\+event.\+registry.\+Event\+Target}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1dispatcher}{dispatcher}} {\bfseries dispatch} \+[Any]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Union\+[Optional\+[\+\_\+O]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1LoaderCallableStatus}{Loader\+Callable\+Status}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a4bebd9d103102bf9d7355e812a0d1374}{\+\_\+identity\+\_\+lookup}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+O]\+ mapper, Union\+[Any, Tuple\+[Any,...]\+]\+ primary\+\_\+key\+\_\+identity, Optional\+[Any]\+ identity\+\_\+token=None, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1PassiveFlag}{Passive\+Flag}} passive=Passive\+Flag.\+PASSIVE\+\_\+\+OFF, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ lazy\+\_\+loaded\+\_\+from=None, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a416d9ab89077fb61a99a247112385b57}\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a416d9ab89077fb61a99a247112385b57} 
+Any {\bfseries \+\_\+choose\+\_\+shard\+\_\+and\+\_\+assign} (self, Optional\+[\+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+]\+ mapper, Any instance, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+Iterator\+[\+\_\+S]\+ {\bfseries \+\_\+maker\+\_\+context\+\_\+manager} (\+\_\+S self)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}} {\bfseries \+\_\+autobegin\+\_\+t} (self, bool begin=False)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} {\bfseries \+\_\+connection\+\_\+for\+\_\+bind} (self, \+\_\+\+Session\+Bind engine, Optional\+[Core\+Execute\+Options\+Parameter]\+ execution\+\_\+options=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Any {\bfseries \+\_\+execute\+\_\+internal} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Single\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None, Literal\+[True]\+ \+\_\+scalar\+\_\+result=...)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1result_1_1Result}{Result}}\+[Any]\+ {\bfseries \+\_\+execute\+\_\+internal} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None, bool \+\_\+scalar\+\_\+result=...)
+\item 
+Any {\bfseries \+\_\+execute\+\_\+internal} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} statement, Optional\+[\+\_\+\+Core\+Any\+Execute\+Params]\+ params=None, \texorpdfstring{$\ast$}{*}, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None, Optional\+[Any]\+ \+\_\+parent\+\_\+execute\+\_\+state=None, Optional\+[Any]\+ \+\_\+add\+\_\+event=None, bool \+\_\+scalar\+\_\+result=False)
+\item 
+None {\bfseries \+\_\+close\+\_\+impl} (self, bool invalidate, bool is\+\_\+reset=False)
+\item 
+None {\bfseries \+\_\+add\+\_\+bind} (self, \+\_\+\+Session\+Bind\+Key key, \+\_\+\+Session\+Bind bind)
+\item 
+None {\bfseries \+\_\+autoflush} (self)
+\item 
+None {\bfseries \+\_\+expire\+\_\+state} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, Optional\+[Iterable\+[str]\+]\+ attribute\+\_\+names)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a282860da2a95e2e85cdf60e3db3a2c99}{\+\_\+conditional\+\_\+expire}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, Optional\+[bool]\+ autoflush=None)
+\item 
+None {\bfseries \+\_\+expunge\+\_\+states} (self, Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ states, bool to\+\_\+transient=False)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_af1ef70d9a86999e6ff3ac4ee3fbb0f1d}{\+\_\+register\+\_\+persistent}} (self, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ states)
+\item 
+None {\bfseries \+\_\+register\+\_\+altered} (self, Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ states)
+\item 
+None {\bfseries \+\_\+remove\+\_\+newly\+\_\+deleted} (self, Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ states)
+\item 
+None {\bfseries \+\_\+save\+\_\+or\+\_\+update\+\_\+state} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state)
+\item 
+None {\bfseries \+\_\+delete\+\_\+impl} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, object obj, bool head)
+\item 
+Optional\+[\+\_\+O]\+ {\bfseries \+\_\+get\+\_\+impl} (self, \+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+ entity, \+\_\+\+PKIdentity\+Argument primary\+\_\+key\+\_\+identity, Callable\+[..., \+\_\+O]\+ db\+\_\+load\+\_\+fn, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1ExecutableOption}{Executable\+Option}}]\+]\+ options=None, bool populate\+\_\+existing=False, For\+Update\+Parameter with\+\_\+for\+\_\+update=None, Optional\+[Any]\+ identity\+\_\+token=None, Orm\+Execute\+Options\+Parameter execution\+\_\+options=util.\+EMPTY\+\_\+\+DICT, Optional\+[\+\_\+\+Bind\+Arguments]\+ bind\+\_\+arguments=None)
+\item 
+\+\_\+O {\bfseries \+\_\+merge} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[\+\_\+O]\+ state, \+\_\+\+Instance\+Dict state\+\_\+dict, \texorpdfstring{$\ast$}{*}, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1ORMOption}{ORMOption}}]\+]\+ options=None, bool load, Dict\+[Any, object]\+ \+\_\+recursive, Dict\+[\+\_\+\+Identity\+Key\+Type\+[Any]\+, object]\+ \+\_\+resolve\+\_\+conflict\+\_\+map)
+\item 
+None {\bfseries \+\_\+validate\+\_\+persistent} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state)
+\item 
+None {\bfseries \+\_\+save\+\_\+impl} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state)
+\item 
+None {\bfseries \+\_\+update\+\_\+impl} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, bool revert\+\_\+deletion=False)
+\item 
+None {\bfseries \+\_\+save\+\_\+or\+\_\+update\+\_\+impl} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state)
+\item 
+bool {\bfseries \+\_\+before\+\_\+attach} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, object obj)
+\item 
+None {\bfseries \+\_\+after\+\_\+attach} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, object obj)
+\item 
+bool {\bfseries \+\_\+contains\+\_\+state} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state)
+\item 
+None {\bfseries \+\_\+flush\+\_\+warning} (self, Any method)
+\item 
+bool {\bfseries \+\_\+is\+\_\+clean} (self)
+\item 
+None {\bfseries \+\_\+flush} (self, Optional\+[Sequence\+[object]\+]\+ objects=None)
+\item 
+None {\bfseries \+\_\+bulk\+\_\+save\+\_\+mappings} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+O]\+ mapper, Union\+[Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[\+\_\+O]\+]\+, Iterable\+[Dict\+[str, Any]\+]\+]\+ mappings, \texorpdfstring{$\ast$}{*}, bool isupdate, bool isstates, bool return\+\_\+defaults, bool update\+\_\+changed\+\_\+only, bool render\+\_\+nulls)
+\item 
+Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_ac38c77a130281f98ca5bb291b3599dbc}{\+\_\+dirty\+\_\+states}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+flushing} = False
+\item 
+bool {\bfseries \+\_\+warn\+\_\+on\+\_\+events} = False
+\item 
+{\bfseries \+\_\+close\+\_\+state} = \+\_\+\+Session\+Close\+State.\+CLOSE\+\_\+\+IS\+\_\+\+RESET
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+asyncio} = False
+\item 
+Dict {\bfseries \+\_\+new} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+, Any]\+
+\item 
+Dict {\bfseries \+\_\+deleted} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+, Any]\+
+\item 
+Optional {\bfseries \+\_\+transaction} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}}]\+
+\item 
+Optional {\bfseries \+\_\+nested\+\_\+transaction} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction}{Session\+Transaction}}]\+
+\item 
+Type {\bfseries \+\_\+query\+\_\+cls} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[Any]\+]\+
+\item 
+Optional {\bfseries \+\_\+trans\+\_\+context\+\_\+manager} = None
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_ad108ebbe4b9b540fc4f5e20fbc04de34}\index{sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_ad108ebbe4b9b540fc4f5e20fbc04de34} 
+ None sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardChooser}{Shard\+Chooser}}}]{shard\+\_\+chooser}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1IdentityChooser}{Identity\+Chooser}}]\+ }]{identity\+\_\+chooser}{ = {\ttfamily None}, }\item[{Optional\+[             Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1ORMExecuteState}{ORMExecute\+State}}]\+, Iterable\+[Any]\+]\+         ]\+ }]{execute\+\_\+chooser}{ = {\ttfamily None}, }\item[{Optional\+[Dict\+[str, Any]\+]\+ }]{shards}{ = {\ttfamily None}, }\item[{Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[\+\_\+T]\+]\+ }]{query\+\_\+cls}{ = {\ttfamily \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedQuery}{Sharded\+Query}}}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[             Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1query_1_1Query}{Query}}\+[\+\_\+T]\+, Iterable\+[\+\_\+T]\+]\+, Iterable\+[Any]\+]\+         ]\+ }]{id\+\_\+chooser}{ = {\ttfamily None}, }\item[{Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}]\+, Iterable\+[Any]\+]\+]\+ }]{query\+\_\+chooser}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a ShardedSession.
+
+:param shard_chooser: A callable which, passed a Mapper, a mapped
+  instance, and possibly a SQL clause, returns a shard ID.  This id
+  may be based off of the attributes present within the object, or on
+  some round-robin scheme. If the scheme is based on a selection, it
+  should set whatever state on the instance to mark it in the future as
+  participating in that shard.
+
+:param identity_chooser: A callable, passed a Mapper and primary key
+ argument, which should return a list of shard ids where this
+ primary key might reside.
+
+  .. versionchanged:: 2.0  The ``identity_chooser`` parameter
+     supersedes the ``id_chooser`` parameter.
+
+:param execute_chooser: For a given :class:`.ORMExecuteState`,
+  returns the list of shard_ids
+  where the query should be issued.  Results from all shards returned
+  will be combined together into a single listing.
+
+  .. versionchanged:: 1.4  The ``execute_chooser`` parameter
+     supersedes the ``query_chooser`` parameter.
+
+:param shards: A dictionary of string shard names
+  to :class:`~sqlalchemy.engine.Engine` objects.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a4bebd9d103102bf9d7355e812a0d1374}\index{sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}!\_identity\_lookup@{\_identity\_lookup}}
+\index{\_identity\_lookup@{\_identity\_lookup}!sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}}
+\doxysubsubsection{\texorpdfstring{\_identity\_lookup()}{\_identity\_lookup()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a4bebd9d103102bf9d7355e812a0d1374} 
+ Union\+[Optional\+[\+\_\+O]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1LoaderCallableStatus}{Loader\+Callable\+Status}}]\+ sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session.\+\_\+identity\+\_\+lookup (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+O]\+}]{mapper}{, }\item[{Union\+[Any, Tuple\+[Any, ...]\+]\+}]{primary\+\_\+key\+\_\+identity}{, }\item[{Optional\+[Any]\+ }]{identity\+\_\+token}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1PassiveFlag}{Passive\+Flag}} }]{passive}{ = {\ttfamily PassiveFlag.PASSIVE\+\_\+OFF}, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+]\+ }]{lazy\+\_\+loaded\+\_\+from}{ = {\ttfamily None}, }\item[{Orm\+Execute\+Options\+Parameter }]{execution\+\_\+options}{ = {\ttfamily util.EMPTY\+\_\+DICT}, }\item[{Optional\+[\+\_\+\+Bind\+Arguments]\+ }]{bind\+\_\+arguments}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}override the default :meth:`.Session._identity_lookup` method so
+that we search for a given non-token primary key identity across all
+possible identity tokens (e.g. shard ids).
+
+.. versionchanged:: 1.4  Moved :meth:`.Session._identity_lookup` from
+   the :class:`_query.Query` object to the :class:`.Session`.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_aafd075a41ef057b7b7c684a61a002301}{sqlalchemy.\+orm.\+session.\+Session}}.
+
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a367187f8c76812dcd799970a38753fed}\index{sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}!connection\_callable@{connection\_callable}}
+\index{connection\_callable@{connection\_callable}!sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}}
+\doxysubsubsection{\texorpdfstring{connection\_callable()}{connection\_callable()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_a367187f8c76812dcd799970a38753fed} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session.\+connection\+\_\+callable (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1mapper_1_1Mapper}{Mapper}}\+[\+\_\+T]\+]\+ }]{mapper}{ = {\ttfamily None}, }\item[{Optional\+[Any]\+ }]{instance}{ = {\ttfamily None}, }\item[{Optional\+[Shard\+Identifier]\+ }]{shard\+\_\+id}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Provide a :class:`_engine.Connection` to use in the unit of work
+flush process.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{sqlalchemy.\+orm.\+session.\+Session}}.
+
+\Hypertarget{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_af801074f7a4518409824ffb066a843ec}\index{sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}!get\_bind@{get\_bind}}
+\index{get\_bind@{get\_bind}!sqlalchemy.ext.horizontal\_shard.ShardedSession@{sqlalchemy.ext.horizontal\_shard.ShardedSession}}
+\doxysubsubsection{\texorpdfstring{get\_bind()}{get\_bind()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1horizontal__shard_1_1ShardedSession_af801074f7a4518409824ffb066a843ec} 
+ \+\_\+\+Session\+Bind sqlalchemy.\+ext.\+horizontal\+\_\+shard.\+Sharded\+Session.\+get\+\_\+bind (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\+\_\+\+Entity\+Bind\+Key\+[\+\_\+O]\+]\+ }]{mapper}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Optional\+[Shard\+Identifier]\+ }]{clause}{ = {\ttfamily None}, }\item[{Optional\+[Any]\+ }]{bind}{ = {\ttfamily None}, }\item[{Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}}]\+ }]{\+\_\+sa\+\_\+skip\+\_\+events}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{\+\_\+sa\+\_\+skip\+\_\+for\+\_\+implicit\+\_\+returning}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a "bind" to which this :class:`.Session` is bound.
+
+The "bind" is usually an instance of :class:`_engine.Engine`,
+except in the case where the :class:`.Session` has been
+explicitly bound directly to a :class:`_engine.Connection`.
+
+For a multiply-bound or unbound :class:`.Session`, the
+``mapper`` or ``clause`` arguments are used to determine the
+appropriate bind to return.
+
+Note that the "mapper" argument is usually present
+when :meth:`.Session.get_bind` is called via an ORM
+operation such as a :meth:`.Session.query`, each
+individual INSERT/UPDATE/DELETE operation within a
+:meth:`.Session.flush`, call, etc.
+
+The order of resolution is:
+
+1. if mapper given and :paramref:`.Session.binds` is present,
+   locate a bind based first on the mapper in use, then
+   on the mapped class in use, then on any base classes that are
+   present in the ``__mro__`` of the mapped class, from more specific
+   superclasses to more general.
+2. if clause given and ``Session.binds`` is present,
+   locate a bind based on :class:`_schema.Table` objects
+   found in the given clause present in ``Session.binds``.
+3. if ``Session.binds`` is present, return that.
+4. if clause given, attempt to return a bind
+   linked to the :class:`_schema.MetaData` ultimately
+   associated with the clause.
+5. if mapper given, attempt to return a bind
+   linked to the :class:`_schema.MetaData` ultimately
+   associated with the :class:`_schema.Table` or other
+   selectable to which the mapper is mapped.
+6. No bind can be found, :exc:`~sqlalchemy.exc.UnboundExecutionError`
+   is raised.
+
+Note that the :meth:`.Session.get_bind` method can be overridden on
+a user-defined subclass of :class:`.Session` to provide any kind
+of bind resolution scheme.  See the example at
+:ref:`session_custom_partitioning`.
+
+:param mapper:
+  Optional mapped class or corresponding :class:`_orm.Mapper` instance.
+  The bind can be derived from a :class:`_orm.Mapper` first by
+  consulting the "binds" map associated with this :class:`.Session`,
+  and secondly by consulting the :class:`_schema.MetaData` associated
+  with the :class:`_schema.Table` to which the :class:`_orm.Mapper` is
+  mapped for a bind.
+
+:param clause:
+    A :class:`_expression.ClauseElement` (i.e.
+    :func:`_expression.select`,
+    :func:`_expression.text`,
+    etc.).  If the ``mapper`` argument is not present or could not
+    produce a bind, the given expression construct will be searched
+    for a bound element, typically a :class:`_schema.Table`
+    associated with
+    bound :class:`_schema.MetaData`.
+
+.. seealso::
+
+     :ref:`session_partitioning`
+
+     :paramref:`.Session.binds`
+
+     :meth:`.Session.bind_mapper`
+
+     :meth:`.Session.bind_table`
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session_a699a41efe49b30e0b60f76a13df82e69}{sqlalchemy.\+orm.\+session.\+Session}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+horizontal\+\_\+shard.\+py\end{DoxyCompactItemize}

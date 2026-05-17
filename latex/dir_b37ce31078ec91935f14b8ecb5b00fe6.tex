@@ -1,0 +1,155 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@humanfs/\+node Directory Reference}
+\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6}{}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6}\index{frontend/node\_modules/"@humanfs/node Directory Reference@{frontend/node\_modules/"@humanfs/node Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_b0fb646f04c065436691b4715f46c014}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md282}{}\doxysubsection{\texorpdfstring{\`{}@humanfs/\+node\`{}}{\`{}@humanfs/\+node\`{}}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md282}
+by \href{https://humanwhocodes.com}{\texttt{Nicholas C. Zakas}}
+
+If you find this useful, please consider supporting my work with a \href{https://humanwhocodes.com/donate}{\texttt{donation}} or \href{https://stars.github.com/nominate/}{\texttt{nominate me}} for a Git\+Hub Star.\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md283}{}\doxysubsection{\texorpdfstring{Description}{Description}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md283}
+The {\ttfamily hfs} bindings for use in Node.\+js and Node.\+js-\/compatible runtimes.
+
+\begin{DoxyWarning}{Warning}
+This project is {\bfseries{experimental}} and may change significantly before v1.\+0.\+0. Use at your own caution and definitely not in production!
+\end{DoxyWarning}
+\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md284}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md284}
+Install using your favorite package manager:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @humanfs/node}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{pnpm\ install\ @humanfs/node}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{yarn\ add\ @humanfs/node}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{}
+\DoxyCodeLine{bun\ install\ @humanfs/node}
+
+\end{DoxyCode}
+\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md285}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md285}
+The easiest way to use hfs in your project is to import the {\ttfamily hfs} object:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ hfs\ \}\ from\ "{}@humanfs/node"{};}
+
+\end{DoxyCode}
+
+
+Then, you can use the API methods:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ 1.\ Files}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ read\ from\ a\ text\ file}
+\DoxyCodeLine{const\ text\ =\ await\ hfs.text("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ read\ from\ a\ JSON\ file}
+\DoxyCodeLine{const\ json\ =\ await\ hfs.json("{}file.json"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ read\ raw\ bytes\ from\ a\ text\ file}
+\DoxyCodeLine{const\ arrayBuffer\ =\ await\ hfs.arrayBuffer("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ write\ text\ to\ a\ file}
+\DoxyCodeLine{await\ hfs.write("{}file.txt"{},\ "{}Hello\ world!"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ write\ bytes\ to\ a\ file}
+\DoxyCodeLine{await\ hfs.write("{}file.txt"{},\ new\ TextEncoder().encode("{}Hello\ world!"{}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ append\ text\ to\ a\ file}
+\DoxyCodeLine{await\ hfs.append("{}file.txt"{},\ "{}Hello\ world!"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ append\ bytes\ to\ a\ file}
+\DoxyCodeLine{await\ hfs.append("{}file.txt"{},\ new\ TextEncoder().encode("{}Hello\ world!"{}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ does\ the\ file\ exist?}
+\DoxyCodeLine{const\ found\ =\ await\ hfs.isFile("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ how\ big\ is\ the\ file?}
+\DoxyCodeLine{const\ size\ =\ await\ hfs.size("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ when\ was\ the\ file\ modified?}
+\DoxyCodeLine{const\ mtime\ =\ await\ hfs.lastModified("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ copy\ a\ file\ from\ one\ location\ to\ another}
+\DoxyCodeLine{await\ hfs.copy("{}file.txt"{},\ "{}file-\/copy.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ move\ a\ file\ from\ one\ location\ to\ another}
+\DoxyCodeLine{await\ hfs.move("{}file.txt"{},\ "{}renamed.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ delete\ a\ file}
+\DoxyCodeLine{await\ hfs.delete("{}file.txt"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ 2.\ Directories}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ a\ directory}
+\DoxyCodeLine{await\ hfs.createDirectory("{}dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ create\ a\ directory\ recursively}
+\DoxyCodeLine{await\ hfs.createDirectory("{}dir/subdir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ does\ the\ directory\ exist?}
+\DoxyCodeLine{const\ dirFound\ =\ await\ hfs.isDirectory("{}dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ copy\ the\ entire\ directory}
+\DoxyCodeLine{hfs.copyAll("{}from-\/dir"{},\ "{}to-\/dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ move\ the\ entire\ directory}
+\DoxyCodeLine{hfs.moveAll("{}from-\/dir"{},\ "{}to-\/dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ delete\ a\ directory}
+\DoxyCodeLine{await\ hfs.delete("{}dir"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ delete\ a\ non-\/empty\ directory}
+\DoxyCodeLine{await\ hfs.deleteAll("{}dir"{});}
+
+\end{DoxyCode}
+
+
+If you\textquotesingle{}d like to create your own instance, import the {\ttfamily Node\+Hfs} constructor:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ NodeHfs\ \}\ from\ "{}@humanfs/node"{};}
+\DoxyCodeLine{import\ fsp\ from\ "{}fs/promises"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ hfs\ =\ new\ NodeHfs();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ optionally\ specify\ the\ fs/promises\ object\ to\ use}
+\DoxyCodeLine{const\ hfs\ =\ new\ NodeHfs(\{\ fsp\ \});}
+
+\end{DoxyCode}
+
+
+If you\textquotesingle{}d like to use just the impl, import the {\ttfamily Node\+Hfs\+Impl} constructor:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ NodeHfsImpl\ \}\ from\ "{}@humanfs/node"{};}
+\DoxyCodeLine{import\ fsp\ from\ "{}fs/promises"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ hfs\ =\ new\ NodeHfsImpl();}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ optionally\ specify\ the\ fs/promises\ object\ to\ use}
+\DoxyCodeLine{const\ hfs\ =\ new\ NodeHfsImpl(\{\ fsp\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md286}{}\doxysubsection{\texorpdfstring{Errors Handled}{Errors Handled}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md286}
+
+\begin{DoxyItemize}
+\item {\ttfamily ENOENT} -\/ in most cases, these errors are handled silently.
+\item {\ttfamily ENFILE} and {\ttfamily EMFILE} -\/ calls that result in these errors are retried for up to 60 seconds before giving up for good.
+\end{DoxyItemize}\hypertarget{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md287}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_b37ce31078ec91935f14b8ecb5b00fe6_autotoc_md287}
+Apache 2.\+0 

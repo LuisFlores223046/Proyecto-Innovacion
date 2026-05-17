@@ -1,0 +1,255 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+object-\/schema Directory Reference}
+\hypertarget{dir_a3559cc143141644160657dba38ca424}{}\label{dir_a3559cc143141644160657dba38ca424}\index{frontend/node\_modules/"@eslint/object-\/schema Directory Reference@{frontend/node\_modules/"@eslint/object-\/schema Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md250}{}\doxysubsection{\texorpdfstring{Object\+Schema Package}{Object\+Schema Package}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md250}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md251}{}\doxysubsection{\texorpdfstring{Overview}{Overview}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md251}
+A Java\+Script object merge/\+validation utility where you can define a different merge and validation strategy for each key. This is helpful when you need to validate complex data structures and then merge them in a way that is more complex than {\ttfamily Object.\+assign()}. This is used in the \href{https://npmjs.com/package/@eslint/config-array}{\texttt{{\ttfamily @eslint/\+config-\/array}}} package but can also be used on its own.\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md252}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md252}
+For Node.\+js and compatible runtimes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/object-\/schema}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/object-\/schema}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/object-\/schema}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ @eslint/object-\/schema}
+
+\end{DoxyCode}
+
+
+For Deno:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{deno\ add\ @eslint/object-\/schema}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md253}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md253}
+Import the {\ttfamily Object\+Schema} constructor:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ using\ ESM}
+\DoxyCodeLine{import\ \{\ ObjectSchema\ \}\ from\ "{}@eslint/object-\/schema"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ using\ CommonJS}
+\DoxyCodeLine{const\ \{\ ObjectSchema\ \}\ =\ require("{}@eslint/object-\/schema"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ //\ define\ a\ definition\ for\ the\ "{}downloads"{}\ key}
+\DoxyCodeLine{\ \ \ \ downloads:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ required:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge(value1,\ value2)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ value1\ +\ value2;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (typeof\ value\ !==\ "{}number"{})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ Error("{}Expected\ downloads\ to\ be\ a\ number."{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ define\ a\ strategy\ for\ the\ "{}versions"{}\ key}
+\DoxyCodeLine{\ \ \ \ version:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ required:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge(value1,\ value2)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ value1.concat(value2);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ if\ (!Array.isArray(value))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ throw\ new\ Error("{}Expected\ versions\ to\ be\ an\ array."{});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ record1\ =\ \{}
+\DoxyCodeLine{\ \ \ \ downloads:\ 25,}
+\DoxyCodeLine{\ \ \ \ versions:\ ["{}v1.0.0"{},\ "{}v1.1.0"{},\ "{}v1.2.0"{}],}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ record2\ =\ \{}
+\DoxyCodeLine{\ \ \ \ downloads:\ 125,}
+\DoxyCodeLine{\ \ \ \ versions:\ ["{}v2.0.0"{},\ "{}v2.1.0"{},\ "{}v3.0.0"{}],}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ make\ sure\ the\ records\ are\ valid}
+\DoxyCodeLine{schema.validate(record1);}
+\DoxyCodeLine{schema.validate(record2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ merge\ together\ (schema.merge()\ accepts\ any\ number\ of\ objects)}
+\DoxyCodeLine{const\ result\ =\ schema.merge(record1,\ record2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ result\ looks\ like\ this:}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ result\ =\ \{}
+\DoxyCodeLine{\ \ \ \ downloads:\ 75,}
+\DoxyCodeLine{\ \ \ \ versions:\ ["{}v1.0.0"{},\ "{}v1.1.0"{},\ "{}v1.2.0"{},\ "{}v2.0.0"{},\ "{}v2.1.0"{},\ "{}v3.0.0"{}],}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md254}{}\doxysubsection{\texorpdfstring{Tips and Tricks}{Tips and Tricks}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md254}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md255}{}\doxysubsubsection{\texorpdfstring{Named merge strategies}{Named merge strategies}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md255}
+Instead of specifying a {\ttfamily merge()} method, you can specify one of the following strings to use a default merge strategy:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}assign"{}} -\/ use {\ttfamily Object.\+assign()} to merge the two values into one object.
+\item {\ttfamily "{}overwrite"{}} -\/ the second value always replaces the first.
+\item {\ttfamily "{}replace"{}} -\/ the second value replaces the first if the second is not {\ttfamily undefined}.
+\end{DoxyItemize}
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ name:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge:\ "{}replace"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate()\ \{\},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md256}{}\doxysubsubsection{\texorpdfstring{Named validation strategies}{Named validation strategies}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md256}
+Instead of specifying a {\ttfamily validate()} method, you can specify one of the following strings to use a default validation strategy:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily "{}array"{}} -\/ value must be an array.
+\item {\ttfamily "{}boolean"{}} -\/ value must be a boolean.
+\item {\ttfamily "{}number"{}} -\/ value must be a number.
+\item {\ttfamily "{}object"{}} -\/ value must be an object.
+\item {\ttfamily "{}object?"{}} -\/ value must be an object or null.
+\item {\ttfamily "{}string"{}} -\/ value must be a string.
+\item {\ttfamily "{}string!"{}} -\/ value must be a non-\/empty string.
+\end{DoxyItemize}
+
+For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ name:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge:\ "{}replace"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate:\ "{}string"{},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md257}{}\doxysubsubsection{\texorpdfstring{Subschemas}{Subschemas}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md257}
+If you are defining a key that is, itself, an object, you can simplify the process by using a subschema. Instead of defining {\ttfamily merge()} and {\ttfamily validate()}, assign a {\ttfamily schema} key that contains a schema definition, like this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ name:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ schema:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ first:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ merge:\ "{}replace"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ validate:\ "{}string"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ last:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ merge:\ "{}replace"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ validate:\ "{}string"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{schema.validate(\{}
+\DoxyCodeLine{\ \ \ \ name:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ first:\ "{}n"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ last:\ "{}z"{},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md258}{}\doxysubsubsection{\texorpdfstring{Remove Keys During Merge}{Remove Keys During Merge}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md258}
+If the merge strategy for a key returns {\ttfamily undefined}, then the key will not appear in the final object. For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ date:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ undefined;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Date.parse(value);\ //\ throws\ an\ error\ when\ invalid}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ object1\ =\ \{\ date:\ "{}5/5/2005"{}\ \};}
+\DoxyCodeLine{const\ object2\ =\ \{\ date:\ "{}6/6/2006"{}\ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ result\ =\ schema.merge(object1,\ object2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log("{}date"{}\ in\ result);\ //\ false}
+
+\end{DoxyCode}
+\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md259}{}\doxysubsubsection{\texorpdfstring{Requiring Another Key Be Present}{Requiring Another Key Be Present}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md259}
+If you\textquotesingle{}d like the presence of one key to require the presence of another key, you can use the {\ttfamily requires} property to specify an array of other properties that any key requires. For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema();}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ schema\ =\ new\ ObjectSchema(\{}
+\DoxyCodeLine{\ \ \ \ date:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ undefined;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Date.parse(value);\ //\ throws\ an\ error\ when\ invalid}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ time:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ requires:\ ["{}date"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ merge(first,\ second)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ return\ second;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ validate(value)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ throws\ error:\ Key\ "{}time"{}\ requires\ keys\ "{}date"{}}
+\DoxyCodeLine{schema.validate(\{}
+\DoxyCodeLine{\ \ \ \ time:\ "{}13:45"{},}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+In this example, even though {\ttfamily date} is an optional key, it is required to be present whenever {\ttfamily time} is present.\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md260}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md260}
+Apache 2.\+0\hypertarget{dir_a3559cc143141644160657dba38ca424_autotoc_md261}{}\doxysubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_a3559cc143141644160657dba38ca424_autotoc_md261}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://sentry.io}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

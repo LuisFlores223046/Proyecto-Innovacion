@@ -1,0 +1,40 @@
+\doxysection{frontend/\+node\+\_\+modules/\+axios/\+lib/\+adapters Directory Reference}
+\hypertarget{dir_df4fc794df44dbddfe111460abd77b00}{}\label{dir_df4fc794df44dbddfe111460abd77b00}\index{frontend/node\_modules/axios/lib/adapters Directory Reference@{frontend/node\_modules/axios/lib/adapters Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_df4fc794df44dbddfe111460abd77b00_autotoc_md412}{}\doxysubsection{\texorpdfstring{axios /\+/\+ adapters}{axios /\+/\+ adapters}}\label{dir_df4fc794df44dbddfe111460abd77b00_autotoc_md412}
+The modules under {\ttfamily adapters/\+} are modules that handle dispatching a request and settling a returned {\ttfamily Promise} once a response is received.\hypertarget{dir_df4fc794df44dbddfe111460abd77b00_autotoc_md413}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_df4fc794df44dbddfe111460abd77b00_autotoc_md413}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ settle\ =\ require('../core/settle');}
+\DoxyCodeLine{}
+\DoxyCodeLine{module.exports\ =\ function\ myAdapter(config)\ \{}
+\DoxyCodeLine{\ \ //\ At\ this\ point:}
+\DoxyCodeLine{\ \ //\ \ -\/\ config\ has\ been\ merged\ with\ defaults}
+\DoxyCodeLine{\ \ //\ \ -\/\ request\ transformers\ have\ already\ run}
+\DoxyCodeLine{\ \ //\ \ -\/\ request\ interceptors\ have\ already\ run}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Make\ the\ request\ using\ config\ provided}
+\DoxyCodeLine{\ \ //\ Upon\ response\ settle\ the\ Promise}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ return\ new\ Promise(function\ (resolve,\ reject)\ \{}
+\DoxyCodeLine{\ \ \ \ var\ response\ =\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ data:\ responseData,}
+\DoxyCodeLine{\ \ \ \ \ \ status:\ request.status,}
+\DoxyCodeLine{\ \ \ \ \ \ statusText:\ request.statusText,}
+\DoxyCodeLine{\ \ \ \ \ \ headers:\ responseHeaders,}
+\DoxyCodeLine{\ \ \ \ \ \ config:\ config,}
+\DoxyCodeLine{\ \ \ \ \ \ request:\ request,}
+\DoxyCodeLine{\ \ \ \ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ settle(resolve,\ reject,\ response);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ From\ here:}
+\DoxyCodeLine{\ \ \ \ //\ \ -\/\ response\ transformers\ will\ run}
+\DoxyCodeLine{\ \ \ \ //\ \ -\/\ response\ interceptors\ will\ run}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\};}
+
+\end{DoxyCode}
+ 

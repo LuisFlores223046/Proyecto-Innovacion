@@ -1,0 +1,88 @@
+\doxysection{sqlalchemy.\+orm.\+clsregistry Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry}{}\label{namespacesqlalchemy_1_1orm_1_1clsregistry}\index{sqlalchemy.orm.clsregistry@{sqlalchemy.orm.clsregistry}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1ClsRegistryToken}{Cls\+Registry\+Token}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__MultipleClassMarker}{\+\_\+\+Multiple\+Class\+Marker}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__ModuleMarker}{\+\_\+\+Module\+Marker}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__ModNS}{\+\_\+\+Mod\+NS}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__GetColumns}{\+\_\+\+Get\+Columns}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__GetTable}{\+\_\+\+Get\+Table}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__class__resolver}{\+\_\+class\+\_\+resolver}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{namespacesqlalchemy_1_1orm_1_1clsregistry_a3d51f1fc84bf90b2c3f3edb285292b6b}{add\+\_\+class}} (str classname, Type\+[\+\_\+T]\+ cls, \+\_\+\+Cls\+Registry\+Type decl\+\_\+class\+\_\+registry)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_a8ef120f80f973e8dabf63d83f7c47d5c}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_a8ef120f80f973e8dabf63d83f7c47d5c} 
+None {\bfseries remove\+\_\+class} (str classname, Type\+[Any]\+ cls, \+\_\+\+Cls\+Registry\+Type decl\+\_\+class\+\_\+registry)
+\item 
+bool \doxymbox{\hyperlink{namespacesqlalchemy_1_1orm_1_1clsregistry_a687f19d28a99d8961ea67f71bec705d2}{\+\_\+key\+\_\+is\+\_\+empty}} (str key, \+\_\+\+Cls\+Registry\+Type decl\+\_\+class\+\_\+registry, Callable\+[\+[Any]\+, bool]\+ test)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_afe732cbed84e97ccb67e1327ac9566ca}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_afe732cbed84e97ccb67e1327ac9566ca} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__GetColumns}{\+\_\+\+Get\+Columns}} {\bfseries \+\_\+determine\+\_\+container} (str key, Any value)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_a23f3b246351f88b0d757d601b0c2a44d}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_a23f3b246351f88b0d757d601b0c2a44d} 
+Tuple\+[ Callable\+[\+[str]\+, Callable\+[\+[$\,$]\+, Union\+[Type\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__ModNS}{\+\_\+\+Mod\+NS}}]\+]\+]\+, Callable\+[\+[str, bool]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1clsregistry_1_1__class__resolver}{\+\_\+class\+\_\+resolver}}]\+,]\+ {\bfseries \+\_\+resolver} (Type\+[Any]\+ cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1relationships_1_1RelationshipProperty}{Relationship\+Property}}\+[Any]\+ prop)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_aa978915680e4e7e1d375272ab34c0d12}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_aa978915680e4e7e1d375272ab34c0d12} 
+{\bfseries \+\_\+T} = Type\+Var("{}\+\_\+\+T"{}, bound=Any)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_a72861ea93338ee1ffe534329e7e71c05}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_a72861ea93338ee1ffe534329e7e71c05} 
+{\bfseries \+\_\+\+Cls\+Registry\+Type} = Mutable\+Mapping\+[str, Union\+[type, "{}Cls\+Registry\+Token"{}]\+]\+
+\item 
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_ae3054a6e77f17a1e7ab3362f0c4754f8}\label{namespacesqlalchemy_1_1orm_1_1clsregistry_ae3054a6e77f17a1e7ab3362f0c4754f8} 
+Set {\bfseries \+\_\+registries} = set()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Routines to handle the string class registry used by declarative.
+
+This system allows specification of classes and expressions used in
+:func:`_orm.relationship` using strings.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1orm_1_1clsregistry_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_a687f19d28a99d8961ea67f71bec705d2}\index{sqlalchemy.orm.clsregistry@{sqlalchemy.orm.clsregistry}!\_key\_is\_empty@{\_key\_is\_empty}}
+\index{\_key\_is\_empty@{\_key\_is\_empty}!sqlalchemy.orm.clsregistry@{sqlalchemy.orm.clsregistry}}
+\doxysubsubsection{\texorpdfstring{\_key\_is\_empty()}{\_key\_is\_empty()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1orm_1_1clsregistry_a687f19d28a99d8961ea67f71bec705d2} 
+ bool \+\_\+key\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}\item[{str}]{key}{, }\item[{\+\_\+\+Cls\+Registry\+Type}]{decl\+\_\+class\+\_\+registry}{, }\item[{Callable\+[\+[Any]\+, bool]\+}]{test}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}test if a key is empty of a certain object.
+
+used for unit tests against the registry to see if garbage collection
+is working.
+
+"test" is a callable that will be passed an object should return True
+if the given object is the one we were looking for.
+
+We can't pass the actual object itself b.c. this is for testing garbage
+collection; the caller will have to have removed references to the
+object itself.
+\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1orm_1_1clsregistry_a3d51f1fc84bf90b2c3f3edb285292b6b}\index{sqlalchemy.orm.clsregistry@{sqlalchemy.orm.clsregistry}!add\_class@{add\_class}}
+\index{add\_class@{add\_class}!sqlalchemy.orm.clsregistry@{sqlalchemy.orm.clsregistry}}
+\doxysubsubsection{\texorpdfstring{add\_class()}{add\_class()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1orm_1_1clsregistry_a3d51f1fc84bf90b2c3f3edb285292b6b} 
+ None add\+\_\+class (\begin{DoxyParamCaption}\item[{str}]{classname}{, }\item[{Type\+[\+\_\+T]\+}]{cls}{, }\item[{\+\_\+\+Cls\+Registry\+Type }]{decl\+\_\+class\+\_\+registry}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a class to the _decl_class_registry associated with the
+given declarative class.
+\end{DoxyVerb}
+ 

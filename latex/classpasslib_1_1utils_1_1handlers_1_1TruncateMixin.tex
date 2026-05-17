@@ -1,0 +1,120 @@
+\doxysection{passlib.\+utils.\+handlers.\+Truncate\+Mixin Class Reference}
+\hypertarget{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin}{}\label{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin}\index{passlib.utils.handlers.TruncateMixin@{passlib.utils.handlers.TruncateMixin}}
+Inheritance diagram for passlib.\+utils.\+handlers.\+Truncate\+Mixin:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a6bda81a56932b5f1ac715290fbf6f722}{using}} (cls, truncate\+\_\+error=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash}{passlib.\+ifc.\+Password\+Hash}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_ad6530deb0576d6d58963adb5fdcf3f58}{hash}} (cls, secret, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}setting\+\_\+and\+\_\+context\+\_\+kwds)
+\begin{DoxyCompactList}\small\item\em min\+\_\+salt\+\_\+size max\+\_\+salt\+\_\+size default\+\_\+salt\+\_\+size salt\+\_\+chars default\+\_\+salt\+\_\+chars \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_a6a85c2f5a109eafce57597db35b66442}{encrypt}} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_ad6b2b65c48637d1a3ec30cfdea421810}{verify}} (cls, secret, hash, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}context\+\_\+kwds)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_afaa15fcf322aa7d79b7aedc962396351}{needs\+\_\+update}} (cls, hash, secret=None)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_a3f9ebd3916085f83e8b810d257e71497}{identify}} (cls, hash)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_ade8048a09430530d5ec9daf329d11b13}{genconfig}} (cls, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}setting\+\_\+kwds)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash_a5c9b32e063f6aee148aba98edb669667}{genhash}} (cls, secret, config, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}context)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a8bf1eeeeb031e87fec85f4a0baa770a2}{\+\_\+check\+\_\+truncate\+\_\+policy}} (cls, secret)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash}{passlib.\+ifc.\+Password\+Hash}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries context\+\_\+kwds}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1ifc_1_1PasswordHash}{passlib.\+ifc.\+Password\+Hash}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+\_\+disabled} = False
+\begin{DoxyCompactList}\small\item\em name setting\+\_\+kwds context\+\_\+kwds \end{DoxyCompactList}\item 
+{\bfseries truncate\+\_\+size} = None
+\item 
+bool {\bfseries truncate\+\_\+error} = True
+\item 
+bool {\bfseries truncate\+\_\+verify\+\_\+reject} = True
+\item 
+bool {\bfseries deprecated} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1utils_1_1handlers_1_1MinimalHandler}{passlib.\+utils.\+handlers.\+Minimal\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+configured} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}PasswordHash mixin which provides a method
+that will check if secret would be truncated,
+and can be configured to throw an error.
+
+.. warning::
+
+    Hashers using this mixin will generally need to override
+    the default PasswordHash.truncate_error policy of "True",
+    and will similarly want to override .truncate_verify_reject as well.
+
+    TODO: This should be done explicitly, but for now this mixin sets
+    these flags implicitly.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_doc-func-members}
+\Hypertarget{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a8bf1eeeeb031e87fec85f4a0baa770a2}\index{passlib.utils.handlers.TruncateMixin@{passlib.utils.handlers.TruncateMixin}!\_check\_truncate\_policy@{\_check\_truncate\_policy}}
+\index{\_check\_truncate\_policy@{\_check\_truncate\_policy}!passlib.utils.handlers.TruncateMixin@{passlib.utils.handlers.TruncateMixin}}
+\doxysubsubsection{\texorpdfstring{\_check\_truncate\_policy()}{\_check\_truncate\_policy()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a8bf1eeeeb031e87fec85f4a0baa770a2} 
+passlib.\+utils.\+handlers.\+Truncate\+Mixin.\+\_\+check\+\_\+truncate\+\_\+policy (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{secret}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}make sure secret won't be truncated.
+NOTE: this should only be called for .hash(), not for .verify(),
+which should honor the .truncate_verify_reject policy.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a6bda81a56932b5f1ac715290fbf6f722}\index{passlib.utils.handlers.TruncateMixin@{passlib.utils.handlers.TruncateMixin}!using@{using}}
+\index{using@{using}!passlib.utils.handlers.TruncateMixin@{passlib.utils.handlers.TruncateMixin}}
+\doxysubsubsection{\texorpdfstring{using()}{using()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1utils_1_1handlers_1_1TruncateMixin_a6bda81a56932b5f1ac715290fbf6f722} 
+passlib.\+utils.\+handlers.\+Truncate\+Mixin.\+using (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{relaxed}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwds}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return another hasher object (typically a subclass of the current one),
+which integrates the configuration options specified by ``kwds``.
+This should *always* return a new object, even if no configuration options are changed.
+
+.. todo::
+
+    document which options are accepted.
+
+:returns:
+    typically returns a subclass for most hasher implementations.
+
+.. todo::
+
+    add this method to main documentation.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpasslib_1_1utils_1_1handlers_1_1MinimalHandler_a21462ca1f41d2baf0335e17ac9509597}{passlib.\+utils.\+handlers.\+Minimal\+Handler}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+utils/\+handlers.\+py\end{DoxyCompactItemize}

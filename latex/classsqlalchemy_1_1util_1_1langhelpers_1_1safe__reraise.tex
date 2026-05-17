@@ -1,0 +1,70 @@
+\doxysection{sqlalchemy.\+util.\+langhelpers.\+safe\+\_\+reraise Class Reference}
+\hypertarget{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise}{}\label{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise}\index{sqlalchemy.util.langhelpers.safe\_reraise@{sqlalchemy.util.langhelpers.safe\_reraise}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_a9eff4063986dd7dd38c64ca46fd8ef81}\label{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_a9eff4063986dd7dd38c64ca46fd8ef81} 
+None {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_af5d1d7d8d071593719f040a61445c60d}\label{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_af5d1d7d8d071593719f040a61445c60d} 
+No\+Return {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Optional\+[Type\+[Base\+Exception]\+]\+ type\+\_\+, Optional\+[Base\+Exception]\+ value, Optional\+[types.\+Traceback\+Type]\+ traceback)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Union \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_a7ab8a3087ea9cc64832e2ebc6c202f2e}{\+\_\+exc\+\_\+info}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Reraise an exception after invoking some
+handler code.
+
+Stores the existing exception info before
+invoking so that it is maintained across a potential
+coroutine context switch.
+
+e.g.::
+
+    try:
+        sess.commit()
+    except:
+        with safe_reraise():
+            sess.rollback()
+
+TODO: we should at some point evaluate current behaviors in this regard
+based on current greenlet, gevent/eventlet implementations in Python 3, and
+also see the degree to which our own asyncio (based on greenlet also) is
+impacted by this. .rollback() will cause IO / context switch to occur in
+all these scenarios; what happens to the exception context from an
+"except:" block if we don't explicitly store it? Original issue was #2703.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_a7ab8a3087ea9cc64832e2ebc6c202f2e}\index{sqlalchemy.util.langhelpers.safe\_reraise@{sqlalchemy.util.langhelpers.safe\_reraise}!\_exc\_info@{\_exc\_info}}
+\index{\_exc\_info@{\_exc\_info}!sqlalchemy.util.langhelpers.safe\_reraise@{sqlalchemy.util.langhelpers.safe\_reraise}}
+\doxysubsubsection{\texorpdfstring{\_exc\_info}{\_exc\_info}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1langhelpers_1_1safe__reraise_a7ab8a3087ea9cc64832e2ebc6c202f2e} 
+Union sqlalchemy.\+util.\+langhelpers.\+safe\+\_\+reraise.\+\_\+exc\+\_\+info\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Tuple[}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ Type[BaseException],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ BaseException,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ types.TracebackType,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ Tuple[\textcolor{keywordtype}{None},\ \textcolor{keywordtype}{None},\ \textcolor{keywordtype}{None}],}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+util/\+langhelpers.\+py\end{DoxyCompactItemize}

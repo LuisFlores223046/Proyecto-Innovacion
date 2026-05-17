@@ -1,0 +1,63 @@
+\doxysection{ecdsa.\+\_\+rwlock.\+RWLock Class Reference}
+\hypertarget{classecdsa_1_1__rwlock_1_1RWLock}{}\label{classecdsa_1_1__rwlock_1_1RWLock}\index{ecdsa.\_rwlock.RWLock@{ecdsa.\_rwlock.RWLock}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classecdsa_1_1__rwlock_1_1RWLock_ad1622d70c049e8b5e2a0e662e3946403}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_a2f6097f29003689e58a31a523fe6d122}\label{classecdsa_1_1__rwlock_1_1RWLock_a2f6097f29003689e58a31a523fe6d122} 
+{\bfseries reader\+\_\+acquire} (self)
+\item 
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_af7f1feec9d218749d08e70cbdcb0e539}\label{classecdsa_1_1__rwlock_1_1RWLock_af7f1feec9d218749d08e70cbdcb0e539} 
+{\bfseries reader\+\_\+release} (self)
+\item 
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_a3b27e95511c58dc909a0e5c7ba804248}\label{classecdsa_1_1__rwlock_1_1RWLock_a3b27e95511c58dc909a0e5c7ba804248} 
+{\bfseries writer\+\_\+acquire} (self)
+\item 
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_a798a3e1ff6d6fb9c76311bb5e8e8ff44}\label{classecdsa_1_1__rwlock_1_1RWLock_a798a3e1ff6d6fb9c76311bb5e8e8ff44} 
+{\bfseries writer\+\_\+release} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Read-Write locking primitive
+
+Synchronization object used in a solution of so-called second
+readers-writers problem. In this problem, many readers can simultaneously
+access a share, and a writer has an exclusive access to this share.
+Additionally, the following constraints should be met:
+1) no reader should be kept waiting if the share is currently opened for
+   reading unless a writer is also waiting for the share,
+2) no writer should be kept waiting for the share longer than absolutely
+   necessary.
+
+The implementation is based on [1, secs. 4.2.2, 4.2.6, 4.2.7]
+with a modification -- adding an additional lock (C{self.__readers_queue})
+-- in accordance with [2].
+
+Sources:
+[1] A.B. Downey: "The little book of semaphores", Version 2.1.5, 2008
+[2] P.J. Courtois, F. Heymans, D.L. Parnas:
+    "Concurrent Control with 'Readers' and 'Writers'",
+    Communications of the ACM, 1971 (via [3])
+[3] http://en.wikipedia.org/wiki/Readers-writers_problem
+\end{DoxyVerb}
+ 
+
+\label{classecdsa_1_1__rwlock_1_1RWLock_doc-constructors}
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classecdsa_1_1__rwlock_1_1RWLock_ad1622d70c049e8b5e2a0e662e3946403}\index{ecdsa.\_rwlock.RWLock@{ecdsa.\_rwlock.RWLock}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ecdsa.\_rwlock.RWLock@{ecdsa.\_rwlock.RWLock}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classecdsa_1_1__rwlock_1_1RWLock_ad1622d70c049e8b5e2a0e662e3946403} 
+ecdsa.\+\_\+rwlock.\+RWLock.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A lock giving an even higher priority to the writer in certain
+cases (see [2] for a discussion).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+ecdsa/\+\+\_\+rwlock.\+py\end{DoxyCompactItemize}

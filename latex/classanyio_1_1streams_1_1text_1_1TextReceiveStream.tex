@@ -1,0 +1,131 @@
+\doxysection{anyio.\+streams.\+text.\+Text\+Receive\+Stream Class Reference}
+\hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream}{}\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream}\index{anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}}
+Inheritance diagram for anyio.\+streams.\+text.\+Text\+Receive\+Stream:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.981895cm]{classanyio_1_1streams_1_1text_1_1TextReceiveStream}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a2b15c946ba639f59f98924a22ac84b76}\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a2b15c946ba639f59f98924a22ac84b76} 
+None {\bfseries \+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+} (self, str encoding, str errors)
+\item 
+str \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a96e0e2a443903d05d6ef8ea099d3b565}{receive}} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a459d866515074772b631084b7aabdb29}{aclose}} (self)
+\item 
+Mapping\+[Any, Callable\+[\+[$\,$]\+, Any]\+]\+ \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a4e8dd1d7154a438e5dbf96dd245b9a42}{extra\+\_\+attributes}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1UnreliableObjectReceiveStream}{anyio.\+abc.\+\_\+streams.\+Unreliable\+Object\+Receive\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1UnreliableObjectReceiveStream}{Unreliable\+Object\+Receive\+Stream}}\+[T\+\_\+co]\+ {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\item 
+T\+\_\+co {\bfseries \+\_\+\+\_\+anext\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource}{anyio.\+abc.\+\_\+resources.\+Async\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+T {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (T self)
+\item 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider}}}
+\begin{DoxyCompactItemize}
+\item 
+T\+\_\+\+Attr {\bfseries extra} (self, T\+\_\+\+Attr attribute)
+\item 
+T\+\_\+\+Attr\texorpdfstring{$\vert$}{|}T\+\_\+\+Default {\bfseries extra} (self, T\+\_\+\+Attr attribute, T\+\_\+\+Default default)
+\item 
+object \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7}{extra}} (self, Any attribute, object default=undefined)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_aedddd818b358c16833c828a05059978f}\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_aedddd818b358c16833c828a05059978f} 
+Init\+Var {\bfseries encoding} = "{}utf-\/8"{}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a5ba70106ea77e41132abc0d8869f5c1c}\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a5ba70106ea77e41132abc0d8869f5c1c} 
+Init\+Var {\bfseries errors} = "{}strict"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_aff9fac41d330ed211600488f29d55640}\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_aff9fac41d330ed211600488f29d55640} 
+codecs {\bfseries \+\_\+decoder} = field(init=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Stream wrapper that decodes bytes to strings using the given encoding.
+
+Decoding is done using :class:`~codecs.IncrementalDecoder` which returns any
+completely received unicode characters as soon as they come in.
+
+:param transport_stream: any bytes-based receive stream
+:param encoding: character encoding to use for decoding bytes to strings (defaults
+    to ``utf-8``)
+:param errors: handling scheme for decoding errors (defaults to ``strict``; see the
+    `codecs module documentation`_ for a comprehensive list of options)
+
+.. _codecs module documentation:
+    https://docs.python.org/3/library/codecs.html#codec-objects
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_doc-func-members}
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a459d866515074772b631084b7aabdb29}\index{anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}!aclose@{aclose}}
+\index{aclose@{aclose}!anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}}
+\doxysubsubsection{\texorpdfstring{aclose()}{aclose()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a459d866515074772b631084b7aabdb29} 
+ None anyio.\+streams.\+text.\+Text\+Receive\+Stream.\+aclose (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the resource.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource_a3ab27dd7173f5cf834e6091003534813}{anyio.\+abc.\+\_\+resources.\+Async\+Resource}}.
+
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a4e8dd1d7154a438e5dbf96dd245b9a42}\index{anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}!extra\_attributes@{extra\_attributes}}
+\index{extra\_attributes@{extra\_attributes}!anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}}
+\doxysubsubsection{\texorpdfstring{extra\_attributes()}{extra\_attributes()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a4e8dd1d7154a438e5dbf96dd245b9a42} 
+ Mapping\+[Any, Callable\+[\+[$\,$]\+, Any]\+]\+ anyio.\+streams.\+text.\+Text\+Receive\+Stream.\+extra\+\_\+attributes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A mapping of the extra attributes to callables that return the corresponding
+values.
+
+If the provider wraps another provider, the attributes from that wrapper should
+also be included in the returned mapping (but the wrapper may override the
+callables from the wrapped instance).
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c}{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider}}.
+
+\Hypertarget{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a96e0e2a443903d05d6ef8ea099d3b565}\index{anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}!receive@{receive}}
+\index{receive@{receive}!anyio.streams.text.TextReceiveStream@{anyio.streams.text.TextReceiveStream}}
+\doxysubsubsection{\texorpdfstring{receive()}{receive()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a96e0e2a443903d05d6ef8ea099d3b565} 
+ str anyio.\+streams.\+text.\+Text\+Receive\+Stream.\+receive (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive the next item.
+
+:raises ~anyio.ClosedResourceError: if the receive stream has been explicitly
+    closed
+:raises ~anyio.EndOfStream: if this stream has been closed from the other end
+:raises ~anyio.BrokenResourceError: if this stream has been rendered unusable
+    due to external causes
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1UnreliableObjectReceiveStream_a4f4275efb5dc432015c153b02c24bbd4}{anyio.\+abc.\+\_\+streams.\+Unreliable\+Object\+Receive\+Stream}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+streams/\+text.\+py\end{DoxyCompactItemize}

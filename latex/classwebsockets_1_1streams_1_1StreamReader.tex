@@ -1,0 +1,148 @@
+\doxysection{websockets.\+streams.\+Stream\+Reader Class Reference}
+\hypertarget{classwebsockets_1_1streams_1_1StreamReader}{}\label{classwebsockets_1_1streams_1_1StreamReader}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a4c3dd2bdca64824fedf3c60b4303d229}\label{classwebsockets_1_1streams_1_1StreamReader_a4c3dd2bdca64824fedf3c60b4303d229} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+Generator\+[None, None, bytes]\+ \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_a0a6a060b1d2a3220ac7bfa7618a16696}{read\+\_\+line}} (self, int m)
+\item 
+Generator\+[None, None, bytes]\+ \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_a0ac43957cdadd7363698335f085e28cd}{read\+\_\+exact}} (self, int n)
+\item 
+Generator\+[None, None, bytes]\+ \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_adc8073e59f248aac36527acb1bf2fe83}{read\+\_\+to\+\_\+eof}} (self, int m)
+\item 
+Generator\+[None, None, bool]\+ \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_a55461537cd6474297c6544671876c8e3}{at\+\_\+eof}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_a271eb5b5ddd6c51800e291add3036188}{feed\+\_\+data}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_aa7f13299174cfbdf9da0e7349717bd26}{feed\+\_\+eof}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1streams_1_1StreamReader_a24d668099ab5d0d8bae86da18ed26d4d}{discard}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a4ec6be6815f00378237560405a5dbf0e}\label{classwebsockets_1_1streams_1_1StreamReader_a4ec6be6815f00378237560405a5dbf0e} 
+{\bfseries buffer} = bytearray()
+\item 
+\Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a47f7fbb76d558cb2e1b6ae570ef16c4b}\label{classwebsockets_1_1streams_1_1StreamReader_a47f7fbb76d558cb2e1b6ae570ef16c4b} 
+bool {\bfseries eof} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Generator-based stream reader.
+
+This class doesn't support concurrent calls to :meth:`read_line`,
+:meth:`read_exact`, or :meth:`read_to_eof`. Make sure calls are
+serialized.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1streams_1_1StreamReader_doc-func-members}
+\Hypertarget{classwebsockets_1_1streams_1_1StreamReader_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a55461537cd6474297c6544671876c8e3}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!at\_eof@{at\_eof}}
+\index{at\_eof@{at\_eof}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{at\_eof()}{at\_eof()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_a55461537cd6474297c6544671876c8e3} 
+ Generator\+[None, None, bool]\+ websockets.\+streams.\+Stream\+Reader.\+at\+\_\+eof (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tell whether the stream has ended and all data was read.
+
+This is a generator-based coroutine.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a24d668099ab5d0d8bae86da18ed26d4d}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!discard@{discard}}
+\index{discard@{discard}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{discard()}{discard()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_a24d668099ab5d0d8bae86da18ed26d4d} 
+ None websockets.\+streams.\+Stream\+Reader.\+discard (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Discard all buffered data, but don't end the stream.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a271eb5b5ddd6c51800e291add3036188}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!feed\_data@{feed\_data}}
+\index{feed\_data@{feed\_data}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{feed\_data()}{feed\_data()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_a271eb5b5ddd6c51800e291add3036188} 
+ None websockets.\+streams.\+Stream\+Reader.\+feed\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write data to the stream.
+
+:meth:`feed_data` cannot be called after :meth:`feed_eof`.
+
+Args:
+    data: data to write.
+
+Raises:
+    EOFError: if the stream has ended.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_aa7f13299174cfbdf9da0e7349717bd26}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!feed\_eof@{feed\_eof}}
+\index{feed\_eof@{feed\_eof}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{feed\_eof()}{feed\_eof()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_aa7f13299174cfbdf9da0e7349717bd26} 
+ None websockets.\+streams.\+Stream\+Reader.\+feed\+\_\+eof (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}End the stream.
+
+:meth:`feed_eof` cannot be called more than once.
+
+Raises:
+    EOFError: if the stream has ended.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a0ac43957cdadd7363698335f085e28cd}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!read\_exact@{read\_exact}}
+\index{read\_exact@{read\_exact}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{read\_exact()}{read\_exact()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_a0ac43957cdadd7363698335f085e28cd} 
+ Generator\+[None, None, bytes]\+ websockets.\+streams.\+Stream\+Reader.\+read\+\_\+exact (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a given number of bytes from the stream.
+
+This is a generator-based coroutine.
+
+Args:
+    n: how many bytes to read.
+
+Raises:
+    EOFError: if the stream ends in less than ``n`` bytes.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_a0a6a060b1d2a3220ac7bfa7618a16696}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!read\_line@{read\_line}}
+\index{read\_line@{read\_line}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{read\_line()}{read\_line()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_a0a6a060b1d2a3220ac7bfa7618a16696} 
+ Generator\+[None, None, bytes]\+ websockets.\+streams.\+Stream\+Reader.\+read\+\_\+line (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{m}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read a LF-terminated line from the stream.
+
+This is a generator-based coroutine.
+
+The return value includes the LF character.
+
+Args:
+    m: maximum number bytes to read; this is a security limit.
+
+Raises:
+    EOFError: if the stream ends without a LF.
+    RuntimeError: if the stream ends in more than ``m`` bytes.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1streams_1_1StreamReader_adc8073e59f248aac36527acb1bf2fe83}\index{websockets.streams.StreamReader@{websockets.streams.StreamReader}!read\_to\_eof@{read\_to\_eof}}
+\index{read\_to\_eof@{read\_to\_eof}!websockets.streams.StreamReader@{websockets.streams.StreamReader}}
+\doxysubsubsection{\texorpdfstring{read\_to\_eof()}{read\_to\_eof()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1streams_1_1StreamReader_adc8073e59f248aac36527acb1bf2fe83} 
+ Generator\+[None, None, bytes]\+ websockets.\+streams.\+Stream\+Reader.\+read\+\_\+to\+\_\+eof (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{m}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read all bytes from the stream.
+
+This is a generator-based coroutine.
+
+Args:
+    m: maximum number bytes to read; this is a security limit.
+
+Raises:
+    RuntimeError: if the stream ends in more than ``m`` bytes.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+streams.\+py\end{DoxyCompactItemize}

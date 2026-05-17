@@ -1,0 +1,155 @@
+\doxysection{pygments.\+formatter.\+Formatter Class Reference}
+\hypertarget{classpygments_1_1formatter_1_1Formatter}{}\label{classpygments_1_1formatter_1_1Formatter}\index{pygments.formatter.Formatter@{pygments.formatter.Formatter}}
+Inheritance diagram for pygments.\+formatter.\+Formatter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{classpygments_1_1formatter_1_1Formatter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1formatter_1_1Formatter_ad230c37ec3b950bcefe276b2a54f9877}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1formatter_1_1Formatter_a58108d8b71e123fb53c5783d2047d291}{get\+\_\+style\+\_\+defs}} (self, arg=\textquotesingle{}\textquotesingle{})
+\item 
+\doxymbox{\hyperlink{classpygments_1_1formatter_1_1Formatter_a25dfa768a9d57c4225df77c9ff5e6ad4}{format}} (self, tokensource, outfile)
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a2af071165339d6ff7c9c60e02e45d5ce}\label{classpygments_1_1formatter_1_1Formatter_a2af071165339d6ff7c9c60e02e45d5ce} 
+{\bfseries \+\_\+\+\_\+class\+\_\+getitem\+\_\+\+\_\+} (cls, name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a697f27d213162f232b72561d55ceca06}\label{classpygments_1_1formatter_1_1Formatter_a697f27d213162f232b72561d55ceca06} 
+{\bfseries style} = \+\_\+lookup\+\_\+style(options.\+get(\textquotesingle{}style\textquotesingle{}, \textquotesingle{}default\textquotesingle{}))
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a89b3aa9f95c82701fb3c3cda9225ffc5}\label{classpygments_1_1formatter_1_1Formatter_a89b3aa9f95c82701fb3c3cda9225ffc5} 
+{\bfseries full} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}full\textquotesingle{}, False)
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a8bb8f86da350a26947e78b3766934188}\label{classpygments_1_1formatter_1_1Formatter_a8bb8f86da350a26947e78b3766934188} 
+{\bfseries title} = options.\+get(\textquotesingle{}title\textquotesingle{}, \textquotesingle{}\textquotesingle{})
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a5c2205cfe17dc7fffeb3726e32695428}\label{classpygments_1_1formatter_1_1Formatter_a5c2205cfe17dc7fffeb3726e32695428} 
+str {\bfseries encoding} = options.\+get(\textquotesingle{}encoding\textquotesingle{}, None) or None
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_ad8488449d4f551e9d93314feeba2e059}\label{classpygments_1_1formatter_1_1Formatter_ad8488449d4f551e9d93314feeba2e059} 
+{\bfseries options} = options
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_afc94470964186454924d7bfb457ae0e9}\label{classpygments_1_1formatter_1_1Formatter_afc94470964186454924d7bfb457ae0e9} 
+{\bfseries name} = None
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a07d947a3b1dfbf51db8148af657187c3}\label{classpygments_1_1formatter_1_1Formatter_a07d947a3b1dfbf51db8148af657187c3} 
+list {\bfseries aliases} = \+[$\,$]\+
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a0839ae62a38dc624286f49159883a1b9}\label{classpygments_1_1formatter_1_1Formatter_a0839ae62a38dc624286f49159883a1b9} 
+list {\bfseries filenames} = \+[$\,$]\+
+\item 
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_aa0986b425fee98b835bcf7cb41d0407c}\label{classpygments_1_1formatter_1_1Formatter_aa0986b425fee98b835bcf7cb41d0407c} 
+bool {\bfseries unicodeoutput} = True
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Converts a token stream to text.
+
+Formatters should have attributes to help selecting them. These
+are similar to the corresponding :class:`~pygments.lexer.Lexer`
+attributes.
+
+.. autoattribute:: name
+   :no-value:
+
+.. autoattribute:: aliases
+   :no-value:
+
+.. autoattribute:: filenames
+   :no-value:
+
+You can pass options as keyword arguments to the constructor.
+All formatters accept these basic options:
+
+``style``
+    The style to use, can be a string or a Style subclass
+    (default: "default"). Not used by e.g. the
+    TerminalFormatter.
+``full``
+    Tells the formatter to output a "full" document, i.e.
+    a complete self-contained document. This doesn't have
+    any effect for some formatters (default: false).
+``title``
+    If ``full`` is true, the title that should be used to
+    caption the document (default: '').
+``encoding``
+    If given, must be an encoding name. This will be used to
+    convert the Unicode token strings to byte strings in the
+    output. If it is "" or None, Unicode strings will be written
+    to the output file, which most file-like objects do not
+    support (default: None).
+``outencoding``
+    Overrides ``encoding`` if given.
+\end{DoxyVerb}
+ 
+
+\label{classpygments_1_1formatter_1_1Formatter_doc-constructors}
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_ad230c37ec3b950bcefe276b2a54f9877}\index{pygments.formatter.Formatter@{pygments.formatter.Formatter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!pygments.formatter.Formatter@{pygments.formatter.Formatter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classpygments_1_1formatter_1_1Formatter_ad230c37ec3b950bcefe276b2a54f9877} 
+pygments.\+formatter.\+Formatter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{options}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}As with lexers, this constructor takes arbitrary optional arguments,
+and if you override it, you should first process your own options, then
+call the base class implementation.
+\end{DoxyVerb}
+ 
+
+\label{classpygments_1_1formatter_1_1Formatter_doc-func-members}
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a25dfa768a9d57c4225df77c9ff5e6ad4}\index{pygments.formatter.Formatter@{pygments.formatter.Formatter}!format@{format}}
+\index{format@{format}!pygments.formatter.Formatter@{pygments.formatter.Formatter}}
+\doxysubsubsection{\texorpdfstring{format()}{format()}}
+{\footnotesize\ttfamily \label{classpygments_1_1formatter_1_1Formatter_a25dfa768a9d57c4225df77c9ff5e6ad4} 
+pygments.\+formatter.\+Formatter.\+format (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{tokensource}{, }\item[{}]{outfile}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This method must format the tokens from the `tokensource` iterable and
+write the formatted version to the file object `outfile`.
+
+Formatter options can control how exactly the tokens are converted.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpygments_1_1formatters_1_1img_1_1ImageFormatter_a5fe61ac121515a9d0022def3c5a5b70c}{pygments.\+formatters.\+img.\+Image\+Formatter}}, \doxymbox{\hyperlink{classpygments_1_1formatters_1_1other_1_1NullFormatter_a36342fcbc10b792f60b15f27aa8b4f41}{pygments.\+formatters.\+other.\+Null\+Formatter}}, \doxymbox{\hyperlink{classpygments_1_1formatters_1_1other_1_1RawTokenFormatter_affbb820bb2b37702ab14105092c565a4}{pygments.\+formatters.\+other.\+Raw\+Token\+Formatter}}, \doxymbox{\hyperlink{classpygments_1_1formatters_1_1other_1_1TestcaseFormatter_ae4132ef7c1d89b7b69559d8df43be474}{pygments.\+formatters.\+other.\+Testcase\+Formatter}}, \doxymbox{\hyperlink{classpygments_1_1formatters_1_1terminal_1_1TerminalFormatter_a0a187d0444cfe6851180eaa1aac9b4d2}{pygments.\+formatters.\+terminal.\+Terminal\+Formatter}}, and \doxymbox{\hyperlink{classpygments_1_1formatters_1_1terminal256_1_1Terminal256Formatter_abdfab572b6e88e2182c8d05c559cb5e3}{pygments.\+formatters.\+terminal256.\+Terminal256\+Formatter}}.
+
+\Hypertarget{classpygments_1_1formatter_1_1Formatter_a58108d8b71e123fb53c5783d2047d291}\index{pygments.formatter.Formatter@{pygments.formatter.Formatter}!get\_style\_defs@{get\_style\_defs}}
+\index{get\_style\_defs@{get\_style\_defs}!pygments.formatter.Formatter@{pygments.formatter.Formatter}}
+\doxysubsubsection{\texorpdfstring{get\_style\_defs()}{get\_style\_defs()}}
+{\footnotesize\ttfamily \label{classpygments_1_1formatter_1_1Formatter_a58108d8b71e123fb53c5783d2047d291} 
+pygments.\+formatter.\+Formatter.\+get\+\_\+style\+\_\+defs (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{arg}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This method must return statements or declarations suitable to define
+the current style for subsequent highlighted text (e.g. CSS classes
+in the `HTMLFormatter`).
+
+The optional argument `arg` can be used to modify the generation and
+is formatter dependent (it is standardized because it can be given on
+the command line).
+
+This method is called by the ``-S`` :doc:`command-line option <cmdline>`,
+the `arg` is then given by the ``-a`` option.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpygments_1_1formatters_1_1html_1_1HtmlFormatter_a9564082fb7ba611e0f0fac9fa39e701d}{pygments.\+formatters.\+html.\+Html\+Formatter}}, \doxymbox{\hyperlink{classpygments_1_1formatters_1_1img_1_1ImageFormatter_a956527ac9ec1314b47fe3a5d4e6425c9}{pygments.\+formatters.\+img.\+Image\+Formatter}}, and \doxymbox{\hyperlink{classpygments_1_1formatters_1_1latex_1_1LatexFormatter_a3386fa909eac3cd3e0cf508efa9504fd}{pygments.\+formatters.\+latex.\+Latex\+Formatter}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pygments/\+formatter.\+py\end{DoxyCompactItemize}

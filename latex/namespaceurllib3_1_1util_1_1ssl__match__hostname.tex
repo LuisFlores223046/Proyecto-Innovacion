@@ -1,0 +1,63 @@
+\doxysection{urllib3.\+util.\+ssl\+\_\+match\+\_\+hostname Namespace Reference}
+\hypertarget{namespaceurllib3_1_1util_1_1ssl__match__hostname}{}\label{namespaceurllib3_1_1util_1_1ssl__match__hostname}\index{urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classurllib3_1_1util_1_1ssl__match__hostname_1_1CertificateError}{Certificate\+Error}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Match\+[str]\+\texorpdfstring{$\vert$}{|}None\texorpdfstring{$\vert$}{|}bool \doxymbox{\hyperlink{namespaceurllib3_1_1util_1_1ssl__match__hostname_a2694a55d7f71ecac41622d33fed71e1d}{\+\_\+dnsname\+\_\+match}} (typing.\+Any dn, str hostname, int max\+\_\+wildcards=1)
+\item 
+bool \doxymbox{\hyperlink{namespaceurllib3_1_1util_1_1ssl__match__hostname_ad23388bf7745a3fcca060964d6825f84}{\+\_\+ipaddress\+\_\+match}} (str ipname, IPv4\+Address\texorpdfstring{$\vert$}{|}IPv6\+Address host\+\_\+ip)
+\item 
+None \doxymbox{\hyperlink{namespaceurllib3_1_1util_1_1ssl__match__hostname_af9c7476313b9a2fbd10bb7a48b1f3fb2}{match\+\_\+hostname}} (\doxymbox{\hyperlink{classurllib3_1_1util_1_1ssl___1_1__TYPE__PEER__CERT__RET__DICT}{\+\_\+\+TYPE\+\_\+\+PEER\+\_\+\+CERT\+\_\+\+RET\+\_\+\+DICT}}\texorpdfstring{$\vert$}{|}None cert, str hostname, bool hostname\+\_\+checks\+\_\+common\+\_\+name=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The match_hostname() function from Python 3.5, essential when using SSL.\end{DoxyVerb}
+ 
+
+\label{namespaceurllib3_1_1util_1_1ssl__match__hostname_doc-func-members}
+\Hypertarget{namespaceurllib3_1_1util_1_1ssl__match__hostname_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceurllib3_1_1util_1_1ssl__match__hostname_a2694a55d7f71ecac41622d33fed71e1d}\index{urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}!\_dnsname\_match@{\_dnsname\_match}}
+\index{\_dnsname\_match@{\_dnsname\_match}!urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}}
+\doxysubsubsection{\texorpdfstring{\_dnsname\_match()}{\_dnsname\_match()}}
+{\footnotesize\ttfamily \label{namespaceurllib3_1_1util_1_1ssl__match__hostname_a2694a55d7f71ecac41622d33fed71e1d} 
+ typing.\+Match\+[str]\+ \texorpdfstring{$\vert$}{|} None \texorpdfstring{$\vert$}{|} bool \+\_\+dnsname\+\_\+match (\begin{DoxyParamCaption}\item[{typing.\+Any}]{dn}{, }\item[{str}]{hostname}{, }\item[{int }]{max\+\_\+wildcards}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Matching according to RFC 6125, section 6.4.3
+
+http://tools.ietf.org/html/rfc6125#section-6.4.3
+\end{DoxyVerb}
+ \Hypertarget{namespaceurllib3_1_1util_1_1ssl__match__hostname_ad23388bf7745a3fcca060964d6825f84}\index{urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}!\_ipaddress\_match@{\_ipaddress\_match}}
+\index{\_ipaddress\_match@{\_ipaddress\_match}!urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}}
+\doxysubsubsection{\texorpdfstring{\_ipaddress\_match()}{\_ipaddress\_match()}}
+{\footnotesize\ttfamily \label{namespaceurllib3_1_1util_1_1ssl__match__hostname_ad23388bf7745a3fcca060964d6825f84} 
+ bool \+\_\+ipaddress\+\_\+match (\begin{DoxyParamCaption}\item[{str}]{ipname}{, }\item[{IPv4\+Address \texorpdfstring{$\vert$}{|} IPv6\+Address}]{host\+\_\+ip}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Exact matching of IP addresses.
+
+RFC 9110 section 4.3.5: "A reference identity of IP-ID contains the decoded
+bytes of the IP address. An IP version 4 address is 4 octets, and an IP
+version 6 address is 16 octets. [...] A reference identity of type IP-ID
+matches if the address is identical to an iPAddress value of the
+subjectAltName extension of the certificate."
+\end{DoxyVerb}
+ \Hypertarget{namespaceurllib3_1_1util_1_1ssl__match__hostname_af9c7476313b9a2fbd10bb7a48b1f3fb2}\index{urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}!match\_hostname@{match\_hostname}}
+\index{match\_hostname@{match\_hostname}!urllib3.util.ssl\_match\_hostname@{urllib3.util.ssl\_match\_hostname}}
+\doxysubsubsection{\texorpdfstring{match\_hostname()}{match\_hostname()}}
+{\footnotesize\ttfamily \label{namespaceurllib3_1_1util_1_1ssl__match__hostname_af9c7476313b9a2fbd10bb7a48b1f3fb2} 
+ None match\+\_\+hostname (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classurllib3_1_1util_1_1ssl___1_1__TYPE__PEER__CERT__RET__DICT}{\+\_\+\+TYPE\+\_\+\+PEER\+\_\+\+CERT\+\_\+\+RET\+\_\+\+DICT}} \texorpdfstring{$\vert$}{|} None}]{cert}{, }\item[{str}]{hostname}{, }\item[{bool }]{hostname\+\_\+checks\+\_\+common\+\_\+name}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that *cert* (in decoded format as returned by
+SSLSocket.getpeercert()) matches the *hostname*.  RFC 2818 and RFC 6125
+rules are followed, but IP addresses are not accepted for *hostname*.
+
+CertificateError is raised on failure. On success, the function
+returns nothing.
+\end{DoxyVerb}
+ 

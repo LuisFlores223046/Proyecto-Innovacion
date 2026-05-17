@@ -1,0 +1,73 @@
+\doxysection{sqlalchemy.\+exc.\+Invalidate\+Pool\+Error Class Reference}
+\hypertarget{classsqlalchemy_1_1exc_1_1InvalidatePoolError}{}\label{classsqlalchemy_1_1exc_1_1InvalidatePoolError}\index{sqlalchemy.exc.InvalidatePoolError@{sqlalchemy.exc.InvalidatePoolError}}
+Inheritance diagram for sqlalchemy.\+exc.\+Invalidate\+Pool\+Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsqlalchemy_1_1exc_1_1InvalidatePoolError}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}Any arg, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries args}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1DisconnectionError}{sqlalchemy.\+exc.\+Disconnection\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries invalidate\+\_\+pool} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries code} = None
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+message} (self)
+\item 
+str {\bfseries \+\_\+sql\+\_\+message} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+code\+\_\+str} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+what\+\_\+are\+\_\+we} = "{}error"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Raised when the connection pool should invalidate all stale connections.
+
+A subclass of :class:`_exc.DisconnectionError` that indicates that the
+disconnect situation encountered on the connection probably means the
+entire pool should be invalidated, as the database has been restarted.
+
+This exception will be handled otherwise the same way as
+:class:`_exc.DisconnectionError`, allowing three attempts to reconnect
+before giving up.
+
+.. versionadded:: 1.2
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+exc.\+py\end{DoxyCompactItemize}

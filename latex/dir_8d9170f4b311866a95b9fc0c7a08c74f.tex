@@ -1,0 +1,256 @@
+\doxysection{frontend/\+node\+\_\+modules/\+postcss-\/value-\/parser Directory Reference}
+\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f}{}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f}\index{frontend/node\_modules/postcss-\/value-\/parser Directory Reference@{frontend/node\_modules/postcss-\/value-\/parser Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_323ca52e374436db597fa9c0a9d84b39}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2197}{}\doxysubsection{\texorpdfstring{postcss-\/value-\/parser}{postcss-\/value-\/parser}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2197}
+\href{https://travis-ci.org/TrySound/postcss-value-parser}{\texttt{}}
+
+Transforms CSS declaration values and at-\/rule parameters into a tree of nodes, and provides a simple traversal API.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2198}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2198}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ valueParser\ =\ require('postcss-\/value-\/parser');}
+\DoxyCodeLine{var\ cssBackgroundValue\ =\ 'url(foo.png)\ no-\/repeat\ 40px\ 73\%';}
+\DoxyCodeLine{var\ parsedValue\ =\ valueParser(cssBackgroundValue);}
+\DoxyCodeLine{//\ parsedValue\ exposes\ an\ API\ described\ below,}
+\DoxyCodeLine{//\ e.g.\ parsedValue.walk(..),\ parsedValue.toString(),\ etc.}
+
+\end{DoxyCode}
+
+
+For example, parsing the value {\ttfamily rgba(233, 45, 66, .5)} will return the following:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ nodes:\ [}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ type:\ 'function',}
+\DoxyCodeLine{\ \ \ \ \ \ value:\ 'rgba',}
+\DoxyCodeLine{\ \ \ \ \ \ before:\ '',}
+\DoxyCodeLine{\ \ \ \ \ \ after:\ '',}
+\DoxyCodeLine{\ \ \ \ \ \ nodes:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'word',\ value:\ '233'\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'div',\ value:\ ',',\ before:\ '',\ after:\ '\ '\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'word',\ value:\ '45'\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'div',\ value:\ ',',\ before:\ '',\ after:\ '\ '\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'word',\ value:\ '66'\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'div',\ value:\ ',',\ before:\ '\ ',\ after:\ ''\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ type:\ 'word',\ value:\ '.5'\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ ]}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ]}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+If you wanted to convert each {\ttfamily rgba()} value in {\ttfamily source\+CSS} to a hex value, you could do so like this:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ valueParser\ =\ require('postcss-\/value-\/parser');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ parsed\ =\ valueParser(sourceCSS);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ walk()\ will\ visit\ all\ the\ of\ the\ nodes\ in\ the\ tree,}
+\DoxyCodeLine{//\ invoking\ the\ callback\ for\ each.}
+\DoxyCodeLine{parsed.walk(function\ (node)\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Since\ we\ only\ want\ to\ transform\ rgba()\ values,}
+\DoxyCodeLine{\ \ //\ we\ can\ ignore\ anything\ else.}
+\DoxyCodeLine{\ \ if\ (node.type\ !==\ 'function'\ \&\&\ node.value\ !==\ 'rgba')\ return;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ We\ can\ make\ an\ array\ of\ the\ rgba()\ arguments\ to\ feed\ to\ a}
+\DoxyCodeLine{\ \ //\ convertToHex()\ function}
+\DoxyCodeLine{\ \ var\ color\ =\ node.nodes.filter(function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ node.type\ ===\ 'word';}
+\DoxyCodeLine{\ \ \}).map(function\ (node)\ \{}
+\DoxyCodeLine{\ \ \ \ return\ Number(node.value);}
+\DoxyCodeLine{\ \ \});\ //\ [233,\ 45,\ 66,\ .5]}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Now\ we\ will\ transform\ the\ existing\ rgba()\ function\ node}
+\DoxyCodeLine{\ \ //\ into\ a\ word\ node\ with\ the\ hex\ value}
+\DoxyCodeLine{\ \ node.type\ =\ 'word';}
+\DoxyCodeLine{\ \ node.value\ =\ convertToHex(color);}
+\DoxyCodeLine{\})}
+\DoxyCodeLine{}
+\DoxyCodeLine{parsed.toString();\ //\ \#E92D42}
+
+\end{DoxyCode}
+\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2199}{}\doxysubsection{\texorpdfstring{Nodes}{Nodes}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2199}
+Each node is an object with these common properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{type}}:\+ The type of node ({\ttfamily word}, {\ttfamily string}, {\ttfamily div}, {\ttfamily space}, {\ttfamily comment}, or {\ttfamily function}). Each type is documented below.
+\item {\bfseries{value}}:\+ Each node has a {\ttfamily value} property; but what exactly {\ttfamily value} means is specific to the node type. Details are documented for each type below.
+\item {\bfseries{source\+Index}}:\+ The starting index of the node within the original source string. For example, given the source string {\ttfamily 10px 20px}, the {\ttfamily word} node whose value is {\ttfamily 20px} will have a {\ttfamily source\+Index} of {\ttfamily 5}.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2200}{}\doxysubsubsection{\texorpdfstring{word}{word}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2200}
+The catch-\/all node type that includes keywords (e.\+g. {\ttfamily no-\/repeat}), quantities (e.\+g. {\ttfamily 20px}, {\ttfamily 75\%}, {\ttfamily 1.\+5}), and hex colors (e.\+g. {\ttfamily \#e6e6e6}).
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The "{}word"{} itself.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2201}{}\doxysubsubsection{\texorpdfstring{string}{string}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2201}
+A quoted string value, e.\+g. {\ttfamily "{}something"{}} in {\ttfamily content:\+ "{}something"{};}.
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The text content of the string.
+\item {\bfseries{quote}}:\+ The quotation mark surrounding the string, either {\ttfamily "{}} or {\ttfamily \textquotesingle{}}.
+\item {\bfseries{unclosed}}:\+ {\ttfamily true} if the string was not closed properly. e.\+g. {\ttfamily "{}unclosed string }.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2202}{}\doxysubsubsection{\texorpdfstring{div}{div}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2202}
+A divider, for example
+
+
+\begin{DoxyItemize}
+\item {\ttfamily ,} in {\ttfamily animation-\/duration:\+ 1s, 2s, 3s}
+\item {\ttfamily /\+} in {\ttfamily border-\/radius:\+ 10px /\+ 23px}
+\item {\ttfamily :\+} in {\ttfamily (min-\/width:\+ 700px)}
+\end{DoxyItemize}
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The divider character. Either {\ttfamily ,}, {\ttfamily /\+}, or {\ttfamily :\+} (see examples above).
+\item {\bfseries{before}}:\+ Whitespace before the divider.
+\item {\bfseries{after}}:\+ Whitespace after the divider.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2203}{}\doxysubsubsection{\texorpdfstring{space}{space}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2203}
+Whitespace used as a separator, e.\+g. {\ttfamily  } occurring twice in {\ttfamily border:\+ 1px solid black;}.
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The whitespace itself.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2204}{}\doxysubsubsection{\texorpdfstring{comment}{comment}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2204}
+A CSS comment starts with {\ttfamily /\+\texorpdfstring{$\ast$}{*}} and ends with {\ttfamily \texorpdfstring{$\ast$}{*}/\+}
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The comment value without {\ttfamily /\+\texorpdfstring{$\ast$}{*}} and {\ttfamily \texorpdfstring{$\ast$}{*}/\+}
+\item {\bfseries{unclosed}}:\+ {\ttfamily true} if the comment was not closed properly. e.\+g. {\ttfamily /\+\texorpdfstring{$\ast$}{*} comment without an end }.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2205}{}\doxysubsubsection{\texorpdfstring{function}{function}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2205}
+A CSS function, e.\+g. {\ttfamily rgb(0,0,0)} or {\ttfamily url(foo.\+bar)}.
+
+Function nodes have nodes nested within them:\+ the function arguments.
+
+Additional properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The name of the function, e.\+g. {\ttfamily rgb} in {\ttfamily rgb(0,0,0)}.
+\item {\bfseries{before}}:\+ Whitespace after the opening parenthesis and before the first argument, e.\+g. {\ttfamily  } in {\ttfamily rgb(  0,0,0)}.
+\item {\bfseries{after}}:\+ Whitespace before the closing parenthesis and after the last argument, e.\+g. {\ttfamily  } in {\ttfamily rgb(0,0,0  )}.
+\item {\bfseries{nodes}}:\+ More nodes representing the arguments to the function.
+\item {\bfseries{unclosed}}:\+ {\ttfamily true} if the parentheses was not closed properly. e.\+g. {\ttfamily ( unclosed-\/function }.
+\end{DoxyItemize}
+
+Media features surrounded by parentheses are considered functions with an empty value. For example, {\ttfamily (min-\/width:\+ 700px)} parses to these nodes:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ type:\ 'function',\ value:\ '',\ before:\ '',\ after:\ '',}
+\DoxyCodeLine{\ \ \ \ nodes:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ type:\ 'word',\ value:\ 'min-\/width'\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ type:\ 'div',\ value:\ ':',\ before:\ '',\ after:\ '\ '\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \{\ type:\ 'word',\ value:\ '700px'\ \}}
+\DoxyCodeLine{\ \ \ \ ]}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+
+
+{\ttfamily url()} functions can be parsed a little bit differently depending on whether the first character in the argument is a quotation mark.
+
+{\ttfamily url( /\+gfx/\+img/\+bg.jpg )} parses to:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ type:\ 'function',\ sourceIndex:\ 0,\ value:\ 'url',\ before:\ '\ ',\ after:\ '\ ',\ nodes:\ [}
+\DoxyCodeLine{\ \ \ \ \{\ type:\ 'word',\ sourceIndex:\ 5,\ value:\ '/gfx/img/bg.jpg'\ \}}
+\DoxyCodeLine{]\ \}}
+
+\end{DoxyCode}
+
+
+{\ttfamily url( "{}/\+gfx/\+img/\+bg.jpg"{} )}, on the other hand, parses to:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{\ type:\ 'function',\ sourceIndex:\ 0,\ value:\ 'url',\ before:\ '\ ',\ after:\ '\ ',\ nodes:\ [}
+\DoxyCodeLine{\ \ \ \ \ type:\ 'string',\ sourceIndex:\ 5,\ quote:\ '"{}',\ value:\ '/gfx/img/bg.jpg'\ \},}
+\DoxyCodeLine{]\ \}}
+
+\end{DoxyCode}
+\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2206}{}\doxysubsubsection{\texorpdfstring{unicode-\/range}{unicode-\/range}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2206}
+The unicode-\/range CSS descriptor sets the specific range of characters to be used from a font defined by @font-\/face and made available for use on the current page ({\ttfamily unicode-\/range:\+ U+0025-\/00\+FF}).
+
+Node-\/specific properties:\+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{value}}:\+ The "{}unicode-\/range"{} itself.
+\end{DoxyItemize}\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2207}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2207}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ valueParser\ =\ require('postcss-\/value-\/parser');}
+
+\end{DoxyCode}
+\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2208}{}\doxysubsubsection{\texorpdfstring{value\+Parser.\+unit(quantity)}{value\+Parser.\+unit(quantity)}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2208}
+Parses {\ttfamily quantity}, distinguishing the number from the unit. Returns an object like the following:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Given\ 2rem}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ number:\ '2',}
+\DoxyCodeLine{\ \ unit:\ 'rem'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+If the {\ttfamily quantity} argument cannot be parsed as a number, returns {\ttfamily false}.
+
+{\itshape This function does not parse complete values}:\+ you cannot pass it {\ttfamily 1px solid black} and expect {\ttfamily px} as the unit. Instead, you should pass it single quantities only. Parse {\ttfamily 1px solid black}, then pass it the stringified {\ttfamily 1px} node (a {\ttfamily word} node) to parse the number and unit.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2209}{}\doxysubsubsection{\texorpdfstring{value\+Parser.\+stringify(nodes\+[, custom]\+)}{value\+Parser.\+stringify(nodes\+[, custom]\+)}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2209}
+Stringifies a node or array of nodes.
+
+The {\ttfamily custom} function is called for each {\ttfamily node}; return a string to override the default behaviour.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2210}{}\doxysubsubsection{\texorpdfstring{value\+Parser.\+walk(nodes, callback\+[, bubble]\+)}{value\+Parser.\+walk(nodes, callback\+[, bubble]\+)}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2210}
+Walks each provided node, recursively walking all descendent nodes within functions.
+
+Returning {\ttfamily false} in the {\ttfamily callback} will prevent traversal of descendent nodes (within functions). You can use this feature to for shallow iteration, walking over only the {\itshape immediate} children. {\itshape Note:\+ This only applies if {\ttfamily bubble} is {\ttfamily false} (which is the default).}
+
+By default, the tree is walked from the outermost node inwards. To reverse the direction, pass {\ttfamily true} for the {\ttfamily bubble} argument.
+
+The {\ttfamily callback} is invoked with three arguments:\+ {\ttfamily callback(node, index, nodes)}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily node}:\+ The current node.
+\item {\ttfamily index}:\+ The index of the current node.
+\item {\ttfamily nodes}:\+ The complete nodes array passed to {\ttfamily walk()}.
+\end{DoxyItemize}
+
+Returns the {\ttfamily value\+Parser} instance.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2211}{}\doxysubsubsection{\texorpdfstring{var parsed = value\+Parser(value)}{var parsed = value\+Parser(value)}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2211}
+Returns the parsed node tree.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2212}{}\doxysubsubsection{\texorpdfstring{parsed.\+nodes}{parsed.\+nodes}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2212}
+The array of nodes.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2213}{}\doxysubsubsection{\texorpdfstring{parsed.\+to\+String()}{parsed.\+to\+String()}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2213}
+Stringifies the node tree.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2214}{}\doxysubsubsection{\texorpdfstring{parsed.\+walk(callback\+[, bubble]\+)}{parsed.\+walk(callback\+[, bubble]\+)}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2214}
+Walks each node inside {\ttfamily parsed.\+nodes}. See the documentation for {\ttfamily value\+Parser.\+walk()} above.\hypertarget{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2215}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_8d9170f4b311866a95b9fc0c7a08c74f_autotoc_md2215}
+MIT © \href{mailto:trysound@yandex.ru}{\texttt{Bogdan Chadkin}} 

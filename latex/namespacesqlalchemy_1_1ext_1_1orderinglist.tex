@@ -1,0 +1,229 @@
+\doxysection{sqlalchemy.\+ext.\+orderinglist Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist}{}\label{namespacesqlalchemy_1_1ext_1_1orderinglist}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1orderinglist_1_1OrderingList}{Ordering\+List}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Callable\+[\+[$\,$]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1orderinglist_1_1OrderingList}{Ordering\+List}}]\+ \doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_a8ada8637c693e50529dcff445777e670}{ordering\+\_\+list}} (str attr, Optional\+[int]\+ count\+\_\+from=None, Optional\+[Ordering\+Func]\+ ordering\+\_\+func=None, bool reorder\+\_\+on\+\_\+append=False)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_ac9092a20d7e0f175c3d3ff1326e1b821}{count\+\_\+from\+\_\+0}} (index, collection)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_a59ad954332e7c539cc7fc513e0cf730f}{count\+\_\+from\+\_\+1}} (index, collection)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_ad705df8e58b8db218857269d2322d972}{count\+\_\+from\+\_\+n\+\_\+factory}} (start)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_a0fce971942de8eab5febbf605563742e}{\+\_\+unsugar\+\_\+count\+\_\+from}} (\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1ext_1_1orderinglist_a3ff19420b110e38a5ac7ebeb6177a938}{\+\_\+reconstitute}} (cls, dict\+\_\+, items)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_ae58e94fe094f9329196c8d4503f8d8f7}\label{namespacesqlalchemy_1_1ext_1_1orderinglist_ae58e94fe094f9329196c8d4503f8d8f7} 
+{\bfseries \+\_\+T} = Type\+Var("{}\+\_\+\+T"{})
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_adfacafb11596aec6c5db89b026b292e4}\label{namespacesqlalchemy_1_1ext_1_1orderinglist_adfacafb11596aec6c5db89b026b292e4} 
+{\bfseries Ordering\+Func} = Callable\+[\+[int, Sequence\+[\+\_\+T]\+]\+, int]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A custom list that manages index/position information for contained
+elements.
+
+:author: Jason Kirtland
+
+``orderinglist`` is a helper for mutable ordered relationships.  It will
+intercept list operations performed on a :func:`_orm.relationship`-managed
+collection and
+automatically synchronize changes in list position onto a target scalar
+attribute.
+
+Example: A ``slide`` table, where each row refers to zero or more entries
+in a related ``bullet`` table.   The bullets within a slide are
+displayed in order based on the value of the ``position`` column in the
+``bullet`` table.   As entries are reordered in memory, the value of the
+``position`` attribute should be updated to reflect the new sort order::
+
+
+    Base = declarative_base()
+
+    class Slide(Base):
+        __tablename__ = 'slide'
+
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+
+        bullets = relationship("Bullet", order_by="Bullet.position")
+
+    class Bullet(Base):
+        __tablename__ = 'bullet'
+        id = Column(Integer, primary_key=True)
+        slide_id = Column(Integer, ForeignKey('slide.id'))
+        position = Column(Integer)
+        text = Column(String)
+
+The standard relationship mapping will produce a list-like attribute on each
+``Slide`` containing all related ``Bullet`` objects,
+but coping with changes in ordering is not handled automatically.
+When appending a ``Bullet`` into ``Slide.bullets``, the ``Bullet.position``
+attribute will remain unset until manually assigned.   When the ``Bullet``
+is inserted into the middle of the list, the following ``Bullet`` objects
+will also need to be renumbered.
+
+The :class:`.OrderingList` object automates this task, managing the
+``position`` attribute on all ``Bullet`` objects in the collection.  It is
+constructed using the :func:`.ordering_list` factory::
+
+    from sqlalchemy.ext.orderinglist import ordering_list
+
+    Base = declarative_base()
+
+    class Slide(Base):
+        __tablename__ = 'slide'
+
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+
+        bullets = relationship("Bullet", order_by="Bullet.position",
+                                collection_class=ordering_list('position'))
+
+    class Bullet(Base):
+        __tablename__ = 'bullet'
+        id = Column(Integer, primary_key=True)
+        slide_id = Column(Integer, ForeignKey('slide.id'))
+        position = Column(Integer)
+        text = Column(String)
+
+With the above mapping the ``Bullet.position`` attribute is managed::
+
+    s = Slide()
+    s.bullets.append(Bullet())
+    s.bullets.append(Bullet())
+    s.bullets[1].position
+    >>> 1
+    s.bullets.insert(1, Bullet())
+    s.bullets[2].position
+    >>> 2
+
+The :class:`.OrderingList` construct only works with **changes** to a
+collection, and not the initial load from the database, and requires that the
+list be sorted when loaded.  Therefore, be sure to specify ``order_by`` on the
+:func:`_orm.relationship` against the target ordering attribute, so that the
+ordering is correct when first loaded.
+
+.. warning::
+
+  :class:`.OrderingList` only provides limited functionality when a primary
+  key column or unique column is the target of the sort.  Operations
+  that are unsupported or are problematic include:
+
+    * two entries must trade values.  This is not supported directly in the
+      case of a primary key or unique constraint because it means at least
+      one row would need to be temporarily removed first, or changed to
+      a third, neutral value while the switch occurs.
+
+    * an entry must be deleted in order to make room for a new entry.
+      SQLAlchemy's unit of work performs all INSERTs before DELETEs within a
+      single flush.  In the case of a primary key, it will trade
+      an INSERT/DELETE of the same primary key for an UPDATE statement in order
+      to lessen the impact of this limitation, however this does not take place
+      for a UNIQUE column.
+      A future feature will allow the "DELETE before INSERT" behavior to be
+      possible, alleviating this limitation, though this feature will require
+      explicit configuration at the mapper level for sets of columns that
+      are to be handled in this way.
+
+:func:`.ordering_list` takes the name of the related object's ordering
+attribute as an argument.  By default, the zero-based integer index of the
+object's position in the :func:`.ordering_list` is synchronized with the
+ordering attribute: index 0 will get position 0, index 1 position 1, etc.  To
+start numbering at 1 or some other integer, provide ``count_from=1``.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1ext_1_1orderinglist_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_a3ff19420b110e38a5ac7ebeb6177a938}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!\_reconstitute@{\_reconstitute}}
+\index{\_reconstitute@{\_reconstitute}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{\_reconstitute()}{\_reconstitute()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_a3ff19420b110e38a5ac7ebeb6177a938} 
+\+\_\+reconstitute (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{dict\+\_\+}{, }\item[{}]{items}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reconstitute an :class:`.OrderingList`.
+
+This is the adjoint to :meth:`.OrderingList.__reduce__`.  It is used for
+unpickling :class:`.OrderingList` objects.
+\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_a0fce971942de8eab5febbf605563742e}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!\_unsugar\_count\_from@{\_unsugar\_count\_from}}
+\index{\_unsugar\_count\_from@{\_unsugar\_count\_from}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{\_unsugar\_count\_from()}{\_unsugar\_count\_from()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_a0fce971942de8eab5febbf605563742e} 
+\+\_\+unsugar\+\_\+count\+\_\+from (\begin{DoxyParamCaption}\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Builds counting functions from keyword arguments.
+
+Keyword argument filter, prepares a simple ``ordering_func`` from a
+``count_from`` argument, otherwise passes ``ordering_func`` on unchanged.
+\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_ac9092a20d7e0f175c3d3ff1326e1b821}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!count\_from\_0@{count\_from\_0}}
+\index{count\_from\_0@{count\_from\_0}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{count\_from\_0()}{count\_from\_0()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_ac9092a20d7e0f175c3d3ff1326e1b821} 
+count\+\_\+from\+\_\+0 (\begin{DoxyParamCaption}\item[{}]{index}{, }\item[{}]{collection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Numbering function: consecutive integers starting at 0.\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_a59ad954332e7c539cc7fc513e0cf730f}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!count\_from\_1@{count\_from\_1}}
+\index{count\_from\_1@{count\_from\_1}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{count\_from\_1()}{count\_from\_1()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_a59ad954332e7c539cc7fc513e0cf730f} 
+count\+\_\+from\+\_\+1 (\begin{DoxyParamCaption}\item[{}]{index}{, }\item[{}]{collection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Numbering function: consecutive integers starting at 1.\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_ad705df8e58b8db218857269d2322d972}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!count\_from\_n\_factory@{count\_from\_n\_factory}}
+\index{count\_from\_n\_factory@{count\_from\_n\_factory}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{count\_from\_n\_factory()}{count\_from\_n\_factory()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_ad705df8e58b8db218857269d2322d972} 
+count\+\_\+from\+\_\+n\+\_\+factory (\begin{DoxyParamCaption}\item[{}]{start}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Numbering function: consecutive integers starting at arbitrary start.\end{DoxyVerb}
+ \Hypertarget{namespacesqlalchemy_1_1ext_1_1orderinglist_a8ada8637c693e50529dcff445777e670}\index{sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}!ordering\_list@{ordering\_list}}
+\index{ordering\_list@{ordering\_list}!sqlalchemy.ext.orderinglist@{sqlalchemy.ext.orderinglist}}
+\doxysubsubsection{\texorpdfstring{ordering\_list()}{ordering\_list()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1ext_1_1orderinglist_a8ada8637c693e50529dcff445777e670} 
+ Callable\+[\+[$\,$]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1orderinglist_1_1OrderingList}{Ordering\+List}}]\+ ordering\+\_\+list (\begin{DoxyParamCaption}\item[{str}]{attr}{, }\item[{Optional\+[int]\+ }]{count\+\_\+from}{ = {\ttfamily None}, }\item[{Optional\+[Ordering\+Func]\+ }]{ordering\+\_\+func}{ = {\ttfamily None}, }\item[{bool }]{reorder\+\_\+on\+\_\+append}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Prepares an :class:`OrderingList` factory for use in mapper definitions.
+
+Returns an object suitable for use as an argument to a Mapper
+relationship's ``collection_class`` option.  e.g.::
+
+    from sqlalchemy.ext.orderinglist import ordering_list
+
+    class Slide(Base):
+        __tablename__ = 'slide'
+
+        id = Column(Integer, primary_key=True)
+        name = Column(String)
+
+        bullets = relationship("Bullet", order_by="Bullet.position",
+                                collection_class=ordering_list('position'))
+
+:param attr:
+  Name of the mapped attribute to use for storage and retrieval of
+  ordering information
+
+:param count_from:
+  Set up an integer-based ordering, starting at ``count_from``.  For
+  example, ``ordering_list('pos', count_from=1)`` would create a 1-based
+  list in SQL, storing the value in the 'pos' column.  Ignored if
+  ``ordering_func`` is supplied.
+
+Additional arguments are passed to the :class:`.OrderingList` constructor.
+\end{DoxyVerb}
+ 

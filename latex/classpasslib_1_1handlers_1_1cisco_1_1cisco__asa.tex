@@ -1,0 +1,67 @@
+\doxysection{passlib.\+handlers.\+cisco.\+cisco\+\_\+asa Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1cisco_1_1cisco__asa}{}\label{classpasslib_1_1handlers_1_1cisco_1_1cisco__asa}\index{passlib.handlers.cisco.cisco\_asa@{passlib.handlers.cisco.cisco\_asa}}
+Inheritance diagram for passlib.\+handlers.\+cisco.\+cisco\+\_\+asa:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1handlers_1_1cisco_1_1cisco__asa}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}{passlib.\+handlers.\+cisco.\+cisco\+\_\+pix}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries use\+\_\+defaults}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}{passlib.\+handlers.\+cisco.\+cisco\+\_\+pix}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries name} = "{}cisco\+\_\+pix"{}
+\item 
+int {\bfseries truncate\+\_\+size} = 16
+\item 
+bool {\bfseries truncate\+\_\+error} = True
+\item 
+bool {\bfseries truncate\+\_\+verify\+\_\+reject} = True
+\item 
+int {\bfseries checksum\+\_\+size} = 16
+\item 
+{\bfseries checksum\+\_\+chars} = uh.\+HASH64\+\_\+\+CHARS
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}{passlib.\+handlers.\+cisco.\+cisco\+\_\+pix}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix_afea9bcef71d0cea73057f32a895eddd7}{\+\_\+calc\+\_\+checksum}} (self, secret)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1cisco_1_1cisco__pix}{passlib.\+handlers.\+cisco.\+cisco\+\_\+pix}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+is\+\_\+asa} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements the password hash used by Cisco ASA/PIX 7.0 and newer (2005).
+Aside from a different internal algorithm, it's use and format is identical
+to the older :class:`cisco_pix` class.
+
+For passwords less than 13 characters, this should be identical to :class:`!cisco_pix`,
+but will generate a different hash for most larger inputs
+(See the `Format & Algorithm`_ section for the details).
+
+This class only allows passwords <= 32 bytes, anything larger
+will result in a :exc:`~passlib.exc.PasswordSizeError` if passed to :meth:`~cisco_asa.hash`,
+and be silently rejected if passed to :meth:`~cisco_asa.verify`.
+
+.. versionadded:: 1.7
+
+.. versionchanged:: 1.7.1
+
+    Passwords > 32 bytes are now rejected / throw error instead of being silently truncated,
+    to match Cisco behavior.  A number of :ref:`bugs <passlib-asa96-bug>` were fixed
+    which caused prior releases to generate unverifiable hashes in certain cases.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+cisco.\+py\end{DoxyCompactItemize}

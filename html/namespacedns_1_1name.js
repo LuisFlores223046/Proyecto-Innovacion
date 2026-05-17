@@ -1,0 +1,27 @@
+var namespacedns_1_1name =
+[
+    [ "NameRelation", "classdns_1_1name_1_1NameRelation.html", null ],
+    [ "EmptyLabel", "classdns_1_1name_1_1EmptyLabel.html", null ],
+    [ "BadEscape", "classdns_1_1name_1_1BadEscape.html", null ],
+    [ "BadPointer", "classdns_1_1name_1_1BadPointer.html", null ],
+    [ "BadLabelType", "classdns_1_1name_1_1BadLabelType.html", null ],
+    [ "NeedAbsoluteNameOrOrigin", "classdns_1_1name_1_1NeedAbsoluteNameOrOrigin.html", null ],
+    [ "NameTooLong", "classdns_1_1name_1_1NameTooLong.html", null ],
+    [ "LabelTooLong", "classdns_1_1name_1_1LabelTooLong.html", null ],
+    [ "AbsoluteConcatenation", "classdns_1_1name_1_1AbsoluteConcatenation.html", null ],
+    [ "NoParent", "classdns_1_1name_1_1NoParent.html", null ],
+    [ "NoIDNA2008", "classdns_1_1name_1_1NoIDNA2008.html", null ],
+    [ "IDNAException", "classdns_1_1name_1_1IDNAException.html", null ],
+    [ "NeedSubdomainOfOrigin", "classdns_1_1name_1_1NeedSubdomainOfOrigin.html", null ],
+    [ "IDNACodec", "classdns_1_1name_1_1IDNACodec.html", null ],
+    [ "IDNA2003Codec", "classdns_1_1name_1_1IDNA2003Codec.html", "classdns_1_1name_1_1IDNA2003Codec" ],
+    [ "IDNA2008Codec", "classdns_1_1name_1_1IDNA2008Codec.html", "classdns_1_1name_1_1IDNA2008Codec" ],
+    [ "Name", "classdns_1_1name_1_1Name.html", "classdns_1_1name_1_1Name" ],
+    [ "_escapify", "namespacedns_1_1name.html#a8e2177f2ee34fb9a7b27e818ac12df7b", null ],
+    [ "_maybe_convert_to_binary", "namespacedns_1_1name.html#af9bc5f32be16216ee6b45749924f0fed", null ],
+    [ "_validate_labels", "namespacedns_1_1name.html#a8d37dfde7c2ff1c19964e3e2197d3058", null ],
+    [ "from_text", "namespacedns_1_1name.html#a85a0ee34daddbe4549eecf9a7ae80f08", null ],
+    [ "from_unicode", "namespacedns_1_1name.html#ad2b0647110ae1174789265c8abb74b3d", null ],
+    [ "from_wire", "namespacedns_1_1name.html#a4cb193ac9462103de500f60fb356f250", null ],
+    [ "from_wire_parser", "namespacedns_1_1name.html#af2a0f21d37f3659fbea0b3a43877552c", null ]
+];

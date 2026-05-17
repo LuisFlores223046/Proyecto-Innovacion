@@ -1,0 +1,85 @@
+\doxysection{jinja2.\+utils.\+Cycler Class Reference}
+\hypertarget{classjinja2_1_1utils_1_1Cycler}{}\label{classjinja2_1_1utils_1_1Cycler}\index{jinja2.utils.Cycler@{jinja2.utils.Cycler}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1utils_1_1Cycler_a42560edf48ef233c35f8abc6f3a53ed1}\label{classjinja2_1_1utils_1_1Cycler_a42560edf48ef233c35f8abc6f3a53ed1} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}t.\+Any items)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1utils_1_1Cycler_a70593976492edf67f3ffd8d31d59e506}{reset}} (self)
+\item 
+t.\+Any \doxymbox{\hyperlink{classjinja2_1_1utils_1_1Cycler_af2715116ef8ceba214153b7db87f8aff}{current}} (self)
+\item 
+t.\+Any \doxymbox{\hyperlink{classjinja2_1_1utils_1_1Cycler_a2c47a2c0e27116e53bf89aa4b1fd6592}{next}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1utils_1_1Cycler_af4a0d6c72f28ad047d4eb63c3a2d2839}\label{classjinja2_1_1utils_1_1Cycler_af4a0d6c72f28ad047d4eb63c3a2d2839} 
+{\bfseries items} = items
+\item 
+\Hypertarget{classjinja2_1_1utils_1_1Cycler_ae430044c21d2bb233e8b2e254347e0e9}\label{classjinja2_1_1utils_1_1Cycler_ae430044c21d2bb233e8b2e254347e0e9} 
+int {\bfseries pos} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Cycle through values by yield them one at a time, then restarting
+once the end is reached. Available as ``cycler`` in templates.
+
+Similar to ``loop.cycle``, but can be used outside loops or across
+multiple loops. For example, render a list of folders and files in a
+list, alternating giving them "odd" and "even" classes.
+
+.. code-block:: html+jinja
+
+    {% set row_class = cycler("odd", "even") %}
+    <ul class="browser">
+    {% for folder in folders %}
+      <li class="folder {{ row_class.next() }}">{{ folder }}
+    {% endfor %}
+    {% for file in files %}
+      <li class="file {{ row_class.next() }}">{{ file }}
+    {% endfor %}
+    </ul>
+
+:param items: Each positional argument will be yielded in the order
+    given for each cycle.
+
+.. versionadded:: 2.1
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1utils_1_1Cycler_doc-func-members}
+\Hypertarget{classjinja2_1_1utils_1_1Cycler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1utils_1_1Cycler_af2715116ef8ceba214153b7db87f8aff}\index{jinja2.utils.Cycler@{jinja2.utils.Cycler}!current@{current}}
+\index{current@{current}!jinja2.utils.Cycler@{jinja2.utils.Cycler}}
+\doxysubsubsection{\texorpdfstring{current()}{current()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1utils_1_1Cycler_af2715116ef8ceba214153b7db87f8aff} 
+ t.\+Any jinja2.\+utils.\+Cycler.\+current (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current item. Equivalent to the item that will be
+returned next time :meth:`next` is called.
+\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1utils_1_1Cycler_a2c47a2c0e27116e53bf89aa4b1fd6592}\index{jinja2.utils.Cycler@{jinja2.utils.Cycler}!next@{next}}
+\index{next@{next}!jinja2.utils.Cycler@{jinja2.utils.Cycler}}
+\doxysubsubsection{\texorpdfstring{next()}{next()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1utils_1_1Cycler_a2c47a2c0e27116e53bf89aa4b1fd6592} 
+ t.\+Any jinja2.\+utils.\+Cycler.\+next (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current item, then advance :attr:`current` to the
+next item.
+\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1utils_1_1Cycler_a70593976492edf67f3ffd8d31d59e506}\index{jinja2.utils.Cycler@{jinja2.utils.Cycler}!reset@{reset}}
+\index{reset@{reset}!jinja2.utils.Cycler@{jinja2.utils.Cycler}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1utils_1_1Cycler_a70593976492edf67f3ffd8d31d59e506} 
+ None jinja2.\+utils.\+Cycler.\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resets the current item to the first item.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+utils.\+py\end{DoxyCompactItemize}

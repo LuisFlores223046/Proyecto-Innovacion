@@ -1,0 +1,387 @@
+\doxysection{sqlalchemy.\+engine.\+events.\+Dialect\+Events Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents}{}\label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+Inheritance diagram for sqlalchemy.\+engine.\+events.\+Dialect\+Events:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Base\+Exception]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a4730505d871b6ac3593131f55ac4570e}{handle\+\_\+error}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExceptionContext}{Exception\+Context}} exception\+\_\+context)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a88fe5998787868e5da1f41c0890da8ed}{do\+\_\+connect}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry}{Connection\+Pool\+Entry}} conn\+\_\+rec, Tuple\+[Any,...]\+ cargs, Dict\+[str, Any]\+ cparams)
+\item 
+Optional\+[Literal\+[True]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aabc35e83df2efa4e5284c5486edf3cb1}{do\+\_\+executemany}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIMulti\+Execute\+Params parameters, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\item 
+Optional\+[Literal\+[True]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_afeb8e3c3e1e8c7d2d64d14b9c522f2e2}{do\+\_\+execute\+\_\+no\+\_\+params}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\item 
+Optional\+[Literal\+[True]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9f56ff763a89674fcff428dc39a035fd}{do\+\_\+execute}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPISingle\+Execute\+Params parameters, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aded69eefcd18264c76d244dfd7883504}{do\+\_\+setinputsizes}} (self, Dict\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+, Any]\+ inputsizes, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor, str statement, \+\_\+\+DBAPIAny\+Execute\+Params parameters, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} context)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1attr_1_1__InstanceLevelDispatch}{\+\_\+\+Instance\+Level\+Dispatch}}\+[\+\_\+\+ET]\+ {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch_a9026fd04cd9a1b42239d35300c03e03b}{\+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+}} (cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a178cd69080c8fd63da22245e57a0f82e}{\+\_\+listen}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{event.\+\_\+\+Event\+Key}}\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+ event\+\_\+key, \texorpdfstring{$\ast$}{*}, bool retval=False, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9d6936e1a3ea1c4525098934e6cd713e}{\+\_\+accept\+\_\+with}} (cls, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+]\+ target, str identifier)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+remove} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{\+\_\+\+Event\+Key}}\+[\+\_\+\+ET]\+ event\+\_\+key)
+\item 
+None {\bfseries \+\_\+clear} (cls)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch_a91b0d5a9e26db068e863654097b79636}{\+\_\+create\+\_\+dispatcher\+\_\+class}} (cls, str classname, Tuple\+[type,...]\+ bases, Mapping\+[str, Any]\+ dict\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_ab0c9648fc0e76817b74ae4e145f46bda}\label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_ab0c9648fc0e76817b74ae4e145f46bda} 
+str {\bfseries \+\_\+target\+\_\+class\+\_\+doc} = "{}Some\+Engine"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries \+\_\+dispatch\+\_\+target} \+[Type\+[\+\_\+\+ET]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}} {\bfseries dispatch} \+[\+\_\+\+ET]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{sqlalchemy.\+event.\+base.\+\_\+\+Has\+Events\+Dispatch}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}}\+[\+\_\+\+ET]\+ {\bfseries \+\_\+set\+\_\+dispatch} (Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{\+\_\+\+Has\+Events\+Dispatch}}\+[\+\_\+\+ET]\+]\+ klass, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}}\+[\+\_\+\+ET]\+]\+ dispatch\+\_\+cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}event interface for execution-replacement functions.
+
+These events allow direct instrumentation and replacement
+of key dialect functions which interact with the DBAPI.
+
+.. note::
+
+    :class:`.DialectEvents` hooks should be considered **semi-public**
+    and experimental.
+    These hooks are not for general use and are only for those situations
+    where intricate re-statement of DBAPI mechanics must be injected onto
+    an existing dialect.  For general-use statement-interception events,
+    please use the :class:`_events.ConnectionEvents` interface.
+
+.. seealso::
+
+    :meth:`_events.ConnectionEvents.before_cursor_execute`
+
+    :meth:`_events.ConnectionEvents.before_execute`
+
+    :meth:`_events.ConnectionEvents.after_cursor_execute`
+
+    :meth:`_events.ConnectionEvents.after_execute`
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9d6936e1a3ea1c4525098934e6cd713e}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!\_accept\_with@{\_accept\_with}}
+\index{\_accept\_with@{\_accept\_with}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{\_accept\_with()}{\_accept\_with()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9d6936e1a3ea1c4525098934e6cd713e} 
+ Optional\+[Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+]\+]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+\_\+accept\+\_\+with (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Engine}{Engine}}]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}, Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+]\+}]{target}{, }\item[{str}]{identifier}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a178cd69080c8fd63da22245e57a0f82e}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!\_listen@{\_listen}}
+\index{\_listen@{\_listen}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{\_listen()}{\_listen()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a178cd69080c8fd63da22245e57a0f82e} 
+ None sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+\_\+listen (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1registry_1_1__EventKey}{event.\+\_\+\+Event\+Key}}\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}]\+}]{event\+\_\+key}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{bool }]{retval}{ = {\ttfamily False}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any}]{kw}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{sqlalchemy.\+event.\+base.\+Events}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a88fe5998787868e5da1f41c0890da8ed}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!do\_connect@{do\_connect}}
+\index{do\_connect@{do\_connect}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{do\_connect()}{do\_connect()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a88fe5998787868e5da1f41c0890da8ed} 
+ Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPIConnection}{DBAPIConnection}}]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+do\+\_\+connect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1ConnectionPoolEntry}{Connection\+Pool\+Entry}}}]{conn\+\_\+rec}{, }\item[{Tuple\+[Any, ...]\+}]{cargs}{, }\item[{Dict\+[str, Any]\+}]{cparams}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive connection arguments before a connection is made.
+
+This event is useful in that it allows the handler to manipulate the
+cargs and/or cparams collections that control how the DBAPI
+``connect()`` function will be called. ``cargs`` will always be a
+Python list that can be mutated in-place, and ``cparams`` a Python
+dictionary that may also be mutated::
+
+    e = create_engine("postgresql+psycopg2://user@host/dbname")
+
+    @event.listens_for(e, 'do_connect')
+    def receive_do_connect(dialect, conn_rec, cargs, cparams):
+        cparams["password"] = "some_password"
+
+The event hook may also be used to override the call to ``connect()``
+entirely, by returning a non-``None`` DBAPI connection object::
+
+    e = create_engine("postgresql+psycopg2://user@host/dbname")
+
+    @event.listens_for(e, 'do_connect')
+    def receive_do_connect(dialect, conn_rec, cargs, cparams):
+        return psycopg2.connect(*cargs, **cparams)
+
+.. seealso::
+
+    :ref:`custom_dbapi_args`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9f56ff763a89674fcff428dc39a035fd}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!do\_execute@{do\_execute}}
+\index{do\_execute@{do\_execute}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{do\_execute()}{do\_execute()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a9f56ff763a89674fcff428dc39a035fd} 
+ Optional\+[Literal\+[True]\+]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+do\+\_\+execute (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPISingle\+Execute\+Params}]{parameters}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive a cursor to have execute() called.
+
+Return the value True to halt further events from invoking,
+and to indicate that the cursor execution has already taken
+place within the event handler.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_afeb8e3c3e1e8c7d2d64d14b9c522f2e2}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!do\_execute\_no\_params@{do\_execute\_no\_params}}
+\index{do\_execute\_no\_params@{do\_execute\_no\_params}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{do\_execute\_no\_params()}{do\_execute\_no\_params()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_afeb8e3c3e1e8c7d2d64d14b9c522f2e2} 
+ Optional\+[Literal\+[True]\+]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+do\+\_\+execute\+\_\+no\+\_\+params (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}     }]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive a cursor to have execute() with no parameters called.
+
+Return the value True to halt further events from invoking,
+and to indicate that the cursor execution has already taken
+place within the event handler.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aabc35e83df2efa4e5284c5486edf3cb1}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!do\_executemany@{do\_executemany}}
+\index{do\_executemany@{do\_executemany}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{do\_executemany()}{do\_executemany()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aabc35e83df2efa4e5284c5486edf3cb1} 
+ Optional\+[Literal\+[True]\+]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+do\+\_\+executemany (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIMulti\+Execute\+Params}]{parameters}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive a cursor to have executemany() called.
+
+Return the value True to halt further events from invoking,
+and to indicate that the cursor execution has already taken
+place within the event handler.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aded69eefcd18264c76d244dfd7883504}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!do\_setinputsizes@{do\_setinputsizes}}
+\index{do\_setinputsizes@{do\_setinputsizes}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{do\_setinputsizes()}{do\_setinputsizes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_aded69eefcd18264c76d244dfd7883504} 
+ None sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+do\+\_\+setinputsizes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+, Any]\+}]{inputsizes}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIAny\+Execute\+Params}]{parameters}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}}}]{context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive the setinputsizes dictionary for possible modification.
+
+This event is emitted in the case where the dialect makes use of the
+DBAPI ``cursor.setinputsizes()`` method which passes information about
+parameter binding for a particular statement.   The given
+``inputsizes`` dictionary will contain :class:`.BindParameter` objects
+as keys, linked to DBAPI-specific type objects as values; for
+parameters that are not bound, they are added to the dictionary with
+``None`` as the value, which means the parameter will not be included
+in the ultimate setinputsizes call.   The event may be used to inspect
+and/or log the datatypes that are being bound, as well as to modify the
+dictionary in place.  Parameters can be added, modified, or removed
+from this dictionary.   Callers will typically want to inspect the
+:attr:`.BindParameter.type` attribute of the given bind objects in
+order to make decisions about the DBAPI object.
+
+After the event, the ``inputsizes`` dictionary is converted into
+an appropriate datastructure to be passed to ``cursor.setinputsizes``;
+either a list for a positional bound parameter execution style,
+or a dictionary of string parameter keys to DBAPI type objects for
+a named bound parameter execution style.
+
+The setinputsizes hook overall is only used for dialects which include
+the flag ``use_setinputsizes=True``.  Dialects which use this
+include cx_Oracle, pg8000, asyncpg, and pyodbc dialects.
+
+.. note::
+
+    For use with pyodbc, the ``use_setinputsizes`` flag
+    must be passed to the dialect, e.g.::
+
+        create_engine("mssql+pyodbc://...", use_setinputsizes=True)
+
+    .. seealso::
+
+          :ref:`mssql_pyodbc_setinputsizes`
+
+.. versionadded:: 1.2.9
+
+.. seealso::
+
+    :ref:`cx_oracle_setinputsizes`
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a4730505d871b6ac3593131f55ac4570e}\index{sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}!handle\_error@{handle\_error}}
+\index{handle\_error@{handle\_error}!sqlalchemy.engine.events.DialectEvents@{sqlalchemy.engine.events.DialectEvents}}
+\doxysubsubsection{\texorpdfstring{handle\_error()}{handle\_error()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1events_1_1DialectEvents_a4730505d871b6ac3593131f55ac4570e} 
+ Optional\+[Base\+Exception]\+ sqlalchemy.\+engine.\+events.\+Dialect\+Events.\+handle\+\_\+error (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExceptionContext}{Exception\+Context}}     }]{exception\+\_\+context}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Intercept all exceptions processed by the
+:class:`_engine.Dialect`, typically but not limited to those
+emitted within the scope of a :class:`_engine.Connection`.
+
+.. versionchanged:: 2.0 the :meth:`.DialectEvents.handle_error` event
+is moved to the :class:`.DialectEvents` class, moved from the
+:class:`.ConnectionEvents` class, so that it may also participate in
+the "pre ping" operation configured with the
+:paramref:`_sa.create_engine.pool_pre_ping` parameter. The event
+remains registered by using the :class:`_engine.Engine` as the event
+target, however note that using the :class:`_engine.Connection` as
+an event target for :meth:`.DialectEvents.handle_error` is no longer
+supported.
+
+This includes all exceptions emitted by the DBAPI as well as
+within SQLAlchemy's statement invocation process, including
+encoding errors and other statement validation errors.  Other areas
+in which the event is invoked include transaction begin and end,
+result row fetching, cursor creation.
+
+Note that :meth:`.handle_error` may support new kinds of exceptions
+and new calling scenarios at *any time*.  Code which uses this
+event must expect new calling patterns to be present in minor
+releases.
+
+To support the wide variety of members that correspond to an exception,
+as well as to allow extensibility of the event without backwards
+incompatibility, the sole argument received is an instance of
+:class:`.ExceptionContext`.   This object contains data members
+representing detail about the exception.
+
+Use cases supported by this hook include:
+
+* read-only, low-level exception handling for logging and
+debugging purposes
+* Establishing whether a DBAPI connection error message indicates
+that the database connection needs to be reconnected, including
+for the "pre_ping" handler used by **some** dialects
+* Establishing or disabling whether a connection or the owning
+connection pool is invalidated or expired in response to a
+specific exception
+* exception re-writing
+
+The hook is called while the cursor from the failed operation
+(if any) is still open and accessible.   Special cleanup operations
+can be called on this cursor; SQLAlchemy will attempt to close
+this cursor subsequent to this hook being invoked.
+
+As of SQLAlchemy 2.0, the "pre_ping" handler enabled using the
+:paramref:`_sa.create_engine.pool_pre_ping` parameter will also
+participate in the :meth:`.handle_error` process, **for those dialects
+that rely upon disconnect codes to detect database liveness**. Note
+that some dialects such as psycopg, psycopg2, and most MySQL dialects
+make use of a native ``ping()`` method supplied by the DBAPI which does
+not make use of disconnect codes.
+
+.. versionchanged:: 2.0.0 The :meth:`.DialectEvents.handle_error`
+event hook participates in connection pool "pre-ping" operations.
+Within this usage, the :attr:`.ExceptionContext.engine` attribute
+will be ``None``, however the :class:`.Dialect` in use is always
+available via the :attr:`.ExceptionContext.dialect` attribute.
+
+.. versionchanged:: 2.0.5 Added :attr:`.ExceptionContext.is_pre_ping`
+attribute which will be set to ``True`` when the
+:meth:`.DialectEvents.handle_error` event hook is triggered within
+a connection pool pre-ping operation.
+
+.. versionchanged:: 2.0.5 An issue was repaired that allows for the
+PostgreSQL ``psycopg`` and ``psycopg2`` drivers, as well as all
+MySQL drivers, to properly participate in the
+:meth:`.DialectEvents.handle_error` event hook during
+connection pool "pre-ping" operations; previously, the
+implementation was non-working for these drivers.
+
+
+A handler function has two options for replacing
+the SQLAlchemy-constructed exception into one that is user
+defined.   It can either raise this new exception directly, in
+which case all further event listeners are bypassed and the
+exception will be raised, after appropriate cleanup as taken
+place::
+
+@event.listens_for(Engine, "handle_error")
+def handle_exception(context):
+    if isinstance(context.original_exception,
+        psycopg2.OperationalError) and \
+        "failed" in str(context.original_exception):
+        raise MySpecialException("failed operation")
+
+.. warning::  Because the
+:meth:`_events.DialectEvents.handle_error`
+event specifically provides for exceptions to be re-thrown as
+the ultimate exception raised by the failed statement,
+**stack traces will be misleading** if the user-defined event
+handler itself fails and throws an unexpected exception;
+the stack trace may not illustrate the actual code line that
+failed!  It is advised to code carefully here and use
+logging and/or inline debugging if unexpected exceptions are
+occurring.
+
+Alternatively, a "chained" style of event handling can be
+used, by configuring the handler with the ``retval=True``
+modifier and returning the new exception instance from the
+function.  In this case, event handling will continue onto the
+next handler.   The "chained" exception is available using
+:attr:`.ExceptionContext.chained_exception`::
+
+@event.listens_for(Engine, "handle_error", retval=True)
+def handle_exception(context):
+    if context.chained_exception is not None and \
+        "special" in context.chained_exception.message:
+        return MySpecialException("failed",
+            cause=context.chained_exception)
+
+Handlers that return ``None`` may be used within the chain; when
+a handler returns ``None``, the previous exception instance,
+if any, is maintained as the current exception that is passed onto the
+next handler.
+
+When a custom exception is raised or returned, SQLAlchemy raises
+this new exception as-is, it is not wrapped by any SQLAlchemy
+object.  If the exception is not a subclass of
+:class:`sqlalchemy.exc.StatementError`,
+certain features may not be available; currently this includes
+the ORM's feature of adding a detail hint about "autoflush" to
+exceptions raised within the autoflush process.
+
+:param context: an :class:`.ExceptionContext` object.  See this
+class for details on all available members.
+
+
+.. seealso::
+
+:ref:`pool_new_disconnect_codes`
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+events.\+py\end{DoxyCompactItemize}

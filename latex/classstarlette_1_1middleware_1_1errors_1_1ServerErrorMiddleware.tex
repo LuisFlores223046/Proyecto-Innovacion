@@ -1,0 +1,58 @@
+\doxysection{starlette.\+middleware.\+errors.\+Server\+Error\+Middleware Class Reference}
+\hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware}{}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware}\index{starlette.middleware.errors.ServerErrorMiddleware@{starlette.middleware.errors.ServerErrorMiddleware}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_adb046e89282a6df44f81457805c91b72}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_adb046e89282a6df44f81457805c91b72} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, ASGIApp app, typing.\+Callable\+[\+[\doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}}, Exception]\+, typing.\+Any]\+\texorpdfstring{$\vert$}{|}None handler=None, bool debug=False)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a1dd78a9bfaa47093925093681237b696}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a1dd78a9bfaa47093925093681237b696} 
+None {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, Scope scope, Receive receive, Send send)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a9fee712e500f991d5e1da43510ba1e2d}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a9fee712e500f991d5e1da43510ba1e2d} 
+str {\bfseries format\+\_\+line} (self, int index, str line, int frame\+\_\+lineno, int frame\+\_\+index)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a6fbfcff0caa62e6ded539be2ac73afcb}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a6fbfcff0caa62e6ded539be2ac73afcb} 
+str {\bfseries generate\+\_\+frame\+\_\+html} (self, inspect.\+Frame\+Info frame, bool is\+\_\+collapsed)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a120ecaa2ee83bc7ba09ce7d6b2f1e51a}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a120ecaa2ee83bc7ba09ce7d6b2f1e51a} 
+str {\bfseries generate\+\_\+html} (self, Exception exc, int limit=7)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_aeae24913893f032c9d9ad2c77dfce538}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_aeae24913893f032c9d9ad2c77dfce538} 
+str {\bfseries generate\+\_\+plain\+\_\+text} (self, Exception exc)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_ac6d23b6cfec54dbe7d83658bce11bdb5}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_ac6d23b6cfec54dbe7d83658bce11bdb5} 
+\doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{Response}} {\bfseries debug\+\_\+response} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request, Exception exc)
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_aee58d8d14a75be56ca4c20eafe5a6c94}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_aee58d8d14a75be56ca4c20eafe5a6c94} 
+\doxymbox{\hyperlink{classstarlette_1_1responses_1_1Response}{Response}} {\bfseries error\+\_\+response} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request, Exception exc)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a698a2d5eae3ff845a1c5d0d3ddd64b04}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a698a2d5eae3ff845a1c5d0d3ddd64b04} 
+{\bfseries app} = app
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a26fdc52b6e3fba0374bff619494d2a39}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a26fdc52b6e3fba0374bff619494d2a39} 
+{\bfseries handler} = handler
+\item 
+\Hypertarget{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a590b0542a75b2af80f9547481d3fdf35}\label{classstarlette_1_1middleware_1_1errors_1_1ServerErrorMiddleware_a590b0542a75b2af80f9547481d3fdf35} 
+{\bfseries debug} = debug
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Handles returning 500 responses when a server error occurs.
+
+If 'debug' is set, then traceback responses will be returned,
+otherwise the designated 'handler' will be called.
+
+This middleware class should generally be used to wrap *everything*
+else up, so that unhandled exceptions anywhere in the stack
+always result in an appropriate 500 response.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+starlette/\+middleware/\+errors.\+py\end{DoxyCompactItemize}

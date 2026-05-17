@@ -1,0 +1,67 @@
+\doxysection{dns.\+entropy.\+Entropy\+Pool Class Reference}
+\hypertarget{classdns_1_1entropy_1_1EntropyPool}{}\label{classdns_1_1entropy_1_1EntropyPool}\index{dns.entropy.EntropyPool@{dns.entropy.EntropyPool}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ad79cdd2037e74b0f759962ed4b172b23}\label{classdns_1_1entropy_1_1EntropyPool_ad79cdd2037e74b0f759962ed4b172b23} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, bytes\texorpdfstring{$\vert$}{|}None seed=None)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_aac165da45ed1856e96c70c52f0edaa70}\label{classdns_1_1entropy_1_1EntropyPool_aac165da45ed1856e96c70c52f0edaa70} 
+None {\bfseries stir} (self, bytes\texorpdfstring{$\vert$}{|}bytearray entropy)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ab3b1cc8d870c863b9fe1b6e957dd51c1}\label{classdns_1_1entropy_1_1EntropyPool_ab3b1cc8d870c863b9fe1b6e957dd51c1} 
+int {\bfseries random\+\_\+8} (self)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a0f6067979f79c35c2a9f06919ca16af3}\label{classdns_1_1entropy_1_1EntropyPool_a0f6067979f79c35c2a9f06919ca16af3} 
+int {\bfseries random\+\_\+16} (self)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ad60686ac1fd06d44a10687f46148ed5e}\label{classdns_1_1entropy_1_1EntropyPool_ad60686ac1fd06d44a10687f46148ed5e} 
+int {\bfseries random\+\_\+32} (self)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a2aa87e1add4faea68a79eb034778cdab}\label{classdns_1_1entropy_1_1EntropyPool_a2aa87e1add4faea68a79eb034778cdab} 
+int {\bfseries random\+\_\+between} (self, int first, int last)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a90a019684c50f159eaae2e6971bec603}\label{classdns_1_1entropy_1_1EntropyPool_a90a019684c50f159eaae2e6971bec603} 
+int {\bfseries pool\+\_\+index} = 0
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a813f6268838e278943cb74eaef446d41}\label{classdns_1_1entropy_1_1EntropyPool_a813f6268838e278943cb74eaef446d41} 
+bytearray\texorpdfstring{$\vert$}{|}None {\bfseries digest} = None
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a3a7fa3411154cf7b28d187ed26742419}\label{classdns_1_1entropy_1_1EntropyPool_a3a7fa3411154cf7b28d187ed26742419} 
+int {\bfseries next\+\_\+byte} = 0
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a4dc3c61416e23caa3e3260af6ebee1f5}\label{classdns_1_1entropy_1_1EntropyPool_a4dc3c61416e23caa3e3260af6ebee1f5} 
+{\bfseries lock} = threading.\+Lock()
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ac23b2203597a0065f0554d1c7dac18bc}\label{classdns_1_1entropy_1_1EntropyPool_ac23b2203597a0065f0554d1c7dac18bc} 
+{\bfseries hash} = hashlib.\+sha1()
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ace639a45ffae14b6e9a7611a8bf06f3c}\label{classdns_1_1entropy_1_1EntropyPool_ace639a45ffae14b6e9a7611a8bf06f3c} 
+int {\bfseries hash\+\_\+len} = 20
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ad21fafd35900f962e6ecc872bb084549}\label{classdns_1_1entropy_1_1EntropyPool_ad21fafd35900f962e6ecc872bb084549} 
+{\bfseries pool} = bytearray(b"{}\textbackslash{}0"{} \texorpdfstring{$\ast$}{*} self.\+hash\+\_\+len)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ae4d4893a8011ffc3e8a898d3d422e751}\label{classdns_1_1entropy_1_1EntropyPool_ae4d4893a8011ffc3e8a898d3d422e751} 
+bool {\bfseries seeded} = True
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a9381ce74cb0a0ffc456dae49a9b25dbc}\label{classdns_1_1entropy_1_1EntropyPool_a9381ce74cb0a0ffc456dae49a9b25dbc} 
+int {\bfseries seed\+\_\+pid} = os.\+getpid()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_ae282d4be71e0a6374efa04037dc7b527}\label{classdns_1_1entropy_1_1EntropyPool_ae282d4be71e0a6374efa04037dc7b527} 
+None {\bfseries \+\_\+stir} (self, bytes\texorpdfstring{$\vert$}{|}bytearray entropy)
+\item 
+\Hypertarget{classdns_1_1entropy_1_1EntropyPool_a85a1ad704b75dd77d50238888500be89}\label{classdns_1_1entropy_1_1EntropyPool_a85a1ad704b75dd77d50238888500be89} 
+None {\bfseries \+\_\+maybe\+\_\+seed} (self)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+entropy.\+py\end{DoxyCompactItemize}

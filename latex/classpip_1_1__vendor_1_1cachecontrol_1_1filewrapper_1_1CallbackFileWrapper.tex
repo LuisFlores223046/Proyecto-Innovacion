@@ -1,0 +1,47 @@
+\doxysection{pip.\+\_\+vendor.\+cachecontrol.\+filewrapper.\+Callback\+File\+Wrapper Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper}{}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper}\index{pip.\_vendor.cachecontrol.filewrapper.CallbackFileWrapper@{pip.\_vendor.cachecontrol.filewrapper.CallbackFileWrapper}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_a9ca7e8f653138f7f1650c7b847a114e5}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_a9ca7e8f653138f7f1650c7b847a114e5} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, HTTPResponse fp, Callable\+[\+[bytes]\+, None]\+\texorpdfstring{$\vert$}{|}None callback)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_af22d09088e40c27ff096a1d953153808}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_af22d09088e40c27ff096a1d953153808} 
+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_afceb112c071f7b24b9db274a61213b68}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_afceb112c071f7b24b9db274a61213b68} 
+bytes {\bfseries read} (self, int\texorpdfstring{$\vert$}{|}None amt=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_a02b4367aa5d90f36d183d7f028c80bd7}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_a02b4367aa5d90f36d183d7f028c80bd7} 
+None {\bfseries \+\_\+close} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_aa5efb6219ceca3e2b3d937a8a91a7e5f}\label{classpip_1_1__vendor_1_1cachecontrol_1_1filewrapper_1_1CallbackFileWrapper_aa5efb6219ceca3e2b3d937a8a91a7e5f} 
+bytes {\bfseries \+\_\+safe\+\_\+read} (self, int amt)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Small wrapper around a fp object which will tee everything read into a
+buffer, and when that file is closed it will execute a callback with the
+contents of that buffer.
+
+All attributes are proxied to the underlying file object.
+
+This class uses members with a double underscore (__) leading prefix so as
+not to accidentally shadow an attribute.
+
+The data is stored in a temporary file until it is all available.  As long
+as the temporary files directory is disk-based (sometimes it's a
+memory-backed-``tmpfs`` on Linux), data will be unloaded to disk if memory
+pressure is high.  For small files the disk usually won't be used at all,
+it'll all be in the filesystem memory cache, so there should be no
+performance impact.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+cachecontrol/\+filewrapper.\+py\end{DoxyCompactItemize}

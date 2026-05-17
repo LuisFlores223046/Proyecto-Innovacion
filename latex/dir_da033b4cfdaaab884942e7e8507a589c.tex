@@ -1,0 +1,241 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@nodelib/\+fs.walk Directory Reference}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c}{}\label{dir_da033b4cfdaaab884942e7e8507a589c}\index{frontend/node\_modules/"@nodelib/fs.walk Directory Reference@{frontend/node\_modules/"@nodelib/fs.walk Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_232d1fda0f9d721c3a7cb55a9e358b1e}{out}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md63}{}\doxysubsection{\texorpdfstring{@nodelib/\+fs.walk}{@nodelib/\+fs.walk}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md63}
+\begin{quote}
+A library for efficiently walking a directory recursively. \end{quote}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md64}{}\doxysubsection{\texorpdfstring{:\+bulb:\+ Highlights}{:\+bulb:\+ Highlights}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md64}
+
+\begin{DoxyItemize}
+\item :\+moneybag:\+ Returns useful information:\+ {\ttfamily name}, {\ttfamily path}, {\ttfamily dirent} and {\ttfamily stats} (optional).
+\item :\+rocket:\+ On Node.\+js 10.\+10+ uses the mechanism without additional calls to determine the entry type for performance reasons. See \href{https://github.com/nodelib/nodelib/blob/master/packages/fs/fs.scandir/README.md\#old-and-modern-mode}{\texttt{{\ttfamily old} and {\ttfamily modern} mode}}.
+\item :\+gear:\+ Built-\/in directories/\+files and error filtering system.
+\item :\+link:\+ Can safely work with broken symbolic links.
+\end{DoxyItemize}\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md65}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md65}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @nodelib/fs.walk}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md66}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md66}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ fsWalk\ from\ '@nodelib/fs.walk';}
+\DoxyCodeLine{}
+\DoxyCodeLine{fsWalk.walk('path',\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md67}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md67}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md68}{}\doxysubsubsection{\texorpdfstring{.walk(path, \+[options\+Or\+Settings]\+, callback)}{.walk(path, \+[options\+Or\+Settings]\+, callback)}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md68}
+Reads the directory recursively and asynchronously. Requires a callback function.
+
+\begin{quote}
+:\+book:\+ If you want to use the Promise API, use {\ttfamily util.\+promisify}. \end{quote}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fsWalk.walk('path',\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsWalk.walk('path',\ \{\},\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+\DoxyCodeLine{fsWalk.walk('path',\ new\ fsWalk.Settings(),\ (error,\ entries)\ =>\ \{\ /*\ …\ */\ \});}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md69}{}\doxysubsubsection{\texorpdfstring{.walk\+Stream(path, \+[options\+Or\+Settings]\+)}{.walk\+Stream(path, \+[options\+Or\+Settings]\+)}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md69}
+Reads the directory recursively and asynchronously. \href{https://nodejs.org/dist/latest-v12.x/docs/api/stream.html\#stream_readable_streams}{\texttt{Readable Stream}} is used as a provider.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ stream\ =\ fsWalk.walkStream('path');}
+\DoxyCodeLine{const\ stream\ =\ fsWalk.walkStream('path',\ \{\});}
+\DoxyCodeLine{const\ stream\ =\ fsWalk.walkStream('path',\ new\ fsWalk.Settings());}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md70}{}\doxysubsubsection{\texorpdfstring{.walk\+Sync(path, \+[options\+Or\+Settings]\+)}{.walk\+Sync(path, \+[options\+Or\+Settings]\+)}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md70}
+Reads the directory recursively and synchronously. Returns an array of entries.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ entries\ =\ fsWalk.walkSync('path');}
+\DoxyCodeLine{const\ entries\ =\ fsWalk.walkSync('path',\ \{\});}
+\DoxyCodeLine{const\ entries\ =\ fsWalk.walkSync('path',\ new\ fsWalk.Settings());}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md71}{}\doxysubsubsubsection{\texorpdfstring{path}{path}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md71}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily true}
+\item Type:\+ {\ttfamily string \texorpdfstring{$\vert$}{|} Buffer \texorpdfstring{$\vert$}{|} URL}
+\end{DoxyItemize}
+
+A path to a file. If a URL is provided, it must use the {\ttfamily file:\+} protocol.\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md72}{}\doxysubsubsubsection{\texorpdfstring{options\+Or\+Settings}{options\+Or\+Settings}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md72}
+
+\begin{DoxyItemize}
+\item Required:\+ {\ttfamily false}
+\item Type:\+ {\ttfamily Options \texorpdfstring{$\vert$}{|} Settings}
+\item Default:\+ An instance of {\ttfamily Settings} class
+\end{DoxyItemize}
+
+An \`{}\+Options\`{}{\ttfamily Options} object or an instance of \`{}\+Settings\`{}{\ttfamily Settings} class.
+
+\begin{quote}
+:\+book:\+ When you pass a plain object, an instance of the {\ttfamily Settings} class will be created automatically. If you plan to call the method frequently, use a pre-\/created instance of the {\ttfamily Settings} class. \end{quote}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md73}{}\doxysubsubsection{\texorpdfstring{Settings(\+[options]\+)}{Settings(\+[options]\+)}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md73}
+A class of full settings of the package.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ settings\ =\ new\ fsWalk.Settings(\{\ followSymbolicLinks:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ entries\ =\ fsWalk.walkSync('path',\ settings);}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md74}{}\doxysubsection{\texorpdfstring{Entry}{Entry}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md74}
+
+\begin{DoxyItemize}
+\item {\ttfamily name} — The name of the entry ({\ttfamily unknown.\+txt}).
+\item {\ttfamily path} — The path of the entry relative to call directory ({\ttfamily root/\+unknown.\+txt}).
+\item {\ttfamily dirent} — An instance of \href{./src/types/index.ts}{\texttt{{\ttfamily fs.\+Dirent}}} class.
+\item \+[{\ttfamily stats}]\+ — An instance of {\ttfamily fs.\+Stats} class.
+\end{DoxyItemize}\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md75}{}\doxysubsection{\texorpdfstring{Options}{Options}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md75}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md76}{}\doxysubsubsection{\texorpdfstring{base\+Path}{base\+Path}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md76}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily string}
+\item Default:\+ {\ttfamily undefined}
+\end{DoxyItemize}
+
+By default, all paths are built relative to the root path. You can use this option to set custom root path.
+
+In the example below we read the files from the {\ttfamily root} directory, but in the results the root path will be {\ttfamily custom}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{fsWalk.walkSync('root');\ //\ →\ ['root/file.txt']}
+\DoxyCodeLine{fsWalk.walkSync('root',\ \{\ basePath:\ 'custom'\ \});\ //\ →\ ['custom/file.txt']}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md77}{}\doxysubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md77}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily number}
+\item Default:\+ {\ttfamily Infinity}
+\end{DoxyItemize}
+
+The maximum number of concurrent calls to {\ttfamily fs.\+readdir}.
+
+\begin{quote}
+:\+book:\+ The higher the number, the higher performance and the load on the File System. If you want to read in quiet mode, set the value to {\ttfamily 4 \texorpdfstring{$\ast$}{*} os.\+cpus().length} (4 is default size of \href{http://docs.libuv.org/en/v1.x/threadpool.html\#thread-pool-work-scheduling}{\texttt{thread pool work scheduling}}). \end{quote}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md78}{}\doxysubsubsection{\texorpdfstring{deep\+Filter}{deep\+Filter}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md78}
+
+\begin{DoxyItemize}
+\item Type:\+ \href{./src/settings.ts}{\texttt{{\ttfamily Deep\+Filter\+Function}}}
+\item Default:\+ {\ttfamily undefined}
+\end{DoxyItemize}
+
+A function that indicates whether the directory will be read deep or not.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Skip\ all\ directories\ that\ starts\ with\ \`{}node\_modules`}
+\DoxyCodeLine{const\ filter:\ DeepFilterFunction\ =\ (entry)\ =>\ !entry.path.startsWith('node\_modules');}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md79}{}\doxysubsubsection{\texorpdfstring{entry\+Filter}{entry\+Filter}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md79}
+
+\begin{DoxyItemize}
+\item Type:\+ \href{./src/settings.ts}{\texttt{{\ttfamily Entry\+Filter\+Function}}}
+\item Default:\+ {\ttfamily undefined}
+\end{DoxyItemize}
+
+A function that indicates whether the entry will be included to results or not.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Exclude\ all\ \`{}.js`\ files\ from\ results}
+\DoxyCodeLine{const\ filter:\ EntryFilterFunction\ =\ (entry)\ =>\ !entry.name.endsWith('.js');}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md80}{}\doxysubsubsection{\texorpdfstring{error\+Filter}{error\+Filter}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md80}
+
+\begin{DoxyItemize}
+\item Type:\+ \href{./src/settings.ts}{\texttt{{\ttfamily Error\+Filter\+Function}}}
+\item Default:\+ {\ttfamily undefined}
+\end{DoxyItemize}
+
+A function that allows you to skip errors that occur when reading directories.
+
+For example, you can skip {\ttfamily ENOENT} errors if required:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Skip\ all\ ENOENT\ errors}
+\DoxyCodeLine{const\ filter:\ ErrorFilterFunction\ =\ (error)\ =>\ error.code\ ==\ 'ENOENT';}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md81}{}\doxysubsubsection{\texorpdfstring{stats}{stats}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md81}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Adds an instance of {\ttfamily fs.\+Stats} class to the \`{}\+Entry\`{}{\ttfamily Entry}.
+
+\begin{quote}
+:\+book:\+ Always use {\ttfamily fs.\+readdir} with additional {\ttfamily fs.\+lstat/\+fs.stat} calls to determine the entry type. \end{quote}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md82}{}\doxysubsubsection{\texorpdfstring{follow\+Symbolic\+Links}{follow\+Symbolic\+Links}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md82}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily false}
+\end{DoxyItemize}
+
+Follow symbolic links or not. Call {\ttfamily fs.\+stat} on symbolic link if {\ttfamily true}.\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md83}{}\doxysubsubsection{\texorpdfstring{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}{{\ttfamily throw\+Error\+On\+Broken\+Symbolic\+Link}}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md83}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily boolean}
+\item Default:\+ {\ttfamily true}
+\end{DoxyItemize}
+
+Throw an error when symbolic link is broken if {\ttfamily true} or safely return {\ttfamily lstat} call if {\ttfamily false}.\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md84}{}\doxysubsubsection{\texorpdfstring{{\ttfamily path\+Segment\+Separator}}{{\ttfamily path\+Segment\+Separator}}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md84}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily string}
+\item Default:\+ {\ttfamily path.\+sep}
+\end{DoxyItemize}
+
+By default, this package uses the correct path separator for your OS ({\ttfamily \textbackslash{}} on Windows, {\ttfamily /\+} on Unix-\/like systems). But you can set this option to any separator character(s) that you want to use instead.\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md85}{}\doxysubsubsection{\texorpdfstring{{\ttfamily fs}}{{\ttfamily fs}}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md85}
+
+\begin{DoxyItemize}
+\item Type:\+ {\ttfamily File\+System\+Adapter}
+\item Default:\+ A default FS methods
+\end{DoxyItemize}
+
+By default, the built-\/in Node.\+js module ({\ttfamily fs}) is used to work with the file system. You can replace any method with your own.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{interface\ FileSystemAdapter\ \{}
+\DoxyCodeLine{\ \ \ \ lstat:\ typeof\ fs.lstat;}
+\DoxyCodeLine{\ \ \ \ stat:\ typeof\ fs.stat;}
+\DoxyCodeLine{\ \ \ \ lstatSync:\ typeof\ fs.lstatSync;}
+\DoxyCodeLine{\ \ \ \ statSync:\ typeof\ fs.statSync;}
+\DoxyCodeLine{\ \ \ \ readdir:\ typeof\ fs.readdir;}
+\DoxyCodeLine{\ \ \ \ readdirSync:\ typeof\ fs.readdirSync;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ settings\ =\ new\ fsWalk.Settings(\{}
+\DoxyCodeLine{\ \ \ \ fs:\ \{\ lstat:\ fakeLstat\ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md86}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md86}
+See the \href{https://github.com/nodelib/nodelib/releases}{\texttt{Releases section of our Git\+Hub project}} for changelog for each release version.\hypertarget{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md87}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_da033b4cfdaaab884942e7e8507a589c_autotoc_md87}
+This software is released under the terms of the MIT license. 

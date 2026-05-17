@@ -1,0 +1,85 @@
+\doxysection{frontend/\+node\+\_\+modules/\+postcss-\/nested Directory Reference}
+\hypertarget{dir_0e94b12864221b32dd1fcf636273ed16}{}\label{dir_0e94b12864221b32dd1fcf636273ed16}\index{frontend/node\_modules/postcss-\/nested Directory Reference@{frontend/node\_modules/postcss-\/nested Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_0e94b12864221b32dd1fcf636273ed16_autotoc_md2068}{}\doxysubsection{\texorpdfstring{Post\+CSS Nested}{Post\+CSS Nested}}\label{dir_0e94b12864221b32dd1fcf636273ed16_autotoc_md2068}
+
+
+\href{https://github.com/postcss/postcss}{\texttt{Post\+CSS}} plugin to unwrap nested rules closer to Sass syntax.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.phone\ \{}
+\DoxyCodeLine{\ \ \&\_title\ \{}
+\DoxyCodeLine{\ \ \ \ width:\ 500px;}
+\DoxyCodeLine{\ \ \ \ @media\ (max-\/width:\ 500px)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ width:\ auto;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ body.is\_dark\ \&\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ color:\ white;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ img\ \{}
+\DoxyCodeLine{\ \ \ \ display:\ block;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{.title\ \{}
+\DoxyCodeLine{\ \ font-\/size:\ var(-\/-\/font);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ @at-\/root\ html\ \{}
+\DoxyCodeLine{\ \ \ \ -\/-\/font:\ 16px;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+will be processed to:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{.phone\_title\ \{}
+\DoxyCodeLine{\ \ width:\ 500px;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{@media\ (max-\/width:\ 500px)\ \{}
+\DoxyCodeLine{\ \ .phone\_title\ \{}
+\DoxyCodeLine{\ \ \ \ width:\ auto;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{body.is\_dark\ .phone\_title\ \{}
+\DoxyCodeLine{\ \ color:\ white;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{.phone\ img\ \{}
+\DoxyCodeLine{\ \ display:\ block;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{.title\ \{}
+\DoxyCodeLine{\ \ font-\/size:\ var(-\/-\/font);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{html\ \{}
+\DoxyCodeLine{\ \ -\/-\/font:\ 16px;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Related plugins:\+
+
+
+\begin{DoxyItemize}
+\item Use \href{https://github.com/komlev/postcss-current-selector}{\texttt{{\ttfamily postcss-\/current-\/selector}}} {\bfseries{after}} this plugin if you want to use current selector in properties or variables values.
+\item Use \href{https://github.com/toomuchdesign/postcss-nested-ancestors}{\texttt{{\ttfamily postcss-\/nested-\/ancestors}}} {\bfseries{before}} this plugin if you want to reference any ancestor element directly in your selectors with {\ttfamily \texorpdfstring{$^\wedge$}{\string^}\&}.
+\end{DoxyItemize}
+
+Alternatives:\+
+
+
+\begin{DoxyItemize}
+\item See also \href{https://github.com/csstools/postcss-plugins/tree/main/plugins/postcss-nesting}{\texttt{{\ttfamily postcss-\/nesting}}}, which implements \href{https://drafts.csswg.org/css-nesting-1/}{\texttt{CSSWG draft}}.
+\item \href{https://github.com/jedmao/postcss-nested-props}{\texttt{{\ttfamily postcss-\/nested-\/props}}} for nested properties like {\ttfamily font-\/size}.
+\end{DoxyItemize}
+
+\href{https://evilmartians.com/?utm_source=postcss-nested}{\texttt{ }}\hypertarget{dir_0e94b12864221b32dd1fcf636273ed16_autotoc_md2069}{}\doxysubsection{\texorpdfstring{Docs}{Docs}}\label{dir_0e94b12864221b32dd1fcf636273ed16_autotoc_md2069}
+Read full docs {\bfseries{\href{https://github.com/postcss/postcss-nested\#readme}{\texttt{here}}}}. 

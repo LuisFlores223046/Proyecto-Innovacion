@@ -1,0 +1,21 @@
+\doxysection{frontend/\+node\+\_\+modules/\+hermes-\/parser Directory Reference}
+\hypertarget{dir_6746df42d020470dad78dd9efde66721}{}\label{dir_6746df42d020470dad78dd9efde66721}\index{frontend/node\_modules/hermes-\/parser Directory Reference@{frontend/node\_modules/hermes-\/parser Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_8f00cb06f553c9503caa4bb1eb7137c9}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_6746df42d020470dad78dd9efde66721_autotoc_md2777}{}\doxysubsection{\texorpdfstring{hermes-\/parser}{hermes-\/parser}}\label{dir_6746df42d020470dad78dd9efde66721_autotoc_md2777}
+A Java\+Script parser built from the Hermes engine\textquotesingle{}s parser compiled to Web\+Assembly. Can parse ES6, Flow, and JSX syntax.\hypertarget{dir_6746df42d020470dad78dd9efde66721_autotoc_md2778}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_6746df42d020470dad78dd9efde66721_autotoc_md2778}
+The Hermes parser exposes a single {\ttfamily parse(code, \+[options]\+)} function, where {\ttfamily code} is the source code to parse as a string, and {\ttfamily options} is an optional object that may contain the following properties:\+
+\begin{DoxyItemize}
+\item {\bfseries{babel}}:\+ {\ttfamily boolean}, defaults to {\ttfamily false}. If {\ttfamily true}, output an AST conforming to Babel\textquotesingle{}s AST format. If {\ttfamily false}, output an AST conforming to the ESTree AST format.
+\item {\bfseries{allow\+Return\+Outside\+Function}}:\+ {\ttfamily boolean}, defaults to {\ttfamily false}. If {\ttfamily true}, do not error on return statements found outside functions.
+\item {\bfseries{flow}}:\+ {\ttfamily "{}all"{}} or {\ttfamily "{}detect"{}}, defaults to {\ttfamily "{}detect"{}}. If {\ttfamily "{}detect"{}}, only parse syntax as Flow syntax where it is ambiguous whether it is a Flow feature or regular Java\+Script when the {\ttfamily @flow} pragma is present in the file. Otherwise if {\ttfamily "{}all"{}}, always parse ambiguous syntax as Flow syntax regardless of the presence of an {\ttfamily @flow} pragma. For example {\ttfamily foo\texorpdfstring{$<$}{<}T\texorpdfstring{$>$}{>}(x)} in a file without an {\ttfamily @flow} pragma will be parsed as two comparisons if set to {\ttfamily "{}detect"{}}, otherwise if set to {\ttfamily "{}all"{}} or the {\ttfamily @flow} pragma is included it will be parsed as a call expression with a type argument.
+\item {\bfseries{source\+Filename}}:\+ {\ttfamily string}, defaults to {\ttfamily null}. The filename corresponding to the code that is to be parsed. If non-\/null, the filename will be added to all source locations in the output AST.
+\item {\bfseries{source\+Type}}:\+ {\ttfamily "{}module"{}}, {\ttfamily "{}script"{}}, or {\ttfamily "{}unambiguous"{}} (default). If {\ttfamily "{}unambiguous"{}}, source type will be automatically detected and set to {\ttfamily "{}module"{}} if any ES6 imports or exports are present in the code, otherwise source type will be set to {\ttfamily "{}script"{}}.
+\item {\bfseries{tokens}}:\+ {\ttfamily boolean}, defaults to {\ttfamily false}. If {\ttfamily true}, add all tokens to a {\ttfamily tokens} property on the root node. 
+\end{DoxyItemize}

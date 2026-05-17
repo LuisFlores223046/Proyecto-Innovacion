@@ -1,0 +1,131 @@
+\doxysection{sqlalchemy.\+dialects.\+postgresql.\+hstore.\+HSTORE Class Reference}
+\hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE}{}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE}\index{sqlalchemy.dialects.postgresql.hstore.HSTORE@{sqlalchemy.dialects.postgresql.hstore.HSTORE}}
+Inheritance diagram for sqlalchemy.\+dialects.\+postgresql.\+hstore.\+HSTORE:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.396509cm]{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_1_1Comparator}{Comparator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_af9f1927d4743702d0b33408bcf79e4b8}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, text\+\_\+type=None)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_af3e59938a1b529aea037c2ddc7133e9d}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_af3e59938a1b529aea037c2ddc7133e9d} 
+{\bfseries bind\+\_\+processor} (self, dialect)
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_aeab0b962ce208b5dbf0de2a78db1ad72}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_aeab0b962ce208b5dbf0de2a78db1ad72} 
+{\bfseries result\+\_\+processor} (self, dialect, coltype)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a655d82861ea27e2dcb945d061a0643a8}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a655d82861ea27e2dcb945d061a0643a8} 
+bool {\bfseries hashable} = False
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a0e0841c6e4621408a55ff2418f0aac06}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a0e0841c6e4621408a55ff2418f0aac06} 
+{\bfseries text\+\_\+type} = sqltypes.\+Text()
+\item 
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a98b962587e61c0550e38c4818998370d}\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_a98b962587e61c0550e38c4818998370d} 
+{\bfseries comparator\+\_\+factory}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Represent the PostgreSQL HSTORE type.
+
+The :class:`.HSTORE` type stores dictionaries containing strings, e.g.::
+
+    data_table = Table('data_table', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('data', HSTORE)
+    )
+
+    with engine.connect() as conn:
+        conn.execute(
+            data_table.insert(),
+            data = {"key1": "value1", "key2": "value2"}
+        )
+
+:class:`.HSTORE` provides for a wide range of operations, including:
+
+* Index operations::
+
+    data_table.c.data['some key'] == 'some value'
+
+* Containment operations::
+
+    data_table.c.data.has_key('some key')
+
+    data_table.c.data.has_all(['one', 'two', 'three'])
+
+* Concatenation::
+
+    data_table.c.data + {"k1": "v1"}
+
+For a full list of special methods see
+:class:`.HSTORE.comparator_factory`.
+
+.. container:: topic
+
+    **Detecting Changes in HSTORE columns when using the ORM**
+
+    For usage with the SQLAlchemy ORM, it may be desirable to combine the
+    usage of :class:`.HSTORE` with :class:`.MutableDict` dictionary now
+    part of the :mod:`sqlalchemy.ext.mutable` extension. This extension
+    will allow "in-place" changes to the dictionary, e.g. addition of new
+    keys or replacement/removal of existing keys to/from the current
+    dictionary, to produce events which will be detected by the unit of
+    work::
+
+        from sqlalchemy.ext.mutable import MutableDict
+
+        class MyClass(Base):
+            __tablename__ = 'data_table'
+
+            id = Column(Integer, primary_key=True)
+            data = Column(MutableDict.as_mutable(HSTORE))
+
+        my_object = session.query(MyClass).one()
+
+        # in-place mutation, requires Mutable extension
+        # in order for the ORM to detect
+        my_object.data['some_key'] = 'some value'
+
+        session.commit()
+
+    When the :mod:`sqlalchemy.ext.mutable` extension is not used, the ORM
+    will not be alerted to any changes to the contents of an existing
+    dictionary, unless that dictionary value is re-assigned to the
+    HSTORE-attribute itself, thus generating a change event.
+
+.. seealso::
+
+    :class:`.hstore` - render the PostgreSQL ``hstore()`` function.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_doc-constructors}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_af9f1927d4743702d0b33408bcf79e4b8}\index{sqlalchemy.dialects.postgresql.hstore.HSTORE@{sqlalchemy.dialects.postgresql.hstore.HSTORE}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!sqlalchemy.dialects.postgresql.hstore.HSTORE@{sqlalchemy.dialects.postgresql.hstore.HSTORE}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1dialects_1_1postgresql_1_1hstore_1_1HSTORE_af9f1927d4743702d0b33408bcf79e4b8} 
+sqlalchemy.\+dialects.\+postgresql.\+hstore.\+HSTORE.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{text\+\_\+type}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a new :class:`.HSTORE`.
+
+:param text_type: the type that should be used for indexed values.
+ Defaults to :class:`_types.Text`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+dialects/\+postgresql/\+hstore.\+py\end{DoxyCompactItemize}

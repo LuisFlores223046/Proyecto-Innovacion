@@ -1,0 +1,39 @@
+\doxysection{sentry\+\_\+sdk.\+integrations.\+wsgi.\+\_\+\+Scoped\+Response Class Reference}
+\hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse}{}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse}\index{sentry\_sdk.integrations.wsgi.\_ScopedResponse@{sentry\_sdk.integrations.wsgi.\_ScopedResponse}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_ad156102349a32a75889402159a6f9669}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_ad156102349a32a75889402159a6f9669} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, "{}sentry\+\_\+sdk.\+scope.\+Scope"{} scope, "{}Iterator\+[bytes]\+"{} response)
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_ab1d8fecfb34d9071a6fe5042f43a95f8}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_ab1d8fecfb34d9071a6fe5042f43a95f8} 
+"{}Iterator\+[bytes]\+"{} {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a9a9570a5a3b673cd23bc8a3c427a31f6}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a9a9570a5a3b673cd23bc8a3c427a31f6} 
+None {\bfseries close} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a3dba585c904f057095cabdf281b0e2e7}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a3dba585c904f057095cabdf281b0e2e7} 
+{\bfseries \+\_\+scope} = scope
+\item 
+\Hypertarget{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a7f3f5ecbaed5cfb34b9b53302541667a}\label{classsentry__sdk_1_1integrations_1_1wsgi_1_1__ScopedResponse_a7f3f5ecbaed5cfb34b9b53302541667a} 
+{\bfseries \+\_\+response} = response
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Users a separate scope for each response chunk.
+
+This will make WSGI apps more tolerant against:
+- WSGI servers streaming responses from a different thread/from
+  different threads than the one that called start_response
+- close() not being called
+- WSGI servers streaming responses interleaved from the same thread
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+integrations/\+wsgi.\+py\end{DoxyCompactItemize}

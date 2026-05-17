@@ -1,0 +1,395 @@
+\doxysection{\+\_\+cffi\+\_\+include.\+h}
+\hypertarget{__cffi__include_8h_source}{}\label{__cffi__include_8h_source}\index{venv/lib/python3.12/site-\/packages/cffi/\_cffi\_include.h@{venv/lib/python3.12/site-\/packages/cffi/\_cffi\_include.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#define\ \_CFFI\_}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{/*\ We\ try\ to\ define\ Py\_LIMITED\_API\ before\ including\ Python.h.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ Mess:\ we\ can\ only\ define\ it\ if\ Py\_DEBUG,\ Py\_TRACE\_REFS\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ Py\_REF\_DEBUG\ are\ not\ defined.\ \ This\ is\ a\ best-\/effort\ approximation:}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ we\ can\ learn\ about\ Py\_DEBUG\ from\ pyconfig.h,\ but\ it\ is\ unclear\ if}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ the\ same\ works\ for\ the\ other\ two\ macros.\ \ Py\_DEBUG\ implies\ them,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ but\ not\ the\ other\ way\ around.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ The\ implementation\ is\ messy\ (issue\ \#350):\ on\ Windows,\ with\ \_MSC\_VER,}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ we\ have\ to\ define\ Py\_LIMITED\_API\ even\ before\ including\ pyconfig.h.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ In\ that\ case,\ we\ guess\ what\ pyconfig.h\ will\ do\ to\ the\ macros\ above,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ and\ check\ our\ guess\ after\ the\ \#include.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ Note\ that\ on\ Windows,\ with\ CPython\ 3.x,\ you\ need\ >=\ 3.5\ and\ virtualenv}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ version\ >=\ 16.0.0.\ \ With\ older\ versions\ of\ either,\ you\ don't\ get\ a}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ copy\ of\ PYTHON3.DLL\ in\ the\ virtualenv.\ \ We\ can't\ check\ the\ version\ of}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ CPython\ *before*\ we\ even\ include\ pyconfig.h.\ \ ffi.set\_source()\ puts}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ a\ \`{}\`{}\#define\ \_CFFI\_NO\_LIMITED\_API''\ at\ the\ start\ of\ this\ file\ if\ it\ is}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ running\ on\ Windows\ <\ 3.5,\ as\ an\ attempt\ at\ fixing\ it,\ but\ that's}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ arguably\ wrong\ because\ it\ may\ not\ be\ the\ target\ version\ of\ Python.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ Still\ better\ than\ nothing\ I\ guess.\ \ As\ another\ workaround,\ you\ can}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ remove\ the\ definition\ of\ Py\_LIMITED\_API\ here.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ See\ also\ 'py\_limited\_api'\ in\ cffi/setuptools\_ext.py.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ !defined(\_CFFI\_USE\_EMBEDDING)\ \&\&\ !defined(Py\_LIMITED\_API)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ \ \ if\ !defined(\_DEBUG)\ \&\&\ !defined(Py\_DEBUG)\ \&\&\ !defined(Py\_TRACE\_REFS)\ \&\&\ !defined(Py\_REF\_DEBUG)\ \&\&\ !defined(\_CFFI\_NO\_LIMITED\_API)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ Py\_LIMITED\_API}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ \ \ include\ <pyconfig.h>}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \textcolor{comment}{/*\ sanity-\/check:\ Py\_LIMITED\_API\ will\ cause\ crashes\ if\ any\ of\ these}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ are\ also\ defined.\ \ Normally,\ the\ Python\ file\ PC/pyconfig.h\ does\ not}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ cause\ any\ of\ these\ to\ be\ defined,\ with\ the\ exception\ that\ \_DEBUG}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ causes\ Py\_DEBUG.\ \ Double-\/check\ that.\ */}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ \ \ ifdef\ Py\_LIMITED\_API}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ \ \ \ \ if\ defined(Py\_DEBUG)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ error\ "{}pyconfig.h\ unexpectedly\ defines\ Py\_DEBUG,\ but\ Py\_LIMITED\_API\ is\ set"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ \ \ \ \ endif}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ \ \ \ if\ defined(Py\_TRACE\_REFS)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ error\ "{}pyconfig.h\ unexpectedly\ defines\ Py\_TRACE\_REFS,\ but\ Py\_LIMITED\_API\ is\ set"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ \ \ \ \ endif}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ \ \ \ \ if\ defined(Py\_REF\_DEBUG)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ error\ "{}pyconfig.h\ unexpectedly\ defines\ Py\_REF\_DEBUG,\ but\ Py\_LIMITED\_API\ is\ set"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ \ \ endif}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ \ \ include\ <pyconfig.h>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ \ \ if\ !defined(Py\_DEBUG)\ \&\&\ !defined(Py\_TRACE\_REFS)\ \&\&\ !defined(Py\_REF\_DEBUG)\ \&\&\ !defined(\_CFFI\_NO\_LIMITED\_API)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ Py\_LIMITED\_API}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <Python.h>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ "{}parse\_c\_type.h"{}}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{/*\ this\ block\ of\ \#ifs\ should\ be\ kept\ exactly\ identical\ between}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ c/\_cffi\_backend.c,\ cffi/vengine\_cpy.py,\ cffi/vengine\_gen.py}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ and\ cffi/\_cffi\_include.h\ */}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ include\ <malloc.h>}\ \ \ \textcolor{comment}{/*\ for\ alloca()\ */}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ if\ \_MSC\_VER\ <\ 1600\ \ \ }\textcolor{comment}{/*\ MSVC\ <\ 2010\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00070\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int8\ int8\_t;}
+\DoxyCodeLine{00071\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int16\ int16\_t;}
+\DoxyCodeLine{00072\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int32\ int32\_t;}
+\DoxyCodeLine{00073\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int64\ int64\_t;}
+\DoxyCodeLine{00074\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int8\ uint8\_t;}
+\DoxyCodeLine{00075\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int16\ uint16\_t;}
+\DoxyCodeLine{00076\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int32\ uint32\_t;}
+\DoxyCodeLine{00077\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int64\ uint64\_t;}
+\DoxyCodeLine{00078\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int8\ int\_least8\_t;}
+\DoxyCodeLine{00079\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int16\ int\_least16\_t;}
+\DoxyCodeLine{00080\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int32\ int\_least32\_t;}
+\DoxyCodeLine{00081\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int64\ int\_least64\_t;}
+\DoxyCodeLine{00082\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int8\ uint\_least8\_t;}
+\DoxyCodeLine{00083\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int16\ uint\_least16\_t;}
+\DoxyCodeLine{00084\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int32\ uint\_least32\_t;}
+\DoxyCodeLine{00085\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int64\ uint\_least64\_t;}
+\DoxyCodeLine{00086\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int8\ int\_fast8\_t;}
+\DoxyCodeLine{00087\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int16\ int\_fast16\_t;}
+\DoxyCodeLine{00088\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int32\ int\_fast32\_t;}
+\DoxyCodeLine{00089\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int64\ int\_fast64\_t;}
+\DoxyCodeLine{00090\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int8\ uint\_fast8\_t;}
+\DoxyCodeLine{00091\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int16\ uint\_fast16\_t;}
+\DoxyCodeLine{00092\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int32\ uint\_fast32\_t;}
+\DoxyCodeLine{00093\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int64\ uint\_fast64\_t;}
+\DoxyCodeLine{00094\ \ \ \ \textcolor{keyword}{typedef}\ \_\_int64\ intmax\_t;}
+\DoxyCodeLine{00095\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \_\_int64\ uintmax\_t;}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#\ \ include\ <stdint.h>}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#\ if\ \_MSC\_VER\ <\ 1800\ \ \ }\textcolor{comment}{/*\ MSVC\ <\ 2013\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_cplusplus}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \_Bool;}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#\ define\ \_cffi\_float\_complex\_t\ \ \ \_Fcomplex\ \ \ \ }\textcolor{comment}{/*\ include\ <complex.h>\ for\ it\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#\ define\ \_cffi\_double\_complex\_t\ \ \_Dcomplex\ \ \ \ }\textcolor{comment}{/*\ include\ <complex.h>\ for\ it\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#\ include\ <stdint.h>}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#\ if\ (defined\ (\_\_SVR4)\ \&\&\ defined\ (\_\_sun))\ ||\ defined(\_AIX)\ ||\ defined(\_\_hpux)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#\ \ include\ <alloca.h>}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#\ define\ \_cffi\_float\_complex\_t\ \ \ float\ \_Complex}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#\ define\ \_cffi\_double\_complex\_t\ \ double\ \_Complex}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#\ define\ \_CFFI\_UNUSED\_FN\ \ \_\_attribute\_\_((unused))}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#\ define\ \_CFFI\_UNUSED\_FN\ \ }\textcolor{comment}{/*\ nothing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#\ ifndef\ \_Bool}}
+\DoxyCodeLine{00123\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{bool}\ \_Bool;\ \ \ \textcolor{comment}{/*\ semi-\/hackish:\ C++\ has\ no\ \_Bool;\ bool\ is\ builtin\ */}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{comment}{/**********\ \ CPython-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#ifndef\ PYPY\_VERSION}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#if\ PY\_MAJOR\_VERSION\ >=\ 3}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#\ define\ PyInt\_FromLong\ PyLong\_FromLong}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_double\ PyFloat\_FromDouble}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_float\ PyFloat\_FromDouble}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_long\ PyInt\_FromLong}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_ulong\ PyLong\_FromUnsignedLong}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_longlong\ PyLong\_FromLongLong}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_ulonglong\ PyLong\_FromUnsignedLongLong}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_\_Bool\ PyBool\_FromLong}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_double\ PyFloat\_AsDouble}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_float\ PyFloat\_AsDouble}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_int(x,\ type)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ (((type)-\/1)\ >\ 0\ ?\ }\textcolor{comment}{/*\ unsigned\ */}\textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (sizeof(type)\ <\ sizeof(long)\ ?\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ PyInt\_FromLong((long)x)\ :\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ sizeof(type)\ ==\ sizeof(long)\ ?\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ PyLong\_FromUnsignedLong((unsigned\ long)x)\ :\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ PyLong\_FromUnsignedLongLong((unsigned\ long\ long)x))\ :\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (sizeof(type)\ <=\ sizeof(long)\ ?\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ PyInt\_FromLong((long)x)\ :\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ PyLong\_FromLongLong((long\ long)x)))}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_int(o,\ type)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ ((type)(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \ sizeof(type)\ ==\ 1\ ?\ (((type)-\/1)\ >\ 0\ ?\ (type)\_cffi\_to\_c\_u8(o)\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (type)\_cffi\_to\_c\_i8(o))\ :\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \ sizeof(type)\ ==\ 2\ ?\ (((type)-\/1)\ >\ 0\ ?\ (type)\_cffi\_to\_c\_u16(o)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (type)\_cffi\_to\_c\_i16(o))\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \ sizeof(type)\ ==\ 4\ ?\ (((type)-\/1)\ >\ 0\ ?\ (type)\_cffi\_to\_c\_u32(o)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (type)\_cffi\_to\_c\_i32(o))\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \ \ \ sizeof(type)\ ==\ 8\ ?\ (((type)-\/1)\ >\ 0\ ?\ (type)\_cffi\_to\_c\_u64(o)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (type)\_cffi\_to\_c\_i64(o))\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \ \ \ (Py\_FatalError("{}unsupported\ size\ for\ type\ "{}\ \#type),\ (type)0)))}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_i8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[1])}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_u8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[2])}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_i16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[3])}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_u16\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[4])}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_i32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[5])}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_u32\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((unsigned\ int(*)(PyObject\ *))\_cffi\_exports[6])}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_i64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((long\ long(*)(PyObject\ *))\_cffi\_exports[7])}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_u64\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((unsigned\ long\ long(*)(PyObject\ *))\_cffi\_exports[8])}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_char\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[9])}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_pointer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(char\ *,\ struct\ \_cffi\_ctypedescr\ *))\_cffi\_exports[10])}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_pointer\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\ \ \ \ ((char\ *(*)(PyObject\ *,\ struct\ \_cffi\_ctypedescr\ *))\_cffi\_exports[11])}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#define\ \_cffi\_get\_struct\_layout\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\ \ \ \ not\ used\ any\ more}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ \_cffi\_restore\_errno\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\ \ \ \ ((void(*)(void))\_cffi\_exports[13])}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ \_cffi\_save\_errno\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\ \ \ \ ((void(*)(void))\_cffi\_exports[14])}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_char\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(char))\_cffi\_exports[15])}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_deref\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(char\ *,\ struct\ \_cffi\_ctypedescr\ *))\_cffi\_exports[16])}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ ((int(*)(char\ *,\ struct\ \_cffi\_ctypedescr\ *,\ PyObject\ *))\_cffi\_exports[17])}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_struct\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(char\ *,\ struct\ \_cffi\_ctypedescr\ *))\_cffi\_exports[18])}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_wchar\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \ \ ((\_cffi\_wchar\_t(*)(PyObject\ *))\_cffi\_exports[19])}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_wchar\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(\_cffi\_wchar\_t))\_cffi\_exports[20])}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_long\_double\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\ \ \ \ ((long\ double(*)(PyObject\ *))\_cffi\_exports[21])}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_\_Bool\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ ((\_Bool(*)(PyObject\ *))\_cffi\_exports[22])}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#define\ \_cffi\_prepare\_pointer\_call\_argument\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \ \ ((Py\_ssize\_t(*)(struct\ \_cffi\_ctypedescr\ *,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PyObject\ *,\ char\ **))\_cffi\_exports[23])}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\#define\ \_cffi\_convert\_array\_from\_object\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\ \ \ \ ((int(*)(char\ *,\ struct\ \_cffi\_ctypedescr\ *,\ PyObject\ *))\_cffi\_exports[24])}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#define\ \_CFFI\_CPIDX\ \ 25}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#define\ \_cffi\_call\_python\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \ \ ((void(*)(struct\ \_cffi\_externpy\_s\ *,\ char\ *))\_cffi\_exports[\_CFFI\_CPIDX])}}
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#define\ \_cffi\_to\_c\_wchar3216\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ ((int(*)(PyObject\ *))\_cffi\_exports[26])}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ \_cffi\_from\_c\_wchar3216\_t\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \ \ ((PyObject\ *(*)(int))\_cffi\_exports[27])}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#define\ \_CFFI\_NUM\_EXPORTS\ 28}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{struct\ }\_cffi\_ctypedescr;}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *\_cffi\_exports[\_CFFI\_NUM\_EXPORTS];}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#define\ \_cffi\_type(index)\ \ \ (\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\ \ \ \ assert((((uintptr\_t)\_cffi\_types[index])\ \&\ 1)\ ==\ 0),\ \(\backslash\)}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\ \ \ \ (struct\ \_cffi\_ctypedescr\ *)\_cffi\_types[index])}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \textcolor{keyword}{static}\ PyObject\ *\_cffi\_init(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *module\_name,\ Py\_ssize\_t\ version,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__type__context__s}{\_cffi\_type\_context\_s}}\ *ctx)}
+\DoxyCodeLine{00237\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ PyObject\ *module,\ *o\_arg,\ *new\_module;}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{void}\ *raw[]\ =\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *)module\_name,}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *)version,}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *)\_cffi\_exports,}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void}\ *)ctx,}
+\DoxyCodeLine{00244\ \ \ \ \ \};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{module}\ =\ PyImport\_ImportModule("{}\_cffi\_backend"{});}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordflow}{if}\ (module\ ==\ NULL)}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ failure;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ o\_arg\ =\ PyLong\_FromVoidPtr((\textcolor{keywordtype}{void}\ *)raw);}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordflow}{if}\ (o\_arg\ ==\ NULL)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ failure;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ new\_module\ =\ PyObject\_CallMethod(}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ module,\ (\textcolor{keywordtype}{char}\ *)\textcolor{stringliteral}{"{}\_init\_cffi\_1\_0\_external\_module"{}},\ (\textcolor{keywordtype}{char}\ *)\textcolor{stringliteral}{"{}O"{}},\ o\_arg);}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ Py\_DECREF(o\_arg);}
+\DoxyCodeLine{00258\ \ \ \ \ Py\_DECREF(module);}
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{keywordflow}{return}\ new\_module;}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ failure:}
+\DoxyCodeLine{00262\ \ \ \ \ Py\_XDECREF(module);}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00264\ \}}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\#ifdef\ HAVE\_WCHAR\_H}}
+\DoxyCodeLine{00268\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{wchar\_t}\ \_cffi\_wchar\_t;}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00270\ \textcolor{keyword}{typedef}\ uint16\_t\ \_cffi\_wchar\_t;\ \ \ \textcolor{comment}{/*\ same\ random\ pick\ as\ \_cffi\_backend.c\ */}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ uint16\_t\ \_cffi\_to\_c\_char16\_t(PyObject\ *o)}
+\DoxyCodeLine{00274\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\_cffi\_wchar\_t)\ ==\ 2)}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (uint16\_t)\_cffi\_to\_c\_wchar\_t(o);}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (uint16\_t)\_cffi\_to\_c\_wchar3216\_t(o);}
+\DoxyCodeLine{00279\ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ PyObject\ *\_cffi\_from\_c\_char16\_t(uint16\_t\ x)}
+\DoxyCodeLine{00282\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\_cffi\_wchar\_t)\ ==\ 2)}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_cffi\_from\_c\_wchar\_t((\_cffi\_wchar\_t)x);}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_cffi\_from\_c\_wchar3216\_t((\textcolor{keywordtype}{int})x);}
+\DoxyCodeLine{00287\ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_cffi\_to\_c\_char32\_t(PyObject\ *o)}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\_cffi\_wchar\_t)\ ==\ 4)}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\_cffi\_to\_c\_wchar\_t(o);}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\_cffi\_to\_c\_wchar3216\_t(o);}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ PyObject\ *\_cffi\_from\_c\_char32\_t(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ x)}
+\DoxyCodeLine{00298\ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{sizeof}(\_cffi\_wchar\_t)\ ==\ 4)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_cffi\_from\_c\_wchar\_t((\_cffi\_wchar\_t)x);}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_cffi\_from\_c\_wchar3216\_t((\textcolor{keywordtype}{int})x);}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{union\ }\doxymbox{\hyperlink{union__cffi__union__alignment__u}{\_cffi\_union\_alignment\_u}}\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ m\_char;}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ m\_short;}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ m\_int;}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ m\_long;}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ m\_longlong;}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{float}\ m\_float;}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{double}\ m\_double;}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{double}\ m\_longdouble;}
+\DoxyCodeLine{00314\ \};}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ *next;}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{union\ }\doxymbox{\hyperlink{union__cffi__union__alignment__u}{\_cffi\_union\_alignment\_u}}\ alignment;}
+\DoxyCodeLine{00319\ \};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00322\ \_cffi\_convert\_array\_argument(\textcolor{keyword}{struct}\ \_cffi\_ctypedescr\ *ctptr,\ PyObject\ *arg,}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ **output\_data,\ Py\_ssize\_t\ datasize,}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ **freeme)}
+\DoxyCodeLine{00325\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keywordtype}{char}\ *p;}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keywordflow}{if}\ (datasize\ <\ 0)}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ p\ =\ *output\_data;}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{if}\ (p\ ==\ NULL)\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ *fp\ =\ (\textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ *)PyObject\_Malloc(}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ offsetof(\textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}},\ alignment)\ +\ (\textcolor{keywordtype}{size\_t})datasize);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fp\ ==\ NULL)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ fp-\/>next\ =\ *freeme;}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ *freeme\ =\ fp;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ p\ =\ *output\_data\ =\ (\textcolor{keywordtype}{char}\ *)\&fp-\/>alignment;}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ memset((\textcolor{keywordtype}{void}\ *)p,\ 0,\ (\textcolor{keywordtype}{size\_t})datasize);}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{return}\ \_cffi\_convert\_array\_from\_object(p,\ ctptr,\ arg);}
+\DoxyCodeLine{00342\ \}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \_CFFI\_UNUSED\_FN\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00345\ \_cffi\_free\_array\_arguments(\textcolor{keyword}{struct}\ \doxymbox{\hyperlink{struct__cffi__freeme__s}{\_cffi\_freeme\_s}}\ *freeme)}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *p\ =\ (\textcolor{keywordtype}{void}\ *)freeme;}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ freeme\ =\ freeme-\/>next;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ PyObject\_Free(p);}
+\DoxyCodeLine{00351\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (freeme\ !=\ NULL);}
+\DoxyCodeLine{00352\ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \textcolor{comment}{/**********\ \ end\ CPython-\/specific\ section\ \ **********/}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00356\ \_CFFI\_UNUSED\_FN}
+\DoxyCodeLine{00357\ \textcolor{keyword}{static}\ void\ (*\_cffi\_call\_python\_org)(\textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__cffi__externpy__s}{\_cffi\_externpy\_s}}\ *,\ \textcolor{keywordtype}{char}\ *);}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#\ define\ \_cffi\_call\_python\ \ \_cffi\_call\_python\_org}}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\#define\ \_cffi\_array\_len(array)\ \ \ (sizeof(array)\ /\ sizeof((array)[0]))}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#define\ \_cffi\_prim\_int(size,\ sign)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\ \ \ \ ((size)\ ==\ 1\ ?\ ((sign)\ ?\ \_CFFI\_PRIM\_INT8\ \ :\ \_CFFI\_PRIM\_UINT8)\ \ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00366\ \textcolor{preprocessor}{\ \ \ \ \ (size)\ ==\ 2\ ?\ ((sign)\ ?\ \_CFFI\_PRIM\_INT16\ :\ \_CFFI\_PRIM\_UINT16)\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\ \ \ \ \ (size)\ ==\ 4\ ?\ ((sign)\ ?\ \_CFFI\_PRIM\_INT32\ :\ \_CFFI\_PRIM\_UINT32)\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\ \ \ \ \ (size)\ ==\ 8\ ?\ ((sign)\ ?\ \_CFFI\_PRIM\_INT64\ :\ \_CFFI\_PRIM\_UINT64)\ :\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\ \ \ \ \ \_CFFI\_\_UNKNOWN\_PRIM)}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{preprocessor}{\#define\ \_cffi\_prim\_float(size)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\ \ \ \ ((size)\ ==\ sizeof(float)\ ?\ \_CFFI\_PRIM\_FLOAT\ :\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\ \ \ \ \ (size)\ ==\ sizeof(double)\ ?\ \_CFFI\_PRIM\_DOUBLE\ :\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\ \ \ \ \ (size)\ ==\ sizeof(long\ double)\ ?\ \_CFFI\_\_UNKNOWN\_LONG\_DOUBLE\ :\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\ \ \ \ \ \_CFFI\_\_UNKNOWN\_FLOAT\_PRIM)}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\#define\ \_cffi\_check\_int(got,\ got\_nonpos,\ expected)\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\ \ \ \ ((got\_nonpos)\ ==\ (expected\ <=\ 0)\ \&\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\ \ \ \ \ (got)\ ==\ (unsigned\ long\ long)expected)}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\#ifdef\ MS\_WIN32}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\#\ define\ \_cffi\_stdcall\ \ \_\_stdcall}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#\ define\ \_cffi\_stdcall\ \ }\textcolor{comment}{/*\ nothing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00388\ \}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

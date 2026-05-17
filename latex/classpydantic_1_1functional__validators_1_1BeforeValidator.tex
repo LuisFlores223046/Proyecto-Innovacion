@@ -1,0 +1,50 @@
+\doxysection{pydantic.\+functional\+\_\+validators.\+Before\+Validator Class Reference}
+\hypertarget{classpydantic_1_1functional__validators_1_1BeforeValidator}{}\label{classpydantic_1_1functional__validators_1_1BeforeValidator}\index{pydantic.functional\_validators.BeforeValidator@{pydantic.functional\_validators.BeforeValidator}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1BeforeValidator_a352409e784d6f387df280c85ac5a3557}\label{classpydantic_1_1functional__validators_1_1BeforeValidator_a352409e784d6f387df280c85ac5a3557} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, Any source\+\_\+type, \+\_\+\+Get\+Core\+Schema\+Handler handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1functional__validators_1_1BeforeValidator_ac0ce6195a0b80ff78481cf11ad3403fb}\label{classpydantic_1_1functional__validators_1_1BeforeValidator_ac0ce6195a0b80ff78481cf11ad3403fb} 
+\doxymbox{\hyperlink{namespacepydantic__core_1_1core__schema}{core\+\_\+schema}} {\bfseries func} .No\+Info\+Validator\+Function \texorpdfstring{$\vert$}{|} core\+\_\+schema.\+With\+Info\+Validator\+Function
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/validators/#annotated-validators
+
+A metadata class that indicates that a validation should be applied **before** the inner validation logic.
+
+Attributes:
+    func: The validator function.
+
+Example:
+    ```py
+    from typing_extensions import Annotated
+
+    from pydantic import BaseModel, BeforeValidator
+
+    MyInt = Annotated[int, BeforeValidator(lambda v: v + 1)]
+
+    class Model(BaseModel):
+        a: MyInt
+
+    print(Model(a=1).a)
+    #> 2
+
+    try:
+        Model(a='a')
+    except TypeError as e:
+        print(e)
+        #> can only concatenate str (not "int") to str
+    ```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+functional\+\_\+validators.\+py\end{DoxyCompactItemize}

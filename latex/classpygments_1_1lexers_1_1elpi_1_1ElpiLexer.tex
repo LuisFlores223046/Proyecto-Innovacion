@@ -1,0 +1,168 @@
+\doxysection{pygments.\+lexers.\+elpi.\+Elpi\+Lexer Class Reference}
+\hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer}{}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer}\index{pygments.lexers.elpi.ElpiLexer@{pygments.lexers.elpi.ElpiLexer}}
+Inheritance diagram for pygments.\+lexers.\+elpi.\+Elpi\+Lexer:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.431373cm]{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a24e8a09e1a76e394dd70b3d4df513988}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a24e8a09e1a76e394dd70b3d4df513988} 
+str {\bfseries lcase\+\_\+re} = r"{}\+[a-\/z]\+"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a022d121be68ab38251043ec0ea16dbb1}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a022d121be68ab38251043ec0ea16dbb1} 
+str {\bfseries ucase\+\_\+re} = r"{}\+[A-\/Z]\+"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a68706b76a12d32d83e94e8eb28e78561}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a68706b76a12d32d83e94e8eb28e78561} 
+str {\bfseries digit\+\_\+re} = r"{}\+[0-\/9]\+"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_ad44fdad243d78b711104ff7cf27dc9dc}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_ad44fdad243d78b711104ff7cf27dc9dc} 
+str {\bfseries schar2\+\_\+re} = r"{}(\+[+\texorpdfstring{$\ast$}{*}\texorpdfstring{$^\wedge$}{\string^}?/\+$<$$>$\`{}\textquotesingle{}@\+\#\texorpdfstring{$\sim$}{\string~}=\&!]\+)"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_acd3047d55edbce3287cd951e692d0e7d}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_acd3047d55edbce3287cd951e692d0e7d} 
+str {\bfseries schar\+\_\+re} = rf"{}(\{schar2\+\_\+re\}\texorpdfstring{$\vert$}{|}-\/\texorpdfstring{$\vert$}{|}\textbackslash{}\$\texorpdfstring{$\vert$}{|}\+\_\+)"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_ae985f4d13a68e03bb148a8852354ba5e}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_ae985f4d13a68e03bb148a8852354ba5e} 
+str {\bfseries idchar\+\_\+re} = rf"{}(\{lcase\+\_\+re\}\texorpdfstring{$\vert$}{|}\{ucase\+\_\+re\}\texorpdfstring{$\vert$}{|}\{digit\+\_\+re\}\texorpdfstring{$\vert$}{|}\{schar\+\_\+re\})"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a288f3fc98ad9155c093c6bbfecb0ee1a}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a288f3fc98ad9155c093c6bbfecb0ee1a} 
+str {\bfseries idcharstarns\+\_\+re} = rf"{}(\{idchar\+\_\+re\}\texorpdfstring{$\ast$}{*}(\textbackslash{}.(\{lcase\+\_\+re\}\texorpdfstring{$\vert$}{|}\{ucase\+\_\+re\})\{idchar\+\_\+re\}\texorpdfstring{$\ast$}{*})\texorpdfstring{$\ast$}{*})"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a56174b534dcc25acd69b459cba069520}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a56174b534dcc25acd69b459cba069520} 
+str {\bfseries symbchar\+\_\+re} = rf"{}(\{lcase\+\_\+re\}\texorpdfstring{$\vert$}{|}\{ucase\+\_\+re\}\texorpdfstring{$\vert$}{|}\{digit\+\_\+re\}\texorpdfstring{$\vert$}{|}\{schar\+\_\+re\}\texorpdfstring{$\vert$}{|}:\+)"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a65d9cefd928bcabbc876190336a792f5}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a65d9cefd928bcabbc876190336a792f5} 
+str {\bfseries constant\+\_\+re} = rf"{}(\{ucase\+\_\+re\}\{idchar\+\_\+re\}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\{lcase\+\_\+re\}\{idcharstarns\+\_\+re\}\texorpdfstring{$\vert$}{|}\{schar2\+\_\+re\}\{symbchar\+\_\+re\}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\+\_\+\{idchar\+\_\+re\}+)"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a0d2056669ce3504748dcd54151b102c4}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a0d2056669ce3504748dcd54151b102c4} 
+str {\bfseries symbol\+\_\+re} = r"{}(,\texorpdfstring{$\vert$}{|}$<$=$>$\texorpdfstring{$\vert$}{|}-\/$>$\texorpdfstring{$\vert$}{|}:\+-\/\texorpdfstring{$\vert$}{|};\texorpdfstring{$\vert$}{|}\textbackslash{}?-\/\texorpdfstring{$\vert$}{|}-\/$>$\texorpdfstring{$\vert$}{|}\&\texorpdfstring{$\vert$}{|}=$>$\texorpdfstring{$\vert$}{|}\textbackslash{}bas\textbackslash{}b\texorpdfstring{$\vert$}{|}\textbackslash{}buvar\textbackslash{}b\texorpdfstring{$\vert$}{|}$<$\texorpdfstring{$\vert$}{|}=$<$\texorpdfstring{$\vert$}{|}=\texorpdfstring{$\vert$}{|}==\texorpdfstring{$\vert$}{|}$>$=\texorpdfstring{$\vert$}{|}$>$\texorpdfstring{$\vert$}{|}\textbackslash{}bi$<$\texorpdfstring{$\vert$}{|}\textbackslash{}bi=$<$\texorpdfstring{$\vert$}{|}\textbackslash{}bi$>$=\texorpdfstring{$\vert$}{|}\textbackslash{}bi$>$\texorpdfstring{$\vert$}{|}\textbackslash{}bis\textbackslash{}b\texorpdfstring{$\vert$}{|}\textbackslash{}br$<$\texorpdfstring{$\vert$}{|}\textbackslash{}br=$<$\texorpdfstring{$\vert$}{|}\textbackslash{}br$>$=\texorpdfstring{$\vert$}{|}\textbackslash{}br$>$\texorpdfstring{$\vert$}{|}\textbackslash{}bs$<$\texorpdfstring{$\vert$}{|}\textbackslash{}bs=$<$\texorpdfstring{$\vert$}{|}\textbackslash{}bs$>$=\texorpdfstring{$\vert$}{|}\textbackslash{}bs$>$\texorpdfstring{$\vert$}{|}@\texorpdfstring{$\vert$}{|}::\+\texorpdfstring{$\vert$}{|}\textbackslash{}\+[\textbackslash{}]\+\texorpdfstring{$\vert$}{|}\`{}-\/$>$\texorpdfstring{$\vert$}{|}\`{}:\+\texorpdfstring{$\vert$}{|}\`{}:\+=\texorpdfstring{$\vert$}{|}\textbackslash{}\texorpdfstring{$^\wedge$}{\string^}\texorpdfstring{$\vert$}{|}-\/\texorpdfstring{$\vert$}{|}\textbackslash{}+\texorpdfstring{$\vert$}{|}\textbackslash{}bi-\/\texorpdfstring{$\vert$}{|}\textbackslash{}bi\textbackslash{}+\texorpdfstring{$\vert$}{|}\doxymbox{\hyperlink{namespacepygments_1_1lexers_1_1r}{r}}-\/\texorpdfstring{$\vert$}{|}r\textbackslash{}+\texorpdfstring{$\vert$}{|}/\+\texorpdfstring{$\vert$}{|}\textbackslash{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}bdiv\textbackslash{}b\texorpdfstring{$\vert$}{|}\textbackslash{}bi\textbackslash{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\textbackslash{}bmod\textbackslash{}b\texorpdfstring{$\vert$}{|}\textbackslash{}br\textbackslash{}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\vert$}{|}\texorpdfstring{$\sim$}{\string~}\texorpdfstring{$\vert$}{|}\textbackslash{}bi\texorpdfstring{$\sim$}{\string~}\texorpdfstring{$\vert$}{|}\textbackslash{}br\texorpdfstring{$\sim$}{\string~})"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a6c58aaa2d7a847e13b7c3f1b39c64f3e}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_a6c58aaa2d7a847e13b7c3f1b39c64f3e} 
+str {\bfseries escape\+\_\+re} = rf"{}\textbackslash{}((\{constant\+\_\+re\}\texorpdfstring{$\vert$}{|}\{symbol\+\_\+re\})\textbackslash{})"{}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_aa734c939f082dda57347f845825a45eb}\label{classpygments_1_1lexers_1_1elpi_1_1ElpiLexer_aa734c939f082dda57347f845825a45eb} 
+str {\bfseries const\+\_\+sym\+\_\+re} = rf"{}(\{constant\+\_\+re\}\texorpdfstring{$\vert$}{|}\{symbol\+\_\+re\}\texorpdfstring{$\vert$}{|}\{escape\+\_\+re\})"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer}{pygments.\+lexer.\+Regex\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries flags} = re.\+MULTILINE
+\item 
+dict {\bfseries tokens} = \{\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries name} = None
+\item 
+list {\bfseries aliases} = \+[$\,$]\+
+\item 
+list {\bfseries filenames} = \+[$\,$]\+
+\item 
+list {\bfseries alias\+\_\+filenames} = \+[$\,$]\+
+\item 
+list {\bfseries mimetypes} = \+[$\,$]\+
+\item 
+int {\bfseries priority} = 0
+\item 
+{\bfseries url} = None
+\item 
+{\bfseries version\+\_\+added} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer}{pygments.\+lexer.\+Regex\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexer_a56bd1a609a7e589293afd2d71637f91a}{get\+\_\+tokens\+\_\+unprocessed}} (self, text, stack=(\textquotesingle{}root\textquotesingle{},))
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ad4f2ca2ced009731f38895a0699e1067}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ad48533fea796f7164306ca3c6c0c1043}{add\+\_\+filter}} (self, filter\+\_\+, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}options)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_acb2d7eefc23ce9b9ae69e1477461533a}{analyse\+\_\+text}} (text)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_af86049e12f03e404f068b59f2e0d0ef9}{get\+\_\+tokens}} (self, text, unfiltered=False)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1LexerMeta}{pygments.\+lexer.\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (mcs, name, bases, d)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a78aff20634156007820ebc7d91db4263}{process\+\_\+tokendef}} (cls, name, tokendefs=None)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_ad1718986775db465d8f0c43e169bd989}{get\+\_\+tokendefs}} (cls)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a3c5937ef31d368e49226c1f044cc8a6c}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries options} = options
+\item 
+{\bfseries stripnl} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}stripnl\textquotesingle{}, True)
+\item 
+{\bfseries stripall} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}stripall\textquotesingle{}, False)
+\item 
+{\bfseries ensurenl} = get\+\_\+bool\+\_\+opt(options, \textquotesingle{}ensurenl\textquotesingle{}, True)
+\item 
+{\bfseries tabsize} = get\+\_\+int\+\_\+opt(options, \textquotesingle{}tabsize\textquotesingle{}, 0)
+\item 
+str {\bfseries encoding} = options.\+get(\textquotesingle{}encoding\textquotesingle{}, \textquotesingle{}guess\textquotesingle{})
+\item 
+list {\bfseries filters} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries token\+\_\+variants}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer_ac6218da310c855d57209faf59fb3a69d}{\+\_\+preprocess\+\_\+lexer\+\_\+input}} (self, text)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a0ea8580f410a245152475da1fb74805c}{\+\_\+process\+\_\+regex}} (cls, regex, rflags, state)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a6e07c09c6030f8daefbca8950cfb01ef}{\+\_\+process\+\_\+token}} (cls, token)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_a8ea4d75536df57c8bef0ee50dc0e6616}{\+\_\+process\+\_\+new\+\_\+state}} (cls, new\+\_\+state, unprocessed, processed)
+\item 
+\doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta_ac15a1d28ec003eeb537c44467e9ea339}{\+\_\+process\+\_\+state}} (cls, unprocessed, processed, state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1RegexLexerMeta}{pygments.\+lexer.\+Regex\+Lexer\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+dict {\bfseries \+\_\+all\+\_\+tokens} = \{\}
+\item 
+int {\bfseries \+\_\+tmpname} = 0
+\item 
+{\bfseries \+\_\+tokens} = cls.\+process\+\_\+tokendef(\textquotesingle{}\textquotesingle{}, cls.\+get\+\_\+tokendefs())
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classpygments_1_1lexer_1_1Lexer}{pygments.\+lexer.\+Lexer}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+example} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Lexer for the Elpi programming language.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pygments/\+lexers/\+elpi.\+py\end{DoxyCompactItemize}

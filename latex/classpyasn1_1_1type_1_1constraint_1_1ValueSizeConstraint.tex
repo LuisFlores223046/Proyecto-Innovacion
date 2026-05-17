@@ -1,0 +1,142 @@
+\doxysection{pyasn1.\+type.\+constraint.\+Value\+Size\+Constraint Class Reference}
+\hypertarget{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint}{}\label{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint}\index{pyasn1.type.constraint.ValueSizeConstraint@{pyasn1.type.constraint.ValueSizeConstraint}}
+Inheritance diagram for pyasn1.\+type.\+constraint.\+Value\+Size\+Constraint:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint_a5d4d1bd9feec5190117c0a57bfbd5ec0}{\+\_\+test\+Value}} (self, value, idx)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ValueRangeConstraint}{pyasn1.\+type.\+constraint.\+Value\+Range\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ValueRangeConstraint_a854589d500d89be5ff647afd026fad34}{\+\_\+set\+Values}} (self, values)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}values)
+\item 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, value, idx=None)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+le\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+gt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ge\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+nonzero\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+{\bfseries get\+Value\+Map} (self)
+\item 
+{\bfseries is\+Super\+Type\+Of} (self, other\+Constraint)
+\item 
+{\bfseries is\+Sub\+Type\+Of} (self, other\+Constraint)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ValueRangeConstraint}{pyasn1.\+type.\+constraint.\+Value\+Range\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries stop}
+\item 
+{\bfseries start}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+value\+Map} = set()
+\item 
+{\bfseries \+\_\+values}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create a ValueSizeConstraint object.
+
+The ValueSizeConstraint satisfies any value for
+as long as its size falls within the range of
+permitted sizes.
+
+The ValueSizeConstraint object can be applied
+to :class:`~pyasn1.type.univ.BitString`,
+:class:`~pyasn1.type.univ.OctetString` (including
+all :ref:`character ASN.1 types <type.char>`),
+:class:`~pyasn1.type.univ.SequenceOf`
+and :class:`~pyasn1.type.univ.SetOf` types.
+
+Parameters
+----------
+minimum: :class:`int`
+    Minimum permitted size of the value (inclusive)
+
+maximum: :class:`int`
+    Maximum permitted size of the value (inclusive)
+
+Examples
+--------
+.. code-block:: python
+
+    class BaseballTeamRoster(SetOf):
+        '''
+        ASN.1 specification:
+
+        BaseballTeamRoster ::= SET SIZE (1..25) OF PlayerNames
+        '''
+        componentType = PlayerNames()
+        subtypeSpec = ValueSizeConstraint(1, 25)
+
+    # this will succeed
+    team = BaseballTeamRoster()
+    team.extend(['Jan', 'Matej'])
+    encode(team)
+
+    # this will raise ValueConstraintError
+    team = BaseballTeamRoster()
+    team.extend(['Jan'] * 26)
+    encode(team)
+
+Note
+----
+Whenever ValueSizeConstraint is applied to mutable types
+(e.g. :class:`~pyasn1.type.univ.SequenceOf`,
+:class:`~pyasn1.type.univ.SetOf`), constraint
+validation only happens at the serialisation phase rather
+than schema instantiation phase (as it is with immutable
+types).
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint_doc-func-members}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint_a5d4d1bd9feec5190117c0a57bfbd5ec0}\index{pyasn1.type.constraint.ValueSizeConstraint@{pyasn1.type.constraint.ValueSizeConstraint}!\_testValue@{\_testValue}}
+\index{\_testValue@{\_testValue}!pyasn1.type.constraint.ValueSizeConstraint@{pyasn1.type.constraint.ValueSizeConstraint}}
+\doxysubsubsection{\texorpdfstring{\_testValue()}{\_testValue()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1constraint_1_1ValueSizeConstraint_a5d4d1bd9feec5190117c0a57bfbd5ec0} 
+pyasn1.\+type.\+constraint.\+Value\+Size\+Constraint.\+\_\+test\+Value (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{value}{, }\item[{}]{idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1ValueRangeConstraint}{pyasn1.\+type.\+constraint.\+Value\+Range\+Constraint}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+type/\+constraint.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\doxysection{typing\+\_\+extensions.\+Type\+Var\+Tuple Class Reference}
+\hypertarget{classtyping__extensions_1_1TypeVarTuple}{}\label{classtyping__extensions_1_1TypeVarTuple}\index{typing\_extensions.TypeVarTuple@{typing\_extensions.TypeVarTuple}}
+Inheritance diagram for typing\+\_\+extensions.\+Type\+Var\+Tuple:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.424242cm]{classtyping__extensions_1_1TypeVarTuple}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a123db8b65d0b87af817e0e8009e19091}\label{classtyping__extensions_1_1TypeVarTuple_a123db8b65d0b87af817e0e8009e19091} 
+{\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, name, \texorpdfstring{$\ast$}{*}, default=\+\_\+marker)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a89196d594819576ebd159bee7cb7ae6e}\label{classtyping__extensions_1_1TypeVarTuple_a89196d594819576ebd159bee7cb7ae6e} 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a181c880ca0b124fb42b4384c2e5118b2}\label{classtyping__extensions_1_1TypeVarTuple_a181c880ca0b124fb42b4384c2e5118b2} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a9e04300f46ed04b5782f7700c377c2d8}\label{classtyping__extensions_1_1TypeVarTuple_a9e04300f46ed04b5782f7700c377c2d8} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, name, \texorpdfstring{$\ast$}{*}, default=\+\_\+marker)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a4558fe6f3b97daa511553ecf04d0a121}\label{classtyping__extensions_1_1TypeVarTuple_a4558fe6f3b97daa511553ecf04d0a121} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a62dcaf73b8766349ae6ffb4cc9d651cd}\label{classtyping__extensions_1_1TypeVarTuple_a62dcaf73b8766349ae6ffb4cc9d651cd} 
+{\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_afd670696f74fd7c5937dd5c5a95c8338}\label{classtyping__extensions_1_1TypeVarTuple_afd670696f74fd7c5937dd5c5a95c8338} 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_ae7e1db1e585b6c2e6ad981408a032128}\label{classtyping__extensions_1_1TypeVarTuple_ae7e1db1e585b6c2e6ad981408a032128} 
+{\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classtyping__extensions_1_1TypeVarTuple_a89196d594819576ebd159bee7cb7ae6e}\label{classtyping__extensions_1_1TypeVarTuple_a89196d594819576ebd159bee7cb7ae6e} 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1__TypeVarLikeMeta}{typing\+\_\+extensions.\+\_\+\+Type\+Var\+Like\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries \+\_\+\+\_\+instancecheck\+\_\+\+\_\+} (cls, \doxymbox{\hyperlink{classtyping__extensions_1_1Any}{Any}} \+\_\+\+\_\+instance)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classtyping__extensions_1_1__TypeVarLikeMeta}{typing\+\_\+extensions.\+\_\+\+Type\+Var\+Like\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+backported\+\_\+typevarlike}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Type variable tuple.\end{DoxyVerb}
+
+
+\begin{DoxyVerb}Type variable tuple.
+
+Usage::
+
+    Ts = TypeVarTuple('Ts')
+
+In the same way that a normal type variable is a stand-in for a single
+type such as ``int``, a type variable *tuple* is a stand-in for a *tuple*
+type such as ``Tuple[int, str]``.
+
+Type variable tuples can be used in ``Generic`` declarations.
+Consider the following example::
+
+    class Array(Generic[*Ts]): ...
+
+The ``Ts`` type variable tuple here behaves like ``tuple[T1, T2]``,
+where ``T1`` and ``T2`` are type variables. To use these type variables
+as type parameters of ``Array``, we must *unpack* the type variable tuple using
+the star operator: ``*Ts``. The signature of ``Array`` then behaves
+as if we had simply written ``class Array(Generic[T1, T2]): ...``.
+In contrast to ``Generic[T1, T2]``, however, ``Generic[*Shape]`` allows
+us to parameterise the class with an *arbitrary* number of type parameters.
+
+Type variable tuples can be used anywhere a normal ``TypeVar`` can.
+This includes class definitions, as shown above, as well as function
+signatures and variable annotations::
+
+    class Array(Generic[*Ts]):
+
+        def __init__(self, shape: Tuple[*Ts]):
+            self._shape: Tuple[*Ts] = shape
+
+        def get_shape(self) -> Tuple[*Ts]:
+            return self._shape
+
+    shape = (Height(480), Width(640))
+    x: Array[Height, Width] = Array(shape)
+    y = abs(x)  # Inferred type is Array[Height, Width]
+    z = x + x   #        ...    is Array[Height, Width]
+    x.get_shape()  #     ...    is tuple[Height, Width]
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\doxysection{httpcore.\+\_\+models.\+Response Class Reference}
+\hypertarget{classhttpcore_1_1__models_1_1Response}{}\label{classhttpcore_1_1__models_1_1Response}\index{httpcore.\_models.Response@{httpcore.\_models.Response}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response_abfbb9b05c41e8f798374770926067b8f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int status, \texorpdfstring{$\ast$}{*}, Header\+Types headers=None, bytes\texorpdfstring{$\vert$}{|}typing.\+Iterable\+[bytes]\+\texorpdfstring{$\vert$}{|}typing.\+Async\+Iterable\+[bytes]\+\texorpdfstring{$\vert$}{|}None content=None, Extensions\texorpdfstring{$\vert$}{|}None extensions=None)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_ab4594c18435630b220165dbc7a9aba89}\label{classhttpcore_1_1__models_1_1Response_ab4594c18435630b220165dbc7a9aba89} 
+bytes {\bfseries content} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_a2c622178870407bb553fd8718e1623b4}\label{classhttpcore_1_1__models_1_1Response_a2c622178870407bb553fd8718e1623b4} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_afe0bfd0e20a3b7edcdf9eabb770914b2}\label{classhttpcore_1_1__models_1_1Response_afe0bfd0e20a3b7edcdf9eabb770914b2} 
+bytes {\bfseries read} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_abcf5ca98053c2138fbcb8487cb5d39e0}\label{classhttpcore_1_1__models_1_1Response_abcf5ca98053c2138fbcb8487cb5d39e0} 
+typing.\+Iterator\+[bytes]\+ {\bfseries iter\+\_\+stream} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_ab6cb40345218e0e80713df76853aa7ac}\label{classhttpcore_1_1__models_1_1Response_ab6cb40345218e0e80713df76853aa7ac} 
+None {\bfseries close} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_a0a6861a42c707daa7305a7351d5cb561}\label{classhttpcore_1_1__models_1_1Response_a0a6861a42c707daa7305a7351d5cb561} 
+bytes {\bfseries aread} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_aa0b2bd1c7105116cf6905c30e7e7dff7}\label{classhttpcore_1_1__models_1_1Response_aa0b2bd1c7105116cf6905c30e7e7dff7} 
+typing.\+Async\+Iterator\+[bytes]\+ {\bfseries aiter\+\_\+stream} (self)
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_a2cd25ece24609dd55700ef4a17cabc3c}\label{classhttpcore_1_1__models_1_1Response_a2cd25ece24609dd55700ef4a17cabc3c} 
+None {\bfseries aclose} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_aee7952bc916fc6f0538209d2de0cb26e}\label{classhttpcore_1_1__models_1_1Response_aee7952bc916fc6f0538209d2de0cb26e} 
+int {\bfseries status} = status
+\item 
+list\+[tuple\+[bytes, bytes]\+]\+ \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response_a03e762c9757d31bd8a2e5bee520a1c5d}{headers}}
+\item 
+tuple \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response_a821ef68c25a437e4fcab3593373410f3}{stream}}
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_ac34bd275d9848580183e4c8c6092f6a0}\label{classhttpcore_1_1__models_1_1Response_ac34bd275d9848580183e4c8c6092f6a0} 
+dict {\bfseries extensions} = \{\} if extensions is None else extensions
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_ade0c94c940b89cbe8cbed7f7c026eb60}\label{classhttpcore_1_1__models_1_1Response_ade0c94c940b89cbe8cbed7f7c026eb60} 
+bool {\bfseries \+\_\+stream\+\_\+consumed} = False
+\item 
+\Hypertarget{classhttpcore_1_1__models_1_1Response_aeafcbc4146dbb6c3a64df1cd959ad227}\label{classhttpcore_1_1__models_1_1Response_aeafcbc4146dbb6c3a64df1cd959ad227} 
+str {\bfseries \+\_\+content} = b"{}"{}.\+join(\+[part for part in self.\+iter\+\_\+stream()]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An HTTP response.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__models_1_1Response_doc-constructors}
+\Hypertarget{classhttpcore_1_1__models_1_1Response_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhttpcore_1_1__models_1_1Response_abfbb9b05c41e8f798374770926067b8f}\index{httpcore.\_models.Response@{httpcore.\_models.Response}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!httpcore.\_models.Response@{httpcore.\_models.Response}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__models_1_1Response_abfbb9b05c41e8f798374770926067b8f} 
+ None httpcore.\+\_\+models.\+Response.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{status}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Header\+Types }]{headers}{ = {\ttfamily None}, }\item[{bytes         \texorpdfstring{$\vert$}{|} typing.\+Iterable\+[bytes]\+         \texorpdfstring{$\vert$}{|} typing.\+Async\+Iterable\+[bytes]\+         \texorpdfstring{$\vert$}{|} None }]{content}{ = {\ttfamily None}, }\item[{Extensions \texorpdfstring{$\vert$}{|} None }]{extensions}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parameters:
+    status: The HTTP status code of the response. For example `200`.
+    headers: The HTTP response headers.
+    content: The content of the response body.
+    extensions: A dictionary of optional extra information included on
+        the responseself.Possible keys include `"http_version"`,
+        `"reason_phrase"`, and `"network_stream"`.
+\end{DoxyVerb}
+ 
+
+\label{classhttpcore_1_1__models_1_1Response_doc-variable-members}
+\Hypertarget{classhttpcore_1_1__models_1_1Response_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpcore_1_1__models_1_1Response_a03e762c9757d31bd8a2e5bee520a1c5d}\index{httpcore.\_models.Response@{httpcore.\_models.Response}!headers@{headers}}
+\index{headers@{headers}!httpcore.\_models.Response@{httpcore.\_models.Response}}
+\doxysubsubsection{\texorpdfstring{headers}{headers}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__models_1_1Response_a03e762c9757d31bd8a2e5bee520a1c5d} 
+list\+[tuple\+[bytes, bytes]\+]\+ httpcore.\+\_\+models.\+Response.\+headers}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ enforce\_headers(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ headers,\ name=\textcolor{stringliteral}{"{}headers"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classhttpcore_1_1__models_1_1Response_a821ef68c25a437e4fcab3593373410f3}\index{httpcore.\_models.Response@{httpcore.\_models.Response}!stream@{stream}}
+\index{stream@{stream}!httpcore.\_models.Response@{httpcore.\_models.Response}}
+\doxysubsubsection{\texorpdfstring{stream}{stream}}
+{\footnotesize\ttfamily \label{classhttpcore_1_1__models_1_1Response_a821ef68c25a437e4fcab3593373410f3} 
+httpcore.\+\_\+models.\+Response.\+stream}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ enforce\_stream(content,\ name=\textcolor{stringliteral}{"{}content"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpcore/\+\+\_\+models.\+py\end{DoxyCompactItemize}

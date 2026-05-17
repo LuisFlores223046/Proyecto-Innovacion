@@ -1,0 +1,90 @@
+\doxysection{TGreenlet\+Globals.\+cpp}
+\hypertarget{TGreenletGlobals_8cpp_source}{}\label{TGreenletGlobals_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TGreenletGlobals.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TGreenletGlobals.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ T\_GREENLET\_GLOBALS}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ T\_GREENLET\_GLOBALS}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}greenlet\_refs.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}greenlet\_exceptions.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}greenlet\_thread\_support.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}greenlet\_thread\_state.hpp"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ This\ encapsulates\ what\ were\ previously\ module\ global\ "{}constants"{}}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ established\ at\ init\ time.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ This\ is\ a\ step\ towards\ Python3\ style\ module\ state\ that\ allows}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ reloading.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ In\ an\ earlier\ iteration\ of\ this\ code,\ we\ used\ placement\ new\ to\ be}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ able\ to\ allocate\ this\ object\ statically\ still,\ so\ that\ references}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ to\ its\ members\ don't\ incur\ an\ extra\ pointer\ indirection.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ But\ under\ some\ scenarios,\ that\ could\ result\ in\ crashes\ at}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ shutdown\ because\ apparently\ the\ destructor\ was\ getting\ run\ twice?}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }GreenletGlobals}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalEventName}{greenlet::refs::ImmortalEventName}}\ event\_switch;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalEventName}{greenlet::refs::ImmortalEventName}}\ event\_throw;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalException}{greenlet::refs::ImmortalException}}\ PyExc\_GreenletError;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalException}{greenlet::refs::ImmortalException}}\ PyExc\_GreenletExit;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{greenlet::refs::ImmortalObject}}\ empty\_tuple;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalObject}{greenlet::refs::ImmortalObject}}\ empty\_dict;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1refs_1_1ImmortalString}{greenlet::refs::ImmortalString}}\ str\_run;}
+\DoxyCodeLine{00043\ \ \ \ \ Mutex*\ \textcolor{keyword}{const}\ thread\_states\_to\_destroy\_lock;}
+\DoxyCodeLine{00044\ \ \ \ \ greenlet::cleanup\_queue\_t\ thread\_states\_to\_destroy;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ GreenletGlobals()\ :}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ event\_switch(\textcolor{stringliteral}{"{}switch"{}}),}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ event\_throw(\textcolor{stringliteral}{"{}throw"{}}),}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ PyExc\_GreenletError(\textcolor{stringliteral}{"{}greenlet.error"{}}),}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ PyExc\_GreenletExit(\textcolor{stringliteral}{"{}greenlet.GreenletExit"{}},\ PyExc\_BaseException),}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ empty\_tuple(Require(PyTuple\_New(0))),}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ empty\_dict(Require(PyDict\_New())),}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ str\_run(\textcolor{stringliteral}{"{}run"{}}),}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ thread\_states\_to\_destroy\_lock(\textcolor{keyword}{new}\ Mutex())}
+\DoxyCodeLine{00055\ \ \ \ \ \{\}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \string~GreenletGlobals()}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ object\ is\ (currently)\ effectively\ immortal,\ and\ not}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ just\ because\ of\ those\ placement\ new\ tricks;\ if\ we\ try\ to}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ deallocate\ the\ static\ object\ we\ allocated,\ and\ overwrote,}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ would\ be\ doing\ so\ at\ C++\ teardown\ time,\ which\ is\ after}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ final\ Python\ GIL\ is\ released,\ and\ we\ can't\ use\ the\ API}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ then.}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (The\ members\ will\ still\ be\ destructed,\ but\ they\ also\ don't}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ any\ deallocation.)}}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ queue\_to\_destroy(\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ ts)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we're\ currently\ accessed\ through\ a\ static\ const\ object,}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ implicitly\ marking\ our\ members\ as\ const,\ so\ code\ can't\ just}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ call\ push\_back\ (or\ pop\_back)\ without\ casting\ away\ the}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ const.}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Do\ that\ for\ callers.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ greenlet::cleanup\_queue\_t\&\ q\ =\ \textcolor{keyword}{const\_cast<}greenlet::cleanup\_queue\_t\&\textcolor{keyword}{>}(this-\/>thread\_states\_to\_destroy);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ q.push\_back(ts);}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ take\_next\_to\_destroy()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ greenlet::cleanup\_queue\_t\&\ q\ =\ \textcolor{keyword}{const\_cast<}greenlet::cleanup\_queue\_t\&\textcolor{keyword}{>}(this-\/>thread\_states\_to\_destroy);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ result\ =\ q.back();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ q.pop\_back();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \};\ \textcolor{comment}{//\ namespace\ greenlet}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{classgreenlet_1_1GreenletGlobals}{greenlet::GreenletGlobals}}*\ mod\_globs;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ T\_GREENLET\_GLOBALS}}
+
+\end{DoxyCode}

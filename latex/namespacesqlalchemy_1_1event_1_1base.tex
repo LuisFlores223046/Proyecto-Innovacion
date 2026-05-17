@@ -1,0 +1,65 @@
+\doxysection{sqlalchemy.\+event.\+base Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1event_1_1base}{}\label{namespacesqlalchemy_1_1event_1_1base}\index{sqlalchemy.event.base@{sqlalchemy.event.base}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__UnpickleDispatch}{\+\_\+\+Unpickle\+Dispatch}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__DispatchCommon}{\+\_\+\+Dispatch\+Common}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__Dispatch}{\+\_\+\+Dispatch}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{\+\_\+\+Has\+Events\+Dispatch}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1Events}{Events}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__JoinedDispatcher}{\+\_\+\+Joined\+Dispatcher}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1dispatcher}{dispatcher}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1slots__dispatcher}{slots\+\_\+dispatcher}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1event_1_1base_a9c9652889ed95a5e04969ddf5afd7330}\label{namespacesqlalchemy_1_1event_1_1base_a9c9652889ed95a5e04969ddf5afd7330} 
+bool {\bfseries \+\_\+is\+\_\+event\+\_\+name} (str name)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1event_1_1base_a770f5404bf1746f1594b68633e106ce2}\label{namespacesqlalchemy_1_1event_1_1base_a770f5404bf1746f1594b68633e106ce2} 
+None {\bfseries \+\_\+remove\+\_\+dispatcher} (Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1event_1_1base_1_1__HasEventsDispatch}{\+\_\+\+Has\+Events\+Dispatch}}\+[\+\_\+\+ET]\+]\+ cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \doxymbox{\hyperlink{namespacesqlalchemy_1_1event_1_1base_a17a91e8114b8d5b1019c4e1836ea5af0}{\+\_\+registrars}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base implementation classes.
+
+The public-facing ``Events`` serves as the base class for an event interface;
+its public attributes represent different kinds of events.   These attributes
+are mirrored onto a ``_Dispatch`` class, which serves as a container for
+collections of listener functions.   These collections are represented both
+at the class level of a particular ``_Dispatch`` class as well as within
+instances of ``_Dispatch``.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1event_1_1base_doc-var-members}
+\Hypertarget{namespacesqlalchemy_1_1event_1_1base_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacesqlalchemy_1_1event_1_1base_a17a91e8114b8d5b1019c4e1836ea5af0}\index{sqlalchemy.event.base@{sqlalchemy.event.base}!\_registrars@{\_registrars}}
+\index{\_registrars@{\_registrars}!sqlalchemy.event.base@{sqlalchemy.event.base}}
+\doxysubsubsection{\texorpdfstring{\_registrars}{\_registrars}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1event_1_1base_a17a91e8114b8d5b1019c4e1836ea5af0} 
+tuple sqlalchemy.\+event.\+base.\+\_\+registrars\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ util.defaultdict(list)}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

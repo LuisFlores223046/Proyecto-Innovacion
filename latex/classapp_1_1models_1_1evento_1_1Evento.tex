@@ -1,0 +1,70 @@
+\doxysection{app.\+models.\+evento.\+Evento Class Reference}
+\hypertarget{classapp_1_1models_1_1evento_1_1Evento}{}\label{classapp_1_1models_1_1evento_1_1Evento}\index{app.models.evento.Evento@{app.models.evento.Evento}}
+Inheritance diagram for app.\+models.\+evento.\+Evento:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classapp_1_1models_1_1evento_1_1Evento}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a4c36a7c6e33ded131c8e4d5af158f470}\label{classapp_1_1models_1_1evento_1_1Evento_a4c36a7c6e33ded131c8e4d5af158f470} 
+{\bfseries id} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a61bc342d79bdbad30d0471943c5edbe8}\label{classapp_1_1models_1_1evento_1_1Evento_a61bc342d79bdbad30d0471943c5edbe8} 
+{\bfseries espacio\+\_\+id} = Column(Integer, Foreign\+Key("{}espacios.\+id"{}), nullable=True, index=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_acb97a75fcb46be46e2e02a6e863e4f8a}\label{classapp_1_1models_1_1evento_1_1Evento_acb97a75fcb46be46e2e02a6e863e4f8a} 
+{\bfseries titulo} = Column(String(200), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a5936c12b42eeeefa4ef280f2d612e096}\label{classapp_1_1models_1_1evento_1_1Evento_a5936c12b42eeeefa4ef280f2d612e096} 
+{\bfseries descripcion} = Column(Text, nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a7591912de667654668657d2876977164}\label{classapp_1_1models_1_1evento_1_1Evento_a7591912de667654668657d2876977164} 
+{\bfseries fecha\+\_\+inicio} = Column(TIMESTAMP(timezone=True), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a141c15bc86a801c22611a621ae6db340}\label{classapp_1_1models_1_1evento_1_1Evento_a141c15bc86a801c22611a621ae6db340} 
+{\bfseries fecha\+\_\+fin} = Column(TIMESTAMP(timezone=True), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a851541437dd54b6f66ba7f8065c4292e}\label{classapp_1_1models_1_1evento_1_1Evento_a851541437dd54b6f66ba7f8065c4292e} 
+{\bfseries tipo} = Column(String(20), default="{}otro"{}, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a59cfdc1fe3d308fad4b724827c712506}\label{classapp_1_1models_1_1evento_1_1Evento_a59cfdc1fe3d308fad4b724827c712506} 
+{\bfseries foto\+\_\+url} = Column(String(500), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a60ea7c590a8b9c2cb3840505da222f77}\label{classapp_1_1models_1_1evento_1_1Evento_a60ea7c590a8b9c2cb3840505da222f77} 
+{\bfseries url\+\_\+registro} = Column(String(500), nullable=True)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a3a5d004cd89f51c79bc6c905c1f26fa5}\label{classapp_1_1models_1_1evento_1_1Evento_a3a5d004cd89f51c79bc6c905c1f26fa5} 
+{\bfseries activo} = Column(Boolean, default=True, nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a47a9a3ac84caf08044c0cb75fe76390f}\label{classapp_1_1models_1_1evento_1_1Evento_a47a9a3ac84caf08044c0cb75fe76390f} 
+{\bfseries creado\+\_\+en} = Column(TIMESTAMP(timezone=True), server\+\_\+default=func.\+now(), nullable=False)
+\item 
+\Hypertarget{classapp_1_1models_1_1evento_1_1Evento_a9822eb4ffafb9db4ceb4121701bac91f}\label{classapp_1_1models_1_1evento_1_1Evento_a9822eb4ffafb9db4ceb4121701bac91f} 
+{\bfseries espacio} = relationship("{}Espacio"{}, back\+\_\+populates="{}eventos"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Actividad programada vinculada a un espacio físico.
+
+Attributes:
+    id: Identificador único.
+    espacio_id: FK hacia el lugar donde ocurre el evento.
+    titulo: Nombre del evento.
+    descripcion: Información detallada de la actividad.
+    fecha_inicio: Fecha y hora de inicio.
+    fecha_fin: Fecha y hora de finalización (opcional).
+    tipo: Categoría del evento según restricción CK.
+    foto_url: Imagen promocional del evento.
+    url_registro: Enlace externo para inscripciones.
+    activo: Visibilidad del evento.
+    creado_en: Fecha de registro del evento.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+app/\+models/\+evento.\+py\end{DoxyCompactItemize}

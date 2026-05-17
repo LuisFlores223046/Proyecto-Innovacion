@@ -1,0 +1,37 @@
+\doxysection{cloudinary.\+api\+\_\+client.\+tcp\+\_\+keep\+\_\+alive\+\_\+manager.\+TCPKeep\+Alive\+Validation\+Methods Class Reference}
+\hypertarget{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods}{}\label{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods}\index{cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods@{cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods_a59245529d9f33300656a1179a543fd3c}{adjust\+\_\+connection\+\_\+socket}} (conn, protocol="{}https"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class contains a single method whose sole purpose is to set up TCP Keep Alive probes on the socket for a
+connection. This is necessary for long-running requests which will be silently terminated by the AWS Network Load
+Balancer which kills a connection if it is idle for more than 350 seconds.
+\end{DoxyVerb}
+ 
+
+\label{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods_doc-func-members}
+\Hypertarget{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods_a59245529d9f33300656a1179a543fd3c}\index{cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods@{cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods}!adjust\_connection\_socket@{adjust\_connection\_socket}}
+\index{adjust\_connection\_socket@{adjust\_connection\_socket}!cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods@{cloudinary.api\_client.tcp\_keep\_alive\_manager.TCPKeepAliveValidationMethods}}
+\doxysubsubsection{\texorpdfstring{adjust\_connection\_socket()}{adjust\_connection\_socket()}}
+{\footnotesize\ttfamily \label{classcloudinary_1_1api__client_1_1tcp__keep__alive__manager_1_1TCPKeepAliveValidationMethods_a59245529d9f33300656a1179a543fd3c} 
+cloudinary.\+api\+\_\+client.\+tcp\+\_\+keep\+\_\+alive\+\_\+manager.\+TCPKeep\+Alive\+Validation\+Methods.\+adjust\+\_\+connection\+\_\+socket (\begin{DoxyParamCaption}\item[{}]{conn}{, }\item[{}]{protocol}{ = {\ttfamily "{}https"{}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Adjusts the socket settings so that the client sends a TCP keep alive probe over the connection. This is only
+applied where possible, if the ability to set the socket options is not available, for example using Anaconda,
+then the settings will be left as is.
+:param conn: The connection to update the socket settings for
+:param str protocol: The protocol of the connection
+:return: None
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+cloudinary/\+api\+\_\+client/\+tcp\+\_\+keep\+\_\+alive\+\_\+manager.\+py\end{DoxyCompactItemize}

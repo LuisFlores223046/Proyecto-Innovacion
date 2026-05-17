@@ -1,0 +1,406 @@
+\doxysection{alembic.\+script.\+revision.\+Revision\+Map Class Reference}
+\hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap}{}\label{classalembic_1_1script_1_1revision_1_1RevisionMap}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_aad3058b482bcff19c3acaf889a6d0a93}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Callable\+[\+[$\,$]\+, Iterable\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+]\+ generator)
+\item 
+Tuple\+[str,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a7ae4befd53ea9d13feda1b15ea83b0a2}{heads}} (self)
+\item 
+Tuple\+[str,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a710ea71ac77f799fe4d7441b9305c05b}{bases}} (self)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a314bdd4a383c5f4f13ef507485874a}{add\+\_\+revision}} (self, \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}} revision, bool \+\_\+replace=False)
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a866c2ddd138703bb2c7f7e331ac2e027}{get\+\_\+current\+\_\+head}} (self, Optional\+[str]\+ branch\+\_\+label=None)
+\item 
+Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a0978b92b4345bb995c3fa1ecaa2b05da}{get\+\_\+revisions}} (self, Optional\+[\+\_\+\+Get\+Rev\+Arg]\+ id\+\_\+)
+\item 
+Optional\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a4e9f84025f21477f79250d08724d3e93}{get\+\_\+revision}} (self, Optional\+[str]\+ id\+\_\+)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ab99feb2c7341a27110db38f111d22c9b}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_ab99feb2c7341a27110db38f111d22c9b} 
+Tuple\+[\+\_\+\+TR,...]\+ {\bfseries filter\+\_\+for\+\_\+lineage} (self, Iterable\+[\+\_\+\+TR]\+ targets, Optional\+[str]\+ check\+\_\+against, bool include\+\_\+dependencies=False)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a34fbd1dc4f045ee12934585f6bde39c9}{iterate\+\_\+revisions}} (self, \+\_\+\+Revision\+Identifier\+Type upper, \+\_\+\+Revision\+Identifier\+Type lower, bool implicit\+\_\+base=False, bool inclusive=False, bool assert\+\_\+relative\+\_\+length=True, bool select\+\_\+for\+\_\+downgrade=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a11e35db32c7f45fe5e0ee75ff9d96daf}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a11e35db32c7f45fe5e0ee75ff9d96daf} 
+{\bfseries heads} = tuple(rev.\+revision for rev in heads)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a775e4718894ff9561e1e14a201c1c165}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a775e4718894ff9561e1e14a201c1c165} 
+{\bfseries bases} = tuple(rev.\+revision for rev in bases)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[str,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_ad817cd573e6318aff539441ebe632bc5}{\+\_\+real\+\_\+heads}} (self)
+\item 
+Tuple\+[str,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_afaad601dbf2d90ee36d2472883c4c016}{\+\_\+real\+\_\+bases}} (self)
+\item 
+\+\_\+\+Revision\+Map\+Type \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a6ab75329ff6814ba9b325dd1f7ae143d}{\+\_\+revision\+\_\+map}} (self)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ae178be51991a3870cb0a376833f001ae}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_ae178be51991a3870cb0a376833f001ae} 
+None {\bfseries \+\_\+detect\+\_\+cycles} (self, \+\_\+\+Interim\+Revision\+Map\+Type rev\+\_\+map, Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ heads, Tuple\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}},...]\+ bases, Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ \+\_\+real\+\_\+heads, Tuple\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}},...]\+ \+\_\+real\+\_\+bases)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a396ab9616d8bb691ac7fba66a187cc7b}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a396ab9616d8bb691ac7fba66a187cc7b} 
+None {\bfseries \+\_\+map\+\_\+branch\+\_\+labels} (self, Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ revisions, \+\_\+\+Revision\+Map\+Type map\+\_\+)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a9fbbc89d9597727248d17c57c218085e}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a9fbbc89d9597727248d17c57c218085e} 
+None {\bfseries \+\_\+add\+\_\+branches} (self, Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ revisions, \+\_\+\+Revision\+Map\+Type map\+\_\+)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a4834c998b46b91375de7b71f75045fba}{\+\_\+add\+\_\+depends\+\_\+on}} (self, Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ revisions, \+\_\+\+Revision\+Map\+Type map\+\_\+)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_ae094715592d914f839bd21fb5aa729bd}{\+\_\+normalize\+\_\+depends\+\_\+on}} (self, Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ revisions, \+\_\+\+Revision\+Map\+Type map\+\_\+)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_aab1d013871f6862d0aec2bb92081e1b5}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_aab1d013871f6862d0aec2bb92081e1b5} 
+Tuple\+[str,...]\+ {\bfseries \+\_\+get\+\_\+base\+\_\+revisions} (self, str identifier)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a4b99f8232839c3f51fb6f3c568329739}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a4b99f8232839c3f51fb6f3c568329739} 
+Optional\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ {\bfseries \+\_\+resolve\+\_\+branch} (self, str branch\+\_\+label)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_adfd39675bf3a2f6d02ddd08251b3f630}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_adfd39675bf3a2f6d02ddd08251b3f630} 
+Optional\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ {\bfseries \+\_\+revision\+\_\+for\+\_\+ident} (self, Union\+[str, Tuple\+[()]\+, None]\+ resolved\+\_\+id, Optional\+[str]\+ check\+\_\+branch=None)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_af7384040b2ac2c21c29368f31ab139c5}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_af7384040b2ac2c21c29368f31ab139c5} 
+Set\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ {\bfseries \+\_\+filter\+\_\+into\+\_\+branch\+\_\+heads} (self, Iterable\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ targets)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_af236531c82f2d59dfa3c541ee6b070e6}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_af236531c82f2d59dfa3c541ee6b070e6} 
+bool {\bfseries \+\_\+shares\+\_\+lineage} (self, Optional\+[\+\_\+\+Revision\+Or\+Str]\+ target, Sequence\+[\+\_\+\+Revision\+Or\+Str]\+ test\+\_\+against\+\_\+revs, bool include\+\_\+dependencies=False)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a785ddd4cbf1179d3519e6c1bb5ccf587}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a785ddd4cbf1179d3519e6c1bb5ccf587} 
+Tuple\+[Tuple\+[str,...]\+, Optional\+[str]\+]\+ {\bfseries \+\_\+resolve\+\_\+revision\+\_\+number} (self, Optional\+[\+\_\+\+Get\+Rev\+Arg]\+ id\+\_\+)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a437e607c1021f0c1a564bb1ee9e8ce84}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a437e607c1021f0c1a564bb1ee9e8ce84} 
+Iterator\+[Any]\+ {\bfseries \+\_\+get\+\_\+descendant\+\_\+nodes} (self, Collection\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ targets, Optional\+[\+\_\+\+Revision\+Map\+Type]\+ map\+\_\+=None, bool check=False, bool omit\+\_\+immediate\+\_\+dependencies=False, bool include\+\_\+dependencies=True)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a78f806fec9715dd9f98fc3613b84ed52}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a78f806fec9715dd9f98fc3613b84ed52} 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ {\bfseries \+\_\+get\+\_\+ancestor\+\_\+nodes} (self, Collection\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ targets, Optional\+[\+\_\+\+Revision\+Map\+Type]\+ map\+\_\+=None, bool check=False, bool include\+\_\+dependencies=True)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_aaeb91630a77f166c85105730461d4004}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_aaeb91630a77f166c85105730461d4004} 
+Iterator\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ {\bfseries \+\_\+iterate\+\_\+related\+\_\+revisions} (self, Callable\+[\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+, Iterable\+[str]\+]\+ fn, Collection\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ targets, Optional\+[\+\_\+\+Revision\+Map\+Type]\+ map\+\_\+, bool check=False)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_ab8262b53e23d7648987fc5f5a857c105}{\+\_\+topological\+\_\+sort}} (self, Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ revisions, Any heads)
+\item 
+Optional\+[\+\_\+\+Revision\+Or\+Base]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_acf6bb6edb286af4e282fdf65c7ca496b}{\+\_\+walk}} (self, Optional\+[Union\+[str, \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+]\+ start, int steps, Optional\+[str]\+ branch\+\_\+label=None, bool no\+\_\+overwalk=True)
+\item 
+Tuple\+[Optional\+[str]\+, Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a5ec04ead5d1e0b41929b8c8116a5b1}{\+\_\+parse\+\_\+downgrade\+\_\+target}} (self, \+\_\+\+Revision\+Identifier\+Type current\+\_\+revisions, \+\_\+\+Revision\+Identifier\+Type target, bool assert\+\_\+relative\+\_\+length)
+\item 
+Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+,...]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_abda189a3190286de5ee672fe0738310f}{\+\_\+parse\+\_\+upgrade\+\_\+target}} (self, \+\_\+\+Revision\+Identifier\+Type current\+\_\+revisions, \+\_\+\+Revision\+Identifier\+Type target, bool assert\+\_\+relative\+\_\+length)
+\item 
+Tuple\+[Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+, Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+,...]\+]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_a2682b355ced3301ccbe3f86d6814026a}{\+\_\+collect\+\_\+downgrade\+\_\+revisions}} (self, \+\_\+\+Revision\+Identifier\+Type upper, \+\_\+\+Revision\+Identifier\+Type lower, bool inclusive, bool implicit\+\_\+base, bool assert\+\_\+relative\+\_\+length)
+\item 
+Tuple\+[Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+, Tuple\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}},...]\+]\+ \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1RevisionMap_af514ca03aff0012a8a31e86481e6cd47}{\+\_\+collect\+\_\+upgrade\+\_\+revisions}} (self, \+\_\+\+Revision\+Identifier\+Type upper, \+\_\+\+Revision\+Identifier\+Type lower, bool inclusive, bool implicit\+\_\+base, bool assert\+\_\+relative\+\_\+length)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ab6ff511505348dfeaaea67e460d91c00}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_ab6ff511505348dfeaaea67e460d91c00} 
+Set\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ {\bfseries \+\_\+get\+\_\+all\+\_\+current} (self, Tuple\+[str,...]\+ id\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a79bd91491608b3d73bdfde19e174d7b4}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a79bd91491608b3d73bdfde19e174d7b4} 
+{\bfseries \+\_\+generator} = generator
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ae4730a0906fc7f920f6738333d2f21cc}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_ae4730a0906fc7f920f6738333d2f21cc} 
+{\bfseries \+\_\+real\+\_\+heads} = tuple(rev.\+revision for rev in \+\_\+real\+\_\+heads)
+\item 
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a18ec39ea3554d96e0e5ae7b9f5c34408}\label{classalembic_1_1script_1_1revision_1_1RevisionMap_a18ec39ea3554d96e0e5ae7b9f5c34408} 
+{\bfseries \+\_\+real\+\_\+bases} = tuple(rev.\+revision for rev in \+\_\+real\+\_\+bases)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Maintains a map of :class:`.Revision` objects.
+
+:class:`.RevisionMap` is used by :class:`.ScriptDirectory` to maintain
+and traverse the collection of :class:`.Script` objects, which are
+themselves instances of :class:`.Revision`.
+\end{DoxyVerb}
+ 
+
+\label{classalembic_1_1script_1_1revision_1_1RevisionMap_doc-constructors}
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_aad3058b482bcff19c3acaf889a6d0a93}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_aad3058b482bcff19c3acaf889a6d0a93} 
+ None alembic.\+script.\+revision.\+Revision\+Map.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[$\,$]\+, Iterable\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+]\+}]{generator}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Construct a new :class:`.RevisionMap`.
+
+:param generator: a zero-arg callable that will generate an iterable
+ of :class:`.Revision` instances to be used.   These are typically
+ :class:`.Script` subclasses within regular Alembic use.
+\end{DoxyVerb}
+ 
+
+\label{classalembic_1_1script_1_1revision_1_1RevisionMap_doc-func-members}
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a4834c998b46b91375de7b71f75045fba}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_add\_depends\_on@{\_add\_depends\_on}}
+\index{\_add\_depends\_on@{\_add\_depends\_on}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_add\_depends\_on()}{\_add\_depends\_on()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a4834c998b46b91375de7b71f75045fba} 
+ None alembic.\+script.\+revision.\+Revision\+Map.\+\_\+add\+\_\+depends\+\_\+on (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+}]{revisions}{, }\item[{\+\_\+\+Revision\+Map\+Type     }]{map\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Resolve the 'dependencies' for each revision in a collection
+in terms of actual revision ids, as opposed to branch labels or other
+symbolic names.
+
+The collection is then assigned to the _resolved_dependencies
+attribute on each revision object.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a2682b355ced3301ccbe3f86d6814026a}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_collect\_downgrade\_revisions@{\_collect\_downgrade\_revisions}}
+\index{\_collect\_downgrade\_revisions@{\_collect\_downgrade\_revisions}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_collect\_downgrade\_revisions()}{\_collect\_downgrade\_revisions()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a2682b355ced3301ccbe3f86d6814026a} 
+ Tuple\+[Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+, Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+, ...]\+]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+collect\+\_\+downgrade\+\_\+revisions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{upper}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{lower}{, }\item[{bool}]{inclusive}{, }\item[{bool}]{implicit\+\_\+base}{, }\item[{bool}]{assert\+\_\+relative\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Compute the set of current revisions specified by :upper, and the
+downgrade target specified by :target. Return all dependents of target
+which are currently active.
+
+:inclusive=True includes the target revision in the set
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_af514ca03aff0012a8a31e86481e6cd47}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_collect\_upgrade\_revisions@{\_collect\_upgrade\_revisions}}
+\index{\_collect\_upgrade\_revisions@{\_collect\_upgrade\_revisions}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_collect\_upgrade\_revisions()}{\_collect\_upgrade\_revisions()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_af514ca03aff0012a8a31e86481e6cd47} 
+ Tuple\+[Set\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+, Tuple\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}, ...]\+]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+collect\+\_\+upgrade\+\_\+revisions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{upper}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{lower}{, }\item[{bool}]{inclusive}{, }\item[{bool}]{implicit\+\_\+base}{, }\item[{bool}]{assert\+\_\+relative\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Compute the set of required revisions specified by :upper, and the
+current set of active revisions specified by :lower. Find the
+difference between the two to compute the required upgrades.
+
+:inclusive=True includes the current/lower revisions in the set
+
+:implicit_base=False only returns revisions which are downstream
+of the current/lower revisions. Dependencies from branches with
+different bases will not be included.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ae094715592d914f839bd21fb5aa729bd}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_normalize\_depends\_on@{\_normalize\_depends\_on}}
+\index{\_normalize\_depends\_on@{\_normalize\_depends\_on}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_normalize\_depends\_on()}{\_normalize\_depends\_on()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_ae094715592d914f839bd21fb5aa729bd} 
+ None alembic.\+script.\+revision.\+Revision\+Map.\+\_\+normalize\+\_\+depends\+\_\+on (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+}]{revisions}{, }\item[{\+\_\+\+Revision\+Map\+Type     }]{map\+\_\+}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create a collection of "dependencies" that omits dependencies
+that are already ancestor nodes for each revision in a given
+collection.
+
+This builds upon the _resolved_dependencies collection created in the
+_add_depends_on() method, looking in the fully populated revision map
+for ancestors, and omitting them as the _resolved_dependencies
+collection as it is copied to a new collection. The new collection is
+then assigned to the _normalized_resolved_dependencies attribute on
+each revision object.
+
+The collection is then used to determine the immediate "down revision"
+identifiers for this revision.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a5ec04ead5d1e0b41929b8c8116a5b1}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_parse\_downgrade\_target@{\_parse\_downgrade\_target}}
+\index{\_parse\_downgrade\_target@{\_parse\_downgrade\_target}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_parse\_downgrade\_target()}{\_parse\_downgrade\_target()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a5ec04ead5d1e0b41929b8c8116a5b1} 
+ Tuple\+[Optional\+[str]\+, Optional\+[\+\_\+\+Revision\+Or\+Base]\+]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+parse\+\_\+downgrade\+\_\+target (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{current\+\_\+revisions}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{target}{, }\item[{bool}]{assert\+\_\+relative\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse downgrade command syntax :target to retrieve the target revision
+and branch label (if any) given the :current_revisions stamp of the
+database.
+
+Returns a tuple (branch_label, target_revision) where branch_label
+is a string from the command specifying the branch to consider (or
+None if no branch given), and target_revision is a Revision object
+which the command refers to. target_revisions is None if the command
+refers to 'base'. The target may be specified in absolute form, or
+relative to :current_revisions.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_abda189a3190286de5ee672fe0738310f}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_parse\_upgrade\_target@{\_parse\_upgrade\_target}}
+\index{\_parse\_upgrade\_target@{\_parse\_upgrade\_target}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_parse\_upgrade\_target()}{\_parse\_upgrade\_target()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_abda189a3190286de5ee672fe0738310f} 
+ Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+parse\+\_\+upgrade\+\_\+target (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{current\+\_\+revisions}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{target}{, }\item[{bool}]{assert\+\_\+relative\+\_\+length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse upgrade command syntax :target to retrieve the target revision
+and given the :current_revisions stamp of the database.
+
+Returns a tuple of Revision objects which should be iterated/upgraded
+to. The target may be specified in absolute form, or relative to
+:current_revisions.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_afaad601dbf2d90ee36d2472883c4c016}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_real\_bases@{\_real\_bases}}
+\index{\_real\_bases@{\_real\_bases}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_real\_bases()}{\_real\_bases()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_afaad601dbf2d90ee36d2472883c4c016} 
+ Tuple\+[str, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+real\+\_\+bases (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}All "real" base revisions as strings.
+
+:return: a tuple of string revision numbers.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ad817cd573e6318aff539441ebe632bc5}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_real\_heads@{\_real\_heads}}
+\index{\_real\_heads@{\_real\_heads}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_real\_heads()}{\_real\_heads()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_ad817cd573e6318aff539441ebe632bc5} 
+ Tuple\+[str, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+real\+\_\+heads (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}All "real" head revisions as strings.
+
+:return: a tuple of string revision numbers.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a6ab75329ff6814ba9b325dd1f7ae143d}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_revision\_map@{\_revision\_map}}
+\index{\_revision\_map@{\_revision\_map}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_revision\_map()}{\_revision\_map()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a6ab75329ff6814ba9b325dd1f7ae143d} 
+ \+\_\+\+Revision\+Map\+Type alembic.\+script.\+revision.\+Revision\+Map.\+\_\+revision\+\_\+map (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}memoized attribute, initializes the revision map from the
+initial collection.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_ab8262b53e23d7648987fc5f5a857c105}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_topological\_sort@{\_topological\_sort}}
+\index{\_topological\_sort@{\_topological\_sort}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_topological\_sort()}{\_topological\_sort()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_ab8262b53e23d7648987fc5f5a857c105} 
+ List\+[str]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+topological\+\_\+sort (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Collection\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+}]{revisions}{, }\item[{Any}]{heads}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Yield revision ids of a collection of Revision objects in
+topological sorted order (i.e. revisions always come after their
+down_revisions and dependencies). Uses the order of keys in
+_revision_map to sort.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_acf6bb6edb286af4e282fdf65c7ca496b}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!\_walk@{\_walk}}
+\index{\_walk@{\_walk}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{\_walk()}{\_walk()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_acf6bb6edb286af4e282fdf65c7ca496b} 
+ Optional\+[\+\_\+\+Revision\+Or\+Base]\+ alembic.\+script.\+revision.\+Revision\+Map.\+\_\+walk (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[Union\+[str, \doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+]\+}]{start}{, }\item[{int}]{steps}{, }\item[{Optional\+[str]\+ }]{branch\+\_\+label}{ = {\ttfamily None}, }\item[{bool }]{no\+\_\+overwalk}{ = {\ttfamily True}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Walk the requested number of :steps up (steps > 0) or down (steps < 0)
+the revision tree.
+
+:branch_label is used to select branches only when walking up.
+
+If the walk goes past the boundaries of the tree and :no_overwalk is
+True, None is returned, otherwise the walk terminates early.
+
+A RevisionError is raised if there is no unambiguous revision to
+walk to.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a314bdd4a383c5f4f13ef507485874a}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!add\_revision@{add\_revision}}
+\index{add\_revision@{add\_revision}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{add\_revision()}{add\_revision()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a1a314bdd4a383c5f4f13ef507485874a} 
+ None alembic.\+script.\+revision.\+Revision\+Map.\+add\+\_\+revision (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}}]{revision}{, }\item[{bool }]{\+\_\+replace}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}add a single revision to an existing map.
+
+This method is for single-revision use cases, it's not
+appropriate for fully populating an entire revision map.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a710ea71ac77f799fe4d7441b9305c05b}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!bases@{bases}}
+\index{bases@{bases}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{bases()}{bases()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a710ea71ac77f799fe4d7441b9305c05b} 
+ Tuple\+[str, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+bases (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}All "base" revisions as strings.
+
+These are revisions that have a ``down_revision`` of None,
+or empty tuple.
+
+:return: a tuple of string revision numbers.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a866c2ddd138703bb2c7f7e331ac2e027}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!get\_current\_head@{get\_current\_head}}
+\index{get\_current\_head@{get\_current\_head}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{get\_current\_head()}{get\_current\_head()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a866c2ddd138703bb2c7f7e331ac2e027} 
+ Optional\+[str]\+ alembic.\+script.\+revision.\+Revision\+Map.\+get\+\_\+current\+\_\+head (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+ }]{branch\+\_\+label}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the current head revision.
+
+If the script directory has multiple heads
+due to branching, an error is raised;
+:meth:`.ScriptDirectory.get_heads` should be
+preferred.
+
+:param branch_label: optional branch name which will limit the
+ heads considered to those which include that branch_label.
+
+:return: a string revision number.
+
+.. seealso::
+
+    :meth:`.ScriptDirectory.get_heads`
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a4e9f84025f21477f79250d08724d3e93}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!get\_revision@{get\_revision}}
+\index{get\_revision@{get\_revision}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{get\_revision()}{get\_revision()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a4e9f84025f21477f79250d08724d3e93} 
+ Optional\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ alembic.\+script.\+revision.\+Revision\+Map.\+get\+\_\+revision (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+}]{id\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the :class:`.Revision` instance with the given rev id.
+
+If a symbolic name such as "head" or "base" is given, resolves
+the identifier into the current head or base revision.  If the symbolic
+name refers to multiples, :class:`.MultipleHeads` is raised.
+
+Supports partial identifiers, where the given identifier
+is matched against all identifiers that start with the given
+characters; if there is exactly one match, that determines the
+full revision.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a0978b92b4345bb995c3fa1ecaa2b05da}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!get\_revisions@{get\_revisions}}
+\index{get\_revisions@{get\_revisions}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{get\_revisions()}{get\_revisions()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a0978b92b4345bb995c3fa1ecaa2b05da} 
+ Tuple\+[Optional\+[\+\_\+\+Revision\+Or\+Base]\+, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+get\+\_\+revisions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\+\_\+\+Get\+Rev\+Arg]\+     }]{id\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the :class:`.Revision` instances with the given rev id
+or identifiers.
+
+May be given a single identifier, a sequence of identifiers, or the
+special symbols "head" or "base".  The result is a tuple of one
+or more identifiers, or an empty tuple in the case of "base".
+
+In the cases where 'head', 'heads' is requested and the
+revision map is empty, returns an empty tuple.
+
+Supports partial identifiers, where the given identifier
+is matched against all identifiers that start with the given
+characters; if there is exactly one match, that determines the
+full revision.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a7ae4befd53ea9d13feda1b15ea83b0a2}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!heads@{heads}}
+\index{heads@{heads}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{heads()}{heads()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a7ae4befd53ea9d13feda1b15ea83b0a2} 
+ Tuple\+[str, ...]\+ alembic.\+script.\+revision.\+Revision\+Map.\+heads (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}All "head" revisions as strings.
+
+This is normally a tuple of length one,
+unless unmerged branches are present.
+
+:return: a tuple of string revision numbers.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1script_1_1revision_1_1RevisionMap_a34fbd1dc4f045ee12934585f6bde39c9}\index{alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}!iterate\_revisions@{iterate\_revisions}}
+\index{iterate\_revisions@{iterate\_revisions}!alembic.script.revision.RevisionMap@{alembic.script.revision.RevisionMap}}
+\doxysubsubsection{\texorpdfstring{iterate\_revisions()}{iterate\_revisions()}}
+{\footnotesize\ttfamily \label{classalembic_1_1script_1_1revision_1_1RevisionMap_a34fbd1dc4f045ee12934585f6bde39c9} 
+ Iterator\+[\doxymbox{\hyperlink{classalembic_1_1script_1_1revision_1_1Revision}{Revision}}]\+ alembic.\+script.\+revision.\+Revision\+Map.\+iterate\+\_\+revisions (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{upper}{, }\item[{\+\_\+\+Revision\+Identifier\+Type}]{lower}{, }\item[{bool }]{implicit\+\_\+base}{ = {\ttfamily False}, }\item[{bool }]{inclusive}{ = {\ttfamily False}, }\item[{bool }]{assert\+\_\+relative\+\_\+length}{ = {\ttfamily True}, }\item[{bool }]{select\+\_\+for\+\_\+downgrade}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Iterate through script revisions, starting at the given
+upper revision identifier and ending at the lower.
+
+The traversal uses strictly the `down_revision`
+marker inside each migration script, so
+it is a requirement that upper >= lower,
+else you'll get nothing back.
+
+The iterator yields :class:`.Revision` objects.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+script/\+revision.\+py\end{DoxyCompactItemize}

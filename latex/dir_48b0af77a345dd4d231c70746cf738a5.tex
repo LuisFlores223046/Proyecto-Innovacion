@@ -1,0 +1,86 @@
+\doxysection{frontend/\+node\+\_\+modules/\+json-\/schema-\/traverse Directory Reference}
+\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5}{}\label{dir_48b0af77a345dd4d231c70746cf738a5}\index{frontend/node\_modules/json-\/schema-\/traverse Directory Reference@{frontend/node\_modules/json-\/schema-\/traverse Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_c2e96c49a4883cbad9de21820258cd96}{spec}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2996}{}\doxysubsection{\texorpdfstring{json-\/schema-\/traverse}{json-\/schema-\/traverse}}\label{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2996}
+Traverse JSON Schema passing each schema object to callback
+
+\href{https://travis-ci.org/epoberezkin/json-schema-traverse}{\texttt{}} \href{https://www.npmjs.com/package/json-schema-traverse}{\texttt{}} \href{https://coveralls.io/github/epoberezkin/json-schema-traverse?branch=master}{\texttt{}}\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2997}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2997}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ json-\/schema-\/traverse}
+
+\end{DoxyCode}
+\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2998}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2998}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ traverse\ =\ require('json-\/schema-\/traverse');}
+\DoxyCodeLine{const\ schema\ =\ \{}
+\DoxyCodeLine{\ \ properties:\ \{}
+\DoxyCodeLine{\ \ \ \ foo:\ \{type:\ 'string'\},}
+\DoxyCodeLine{\ \ \ \ bar:\ \{type:\ 'integer'\}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{traverse(schema,\ \{cb\});}
+\DoxyCodeLine{//\ cb\ is\ called\ 3\ times\ with:}
+\DoxyCodeLine{//\ 1.\ root\ schema}
+\DoxyCodeLine{//\ 2.\ \{type:\ 'string'\}}
+\DoxyCodeLine{//\ 3.\ \{type:\ 'integer'\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Or:}
+\DoxyCodeLine{}
+\DoxyCodeLine{traverse(schema,\ \{cb:\ \{pre,\ post\}\});}
+\DoxyCodeLine{//\ pre\ is\ called\ 3\ times\ with:}
+\DoxyCodeLine{//\ 1.\ root\ schema}
+\DoxyCodeLine{//\ 2.\ \{type:\ 'string'\}}
+\DoxyCodeLine{//\ 3.\ \{type:\ 'integer'\}}
+\DoxyCodeLine{//}
+\DoxyCodeLine{//\ post\ is\ called\ 3\ times\ with:}
+\DoxyCodeLine{//\ 1.\ \{type:\ 'string'\}}
+\DoxyCodeLine{//\ 2.\ \{type:\ 'integer'\}}
+\DoxyCodeLine{//\ 3.\ root\ schema}
+
+\end{DoxyCode}
+
+
+Callback function {\ttfamily cb} is called for each schema object (not including draft-\/06 boolean schemas), including the root schema, in pre-\/order traversal. Schema references (\$ref) are not resolved, they are passed as is. Alternatively, you can pass a {\ttfamily \{pre, post\}} object as {\ttfamily cb}, and then {\ttfamily pre} will be called before traversing child elements, and {\ttfamily post} will be called after all child elements have been traversed.
+
+Callback is passed these parameters:\+
+
+
+\begin{DoxyItemize}
+\item {\itshape schema}:\+ the current schema object
+\item {\itshape JSON pointer}:\+ from the root schema to the current schema object
+\item {\itshape root schema}:\+ the schema passed to {\ttfamily traverse} object
+\item {\itshape parent JSON pointer}:\+ from the root schema to the parent schema object (see below)
+\item {\itshape parent keyword}:\+ the keyword inside which this schema appears (e.\+g. {\ttfamily properties}, {\ttfamily any\+Of}, etc.)
+\item {\itshape parent schema}:\+ not necessarily parent object/\+array; in the example above the parent schema for {\ttfamily \{type:\+ \textquotesingle{}string\textquotesingle{}\}} is the root schema
+\item {\itshape index/\+property}:\+ index or property name in the array/\+object containing multiple schemas; in the example above for {\ttfamily \{type:\+ \textquotesingle{}string\textquotesingle{}\}} the property name is {\ttfamily \textquotesingle{}foo\textquotesingle{}}
+\end{DoxyItemize}\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2999}{}\doxysubsection{\texorpdfstring{Traverse objects in all unknown keywords}{Traverse objects in all unknown keywords}}\label{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md2999}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ traverse\ =\ require('json-\/schema-\/traverse');}
+\DoxyCodeLine{const\ schema\ =\ \{}
+\DoxyCodeLine{\ \ mySchema:\ \{}
+\DoxyCodeLine{\ \ \ \ minimum:\ 1,}
+\DoxyCodeLine{\ \ \ \ maximum:\ 2}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{traverse(schema,\ \{allKeys:\ true,\ cb\});}
+\DoxyCodeLine{//\ cb\ is\ called\ 2\ times\ with:}
+\DoxyCodeLine{//\ 1.\ root\ schema}
+\DoxyCodeLine{//\ 2.\ mySchema}
+
+\end{DoxyCode}
+
+
+Without option {\ttfamily all\+Keys:\+ true} callback will be called only with root schema.\hypertarget{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md3000}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_48b0af77a345dd4d231c70746cf738a5_autotoc_md3000}
+\href{https://github.com/epoberezkin/json-schema-traverse/blob/master/LICENSE}{\texttt{MIT}} 

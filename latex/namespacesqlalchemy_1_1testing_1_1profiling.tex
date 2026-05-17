@@ -1,0 +1,58 @@
+\doxysection{sqlalchemy.\+testing.\+profiling Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1testing_1_1profiling}{}\label{namespacesqlalchemy_1_1testing_1_1profiling}\index{sqlalchemy.testing.profiling@{sqlalchemy.testing.profiling}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1testing_1_1profiling_1_1ProfileStatsFile}{Profile\+Stats\+File}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_ab44a44b4436809dc9d078c3a1992a989}\label{namespacesqlalchemy_1_1testing_1_1profiling_ab44a44b4436809dc9d078c3a1992a989} 
+{\bfseries \+\_\+start\+\_\+current\+\_\+test} (id\+\_\+)
+\item 
+\doxymbox{\hyperlink{namespacesqlalchemy_1_1testing_1_1profiling_ad100630ab4a7106070b4995de28f4aa7}{function\+\_\+call\+\_\+count}} (variance=0.\+05, times=1, warmup=0)
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_a40340ef33dd298fae83330cc59949d98}\label{namespacesqlalchemy_1_1testing_1_1profiling_a40340ef33dd298fae83330cc59949d98} 
+{\bfseries count\+\_\+functions} (variance=0.\+05)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_a176f664f0f937c52bfa4b8bc19c7126c}\label{namespacesqlalchemy_1_1testing_1_1profiling_a176f664f0f937c52bfa4b8bc19c7126c} 
+{\bfseries c\+Profile} = None
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_a2dfde524577ad29b50d7282ef65c4d85}\label{namespacesqlalchemy_1_1testing_1_1profiling_a2dfde524577ad29b50d7282ef65c4d85} 
+{\bfseries \+\_\+profile\+\_\+stats} = None
+\item 
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_ae3393cc7bdb511959e3d2a13d7face32}\label{namespacesqlalchemy_1_1testing_1_1profiling_ae3393cc7bdb511959e3d2a13d7face32} 
+{\bfseries \+\_\+current\+\_\+test} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Profiling support for unit and performance tests.
+
+These are special purpose profiling methods which operate
+in a more fine-grained way than nose's profiling plugin.
+\end{DoxyVerb}
+ 
+
+\label{namespacesqlalchemy_1_1testing_1_1profiling_doc-func-members}
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacesqlalchemy_1_1testing_1_1profiling_ad100630ab4a7106070b4995de28f4aa7}\index{sqlalchemy.testing.profiling@{sqlalchemy.testing.profiling}!function\_call\_count@{function\_call\_count}}
+\index{function\_call\_count@{function\_call\_count}!sqlalchemy.testing.profiling@{sqlalchemy.testing.profiling}}
+\doxysubsubsection{\texorpdfstring{function\_call\_count()}{function\_call\_count()}}
+{\footnotesize\ttfamily \label{namespacesqlalchemy_1_1testing_1_1profiling_ad100630ab4a7106070b4995de28f4aa7} 
+function\+\_\+call\+\_\+count (\begin{DoxyParamCaption}\item[{}]{variance}{ = {\ttfamily 0.05}, }\item[{}]{times}{ = {\ttfamily 1}, }\item[{}]{warmup}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Assert a target for a test case's function call count.
+
+The main purpose of this assertion is to detect changes in
+callcounts for various functions - the actual number is not as important.
+Callcounts are stored in a file keyed to Python version and OS platform
+information.  This file is generated automatically for new tests,
+and versioned so that unexpected changes in callcounts will be detected.
+\end{DoxyVerb}
+ 

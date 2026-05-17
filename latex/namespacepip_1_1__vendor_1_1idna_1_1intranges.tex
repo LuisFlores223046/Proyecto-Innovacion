@@ -1,0 +1,48 @@
+\doxysection{pip.\+\_\+vendor.\+idna.\+intranges Namespace Reference}
+\hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges}{}\label{namespacepip_1_1__vendor_1_1idna_1_1intranges}\index{pip.\_vendor.idna.intranges@{pip.\_vendor.idna.intranges}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[int,...]\+ \doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1idna_1_1intranges_a307669c1a5aa3282ae0d82f0dfb376ab}{intranges\+\_\+from\+\_\+list}} (List\+[int]\+ list\+\_\+)
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges_ae753b04f33ecbfc5290d7b5c37f81dac}\label{namespacepip_1_1__vendor_1_1idna_1_1intranges_ae753b04f33ecbfc5290d7b5c37f81dac} 
+int {\bfseries \+\_\+encode\+\_\+range} (int start, int end)
+\item 
+\Hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges_aa27053a49d3d45ca19158613760f2e00}\label{namespacepip_1_1__vendor_1_1idna_1_1intranges_aa27053a49d3d45ca19158613760f2e00} 
+Tuple\+[int, int]\+ {\bfseries \+\_\+decode\+\_\+range} (int r)
+\item 
+bool \doxymbox{\hyperlink{namespacepip_1_1__vendor_1_1idna_1_1intranges_ac8f8797d9acab9a40fc6f061f8d32759}{intranges\+\_\+contain}} (int int\+\_\+, Tuple\+[int,...]\+ ranges)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Given a list of integers, made up of (hopefully) a small number of long runs
+of consecutive integers, compute a representation of the form
+((start1, end1), (start2, end2) ...). Then answer the question "was x present
+in the original list?" in time O(log(# runs)).
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__vendor_1_1idna_1_1intranges_doc-func-members}
+\Hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges_ac8f8797d9acab9a40fc6f061f8d32759}\index{pip.\_vendor.idna.intranges@{pip.\_vendor.idna.intranges}!intranges\_contain@{intranges\_contain}}
+\index{intranges\_contain@{intranges\_contain}!pip.\_vendor.idna.intranges@{pip.\_vendor.idna.intranges}}
+\doxysubsubsection{\texorpdfstring{intranges\_contain()}{intranges\_contain()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1idna_1_1intranges_ac8f8797d9acab9a40fc6f061f8d32759} 
+ bool intranges\+\_\+contain (\begin{DoxyParamCaption}\item[{int}]{int\+\_\+}{, }\item[{Tuple\+[int, ...]\+}]{ranges}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Determine if `int_` falls into one of the ranges in `ranges`.\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__vendor_1_1idna_1_1intranges_a307669c1a5aa3282ae0d82f0dfb376ab}\index{pip.\_vendor.idna.intranges@{pip.\_vendor.idna.intranges}!intranges\_from\_list@{intranges\_from\_list}}
+\index{intranges\_from\_list@{intranges\_from\_list}!pip.\_vendor.idna.intranges@{pip.\_vendor.idna.intranges}}
+\doxysubsubsection{\texorpdfstring{intranges\_from\_list()}{intranges\_from\_list()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__vendor_1_1idna_1_1intranges_a307669c1a5aa3282ae0d82f0dfb376ab} 
+ Tuple\+[int, ...]\+ intranges\+\_\+from\+\_\+list (\begin{DoxyParamCaption}\item[{List\+[int]\+}]{list\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Represent a list of integers as a sequence of ranges:
+((start_0, end_0), (start_1, end_1), ...), such that the original
+integers are exactly those x such that start_i <= x < end_i for some i.
+
+Ranges are encoded as single integers (start << 32 | end), not as tuples.
+\end{DoxyVerb}
+ 

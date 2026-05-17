@@ -1,0 +1,271 @@
+\doxysection{alembic.\+ddl.\+sqlite.\+SQLite\+Impl Class Reference}
+\hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl}{}\label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+Inheritance diagram for alembic.\+ddl.\+sqlite.\+SQLite\+Impl:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.844291cm]{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a76e0c13df270cc2f43cf8b6593e2734b}{requires\+\_\+recreate\+\_\+in\+\_\+batch}} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}} batch\+\_\+op)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ae3e37fe696dbbd958692789ce2c9af11}{add\+\_\+constraint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Constraint}{Constraint}} const)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ad2441a12ace920315e5030aeab48a9a4}{drop\+\_\+constraint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Constraint}{Constraint}} const)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a2a519ff7aaaf2e255abe525b4b43d032}{compare\+\_\+server\+\_\+default}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ inspector\+\_\+column, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ metadata\+\_\+column, Optional\+[str]\+ rendered\+\_\+metadata\+\_\+default, Optional\+[str]\+ rendered\+\_\+inspector\+\_\+default)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a1faafb1fd35b58f06fd53c14e7d7c329}{autogen\+\_\+column\+\_\+reflect}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1Inspector}{Inspector}} inspector, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table, Dict\+[str, Any]\+ column\+\_\+info)
+\item 
+str \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a22cc3bce46b4e6b56fb6662938b53cf5}{render\+\_\+ddl\+\_\+sql\+\_\+expr}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}} expr, bool is\+\_\+server\+\_\+default=False, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ab6e2d17776766135f3f4983428037abd}{cast\+\_\+for\+\_\+batch\+\_\+migrate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ existing, Dict\+[str, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1Cast}{Cast}}]\+]\+ existing\+\_\+transfer, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}} new\+\_\+type)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a4442425ada9c0ed8ceccddc542a1cf28}{correct\+\_\+for\+\_\+autogen\+\_\+constraints}} (self, conn\+\_\+unique\+\_\+constraints, conn\+\_\+indexes, metadata\+\_\+unique\+\_\+constraints, metadata\+\_\+indexes)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+ connection, bool as\+\_\+sql, Optional\+[bool]\+ transactional\+\_\+ddl, Optional\+[Text\+IO]\+ output\+\_\+buffer, Dict\+[str, Any]\+ context\+\_\+opts)
+\item 
+Type\+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}]\+ {\bfseries get\+\_\+by\+\_\+dialect} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect)
+\item 
+None {\bfseries static\+\_\+output} (self, str text)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a7726b7a170425b7bb7bff8bb1ab7e64d}{prep\+\_\+table\+\_\+for\+\_\+batch}} (self, \doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1ApplyBatchImpl}{Apply\+Batch\+Impl}} batch\+\_\+impl, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}]\+ {\bfseries bind} (self)
+\item 
+None {\bfseries execute} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+ sql, Optional\+[dict\+[str, Any]\+]\+ execution\+\_\+options=None)
+\item 
+None {\bfseries alter\+\_\+column} (self, str table\+\_\+name, str column\+\_\+name, Optional\+[bool]\+ nullable=None, Union\+[\+\_\+\+Server\+Default, Literal\+[False]\+]\+ server\+\_\+default=False, Optional\+[str]\+ name=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ type\+\_\+=None, Optional\+[str]\+ schema=None, Optional\+[bool]\+ autoincrement=None, Optional\+[Union\+[str, Literal\+[False]\+]\+]\+ comment=False, Optional\+[str]\+ existing\+\_\+comment=None, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}]\+ existing\+\_\+type=None, Optional\+[\+\_\+\+Server\+Default]\+ existing\+\_\+server\+\_\+default=None, Optional\+[bool]\+ existing\+\_\+nullable=None, Optional\+[bool]\+ existing\+\_\+autoincrement=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None {\bfseries add\+\_\+column} (self, str table\+\_\+name, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ column, Optional\+[Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+]\+ schema=None)
+\item 
+None {\bfseries drop\+\_\+column} (self, str table\+\_\+name, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ column, Optional\+[str]\+ schema=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kw)
+\item 
+None {\bfseries rename\+\_\+table} (self, str old\+\_\+table\+\_\+name, Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+ new\+\_\+table\+\_\+name, Optional\+[Union\+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1quoted__name}{quoted\+\_\+name}}]\+]\+ schema=None)
+\item 
+None {\bfseries create\+\_\+table} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries drop\+\_\+table} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries create\+\_\+index} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} index, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None {\bfseries create\+\_\+table\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries drop\+\_\+table\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}} table)
+\item 
+None {\bfseries create\+\_\+column\+\_\+comment} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement}{Column\+Element}}\+[Any]\+ column)
+\item 
+None {\bfseries drop\+\_\+index} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} index, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+None {\bfseries bulk\+\_\+insert} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1TableClause}{Table\+Clause}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}]\+ table, List\+[dict]\+ rows, bool multiinsert=True)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_ae5002a0a496f3a9f7f61fc104f0abe9f}{compare\+\_\+type}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+ inspector\+\_\+column, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}} metadata\+\_\+column)
+\item 
+None {\bfseries correct\+\_\+for\+\_\+autogen\+\_\+foreignkeys} (self, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1ForeignKeyConstraint}{Foreign\+Key\+Constraint}}]\+ conn\+\_\+fks, Set\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1ForeignKeyConstraint}{Foreign\+Key\+Constraint}}]\+ metadata\+\_\+fks)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a736c9ad7507e21f5271fc75479988fee}{start\+\_\+migrations}} (self)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a785adf45bbd09d97f624ad2ea20a2189}{emit\+\_\+begin}} (self)
+\item 
+None \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a880469ff983d31a212db51a3eafffc2b}{emit\+\_\+commit}} (self)
+\item 
+Union\+[str, Literal\+[False]\+]\+ {\bfseries render\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}} type\+\_\+obj, \doxymbox{\hyperlink{classalembic_1_1autogenerate_1_1api_1_1AutogenContext}{Autogen\+Context}} autogen\+\_\+context)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a29d34b1cde559e3c5903f6faf7c3049f}{compare\+\_\+indexes}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} metadata\+\_\+index, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} reflected\+\_\+index)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1ComparisonResult}{Comparison\+Result}} \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_adb2358059da3ed2a9bc1303d4643c1ff}{compare\+\_\+unique\+\_\+constraint}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1UniqueConstraint}{Unique\+Constraint}} metadata\+\_\+constraint, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1UniqueConstraint}{Unique\+Constraint}} reflected\+\_\+constraint)
+\item 
+Dict\+[str, Any]\+ {\bfseries adjust\+\_\+reflected\+\_\+dialect\+\_\+options} (self, Dict\+[str, Any]\+ reflected\+\_\+object, str kind)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1ImplMeta}{alembic.\+ddl.\+impl.\+Impl\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (cls, str classname, Tuple\+[Type\+[\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{Default\+Impl}}]\+]\+ bases, Dict\+[str, Any]\+ dict\+\_\+)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a30575c7ba3d6a922f6aff832521a9d95}{\+\_\+guess\+\_\+if\+\_\+default\+\_\+is\+\_\+unparenthesized\+\_\+sql\+\_\+expr}} (self, Optional\+[str]\+ expr)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}]\+ {\bfseries \+\_\+exec} (self, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}, str]\+ construct, Optional\+[dict\+[str, Any]\+]\+ execution\+\_\+options=None, Sequence\+[dict]\+ multiparams=(), Dict\+[str, Any]\+ params=util.\+immutabledict())
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} {\bfseries \+\_\+tokenize\+\_\+column\+\_\+type} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}} column)
+\item 
+bool {\bfseries \+\_\+column\+\_\+types\+\_\+match} (self, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} inspector\+\_\+params, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} metadata\+\_\+params)
+\item 
+bool \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a73a865071d3e9fb44f12fd3cb49157ef}{\+\_\+column\+\_\+args\+\_\+match}} (self, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} inspected\+\_\+params, \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1Params}{Params}} meta\+\_\+params)
+\item 
+Callable {\bfseries \+\_\+compat\+\_\+autogen\+\_\+column\+\_\+reflect} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1Inspector}{Inspector}} inspector)
+\item 
+{\bfseries \+\_\+compare\+\_\+identity\+\_\+default} (self, metadata\+\_\+identity, inspector\+\_\+identity)
+\item 
+Optional\+[str]\+ {\bfseries \+\_\+compare\+\_\+index\+\_\+unique} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} metadata\+\_\+index, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Index}{Index}} reflected\+\_\+index)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1__constraint__sig}{\+\_\+constraint\+\_\+sig}}\+[\+\_\+autogen.\+\_\+C]\+ {\bfseries \+\_\+create\+\_\+metadata\+\_\+constraint\+\_\+sig} (self, \+\_\+autogen.\+\_\+C constraint, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any opts)
+\item 
+\doxymbox{\hyperlink{classalembic_1_1ddl_1_1__autogen_1_1__constraint__sig}{\+\_\+constraint\+\_\+sig}}\+[\+\_\+autogen.\+\_\+C]\+ {\bfseries \+\_\+create\+\_\+reflected\+\_\+constraint\+\_\+sig} (self, \+\_\+autogen.\+\_\+C constraint, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any opts)
+\item 
+{\bfseries \+\_\+skip\+\_\+functional\+\_\+indexes} (self, metadata\+\_\+indexes, conn\+\_\+indexes)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries dialect} = dialect
+\item 
+{\bfseries connection} = connection
+\item 
+{\bfseries as\+\_\+sql} = as\+\_\+sql
+\item 
+{\bfseries literal\+\_\+binds} = context\+\_\+opts.\+get("{}literal\+\_\+binds"{}, False)
+\item 
+{\bfseries output\+\_\+buffer} = output\+\_\+buffer
+\item 
+dict {\bfseries memo} = \{\}
+\item 
+{\bfseries context\+\_\+opts} = context\+\_\+opts
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries transactional\+\_\+ddl} = False
+\item 
+str {\bfseries command\+\_\+terminator} = "{};"{}
+\item 
+tuple {\bfseries type\+\_\+synonyms} = (\{"{}NUMERIC"{}, "{}DECIMAL"{}\},)
+\item 
+tuple {\bfseries type\+\_\+arg\+\_\+extract} = ()
+\item 
+tuple {\bfseries identity\+\_\+attrs\+\_\+ignore} = ("{}order"{}, "{}on\+\_\+null"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1ImplMeta}{alembic.\+ddl.\+impl.\+Impl\+Meta}}}
+\begin{DoxyCompactItemize}
+\item 
+dict {\bfseries \+\_\+impls} = \{\}
+\end{DoxyCompactItemize}
+
+
+\label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_doc-func-members}
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a30575c7ba3d6a922f6aff832521a9d95}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!\_guess\_if\_default\_is\_unparenthesized\_sql\_expr@{\_guess\_if\_default\_is\_unparenthesized\_sql\_expr}}
+\index{\_guess\_if\_default\_is\_unparenthesized\_sql\_expr@{\_guess\_if\_default\_is\_unparenthesized\_sql\_expr}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{\_guess\_if\_default\_is\_unparenthesized\_sql\_expr()}{\_guess\_if\_default\_is\_unparenthesized\_sql\_expr()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a30575c7ba3d6a922f6aff832521a9d95} 
+ bool alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+\_\+guess\+\_\+if\+\_\+default\+\_\+is\+\_\+unparenthesized\+\_\+sql\+\_\+expr (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+     }]{expr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Determine if a server default is a SQL expression or a constant.
+
+There are too many assertions that expect server defaults to round-trip
+identically without parenthesis added so we will add parens only in
+very specific cases.
+\end{DoxyVerb}
+ \Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ae3e37fe696dbbd958692789ce2c9af11}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!add\_constraint@{add\_constraint}}
+\index{add\_constraint@{add\_constraint}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{add\_constraint()}{add\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ae3e37fe696dbbd958692789ce2c9af11} 
+alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+add\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Constraint}{Constraint}}}]{const}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a1faafb1fd35b58f06fd53c14e7d7c329}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!autogen\_column\_reflect@{autogen\_column\_reflect}}
+\index{autogen\_column\_reflect@{autogen\_column\_reflect}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{autogen\_column\_reflect()}{autogen\_column\_reflect()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a1faafb1fd35b58f06fd53c14e7d7c329} 
+ None alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+autogen\+\_\+column\+\_\+reflect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1reflection_1_1Inspector}{Inspector}}}]{inspector}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Table}{Table}}}]{table}{, }\item[{Dict\+[str, Any]\+}]{column\+\_\+info}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A hook that is attached to the 'column_reflect' event for when
+a Table is reflected from the database during the autogenerate
+process.
+
+Dialects can elect to modify the information gathered here.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_ac84f2efbb9fc891a8015b00702ae9436}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ab6e2d17776766135f3f4983428037abd}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!cast\_for\_batch\_migrate@{cast\_for\_batch\_migrate}}
+\index{cast\_for\_batch\_migrate@{cast\_for\_batch\_migrate}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{cast\_for\_batch\_migrate()}{cast\_for\_batch\_migrate()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ab6e2d17776766135f3f4983428037abd} 
+ None alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+cast\+\_\+for\+\_\+batch\+\_\+migrate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+}]{existing}{, }\item[{Dict\+[str, Union\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1Cast}{Cast}}]\+]\+}]{existing\+\_\+transfer}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}}]{new\+\_\+type}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a2a519ff7aaaf2e255abe525b4b43d032}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!compare\_server\_default@{compare\_server\_default}}
+\index{compare\_server\_default@{compare\_server\_default}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{compare\_server\_default()}{compare\_server\_default()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a2a519ff7aaaf2e255abe525b4b43d032} 
+ bool alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+compare\+\_\+server\+\_\+default (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+}]{inspector\+\_\+column}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+}]{metadata\+\_\+column}{, }\item[{Optional\+[str]\+}]{rendered\+\_\+metadata\+\_\+default}{, }\item[{Optional\+[str]\+}]{rendered\+\_\+inspector\+\_\+default}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a4442425ada9c0ed8ceccddc542a1cf28}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!correct\_for\_autogen\_constraints@{correct\_for\_autogen\_constraints}}
+\index{correct\_for\_autogen\_constraints@{correct\_for\_autogen\_constraints}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{correct\_for\_autogen\_constraints()}{correct\_for\_autogen\_constraints()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a4442425ada9c0ed8ceccddc542a1cf28} 
+alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+correct\+\_\+for\+\_\+autogen\+\_\+constraints (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{conn\+\_\+unique\+\_\+constraints}{, }\item[{}]{conn\+\_\+indexes}{, }\item[{}]{metadata\+\_\+unique\+\_\+constraints}{, }\item[{}]{metadata\+\_\+indexes}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ad2441a12ace920315e5030aeab48a9a4}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!drop\_constraint@{drop\_constraint}}
+\index{drop\_constraint@{drop\_constraint}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{drop\_constraint()}{drop\_constraint()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_ad2441a12ace920315e5030aeab48a9a4} 
+alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+drop\+\_\+constraint (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Constraint}{Constraint}}}]{const}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a22cc3bce46b4e6b56fb6662938b53cf5}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!render\_ddl\_sql\_expr@{render\_ddl\_sql\_expr}}
+\index{render\_ddl\_sql\_expr@{render\_ddl\_sql\_expr}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{render\_ddl\_sql\_expr()}{render\_ddl\_sql\_expr()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a22cc3bce46b4e6b56fb6662938b53cf5} 
+ str alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+render\+\_\+ddl\+\_\+sql\+\_\+expr (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement}{Clause\+Element}}}]{expr}{, }\item[{bool }]{is\+\_\+server\+\_\+default}{ = {\ttfamily False}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Render a SQL expression that is typically a server default,
+index expression, etc.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a1df853d8284ad546750511b835603b5b}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+\Hypertarget{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a76e0c13df270cc2f43cf8b6593e2734b}\index{alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}!requires\_recreate\_in\_batch@{requires\_recreate\_in\_batch}}
+\index{requires\_recreate\_in\_batch@{requires\_recreate\_in\_batch}!alembic.ddl.sqlite.SQLiteImpl@{alembic.ddl.sqlite.SQLiteImpl}}
+\doxysubsubsection{\texorpdfstring{requires\_recreate\_in\_batch()}{requires\_recreate\_in\_batch()}}
+{\footnotesize\ttfamily \label{classalembic_1_1ddl_1_1sqlite_1_1SQLiteImpl_a76e0c13df270cc2f43cf8b6593e2734b} 
+ bool alembic.\+ddl.\+sqlite.\+SQLite\+Impl.\+requires\+\_\+recreate\+\_\+in\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classalembic_1_1operations_1_1batch_1_1BatchOperationsImpl}{Batch\+Operations\+Impl}}     }]{batch\+\_\+op}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the given :class:`.BatchOperationsImpl`
+would need the table to be recreated and copied in order to
+proceed.
+
+Normally, only returns True on SQLite when operations other
+than add_column are present.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classalembic_1_1ddl_1_1impl_1_1DefaultImpl_a83d71629a27003ae0bf7b7db5e22aa82}{alembic.\+ddl.\+impl.\+Default\+Impl}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+alembic/\+ddl/\+sqlite.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\doxysection{fastapi.\+background.\+Background\+Tasks Class Reference}
+\hypertarget{classfastapi_1_1background_1_1BackgroundTasks}{}\label{classfastapi_1_1background_1_1BackgroundTasks}\index{fastapi.background.BackgroundTasks@{fastapi.background.BackgroundTasks}}
+Inheritance diagram for fastapi.\+background.\+Background\+Tasks:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classfastapi_1_1background_1_1BackgroundTasks}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classfastapi_1_1background_1_1BackgroundTasks_a1264c05dfd9e01ab865131e6dcf44d45}{add\+\_\+task}} (self, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Callable\+[P, Any]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                The function to call after the response is sent.                It can be a regular \`{}def\`{} function or an \`{}async def\`{} function.                "{}"{}"{}),]\+ func, \texorpdfstring{$\ast$}{*}P.\+args args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}P.\+kwargs kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A collection of background tasks that will be called after a response has been
+sent to the client.
+
+Read more about it in the
+[FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
+
+## Example
+
+```python
+from fastapi import BackgroundTasks, FastAPI
+
+app = FastAPI()
+
+
+def write_notification(email: str, message=""):
+    with open("log.txt", mode="w") as email_file:
+        content = f"notification for {email}: {message}"
+        email_file.write(content)
+
+
+@app.post("/send-notification/{email}")
+async def send_notification(email: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(write_notification, email, message="some notification")
+    return {"message": "Notification sent in the background"}
+```
+\end{DoxyVerb}
+ 
+
+\label{classfastapi_1_1background_1_1BackgroundTasks_doc-func-members}
+\Hypertarget{classfastapi_1_1background_1_1BackgroundTasks_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classfastapi_1_1background_1_1BackgroundTasks_a1264c05dfd9e01ab865131e6dcf44d45}\index{fastapi.background.BackgroundTasks@{fastapi.background.BackgroundTasks}!add\_task@{add\_task}}
+\index{add\_task@{add\_task}!fastapi.background.BackgroundTasks@{fastapi.background.BackgroundTasks}}
+\doxysubsubsection{\texorpdfstring{add\_task()}{add\_task()}}
+{\footnotesize\ttfamily \label{classfastapi_1_1background_1_1BackgroundTasks_a1264c05dfd9e01ab865131e6dcf44d45} 
+ None fastapi.\+background.\+Background\+Tasks.\+add\+\_\+task (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[             Callable\+[P, Any]\+,             \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}(                 "{}"{}"{}                The function to call after the response is sent.                It can be a regular \`{}def\`{} function or an \`{}async def\`{} function.                "{}"{}"{}             ),         ]\+}]{func}{, }\item[{\texorpdfstring{$\ast$}{*}P.\+args}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}P.\+kwargs}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a function to be called in the background after the response is sent.
+
+Read more about it in the
+[FastAPI docs for Background Tasks](https://fastapi.tiangolo.com/tutorial/background-tasks/).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+background.\+py\end{DoxyCompactItemize}

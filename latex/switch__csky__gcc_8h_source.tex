@@ -1,0 +1,54 @@
+\doxysection{switch\+\_\+csky\+\_\+gcc.\+h}
+\hypertarget{switch__csky__gcc_8h_source}{}\label{switch__csky__gcc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_csky\_gcc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_csky\_gcc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ REG\_FP\ "{}r8"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_CSKYABIV2\_\_}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\_GENERAL\ "{}r4"{},\ "{}r5"{},\ "{}r6"{},\ "{}r7"{},\ "{}r9"{},\ "{}r10"{},\ "{}r11"{},\ "{}r15"{},\(\backslash\)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}r16"{},\ "{}r17"{},\ "{}r18"{},\ "{}r19"{},\ "{}r20"{},\ "{}r21"{},\ "{}r22"{},\(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}r23"{},\ "{}r24"{},\ "{}r25"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#if\ defined\ (\_\_CSKY\_HARD\_FLOAT\_\_)\ ||\ (\_\_CSKY\_VDSP\_\_)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL,\ "{}vr8"{},\ "{}vr9"{},\ "{}vr10"{},\ "{}vr11"{},\ "{}vr12"{},\(\backslash\)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}vr13"{},\ "{}vr14"{},\ "{}vr15"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ REGS\_TO\_SAVE\_GENERAL}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ "{}r9"{},\ "{}r10"{},\ "{}r11"{},\ "{}r12"{},\ "{}r13"{},\ "{}r15"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00022\ \_\_attribute\_\_((\doxymbox{\hyperlink{namespacejinja2_1_1optimizer_a463f07ae84fc1b9051dedd32be0bbf62}{optimize}}(\textcolor{stringliteral}{"{}no-\/omit-\/frame-\/pointer"{}})))}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}mov\ \%0,\ sp"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref));}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}addu\ sp,\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}addu\ "{}}REG\_FP\textcolor{stringliteral}{"{},\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}movi\ \%0,\ 0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (result));}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

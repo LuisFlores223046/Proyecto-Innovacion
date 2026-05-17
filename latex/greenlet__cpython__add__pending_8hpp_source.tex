@@ -1,0 +1,178 @@
+\doxysection{greenlet\+\_\+cpython\+\_\+add\+\_\+pending.\+hpp}
+\hypertarget{greenlet__cpython__add__pending_8hpp_source}{}\label{greenlet__cpython__add__pending_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_cpython\_add\_pending.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_cpython\_add\_pending.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_CPYTHON\_ADD\_PENDING\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_CPYTHON\_ADD\_PENDING\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#if\ (PY\_VERSION\_HEX\ >=\ 0x30800A0\ \&\&\ PY\_VERSION\_HEX\ <\ 0x3090000)\ \&\&\ !(defined(\_WIN32)\ ||\ defined(WIN32))}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ XXX:\ From\ Python\ 3.8a3\ [1]\ up\ until\ Python\ 3.9a6\ [2][3],}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \`{}\`{}Py\_AddPendingCall``\ would\ try\ to\ produce\ a\ Python\ exception\ if}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ the\ interpreter\ was\ in\ the\ beginning\ of\ shutting\ down\ when\ this}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ function\ is\ called.\ However,\ \`{}\`{}Py\_AddPendingCall``\ doesn't\ require}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ the\ GIL,\ and\ we\ are\ absolutely\ not\ holding\ it\ when\ we\ make\ that}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ call.\ That\ means\ that\ trying\ to\ create\ the\ Python\ exception\ is}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ using\ the\ C\ API\ in\ an\ undefined\ state;\ here\ the\ C\ API\ detects\ this}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ and\ aborts\ the\ process\ with\ an\ error\ ("{}Fatal\ Python\ error:\ Python}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ memory\ allocator\ called\ without\ holding\ the\ GIL"{}:\ Add\ -\/>}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ PyErr\_SetString\ -\/>\ PyUnicode\_New\ -\/>\ PyObject\_Malloc).\ This\ arises}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ (obviously)\ in\ multi-\/threaded\ programs\ and\ happens\ if\ one\ thread\ is}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ exiting\ and\ cleaning\ up\ its\ thread-\/local\ data\ while\ the\ other}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ thread\ is\ trying\ to\ shut\ down\ the\ interpreter.\ A\ crash\ on\ shutdown}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ is\ still\ a\ crash\ and\ could\ result\ in\ data\ loss\ (e.g.,\ daemon}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ threads\ are\ still\ running,\ pending\ signal\ handlers\ may\ be\ present,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ buffers\ may\ not\ be\ flushed,\ there\ may\ be\ \_\_del\_\_\ that\ need\ run,}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ etc),\ so\ we\ have\ to\ work\ around\ it.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Of\ course,\ we\ can\ (and\ do)\ check\ for\ whether\ the\ interpreter\ is}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ shutting\ down\ before\ calling\ \`{}\`{}Py\_AddPendingCall``,\ but\ that's\ a}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ race\ condition\ since\ we\ don't\ hold\ the\ GIL,\ and\ so\ we\ may\ not}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ actually\ get\ the\ right\ answer.\ Plus,\ \`{}\`{}Py\_FinalizeEx``\ actually}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ calls\ \`{}\`{}\_Py\_FinishPendingCalls``\ (which\ sets\ the\ pending-\/>finishing}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ flag,\ which\ is\ used\ to\ gate\ creating\ the\ exceptioen)\ *before*}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ publishing\ any\ other\ data\ that\ would\ let\ us\ detect\ the\ shutdown}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ (such\ as\ runtime-\/>finalizing).\ So\ that\ point\ is\ moot.}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Our\ solution\ for\ those\ versions\ is\ to\ inline\ the\ same\ code,\ without}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ the\ problematic\ bit\ that\ sets\ the\ exception.\ Unfortunately,\ all\ of}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ the\ structure\ definitions\ are\ private/opaque,\ *and*\ we\ can't}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ actually\ count\ on\ being\ able\ to\ include\ their\ definitions\ from}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \`{}\`{}internal/pycore\_*``,\ because\ on\ some\ platforms\ those\ header\ files}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ are\ incomplete\ (i.e.,\ on\ macOS\ with\ macports\ 3.8,\ the\ includes\ are}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ fine,\ but\ on\ Ubuntu\ jammy\ with\ 3.8\ from\ ppa:deadsnakes\ or\ GitHub}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Actions\ 3.8\ (I\ think\ it's\ Ubuntu\ 18.04),\ they\ con't\ be\ used;\ at}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ least,\ I\ couldn't\ get\ them\ to\ work).\ So\ we\ need\ to\ define\ the}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ structures\ and\ \_PyRuntime\ data\ member\ ourself.\ Yet\ more}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ unfortunately,\ \_PyRuntime\ \ won't\ link\ on\ Windows,\ so\ we\ can\ only\ do}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ this\ on\ other\ platforms.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ [1]\ https://github.com/python/cpython/commit/842a2f07f2f08a935ef470bfdaeef40f87490cfc}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ [2]\ https://github.com/python/cpython/commit/cfc3c2f8b34d3864717ab584c5b6c260014ba55a}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ [3]\ https://github.com/python/cpython/issues/81308}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ define\ GREENLET\_BROKEN\_PY\_ADD\_PENDING\ 1}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ When\ defining\ these\ structures,\ the\ important\ thing\ is\ to\ get}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ binary\ compatibility,\ i.e.,\ structure\ layout.\ For\ that,\ we\ only}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ need\ to\ define\ fields\ up\ to\ the\ ones\ we\ use;\ after\ that\ they're}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ irrelevant\ UNLESS\ the\ structure\ is\ included\ in\ another\ structure}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ *before*\ the\ structure\ we're\ interested\ in\ -\/-\/-\/\ in\ that\ case,\ it}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ must\ be\ complete.\ Ellipsis\ indicate\ elided\ trailing\ members.}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ Pointer\ types\ are\ changed\ to\ void*\ to\ keep\ from\ having\ to\ define}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ more\ structures.}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ From\ "{}internal/pycore\_atomic.h"{}}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ There\ are\ several\ different\ definitions\ of\ this,\ including\ the}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ plain\ \`{}\`{}int``\ version,\ a\ \`{}\`{}volatile\ int``\ and\ an\ \`{}\`{}\_Atomic\ int``}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ I\ don't\ think\ any\ of\ those\ change\ the\ size/layout.}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\_Py\_atomic\_int\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{int}\ \_value;}
+\DoxyCodeLine{00066\ \}\ \_Py\_atomic\_int;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ This\ needs\ too\ much\ infrastructure,\ so\ we\ just\ do\ a\ regular\ store.}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ \_Py\_atomic\_store\_relaxed(ATOMIC\_VAL,\ NEW\_VAL)\ \(\backslash\)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \ \ (ATOMIC\_VAL)-\/>\_value\ =\ NEW\_VAL}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ From\ "{}internal/pycore\_pymem.h"{}}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ NUM\_GENERATIONS\ 3}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{struct\ }gc\_generation\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ PyGC\_Head\ head;\ \textcolor{comment}{//\ We\ already\ have\ this\ defined.}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ threshold;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ count;}
+\DoxyCodeLine{00082\ \};}
+\DoxyCodeLine{00083\ \textcolor{keyword}{struct\ }gc\_generation\_stats\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ Py\_ssize\_t\ collections;}
+\DoxyCodeLine{00085\ \ \ \ \ Py\_ssize\_t\ collected;}
+\DoxyCodeLine{00086\ \ \ \ \ Py\_ssize\_t\ uncollectable;}
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{struct\ }\_gc\_runtime\_state\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ *trash\_delete\_later;}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ trash\_delete\_nesting;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{int}\ enabled;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ debug;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{struct\ }gc\_generation\ generations[NUM\_GENERATIONS];}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ *generation0;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{struct\ }gc\_generation\ permanent\_generation;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{struct\ }gc\_generation\_stats\ generation\_stats[NUM\_GENERATIONS];}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ collecting;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ *garbage;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ *callbacks;}
+\DoxyCodeLine{00101\ \ \ \ \ Py\_ssize\_t\ long\_lived\_total;}
+\DoxyCodeLine{00102\ \ \ \ \ Py\_ssize\_t\ long\_lived\_pending;}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ From\ "{}internal/pycore\_pystate.h"{}}}
+\DoxyCodeLine{00106\ \textcolor{keyword}{struct\ }\_pending\_calls\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{int}\ finishing;}
+\DoxyCodeLine{00108\ \ \ \ \ PyThread\_type\_lock\ lock;}
+\DoxyCodeLine{00109\ \ \ \ \ \_Py\_atomic\_int\ calls\_to\_do;}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{int}\ async\_exc;}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ NPENDINGCALLS\ 32}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ int\ (*func)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *arg;}
+\DoxyCodeLine{00115\ \ \ \ \ \}\ calls[NPENDINGCALLS];}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ first;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{int}\ last;}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{struct\ }\_ceval\_runtime\_state\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{int}\ recursion\_limit;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{int}\ tracing\_possible;}
+\DoxyCodeLine{00123\ \ \ \ \ \_Py\_atomic\_int\ eval\_breaker;}
+\DoxyCodeLine{00124\ \ \ \ \ \_Py\_atomic\_int\ gil\_drop\_request;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{struct\ }\_pending\_calls\ pending;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00127\ \};}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }pyruntimestate\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ preinitializing;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{int}\ preinitialized;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{int}\ core\_initialized;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{int}\ initialized;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ *finalizing;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{struct\ }pyinterpreters\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ PyThread\_type\_lock\ mutex;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *head;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *main;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ int64\_t\ next\_id;}
+\DoxyCodeLine{00141\ \ \ \ \ \}\ interpreters;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ XXX\ Remove\ this\ field\ once\ we\ have\ a\ tp\_*\ slot.}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{struct\ }\_xidregistry\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ PyThread\_type\_lock\ mutex;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *head;}
+\DoxyCodeLine{00146\ \ \ \ \ \}\ xidregistry;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ main\_thread;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ NEXITFUNCS\ 32}}
+\DoxyCodeLine{00151\ \ \ \ \ void\ (*exitfuncs[NEXITFUNCS])(void);}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{int}\ nexitfuncs;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{struct\ }\_gc\_runtime\_state\ gc;}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{struct\ }\_ceval\_runtime\_state\ ceval;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00157\ \}\ \_PyRuntimeState;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ SIGNAL\_PENDING\_CALLS(ceval)\ \(\backslash\)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ \(\backslash\)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_Py\_atomic\_store\_relaxed(\&(ceval)-\/>pending.calls\_to\_do,\ 1);\ \(\backslash\)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \_Py\_atomic\_store\_relaxed(\&(ceval)-\/>eval\_breaker,\ 1);\ \(\backslash\)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \}\ while\ (0)}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{extern}\ \_PyRuntimeState\ \_PyRuntime;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#\ define\ GREENLET\_BROKEN\_PY\_ADD\_PENDING\ 0}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

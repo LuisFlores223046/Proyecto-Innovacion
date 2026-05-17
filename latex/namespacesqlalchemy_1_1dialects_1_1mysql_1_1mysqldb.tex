@@ -1,0 +1,95 @@
+\doxysection{sqlalchemy.\+dialects.\+mysql.\+mysqldb Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1mysqldb}{}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1mysqldb}\index{sqlalchemy.dialects.mysql.mysqldb@{sqlalchemy.dialects.mysql.mysqldb}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLExecutionContext__mysqldb}{My\+SQLExecution\+Context\+\_\+mysqldb}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLCompiler__mysqldb}{My\+SQLCompiler\+\_\+mysqldb}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb}{My\+SQLDialect\+\_\+mysqldb}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_a2b38047597fb4ad1bc1bc87633878e4f}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_a2b38047597fb4ad1bc1bc87633878e4f} 
+{\bfseries dialect} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mysqldb_1_1MySQLDialect__mysqldb}{My\+SQLDialect\+\_\+mysqldb}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: mysql+mysqldb
+    :name: mysqlclient (maintained fork of MySQL-Python)
+    :dbapi: mysqldb
+    :connectstring: mysql+mysqldb://<user>:<password>@<host>[:<port>]/<dbname>
+    :url: https://pypi.org/project/mysqlclient/
+
+Driver Status
+-------------
+
+The mysqlclient DBAPI is a maintained fork of the
+`MySQL-Python <https://sourceforge.net/projects/mysql-python>`_ DBAPI
+that is no longer maintained.  `mysqlclient`_ supports Python 2 and Python 3
+and is very stable.
+
+.. _mysqlclient: https://github.com/PyMySQL/mysqlclient-python
+
+.. _mysqldb_unicode:
+
+Unicode
+-------
+
+Please see :ref:`mysql_unicode` for current recommendations on unicode
+handling.
+
+.. _mysqldb_ssl:
+
+SSL Connections
+----------------
+
+The mysqlclient and PyMySQL DBAPIs accept an additional dictionary under the
+key "ssl", which may be specified using the
+:paramref:`_sa.create_engine.connect_args` dictionary::
+
+    engine = create_engine(
+        "mysql+mysqldb://scott:tiger@192.168.0.134/test",
+        connect_args={
+            "ssl": {
+                "ca": "/home/gord/client-ssl/ca.pem",
+                "cert": "/home/gord/client-ssl/client-cert.pem",
+                "key": "/home/gord/client-ssl/client-key.pem"
+            }
+        }
+    )
+
+For convenience, the following keys may also be specified inline within the URL
+where they will be interpreted into the "ssl" dictionary automatically:
+"ssl_ca", "ssl_cert", "ssl_key", "ssl_capath", "ssl_cipher",
+"ssl_check_hostname". An example is as follows::
+
+    connection_uri = (
+        "mysql+mysqldb://scott:tiger@192.168.0.134/test"
+        "?ssl_ca=/home/gord/client-ssl/ca.pem"
+        "&ssl_cert=/home/gord/client-ssl/client-cert.pem"
+        "&ssl_key=/home/gord/client-ssl/client-key.pem"
+    )
+
+.. seealso::
+
+    :ref:`pymysql_ssl` in the PyMySQL dialect
+
+
+Using MySQLdb with Google Cloud SQL
+-----------------------------------
+
+Google Cloud SQL now recommends use of the MySQLdb dialect.  Connect
+using a URL like the following::
+
+    mysql+mysqldb://root@/<dbname>?unix_socket=/cloudsql/<projectid>:<instancename>
+
+Server Side Cursors
+-------------------
+
+The mysqldb dialect supports server-side cursors. See :ref:`mysql_ss_cursors`.
+\end{DoxyVerb}
+ 

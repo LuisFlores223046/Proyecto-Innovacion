@@ -1,0 +1,111 @@
+\doxysection{frontend/\+node\+\_\+modules/\+find-\/up Directory Reference}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f}{}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f}\index{frontend/node\_modules/find-\/up Directory Reference@{frontend/node\_modules/find-\/up Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2353}{}\doxysubsection{\texorpdfstring{find-\/up \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/find-up.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+find-\/up.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/find-up}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+find-\/up}})}{find-\/up \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/find-up.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+find-\/up.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/find-up}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+find-\/up}})}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2353}
+\begin{quote}
+Find a file or directory by walking up parent directories \end{quote}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2354}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2354}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ find-\/up}
+
+\end{DoxyCode}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2355}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2355}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/}
+\DoxyCodeLine{└──\ Users}
+\DoxyCodeLine{\ \ \ \ └──\ sindresorhus}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ├──\ unicorn.png}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ └──\ foo}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ └──\ bar}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ├──\ baz}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ └──\ example.js}
+
+\end{DoxyCode}
+
+
+{\ttfamily example.\+js}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ path\ =\ require('path');}
+\DoxyCodeLine{const\ findUp\ =\ require('find-\/up');}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp('unicorn.png'));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/unicorn.png'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp(['rainbow.png',\ 'unicorn.png']));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus/unicorn.png'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.log(await\ findUp(async\ directory\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ const\ hasUnicorns\ =\ await\ findUp.exists(path.join(directory,\ 'unicorn.png'));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ hasUnicorns\ \&\&\ directory;}
+\DoxyCodeLine{\ \ \ \ \},\ \{type:\ 'directory'\}));}
+\DoxyCodeLine{\ \ \ \ //=>\ '/Users/sindresorhus'}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2356}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2356}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2357}{}\doxysubsubsection{\texorpdfstring{find\+Up(name, options?)}{find\+Up(name, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2357}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2358}{}\doxysubsubsection{\texorpdfstring{find\+Up(matcher, options?)}{find\+Up(matcher, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2358}
+Returns a {\ttfamily Promise} for either the path or {\ttfamily undefined} if it couldn\textquotesingle{}t be found.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2359}{}\doxysubsubsection{\texorpdfstring{find\+Up(\+[...name]\+, options?)}{find\+Up(\+[...name]\+, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2359}
+Returns a {\ttfamily Promise} for either the first path found (by respecting the order of the array) or {\ttfamily undefined} if none could be found.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2360}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+sync(name, options?)}{find\+Up.\+sync(name, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2360}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2361}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+sync(matcher, options?)}{find\+Up.\+sync(matcher, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2361}
+Returns a path or {\ttfamily undefined} if it couldn\textquotesingle{}t be found.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2362}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+sync(\+[...name]\+, options?)}{find\+Up.\+sync(\+[...name]\+, options?)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2362}
+Returns the first path found (by respecting the order of the array) or {\ttfamily undefined} if none could be found.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2363}{}\doxysubsubsubsection{\texorpdfstring{name}{name}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2363}
+Type:\+ {\ttfamily string}
+
+Name of the file or directory to find.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2364}{}\doxysubsubsubsection{\texorpdfstring{matcher}{matcher}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2364}
+Type:\+ {\ttfamily Function}
+
+A function that will be called with each directory until it returns a {\ttfamily string} with the path, which stops the search, or the root directory has been reached and nothing was found. Useful if you want to match files with certain patterns, set of permissions, or other advanced use-\/cases.
+
+When using async mode, the {\ttfamily matcher} may optionally be an async or promise-\/returning function that returns the path.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2365}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2365}
+Type:\+ {\ttfamily object}\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2366}{}\doxysubsubsubsubsection{\texorpdfstring{cwd}{cwd}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2366}
+Type:\+ {\ttfamily string}\textbackslash{} Default:\+ {\ttfamily process.\+cwd()}
+
+Directory to start from.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2367}{}\doxysubsubsubsubsection{\texorpdfstring{type}{type}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2367}
+Type:\+ {\ttfamily string}\textbackslash{} Default:\+ {\ttfamily \textquotesingle{}file\textquotesingle{}}\textbackslash{} Values:\+ {\ttfamily \textquotesingle{}file\textquotesingle{}} {\ttfamily \textquotesingle{}directory\textquotesingle{}}
+
+The type of paths that can match.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2368}{}\doxysubsubsubsubsection{\texorpdfstring{allow\+Symlinks}{allow\+Symlinks}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2368}
+Type:\+ {\ttfamily boolean}\textbackslash{} Default:\+ {\ttfamily true}
+
+Allow symbolic links to match if they point to the chosen path type.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2369}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+exists(path)}{find\+Up.\+exists(path)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2369}
+Returns a {\ttfamily Promise\texorpdfstring{$<$}{<}boolean\texorpdfstring{$>$}{>}} of whether the path exists.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2370}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+sync.\+exists(path)}{find\+Up.\+sync.\+exists(path)}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2370}
+Returns a {\ttfamily boolean} of whether the path exists.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2371}{}\doxysubsubsubsection{\texorpdfstring{path}{path}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2371}
+Type:\+ {\ttfamily string}
+
+Path to a file or directory.\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2372}{}\doxysubsubsection{\texorpdfstring{find\+Up.\+stop}{find\+Up.\+stop}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2372}
+A \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol}{\texttt{{\ttfamily Symbol}}} that can be returned by a {\ttfamily matcher} function to stop the search and cause {\ttfamily find\+Up} to immediately return {\ttfamily undefined}. Useful as a performance optimization in case the current working directory is deeply nested in the filesystem.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ path\ =\ require('path');}
+\DoxyCodeLine{const\ findUp\ =\ require('find-\/up');}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ await\ findUp(directory\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ return\ path.basename(directory)\ ===\ 'work'\ ?\ findUp.stop\ :\ 'logo.png';}
+\DoxyCodeLine{\ \ \ \ \});}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2373}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_d7b30eb8939fa8c785e22b7e8997c88f_autotoc_md2373}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/find-up-cli}{\texttt{find-\/up-\/cli}} -\/ CLI for this module
+\item \href{https://github.com/sindresorhus/pkg-up}{\texttt{pkg-\/up}} -\/ Find the closest package.\+json file
+\item \href{https://github.com/sindresorhus/pkg-dir}{\texttt{pkg-\/dir}} -\/ Find the root directory of an npm package
+\item \href{https://github.com/sindresorhus/resolve-from}{\texttt{resolve-\/from}} -\/ Resolve the path of a module like {\ttfamily require.\+resolve()} but from a given path
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-find-up?utm_source=npm-find-up&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for \textquotesingle{}find-\/up\textquotesingle{} with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

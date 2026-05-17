@@ -1,0 +1,201 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@jridgewell/\+remapping Directory Reference}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1}{}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1}\index{frontend/node\_modules/"@jridgewell/remapping Directory Reference@{frontend/node\_modules/"@jridgewell/remapping Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_5c77c5fdf666f05ae72aed8fffc3cba1}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md321}{}\doxysubsection{\texorpdfstring{@jridgewell/\+remapping}{@jridgewell/\+remapping}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md321}
+\begin{quote}
+Remap sequential sourcemaps through transformations to point at the original source code \end{quote}
+
+
+Remapping allows you to take the sourcemaps generated through transforming your code and "{}remap"{} them to the original source locations. Think "{}my minified code, transformed with babel and bundled with webpack"{}, all pointing to the correct location in your original source code.
+
+With remapping, none of your source code transformations need to be aware of the input\textquotesingle{}s sourcemap, they only need to generate an output sourcemap. This greatly simplifies building custom transformations (think a find-\/and-\/replace).\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md322}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md322}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @jridgewell/remapping}
+
+\end{DoxyCode}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md323}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md323}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{function\ remapping(}
+\DoxyCodeLine{\ \ map:\ SourceMap\ |\ SourceMap[],}
+\DoxyCodeLine{\ \ loader:\ (file:\ string,\ ctx:\ LoaderContext)\ =>\ (SourceMap\ |\ null\ |\ undefined),}
+\DoxyCodeLine{\ \ options?:\ \{\ excludeContent:\ boolean,\ decodedMappings:\ boolean\ \}}
+\DoxyCodeLine{):\ SourceMap;}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ LoaderContext\ gives\ the\ loader\ the\ importing\ sourcemap,\ tree\ depth,\ the\ ability\ to\ override\ the}
+\DoxyCodeLine{//\ "{}source"{}\ location\ (where\ child\ sources\ are\ resolved\ relative\ to,\ or\ the\ location\ of\ original}
+\DoxyCodeLine{//\ source),\ and\ the\ ability\ to\ override\ the\ "{}content"{}\ of\ an\ original\ source\ for\ inclusion\ in\ the}
+\DoxyCodeLine{//\ output\ sourcemap.}
+\DoxyCodeLine{type\ LoaderContext\ =\ \{}
+\DoxyCodeLine{\ readonly\ importer:\ string;}
+\DoxyCodeLine{\ readonly\ depth:\ number;}
+\DoxyCodeLine{\ source:\ string;}
+\DoxyCodeLine{\ content:\ string\ |\ null\ |\ undefined;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\ttfamily remapping} takes the final output sourcemap, and a {\ttfamily loader} function. For every source file pointer in the sourcemap, the {\ttfamily loader} will be called with the resolved path. If the path itself represents a transformed file (it has a sourcmap associated with it), then the {\ttfamily loader} should return that sourcemap. If not, the path will be treated as an original, untransformed source code.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ Babel\ transformed\ "{}helloworld.js"{}\ into\ "{}transformed.js"{}}
+\DoxyCodeLine{const\ transformedMap\ =\ JSON.stringify(\{}
+\DoxyCodeLine{\ \ file:\ 'transformed.js',}
+\DoxyCodeLine{\ \ //\ 1st\ column\ of\ 2nd\ line\ of\ output\ file\ translates\ into\ the\ 1st\ source}
+\DoxyCodeLine{\ \ //\ file,\ line\ 3,\ column\ 2}
+\DoxyCodeLine{\ \ mappings:\ ';CAEE',}
+\DoxyCodeLine{\ \ sources:\ ['helloworld.js'],}
+\DoxyCodeLine{\ \ version:\ 3,}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ Uglify\ minified\ "{}transformed.js"{}\ into\ "{}transformed.min.js"{}}
+\DoxyCodeLine{const\ minifiedTransformedMap\ =\ JSON.stringify(\{}
+\DoxyCodeLine{\ \ file:\ 'transformed.min.js',}
+\DoxyCodeLine{\ \ //\ 0th\ column\ of\ 1st\ line\ of\ output\ file\ translates\ into\ the\ 1st\ source}
+\DoxyCodeLine{\ \ //\ file,\ line\ 2,\ column\ 1.}
+\DoxyCodeLine{\ \ mappings:\ 'AACC',}
+\DoxyCodeLine{\ \ names:\ [],}
+\DoxyCodeLine{\ \ sources:\ ['transformed.js'],}
+\DoxyCodeLine{\ \ version:\ 3,}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ remapped\ =\ remapping(}
+\DoxyCodeLine{\ \ minifiedTransformedMap,}
+\DoxyCodeLine{\ \ (file,\ ctx)\ =>\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ The\ "{}transformed.js"{}\ file\ is\ an\ transformed\ file.}
+\DoxyCodeLine{\ \ \ \ if\ (file\ ===\ 'transformed.js')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ The\ root\ importer\ is\ empty.}
+\DoxyCodeLine{\ \ \ \ \ \ console.assert(ctx.importer\ ===\ '');}
+\DoxyCodeLine{\ \ \ \ \ \ //\ The\ depth\ in\ the\ sourcemap\ tree\ we're\ currently\ loading.}
+\DoxyCodeLine{\ \ \ \ \ \ //\ The\ root\ \`{}minifiedTransformedMap`\ is\ depth\ 0,\ and\ its\ source\ children\ are\ depth\ 1,\ etc.}
+\DoxyCodeLine{\ \ \ \ \ \ console.assert(ctx.depth\ ===\ 1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ return\ transformedMap;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Loader\ will\ be\ called\ to\ load\ transformedMap's\ source\ file\ pointers\ as\ well.}
+\DoxyCodeLine{\ \ \ \ console.assert(file\ ===\ 'helloworld.js');}
+\DoxyCodeLine{\ \ \ \ //\ \`{}transformed.js`'s\ sourcemap\ points\ into\ \`{}helloworld.js`.}
+\DoxyCodeLine{\ \ \ \ console.assert(ctx.importer\ ===\ 'transformed.js');}
+\DoxyCodeLine{\ \ \ \ //\ This\ is\ a\ source\ child\ of\ \`{}transformed`,\ which\ is\ a\ source\ child\ of\ \`{}minifiedTransformedMap`.}
+\DoxyCodeLine{\ \ \ \ console.assert(ctx.depth\ ===\ 2);}
+\DoxyCodeLine{\ \ \ \ return\ null;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(remapped);}
+\DoxyCodeLine{//\ \{}
+\DoxyCodeLine{//\ \ \ file:\ 'transpiled.min.js',}
+\DoxyCodeLine{//\ \ \ mappings:\ 'AAEE',}
+\DoxyCodeLine{//\ \ \ sources:\ ['helloworld.js'],}
+\DoxyCodeLine{//\ \ \ version:\ 3,}
+\DoxyCodeLine{//\ \};}
+
+\end{DoxyCode}
+
+
+In this example, {\ttfamily loader} will be called twice:\+
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily "{}transformed.\+js"{}}, the first source file pointer in the {\ttfamily minified\+Transformed\+Map}. We return the associated sourcemap for it (its a transformed file, after all) so that sourcemap locations can be traced through it into the source files it represents.
+\item {\ttfamily "{}helloworld.\+js"{}}, our original, unmodified source code. This file does not have a sourcemap, so we return {\ttfamily null}.
+\end{DoxyEnumerate}
+
+The {\ttfamily remapped} sourcemap now points from {\ttfamily transformed.\+min.\+js} into locations in {\ttfamily helloworld.\+js}. If you were to read the {\ttfamily mappings}, it says "{}0th column of the first line output line points to the 1st column of the 2nd line of the file \`{}helloworld.\+js\`{}"{}.\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md324}{}\doxysubsubsection{\texorpdfstring{Multiple transformations of a file}{Multiple transformations of a file}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md324}
+As a convenience, if you have multiple single-\/source transformations of a file, you may pass an array of sourcemap files in the order of most-\/recent transformation sourcemap first. Note that this changes the {\ttfamily importer} and {\ttfamily depth} of each call to our loader. So our above example could have been written as:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ remapped\ =\ remapping(}
+\DoxyCodeLine{\ \ [minifiedTransformedMap,\ transformedMap],}
+\DoxyCodeLine{\ \ ()\ =>\ null}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(remapped);}
+\DoxyCodeLine{//\ \{}
+\DoxyCodeLine{//\ \ \ file:\ 'transpiled.min.js',}
+\DoxyCodeLine{//\ \ \ mappings:\ 'AAEE',}
+\DoxyCodeLine{//\ \ \ sources:\ ['helloworld.js'],}
+\DoxyCodeLine{//\ \ \ version:\ 3,}
+\DoxyCodeLine{//\ \};}
+
+\end{DoxyCode}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md325}{}\doxysubsubsection{\texorpdfstring{Advanced control of the loading graph}{Advanced control of the loading graph}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md325}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md326}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily source}}{{\ttfamily source}}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md326}
+The {\ttfamily source} property can overridden to any value to change the location of the current load. Eg, for an original source file, it allows us to change the location to the original source regardless of what the sourcemap source entry says. And for transformed files, it allows us to change the relative resolving location for child sources of the loaded sourcemap.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ remapped\ =\ remapping(}
+\DoxyCodeLine{\ \ minifiedTransformedMap,}
+\DoxyCodeLine{\ \ (file,\ ctx)\ =>\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ if\ (file\ ===\ 'transformed.js')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ We\ pretend\ the\ transformed.js\ file\ actually\ exists\ in\ the\ 'src/'\ directory.\ When\ the\ nested}
+\DoxyCodeLine{\ \ \ \ \ \ //\ source\ files\ are\ loaded,\ they\ will\ now\ be\ relative\ to\ \`{}src/`.}
+\DoxyCodeLine{\ \ \ \ \ \ ctx.source\ =\ 'src/transformed.js';}
+\DoxyCodeLine{\ \ \ \ \ \ return\ transformedMap;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.assert(file\ ===\ 'src/helloworld.js');}
+\DoxyCodeLine{\ \ \ \ //\ We\ could\ futher\ change\ the\ source\ of\ this\ original\ file,\ eg,\ to\ be\ inside\ a\ nested\ directory}
+\DoxyCodeLine{\ \ \ \ //\ itself.\ This\ will\ be\ reflected\ in\ the\ remapped\ sourcemap.}
+\DoxyCodeLine{\ \ \ \ ctx.source\ =\ 'src/nested/transformed.js';}
+\DoxyCodeLine{\ \ \ \ return\ null;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(remapped);}
+\DoxyCodeLine{//\ \{}
+\DoxyCodeLine{//\ \ \ …,}
+\DoxyCodeLine{//\ \ \ sources:\ ['src/nested/helloworld.js'],}
+\DoxyCodeLine{//\ \};}
+
+\end{DoxyCode}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md327}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily content}}{{\ttfamily content}}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md327}
+The {\ttfamily content} property can be overridden when we encounter an original source file. Eg, this allows you to manually provide the source content of the original file regardless of whether the {\ttfamily sources\+Content} field is present in the parent sourcemap. It can also be set to {\ttfamily null} to remove the source content.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ remapped\ =\ remapping(}
+\DoxyCodeLine{\ \ minifiedTransformedMap,}
+\DoxyCodeLine{\ \ (file,\ ctx)\ =>\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ if\ (file\ ===\ 'transformed.js')\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ transformedMap\ does\ not\ include\ a\ \`{}sourcesContent`\ field,\ so\ usually\ the\ remapped\ sourcemap}
+\DoxyCodeLine{\ \ \ \ \ \ //\ would\ not\ include\ any\ \`{}sourcesContent`\ values.}
+\DoxyCodeLine{\ \ \ \ \ \ return\ transformedMap;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ console.assert(file\ ===\ 'helloworld.js');}
+\DoxyCodeLine{\ \ \ \ //\ We\ can\ read\ the\ file\ to\ provide\ the\ source\ content.}
+\DoxyCodeLine{\ \ \ \ ctx.content\ =\ fs.readFileSync(file,\ 'utf8');}
+\DoxyCodeLine{\ \ \ \ return\ null;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{);}
+\DoxyCodeLine{}
+\DoxyCodeLine{console.log(remapped);}
+\DoxyCodeLine{//\ \{}
+\DoxyCodeLine{//\ \ \ …,}
+\DoxyCodeLine{//\ \ \ sourcesContent:\ [}
+\DoxyCodeLine{//\ \ \ \ \ 'console.log("{}Hello\ world!"{})',}
+\DoxyCodeLine{//\ \ \ ],}
+\DoxyCodeLine{//\ \};}
+
+\end{DoxyCode}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md328}{}\doxysubsubsection{\texorpdfstring{Options}{Options}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md328}
+\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md329}{}\doxysubsubsubsection{\texorpdfstring{exclude\+Content}{exclude\+Content}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md329}
+By default, {\ttfamily exclude\+Content} is {\ttfamily false}. Passing {\ttfamily \{ exclude\+Content:\+ true \}} will exclude the {\ttfamily sources\+Content} field from the returned sourcemap. This is mainly useful when you want to reduce the size out the sourcemap.\hypertarget{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md330}{}\doxysubsubsubsection{\texorpdfstring{decoded\+Mappings}{decoded\+Mappings}}\label{dir_b0e7af9e9cba8796b67a47510f32bcb1_autotoc_md330}
+By default, {\ttfamily decoded\+Mappings} is {\ttfamily false}. Passing {\ttfamily \{ decoded\+Mappings:\+ true \}} will leave the {\ttfamily mappings} field in a \href{https://github.com/rich-harris/sourcemap-codec}{\texttt{decoded state}} instead of encoding into a VLQ string. 

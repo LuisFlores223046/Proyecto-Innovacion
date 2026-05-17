@@ -1,0 +1,61 @@
+\doxysection{sqlalchemy.\+sql.\+visitors.\+Has\+Traverse\+Internals Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals}{}\label{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals}\index{sqlalchemy.sql.visitors.HasTraverseInternals@{sqlalchemy.sql.visitors.HasTraverseInternals}}
+Inheritance diagram for sqlalchemy.\+sql.\+visitors.\+Has\+Traverse\+Internals:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.492581cm]{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals}{Has\+Traverse\+Internals}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_afb1794e52177b128b687dabb5af01960}{get\+\_\+children}} (self, \texorpdfstring{$\ast$}{*}, Tuple\+[str,...]\+ omit\+\_\+attrs=(), \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_a26c4c0dc69f4b21968d5ccbce5ecf7a8}\label{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_a26c4c0dc69f4b21968d5ccbce5ecf7a8} 
+bool {\bfseries \+\_\+is\+\_\+immutable} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}base for classes that have a "traverse internals" element,
+which defines all kinds of ways of traversing the elements of an object.
+
+Compared to :class:`.Visitable`, which relies upon an external visitor to
+define how the object is travered (i.e. the :class:`.SQLCompiler`), the
+:class:`.HasTraverseInternals` interface allows classes to define their own
+traversal, that is, what attributes are accessed and in what order.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_afb1794e52177b128b687dabb5af01960}\index{sqlalchemy.sql.visitors.HasTraverseInternals@{sqlalchemy.sql.visitors.HasTraverseInternals}!get\_children@{get\_children}}
+\index{get\_children@{get\_children}!sqlalchemy.sql.visitors.HasTraverseInternals@{sqlalchemy.sql.visitors.HasTraverseInternals}}
+\doxysubsubsection{\texorpdfstring{get\_children()}{get\_children()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals_afb1794e52177b128b687dabb5af01960} 
+ Iterable\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1visitors_1_1HasTraverseInternals}{Has\+Traverse\+Internals}}]\+ sqlalchemy.\+sql.\+visitors.\+Has\+Traverse\+Internals.\+get\+\_\+children (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{Tuple\+[str, ...]\+ }]{omit\+\_\+attrs}{ = {\ttfamily ()}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kw}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return immediate child :class:`.visitors.HasTraverseInternals`
+    elements of this :class:`.visitors.HasTraverseInternals`.
+
+    This is used for visit traversal.
+
+    \**kw may contain flags that change the collection that is
+    returned, for example to return a subset of items in order to
+    cut down on larger traversals, or to return child items from a
+    different context (such as schema-level collections instead of
+    clause-level).
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1ext_1_1aggregate__order__by_a46c45d5ec6439f30adb95f7efc61ed4b}{sqlalchemy.\+dialects.\+postgresql.\+ext.\+aggregate\+\_\+order\+\_\+by}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1context_1_1FromStatement_a5eda015a18fbcd56d10572fefbcd808f}{sqlalchemy.\+orm.\+context.\+From\+Statement}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ClauseElement_aa7ed63f46b0d8dc6e696f62ced422444}{sqlalchemy.\+sql.\+elements.\+Clause\+Element}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnClause_a36047e333bd15bdd4e087a3abca66c6e}{sqlalchemy.\+sql.\+elements.\+Column\+Clause}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1Select_a9f15f01e3d0758ee4ec1bed26f3d802a}{sqlalchemy.\+sql.\+selectable.\+Select}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1visitors_1_1ExternallyTraversible_a99572cfdd867482235853bdaa25c86f6}{sqlalchemy.\+sql.\+visitors.\+Externally\+Traversible}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+visitors.\+py\end{DoxyCompactItemize}

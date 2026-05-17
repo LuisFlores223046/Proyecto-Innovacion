@@ -1,0 +1,167 @@
+\doxysection{passlib.\+totp.\+Totp\+Match Class Reference}
+\hypertarget{classpasslib_1_1totp_1_1TotpMatch}{}\label{classpasslib_1_1totp_1_1TotpMatch}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+Inheritance diagram for passlib.\+totp.\+Totp\+Match:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1totp_1_1TotpMatch}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_a9a703e19e84d7f4004c5ef441f10a1cb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, totp, counter, time, window=30)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_ab3823d698b56217b0a940e08e25734d8}{expected\+\_\+counter}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_a742075ab94e3fe96c05e5e7b75419feb}{skipped}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_a1606f0148e445d13df336731b43a0ef1}{expire\+\_\+time}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_aca78a47b31ed88aad5d4b486b03926f1}{cache\+\_\+seconds}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_a6b67dc09c16316d83e6a59d49eb1c6b7}{cache\+\_\+time}} (self)
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a7b2c314a1a0d7f0905a7456fb717969b}\label{classpasslib_1_1totp_1_1TotpMatch_a7b2c314a1a0d7f0905a7456fb717969b} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpasslib_1_1utils_1_1SequenceMixin}{passlib.\+utils.\+Sequence\+Mixin}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, idx)
+\item 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_ad6cfb25e78de77ced1ab3ad2fff2a0b1}\label{classpasslib_1_1totp_1_1TotpMatch_ad6cfb25e78de77ced1ab3ad2fff2a0b1} 
+{\bfseries totp} = None
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a1c0fb8344898114ab3088258e332682c}\label{classpasslib_1_1totp_1_1TotpMatch_a1c0fb8344898114ab3088258e332682c} 
+int {\bfseries counter} = 0
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a96f18b16d604bb15ad19f7846d5aa6dc}\label{classpasslib_1_1totp_1_1TotpMatch_a96f18b16d604bb15ad19f7846d5aa6dc} 
+int {\bfseries time} = 0
+\item 
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a0b6ea8f1a18889ca33b22ccfc2632d60}\label{classpasslib_1_1totp_1_1TotpMatch_a0b6ea8f1a18889ca33b22ccfc2632d60} 
+int {\bfseries window} = 30
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1totp_1_1TotpMatch_ac7f39f0c2b45efa01800a7f9b2c2db78}{\+\_\+as\+\_\+tuple}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Object returned by :meth:`TOTP.match` and :meth:`TOTP.verify` on a successful match.
+
+It can be treated as a sequence of ``(counter, time)``,
+or accessed via the following attributes:
+
+.. autoattribute:: counter
+    :annotation: = 0
+
+.. autoattribute:: time
+    :annotation: = 0
+
+.. autoattribute:: expected_counter
+    :annotation: = 0
+
+.. autoattribute:: skipped
+    :annotation: = 0
+
+.. autoattribute:: expire_time
+    :annotation: = 0
+
+.. autoattribute:: cache_seconds
+    :annotation: = 60
+
+.. autoattribute:: cache_time
+    :annotation: = 0
+
+This object will always have a ``True`` boolean value.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1totp_1_1TotpMatch_doc-constructors}
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a9a703e19e84d7f4004c5ef441f10a1cb}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_a9a703e19e84d7f4004c5ef441f10a1cb} 
+passlib.\+totp.\+Totp\+Match.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{totp}{, }\item[{}]{counter}{, }\item[{}]{time}{, }\item[{}]{window}{ = {\ttfamily 30}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}.. warning::
+    the constructor signature is an internal detail, and is subject to change.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1totp_1_1TotpMatch_doc-func-members}
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_ac7f39f0c2b45efa01800a7f9b2c2db78}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!\_as\_tuple@{\_as\_tuple}}
+\index{\_as\_tuple@{\_as\_tuple}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{\_as\_tuple()}{\_as\_tuple()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_ac7f39f0c2b45efa01800a7f9b2c2db78} 
+passlib.\+totp.\+Totp\+Match.\+\_\+as\+\_\+tuple (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpasslib_1_1utils_1_1SequenceMixin}{passlib.\+utils.\+Sequence\+Mixin}}.
+
+\Hypertarget{classpasslib_1_1totp_1_1TotpMatch_aca78a47b31ed88aad5d4b486b03926f1}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!cache\_seconds@{cache\_seconds}}
+\index{cache\_seconds@{cache\_seconds}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{cache\_seconds()}{cache\_seconds()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_aca78a47b31ed88aad5d4b486b03926f1} 
+passlib.\+totp.\+Totp\+Match.\+cache\+\_\+seconds (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Number of seconds counter should be cached
+before it's guaranteed to have passed outside of verification window.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a6b67dc09c16316d83e6a59d49eb1c6b7}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!cache\_time@{cache\_time}}
+\index{cache\_time@{cache\_time}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{cache\_time()}{cache\_time()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_a6b67dc09c16316d83e6a59d49eb1c6b7} 
+passlib.\+totp.\+Totp\+Match.\+cache\+\_\+time (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Timestamp marking when counter has passed outside of verification window.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1TotpMatch_ab3823d698b56217b0a940e08e25734d8}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!expected\_counter@{expected\_counter}}
+\index{expected\_counter@{expected\_counter}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{expected\_counter()}{expected\_counter()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_ab3823d698b56217b0a940e08e25734d8} 
+passlib.\+totp.\+Totp\+Match.\+expected\+\_\+counter (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Counter value expected for timestamp.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a1606f0148e445d13df336731b43a0ef1}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!expire\_time@{expire\_time}}
+\index{expire\_time@{expire\_time}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{expire\_time()}{expire\_time()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_a1606f0148e445d13df336731b43a0ef1} 
+passlib.\+totp.\+Totp\+Match.\+expire\+\_\+time (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Timestamp marking end of period when token is valid\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1totp_1_1TotpMatch_a742075ab94e3fe96c05e5e7b75419feb}\index{passlib.totp.TotpMatch@{passlib.totp.TotpMatch}!skipped@{skipped}}
+\index{skipped@{skipped}!passlib.totp.TotpMatch@{passlib.totp.TotpMatch}}
+\doxysubsubsection{\texorpdfstring{skipped()}{skipped()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1totp_1_1TotpMatch_a742075ab94e3fe96c05e5e7b75419feb} 
+passlib.\+totp.\+Totp\+Match.\+skipped (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}How many steps were skipped between expected and actual matched counter
+value (may be positive, zero, or negative).
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+totp.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\doxysection{pip.\+\_\+internal.\+index.\+collector.\+Link\+Collector Class Reference}
+\hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector}{}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector}\index{pip.\_internal.index.collector.LinkCollector@{pip.\_internal.index.collector.LinkCollector}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a1bd2e85e949102d7fbaf4c4cff56f986}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a1bd2e85e949102d7fbaf4c4cff56f986} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1session_1_1PipSession}{Pip\+Session}} session, \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1search__scope_1_1SearchScope}{Search\+Scope}} search\+\_\+scope)
+\item 
+"{}Link\+Collector"{} \doxymbox{\hyperlink{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a7b9607326945865d20618b284cdbe309}{create}} (cls, \doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1session_1_1PipSession}{Pip\+Session}} session, Values options, bool suppress\+\_\+no\+\_\+index=False)
+\item 
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_ab36a9b5d524babb34786d3f5030252ab}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_ab36a9b5d524babb34786d3f5030252ab} 
+List\+[str]\+ {\bfseries find\+\_\+links} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1index_1_1collector_1_1IndexContent}{Index\+Content}}]\+ \doxymbox{\hyperlink{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a16b237ed176de506f7d1d616900d2fb2}{fetch\+\_\+response}} (self, \doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}} location)
+\item 
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a9de3632bd4dca1005db85f06e86d2c52}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a9de3632bd4dca1005db85f06e86d2c52} 
+\doxymbox{\hyperlink{classpip_1_1__internal_1_1index_1_1collector_1_1CollectedSources}{Collected\+Sources}} {\bfseries collect\+\_\+sources} (self, str project\+\_\+name, Candidates\+From\+Page candidates\+\_\+from\+\_\+page)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a88b69ba28b46c6d958a0c2833f6c0fbe}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a88b69ba28b46c6d958a0c2833f6c0fbe} 
+{\bfseries search\+\_\+scope} = search\+\_\+scope
+\item 
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_aec81e6d9b133b756c0ac7b9293b2951b}\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_aec81e6d9b133b756c0ac7b9293b2951b} 
+{\bfseries session} = session
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Responsible for collecting Link objects from all configured locations,
+making network requests as needed.
+
+The class's main method is its collect_sources() method.
+\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_doc-func-members}
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a7b9607326945865d20618b284cdbe309}\index{pip.\_internal.index.collector.LinkCollector@{pip.\_internal.index.collector.LinkCollector}!create@{create}}
+\index{create@{create}!pip.\_internal.index.collector.LinkCollector@{pip.\_internal.index.collector.LinkCollector}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a7b9607326945865d20618b284cdbe309} 
+ "{}Link\+Collector"{} pip.\+\_\+internal.\+index.\+collector.\+Link\+Collector.\+create (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classpip_1_1__internal_1_1network_1_1session_1_1PipSession}{Pip\+Session}}}]{session}{, }\item[{Values}]{options}{, }\item[{bool }]{suppress\+\_\+no\+\_\+index}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}:param session: The Session to use to make requests.
+:param suppress_no_index: Whether to ignore the --no-index option
+    when constructing the SearchScope object.
+\end{DoxyVerb}
+ \Hypertarget{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a16b237ed176de506f7d1d616900d2fb2}\index{pip.\_internal.index.collector.LinkCollector@{pip.\_internal.index.collector.LinkCollector}!fetch\_response@{fetch\_response}}
+\index{fetch\_response@{fetch\_response}!pip.\_internal.index.collector.LinkCollector@{pip.\_internal.index.collector.LinkCollector}}
+\doxysubsubsection{\texorpdfstring{fetch\_response()}{fetch\_response()}}
+{\footnotesize\ttfamily \label{classpip_1_1__internal_1_1index_1_1collector_1_1LinkCollector_a16b237ed176de506f7d1d616900d2fb2} 
+ Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1index_1_1collector_1_1IndexContent}{Index\+Content}}]\+ pip.\+\_\+internal.\+index.\+collector.\+Link\+Collector.\+fetch\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classpip_1_1__internal_1_1models_1_1link_1_1Link}{Link}}}]{location}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Fetch an HTML page containing package links.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+internal/\+index/\+collector.\+py\end{DoxyCompactItemize}

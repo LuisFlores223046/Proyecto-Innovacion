@@ -1,0 +1,106 @@
+\doxysection{dns.\+name.\+IDNA2008\+Codec Class Reference}
+\hypertarget{classdns_1_1name_1_1IDNA2008Codec}{}\label{classdns_1_1name_1_1IDNA2008Codec}\index{dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}}
+Inheritance diagram for dns.\+name.\+IDNA2008\+Codec:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdns_1_1name_1_1IDNA2008Codec}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classdns_1_1name_1_1IDNA2008Codec_a099fc3cfc9305bde206c5cc3e14d9e4c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bool uts\+\_\+46=False, bool transitional=False, bool allow\+\_\+pure\+\_\+ascii=False, bool strict\+\_\+decode=False)
+\item 
+bytes \doxymbox{\hyperlink{classdns_1_1name_1_1IDNA2008Codec_a1581e7f1016bfaa2357754b4362fcbd5}{encode}} (self, str label)
+\item 
+str \doxymbox{\hyperlink{classdns_1_1name_1_1IDNA2008Codec_a3db23a39dd5218ccccad0dce9360fcb6}{decode}} (self, bytes label)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classdns_1_1name_1_1IDNACodec}{dns.\+name.\+IDNACodec}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+bool {\bfseries is\+\_\+idna} (self, bytes label)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_ab6743a79b7ffccf828e788ac5df7d3cb}\label{classdns_1_1name_1_1IDNA2008Codec_ab6743a79b7ffccf828e788ac5df7d3cb} 
+{\bfseries uts\+\_\+46} = uts\+\_\+46
+\item 
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_a040e902f8aacaab904e44ea5a01c522e}\label{classdns_1_1name_1_1IDNA2008Codec_a040e902f8aacaab904e44ea5a01c522e} 
+{\bfseries transitional} = transitional
+\item 
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_a0d8cc0747fb17b70b923e08bd3585cad}\label{classdns_1_1name_1_1IDNA2008Codec_a0d8cc0747fb17b70b923e08bd3585cad} 
+{\bfseries allow\+\_\+pure\+\_\+ascii} = allow\+\_\+pure\+\_\+ascii
+\item 
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_af4ac81424ac06ebe8984388a59752973}\label{classdns_1_1name_1_1IDNA2008Codec_af4ac81424ac06ebe8984388a59752973} 
+{\bfseries strict\+\_\+decode} = strict\+\_\+decode
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}IDNA 2008 encoder/decoder.\end{DoxyVerb}
+ 
+
+\label{classdns_1_1name_1_1IDNA2008Codec_doc-constructors}
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_a099fc3cfc9305bde206c5cc3e14d9e4c}\index{dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classdns_1_1name_1_1IDNA2008Codec_a099fc3cfc9305bde206c5cc3e14d9e4c} 
+dns.\+name.\+IDNA2008\+Codec.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{uts\+\_\+46}{ = {\ttfamily False}, }\item[{bool }]{transitional}{ = {\ttfamily False}, }\item[{bool }]{allow\+\_\+pure\+\_\+ascii}{ = {\ttfamily False}, }\item[{bool }]{strict\+\_\+decode}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the IDNA 2008 encoder/decoder.
+
+*uts_46* is a ``bool``.  If True, apply Unicode IDNA
+compatibility processing as described in Unicode Technical
+Standard #46 (https://unicode.org/reports/tr46/).
+If False, do not apply the mapping.  The default is False.
+
+*transitional* is a ``bool``: If True, use the
+"transitional" mode described in Unicode Technical Standard
+#46.  The default is False.
+
+*allow_pure_ascii* is a ``bool``.  If True, then a label which
+consists of only ASCII characters is allowed.  This is less
+strict than regular IDNA 2008, but is also necessary for mixed
+names, e.g. a name with starting with "_sip._tcp." and ending
+in an IDN suffix which would otherwise be disallowed.  The
+default is False.
+
+*strict_decode* is a ``bool``: If True, then IDNA2008 checking
+is done when decoding.  This can cause failures if the name
+was encoded with IDNA2003.  The default is False.
+\end{DoxyVerb}
+ 
+
+\label{classdns_1_1name_1_1IDNA2008Codec_doc-func-members}
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_a3db23a39dd5218ccccad0dce9360fcb6}\index{dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}!decode@{decode}}
+\index{decode@{decode}!dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \label{classdns_1_1name_1_1IDNA2008Codec_a3db23a39dd5218ccccad0dce9360fcb6} 
+ str dns.\+name.\+IDNA2008\+Codec.\+decode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{label}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classdns_1_1name_1_1IDNACodec}{dns.\+name.\+IDNACodec}}.
+
+\Hypertarget{classdns_1_1name_1_1IDNA2008Codec_a1581e7f1016bfaa2357754b4362fcbd5}\index{dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}!encode@{encode}}
+\index{encode@{encode}!dns.name.IDNA2008Codec@{dns.name.IDNA2008Codec}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{classdns_1_1name_1_1IDNA2008Codec_a1581e7f1016bfaa2357754b4362fcbd5} 
+ bytes dns.\+name.\+IDNA2008\+Codec.\+encode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{label}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classdns_1_1name_1_1IDNACodec}{dns.\+name.\+IDNACodec}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+dns/\+name.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,58 @@
+\doxysection{frontend/\+node\+\_\+modules/\+react-\/dom Directory Reference}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c}{}\label{dir_6e72f6c1ad41c31d4d2f14450863709c}\index{frontend/node\_modules/react-\/dom Directory Reference@{frontend/node\_modules/react-\/dom Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_2c4386e0a5bb9627ce28793497cf2228}{cjs}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4077}{}\doxysubsection{\texorpdfstring{\`{}react-\/dom\`{}}{\`{}react-\/dom\`{}}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4077}
+This package serves as the entry point to the DOM and server renderers for React. It is intended to be paired with the generic React package, which is shipped as {\ttfamily react} to npm.\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4078}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4078}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ react\ react-\/dom}
+
+\end{DoxyCode}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4079}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4079}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4080}{}\doxysubsubsection{\texorpdfstring{In the browser}{In the browser}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4080}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ createRoot\ \}\ from\ 'react-\/dom/client';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ App()\ \{}
+\DoxyCodeLine{\ \ return\ <div>Hello\ World</div>;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ root\ =\ createRoot(document.getElementById('root'));}
+\DoxyCodeLine{root.render(<App\ />);}
+
+\end{DoxyCode}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4081}{}\doxysubsubsection{\texorpdfstring{On the server}{On the server}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4081}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ renderToPipeableStream\ \}\ from\ 'react-\/dom/server';}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ App()\ \{}
+\DoxyCodeLine{\ \ return\ <div>Hello\ World</div>;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ handleRequest(res)\ \{}
+\DoxyCodeLine{\ \ //\ ...\ in\ your\ server\ handler\ ...}
+\DoxyCodeLine{\ \ const\ stream\ =\ renderToPipeableStream(<App\ />,\ \{}
+\DoxyCodeLine{\ \ \ \ onShellReady()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ res.statusCode\ =\ 200;}
+\DoxyCodeLine{\ \ \ \ \ \ res.setHeader('Content-\/type',\ 'text/html');}
+\DoxyCodeLine{\ \ \ \ \ \ stream.pipe(res);}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ //\ ...}
+\DoxyCodeLine{\ \ \});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4082}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4082}
+\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4083}{}\doxysubsubsection{\texorpdfstring{{\ttfamily react-\/dom}}{{\ttfamily react-\/dom}}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4083}
+See \href{https://react.dev/reference/react-dom}{\texttt{https:\+/\+/\+react.\+dev/\+reference/\+react-\/dom}}\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4084}{}\doxysubsubsection{\texorpdfstring{{\ttfamily react-\/dom/\+client}}{{\ttfamily react-\/dom/\+client}}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4084}
+See \href{https://react.dev/reference/react-dom/client}{\texttt{https:\+/\+/\+react.\+dev/\+reference/\+react-\/dom/\+client}}\hypertarget{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4085}{}\doxysubsubsection{\texorpdfstring{{\ttfamily react-\/dom/\+server}}{{\ttfamily react-\/dom/\+server}}}\label{dir_6e72f6c1ad41c31d4d2f14450863709c_autotoc_md4085}
+See \href{https://react.dev/reference/react-dom/server}{\texttt{https:\+/\+/\+react.\+dev/\+reference/\+react-\/dom/\+server}} 

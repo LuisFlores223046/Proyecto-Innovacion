@@ -1,0 +1,71 @@
+\doxysection{sqlalchemy.\+sql.\+compiler.\+Expanded\+State Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState}{}\label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState}\index{sqlalchemy.sql.compiler.ExpandedState@{sqlalchemy.sql.compiler.ExpandedState}}
+Inheritance diagram for sqlalchemy.\+sql.\+compiler.\+Expanded\+State:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[Any,...]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_af43655b5fa62cd28c71fe152a464b9dc}{positional\+\_\+parameters}} (self)
+\item 
+\+\_\+\+Core\+Single\+Execute\+Params \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a4de5efd4ddc409bf632ce29ffac6bc59}{additional\+\_\+parameters}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a9305473f392092aced447ea3a444db5e}\label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a9305473f392092aced447ea3a444db5e} 
+Mapping {\bfseries processors} \+[str, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1__BindProcessorType}{\+\_\+\+Bind\+Processor\+Type}}\+[Any]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a26adc19e8ca325a6b68a20ec6f81cffa}\label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a26adc19e8ca325a6b68a20ec6f81cffa} 
+Optional {\bfseries positiontup} \+[Sequence\+[str]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_ae4c0bbd28348e3b6fb8f57dced176e7b}\label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_ae4c0bbd28348e3b6fb8f57dced176e7b} 
+Mapping {\bfseries parameter\+\_\+expansion} \+[str, List\+[str]\+]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}represents state to use when producing "expanded" and
+"post compile" bound parameters for a statement.
+
+"expanded" parameters are parameters that are generated at
+statement execution time to suit a number of parameters passed, the most
+prominent example being the individual elements inside of an IN expression.
+
+"post compile" parameters are parameters where the SQL literal value
+will be rendered into the SQL statement at execution time, rather than
+being passed as separate parameters to the driver.
+
+To create an :class:`.ExpandedState` instance, use the
+:meth:`.SQLCompiler.construct_expanded_state` method on any
+:class:`.SQLCompiler` instance.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a4de5efd4ddc409bf632ce29ffac6bc59}\index{sqlalchemy.sql.compiler.ExpandedState@{sqlalchemy.sql.compiler.ExpandedState}!additional\_parameters@{additional\_parameters}}
+\index{additional\_parameters@{additional\_parameters}!sqlalchemy.sql.compiler.ExpandedState@{sqlalchemy.sql.compiler.ExpandedState}}
+\doxysubsubsection{\texorpdfstring{additional\_parameters()}{additional\_parameters()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_a4de5efd4ddc409bf632ce29ffac6bc59} 
+ \+\_\+\+Core\+Single\+Execute\+Params sqlalchemy.\+sql.\+compiler.\+Expanded\+State.\+additional\+\_\+parameters (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}synonym for :attr:`.ExpandedState.parameters`.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_af43655b5fa62cd28c71fe152a464b9dc}\index{sqlalchemy.sql.compiler.ExpandedState@{sqlalchemy.sql.compiler.ExpandedState}!positional\_parameters@{positional\_parameters}}
+\index{positional\_parameters@{positional\_parameters}!sqlalchemy.sql.compiler.ExpandedState@{sqlalchemy.sql.compiler.ExpandedState}}
+\doxysubsubsection{\texorpdfstring{positional\_parameters()}{positional\_parameters()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1compiler_1_1ExpandedState_af43655b5fa62cd28c71fe152a464b9dc} 
+ Tuple\+[Any, ...]\+ sqlalchemy.\+sql.\+compiler.\+Expanded\+State.\+positional\+\_\+parameters (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tuple of positional parameters, for statements that were compiled
+using a positional paramstyle.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+compiler.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,76 @@
+\doxysection{frontend/\+node\+\_\+modules/\+locate-\/path Directory Reference}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996}{}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996}\index{frontend/node\_modules/locate-\/path Directory Reference@{frontend/node\_modules/locate-\/path Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3292}{}\doxysubsection{\texorpdfstring{locate-\/path \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/locate-path.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+locate-\/path.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/locate-path}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+locate-\/path}})}{locate-\/path \+[!\+[Build Status]\+(\href{https://travis-ci.com/sindresorhus/locate-path.svg?branch=master}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+sindresorhus/\+locate-\/path.\+svg?branch=master}})]\+(\href{https://travis-ci.com/github/sindresorhus/locate-path}{\texttt{https:\+/\+/\+travis-\/ci.\+com/\+github/\+sindresorhus/\+locate-\/path}})}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3292}
+\begin{quote}
+Get the first path that exists on disk of multiple paths \end{quote}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3293}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3293}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ locate-\/path}
+
+\end{DoxyCode}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3294}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3294}
+Here we find the first file that exists on disk, in array order.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ locatePath\ =\ require('locate-\/path');}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ files\ =\ [}
+\DoxyCodeLine{\ \ \ \ 'unicorn.png',}
+\DoxyCodeLine{\ \ \ \ 'rainbow.png',\ //\ Only\ this\ one\ actually\ exists\ on\ disk}
+\DoxyCodeLine{\ \ \ \ 'pony.png'}
+\DoxyCodeLine{];}
+\DoxyCodeLine{}
+\DoxyCodeLine{(async\ ()\ =>\ \{}
+\DoxyCodeLine{\ \ \ \ console(await\ locatePath(files));}
+\DoxyCodeLine{\ \ \ \ //=>\ 'rainbow'}
+\DoxyCodeLine{\})();}
+
+\end{DoxyCode}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3295}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3295}
+\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3296}{}\doxysubsubsection{\texorpdfstring{locate\+Path(paths, options?)}{locate\+Path(paths, options?)}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3296}
+Returns a {\ttfamily Promise\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}} for the first path that exists or {\ttfamily undefined} if none exists.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3297}{}\doxysubsubsubsection{\texorpdfstring{paths}{paths}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3297}
+Type:\+ {\ttfamily Iterable\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}
+
+Paths to check.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3298}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3298}
+Type:\+ {\ttfamily object}\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3299}{}\doxysubsubsubsubsection{\texorpdfstring{concurrency}{concurrency}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3299}
+Type:\+ {\ttfamily number}\textbackslash{} Default:\+ {\ttfamily Infinity}\textbackslash{} Minimum:\+ {\ttfamily 1}
+
+Number of concurrently pending promises.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3300}{}\doxysubsubsubsubsection{\texorpdfstring{preserve\+Order}{preserve\+Order}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3300}
+Type:\+ {\ttfamily boolean}\textbackslash{} Default:\+ {\ttfamily true}
+
+Preserve {\ttfamily paths} order when searching.
+
+Disable this to improve performance if you don\textquotesingle{}t care about the order.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3301}{}\doxysubsubsubsubsection{\texorpdfstring{cwd}{cwd}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3301}
+Type:\+ {\ttfamily string}\textbackslash{} Default:\+ {\ttfamily process.\+cwd()}
+
+Current working directory.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3302}{}\doxysubsubsubsubsection{\texorpdfstring{type}{type}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3302}
+Type:\+ {\ttfamily string}\textbackslash{} Default:\+ {\ttfamily \textquotesingle{}file\textquotesingle{}}\textbackslash{} Values:\+ {\ttfamily \textquotesingle{}file\textquotesingle{} \texorpdfstring{$\vert$}{|} \textquotesingle{}directory\textquotesingle{}}
+
+The type of paths that can match.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3303}{}\doxysubsubsubsubsection{\texorpdfstring{allow\+Symlinks}{allow\+Symlinks}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3303}
+Type:\+ {\ttfamily boolean}\textbackslash{} Default:\+ {\ttfamily true}
+
+Allow symbolic links to match if they point to the chosen path type.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3304}{}\doxysubsubsection{\texorpdfstring{locate\+Path.\+sync(paths, options?)}{locate\+Path.\+sync(paths, options?)}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3304}
+Returns the first path that exists or {\ttfamily undefined} if none exists.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3305}{}\doxysubsubsubsection{\texorpdfstring{paths}{paths}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3305}
+Type:\+ {\ttfamily Iterable\texorpdfstring{$<$}{<}string\texorpdfstring{$>$}{>}}
+
+Paths to check.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3306}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3306}
+Type:\+ {\ttfamily object}\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3307}{}\doxysubsubsubsubsection{\texorpdfstring{cwd}{cwd}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3307}
+Same as above.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3308}{}\doxysubsubsubsubsection{\texorpdfstring{type}{type}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3308}
+Same as above.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3309}{}\doxysubsubsubsubsection{\texorpdfstring{allow\+Symlinks}{allow\+Symlinks}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3309}
+Same as above.\hypertarget{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3310}{}\doxysubsection{\texorpdfstring{Related}{Related}}\label{dir_fa2ec47016d9e886c9b7fd332bfc1996_autotoc_md3310}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sindresorhus/path-exists}{\texttt{path-\/exists}} -\/ Check if a path exists
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+ {\bfseries{ \href{https://tidelift.com/subscription/pkg/npm-locate-path?utm_source=npm-locate-path&utm_medium=referral&utm_campaign=readme}{\texttt{Get professional support for this package with a Tidelift subscription}} }} ~\newline
+ \textsubscript{ Tidelift helps make open source sustainable for maintainers while giving companies~\newline
+assurances about security, maintenance, and licensing for their dependencies. }  

@@ -1,0 +1,386 @@
+\doxysection{sqlalchemy.\+ext.\+mutable Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1ext_1_1mutable}{}\label{namespacesqlalchemy_1_1ext_1_1mutable}\index{sqlalchemy.ext.mutable@{sqlalchemy.ext.mutable}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{Mutable\+Base}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1Mutable}{Mutable}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite}{Mutable\+Composite}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableDict}{Mutable\+Dict}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableList}{Mutable\+List}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableSet}{Mutable\+Set}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1mutable_ae1d345b58bd8338824da1c4e23f8591f}\label{namespacesqlalchemy_1_1ext_1_1mutable_ae1d345b58bd8338824da1c4e23f8591f} 
+None {\bfseries \+\_\+setup\+\_\+composite\+\_\+listener} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1mutable_a9605d061198fbeba57d37309d515f46f}\label{namespacesqlalchemy_1_1ext_1_1mutable_a9605d061198fbeba57d37309d515f46f} 
+{\bfseries \+\_\+\+KT} = Type\+Var("{}\+\_\+\+KT"{})
+\item 
+\Hypertarget{namespacesqlalchemy_1_1ext_1_1mutable_a71cf39b2b6ca82067c1d85a73d8b382d}\label{namespacesqlalchemy_1_1ext_1_1mutable_a71cf39b2b6ca82067c1d85a73d8b382d} 
+{\bfseries \+\_\+\+VT} = Type\+Var("{}\+\_\+\+VT"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Provide support for tracking of in-place changes to scalar values,
+which are propagated into ORM change events on owning parent objects.
+
+.. _mutable_scalars:
+
+Establishing Mutability on Scalar Column Values
+===============================================
+
+A typical example of a "mutable" structure is a Python dictionary.
+Following the example introduced in :ref:`types_toplevel`, we
+begin with a custom type that marshals Python dictionaries into
+JSON strings before being persisted::
+
+    from sqlalchemy.types import TypeDecorator, VARCHAR
+    import json
+
+    class JSONEncodedDict(TypeDecorator):
+        "Represents an immutable structure as a json-encoded string."
+
+        impl = VARCHAR
+
+        def process_bind_param(self, value, dialect):
+            if value is not None:
+                value = json.dumps(value)
+            return value
+
+        def process_result_value(self, value, dialect):
+            if value is not None:
+                value = json.loads(value)
+            return value
+
+The usage of ``json`` is only for the purposes of example. The
+:mod:`sqlalchemy.ext.mutable` extension can be used
+with any type whose target Python type may be mutable, including
+:class:`.PickleType`, :class:`_postgresql.ARRAY`, etc.
+
+When using the :mod:`sqlalchemy.ext.mutable` extension, the value itself
+tracks all parents which reference it.  Below, we illustrate a simple
+version of the :class:`.MutableDict` dictionary object, which applies
+the :class:`.Mutable` mixin to a plain Python dictionary::
+
+    from sqlalchemy.ext.mutable import Mutable
+
+    class MutableDict(Mutable, dict):
+        @classmethod
+        def coerce(cls, key, value):
+            "Convert plain dictionaries to MutableDict."
+
+            if not isinstance(value, MutableDict):
+                if isinstance(value, dict):
+                    return MutableDict(value)
+
+                # this call will raise ValueError
+                return Mutable.coerce(key, value)
+            else:
+                return value
+
+        def __setitem__(self, key, value):
+            "Detect dictionary set events and emit change events."
+
+            dict.__setitem__(self, key, value)
+            self.changed()
+
+        def __delitem__(self, key):
+            "Detect dictionary del events and emit change events."
+
+            dict.__delitem__(self, key)
+            self.changed()
+
+The above dictionary class takes the approach of subclassing the Python
+built-in ``dict`` to produce a dict
+subclass which routes all mutation events through ``__setitem__``.  There are
+variants on this approach, such as subclassing ``UserDict.UserDict`` or
+``collections.MutableMapping``; the part that's important to this example is
+that the :meth:`.Mutable.changed` method is called whenever an in-place
+change to the datastructure takes place.
+
+We also redefine the :meth:`.Mutable.coerce` method which will be used to
+convert any values that are not instances of ``MutableDict``, such
+as the plain dictionaries returned by the ``json`` module, into the
+appropriate type.  Defining this method is optional; we could just as well
+created our ``JSONEncodedDict`` such that it always returns an instance
+of ``MutableDict``, and additionally ensured that all calling code
+uses ``MutableDict`` explicitly.  When :meth:`.Mutable.coerce` is not
+overridden, any values applied to a parent object which are not instances
+of the mutable type will raise a ``ValueError``.
+
+Our new ``MutableDict`` type offers a class method
+:meth:`~.Mutable.as_mutable` which we can use within column metadata
+to associate with types. This method grabs the given type object or
+class and associates a listener that will detect all future mappings
+of this type, applying event listening instrumentation to the mapped
+attribute. Such as, with classical table metadata::
+
+    from sqlalchemy import Table, Column, Integer
+
+    my_data = Table('my_data', metadata,
+        Column('id', Integer, primary_key=True),
+        Column('data', MutableDict.as_mutable(JSONEncodedDict))
+    )
+
+Above, :meth:`~.Mutable.as_mutable` returns an instance of ``JSONEncodedDict``
+(if the type object was not an instance already), which will intercept any
+attributes which are mapped against this type.  Below we establish a simple
+mapping against the ``my_data`` table::
+
+    from sqlalchemy.orm import DeclarativeBase
+    from sqlalchemy.orm import Mapped
+    from sqlalchemy.orm import mapped_column
+
+    class Base(DeclarativeBase):
+        pass
+
+    class MyDataClass(Base):
+        __tablename__ = 'my_data'
+        id: Mapped[int] = mapped_column(primary_key=True)
+        data: Mapped[dict[str, str]] = mapped_column(MutableDict.as_mutable(JSONEncodedDict))
+
+The ``MyDataClass.data`` member will now be notified of in place changes
+to its value.
+
+Any in-place changes to the ``MyDataClass.data`` member
+will flag the attribute as "dirty" on the parent object::
+
+    >>> from sqlalchemy.orm import Session
+
+    >>> sess = Session(some_engine)
+    >>> m1 = MyDataClass(data={'value1':'foo'})
+    >>> sess.add(m1)
+    >>> sess.commit()
+
+    >>> m1.data['value1'] = 'bar'
+    >>> assert m1 in sess.dirty
+    True
+
+The ``MutableDict`` can be associated with all future instances
+of ``JSONEncodedDict`` in one step, using
+:meth:`~.Mutable.associate_with`.  This is similar to
+:meth:`~.Mutable.as_mutable` except it will intercept all occurrences
+of ``MutableDict`` in all mappings unconditionally, without
+the need to declare it individually::
+
+    from sqlalchemy.orm import DeclarativeBase
+    from sqlalchemy.orm import Mapped
+    from sqlalchemy.orm import mapped_column
+
+    MutableDict.associate_with(JSONEncodedDict)
+
+    class Base(DeclarativeBase):
+        pass
+
+    class MyDataClass(Base):
+        __tablename__ = 'my_data'
+        id: Mapped[int] = mapped_column(primary_key=True)
+        data: Mapped[dict[str, str]] = mapped_column(JSONEncodedDict)
+
+
+Supporting Pickling
+--------------------
+
+The key to the :mod:`sqlalchemy.ext.mutable` extension relies upon the
+placement of a ``weakref.WeakKeyDictionary`` upon the value object, which
+stores a mapping of parent mapped objects keyed to the attribute name under
+which they are associated with this value. ``WeakKeyDictionary`` objects are
+not picklable, due to the fact that they contain weakrefs and function
+callbacks. In our case, this is a good thing, since if this dictionary were
+picklable, it could lead to an excessively large pickle size for our value
+objects that are pickled by themselves outside of the context of the parent.
+The developer responsibility here is only to provide a ``__getstate__`` method
+that excludes the :meth:`~MutableBase._parents` collection from the pickle
+stream::
+
+    class MyMutableType(Mutable):
+        def __getstate__(self):
+            d = self.__dict__.copy()
+            d.pop('_parents', None)
+            return d
+
+With our dictionary example, we need to return the contents of the dict itself
+(and also restore them on __setstate__)::
+
+    class MutableDict(Mutable, dict):
+        # ....
+
+        def __getstate__(self):
+            return dict(self)
+
+        def __setstate__(self, state):
+            self.update(state)
+
+In the case that our mutable value object is pickled as it is attached to one
+or more parent objects that are also part of the pickle, the :class:`.Mutable`
+mixin will re-establish the :attr:`.Mutable._parents` collection on each value
+object as the owning parents themselves are unpickled.
+
+Receiving Events
+----------------
+
+The :meth:`.AttributeEvents.modified` event handler may be used to receive
+an event when a mutable scalar emits a change event.  This event handler
+is called when the :func:`.attributes.flag_modified` function is called
+from within the mutable extension::
+
+    from sqlalchemy.orm import DeclarativeBase
+    from sqlalchemy.orm import Mapped
+    from sqlalchemy.orm import mapped_column
+    from sqlalchemy import event
+
+    class Base(DeclarativeBase):
+        pass
+
+    class MyDataClass(Base):
+        __tablename__ = 'my_data'
+        id: Mapped[int] = mapped_column(primary_key=True)
+        data: Mapped[dict[str, str]] = mapped_column(MutableDict.as_mutable(JSONEncodedDict))
+
+    @event.listens_for(MyDataClass.data, "modified")
+    def modified_json(instance, initiator):
+        print("json value modified:", instance.data)
+
+.. _mutable_composites:
+
+Establishing Mutability on Composites
+=====================================
+
+Composites are a special ORM feature which allow a single scalar attribute to
+be assigned an object value which represents information "composed" from one
+or more columns from the underlying mapped table. The usual example is that of
+a geometric "point", and is introduced in :ref:`mapper_composite`.
+
+As is the case with :class:`.Mutable`, the user-defined composite class
+subclasses :class:`.MutableComposite` as a mixin, and detects and delivers
+change events to its parents via the :meth:`.MutableComposite.changed` method.
+In the case of a composite class, the detection is usually via the usage of the
+special Python method ``__setattr__()``. In the example below, we expand upon the ``Point``
+class introduced in :ref:`mapper_composite` to include
+:class:`.MutableComposite` in its bases and to route attribute set events via
+``__setattr__`` to the :meth:`.MutableComposite.changed` method::
+
+    import dataclasses
+    from sqlalchemy.ext.mutable import MutableComposite
+
+    @dataclasses.dataclass
+    class Point(MutableComposite):
+        x: int
+        y: int
+
+        def __setattr__(self, key, value):
+            "Intercept set events"
+
+            # set the attribute
+            object.__setattr__(self, key, value)
+
+            # alert all parents to the change
+            self.changed()
+
+
+The :class:`.MutableComposite` class makes use of class mapping events to
+automatically establish listeners for any usage of :func:`_orm.composite` that
+specifies our ``Point`` type. Below, when ``Point`` is mapped to the ``Vertex``
+class, listeners are established which will route change events from ``Point``
+objects to each of the ``Vertex.start`` and ``Vertex.end`` attributes::
+
+    from sqlalchemy.orm import DeclarativeBase, Mapped
+    from sqlalchemy.orm import composite, mapped_column
+
+    class Base(DeclarativeBase):
+        pass
+
+
+    class Vertex(Base):
+        __tablename__ = "vertices"
+
+        id: Mapped[int] = mapped_column(primary_key=True)
+
+        start: Mapped[Point] = composite(mapped_column("x1"), mapped_column("y1"))
+        end: Mapped[Point] = composite(mapped_column("x2"), mapped_column("y2"))
+
+        def __repr__(self):
+            return f"Vertex(start={self.start}, end={self.end})"
+
+Any in-place changes to the ``Vertex.start`` or ``Vertex.end`` members
+will flag the attribute as "dirty" on the parent object:
+
+.. sourcecode:: python+sql
+
+    >>> from sqlalchemy.orm import Session
+    >>> sess = Session(engine)
+    >>> v1 = Vertex(start=Point(3, 4), end=Point(12, 15))
+    >>> sess.add(v1)
+    {sql}>>> sess.flush()
+    BEGIN (implicit)
+    INSERT INTO vertices (x1, y1, x2, y2) VALUES (?, ?, ?, ?)
+    [...] (3, 4, 12, 15)
+
+    {stop}>>> v1.end.x = 8
+    >>> assert v1 in sess.dirty
+    True
+    {sql}>>> sess.commit()
+    UPDATE vertices SET x2=? WHERE vertices.id = ?
+    [...] (8, 1)
+    COMMIT
+
+Coercing Mutable Composites
+---------------------------
+
+The :meth:`.MutableBase.coerce` method is also supported on composite types.
+In the case of :class:`.MutableComposite`, the :meth:`.MutableBase.coerce`
+method is only called for attribute set operations, not load operations.
+Overriding the :meth:`.MutableBase.coerce` method is essentially equivalent
+to using a :func:`.validates` validation routine for all attributes which
+make use of the custom composite type::
+
+    @dataclasses.dataclass
+    class Point(MutableComposite):
+        # other Point methods
+        # ...
+
+        def coerce(cls, key, value):
+            if isinstance(value, tuple):
+                value = Point(*value)
+            elif not isinstance(value, Point):
+                raise ValueError("tuple or Point expected")
+            return value
+
+Supporting Pickling
+--------------------
+
+As is the case with :class:`.Mutable`, the :class:`.MutableComposite` helper
+class uses a ``weakref.WeakKeyDictionary`` available via the
+:meth:`MutableBase._parents` attribute which isn't picklable. If we need to
+pickle instances of ``Point`` or its owning class ``Vertex``, we at least need
+to define a ``__getstate__`` that doesn't include the ``_parents`` dictionary.
+Below we define both a ``__getstate__`` and a ``__setstate__`` that package up
+the minimal form of our ``Point`` class::
+
+    @dataclasses.dataclass
+    class Point(MutableComposite):
+        # ...
+
+        def __getstate__(self):
+            return self.x, self.y
+
+        def __setstate__(self, state):
+            self.x, self.y = state
+
+As with :class:`.Mutable`, the :class:`.MutableComposite` augments the
+pickling process of the parent's object-relational state so that the
+:meth:`MutableBase._parents` collection is restored to all ``Point`` objects.
+\end{DoxyVerb}
+ 

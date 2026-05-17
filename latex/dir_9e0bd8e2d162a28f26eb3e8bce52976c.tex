@@ -1,0 +1,59 @@
+\doxysection{frontend/\+node\+\_\+modules/\+run-\/parallel Directory Reference}
+\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c}{}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c}\index{frontend/node\_modules/run-\/parallel Directory Reference@{frontend/node\_modules/run-\/parallel Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2537}{}\doxysubsection{\texorpdfstring{run-\/parallel \+[!\+[travis]\+\+[travis-\/image]\+]\+\+[travis-\/url]\+ \+[!\+[npm]\+\+[npm-\/image]\+]\+\+[npm-\/url]\+ \+[!\+[downloads]\+\+[downloads-\/image]\+]\+\+[downloads-\/url]\+ \+[!\+[javascript style guide]\+\+[standard-\/image]\+]\+\+[standard-\/url]\+}{run-\/parallel \+[!\+[travis]\+\+[travis-\/image]\+]\+\+[travis-\/url]\+ \+[!\+[npm]\+\+[npm-\/image]\+]\+\+[npm-\/url]\+ \+[!\+[downloads]\+\+[downloads-\/image]\+]\+\+[downloads-\/url]\+ \+[!\+[javascript style guide]\+\+[standard-\/image]\+]\+\+[standard-\/url]\+}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2537}
+\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2538}{}\doxysubsubsection{\texorpdfstring{Run an array of functions in parallel}{Run an array of functions in parallel}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2538}
+ \href{https://saucelabs.com/u/run-parallel}{\texttt{}}\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2539}{}\doxysubsubsection{\texorpdfstring{install}{install}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2539}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ run-\/parallel}
+
+\end{DoxyCode}
+\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2540}{}\doxysubsubsection{\texorpdfstring{usage}{usage}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2540}
+\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2541}{}\doxysubsubsubsection{\texorpdfstring{parallel(tasks, \+[callback]\+)}{parallel(tasks, \+[callback]\+)}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2541}
+Run the {\ttfamily tasks} array of functions in parallel, without waiting until the previous function has completed. If any of the functions pass an error to its callback, the main {\ttfamily callback} is immediately called with the value of the error. Once the {\ttfamily tasks} have completed, the results are passed to the final {\ttfamily callback} as an array.
+
+It is also possible to use an object instead of an array. Each property will be run as a function and the results will be passed to the final {\ttfamily callback} as an object instead of an array. This can be a more readable way of handling the results.\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2542}{}\doxysubsubsubsubsection{\texorpdfstring{arguments}{arguments}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2542}
+
+\begin{DoxyItemize}
+\item {\ttfamily tasks} -\/ An array or object containing functions to run. Each function is passed a {\ttfamily callback(err, result)} which it must call on completion with an error {\ttfamily err} (which can be {\ttfamily null}) and an optional {\ttfamily result} value.
+\item {\ttfamily callback(err, results)} -\/ An optional callback to run once all the functions have completed. This function gets a results array (or object) containing all the result arguments passed to the task callbacks.
+\end{DoxyItemize}\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2543}{}\doxysubsubsubsubsection{\texorpdfstring{example}{example}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2543}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ parallel\ =\ require('run-\/parallel')}
+\DoxyCodeLine{}
+\DoxyCodeLine{parallel([}
+\DoxyCodeLine{\ \ function\ (callback)\ \{}
+\DoxyCodeLine{\ \ \ \ setTimeout(function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ callback(null,\ 'one')}
+\DoxyCodeLine{\ \ \ \ \},\ 200)}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{\ \ function\ (callback)\ \{}
+\DoxyCodeLine{\ \ \ \ setTimeout(function\ ()\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ callback(null,\ 'two')}
+\DoxyCodeLine{\ \ \ \ \},\ 100)}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{],}
+\DoxyCodeLine{//\ optional\ callback}
+\DoxyCodeLine{function\ (err,\ results)\ \{}
+\DoxyCodeLine{\ \ //\ the\ results\ array\ will\ equal\ ['one','two']\ even\ though}
+\DoxyCodeLine{\ \ //\ the\ second\ function\ had\ a\ shorter\ timeout.}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+This module is basically equavalent to \href{https://github.com/caolan/async\#paralleltasks-callback}{\texttt{{\ttfamily async.\+parallel}}}, but it\textquotesingle{}s handy to just have the one function you need instead of the kitchen sink. Modularity! Especially handy if you\textquotesingle{}re serving to the browser and need to reduce your javascript bundle size.
+
+Works great in the browser with \href{http://browserify.org/}{\texttt{browserify}}!\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2544}{}\doxysubsubsection{\texorpdfstring{see also}{see also}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2544}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/feross/run-auto}{\texttt{run-\/auto}}
+\item \href{https://github.com/feross/run-parallel-limit}{\texttt{run-\/parallel-\/limit}}
+\item \href{https://github.com/feross/run-series}{\texttt{run-\/series}}
+\item \href{https://github.com/feross/run-waterfall}{\texttt{run-\/waterfall}}
+\end{DoxyItemize}\hypertarget{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2545}{}\doxysubsubsection{\texorpdfstring{license}{license}}\label{dir_9e0bd8e2d162a28f26eb3e8bce52976c_autotoc_md2545}
+MIT. Copyright (c) \href{http://feross.org}{\texttt{Feross Aboukhadijeh}}. 

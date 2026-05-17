@@ -1,0 +1,162 @@
+\doxysection{rich.\+progress.\+Task Class Reference}
+\hypertarget{classrich_1_1progress_1_1Task}{}\label{classrich_1_1progress_1_1Task}\index{rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_ab914a7c44962d1c224c218704425c073}{get\+\_\+time}} (self)
+\item 
+bool \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a63cf6c85c3325ab6c065874261269605}{started}} (self)
+\item 
+Optional\+[float]\+ \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a0e3b9a2cb51d09b847fe66f1b49651c7}{remaining}} (self)
+\item 
+Optional\+[float]\+ \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_af98468c8001b093d71e2a1f6d80e9ba2}{elapsed}} (self)
+\item 
+bool \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_ad905e303665fbae69a638cec21a4896c}{finished}} (self)
+\item 
+float \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a0dd923c07b8a6feca27a81acf1a40991}{percentage}} (self)
+\item 
+Optional\+[float]\+ \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a601c6d7f356a784e4d21cd223f103daf}{speed}} (self)
+\item 
+Optional\+[float]\+ \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_add0041195dc42fba2a40964e5874f628}{time\+\_\+remaining}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_ad4119b78d688fec1bb0ce1c13917588a}\label{classrich_1_1progress_1_1Task_ad4119b78d688fec1bb0ce1c13917588a} 
+{\bfseries finished}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_a99bdaafd1e2924f16cbe7ec8873e190d}\label{classrich_1_1progress_1_1Task_a99bdaafd1e2924f16cbe7ec8873e190d} 
+Optional {\bfseries total} \+[float]\+
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_a7a95e27d8e21846a5ddc02aa45d6e265}\label{classrich_1_1progress_1_1Task_a7a95e27d8e21846a5ddc02aa45d6e265} 
+Optional {\bfseries finished\+\_\+time} = None
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_afcf577e8a68e8e1a0a904ab29fdbf235}\label{classrich_1_1progress_1_1Task_afcf577e8a68e8e1a0a904ab29fdbf235} 
+bool {\bfseries visible} = True
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_aa30fc97820f9acaebfaa461d982cd5a9}\label{classrich_1_1progress_1_1Task_aa30fc97820f9acaebfaa461d982cd5a9} 
+Dict {\bfseries fields} = field(default\+\_\+factory=dict)
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_a880e5d3ecd9c69db868035d953372511}\label{classrich_1_1progress_1_1Task_a880e5d3ecd9c69db868035d953372511} 
+Optional {\bfseries start\+\_\+time} = field(default=None, init=False, repr=False)
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_aee0084dd653c457a3f5824533d5c0de9}\label{classrich_1_1progress_1_1Task_aee0084dd653c457a3f5824533d5c0de9} 
+Optional {\bfseries stop\+\_\+time} = field(default=None, init=False, repr=False)
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_a4c38a88963becb5ed7474fa9f8b6430c}\label{classrich_1_1progress_1_1Task_a4c38a88963becb5ed7474fa9f8b6430c} 
+Optional {\bfseries finished\+\_\+speed} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a6804f4b7e968b1fdf36441d756b256f1}{\+\_\+reset}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Deque \doxymbox{\hyperlink{classrich_1_1progress_1_1Task_a07626e99e9a6d4b5c0f67bbe4be1167d}{\+\_\+progress}}
+\item 
+\Hypertarget{classrich_1_1progress_1_1Task_a2bc7747734768bc9fed8130b53140a0b}\label{classrich_1_1progress_1_1Task_a2bc7747734768bc9fed8130b53140a0b} 
+RLock {\bfseries \+\_\+lock} = field(repr=False, default\+\_\+factory=RLock)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Information regarding a progress task.
+
+This object should be considered read-only outside of the :class:`~Progress` class.
+\end{DoxyVerb}
+ 
+
+\label{classrich_1_1progress_1_1Task_doc-func-members}
+\Hypertarget{classrich_1_1progress_1_1Task_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrich_1_1progress_1_1Task_a6804f4b7e968b1fdf36441d756b256f1}\index{rich.progress.Task@{rich.progress.Task}!\_reset@{\_reset}}
+\index{\_reset@{\_reset}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{\_reset()}{\_reset()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a6804f4b7e968b1fdf36441d756b256f1} 
+ None rich.\+progress.\+Task.\+\_\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Reset progress.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_af98468c8001b093d71e2a1f6d80e9ba2}\index{rich.progress.Task@{rich.progress.Task}!elapsed@{elapsed}}
+\index{elapsed@{elapsed}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{elapsed()}{elapsed()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_af98468c8001b093d71e2a1f6d80e9ba2} 
+ Optional\+[float]\+ rich.\+progress.\+Task.\+elapsed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Optional[float]: Time elapsed since task was started, or ``None`` if the task hasn't started.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_ad905e303665fbae69a638cec21a4896c}\index{rich.progress.Task@{rich.progress.Task}!finished@{finished}}
+\index{finished@{finished}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{finished()}{finished()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_ad905e303665fbae69a638cec21a4896c} 
+ bool rich.\+progress.\+Task.\+finished (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if the task has finished.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_ab914a7c44962d1c224c218704425c073}\index{rich.progress.Task@{rich.progress.Task}!get\_time@{get\_time}}
+\index{get\_time@{get\_time}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{get\_time()}{get\_time()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_ab914a7c44962d1c224c218704425c073} 
+ float rich.\+progress.\+Task.\+get\+\_\+time (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}float: Get the current time, in seconds.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_a0dd923c07b8a6feca27a81acf1a40991}\index{rich.progress.Task@{rich.progress.Task}!percentage@{percentage}}
+\index{percentage@{percentage}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{percentage()}{percentage()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a0dd923c07b8a6feca27a81acf1a40991} 
+ float rich.\+progress.\+Task.\+percentage (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}float: Get progress of task as a percentage. If a None total was set, returns 0\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_a0e3b9a2cb51d09b847fe66f1b49651c7}\index{rich.progress.Task@{rich.progress.Task}!remaining@{remaining}}
+\index{remaining@{remaining}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{remaining()}{remaining()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a0e3b9a2cb51d09b847fe66f1b49651c7} 
+ Optional\+[float]\+ rich.\+progress.\+Task.\+remaining (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Optional[float]: Get the number of steps remaining, if a non-None total was set.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_a601c6d7f356a784e4d21cd223f103daf}\index{rich.progress.Task@{rich.progress.Task}!speed@{speed}}
+\index{speed@{speed}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{speed()}{speed()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a601c6d7f356a784e4d21cd223f103daf} 
+ Optional\+[float]\+ rich.\+progress.\+Task.\+speed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Optional[float]: Get the estimated speed in steps per second.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_a63cf6c85c3325ab6c065874261269605}\index{rich.progress.Task@{rich.progress.Task}!started@{started}}
+\index{started@{started}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{started()}{started()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a63cf6c85c3325ab6c065874261269605} 
+ bool rich.\+progress.\+Task.\+started (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}bool: Check if the task as started.\end{DoxyVerb}
+ \Hypertarget{classrich_1_1progress_1_1Task_add0041195dc42fba2a40964e5874f628}\index{rich.progress.Task@{rich.progress.Task}!time\_remaining@{time\_remaining}}
+\index{time\_remaining@{time\_remaining}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{time\_remaining()}{time\_remaining()}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_add0041195dc42fba2a40964e5874f628} 
+ Optional\+[float]\+ rich.\+progress.\+Task.\+time\+\_\+remaining (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Optional[float]: Get estimated time to completion, or ``None`` if no data.\end{DoxyVerb}
+ 
+
+\label{classrich_1_1progress_1_1Task_doc-variable-members}
+\Hypertarget{classrich_1_1progress_1_1Task_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classrich_1_1progress_1_1Task_a07626e99e9a6d4b5c0f67bbe4be1167d}\index{rich.progress.Task@{rich.progress.Task}!\_progress@{\_progress}}
+\index{\_progress@{\_progress}!rich.progress.Task@{rich.progress.Task}}
+\doxysubsubsection{\texorpdfstring{\_progress}{\_progress}}
+{\footnotesize\ttfamily \label{classrich_1_1progress_1_1Task_a07626e99e9a6d4b5c0f67bbe4be1167d} 
+Deque rich.\+progress.\+Task.\+\_\+progress\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ field(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ default\_factory=\textcolor{keyword}{lambda}:\ deque(maxlen=1000),\ init=\textcolor{keyword}{False},\ repr=\textcolor{keyword}{False}}
+\DoxyCodeLine{\ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rich/\+progress.\+py\end{DoxyCompactItemize}

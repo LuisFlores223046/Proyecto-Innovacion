@@ -1,0 +1,330 @@
+\doxysection{h11.\+\_\+connection.\+Connection Class Reference}
+\hypertarget{classh11_1_1__connection_1_1Connection}{}\label{classh11_1_1__connection_1_1Connection}\index{h11.\_connection.Connection@{h11.\_connection.Connection}}
+
+
+The main \doxylink{classh11_1_1__connection_1_1Connection}{Connection} class.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a8e5bec244cfb0618fc1627650b979d8e}\label{classh11_1_1__connection_1_1Connection_a8e5bec244cfb0618fc1627650b979d8e} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, Type\+[Sentinel]\+ our\+\_\+role, int max\+\_\+incomplete\+\_\+event\+\_\+size=DEFAULT\+\_\+\+MAX\+\_\+\+INCOMPLETE\+\_\+\+EVENT\+\_\+\+SIZE)
+\item 
+Dict\+[Type\+[Sentinel]\+, Type\+[Sentinel]\+]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a53ae471204b3c2cac3190c74abbd0f47}{states}} (self)
+\item 
+Type\+[Sentinel]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_acaee6a91d514fbc94203f88442a10cb5}{our\+\_\+state}} (self)
+\item 
+Type\+[Sentinel]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a9682497b538ab2873304100cfc098413}{their\+\_\+state}} (self)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a8054c3d09c3409dcb1a689706e246940}\label{classh11_1_1__connection_1_1Connection_a8054c3d09c3409dcb1a689706e246940} 
+bool {\bfseries they\+\_\+are\+\_\+waiting\+\_\+for\+\_\+100\+\_\+continue} (self)
+\item 
+None \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a85247bf7317d88d740d24b904792c8e3}{start\+\_\+next\+\_\+cycle}} (self)
+\item 
+Tuple\+[bytes, bool]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a7e6800296e776adcce3761c98075a9fe}{trailing\+\_\+data}} (self)
+\item 
+None \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a202bde926a426b663ec8b5dded72ecd3}{receive\+\_\+data}} (self, bytes data)
+\item 
+Union\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1NEED__DATA}{NEED\+\_\+\+DATA}}]\+, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1PAUSED}{PAUSED}}]\+]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_af31a7686e334702045fb60a67b7db56b}{next\+\_\+event}} (self)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a6085215c50e0caa40c30f6966ababad0}\label{classh11_1_1__connection_1_1Connection_a6085215c50e0caa40c30f6966ababad0} 
+None {\bfseries send} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1ConnectionClosed}{Connection\+Closed}} event)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a19905c6ee64cceb6f2d773421f699c31}\label{classh11_1_1__connection_1_1Connection_a19905c6ee64cceb6f2d773421f699c31} 
+bytes {\bfseries send} (self, Union\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Request}{Request}}, \doxymbox{\hyperlink{classh11_1_1__events_1_1InformationalResponse}{Informational\+Response}}, \doxymbox{\hyperlink{classh11_1_1__events_1_1Response}{Response}}, \doxymbox{\hyperlink{classh11_1_1__events_1_1Data}{Data}}, \doxymbox{\hyperlink{classh11_1_1__events_1_1EndOfMessage}{End\+Of\+Message}}]\+ event)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a9df2c0a8de912c5889acd576766924af}\label{classh11_1_1__connection_1_1Connection_a9df2c0a8de912c5889acd576766924af} 
+Optional\+[bytes]\+ {\bfseries send} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}} event)
+\item 
+Optional\+[bytes]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a9df2c0a8de912c5889acd576766924af}{send}} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}} event)
+\item 
+Optional\+[List\+[bytes]\+]\+ \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a36ede64eaa08e893e3611e821bf8b979}{send\+\_\+with\+\_\+data\+\_\+passthrough}} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}} event)
+\item 
+None \doxymbox{\hyperlink{classh11_1_1__connection_1_1Connection_a281460e23471bc92bd4060eee92e91cd}{send\+\_\+failed}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a6b75dcb5ae09280d5ea094a20767d809}\label{classh11_1_1__connection_1_1Connection_a6b75dcb5ae09280d5ea094a20767d809} 
+{\bfseries our\+\_\+role} = our\+\_\+role
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_af1da9bea1018d73f99c46fdf66a2b04b}\label{classh11_1_1__connection_1_1Connection_af1da9bea1018d73f99c46fdf66a2b04b} 
+Type\+[Sentinel]\+ {\bfseries their\+\_\+role}
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a40b7a2273958dfa217c11a9fe61ded5b}\label{classh11_1_1__connection_1_1Connection_a40b7a2273958dfa217c11a9fe61ded5b} 
+Optional\+[bytes]\+ {\bfseries their\+\_\+http\+\_\+version} = None
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a98453b55c8e1da292ce9e02fd5659c98}\label{classh11_1_1__connection_1_1Connection_a98453b55c8e1da292ce9e02fd5659c98} 
+bool {\bfseries client\+\_\+is\+\_\+waiting\+\_\+for\+\_\+100\+\_\+continue} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a195fbf062f8c5d1cb0fa292498dc3cf9}\label{classh11_1_1__connection_1_1Connection_a195fbf062f8c5d1cb0fa292498dc3cf9} 
+None {\bfseries \+\_\+process\+\_\+error} (self, Type\+[Sentinel]\+ role)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a5093469af2a579ab8864ba4476ea188c}\label{classh11_1_1__connection_1_1Connection_a5093469af2a579ab8864ba4476ea188c} 
+Optional\+[Type\+[Sentinel]\+]\+ {\bfseries \+\_\+server\+\_\+switch\+\_\+event} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}} event)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a3769f98910974e29296f7c772f7ad6d7}\label{classh11_1_1__connection_1_1Connection_a3769f98910974e29296f7c772f7ad6d7} 
+None {\bfseries \+\_\+process\+\_\+event} (self, Type\+[Sentinel]\+ role, \doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}} event)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a7748930d451e62e5731c0998211177fb}\label{classh11_1_1__connection_1_1Connection_a7748930d451e62e5731c0998211177fb} 
+Optional\+[Callable\+[..., Any]\+]\+ {\bfseries \+\_\+get\+\_\+io\+\_\+object} (self, Type\+[Sentinel]\+ role, Optional\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}]\+ event, Union\+[Readers\+Type, Writers\+Type]\+ io\+\_\+dict)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a1106abb6055a822f34825c5b20f601ba}\label{classh11_1_1__connection_1_1Connection_a1106abb6055a822f34825c5b20f601ba} 
+None {\bfseries \+\_\+respond\+\_\+to\+\_\+state\+\_\+changes} (self, Dict\+[Type\+[Sentinel]\+, Type\+[Sentinel]\+]\+ old\+\_\+states, Optional\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}]\+ event=None)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_ae5c5ee0f5a258c43b6f301423766910c}\label{classh11_1_1__connection_1_1Connection_ae5c5ee0f5a258c43b6f301423766910c} 
+Union\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1NEED__DATA}{NEED\+\_\+\+DATA}}]\+, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1PAUSED}{PAUSED}}]\+]\+ {\bfseries \+\_\+extract\+\_\+next\+\_\+receive\+\_\+event} (self)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_ab7a20957122bca11cb83bba88e20324b}\label{classh11_1_1__connection_1_1Connection_ab7a20957122bca11cb83bba88e20324b} 
+\doxymbox{\hyperlink{classh11_1_1__events_1_1Response}{Response}} {\bfseries \+\_\+clean\+\_\+up\+\_\+response\+\_\+headers\+\_\+for\+\_\+sending} (self, \doxymbox{\hyperlink{classh11_1_1__events_1_1Response}{Response}} response)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a3fb14237f5b8280bddc2fc5f84619b4e}\label{classh11_1_1__connection_1_1Connection_a3fb14237f5b8280bddc2fc5f84619b4e} 
+{\bfseries \+\_\+max\+\_\+incomplete\+\_\+event\+\_\+size} = max\+\_\+incomplete\+\_\+event\+\_\+size
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a446d4802dfceb695e61e2e1f389ec62b}\label{classh11_1_1__connection_1_1Connection_a446d4802dfceb695e61e2e1f389ec62b} 
+{\bfseries \+\_\+cstate} = \doxymbox{\hyperlink{classh11_1_1__state_1_1ConnectionState}{Connection\+State}}()
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a2cbb20feb09033a57cca96c6b68da006}\label{classh11_1_1__connection_1_1Connection_a2cbb20feb09033a57cca96c6b68da006} 
+Optional\+[Callable\+[..., Any]\+]\+ {\bfseries \+\_\+writer} = self.\+\_\+get\+\_\+io\+\_\+object(self.\+our\+\_\+role, None, WRITERS)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a6edb159d953b6eb0cdbeb80107f48c43}\label{classh11_1_1__connection_1_1Connection_a6edb159d953b6eb0cdbeb80107f48c43} 
+Optional\+[Callable\+[..., Any]\+]\+ {\bfseries \+\_\+reader} = self.\+\_\+get\+\_\+io\+\_\+object(self.\+their\+\_\+role, None, READERS)
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_abbaec83ad7bd639f212fbbb73246839a}\label{classh11_1_1__connection_1_1Connection_abbaec83ad7bd639f212fbbb73246839a} 
+{\bfseries \+\_\+receive\+\_\+buffer} = \doxymbox{\hyperlink{classh11_1_1__receivebuffer_1_1ReceiveBuffer}{Receive\+Buffer}}()
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_afc6ec3779452e7e51bf8d6142ec9b911}\label{classh11_1_1__connection_1_1Connection_afc6ec3779452e7e51bf8d6142ec9b911} 
+bool {\bfseries \+\_\+receive\+\_\+buffer\+\_\+closed} = False
+\item 
+\Hypertarget{classh11_1_1__connection_1_1Connection_a0c1cb445a7003cda752fa719b594fc4f}\label{classh11_1_1__connection_1_1Connection_a0c1cb445a7003cda752fa719b594fc4f} 
+Optional\+[bytes]\+ {\bfseries \+\_\+request\+\_\+method} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main \doxylink{classh11_1_1__connection_1_1Connection}{Connection} class. 
+
+\begin{DoxyVerb}An object encapsulating the state of an HTTP connection.
+
+Args:
+    our_role: If you're implementing a client, pass :data:`h11.CLIENT`. If
+        you're implementing a server, pass :data:`h11.SERVER`.
+
+    max_incomplete_event_size (int):
+        The maximum number of bytes we're willing to buffer of an
+        incomplete event. In practice this mostly sets a limit on the
+        maximum size of the request/response line + headers. If this is
+        exceeded, then :meth:`next_event` will raise
+        :exc:`RemoteProtocolError`.
+\end{DoxyVerb}
+ 
+
+\label{classh11_1_1__connection_1_1Connection_doc-func-members}
+\Hypertarget{classh11_1_1__connection_1_1Connection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classh11_1_1__connection_1_1Connection_af31a7686e334702045fb60a67b7db56b}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!next\_event@{next\_event}}
+\index{next\_event@{next\_event}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{next\_event()}{next\_event()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_af31a7686e334702045fb60a67b7db56b} 
+ Union\+[\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1NEED__DATA}{NEED\+\_\+\+DATA}}]\+, Type\+[\doxymbox{\hyperlink{classh11_1_1__connection_1_1PAUSED}{PAUSED}}]\+]\+ h11.\+\_\+connection.\+Connection.\+next\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse the next event out of our receive buffer, update our internal
+state, and return it.
+
+This is a mutating operation -- think of it like calling :func:`next`
+on an iterator.
+
+Returns:
+    : One of three things:
+
+    1) An event object -- see :ref:`events`.
+
+    2) The special constant :data:`NEED_DATA`, which indicates that
+       you need to read more data from your socket and pass it to
+       :meth:`receive_data` before this method will be able to return
+       any more events.
+
+    3) The special constant :data:`PAUSED`, which indicates that we
+       are not in a state where we can process incoming data (usually
+       because the peer has finished their part of the current
+       request/response cycle, and you have not yet called
+       :meth:`start_next_cycle`). See :ref:`flow-control` for details.
+
+Raises:
+    RemoteProtocolError:
+        The peer has misbehaved. You should close the connection
+        (possibly after sending some kind of 4xx response).
+
+Once this method returns :class:`ConnectionClosed` once, then all
+subsequent calls will also return :class:`ConnectionClosed`.
+
+If this method raises any exception besides :exc:`RemoteProtocolError`
+then that's a bug -- if it happens please file a bug report!
+
+If this method raises any exception then it also sets
+:attr:`Connection.their_state` to :data:`ERROR` -- see
+:ref:`error-handling` for discussion.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_acaee6a91d514fbc94203f88442a10cb5}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!our\_state@{our\_state}}
+\index{our\_state@{our\_state}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{our\_state()}{our\_state()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_acaee6a91d514fbc94203f88442a10cb5} 
+ Type\+[Sentinel]\+ h11.\+\_\+connection.\+Connection.\+our\+\_\+state (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The current state of whichever role we are playing. See
+:ref:`state-machine` for details.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a202bde926a426b663ec8b5dded72ecd3}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!receive\_data@{receive\_data}}
+\index{receive\_data@{receive\_data}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{receive\_data()}{receive\_data()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a202bde926a426b663ec8b5dded72ecd3} 
+ None h11.\+\_\+connection.\+Connection.\+receive\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add data to our internal receive buffer.
+
+This does not actually do any processing on the data, just stores
+it. To trigger processing, you have to call :meth:`next_event`.
+
+Args:
+    data (:term:`bytes-like object`):
+        The new data that was just received.
+
+        Special case: If *data* is an empty byte-string like ``b""``,
+        then this indicates that the remote side has closed the
+        connection (end of file). Normally this is convenient, because
+        standard Python APIs like :meth:`file.read` or
+        :meth:`socket.recv` use ``b""`` to indicate end-of-file, while
+        other failures to read are indicated using other mechanisms
+        like raising :exc:`TimeoutError`. When using such an API you
+        can just blindly pass through whatever you get from ``read``
+        to :meth:`receive_data`, and everything will work.
+
+        But, if you have an API where reading an empty string is a
+        valid non-EOF condition, then you need to be aware of this and
+        make sure to check for such strings and avoid passing them to
+        :meth:`receive_data`.
+
+Returns:
+    Nothing, but after calling this you should call :meth:`next_event`
+    to parse the newly received data.
+
+Raises:
+    RuntimeError:
+        Raised if you pass an empty *data*, indicating EOF, and then
+        pass a non-empty *data*, indicating more data that somehow
+        arrived after the EOF.
+
+        (Calling ``receive_data(b"")`` multiple times is fine,
+        and equivalent to calling it once.)
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a9df2c0a8de912c5889acd576766924af}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!send@{send}}
+\index{send@{send}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a9df2c0a8de912c5889acd576766924af} 
+ Optional\+[bytes]\+ h11.\+\_\+connection.\+Connection.\+send (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a high-level event into bytes that can be sent to the peer,
+while updating our internal state machine.
+
+Args:
+    event: The :ref:`event <events>` to send.
+
+Returns:
+    If ``type(event) is ConnectionClosed``, then returns
+    ``None``. Otherwise, returns a :term:`bytes-like object`.
+
+Raises:
+    LocalProtocolError:
+        Sending this event at this time would violate our
+        understanding of the HTTP/1.1 protocol.
+
+If this method raises any exception then it also sets
+:attr:`Connection.our_state` to :data:`ERROR` -- see
+:ref:`error-handling` for discussion.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a281460e23471bc92bd4060eee92e91cd}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!send\_failed@{send\_failed}}
+\index{send\_failed@{send\_failed}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{send\_failed()}{send\_failed()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a281460e23471bc92bd4060eee92e91cd} 
+ None h11.\+\_\+connection.\+Connection.\+send\+\_\+failed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Notify the state machine that we failed to send the data it gave
+us.
+
+This causes :attr:`Connection.our_state` to immediately become
+:data:`ERROR` -- see :ref:`error-handling` for discussion.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a36ede64eaa08e893e3611e821bf8b979}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!send\_with\_data\_passthrough@{send\_with\_data\_passthrough}}
+\index{send\_with\_data\_passthrough@{send\_with\_data\_passthrough}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{send\_with\_data\_passthrough()}{send\_with\_data\_passthrough()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a36ede64eaa08e893e3611e821bf8b979} 
+ Optional\+[List\+[bytes]\+]\+ h11.\+\_\+connection.\+Connection.\+send\+\_\+with\+\_\+data\+\_\+passthrough (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classh11_1_1__events_1_1Event}{Event}}}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Identical to :meth:`send`, except that in situations where
+:meth:`send` returns a single :term:`bytes-like object`, this instead
+returns a list of them -- and when sending a :class:`Data` event, this
+list is guaranteed to contain the exact object you passed in as
+:attr:`Data.data`. See :ref:`sendfile` for discussion.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a85247bf7317d88d740d24b904792c8e3}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!start\_next\_cycle@{start\_next\_cycle}}
+\index{start\_next\_cycle@{start\_next\_cycle}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{start\_next\_cycle()}{start\_next\_cycle()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a85247bf7317d88d740d24b904792c8e3} 
+ None h11.\+\_\+connection.\+Connection.\+start\+\_\+next\+\_\+cycle (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Attempt to reset our connection state for a new request/response
+cycle.
+
+If both client and server are in :data:`DONE` state, then resets them
+both to :data:`IDLE` state in preparation for a new request/response
+cycle on this same connection. Otherwise, raises a
+:exc:`LocalProtocolError`.
+
+See :ref:`keepalive-and-pipelining`.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a53ae471204b3c2cac3190c74abbd0f47}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!states@{states}}
+\index{states@{states}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{states()}{states()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a53ae471204b3c2cac3190c74abbd0f47} 
+ Dict\+[Type\+[Sentinel]\+, Type\+[Sentinel]\+]\+ h11.\+\_\+connection.\+Connection.\+states (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A dictionary like::
+
+   {CLIENT: <client state>, SERVER: <server state>}
+
+See :ref:`state-machine` for details.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a9682497b538ab2873304100cfc098413}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!their\_state@{their\_state}}
+\index{their\_state@{their\_state}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{their\_state()}{their\_state()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a9682497b538ab2873304100cfc098413} 
+ Type\+[Sentinel]\+ h11.\+\_\+connection.\+Connection.\+their\+\_\+state (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The current state of whichever role we are NOT playing. See
+:ref:`state-machine` for details.
+\end{DoxyVerb}
+ \Hypertarget{classh11_1_1__connection_1_1Connection_a7e6800296e776adcce3761c98075a9fe}\index{h11.\_connection.Connection@{h11.\_connection.Connection}!trailing\_data@{trailing\_data}}
+\index{trailing\_data@{trailing\_data}!h11.\_connection.Connection@{h11.\_connection.Connection}}
+\doxysubsubsection{\texorpdfstring{trailing\_data()}{trailing\_data()}}
+{\footnotesize\ttfamily \label{classh11_1_1__connection_1_1Connection_a7e6800296e776adcce3761c98075a9fe} 
+ Tuple\+[bytes, bool]\+ h11.\+\_\+connection.\+Connection.\+trailing\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Data that has been received, but not yet processed, represented as
+a tuple with two elements, where the first is a byte-string containing
+the unprocessed data itself, and the second is a bool that is True if
+the receive connection was closed.
+
+See :ref:`switching-protocols` for discussion of why you'd want this.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+h11/\+\+\_\+connection.\+py\end{DoxyCompactItemize}

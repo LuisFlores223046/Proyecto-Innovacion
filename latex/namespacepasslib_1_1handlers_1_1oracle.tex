@@ -1,0 +1,54 @@
+\doxysection{passlib.\+handlers.\+oracle Namespace Reference}
+\hypertarget{namespacepasslib_1_1handlers_1_1oracle}{}\label{namespacepasslib_1_1handlers_1_1oracle}\index{passlib.handlers.oracle@{passlib.handlers.oracle}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1oracle_1_1oracle10}{oracle10}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1handlers_1_1oracle_1_1oracle11}{oracle11}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1handlers_1_1oracle_a47f2486845b8512cd955d0178892bb0b}{des\+\_\+cbc\+\_\+encrypt}} (key, value, iv=b\textquotesingle{}\textbackslash{}x00\textquotesingle{} \texorpdfstring{$\ast$}{*}8, pad=b\textquotesingle{}\textbackslash{}x00\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1oracle_a691f70186cdfa0a352c3b2b349e8a2c3}\label{namespacepasslib_1_1handlers_1_1oracle_a691f70186cdfa0a352c3b2b349e8a2c3} 
+{\bfseries log}
+\item 
+\Hypertarget{namespacepasslib_1_1handlers_1_1oracle_ac068268855433525094231a242674cd0}\label{namespacepasslib_1_1handlers_1_1oracle_ac068268855433525094231a242674cd0} 
+str {\bfseries ORACLE10\+\_\+\+MAGIC} = b"{}\textbackslash{}x01\textbackslash{}x23\textbackslash{}x45\textbackslash{}x67\textbackslash{}x89\textbackslash{}x\+AB\textbackslash{}x\+CD\textbackslash{}x\+EF"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.handlers.oracle - Oracle DB Password Hashes\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1handlers_1_1oracle_doc-func-members}
+\Hypertarget{namespacepasslib_1_1handlers_1_1oracle_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1handlers_1_1oracle_a47f2486845b8512cd955d0178892bb0b}\index{passlib.handlers.oracle@{passlib.handlers.oracle}!des\_cbc\_encrypt@{des\_cbc\_encrypt}}
+\index{des\_cbc\_encrypt@{des\_cbc\_encrypt}!passlib.handlers.oracle@{passlib.handlers.oracle}}
+\doxysubsubsection{\texorpdfstring{des\_cbc\_encrypt()}{des\_cbc\_encrypt()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1handlers_1_1oracle_a47f2486845b8512cd955d0178892bb0b} 
+des\+\_\+cbc\+\_\+encrypt (\begin{DoxyParamCaption}\item[{}]{key}{, }\item[{}]{value}{, }\item[{}]{iv}{ = {\ttfamily b\textquotesingle{}\textbackslash{}x00\textquotesingle{}~\texorpdfstring{$\ast$}{*}~8}, }\item[{}]{pad}{ = {\ttfamily b\textquotesingle{}\textbackslash{}x00\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}performs des-cbc encryption, returns only last block.
+
+this performs a specific DES-CBC encryption implementation
+as needed by the Oracle10 hash. it probably won't be useful for
+other purposes as-is.
+
+input value is null-padded to multiple of 8 bytes.
+
+:arg key: des key as bytes
+:arg value: value to encrypt, as bytes.
+:param iv: optional IV
+:param pad: optional pad byte
+
+:returns: last block of DES-CBC encryption of all ``value``'s byte blocks.
+\end{DoxyVerb}
+ 

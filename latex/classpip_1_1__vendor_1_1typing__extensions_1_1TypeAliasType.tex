@@ -1,0 +1,74 @@
+\doxysection{pip.\+\_\+vendor.\+typing\+\_\+extensions.\+Type\+Alias\+Type Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType}{}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType}\index{pip.\_vendor.typing\_extensions.TypeAliasType@{pip.\_vendor.typing\_extensions.TypeAliasType}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a30b0b851d08d8a62e83047d118700532}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a30b0b851d08d8a62e83047d118700532} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str name, value, \texorpdfstring{$\ast$}{*}, type\+\_\+params=())
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_aa2195f00f2fd4aaf64fcb6956948805e}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_aa2195f00f2fd4aaf64fcb6956948805e} 
+None {\bfseries \+\_\+\+\_\+setattr\+\_\+\+\_\+} (self, str \+\_\+\+\_\+name, object \+\_\+\+\_\+value)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a180263a5ef7b2256e2cf0a4ad305adc8}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a180263a5ef7b2256e2cf0a4ad305adc8} 
+Never {\bfseries \+\_\+\+\_\+delattr\+\_\+\+\_\+} (self, str \+\_\+\+\_\+name)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_addb99dfc3ac89f92bde54e7efca88cbd}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_addb99dfc3ac89f92bde54e7efca88cbd} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_aba974ec24ff72c73bf4289ce945eb48d}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_aba974ec24ff72c73bf4289ce945eb48d} 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, parameters)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a3bae21bdbabf1147f5007493718a2fc5}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a3bae21bdbabf1147f5007493718a2fc5} 
+{\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a41e2efc1f7e0f3a2616a69b99c6f2722}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a41e2efc1f7e0f3a2616a69b99c6f2722} 
+{\bfseries \+\_\+\+\_\+init\+\_\+subclass\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_afc1f89bde1d1898049978a4b0d354a10}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_afc1f89bde1d1898049978a4b0d354a10} 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a17e7cdcd82307930f5eb3f29d72467fb}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a17e7cdcd82307930f5eb3f29d72467fb} 
+{\bfseries \+\_\+\+\_\+or\+\_\+\+\_\+} (self, right)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_ae2aba034092b3ac19baab80d25b425a9}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_ae2aba034092b3ac19baab80d25b425a9} 
+{\bfseries \+\_\+\+\_\+ror\+\_\+\+\_\+} (self, left)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a5222da51c069223b951c8cc492d67d12}\label{classpip_1_1__vendor_1_1typing__extensions_1_1TypeAliasType_a5222da51c069223b951c8cc492d67d12} 
+Never {\bfseries \+\_\+raise\+\_\+attribute\+\_\+error} (self, str name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create named, parameterized type aliases.
+
+This provides a backport of the new `type` statement in Python 3.12:
+
+    type ListOrSet[T] = list[T] | set[T]
+
+is equivalent to:
+
+    T = TypeVar("T")
+    ListOrSet = TypeAliasType("ListOrSet", list[T] | set[T], type_params=(T,))
+
+The name ListOrSet can then be used as an alias for the type it refers to.
+
+The type_params argument should contain all the type parameters used
+in the value of the type alias. If the alias is not generic, this
+argument is omitted.
+
+Static type checkers should only support type aliases declared using
+TypeAliasType that follow these rules:
+
+- The first argument (the name) must be a string literal.
+- The TypeAliasType instance must be immediately assigned to a variable
+  of the same name. (For example, 'X = TypeAliasType("Y", int)' is invalid,
+  as is 'X, Y = TypeAliasType("X", int), TypeAliasType("Y", int)').
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,42 @@
+\doxysection{sqlalchemy.\+orm.\+exc.\+Object\+Deleted\+Error Class Reference}
+\hypertarget{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError}{}\label{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError}\index{sqlalchemy.orm.exc.ObjectDeletedError@{sqlalchemy.orm.exc.ObjectDeletedError}}
+Inheritance diagram for sqlalchemy.\+orm.\+exc.\+Object\+Deleted\+Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError_a83e8d237b60ad31be98614490611317f}\label{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError_a83e8d237b60ad31be98614490611317f} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1state_1_1InstanceState}{Instance\+State}}\+[Any]\+ state, Optional\+[str]\+ msg=None)
+\item 
+\Hypertarget{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError_a9cfb929f09509609144f68380814ed00}\label{classsqlalchemy_1_1orm_1_1exc_1_1ObjectDeletedError_a9cfb929f09509609144f68380814ed00} 
+Any {\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A refresh operation failed to retrieve the database
+row corresponding to an object's known primary key identity.
+
+A refresh operation proceeds when an expired attribute is
+accessed on an object, or when :meth:`_query.Query.get` is
+used to retrieve an object which is, upon retrieval, detected
+as expired.   A SELECT is emitted for the target row
+based on primary key; if no row is returned, this
+exception is raised.
+
+The true meaning of this exception is simply that
+no row exists for the primary key identifier associated
+with a persistent object.   The row may have been
+deleted, or in some cases the primary key updated
+to a new value, outside of the ORM's management of the target
+object.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+orm/\+exc.\+py\end{DoxyCompactItemize}

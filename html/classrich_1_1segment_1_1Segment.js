@@ -1,0 +1,26 @@
+var classrich_1_1segment_1_1Segment =
+[
+    [ "__bool__", "classrich_1_1segment_1_1Segment.html#a1d5b2cc35a285efe508b898ea958405f", null ],
+    [ "_split_cells", "classrich_1_1segment_1_1Segment.html#a24ab077b7ab9e11ea0c05605e20cb7b8", null ],
+    [ "adjust_line_length", "classrich_1_1segment_1_1Segment.html#a945074a08c0488642a13a87aa8d4a14d", null ],
+    [ "align_bottom", "classrich_1_1segment_1_1Segment.html#a1069eb2ccfe3c7380953e9782b7b6d93", null ],
+    [ "align_middle", "classrich_1_1segment_1_1Segment.html#a547c68bbd4bad59f5caa422afdce62dc", null ],
+    [ "align_top", "classrich_1_1segment_1_1Segment.html#a6b0c01ec42025e810708ef6fc2851729", null ],
+    [ "apply_style", "classrich_1_1segment_1_1Segment.html#a94512d91deb92655105f605d419b34e2", null ],
+    [ "cell_length", "classrich_1_1segment_1_1Segment.html#a8ba84e6d657cb2062d8a1b02943be157", null ],
+    [ "divide", "classrich_1_1segment_1_1Segment.html#aed8ae0e17c87942b9181274c9ebabda5", null ],
+    [ "filter_control", "classrich_1_1segment_1_1Segment.html#a7bf916ccf5fd6274dea14490a7d3c9ca", null ],
+    [ "get_line_length", "classrich_1_1segment_1_1Segment.html#a90e4a84b14d8073723260c8b37d3c7f7", null ],
+    [ "get_shape", "classrich_1_1segment_1_1Segment.html#adec68c2067e7c76bf10afe6d727fc41e", null ],
+    [ "is_control", "classrich_1_1segment_1_1Segment.html#a76c5746b0ef9ad92a4551b2701ce0452", null ],
+    [ "line", "classrich_1_1segment_1_1Segment.html#a2954d9eb7acb521f453f3f81e20b2f36", null ],
+    [ "remove_color", "classrich_1_1segment_1_1Segment.html#a4f6bf66c2031e99029487a11d0336047", null ],
+    [ "set_shape", "classrich_1_1segment_1_1Segment.html#af6e2506e59506c4d123bf1a29b480866", null ],
+    [ "simplify", "classrich_1_1segment_1_1Segment.html#a850b394784090fa226ee46264828b4d0", null ],
+    [ "split_and_crop_lines", "classrich_1_1segment_1_1Segment.html#a9b34dfa06b9843141409006a48f182fb", null ],
+    [ "split_cells", "classrich_1_1segment_1_1Segment.html#af5c8ff69a1bb4c08798fabd0a005fd4f", null ],
+    [ "split_lines", "classrich_1_1segment_1_1Segment.html#a577be057c1a1ec1d6937d90e60797dd7", null ],
+    [ "split_lines_terminator", "classrich_1_1segment_1_1Segment.html#a5b3fc6a88705d4c21b8c9844968dc930", null ],
+    [ "strip_links", "classrich_1_1segment_1_1Segment.html#abc056adffe5c954d2dc62cdfc3b78e4a", null ],
+    [ "strip_styles", "classrich_1_1segment_1_1Segment.html#aad537fc0855e70c4258b6348c3ce58c2", null ]
+];

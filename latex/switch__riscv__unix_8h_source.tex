@@ -1,0 +1,38 @@
+\doxysection{switch\+\_\+riscv\+\_\+unix.\+h}
+\hypertarget{switch__riscv__unix_8h_source}{}\label{switch__riscv__unix_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_riscv\_unix.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_riscv\_unix.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ "{}s0"{},\ "{}s1"{},\ "{}s2"{},\ "{}s3"{},\ "{}s4"{},\ "{}s5"{},\ \(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ "{}s6"{},\ "{}s7"{},\ "{}s8"{},\ "{}s9"{},\ "{}s10"{},\ "{}s11"{},\ "{}fs0"{},\ "{}fs1"{},\ \(\backslash\)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ "{}fs2"{},\ "{}fs3"{},\ "{}fs4"{},\ "{}fs5"{},\ "{}fs6"{},\ "{}fs7"{},\ "{}fs8"{},\ "{}fs9"{},\ \(\backslash\)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ "{}fs10"{},\ "{}fs11"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00012\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{int}\ ret;}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{long}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00016\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00017\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mv\ \%0,\ sp"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref)\ :\ );}
+\DoxyCodeLine{00018\ \ \ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ sp,\ sp,\ \%0\(\backslash\)n\(\backslash\)t"{}}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ :\ \textcolor{comment}{/*\ no\ outputs\ */}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ );}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00028\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mv\ \%0,\ zero"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (ret)\ :\ );}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

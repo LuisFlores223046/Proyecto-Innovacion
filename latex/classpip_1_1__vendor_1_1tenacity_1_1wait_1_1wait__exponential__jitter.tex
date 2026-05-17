@@ -1,0 +1,59 @@
+\doxysection{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential\+\_\+jitter Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter}{}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter}\index{pip.\_vendor.tenacity.wait.wait\_exponential\_jitter@{pip.\_vendor.tenacity.wait.wait\_exponential\_jitter}}
+Inheritance diagram for pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+exponential\+\_\+jitter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ab9070b9dc2e38f1d1808d61bdeb02416}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ab9070b9dc2e38f1d1808d61bdeb02416} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, float initial=1, float max=\+\_\+utils.\+MAX\+\_\+\+WAIT, float exp\+\_\+base=2, float jitter=1)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_a1fbcb17e0dcd9d4bca137a00e52243c8}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_a1fbcb17e0dcd9d4bca137a00e52243c8} 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__base}{pip.\+\_\+vendor.\+tenacity.\+wait.\+wait\+\_\+base}}}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, "{}Retry\+Call\+State"{} retry\+\_\+state)
+\item 
+"{}wait\+\_\+combine"{} {\bfseries \+\_\+\+\_\+add\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\item 
+typing.\+Union\+["{}wait\+\_\+combine"{}, "{}wait\+\_\+base"{}]\+ {\bfseries \+\_\+\+\_\+radd\+\_\+\+\_\+} (self, "{}wait\+\_\+base"{} other)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ac6662caaf70bdb39768bf5a62f6d3e3a}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ac6662caaf70bdb39768bf5a62f6d3e3a} 
+{\bfseries initial} = initial
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_a2cf134c7e26c1625e4891391d2d06996}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_a2cf134c7e26c1625e4891391d2d06996} 
+{\bfseries max} = max
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_abc6d622d212bcc42aab385345424c5f2}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_abc6d622d212bcc42aab385345424c5f2} 
+{\bfseries exp\+\_\+base} = exp\+\_\+base
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ac908246ff973a7719e5375db23d096e2}\label{classpip_1_1__vendor_1_1tenacity_1_1wait_1_1wait__exponential__jitter_ac908246ff973a7719e5375db23d096e2} 
+{\bfseries jitter} = jitter
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wait strategy that applies exponential backoff and jitter.
+
+It allows for a customized initial wait, maximum wait and jitter.
+
+This implements the strategy described here:
+https://cloud.google.com/storage/docs/retry-strategy
+
+The wait time is min(initial * 2**n + random.uniform(0, jitter), maximum)
+where n is the retry count.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+tenacity/\+wait.\+py\end{DoxyCompactItemize}

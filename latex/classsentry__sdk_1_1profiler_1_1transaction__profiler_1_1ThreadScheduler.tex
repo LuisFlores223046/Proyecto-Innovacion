@@ -1,0 +1,126 @@
+\doxysection{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Thread\+Scheduler Class Reference}
+\hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler}{}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler}\index{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}}
+Inheritance diagram for sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Thread\+Scheduler:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_abe4d4745b9c0db04261476fba3ce8549}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_abe4d4745b9c0db04261476fba3ce8549} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int frequency)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a3227dd39346e9577b95e61b4d6676c81}{setup}} (self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a71207fe7eca9148ef9eab8378a3ab29c}{teardown}} (self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_ab8962f8cc432fe983adb158d166a3f4f}{ensure\+\_\+running}} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_af97213ed851523526252d1f90d981b33}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_af97213ed851523526252d1f90d981b33} 
+None {\bfseries run} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int frequency)
+\item 
+"{}Scheduler"{} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, "{}Optional\+[Any]\+"{} ty, "{}Optional\+[Any]\+"{} value, "{}Optional\+[Any]\+"{} tb)
+\item 
+None {\bfseries start\+\_\+profiling} (self, "{}Profile"{} profile)
+\item 
+"{}Callable\+[..., None]\+"{} {\bfseries make\+\_\+sampler} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a6d51f0a57e0f1469cf70eb2bb2b4e380}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a6d51f0a57e0f1469cf70eb2bb2b4e380} 
+bool {\bfseries running} = False
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_ae7f508e35b8012aa894994ce8ec81bbd}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_ae7f508e35b8012aa894994ce8ec81bbd} 
+{\bfseries thread} = None
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a49239471e8eacd5ebb0269f9ddf8cf2d}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a49239471e8eacd5ebb0269f9ddf8cf2d} 
+{\bfseries pid} = None
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a0ba08ddcb54c3feab0de5144c79215f9}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a0ba08ddcb54c3feab0de5144c79215f9} 
+{\bfseries lock} = threading.\+Lock()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+float {\bfseries interval} = 1.\+0 /\+ frequency
+\item 
+"{}Callable\+[..., None]\+"{} {\bfseries sampler} = self.\+make\+\_\+sampler()
+\item 
+{\bfseries new\+\_\+profiles} = deque(maxlen=128)
+\item 
+{\bfseries active\+\_\+profiles} = set()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_acd72de06f627bc6f687a7041bce77c54}\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_acd72de06f627bc6f687a7041bce77c54} 
+str {\bfseries name} = "{}sentry.\+profiler.\+Thread\+Scheduler"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries mode} = "{}unknown"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This scheduler is based on running a daemon thread that will call
+the sampler at a regular interval.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_ab8962f8cc432fe983adb158d166a3f4f}\index{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}!ensure\_running@{ensure\_running}}
+\index{ensure\_running@{ensure\_running}!sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}}
+\doxysubsubsection{\texorpdfstring{ensure\_running()}{ensure\_running()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_ab8962f8cc432fe983adb158d166a3f4f} 
+ None sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Thread\+Scheduler.\+ensure\+\_\+running (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check that the profiler has an active thread to run in, and start one if
+that's not the case.
+
+Note that this might fail (e.g. in Python 3.12 it's not possible to
+spawn new threads at interpreter shutdown). In that case self.running
+will be False after running this function.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler_a6ef3c566f33dba7de5aad5b63acdd4a4}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}.
+
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a3227dd39346e9577b95e61b4d6676c81}\index{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}!setup@{setup}}
+\index{setup@{setup}!sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a3227dd39346e9577b95e61b4d6676c81} 
+ None sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Thread\+Scheduler.\+setup (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}.
+
+\Hypertarget{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a71207fe7eca9148ef9eab8378a3ab29c}\index{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}!teardown@{teardown}}
+\index{teardown@{teardown}!sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler@{sentry\_sdk.profiler.transaction\_profiler.ThreadScheduler}}
+\doxysubsubsection{\texorpdfstring{teardown()}{teardown()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1ThreadScheduler_a71207fe7eca9148ef9eab8378a3ab29c} 
+ None sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Thread\+Scheduler.\+teardown (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1profiler_1_1transaction__profiler_1_1Scheduler}{sentry\+\_\+sdk.\+profiler.\+transaction\+\_\+profiler.\+Scheduler}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+profiler/\+transaction\+\_\+profiler.\+py\end{DoxyCompactItemize}

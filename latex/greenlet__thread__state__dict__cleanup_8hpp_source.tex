@@ -1,0 +1,124 @@
+\doxysection{greenlet\+\_\+thread\+\_\+state\+\_\+dict\+\_\+cleanup.\+hpp}
+\hypertarget{greenlet__thread__state__dict__cleanup_8hpp_source}{}\label{greenlet__thread__state__dict__cleanup_8hpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_thread\_state\_dict\_cleanup.hpp@{venv/lib/python3.12/site-\/packages/greenlet/greenlet\_thread\_state\_dict\_cleanup.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ GREENLET\_THREAD\_STATE\_DICT\_CLEANUP\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ GREENLET\_THREAD\_STATE\_DICT\_CLEANUP\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}greenlet\_internal.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}greenlet\_thread\_state.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ push}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ ignored\ "{}-\/Wmissing-\/field-\/initializers"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ G\_THREAD\_STATE\_DICT\_CLEANUP\_TYPE}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ shut\ the\ compiler\ up\ if\ it\ looks\ at\ this\ file\ in\ isolation}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ ThreadStateCreator\ int}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Define\ a\ Python\ object\ that\ goes\ in\ the\ Python\ thread\ state\ dict}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ when\ the\ greenlet\ thread\ state\ is\ created,\ and\ which\ owns\ the}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ reference\ to\ the\ greenlet\ thread\ local\ state.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ When\ the\ thread\ state\ dict\ is\ cleaned\ up,\ so\ too\ is\ the\ thread}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ state.\ This\ works\ best\ if\ we\ make\ sure\ there\ are\ no\ circular}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ references\ to\ the\ thread\ state.}}
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__PyGreenletCleanup}{\_PyGreenletCleanup}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ PyObject\_HEAD}
+\DoxyCodeLine{00025\ \ \ \ \ ThreadStateCreator*\ thread\_state\_creator;}
+\DoxyCodeLine{00026\ \}\ PyGreenletCleanup;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00029\ cleanup\_do\_dealloc(PyGreenletCleanup*\ self)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ ThreadStateCreator*\ tmp\ =\ self-\/>thread\_state\_creator;}
+\DoxyCodeLine{00032\ \ \ \ \ self-\/>thread\_state\_creator\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (tmp)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ tmp;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00039\ cleanup\_dealloc(PyGreenletCleanup*\ self)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ PyObject\_GC\_UnTrack(self);}
+\DoxyCodeLine{00042\ \ \ \ \ cleanup\_do\_dealloc(self);}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00046\ cleanup\_clear(PyGreenletCleanup*\ self)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ This\ method\ is\ never\ called\ by\ our\ test\ cases.}}
+\DoxyCodeLine{00049\ \ \ \ \ cleanup\_do\_dealloc(self);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00054\ cleanup\_traverse(PyGreenletCleanup*\ self,\ visitproc\ visit,\ \textcolor{keywordtype}{void}*\ arg)}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{if}\ (self-\/>thread\_state\_creator)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self-\/>thread\_state\_creator-\/>tp\_traverse(visit,\ arg);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00063\ cleanup\_is\_gc(PyGreenlet*\ UNUSED(self))}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{static}\ PyTypeObject\ PyGreenletCleanup\_Type\ =\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ PyVarObject\_HEAD\_INIT(NULL,\ 0)}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{stringliteral}{"{}greenlet.\_greenlet.ThreadStateCleanup"{}},}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct\ }\doxymbox{\hyperlink{struct__PyGreenletCleanup}{\_PyGreenletCleanup}}),}
+\DoxyCodeLine{00072\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_itemsize\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{/*\ methods\ */}}
+\DoxyCodeLine{00074\ \ \ \ \ (destructor)cleanup\_dealloc,\ \textcolor{comment}{/*\ tp\_dealloc\ */}}
+\DoxyCodeLine{00075\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_print\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_getattr\ */}}
+\DoxyCodeLine{00077\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_setattr\ */}}
+\DoxyCodeLine{00078\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_compare\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_repr\ */}}
+\DoxyCodeLine{00080\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_as\ \_number*/}}
+\DoxyCodeLine{00081\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_as\ \_sequence*/}}
+\DoxyCodeLine{00082\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_as\ \_mapping*/}}
+\DoxyCodeLine{00083\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_hash\ */}}
+\DoxyCodeLine{00084\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_call\ */}}
+\DoxyCodeLine{00085\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_str\ */}}
+\DoxyCodeLine{00086\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_getattro\ */}}
+\DoxyCodeLine{00087\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_setattro\ */}}
+\DoxyCodeLine{00088\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_as\_buffer*/}}
+\DoxyCodeLine{00089\ \ \ \ \ G\_TPFLAGS\_DEFAULT\ |\ Py\_TPFLAGS\_BASETYPE,\ \textcolor{comment}{/*\ tp\_flags\ */}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{stringliteral}{"{}Internal\ use\ only"{}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_doc\ */}}
+\DoxyCodeLine{00091\ \ \ \ \ (traverseproc)cleanup\_traverse,\ \textcolor{comment}{/*\ tp\_traverse\ */}}
+\DoxyCodeLine{00092\ \ \ \ \ (inquiry)cleanup\_clear,\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_clear\ */}}
+\DoxyCodeLine{00093\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_richcompare\ */}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ XXX:\ Don't\ our\ flags\ promise\ a\ weakref?}}
+\DoxyCodeLine{00095\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_weaklistoffset\ */}}
+\DoxyCodeLine{00096\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_iter\ */}}
+\DoxyCodeLine{00097\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_iternext\ */}}
+\DoxyCodeLine{00098\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_methods\ */}}
+\DoxyCodeLine{00099\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_members\ */}}
+\DoxyCodeLine{00100\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_getset\ */}}
+\DoxyCodeLine{00101\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_base\ */}}
+\DoxyCodeLine{00102\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_dict\ */}}
+\DoxyCodeLine{00103\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_descr\_get\ */}}
+\DoxyCodeLine{00104\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_descr\_set\ */}}
+\DoxyCodeLine{00105\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_dictoffset\ */}}
+\DoxyCodeLine{00106\ \ \ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_init\ */}}
+\DoxyCodeLine{00107\ \ \ \ \ PyType\_GenericAlloc,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_alloc\ */}}
+\DoxyCodeLine{00108\ \ \ \ \ PyType\_GenericNew,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_new\ */}}
+\DoxyCodeLine{00109\ \ \ \ \ PyObject\_GC\_Del,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_free\ */}}
+\DoxyCodeLine{00110\ \ \ \ \ (inquiry)cleanup\_is\_gc,\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ tp\_is\_gc\ */}}
+\DoxyCodeLine{00111\ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#ifdef\ \_\_clang\_\_}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#\ \ \ \ pragma\ clang\ diagnostic\ pop}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

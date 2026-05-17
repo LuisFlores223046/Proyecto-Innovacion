@@ -1,0 +1,58 @@
+\doxysection{app.\+routers.\+fotos Namespace Reference}
+\hypertarget{namespaceapp_1_1routers_1_1fotos}{}\label{namespaceapp_1_1routers_1_1fotos}\index{app.routers.fotos@{app.routers.fotos}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1fotos_a080e0a273371ec3c4c54c0cc657923d9}{crear}} (int espacio\+\_\+id=Form(...), str\texorpdfstring{$\vert$}{|}None descripcion=Form(None), bool es\+\_\+principal=Form(False), int orden=Form(0), \doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}} file=File(...), \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1fotos_a2618449db039b96620d3d7d7f5df65bf}{actualizar}} (int foto\+\_\+id, \doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoUpdate}{Foto\+Update}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1fotos_af4831e79f4a260291955a83ac0f8c155}{borrar}} (int foto\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1routers_1_1fotos_af32fa1351ec4678660b2423c0473fa85}\label{namespaceapp_1_1routers_1_1fotos_af32fa1351ec4678660b2423c0473fa85} 
+{\bfseries router} = \doxymbox{\hyperlink{classfastapi_1_1routing_1_1APIRouter}{APIRouter}}(prefix="{}/\+fotos"{}, tags=\+["{}Fotos"{}]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Rutas para fotos de espacios (subida a Cloudinary).\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1routers_1_1fotos_doc-func-members}
+\Hypertarget{namespaceapp_1_1routers_1_1fotos_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1routers_1_1fotos_a2618449db039b96620d3d7d7f5df65bf}\index{app.routers.fotos@{app.routers.fotos}!actualizar@{actualizar}}
+\index{actualizar@{actualizar}!app.routers.fotos@{app.routers.fotos}}
+\doxysubsubsection{\texorpdfstring{actualizar()}{actualizar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1fotos_a2618449db039b96620d3d7d7f5df65bf} 
+actualizar (\begin{DoxyParamCaption}\item[{int}]{foto\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1foto__espacio_1_1FotoUpdate}{Foto\+Update}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Modifica los metadatos de una foto ya existente.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1fotos_af4831e79f4a260291955a83ac0f8c155}\index{app.routers.fotos@{app.routers.fotos}!borrar@{borrar}}
+\index{borrar@{borrar}!app.routers.fotos@{app.routers.fotos}}
+\doxysubsubsection{\texorpdfstring{borrar()}{borrar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1fotos_af4831e79f4a260291955a83ac0f8c155} 
+borrar (\begin{DoxyParamCaption}\item[{int}]{foto\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Borra el registro de la foto y el archivo en Cloudinary.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1fotos_a080e0a273371ec3c4c54c0cc657923d9}\index{app.routers.fotos@{app.routers.fotos}!crear@{crear}}
+\index{crear@{crear}!app.routers.fotos@{app.routers.fotos}}
+\doxysubsubsection{\texorpdfstring{crear()}{crear()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1fotos_a080e0a273371ec3c4c54c0cc657923d9} 
+crear (\begin{DoxyParamCaption}\item[{int }]{espacio\+\_\+id}{ = {\ttfamily Form(...)}, }\item[{str \texorpdfstring{$\vert$}{|} None }]{descripcion}{ = {\ttfamily Form(None)}, }\item[{bool }]{es\+\_\+principal}{ = {\ttfamily Form(False)}, }\item[{int }]{orden}{ = {\ttfamily Form(0)}, }\item[{\doxymbox{\hyperlink{classfastapi_1_1datastructures_1_1UploadFile}{Upload\+File}} }]{file}{ = {\ttfamily File(...)}, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sube una imagen al almacenamiento en la nube y la asocia a un espacio.
+
+Args:
+    espacio_id: ID del espacio al que pertenece la foto.
+    descripcion: Texto alternativo para la imagen.
+    es_principal: Indica si es la foto de portada del espacio.
+    orden: Prioridad de visualización en la galería.
+    file: Binario de la imagen.
+    db: Sesión de BD.
+    _: Admin actual.
+\end{DoxyVerb}
+ 

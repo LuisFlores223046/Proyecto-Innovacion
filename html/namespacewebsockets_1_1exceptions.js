@@ -1,0 +1,27 @@
+var namespacewebsockets_1_1exceptions =
+[
+    [ "WebSocketException", "classwebsockets_1_1exceptions_1_1WebSocketException.html", null ],
+    [ "ConnectionClosed", "classwebsockets_1_1exceptions_1_1ConnectionClosed.html", null ],
+    [ "ConnectionClosedError", "classwebsockets_1_1exceptions_1_1ConnectionClosedError.html", null ],
+    [ "ConnectionClosedOK", "classwebsockets_1_1exceptions_1_1ConnectionClosedOK.html", null ],
+    [ "InvalidHandshake", "classwebsockets_1_1exceptions_1_1InvalidHandshake.html", null ],
+    [ "SecurityError", "classwebsockets_1_1exceptions_1_1SecurityError.html", null ],
+    [ "InvalidMessage", "classwebsockets_1_1exceptions_1_1InvalidMessage.html", null ],
+    [ "InvalidHeader", "classwebsockets_1_1exceptions_1_1InvalidHeader.html", null ],
+    [ "InvalidHeaderFormat", "classwebsockets_1_1exceptions_1_1InvalidHeaderFormat.html", null ],
+    [ "InvalidHeaderValue", "classwebsockets_1_1exceptions_1_1InvalidHeaderValue.html", null ],
+    [ "InvalidOrigin", "classwebsockets_1_1exceptions_1_1InvalidOrigin.html", null ],
+    [ "InvalidUpgrade", "classwebsockets_1_1exceptions_1_1InvalidUpgrade.html", null ],
+    [ "InvalidStatus", "classwebsockets_1_1exceptions_1_1InvalidStatus.html", null ],
+    [ "InvalidStatusCode", "classwebsockets_1_1exceptions_1_1InvalidStatusCode.html", null ],
+    [ "NegotiationError", "classwebsockets_1_1exceptions_1_1NegotiationError.html", null ],
+    [ "DuplicateParameter", "classwebsockets_1_1exceptions_1_1DuplicateParameter.html", null ],
+    [ "InvalidParameterName", "classwebsockets_1_1exceptions_1_1InvalidParameterName.html", null ],
+    [ "InvalidParameterValue", "classwebsockets_1_1exceptions_1_1InvalidParameterValue.html", null ],
+    [ "AbortHandshake", "classwebsockets_1_1exceptions_1_1AbortHandshake.html", null ],
+    [ "RedirectHandshake", "classwebsockets_1_1exceptions_1_1RedirectHandshake.html", null ],
+    [ "InvalidState", "classwebsockets_1_1exceptions_1_1InvalidState.html", null ],
+    [ "InvalidURI", "classwebsockets_1_1exceptions_1_1InvalidURI.html", null ],
+    [ "PayloadTooBig", "classwebsockets_1_1exceptions_1_1PayloadTooBig.html", null ],
+    [ "ProtocolError", "classwebsockets_1_1exceptions_1_1ProtocolError.html", null ]
+];

@@ -1,0 +1,54 @@
+\doxysection{cloudinary.\+poster.\+streaminghttp.\+Streaming\+HTTPRedirect\+Handler Class Reference}
+\hypertarget{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler}{}\label{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler}\index{cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler@{cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler}}
+Inheritance diagram for cloudinary.\+poster.\+streaminghttp.\+Streaming\+HTTPRedirect\+Handler:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_a69dd39e44742826682801db407574444}{redirect\+\_\+request}} (self, req, fp, code, msg, headers, newurl)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_aa7fa5c7fe9c457358e943d46562fb337}\label{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_aa7fa5c7fe9c457358e943d46562fb337} 
+int {\bfseries handler\+\_\+order} = urllib2.\+HTTPRedirect\+Handler.\+handler\+\_\+order -\/ 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Subclass of `urllib2.HTTPRedirectHandler` that overrides the
+`redirect_request` method to properly handle redirected POST requests
+
+This class is required because python 2.5's HTTPRedirectHandler does
+not remove the Content-Type or Content-Length headers when requesting
+the new resource, but the body of the original request is not preserved.
+\end{DoxyVerb}
+ 
+
+\label{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_doc-func-members}
+\Hypertarget{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_a69dd39e44742826682801db407574444}\index{cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler@{cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler}!redirect\_request@{redirect\_request}}
+\index{redirect\_request@{redirect\_request}!cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler@{cloudinary.poster.streaminghttp.StreamingHTTPRedirectHandler}}
+\doxysubsubsection{\texorpdfstring{redirect\_request()}{redirect\_request()}}
+{\footnotesize\ttfamily \label{classcloudinary_1_1poster_1_1streaminghttp_1_1StreamingHTTPRedirectHandler_a69dd39e44742826682801db407574444} 
+cloudinary.\+poster.\+streaminghttp.\+Streaming\+HTTPRedirect\+Handler.\+redirect\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{req}{, }\item[{}]{fp}{, }\item[{}]{code}{, }\item[{}]{msg}{, }\item[{}]{headers}{, }\item[{}]{newurl}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a Request or None in response to a redirect.
+
+This is called by the http_error_30x methods when a
+redirection response is received.  If a redirection should
+take place, return a new Request to allow http_error_30x to
+perform the redirect.  Otherwise, raise HTTPError if no-one
+else should try to handle this url.  Return None if you can't
+but another Handler might.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+cloudinary/\+poster/\+streaminghttp.\+py\end{DoxyCompactItemize}

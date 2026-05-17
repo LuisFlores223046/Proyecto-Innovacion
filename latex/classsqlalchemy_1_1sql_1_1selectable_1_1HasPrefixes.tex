@@ -1,0 +1,79 @@
+\doxysection{sqlalchemy.\+sql.\+selectable.\+Has\+Prefixes Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes}{}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes}\index{sqlalchemy.sql.selectable.HasPrefixes@{sqlalchemy.sql.selectable.HasPrefixes}}
+Inheritance diagram for sqlalchemy.\+sql.\+selectable.\+Has\+Prefixes:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.388889cm]{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Self \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_aec10bd9b4e612c59a3746a91a7c3c60a}{prefix\+\_\+with}} (self, \texorpdfstring{$\ast$}{*}\+\_\+\+Text\+Coerced\+Expression\+Argument\+[Any]\+ prefixes, str dialect="{}\texorpdfstring{$\ast$}{*}"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_adb61be3cbcb8383aeda360dd8a983f0c}\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_adb61be3cbcb8383aeda360dd8a983f0c} 
+tuple {\bfseries \+\_\+prefixes} = ()
+\item 
+list \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_a92bc7398bf658575b1f2f27c620ca97b}{\+\_\+has\+\_\+prefixes\+\_\+traverse\+\_\+internals}}
+\end{DoxyCompactItemize}
+
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_aec10bd9b4e612c59a3746a91a7c3c60a}\index{sqlalchemy.sql.selectable.HasPrefixes@{sqlalchemy.sql.selectable.HasPrefixes}!prefix\_with@{prefix\_with}}
+\index{prefix\_with@{prefix\_with}!sqlalchemy.sql.selectable.HasPrefixes@{sqlalchemy.sql.selectable.HasPrefixes}}
+\doxysubsubsection{\texorpdfstring{prefix\_with()}{prefix\_with()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_aec10bd9b4e612c59a3746a91a7c3c60a} 
+ Self sqlalchemy.\+sql.\+selectable.\+Has\+Prefixes.\+prefix\+\_\+with (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}\+\_\+\+Text\+Coerced\+Expression\+Argument\+[Any]\+}]{prefixes}{, }\item[{str }]{dialect}{ = {\ttfamily "{}\texorpdfstring{$\ast$}{*}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add one or more expressions following the statement keyword, i.e.
+    SELECT, INSERT, UPDATE, or DELETE. Generative.
+
+    This is used to support backend-specific prefix keywords such as those
+    provided by MySQL.
+
+    E.g.::
+
+        stmt = table.insert().prefix_with("LOW_PRIORITY", dialect="mysql")
+
+        # MySQL 5.7 optimizer hints
+        stmt = select(table).prefix_with(
+            "/*+ BKA(t1) */", dialect="mysql")
+
+    Multiple prefixes can be specified by multiple calls
+    to :meth:`_expression.HasPrefixes.prefix_with`.
+
+    :param \*prefixes: textual or :class:`_expression.ClauseElement`
+     construct which
+     will be rendered following the INSERT, UPDATE, or DELETE
+     keyword.
+    :param dialect: optional string dialect name which will
+     limit rendering of this prefix to only that dialect.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_doc-variable-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_a92bc7398bf658575b1f2f27c620ca97b}\index{sqlalchemy.sql.selectable.HasPrefixes@{sqlalchemy.sql.selectable.HasPrefixes}!\_has\_prefixes\_traverse\_internals@{\_has\_prefixes\_traverse\_internals}}
+\index{\_has\_prefixes\_traverse\_internals@{\_has\_prefixes\_traverse\_internals}!sqlalchemy.sql.selectable.HasPrefixes@{sqlalchemy.sql.selectable.HasPrefixes}}
+\doxysubsubsection{\texorpdfstring{\_has\_prefixes\_traverse\_internals}{\_has\_prefixes\_traverse\_internals}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1selectable_1_1HasPrefixes_a92bc7398bf658575b1f2f27c620ca97b} 
+list sqlalchemy.\+sql.\+selectable.\+Has\+Prefixes.\+\_\+has\+\_\+prefixes\+\_\+traverse\+\_\+internals\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (\textcolor{stringliteral}{"{}\_prefixes"{}},\ InternalTraversal.dp\_prefix\_sequence)}
+\DoxyCodeLine{\ \ \ \ ]}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+selectable.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\doxysection{sqlalchemy.\+dialects.\+mysql.\+aiomysql Namespace Reference}
+\hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1aiomysql}{}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1aiomysql}\index{sqlalchemy.dialects.mysql.aiomysql@{sqlalchemy.dialects.mysql.aiomysql}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1AsyncAdapt__aiomysql__cursor}{Async\+Adapt\+\_\+aiomysql\+\_\+cursor}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1AsyncAdapt__aiomysql__ss__cursor}{Async\+Adapt\+\_\+aiomysql\+\_\+ss\+\_\+cursor}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1AsyncAdapt__aiomysql__connection}{Async\+Adapt\+\_\+aiomysql\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1AsyncAdaptFallback__aiomysql__connection}{Async\+Adapt\+Fallback\+\_\+aiomysql\+\_\+connection}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1AsyncAdapt__aiomysql__dbapi}{Async\+Adapt\+\_\+aiomysql\+\_\+dbapi}}
+\item 
+class \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql}{My\+SQLDialect\+\_\+aiomysql}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacesqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_a0765b4ee7d9ce6ba7417569c6d2082dc}\label{namespacesqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_a0765b4ee7d9ce6ba7417569c6d2082dc} 
+{\bfseries dialect} = \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1aiomysql_1_1MySQLDialect__aiomysql}{My\+SQLDialect\+\_\+aiomysql}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}.. dialect:: mysql+aiomysql
+    :name: aiomysql
+    :dbapi: aiomysql
+    :connectstring: mysql+aiomysql://user:password@host:port/dbname[?key=value&key=value...]
+    :url: https://github.com/aio-libs/aiomysql
+
+The aiomysql dialect is SQLAlchemy's second Python asyncio dialect.
+
+Using a special asyncio mediation layer, the aiomysql dialect is usable
+as the backend for the :ref:`SQLAlchemy asyncio <asyncio_toplevel>`
+extension package.
+
+This dialect should normally be used only with the
+:func:`_asyncio.create_async_engine` engine creation function::
+
+    from sqlalchemy.ext.asyncio import create_async_engine
+    engine = create_async_engine("mysql+aiomysql://user:pass@hostname/dbname?charset=utf8mb4")
+\end{DoxyVerb}
+ 

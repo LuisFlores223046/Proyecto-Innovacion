@@ -1,0 +1,98 @@
+\doxysection{click.\+exceptions.\+Bad\+Parameter Class Reference}
+\hypertarget{classclick_1_1exceptions_1_1BadParameter}{}\label{classclick_1_1exceptions_1_1BadParameter}\index{click.exceptions.BadParameter@{click.exceptions.BadParameter}}
+Inheritance diagram for click.\+exceptions.\+Bad\+Parameter:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classclick_1_1exceptions_1_1BadParameter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1exceptions_1_1BadParameter_ae1d880a5dda83d1fdf44433f97dd2b2c}\label{classclick_1_1exceptions_1_1BadParameter_ae1d880a5dda83d1fdf44433f97dd2b2c} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str message, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None, \doxymbox{\hyperlink{classclick_1_1core_1_1Parameter}{Parameter}}\texorpdfstring{$\vert$}{|}None param=None, cabc.\+Sequence\+[str]\+\texorpdfstring{$\vert$}{|}str\texorpdfstring{$\vert$}{|}None param\+\_\+hint=None)
+\item 
+str \doxymbox{\hyperlink{classclick_1_1exceptions_1_1BadParameter_a658d9a7d80ab51f4a8075416bbc320d1}{format\+\_\+message}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1UsageError}{click.\+exceptions.\+Usage\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str message, \doxymbox{\hyperlink{classclick_1_1core_1_1Context}{Context}}\texorpdfstring{$\vert$}{|}None ctx=None)
+\item 
+None \doxymbox{\hyperlink{classclick_1_1exceptions_1_1UsageError_a27c981468758539972f69cad7059ff12}{show}} (self, t.\+IO\+[t.\+Any]\+\texorpdfstring{$\vert$}{|}None file=None)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1ClickException}{click.\+exceptions.\+Click\+Exception}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str message)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classclick_1_1exceptions_1_1BadParameter_a0dd7939abe55925b42fdc8ad5abafeb3}\label{classclick_1_1exceptions_1_1BadParameter_a0dd7939abe55925b42fdc8ad5abafeb3} 
+{\bfseries param} = param
+\item 
+\Hypertarget{classclick_1_1exceptions_1_1BadParameter_a91cbe9fa1e1a2025b7f4e9f5f5428782}\label{classclick_1_1exceptions_1_1BadParameter_a91cbe9fa1e1a2025b7f4e9f5f5428782} 
+{\bfseries param\+\_\+hint} = param\+\_\+hint
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1UsageError}{click.\+exceptions.\+Usage\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries ctx} = ctx
+\item 
+\doxymbox{\hyperlink{classclick_1_1core_1_1Command}{Command}}\texorpdfstring{$\vert$}{|}None {\bfseries cmd} = self.\+ctx.\+command if self.\+ctx else None
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1ClickException}{click.\+exceptions.\+Click\+Exception}}}
+\begin{DoxyCompactItemize}
+\item 
+bool\texorpdfstring{$\vert$}{|}None {\bfseries show\+\_\+color} = resolve\+\_\+color\+\_\+default()
+\item 
+{\bfseries message} = message
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1ClickException}{click.\+exceptions.\+Click\+Exception}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries exit\+\_\+code} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An exception that formats out a standardized error message for a
+bad parameter.  This is useful when thrown from a callback or type as
+Click will attach contextual information to it (for instance, which
+parameter it is).
+
+.. versionadded:: 2.0
+
+:param param: the parameter object that caused this error.  This can
+              be left out, and Click will attach this info itself
+              if possible.
+:param param_hint: a string that shows up as parameter name.  This
+                   can be used as alternative to `param` in cases
+                   where custom validation should happen.  If it is
+                   a string it's used as such, if it's a list then
+                   each item is quoted and separated.
+\end{DoxyVerb}
+ 
+
+\label{classclick_1_1exceptions_1_1BadParameter_doc-func-members}
+\Hypertarget{classclick_1_1exceptions_1_1BadParameter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classclick_1_1exceptions_1_1BadParameter_a658d9a7d80ab51f4a8075416bbc320d1}\index{click.exceptions.BadParameter@{click.exceptions.BadParameter}!format\_message@{format\_message}}
+\index{format\_message@{format\_message}!click.exceptions.BadParameter@{click.exceptions.BadParameter}}
+\doxysubsubsection{\texorpdfstring{format\_message()}{format\_message()}}
+{\footnotesize\ttfamily \label{classclick_1_1exceptions_1_1BadParameter_a658d9a7d80ab51f4a8075416bbc320d1} 
+ str click.\+exceptions.\+Bad\+Parameter.\+format\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classclick_1_1exceptions_1_1ClickException}{click.\+exceptions.\+Click\+Exception}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+click/\+exceptions.\+py\end{DoxyCompactItemize}

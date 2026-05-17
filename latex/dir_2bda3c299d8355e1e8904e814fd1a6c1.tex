@@ -1,0 +1,226 @@
+\doxysection{frontend/\+node\+\_\+modules/\+zod Directory Reference}
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1}{}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1}\index{frontend/node\_modules/zod Directory Reference@{frontend/node\_modules/zod Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_96ae0a7c6b347ef0f771b12086b05e16}{locales}}
+\item 
+directory \doxymbox{\hyperlink{dir_5027c6f0d3e48e453ceae577ea48668f}{mini}}
+\item 
+directory \doxymbox{\hyperlink{dir_c02f1b48c1289233e69b088f069a74a3}{v3}}
+\item 
+directory \doxymbox{\hyperlink{dir_b1927e7691ce37d29388b54ec646b8dc}{v4}}
+\item 
+directory \doxymbox{\hyperlink{dir_ad3f623adac0dfbf6424effb3fd1ba75}{v4-\/mini}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+ \doxysubsection*{Zod}
+
+
+
+Type\+Script-\/first schema validation with static type inference ~\newline
+ by \href{https://x.com/colinhacks}{\texttt{@colinhacks}} 
+
+~\newline
+
+
+
+
+\href{https://github.com/colinhacks/zod/actions?query=branch\%3Amain}{\texttt{}} \href{https://opensource.org/licenses/MIT}{\texttt{}} \href{https://www.npmjs.com/package/zod}{\texttt{}} \href{https://discord.gg/KaSRdyX2vc}{\texttt{}} \href{https://github.com/colinhacks/zod}{\texttt{}} 
+
+ \href{https://zod.dev/api}{\texttt{Docs}} ~~•~~ \href{https://discord.gg/RcG33DQJdf}{\texttt{Discord}} ~~•~~ \href{https://twitter.com/colinhacks}{\texttt{𝕏}} ~~•~~ \href{https://bsky.app/profile/zod.dev}{\texttt{Bluesky}} ~\newline
+ 
+
+~\newline
+ ~\newline
+
+
+\doxysubsubsection*{Featured sponsor:\+ Jazz}
+
+ \href{https://jazz.tools/?utm_source=zod}{\texttt{  }} ~\newline
+ 
+
+\textsubscript{Learn more about \href{mailto:sponsorship@colinhacks.com}{\texttt{featured sponsorships}}}
+
+ 
+
+~\newline
+ ~\newline
+ ~\newline
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5097}{}\doxysubsubsubsection{\texorpdfstring{\href{https://zod.dev/api}{\texttt{Read the docs →}}}{\href{https://zod.dev/api}{\texttt{Read the docs →}}}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5097}
+~\newline
+ ~\newline
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5098}{}\doxysubsubsection{\texorpdfstring{What is Zod?}{What is Zod?}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5098}
+Zod is a Type\+Script-\/first validation library. Define a schema and parse some data with it. You\textquotesingle{}ll get back a strongly typed, validated result.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ z\ from\ "{}zod"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ User\ =\ z.object(\{}
+\DoxyCodeLine{\ \ name:\ z.string(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ some\ untrusted\ data...}
+\DoxyCodeLine{const\ input\ =\ \{}
+\DoxyCodeLine{\ \ /*\ stuff\ */}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ the\ parsed\ result\ is\ validated\ and\ type\ safe!}
+\DoxyCodeLine{const\ data\ =\ User.parse(input);}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ so\ you\ can\ use\ it\ with\ confidence\ :)}
+\DoxyCodeLine{console.log(data.name);}
+
+\end{DoxyCode}
+
+
+~\newline
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5099}{}\doxysubsubsection{\texorpdfstring{Features}{Features}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5099}
+
+\begin{DoxyItemize}
+\item Zero external dependencies
+\item Works in Node.\+js and all modern browsers
+\item Tiny:\+ {\ttfamily 2kb} core bundle (gzipped)
+\item Immutable API:\+ methods return a new instance
+\item Concise interface
+\item Works with Type\+Script and plain JS
+\item Built-\/in JSON Schema conversion
+\item Extensive ecosystem
+\end{DoxyItemize}
+
+~\newline
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5100}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5100}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ zod}
+
+\end{DoxyCode}
+
+
+~\newline
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5101}{}\doxysubsubsection{\texorpdfstring{Basic usage}{Basic usage}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5101}
+Before you can do anything else, you need to define a schema. For the purposes of this guide, we\textquotesingle{}ll use a simple object schema.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ z\ from\ "{}zod"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ Player\ =\ z.object(\{}
+\DoxyCodeLine{\ \ username:\ z.string(),}
+\DoxyCodeLine{\ \ xp:\ z.number(),}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5102}{}\doxysubsubsubsection{\texorpdfstring{Parsing data}{Parsing data}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5102}
+Given any Zod schema, use {\ttfamily .parse} to validate an input. If it\textquotesingle{}s valid, Zod returns a strongly-\/typed {\itshape deep clone} of the input.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Player.parse(\{\ username:\ "{}billie"{},\ xp:\ 100\ \});}
+\DoxyCodeLine{//\ =>\ returns\ \{\ username:\ "{}billie"{},\ xp:\ 100\ \}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note}} — If your schema uses certain asynchronous APIs like {\ttfamily async} \href{https://zod.dev/api\#refinements}{\texttt{refinements}} or \href{https://zod.dev/api\#transforms}{\texttt{transforms}}, you\textquotesingle{}ll need to use the {\ttfamily .parse\+Async()} method instead.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ z.string().refine(async\ (val)\ =>\ val.length\ <=\ 8);}
+\DoxyCodeLine{}
+\DoxyCodeLine{await\ schema.parseAsync("{}hello"{});}
+\DoxyCodeLine{//\ =>\ "{}hello"{}}
+
+\end{DoxyCode}
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5103}{}\doxysubsubsubsection{\texorpdfstring{Handling errors}{Handling errors}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5103}
+When validation fails, the {\ttfamily .parse()} method will throw a {\ttfamily Zod\+Error} instance with granular information about the validation issues.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{try\ \{}
+\DoxyCodeLine{\ \ Player.parse(\{\ username:\ 42,\ xp:\ "{}100"{}\ \});}
+\DoxyCodeLine{\}\ catch\ (err)\ \{}
+\DoxyCodeLine{\ \ if\ (err\ instanceof\ z.ZodError)\ \{}
+\DoxyCodeLine{\ \ \ \ err.issues;}
+\DoxyCodeLine{\ \ \ \ /*\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ expected:\ 'string',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ code:\ 'invalid\_type',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ path:\ [\ 'username'\ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ message:\ 'Invalid\ input:\ expected\ string'}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ expected:\ 'number',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ code:\ 'invalid\_type',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ path:\ [\ 'xp'\ ],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ message:\ 'Invalid\ input:\ expected\ number'}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ ]\ */}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+To avoid a {\ttfamily try/\+catch} block, you can use the {\ttfamily .safe\+Parse()} method to get back a plain result object containing either the successfully parsed data or a {\ttfamily Zod\+Error}. The result type is a \href{https://www.typescriptlang.org/docs/handbook/2/narrowing.html\#discriminated-unions}{\texttt{discriminated union}}, so you can handle both cases conveniently.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ result\ =\ Player.safeParse(\{\ username:\ 42,\ xp:\ "{}100"{}\ \});}
+\DoxyCodeLine{if\ (!result.success)\ \{}
+\DoxyCodeLine{\ \ result.error;\ //\ ZodError\ instance}
+\DoxyCodeLine{\}\ else\ \{}
+\DoxyCodeLine{\ \ result.data;\ //\ \{\ username:\ string;\ xp:\ number\ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note}} — If your schema uses certain asynchronous APIs like {\ttfamily async} refinementsrefinements or transformstransforms, you\textquotesingle{}ll need to use the {\ttfamily .safe\+Parse\+Async()} method instead.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ schema\ =\ z.string().refine(async\ (val)\ =>\ val.length\ <=\ 8);}
+\DoxyCodeLine{}
+\DoxyCodeLine{await\ schema.safeParseAsync("{}hello"{});}
+\DoxyCodeLine{//\ =>\ \{\ success:\ true;\ data:\ "{}hello"{}\ \}}
+
+\end{DoxyCode}
+\hypertarget{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5104}{}\doxysubsubsubsection{\texorpdfstring{Inferring types}{Inferring types}}\label{dir_2bda3c299d8355e1e8904e814fd1a6c1_autotoc_md5104}
+Zod infers a static type from your schema definitions. You can extract this type with the {\ttfamily z.\+infer\texorpdfstring{$<$}{<}\texorpdfstring{$>$}{>}} utility and use it however you like.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ Player\ =\ z.object(\{}
+\DoxyCodeLine{\ \ username:\ z.string(),}
+\DoxyCodeLine{\ \ xp:\ z.number(),}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ extract\ the\ inferred\ type}
+\DoxyCodeLine{type\ Player\ =\ z.infer<typeof\ Player>;}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ use\ it\ in\ your\ code}
+\DoxyCodeLine{const\ player:\ Player\ =\ \{\ username:\ "{}billie"{},\ xp:\ 100\ \};}
+
+\end{DoxyCode}
+
+
+In some cases, the input \& output types of a schema can diverge. For instance, the {\ttfamily .transform()} API can convert the input from one type to another. In these cases, you can extract the input and output types independently:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ mySchema\ =\ z.string().transform((val)\ =>\ val.length);}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ MySchemaIn\ =\ z.input<typeof\ mySchema>;}
+\DoxyCodeLine{//\ =>\ string}
+\DoxyCodeLine{}
+\DoxyCodeLine{type\ MySchemaOut\ =\ z.output<typeof\ mySchema>;\ //\ equivalent\ to\ z.infer<typeof\ mySchema>}
+\DoxyCodeLine{//\ number}
+
+\end{DoxyCode}
+ 

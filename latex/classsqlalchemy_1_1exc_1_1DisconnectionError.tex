@@ -1,0 +1,71 @@
+\doxysection{sqlalchemy.\+exc.\+Disconnection\+Error Class Reference}
+\hypertarget{classsqlalchemy_1_1exc_1_1DisconnectionError}{}\label{classsqlalchemy_1_1exc_1_1DisconnectionError}\index{sqlalchemy.exc.DisconnectionError@{sqlalchemy.exc.DisconnectionError}}
+Inheritance diagram for sqlalchemy.\+exc.\+Disconnection\+Error:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classsqlalchemy_1_1exc_1_1DisconnectionError}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1exc_1_1DisconnectionError_a2e0527927334f0442c08c600777d7148}\label{classsqlalchemy_1_1exc_1_1DisconnectionError_a2e0527927334f0442c08c600777d7148} 
+bool {\bfseries invalidate\+\_\+pool} = False
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional {\bfseries code} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}Any arg, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kw)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries args}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1SQLAlchemyError}{sqlalchemy.\+exc.\+SQLAlchemy\+Error}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+message} (self)
+\item 
+str {\bfseries \+\_\+sql\+\_\+message} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+code\+\_\+str} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1exc_1_1HasDescriptionCode}{sqlalchemy.\+exc.\+Has\+Description\+Code}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries \+\_\+what\+\_\+are\+\_\+we} = "{}error"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A disconnect is detected on a raw DB-API connection.
+
+This error is raised and consumed internally by a connection pool.  It can
+be raised by the :meth:`_events.PoolEvents.checkout`
+event so that the host pool
+forces a retry; the exception will be caught three times in a row before
+the pool gives up and raises :class:`~sqlalchemy.exc.InvalidRequestError`
+regarding the connection attempt.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+exc.\+py\end{DoxyCompactItemize}

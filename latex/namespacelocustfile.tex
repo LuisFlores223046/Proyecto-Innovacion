@@ -1,0 +1,111 @@
+\doxysection{locustfile Namespace Reference}
+\hypertarget{namespacelocustfile}{}\label{namespacelocustfile}\index{locustfile@{locustfile}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classlocustfile_1_1UsuarioPublico}{Usuario\+Publico}}
+\item 
+class \doxymbox{\hyperlink{classlocustfile_1_1AdministradorCarga}{Administrador\+Carga}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacelocustfile_aced76a9c3bfbeaa8852b854051fc09c4}\label{namespacelocustfile_aced76a9c3bfbeaa8852b854051fc09c4} 
+str {\bfseries \+\_\+random\+\_\+suffix} (n=6)
+\item 
+\doxymbox{\hyperlink{namespacelocustfile_a67184dd628d8c8389c8ef485ce4e8b2b}{on\+\_\+quitting}} (environment, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacelocustfile_a37f54f620a3de56248b542dffc883a0b}\label{namespacelocustfile_a37f54f620a3de56248b542dffc883a0b} 
+{\bfseries ADMIN\+\_\+\+USERNAME} = os.\+getenv("{}TEST\+\_\+\+ADMIN\+\_\+\+USER"{}, "{}admin"{})
+\item 
+\Hypertarget{namespacelocustfile_a7de4c20cd0bc765d314231daca1191fd}\label{namespacelocustfile_a7de4c20cd0bc765d314231daca1191fd} 
+{\bfseries ADMIN\+\_\+\+PASSWORD} = os.\+getenv("{}TEST\+\_\+\+ADMIN\+\_\+\+PASS"{}, "{}Admin123!"{})
+\item 
+list \doxymbox{\hyperlink{namespacelocustfile_ad31da6603fab40d678d9f125b8b67ade}{TERMINOS\+\_\+\+BUSQUEDA}}
+\item 
+\Hypertarget{namespacelocustfile_aecaf3aa9fee6b752e257be944cfc82a3}\label{namespacelocustfile_aecaf3aa9fee6b752e257be944cfc82a3} 
+float {\bfseries LAT\+\_\+\+BASE} = 31.\+7200
+\item 
+\Hypertarget{namespacelocustfile_a3f27bba9b63f71447fe8d809327291ce}\label{namespacelocustfile_a3f27bba9b63f71447fe8d809327291ce} 
+float {\bfseries LON\+\_\+\+BASE} = -\/106.\+4270
+\item 
+\Hypertarget{namespacelocustfile_a6b19364455611d34c2ca40b9bdd7bdba}\label{namespacelocustfile_a6b19364455611d34c2ca40b9bdd7bdba} 
+float {\bfseries RADIO\+\_\+\+METROS} = 300.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}locustfile.py — Tests de carga para Mapa Interactivo CU UACJ
+──────────────────────────────────────────────────────────────
+Qué se mide:
+  • Tiempo de respuesta (p50, p95, p99) por endpoint.
+  • Tasa de errores bajo carga sostenida.
+  • Throughput máximo antes de degradación.
+  • Cuellos de botella en endpoints de búsqueda y geolocalización.
+
+Usuarios simulados:
+  ─ UsuarioPublico  : simula visitante del mapa (70% del tráfico)
+      GET /espacios
+      GET /espacios/buscar/{q}
+      GET /espacios/abiertos/ahora
+      GET /espacios/cercanos
+      GET /espacios/{id}
+      GET /categorias
+      GET /edificios
+
+  ─ AdministradorCarga : simula admin usando el panel (30% del tráfico)
+      POST /auth/login
+      POST /espacios (crear)
+      PATCH /espacios/{id}
+      GET /auth/me
+
+Ejecución:
+  locust -f load_tests/locustfile.py --host=http://localhost:8000 --headless \
+         -u 50 -r 5 --run-time 2m --csv=load_tests/results
+
+UI interactiva:
+  locust -f load_tests/locustfile.py --host=http://localhost:8000
+  → Abrir http://localhost:8089
+\end{DoxyVerb}
+ 
+
+\label{namespacelocustfile_doc-func-members}
+\Hypertarget{namespacelocustfile_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacelocustfile_a67184dd628d8c8389c8ef485ce4e8b2b}\index{locustfile@{locustfile}!on\_quitting@{on\_quitting}}
+\index{on\_quitting@{on\_quitting}!locustfile@{locustfile}}
+\doxysubsubsection{\texorpdfstring{on\_quitting()}{on\_quitting()}}
+{\footnotesize\ttfamily \label{namespacelocustfile_a67184dd628d8c8389c8ef485ce4e8b2b} 
+on\+\_\+quitting (\begin{DoxyParamCaption}\item[{}]{environment}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Imprime un resumen de SLOs al terminar la prueba.\end{DoxyVerb}
+ 
+
+\label{namespacelocustfile_doc-var-members}
+\Hypertarget{namespacelocustfile_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacelocustfile_ad31da6603fab40d678d9f125b8b67ade}\index{locustfile@{locustfile}!TERMINOS\_BUSQUEDA@{TERMINOS\_BUSQUEDA}}
+\index{TERMINOS\_BUSQUEDA@{TERMINOS\_BUSQUEDA}!locustfile@{locustfile}}
+\doxysubsubsection{\texorpdfstring{TERMINOS\_BUSQUEDA}{TERMINOS\_BUSQUEDA}}
+{\footnotesize\ttfamily \label{namespacelocustfile_ad31da6603fab40d678d9f125b8b67ade} 
+list locustfile.\+TERMINOS\+\_\+\+BUSQUEDA}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Laboratorio"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Biblioteca"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Cafetería"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Aula"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Baño"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Estacionamiento"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Rectoría"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Gimnasio"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Auditorio"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Coordinación"{}},}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}

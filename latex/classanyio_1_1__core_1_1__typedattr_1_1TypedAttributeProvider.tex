@@ -1,0 +1,69 @@
+\doxysection{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}{}\label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}\index{anyio.\_core.\_typedattr.TypedAttributeProvider@{anyio.\_core.\_typedattr.TypedAttributeProvider}}
+Inheritance diagram for anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.185185cm]{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Mapping\+[T\+\_\+\+Attr, Callable\+[\+[$\,$]\+, T\+\_\+\+Attr]\+]\+ \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c}{extra\+\_\+attributes}} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a583ae05b3f4227569fd625724231f958}\label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a583ae05b3f4227569fd625724231f958} 
+T\+\_\+\+Attr {\bfseries extra} (self, T\+\_\+\+Attr attribute)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5e556cbe0c9200238aeb2ede71f6371a}\label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5e556cbe0c9200238aeb2ede71f6371a} 
+T\+\_\+\+Attr\texorpdfstring{$\vert$}{|}T\+\_\+\+Default {\bfseries extra} (self, T\+\_\+\+Attr attribute, T\+\_\+\+Default default)
+\item 
+object \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7}{extra}} (self, Any attribute, object default=undefined)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for classes that wish to provide typed extra attributes.\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_doc-func-members}
+\Hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7}\index{anyio.\_core.\_typedattr.TypedAttributeProvider@{anyio.\_core.\_typedattr.TypedAttributeProvider}!extra@{extra}}
+\index{extra@{extra}!anyio.\_core.\_typedattr.TypedAttributeProvider@{anyio.\_core.\_typedattr.TypedAttributeProvider}}
+\doxysubsubsection{\texorpdfstring{extra()}{extra()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7} 
+ object anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider.\+extra (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{attribute}{, }\item[{object }]{default}{ = {\ttfamily undefined}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}extra(attribute, default=undefined)
+
+Return the value of the given typed extra attribute.
+
+:param attribute: the attribute (member of a :class:`~TypedAttributeSet`) to
+    look for
+:param default: the value that should be returned if no value is found for the
+    attribute
+:raises ~anyio.TypedAttributeLookupError: if the search failed and no default
+    value was given
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c}\index{anyio.\_core.\_typedattr.TypedAttributeProvider@{anyio.\_core.\_typedattr.TypedAttributeProvider}!extra\_attributes@{extra\_attributes}}
+\index{extra\_attributes@{extra\_attributes}!anyio.\_core.\_typedattr.TypedAttributeProvider@{anyio.\_core.\_typedattr.TypedAttributeProvider}}
+\doxysubsubsection{\texorpdfstring{extra\_attributes()}{extra\_attributes()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c} 
+ Mapping\+[T\+\_\+\+Attr, Callable\+[\+[$\,$]\+, T\+\_\+\+Attr]\+]\+ anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider.\+extra\+\_\+attributes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A mapping of the extra attributes to callables that return the corresponding
+values.
+
+If the provider wraps another provider, the attributes from that wrapper should
+also be included in the returned mapping (but the wrapper may override the
+callables from the wrapped instance).
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1abc_1_1__sockets_1_1__SocketProvider_a798dbfe3c875d978c70ac15674405ea2}{anyio.\+abc.\+\_\+sockets.\+\_\+\+Socket\+Provider}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1buffered_1_1BufferedByteReceiveStream_a8e7c1cba8de887c3fdd8616cf4e27723}{anyio.\+streams.\+buffered.\+Buffered\+Byte\+Receive\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1MultiListener_aac42351878efe7fb3a6782037c6554a1}{anyio.\+streams.\+stapled.\+Multi\+Listener}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1StapledByteStream_ae5659e6b9eb7972d4f4e5a7a97ba295d}{anyio.\+streams.\+stapled.\+Stapled\+Byte\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1StapledObjectStream_a9c8f16c387fb3ae37d1dad8b4cecb126}{anyio.\+streams.\+stapled.\+Stapled\+Object\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextReceiveStream_a4e8dd1d7154a438e5dbf96dd245b9a42}{anyio.\+streams.\+text.\+Text\+Receive\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextSendStream_a7ef9fe11a71106d276a4e343a6ae9b2b}{anyio.\+streams.\+text.\+Text\+Send\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1text_1_1TextStream_a51ed15b2e153a854923098560ed3f8e2}{anyio.\+streams.\+text.\+Text\+Stream}}, \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSListener_a9abae58bd4bf2d340007bb7216a0b69e}{anyio.\+streams.\+tls.\+TLSListener}}, and \doxymbox{\hyperlink{classanyio_1_1streams_1_1tls_1_1TLSStream_a51c0878ad7445818699eb14aa9e0350f}{anyio.\+streams.\+tls.\+TLSStream}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+typedattr.\+py\end{DoxyCompactItemize}

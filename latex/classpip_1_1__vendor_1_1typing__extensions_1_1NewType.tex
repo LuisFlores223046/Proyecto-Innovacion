@@ -1,0 +1,46 @@
+\doxysection{pip.\+\_\+vendor.\+typing\+\_\+extensions.\+New\+Type Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType}{}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType}\index{pip.\_vendor.typing\_extensions.NewType@{pip.\_vendor.typing\_extensions.NewType}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a11939da94e0430e6dff1b24753182f81}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a11939da94e0430e6dff1b24753182f81} 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, obj)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a4aa879d9a749035928b5f91ec0e72440}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a4aa879d9a749035928b5f91ec0e72440} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, name, tp)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a2246a93cd407b3ee820fd92473e383a7}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a2246a93cd407b3ee820fd92473e383a7} 
+{\bfseries \+\_\+\+\_\+mro\+\_\+entries\+\_\+\+\_\+} (self, bases)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_ab033f2e83ed8f27d3fed6e47fac671af}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_ab033f2e83ed8f27d3fed6e47fac671af} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a3a2298b3c430e8ae81c681a829347f24}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a3a2298b3c430e8ae81c681a829347f24} 
+{\bfseries \+\_\+\+\_\+reduce\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a0819613b46fd8af079ba8ae7e3c115d3}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_a0819613b46fd8af079ba8ae7e3c115d3} 
+{\bfseries \+\_\+\+\_\+or\+\_\+\+\_\+} (self, other)
+\item 
+\Hypertarget{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_afdb80248f2134b6b2a47937c1ac658c4}\label{classpip_1_1__vendor_1_1typing__extensions_1_1NewType_afdb80248f2134b6b2a47937c1ac658c4} 
+{\bfseries \+\_\+\+\_\+ror\+\_\+\+\_\+} (self, other)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}NewType creates simple unique types with almost zero
+runtime overhead. NewType(name, tp) is considered a subtype of tp
+by static type checkers. At runtime, NewType(name, tp) returns
+a dummy callable that simply returns its argument. Usage::
+    UserId = NewType('UserId', int)
+    def name_by_id(user_id: UserId) -> str:
+        ...
+    UserId('user')          # Fails type check
+    name_by_id(42)          # Fails type check
+    name_by_id(UserId(42))  # OK
+    num = UserId(5) + 1     # type: int
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+typing\+\_\+extensions.\+py\end{DoxyCompactItemize}

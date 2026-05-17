@@ -1,0 +1,96 @@
+\doxysection{websockets.\+sync.\+server.\+Web\+Socket\+Server Class Reference}
+\hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer}{}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer}\index{websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a504ffc675b654cc2be60b25a26418a0e}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a504ffc675b654cc2be60b25a26418a0e} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, socket.\+socket socket, Callable\+[\+[socket.\+socket, Any]\+, None]\+ handler, Optional\+[Logger\+Like]\+ logger=None)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_aafe89b68c53e97f92f22edd3df294562}{serve\+\_\+forever}} (self)
+\item 
+None \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a9c8dbddb4874bf2d787bf6efa38b30d3}{shutdown}} (self)
+\item 
+int \doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_ad62de024a6c484a92d713588198d4fa4}{fileno}} (self)
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a5fff829f68e1af692add0d4cf495cffa}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a5fff829f68e1af692add0d4cf495cffa} 
+\doxymbox{\hyperlink{classwebsockets_1_1sync_1_1server_1_1WebSocketServer}{Web\+Socket\+Server}} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a2940edebda5bcb8d15d4223f88730dbf}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a2940edebda5bcb8d15d4223f88730dbf} 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Optional\+[Type\+[Base\+Exception]\+]\+ exc\+\_\+type, Optional\+[Base\+Exception]\+ exc\+\_\+value, Optional\+[Traceback\+Type]\+ traceback)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_ace0699c567a4655a800d9f858106eb21}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_ace0699c567a4655a800d9f858106eb21} 
+{\bfseries socket} = socket
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a5bb50b1827f5ae6881d195e8ee2e3a6a}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a5bb50b1827f5ae6881d195e8ee2e3a6a} 
+{\bfseries handler} = handler
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a2e056bf61285de8ba2d69d1081156645}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a2e056bf61285de8ba2d69d1081156645} 
+{\bfseries logger} = logger
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a4e31b09074f5f4f93190cdbd087a0788}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a4e31b09074f5f4f93190cdbd087a0788} 
+{\bfseries shutdown\+\_\+watcher}
+\item 
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a675890c1ac981e7c9dda5fa8f86d3eff}\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a675890c1ac981e7c9dda5fa8f86d3eff} 
+{\bfseries shutdown\+\_\+notifier} = os.\+pipe()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}WebSocket server returned by :func:`serve`.
+
+This class mirrors the API of :class:`~socketserver.BaseServer`, notably the
+:meth:`~socketserver.BaseServer.serve_forever` and
+:meth:`~socketserver.BaseServer.shutdown` methods, as well as the context
+manager protocol.
+
+Args:
+    socket: Server socket listening for new connections.
+    handler: Handler for one connection. Receives the socket and address
+        returned by :meth:`~socket.socket.accept`.
+    logger: Logger for this server.
+\end{DoxyVerb}
+ 
+
+\label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_doc-func-members}
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_ad62de024a6c484a92d713588198d4fa4}\index{websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}!fileno@{fileno}}
+\index{fileno@{fileno}!websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}}
+\doxysubsubsection{\texorpdfstring{fileno()}{fileno()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_ad62de024a6c484a92d713588198d4fa4} 
+ int websockets.\+sync.\+server.\+Web\+Socket\+Server.\+fileno (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}See :meth:`socketserver.BaseServer.fileno`.
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_aafe89b68c53e97f92f22edd3df294562}\index{websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}!serve\_forever@{serve\_forever}}
+\index{serve\_forever@{serve\_forever}!websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}}
+\doxysubsubsection{\texorpdfstring{serve\_forever()}{serve\_forever()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_aafe89b68c53e97f92f22edd3df294562} 
+ None websockets.\+sync.\+server.\+Web\+Socket\+Server.\+serve\+\_\+forever (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}See :meth:`socketserver.BaseServer.serve_forever`.
+
+This method doesn't return. Calling :meth:`shutdown` from another thread
+stops the server.
+
+Typical use::
+
+    with serve(...) as server:
+        server.serve_forever()
+\end{DoxyVerb}
+ \Hypertarget{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a9c8dbddb4874bf2d787bf6efa38b30d3}\index{websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}!shutdown@{shutdown}}
+\index{shutdown@{shutdown}!websockets.sync.server.WebSocketServer@{websockets.sync.server.WebSocketServer}}
+\doxysubsubsection{\texorpdfstring{shutdown()}{shutdown()}}
+{\footnotesize\ttfamily \label{classwebsockets_1_1sync_1_1server_1_1WebSocketServer_a9c8dbddb4874bf2d787bf6efa38b30d3} 
+ None websockets.\+sync.\+server.\+Web\+Socket\+Server.\+shutdown (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}See :meth:`socketserver.BaseServer.shutdown`.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+websockets/\+sync/\+server.\+py\end{DoxyCompactItemize}

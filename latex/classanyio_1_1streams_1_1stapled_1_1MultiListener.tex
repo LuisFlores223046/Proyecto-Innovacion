@@ -1,0 +1,110 @@
+\doxysection{anyio.\+streams.\+stapled.\+Multi\+Listener Class Reference}
+\hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener}{}\label{classanyio_1_1streams_1_1stapled_1_1MultiListener}\index{anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}}
+Inheritance diagram for anyio.\+streams.\+stapled.\+Multi\+Listener:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.638398cm]{classanyio_1_1streams_1_1stapled_1_1MultiListener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_a3d8ac30c6a308878e00011c4f87a47d9}\label{classanyio_1_1streams_1_1stapled_1_1MultiListener_a3d8ac30c6a308878e00011c4f87a47d9} 
+None {\bfseries \+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1MultiListener_ad8239c2418a888506d36e55e89f5c36c}{serve}} (self, Callable\+[\+[T\+\_\+\+Stream]\+, Any]\+ handler, \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{Task\+Group}}\texorpdfstring{$\vert$}{|}None task\+\_\+group=None)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1MultiListener_a8a2be284d1c49bc3b5dc3a962896eda2}{aclose}} (self)
+\item 
+Mapping\+[Any, Callable\+[\+[$\,$]\+, Any]\+]\+ \doxymbox{\hyperlink{classanyio_1_1streams_1_1stapled_1_1MultiListener_aac42351878efe7fb3a6782037c6554a1}{extra\+\_\+attributes}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource}{anyio.\+abc.\+\_\+resources.\+Async\+Resource}}}
+\begin{DoxyCompactItemize}
+\item 
+T {\bfseries \+\_\+\+\_\+aenter\+\_\+\+\_\+} (T self)
+\item 
+None {\bfseries \+\_\+\+\_\+aexit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider}{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider}}}
+\begin{DoxyCompactItemize}
+\item 
+T\+\_\+\+Attr {\bfseries extra} (self, T\+\_\+\+Attr attribute)
+\item 
+T\+\_\+\+Attr\texorpdfstring{$\vert$}{|}T\+\_\+\+Default {\bfseries extra} (self, T\+\_\+\+Attr attribute, T\+\_\+\+Default default)
+\item 
+object \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a20d92c5b7d90771b383b473f0f3699a7}{extra}} (self, Any attribute, object default=undefined)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_a36ace2427387372e377ea72b88bfe8d4}\label{classanyio_1_1streams_1_1stapled_1_1MultiListener_a36ace2427387372e377ea72b88bfe8d4} 
+Sequence {\bfseries listeners} \+[\doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1Listener}{Listener}}\+[T\+\_\+\+Stream]\+]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Combines multiple listeners into one, serving connections from all of them at once.
+
+Any MultiListeners in the given collection of listeners will have their listeners
+moved into this one.
+
+Extra attributes are provided from each listener, with each successive listener
+overriding any conflicting attributes from the previous one.
+
+:param listeners: listeners to serve
+:type listeners: Sequence[Listener[T_Stream]]
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1streams_1_1stapled_1_1MultiListener_doc-func-members}
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_a8a2be284d1c49bc3b5dc3a962896eda2}\index{anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}!aclose@{aclose}}
+\index{aclose@{aclose}!anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}}
+\doxysubsubsection{\texorpdfstring{aclose()}{aclose()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1stapled_1_1MultiListener_a8a2be284d1c49bc3b5dc3a962896eda2} 
+ None anyio.\+streams.\+stapled.\+Multi\+Listener.\+aclose (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the resource.\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__resources_1_1AsyncResource_a3ab27dd7173f5cf834e6091003534813}{anyio.\+abc.\+\_\+resources.\+Async\+Resource}}.
+
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_aac42351878efe7fb3a6782037c6554a1}\index{anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}!extra\_attributes@{extra\_attributes}}
+\index{extra\_attributes@{extra\_attributes}!anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}}
+\doxysubsubsection{\texorpdfstring{extra\_attributes()}{extra\_attributes()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1stapled_1_1MultiListener_aac42351878efe7fb3a6782037c6554a1} 
+ Mapping\+[Any, Callable\+[\+[$\,$]\+, Any]\+]\+ anyio.\+streams.\+stapled.\+Multi\+Listener.\+extra\+\_\+attributes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}A mapping of the extra attributes to callables that return the corresponding
+values.
+
+If the provider wraps another provider, the attributes from that wrapper should
+also be included in the returned mapping (but the wrapper may override the
+callables from the wrapped instance).
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1__core_1_1__typedattr_1_1TypedAttributeProvider_a5cc7011249b325eeec1f0ce800b6cb9c}{anyio.\+\_\+core.\+\_\+typedattr.\+Typed\+Attribute\+Provider}}.
+
+\Hypertarget{classanyio_1_1streams_1_1stapled_1_1MultiListener_ad8239c2418a888506d36e55e89f5c36c}\index{anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}!serve@{serve}}
+\index{serve@{serve}!anyio.streams.stapled.MultiListener@{anyio.streams.stapled.MultiListener}}
+\doxysubsubsection{\texorpdfstring{serve()}{serve()}}
+{\footnotesize\ttfamily \label{classanyio_1_1streams_1_1stapled_1_1MultiListener_ad8239c2418a888506d36e55e89f5c36c} 
+ None anyio.\+streams.\+stapled.\+Multi\+Listener.\+serve (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[T\+\_\+\+Stream]\+, Any]\+}]{handler}{, }\item[{\doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{Task\+Group}} \texorpdfstring{$\vert$}{|} None }]{task\+\_\+group}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Accept incoming connections as they come in and start tasks to handle them.
+
+:param handler: a callable that will be used to handle each accepted connection
+:param task_group: the task group that will be used to start tasks for handling
+    each accepted connection (if omitted, an ad-hoc task group will be created)
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classanyio_1_1abc_1_1__streams_1_1Listener_a0f05c0308c62eb6a1872f9f0af9d9e87}{anyio.\+abc.\+\_\+streams.\+Listener}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+streams/\+stapled.\+py\end{DoxyCompactItemize}

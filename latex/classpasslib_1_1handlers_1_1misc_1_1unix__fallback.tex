@@ -1,0 +1,69 @@
+\doxysection{passlib.\+handlers.\+misc.\+unix\+\_\+fallback Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback}{}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback}\index{passlib.handlers.misc.unix\_fallback@{passlib.handlers.misc.unix\_fallback}}
+Inheritance diagram for passlib.\+handlers.\+misc.\+unix\+\_\+fallback:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpasslib_1_1handlers_1_1misc_1_1unix__fallback}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_ae93ce0fbe3b6792fac341cb3343ad89b}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_ae93ce0fbe3b6792fac341cb3343ad89b} 
+{\bfseries identify} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a09f94c170dc436c59777ff1973df03ca}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a09f94c170dc436c59777ff1973df03ca} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, enable\+\_\+wildcard=False, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_acd42008e1269ff0c994934026c795d2e}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_acd42008e1269ff0c994934026c795d2e} 
+{\bfseries verify} (cls, secret, hash, enable\+\_\+wildcard=False)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a06f7350a18d604e87f5cf2a43034d460}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a06f7350a18d604e87f5cf2a43034d460} 
+{\bfseries enable\+\_\+wildcard} = enable\+\_\+wildcard
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a5a6ce1f36e44f4e0aab3ac78e963378c}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a5a6ce1f36e44f4e0aab3ac78e963378c} 
+{\bfseries checksum}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a9c29073a21b2f636eeddb0a0a151ab9d}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a9c29073a21b2f636eeddb0a0a151ab9d} 
+str {\bfseries name} = "{}unix\+\_\+fallback"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a75b777bfe079ae4d152a18412226e06e}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a75b777bfe079ae4d152a18412226e06e} 
+tuple {\bfseries context\+\_\+kwds} = ("{}enable\+\_\+wildcard"{},)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a9741ee7fdd9d76d6c6738d9302f1035d}\label{classpasslib_1_1handlers_1_1misc_1_1unix__fallback_a9741ee7fdd9d76d6c6738d9302f1035d} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class provides the fallback behavior for unix shadow files, and follows the :ref:`password-hash-api`.
+
+This class does not implement a hash, but instead provides fallback
+behavior as found in /etc/shadow on most unix variants.
+If used, should be the last scheme in the context.
+
+* this class will positively identify all hash strings.
+* for security, passwords will always hash to ``!``.
+* it rejects all passwords if the hash is NOT an empty string (``!`` or ``*`` are frequently used).
+* by default it rejects all passwords if the hash is an empty string,
+  but if ``enable_wildcard=True`` is passed to verify(),
+  all passwords will be allowed through if the hash is an empty string.
+
+.. deprecated:: 1.6
+    This has been deprecated due to its "wildcard" feature,
+    and will be removed in Passlib 1.8. Use :class:`unix_disabled` instead.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+misc.\+py\end{DoxyCompactItemize}

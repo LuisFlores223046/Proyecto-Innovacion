@@ -1,0 +1,80 @@
+\doxysection{sentry\+\_\+sdk.\+worker.\+Background\+Worker Class Reference}
+\hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker}{}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker}\index{sentry\_sdk.worker.BackgroundWorker@{sentry\_sdk.worker.BackgroundWorker}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_ac2f890e54610698c9d6b9c4072579350}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_ac2f890e54610698c9d6b9c4072579350} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int queue\+\_\+size=DEFAULT\+\_\+\+QUEUE\+\_\+\+SIZE)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_ad47e6921e46193e363b81608129d60ef}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_ad47e6921e46193e363b81608129d60ef} 
+bool {\bfseries is\+\_\+alive} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_aef88b533b8cdf1d270585c5b6edec6cb}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_aef88b533b8cdf1d270585c5b6edec6cb} 
+None {\bfseries start} (self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1worker_1_1BackgroundWorker_a8996bdc1344203cedccd054b682f6802}{kill}} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_ae9a02b1b22a45c1676fc9b44267968d2}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_ae9a02b1b22a45c1676fc9b44267968d2} 
+None {\bfseries flush} (self, float timeout, "{}Optional\+[Any]\+"{} callback=None)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a7080aaf67c5ce115dfe03afc2d4b1471}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a7080aaf67c5ce115dfe03afc2d4b1471} 
+bool {\bfseries full} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a5d8e214b328e5af0d1d00df1da992ac2}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a5d8e214b328e5af0d1d00df1da992ac2} 
+bool {\bfseries submit} (self, "{}Callable\+[\+[$\,$]\+, None]\+"{} callback)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a08b9041a22fe87cd61ef63908d24c3dc}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a08b9041a22fe87cd61ef63908d24c3dc} 
+{\bfseries is\+\_\+alive}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a3d8d860d4e2ea0867d1543583765ee14}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a3d8d860d4e2ea0867d1543583765ee14} 
+None {\bfseries \+\_\+ensure\+\_\+thread} (self)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_aa7c92276066758d0b841ea283364919d}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_aa7c92276066758d0b841ea283364919d} 
+bool {\bfseries \+\_\+timed\+\_\+queue\+\_\+join} (self, float timeout)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a70cb18c2fd072a1d50092168cc771288}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a70cb18c2fd072a1d50092168cc771288} 
+None {\bfseries \+\_\+wait\+\_\+flush} (self, float timeout, "{}Optional\+[Any]\+"{} callback)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a1bd1521977485a490eb4ed660f6240bf}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a1bd1521977485a490eb4ed660f6240bf} 
+None {\bfseries \+\_\+target} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a5b7a0603d944ec9c917da88ac53d0a20}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a5b7a0603d944ec9c917da88ac53d0a20} 
+{\bfseries \+\_\+queue} = \doxymbox{\hyperlink{classsentry__sdk_1_1__queue_1_1Queue}{Queue}}(queue\+\_\+size)
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a76dc91f0b3d09c463cac32da4891b16a}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a76dc91f0b3d09c463cac32da4891b16a} 
+{\bfseries \+\_\+lock} = threading.\+Lock()
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a4853bfb934ccdd2df82037a864d87585}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a4853bfb934ccdd2df82037a864d87585} 
+{\bfseries \+\_\+thread} = None
+\item 
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_ae8fc1645d39ad0177f8c24a44537a222}\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_ae8fc1645d39ad0177f8c24a44537a222} 
+{\bfseries \+\_\+thread\+\_\+for\+\_\+pid} = None
+\end{DoxyCompactItemize}
+
+
+\label{classsentry__sdk_1_1worker_1_1BackgroundWorker_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1worker_1_1BackgroundWorker_a8996bdc1344203cedccd054b682f6802}\index{sentry\_sdk.worker.BackgroundWorker@{sentry\_sdk.worker.BackgroundWorker}!kill@{kill}}
+\index{kill@{kill}!sentry\_sdk.worker.BackgroundWorker@{sentry\_sdk.worker.BackgroundWorker}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1worker_1_1BackgroundWorker_a8996bdc1344203cedccd054b682f6802} 
+ None sentry\+\_\+sdk.\+worker.\+Background\+Worker.\+kill (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Kill worker thread. Returns immediately. Not useful for
+waiting on shutdown for events, use `flush` for that.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+worker.\+py\end{DoxyCompactItemize}

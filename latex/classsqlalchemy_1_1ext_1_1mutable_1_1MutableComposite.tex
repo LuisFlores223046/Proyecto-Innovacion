@@ -1,0 +1,80 @@
+\doxysection{sqlalchemy.\+ext.\+mutable.\+Mutable\+Composite Class Reference}
+\hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite}{}\label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite}\index{sqlalchemy.ext.mutable.MutableComposite@{sqlalchemy.ext.mutable.MutableComposite}}
+Inheritance diagram for sqlalchemy.\+ext.\+mutable.\+Mutable\+Composite:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a8cc1eddb6417d96b951819631a8c7974}{changed}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aac3670b34f661d84c394dcb0edb1af27}{coerce}} (cls, str key, Any value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Set\+[str]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a31858af148cf3ad875c0b81a82fc49c6}{\+\_\+get\+\_\+listen\+\_\+keys}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[\+\_\+O]\+ attribute)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+Weak\+Key\+Dictionary\+[Any, Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a4da9d37afbc63cad3f5357e616c6363e}{\+\_\+parents}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_a1a4c97ba0645624383c0946feae06ee8}{\+\_\+listen\+\_\+on\+\_\+attribute}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[Any]\+ attribute, bool coerce, \+\_\+\+External\+Entity\+Type\+[Any]\+ parent\+\_\+cls)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Mixin that defines transparent propagation of change
+events on a SQLAlchemy "composite" object to its
+owning parent or parents.
+
+See the example in :ref:`mutable_composites` for usage information.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a31858af148cf3ad875c0b81a82fc49c6}\index{sqlalchemy.ext.mutable.MutableComposite@{sqlalchemy.ext.mutable.MutableComposite}!\_get\_listen\_keys@{\_get\_listen\_keys}}
+\index{\_get\_listen\_keys@{\_get\_listen\_keys}!sqlalchemy.ext.mutable.MutableComposite@{sqlalchemy.ext.mutable.MutableComposite}}
+\doxysubsubsection{\texorpdfstring{\_get\_listen\_keys()}{\_get\_listen\_keys()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a31858af148cf3ad875c0b81a82fc49c6} 
+ Set\+[str]\+ sqlalchemy.\+ext.\+mutable.\+Mutable\+Composite.\+\_\+get\+\_\+listen\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute}{Queryable\+Attribute}}\+[\+\_\+O]\+}]{attribute}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Given a descriptor attribute, return a ``set()`` of the attribute
+keys which indicate a change in the state of this attribute.
+
+This is normally just ``set([attribute.key])``, but can be overridden
+to provide for additional keys.  E.g. a :class:`.MutableComposite`
+augments this set with the attribute keys associated with the columns
+that comprise the composite value.
+
+This collection is consulted in the case of intercepting the
+:meth:`.InstanceEvents.refresh` and
+:meth:`.InstanceEvents.refresh_flush` events, which pass along a list
+of attribute names that have been refreshed; the list is compared
+against this set to determine if action needs to be taken.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1mutable_1_1MutableBase_aa3412eb14cbd80dea1676d537d3c0470}{sqlalchemy.\+ext.\+mutable.\+Mutable\+Base}}.
+
+\Hypertarget{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a8cc1eddb6417d96b951819631a8c7974}\index{sqlalchemy.ext.mutable.MutableComposite@{sqlalchemy.ext.mutable.MutableComposite}!changed@{changed}}
+\index{changed@{changed}!sqlalchemy.ext.mutable.MutableComposite@{sqlalchemy.ext.mutable.MutableComposite}}
+\doxysubsubsection{\texorpdfstring{changed()}{changed()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1ext_1_1mutable_1_1MutableComposite_a8cc1eddb6417d96b951819631a8c7974} 
+ None sqlalchemy.\+ext.\+mutable.\+Mutable\+Composite.\+changed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses should call this method whenever change events occur.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+ext/\+mutable.\+py\end{DoxyCompactItemize}

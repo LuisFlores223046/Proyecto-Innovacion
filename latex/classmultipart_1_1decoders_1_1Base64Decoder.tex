@@ -1,0 +1,102 @@
+\doxysection{multipart.\+decoders.\+Base64\+Decoder Class Reference}
+\hypertarget{classmultipart_1_1decoders_1_1Base64Decoder}{}\label{classmultipart_1_1decoders_1_1Base64Decoder}\index{multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a8490e44141e296f58ce7b9050a690251}\label{classmultipart_1_1decoders_1_1Base64Decoder_a8490e44141e296f58ce7b9050a690251} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, underlying)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1Base64Decoder_a54543f279bddb4e71c94993e2503541d}{write}} (self, data)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1Base64Decoder_a3996dc72e216d383a511ef9a7218ea20}{close}} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1Base64Decoder_a010acd42114c8e077d42c26f89c1d092}{finalize}} (self)
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_ab9848b47c39774e433b334edcfdbcbfa}\label{classmultipart_1_1decoders_1_1Base64Decoder_ab9848b47c39774e433b334edcfdbcbfa} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a025934d8f31f73b64d7249be9c8d9db6}\label{classmultipart_1_1decoders_1_1Base64Decoder_a025934d8f31f73b64d7249be9c8d9db6} 
+str {\bfseries cache} = bytearray()
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a7f75fdaa42101b260c5d59b47a7a54a4}\label{classmultipart_1_1decoders_1_1Base64Decoder_a7f75fdaa42101b260c5d59b47a7a54a4} 
+{\bfseries underlying} = underlying
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This object provides an interface to decode a stream of Base64 data.  It
+is instantiated with an "underlying object", and whenever a write()
+operation is performed, it will decode the incoming data as Base64, and
+call write() on the underlying object.  This is primarily used for decoding
+form data encoded as Base64, but can be used for other purposes::
+
+    from multipart.decoders import Base64Decoder
+    fd = open("notb64.txt", "wb")
+    decoder = Base64Decoder(fd)
+    try:
+        decoder.write("Zm9vYmFy")       # "foobar" in Base64
+        decoder.finalize()
+    finally:
+        decoder.close()
+
+    # The contents of "notb64.txt" should be "foobar".
+
+This object will also pass all finalize() and close() calls to the
+underlying object, if the underlying object supports them.
+
+Note that this class maintains a cache of base64 chunks, so that a write of
+arbitrary size can be performed.  You must call :meth:`finalize` on this
+object after all writes are completed to ensure that all data is flushed
+to the underlying object.
+
+:param underlying: the underlying object to pass writes to
+\end{DoxyVerb}
+ 
+
+\label{classmultipart_1_1decoders_1_1Base64Decoder_doc-func-members}
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a3996dc72e216d383a511ef9a7218ea20}\index{multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}!close@{close}}
+\index{close@{close}!multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1Base64Decoder_a3996dc72e216d383a511ef9a7218ea20} 
+multipart.\+decoders.\+Base64\+Decoder.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close this decoder.  If the underlying object has a `close()`
+method, this function will call it.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a010acd42114c8e077d42c26f89c1d092}\index{multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}!finalize@{finalize}}
+\index{finalize@{finalize}!multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1Base64Decoder_a010acd42114c8e077d42c26f89c1d092} 
+multipart.\+decoders.\+Base64\+Decoder.\+finalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finalize this object.  This should be called when no more data
+should be written to the stream.  This function can raise a
+:class:`multipart.exceptions.DecodeError` if there is some remaining
+data in the cache.
+
+If the underlying object has a `finalize()` method, this function will
+call it.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1decoders_1_1Base64Decoder_a54543f279bddb4e71c94993e2503541d}\index{multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}!write@{write}}
+\index{write@{write}!multipart.decoders.Base64Decoder@{multipart.decoders.Base64Decoder}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1Base64Decoder_a54543f279bddb4e71c94993e2503541d} 
+multipart.\+decoders.\+Base64\+Decoder.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes any input data provided, decodes it as base64, and passes it
+on to the underlying object.  If the data provided is invalid base64
+data, then this method will raise
+a :class:`multipart.exceptions.DecodeError`
+
+:param data: base64 data to decode
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+multipart/\+decoders.\+py\end{DoxyCompactItemize}

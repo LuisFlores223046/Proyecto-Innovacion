@@ -1,0 +1,208 @@
+\doxysection{frontend/\+node\+\_\+modules/\+eslint-\/scope Directory Reference}
+\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f}{}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f}\index{frontend/node\_modules/eslint-\/scope Directory Reference@{frontend/node\_modules/eslint-\/scope Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_bacff556f7dbef0bb14a51e47088d719}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+[!\+[npm version]\+(\href{https://img.shields.io/npm/v/eslint-scope.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+eslint-\/scope.\+svg}})]\+(\href{https://www.npmjs.com/package/eslint-scope}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+eslint-\/scope}}) \href{https://www.npmjs.com/package/eslint-scope}{\texttt{}} \href{https://github.com/eslint/js/actions}{\texttt{}}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2035}{}\doxysubsection{\texorpdfstring{ESLint Scope}{ESLint Scope}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2035}
+ESLint Scope is the \href{http://www.ecma-international.org/publications/standards/Ecma-262.htm}{\texttt{ECMAScript}} scope analyzer used in ESLint. It is a fork of \href{http://github.com/estools/escope}{\texttt{escope}}.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2036}{}\doxysubsubsection{\texorpdfstring{Install}{Install}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2036}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ eslint-\/scope\ -\/-\/save}
+
+\end{DoxyCode}
+\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2037}{}\doxysubsubsection{\texorpdfstring{📖 Usage}{📖 Usage}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2037}
+To use in an ESM file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ eslintScope\ from\ 'eslint-\/scope';}
+
+\end{DoxyCode}
+
+
+To use in a Common\+JS file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ eslintScope\ =\ require('eslint-\/scope');}
+
+\end{DoxyCode}
+
+
+In order to analyze scope, you\textquotesingle{}ll need to have an \href{https://github.com/estree/estree}{\texttt{ESTree}} compliant AST structure to run it on. The primary method is {\ttfamily eslint\+Scope.\+analyze()}, which takes two arguments:\+
+
+
+\begin{DoxyEnumerate}
+\item {\ttfamily ast} -\/ the ESTree-\/compliant AST structure to analyze.
+\item {\ttfamily options} (optional) -\/ Options to adjust how the scope is analyzed, including:\+
+\begin{DoxyItemize}
+\item {\ttfamily ignore\+Eval} (default:\+ {\ttfamily false}) -\/ Set to {\ttfamily true} to ignore all {\ttfamily eval()} calls (which would normally create scopes).
+\item {\ttfamily nodejs\+Scope} (default:\+ {\ttfamily false}) -\/ Set to {\ttfamily true} to create a top-\/level function scope needed for Common\+JS evaluation.
+\item {\ttfamily implied\+Strict} (default:\+ {\ttfamily false}) -\/ Set to {\ttfamily true} to evaluate the code in strict mode even outside of modules and without {\ttfamily "{}use strict"{}}.
+\item {\ttfamily ecma\+Version} (default:\+ {\ttfamily 5}) -\/ The version of ECMAScript to use to evaluate the code.
+\item {\ttfamily source\+Type} (default:\+ {\ttfamily "{}script"{}}) -\/ The type of Java\+Script file to evaluate. Change to {\ttfamily "{}module"{}} for ECMAScript module code.
+\item {\ttfamily child\+Visitor\+Keys} (default:\+ {\ttfamily null}) -\/ An object with visitor key information (like \href{https://github.com/eslint/js/tree/main/packages/eslint-visitor-keys}{\texttt{{\ttfamily eslint-\/visitor-\/keys}}}). Without this, {\ttfamily eslint-\/scope} finds child nodes to visit algorithmically. Providing this option is a performance enhancement.
+\item {\ttfamily fallback} (default:\+ {\ttfamily "{}iteration"{}}) -\/ The strategy to use when {\ttfamily child\+Visitor\+Keys} is not specified. May be a function.
+\item {\ttfamily jsx} (default:\+ {\ttfamily false}) -\/ Enables the tracking of JSX components as variable references.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+Example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ eslintScope\ from\ 'eslint-\/scope';}
+\DoxyCodeLine{import\ *\ as\ espree\ from\ 'espree';}
+\DoxyCodeLine{import\ estraverse\ from\ 'estraverse';}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ options\ =\ \{}
+\DoxyCodeLine{\ \ \ \ ecmaVersion:\ 2022,}
+\DoxyCodeLine{\ \ \ \ sourceType:\ "{}module"{}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ast\ =\ espree.parse(code,\ \{\ range:\ true,\ ...options\ \});}
+\DoxyCodeLine{const\ scopeManager\ =\ eslintScope.analyze(ast,\ options);}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ currentScope\ =\ scopeManager.acquire(ast);\ \ \ //\ global\ scope}
+\DoxyCodeLine{}
+\DoxyCodeLine{estraverse.traverse(ast,\ \{}
+\DoxyCodeLine{\ \ \ \ enter\ (node,\ parent)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ do\ stuff}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (/Function/.test(node.type))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ currentScope\ =\ scopeManager.acquire(node);\ \ //\ get\ current\ function\ scope}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ leave(node,\ parent)\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ if\ (/Function/.test(node.type))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ currentScope\ =\ currentScope.upper;\ \ //\ set\ to\ parent\ scope}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ do\ stuff}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2038}{}\doxysubsubsection{\texorpdfstring{API}{API}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2038}
+The following section describes the API for this package. You can also read \href{https://eslint.org/docs/latest/extend/scope-manager-interface}{\texttt{the docs}}.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2039}{}\doxysubsubsubsection{\texorpdfstring{Scope\+Manager}{Scope\+Manager}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2039}
+The {\ttfamily Scope\+Manager} class is at the core of eslint-\/scope and is returned when you call {\ttfamily eslint\+Scope.\+analyze()}. It manages all scopes in a given AST.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2040}{}\doxysubsubsubsubsection{\texorpdfstring{Properties}{Properties}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2040}
+
+\begin{DoxyItemize}
+\item {\ttfamily scopes} -\/ An array of all scopes.
+\item {\ttfamily global\+Scope} -\/ Reference to the global scope.
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2041}{}\doxysubsubsubsubsection{\texorpdfstring{Methods}{Methods}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2041}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily acquire(node, inner)}}} Acquires the appropriate scope for a given node.
+\begin{DoxyItemize}
+\item {\ttfamily node} -\/ The AST node to acquire the scope from.
+\item {\ttfamily inner} -\/ Optional boolean. When {\ttfamily true}, returns the innermost scope, otherwise returns the outermost scope. Default is {\ttfamily false}.
+\item Returns:\+ The acquired scope or {\ttfamily null} if no scope is found.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily acquire\+All(node)}}} Acquires all scopes for a given node.
+\begin{DoxyItemize}
+\item {\ttfamily node} -\/ The AST node to acquire scopes from.
+\item Returns:\+ An array of scopes or {\ttfamily undefined} if none are found.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily release(node, inner)}}} Returns the upper scope for a given node.
+\begin{DoxyItemize}
+\item {\ttfamily node} -\/ The AST node to release.
+\item {\ttfamily inner} -\/ Optional boolean. When {\ttfamily true}, returns the innermost upper scope, otherwise returns the outermost upper scope. Default is {\ttfamily false}.
+\item Returns:\+ The upper scope or {\ttfamily null} if no upper scope exists.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily get\+Declared\+Variables(node)}}} Get variables that are declared by the node.
+\begin{DoxyItemize}
+\item {\ttfamily node} -\/ The AST node to get declarations from.
+\item Returns:\+ An array of variable objects declared by the node. If the node doesn\textquotesingle{}t declare any variables, it returns an empty array.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily is\+Global\+Return()}}} Determines if the global return statement should be allowed.
+\begin{DoxyItemize}
+\item Returns:\+ {\ttfamily true} if the global return is enabled.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily is\+Module()}}} Checks if the code should be handled as an ECMAScript module.
+\begin{DoxyItemize}
+\item Returns:\+ {\ttfamily true} if the source\+Type is "{}module"{}.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily is\+Implied\+Strict()}}} Checks if implied strict mode is enabled.
+\begin{DoxyItemize}
+\item Returns:\+ {\ttfamily true} if implied strict mode is enabled.
+\end{DoxyItemize}
+\item {\bfseries{{\ttfamily is\+Strict\+Mode\+Supported()}}} Checks if strict mode is supported based on ECMAScript version.
+\begin{DoxyItemize}
+\item Returns:\+ {\ttfamily true} if the ECMAScript version supports strict mode.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2042}{}\doxysubsubsubsection{\texorpdfstring{Scope Objects}{Scope Objects}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2042}
+Scopes returned by the Scope\+Manager methods have the following properties:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily type} -\/ The type of scope (e.\+g., "{}function"{}, "{}block"{}, "{}global"{}).
+\item {\ttfamily variables} -\/ Array of variables declared in this scope.
+\item {\ttfamily set} -\/ A Map of variable names to Variable objects for variables declared in this scope.
+\item {\ttfamily references} -\/ Array of references in this scope.
+\item {\ttfamily through} -\/ Array of references in this scope and its child scopes that aren\textquotesingle{}t resolved in this scope or its child scopes.
+\item {\ttfamily variable\+Scope} -\/ Reference to the closest variable scope.
+\item {\ttfamily upper} -\/ Reference to the parent scope.
+\item {\ttfamily child\+Scopes} -\/ Array of child scopes.
+\item {\ttfamily block} -\/ The AST node that created this scope.
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2043}{}\doxysubsubsubsection{\texorpdfstring{Global\+Scope}{Global\+Scope}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2043}
+The {\ttfamily Global\+Scope} class is a specialized scope representing the global execution context. It extends the base {\ttfamily Scope} class with additional functionality for handling implicitly defined global variables.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2044}{}\doxysubsubsubsubsection{\texorpdfstring{Properties}{Properties}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2044}
+
+\begin{DoxyItemize}
+\item {\bfseries{{\ttfamily implicit}}} -\/ Tracks implicitly defined global variables (those used without declaration).
+\begin{DoxyItemize}
+\item {\ttfamily set} -\/ A Map of variable names to Variable objects for implicitly defined globals.
+\item {\ttfamily variables} -\/ Array of implicit global Variable objects.
+\item {\ttfamily left} -\/ Array of References that need to be linked to the variable they refer to.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2045}{}\doxysubsubsubsection{\texorpdfstring{Variable Objects}{Variable Objects}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2045}
+Each variable object has the following properties:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily name} -\/ The variable name.
+\item {\ttfamily identifiers} -\/ Array of identifier nodes declaring this variable.
+\item {\ttfamily references} -\/ Array of references to this variable.
+\item {\ttfamily defs} -\/ Array of definition objects for this variable.
+\item {\ttfamily scope} -\/ The scope object where this variable is defined.
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2046}{}\doxysubsubsection{\texorpdfstring{Contributing}{Contributing}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2046}
+Issues and pull requests will be triaged and responded to as quickly as possible. We operate under the \href{http://eslint.org/docs/developer-guide/contributing}{\texttt{ESLint Contributor Guidelines}}, so please be sure to read them before contributing. If you\textquotesingle{}re not sure where to dig in, check out the \href{https://github.com/eslint/js/issues}{\texttt{issues}}.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2047}{}\doxysubsubsection{\texorpdfstring{Security Policy}{Security Policy}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2047}
+We work hard to ensure that ESLint Scope is safe for everyone and that security issues are addressed quickly and responsibly. Read the full \href{https://github.com/eslint/.github/blob/master/SECURITY.md}{\texttt{security policy}}.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2048}{}\doxysubsubsection{\texorpdfstring{Build Commands}{Build Commands}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2048}
+
+\begin{DoxyItemize}
+\item {\ttfamily npm test} -\/ run all linting and tests
+\item {\ttfamily npm run lint} -\/ run all linting
+\end{DoxyItemize}\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2049}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2049}
+ESLint Scope is licensed under a permissive BSD 2-\/clause license.\hypertarget{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2050}{}\doxysubsubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_f5ba52a9baeb018a0f6de18239a1d18f_autotoc_md2050}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Diamond Sponsors}
+
+\href{https://www.ag-grid.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://sentry.io}{\texttt{}} \href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://www.crosswordsolver.org/anagram-solver/}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nolebase.ayaka.io}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

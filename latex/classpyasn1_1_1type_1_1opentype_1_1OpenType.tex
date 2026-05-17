@@ -1,0 +1,105 @@
+\doxysection{pyasn1.\+type.\+opentype.\+Open\+Type Class Reference}
+\hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType}{}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType}\index{pyasn1.type.opentype.OpenType@{pyasn1.type.opentype.OpenType}}
+Inheritance diagram for pyasn1.\+type.\+opentype.\+Open\+Type:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpyasn1_1_1type_1_1opentype_1_1OpenType}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a7f55e0b30759e0fdeb7c53b11dc3406d}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a7f55e0b30759e0fdeb7c53b11dc3406d} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, name, type\+Map=None)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a8874938585e803e641f8f21808cc97e7}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a8874938585e803e641f8f21808cc97e7} 
+{\bfseries name} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a53b41fb8fe39d82470f5c1a56fe56cd1}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a53b41fb8fe39d82470f5c1a56fe56cd1} 
+{\bfseries values} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a725bdd53bb261c1805d7b6a739937bf0}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a725bdd53bb261c1805d7b6a739937bf0} 
+{\bfseries keys} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_ab115696b5ed02c74714552f2d20a14be}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_ab115696b5ed02c74714552f2d20a14be} 
+{\bfseries items} (self)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_ab1fe91eb66ba8db28a683fe4b08846e4}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_ab1fe91eb66ba8db28a683fe4b08846e4} 
+{\bfseries \+\_\+\+\_\+contains\+\_\+\+\_\+} (self, key)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a29bfbb01b8b88ce5ce0e8130c7fc2a64}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a29bfbb01b8b88ce5ce0e8130c7fc2a64} 
+{\bfseries \+\_\+\+\_\+getitem\+\_\+\+\_\+} (self, key)
+\item 
+\Hypertarget{classpyasn1_1_1type_1_1opentype_1_1OpenType_a4e5c5f1d0c29c90139a983530711e9d4}\label{classpyasn1_1_1type_1_1opentype_1_1OpenType_a4e5c5f1d0c29c90139a983530711e9d4} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create ASN.1 type map indexed by a value
+
+The *OpenType* object models an untyped field of a constructed ASN.1
+type. In ASN.1 syntax it is usually represented by the
+`ANY DEFINED BY` for scalars or `SET OF ANY DEFINED BY`,
+`SEQUENCE OF ANY DEFINED BY` for container types clauses. Typically
+used together with :class:`~pyasn1.type.univ.Any` object.
+
+OpenType objects duck-type a read-only Python :class:`dict` objects,
+however the passed `typeMap` is not copied, but stored by reference.
+That means the user can manipulate `typeMap` at run time having this
+reflected on *OpenType* object behavior.
+
+The |OpenType| class models an untyped field of a constructed ASN.1
+type. In ASN.1 syntax it is usually represented by the
+`ANY DEFINED BY` for scalars or `SET OF ANY DEFINED BY`,
+`SEQUENCE OF ANY DEFINED BY` for container types clauses. Typically
+used with :class:`~pyasn1.type.univ.Any` type.
+
+Parameters
+----------
+name: :py:class:`str`
+    Field name
+
+typeMap: :py:class:`dict`
+    A map of value->ASN.1 type. It's stored by reference and can be
+    mutated later to register new mappings.
+
+Examples
+--------
+
+For untyped scalars:
+
+.. code-block:: python
+
+    openType = OpenType(
+        'id', {1: Integer(),
+               2: OctetString()}
+    )
+    Sequence(
+        componentType=NamedTypes(
+            NamedType('id', Integer()),
+            NamedType('blob', Any(), openType=openType)
+        )
+    )
+
+For untyped `SET OF` or `SEQUENCE OF` vectors:
+
+.. code-block:: python
+
+    openType = OpenType(
+        'id', {1: Integer(),
+               2: OctetString()}
+    )
+    Sequence(
+        componentType=NamedTypes(
+            NamedType('id', Integer()),
+            NamedType('blob', SetOf(componentType=Any()),
+                      openType=openType)
+        )
+    )
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+type/\+opentype.\+py\end{DoxyCompactItemize}

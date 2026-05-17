@@ -1,0 +1,70 @@
+\doxysection{fastapi.\+exceptions.\+Web\+Socket\+Exception Class Reference}
+\hypertarget{classfastapi_1_1exceptions_1_1WebSocketException}{}\label{classfastapi_1_1exceptions_1_1WebSocketException}\index{fastapi.exceptions.WebSocketException@{fastapi.exceptions.WebSocketException}}
+Inheritance diagram for fastapi.\+exceptions.\+Web\+Socket\+Exception:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classfastapi_1_1exceptions_1_1WebSocketException}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classfastapi_1_1exceptions_1_1WebSocketException_a1b87b1542470d656edecd1cced5309da}\label{classfastapi_1_1exceptions_1_1WebSocketException_a1b87b1542470d656edecd1cced5309da} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[int, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                A closing code from the                \+[valid codes defined in the specification]\+(https:\+/\+/\+datatracker.\+ietf.\+org/\+doc/\+html/\+rfc6455\+\#section-\/7.\+4.\+1).                "{}"{}"{}),]\+ code, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Union\+[str, None]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                The reason to close the Web\+Socket connection.                It is UTF-\/8-\/encoded data. The interpretation of the reason is up to the                application, it is not specified by the Web\+Socket specification.                It could contain text that could be human-\/readable or interpretable                by the client code, etc.                "{}"{}"{}),]\+ reason=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classfastapi_1_1exceptions_1_1WebSocketException_a8fd95ea45d1585acfb0fa6092925e43e}\label{classfastapi_1_1exceptions_1_1WebSocketException_a8fd95ea45d1585acfb0fa6092925e43e} 
+Type {\bfseries Request\+Error\+Model} = create\+\_\+model("{}Request"{})
+\item 
+\Hypertarget{classfastapi_1_1exceptions_1_1WebSocketException_a08cd27001efb3c6e1d20c7cc3f6e1332}\label{classfastapi_1_1exceptions_1_1WebSocketException_a08cd27001efb3c6e1d20c7cc3f6e1332} 
+Type {\bfseries Web\+Socket\+Error\+Model} = create\+\_\+model("{}Web\+Socket"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A WebSocket exception you can raise in your own code to show errors to the client.
+
+This is for client errors, invalid authentication, invalid data, etc. Not for server
+errors in your code.
+
+Read more about it in the
+[FastAPI docs for WebSockets](https://fastapi.tiangolo.com/advanced/websockets/).
+
+## Example
+
+```python
+from typing import Annotated
+
+from fastapi import (
+    Cookie,
+    FastAPI,
+    WebSocket,
+    WebSocketException,
+    status,
+)
+
+app = FastAPI()
+
+@app.websocket("/items/{item_id}/ws")
+async def websocket_endpoint(
+    *,
+    websocket: WebSocket,
+    session: Annotated[str | None, Cookie()] = None,
+    item_id: str,
+):
+    if session is None:
+        raise WebSocketException(code=status.WS_1008_POLICY_VIOLATION)
+    await websocket.accept()
+    while True:
+        data = await websocket.receive_text()
+        await websocket.send_text(f"Session cookie is: {session}")
+        await websocket.send_text(f"Message text was: {data}, for item ID: {item_id}")
+```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+exceptions.\+py\end{DoxyCompactItemize}

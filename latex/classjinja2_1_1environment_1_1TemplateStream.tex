@@ -1,0 +1,97 @@
+\doxysection{jinja2.\+environment.\+Template\+Stream Class Reference}
+\hypertarget{classjinja2_1_1environment_1_1TemplateStream}{}\label{classjinja2_1_1environment_1_1TemplateStream}\index{jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a1078753d1d019539fba057338d2078c1}\label{classjinja2_1_1environment_1_1TemplateStream_a1078753d1d019539fba057338d2078c1} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Iterator\+[str]\+ gen)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1environment_1_1TemplateStream_aae2a29587864d87a804fad5d7598dddb}{dump}} (self, t.\+Union\+[str, t.\+IO\+[bytes]\+]\+ fp, t.\+Optional\+[str]\+ encoding=None, t.\+Optional\+[str]\+ errors="{}strict"{})
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1environment_1_1TemplateStream_a16523f128cd829f3da07464f2d1eca9c}{disable\+\_\+buffering}} (self)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1environment_1_1TemplateStream_a7d23326bd47f5b5e15870de1ad1722a6}{enable\+\_\+buffering}} (self, int size=5)
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_adfa12a77265a51e8f8d4d483ee5f6dc3}\label{classjinja2_1_1environment_1_1TemplateStream_adfa12a77265a51e8f8d4d483ee5f6dc3} 
+"{}Template\+Stream"{} {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_aa9fbaa91ff7fbbfdcec52e0acaf1b437}\label{classjinja2_1_1environment_1_1TemplateStream_aa9fbaa91ff7fbbfdcec52e0acaf1b437} 
+str {\bfseries \+\_\+\+\_\+next\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_afcd9855c025953b795617e03217eaaef}\label{classjinja2_1_1environment_1_1TemplateStream_afcd9855c025953b795617e03217eaaef} 
+bool {\bfseries buffered} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a82a2f0d03beb4ad2ae37ce8a41206e0b}\label{classjinja2_1_1environment_1_1TemplateStream_a82a2f0d03beb4ad2ae37ce8a41206e0b} 
+{\bfseries template\+\_\+class}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a1d871c6d217dfd09ce4879bafe069594}\label{classjinja2_1_1environment_1_1TemplateStream_a1d871c6d217dfd09ce4879bafe069594} 
+t.\+Iterator\+[str]\+ {\bfseries \+\_\+buffered\+\_\+generator} (self, int size)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a520bb0685e11165e905839f6c7ed6037}\label{classjinja2_1_1environment_1_1TemplateStream_a520bb0685e11165e905839f6c7ed6037} 
+{\bfseries \+\_\+gen} = gen
+\item 
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_aba5615246930592adef6d26855af6ca7}\label{classjinja2_1_1environment_1_1TemplateStream_aba5615246930592adef6d26855af6ca7} 
+{\bfseries \+\_\+next} = partial(next, self.\+\_\+gen)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A template stream works pretty much like an ordinary python generator
+but it can buffer multiple items to reduce the number of total iterations.
+Per default the output is unbuffered which means that for every unbuffered
+instruction in the template one string is yielded.
+
+If buffering is enabled with a buffer size of 5, five items are combined
+into a new string.  This is mainly useful if you are streaming
+big templates to a client via WSGI which flushes after each iteration.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1environment_1_1TemplateStream_doc-func-members}
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a16523f128cd829f3da07464f2d1eca9c}\index{jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}!disable\_buffering@{disable\_buffering}}
+\index{disable\_buffering@{disable\_buffering}!jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}}
+\doxysubsubsection{\texorpdfstring{disable\_buffering()}{disable\_buffering()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1environment_1_1TemplateStream_a16523f128cd829f3da07464f2d1eca9c} 
+ None jinja2.\+environment.\+Template\+Stream.\+disable\+\_\+buffering (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Disable the output buffering.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1environment_1_1TemplateStream_aae2a29587864d87a804fad5d7598dddb}\index{jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}!dump@{dump}}
+\index{dump@{dump}!jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}}
+\doxysubsubsection{\texorpdfstring{dump()}{dump()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1environment_1_1TemplateStream_aae2a29587864d87a804fad5d7598dddb} 
+ None jinja2.\+environment.\+Template\+Stream.\+dump (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{t.\+Union\+[str, t.\+IO\+[bytes]\+]\+}]{fp}{, }\item[{t.\+Optional\+[str]\+ }]{encoding}{ = {\ttfamily None}, }\item[{t.\+Optional\+[str]\+ }]{errors}{ = {\ttfamily "{}strict"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Dump the complete stream into a file or file-like object.
+Per default strings are written, if you want to encode
+before writing specify an `encoding`.
+
+Example usage::
+
+    Template('Hello {{ name }}!').stream(name='foo').dump('hello.html')
+\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1environment_1_1TemplateStream_a7d23326bd47f5b5e15870de1ad1722a6}\index{jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}!enable\_buffering@{enable\_buffering}}
+\index{enable\_buffering@{enable\_buffering}!jinja2.environment.TemplateStream@{jinja2.environment.TemplateStream}}
+\doxysubsubsection{\texorpdfstring{enable\_buffering()}{enable\_buffering()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1environment_1_1TemplateStream_a7d23326bd47f5b5e15870de1ad1722a6} 
+ None jinja2.\+environment.\+Template\+Stream.\+enable\+\_\+buffering (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{size}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Enable buffering.  Buffer `size` items before yielding them.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+environment.\+py\end{DoxyCompactItemize}

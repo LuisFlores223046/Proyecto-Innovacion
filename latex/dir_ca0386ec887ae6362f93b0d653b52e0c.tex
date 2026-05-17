@@ -1,0 +1,85 @@
+\doxysection{frontend Directory Reference}
+\hypertarget{dir_ca0386ec887ae6362f93b0d653b52e0c}{}\label{dir_ca0386ec887ae6362f93b0d653b52e0c}\index{frontend Directory Reference@{frontend Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_debbd63f1d8db984f7ce6be7690dc411}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2640}{}\doxysubsection{\texorpdfstring{React + Type\+Script + Vite}{React + Type\+Script + Vite}}\label{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2640}
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react}{\texttt{@vitejs/\+plugin-\/react}} uses \href{https://babeljs.io/}{\texttt{Babel}} (or \href{https://oxc.rs}{\texttt{oxc}} when used in \href{https://vite.dev/guide/rolldown}{\texttt{rolldown-\/vite}}) for Fast Refresh
+\item \href{https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc}{\texttt{@vitejs/\+plugin-\/react-\/swc}} uses \href{https://swc.rs/}{\texttt{SWC}} for Fast Refresh
+\end{DoxyItemize}\hypertarget{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2641}{}\doxysubsection{\texorpdfstring{React Compiler}{React Compiler}}\label{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2641}
+The React Compiler is not enabled on this template because of its impact on dev \& build performances. To add it, see \href{https://react.dev/learn/react-compiler/installation}{\texttt{this documentation}}.\hypertarget{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2642}{}\doxysubsection{\texorpdfstring{Expanding the ESLint configuration}{Expanding the ESLint configuration}}\label{dir_ca0386ec887ae6362f93b0d653b52e0c_autotoc_md2642}
+If you are developing a production application, we recommend updating the configuration to enable type-\/aware lint rules:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ globalIgnores(['dist']),}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ files:\ ['**/*.\{ts,tsx\}'],}
+\DoxyCodeLine{\ \ \ \ extends:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Other\ configs...}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Remove\ tseslint.configs.recommended\ and\ replace\ with\ this}
+\DoxyCodeLine{\ \ \ \ \ \ tseslint.configs.recommendedTypeChecked,}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Alternatively,\ use\ this\ for\ stricter\ rules}
+\DoxyCodeLine{\ \ \ \ \ \ tseslint.configs.strictTypeChecked,}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Optionally,\ add\ this\ for\ stylistic\ rules}
+\DoxyCodeLine{\ \ \ \ \ \ tseslint.configs.stylisticTypeChecked,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Other\ configs...}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ languageOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ parserOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ project:\ ['./tsconfig.node.json',\ './tsconfig.app.json'],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ tsconfigRootDir:\ import.meta.dirname,}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ //\ other\ options...}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{])}
+
+\end{DoxyCode}
+
+
+You can also install \href{https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x}{\texttt{eslint-\/plugin-\/react-\/x}} and \href{https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom}{\texttt{eslint-\/plugin-\/react-\/dom}} for React-\/specific lint rules:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ eslint.config.js}
+\DoxyCodeLine{import\ reactX\ from\ 'eslint-\/plugin-\/react-\/x'}
+\DoxyCodeLine{import\ reactDom\ from\ 'eslint-\/plugin-\/react-\/dom'}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ globalIgnores(['dist']),}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ files:\ ['**/*.\{ts,tsx\}'],}
+\DoxyCodeLine{\ \ \ \ extends:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Other\ configs...}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Enable\ lint\ rules\ for\ React}
+\DoxyCodeLine{\ \ \ \ \ \ reactX.configs['recommended-\/typescript'],}
+\DoxyCodeLine{\ \ \ \ \ \ //\ Enable\ lint\ rules\ for\ React\ DOM}
+\DoxyCodeLine{\ \ \ \ \ \ reactDom.configs.recommended,}
+\DoxyCodeLine{\ \ \ \ ],}
+\DoxyCodeLine{\ \ \ \ languageOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ parserOptions:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ project:\ ['./tsconfig.node.json',\ './tsconfig.app.json'],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ tsconfigRootDir:\ import.meta.dirname,}
+\DoxyCodeLine{\ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ //\ other\ options...}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{\ \ \},}
+\DoxyCodeLine{])}
+
+\end{DoxyCode}
+ 

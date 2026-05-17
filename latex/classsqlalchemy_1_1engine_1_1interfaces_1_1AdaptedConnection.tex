@@ -1,0 +1,82 @@
+\doxysection{sqlalchemy.\+engine.\+interfaces.\+Adapted\+Connection Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection}{}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection}\index{sqlalchemy.engine.interfaces.AdaptedConnection@{sqlalchemy.engine.interfaces.AdaptedConnection}}
+Inheritance diagram for sqlalchemy.\+engine.\+interfaces.\+Adapted\+Connection:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.821355cm]{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Any \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_a04f922563d714d4e6193a42d4d98c731}{driver\+\_\+connection}} (self)
+\item 
+\+\_\+T \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_ab9ccf7ac39afcd93c372e59f0c9672cd}{run\+\_\+async}} (self, Callable\+[\+[Any]\+, Awaitable\+[\+\_\+T]\+]\+ fn)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_aca8cd9f6a0a4388f0266f74b517c8b14}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_aca8cd9f6a0a4388f0266f74b517c8b14} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_a61395eb7eaf9fdcd2fb3e918809107bf}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_a61395eb7eaf9fdcd2fb3e918809107bf} 
+{\bfseries \+\_\+connection}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Interface of an adapted connection object to support the DBAPI protocol.
+
+Used by asyncio dialects to provide a sync-style pep-249 facade on top
+of the asyncio connection/cursor API provided by the driver.
+
+.. versionadded:: 1.4.24
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_a04f922563d714d4e6193a42d4d98c731}\index{sqlalchemy.engine.interfaces.AdaptedConnection@{sqlalchemy.engine.interfaces.AdaptedConnection}!driver\_connection@{driver\_connection}}
+\index{driver\_connection@{driver\_connection}!sqlalchemy.engine.interfaces.AdaptedConnection@{sqlalchemy.engine.interfaces.AdaptedConnection}}
+\doxysubsubsection{\texorpdfstring{driver\_connection()}{driver\_connection()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_a04f922563d714d4e6193a42d4d98c731} 
+ Any sqlalchemy.\+engine.\+interfaces.\+Adapted\+Connection.\+driver\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The connection object as returned by the driver after a connect.\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_ab9ccf7ac39afcd93c372e59f0c9672cd}\index{sqlalchemy.engine.interfaces.AdaptedConnection@{sqlalchemy.engine.interfaces.AdaptedConnection}!run\_async@{run\_async}}
+\index{run\_async@{run\_async}!sqlalchemy.engine.interfaces.AdaptedConnection@{sqlalchemy.engine.interfaces.AdaptedConnection}}
+\doxysubsubsection{\texorpdfstring{run\_async()}{run\_async()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1AdaptedConnection_ab9ccf7ac39afcd93c372e59f0c9672cd} 
+ \+\_\+T sqlalchemy.\+engine.\+interfaces.\+Adapted\+Connection.\+run\+\_\+async (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[Any]\+, Awaitable\+[\+\_\+T]\+]\+}]{fn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run the awaitable returned by the given function, which is passed
+the raw asyncio driver connection.
+
+This is used to invoke awaitable-only methods on the driver connection
+within the context of a "synchronous" method, like a connection
+pool event handler.
+
+E.g.::
+
+    engine = create_async_engine(...)
+
+    @event.listens_for(engine.sync_engine, "connect")
+    def register_custom_types(dbapi_connection, ...):
+        dbapi_connection.run_async(
+            lambda connection: connection.set_type_codec(
+                'MyCustomType', encoder, decoder, ...
+            )
+        )
+
+.. versionadded:: 1.4.30
+
+.. seealso::
+
+    :ref:`asyncio_events_run_async`
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+interfaces.\+py\end{DoxyCompactItemize}

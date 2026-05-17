@@ -1,0 +1,71 @@
+\doxysection{pydantic\+\_\+extra\+\_\+types.\+phone\+\_\+numbers.\+Phone\+Number\+Validator Class Reference}
+\hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator}{}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator}\index{pydantic\_extra\_types.phone\_numbers.PhoneNumberValidator@{pydantic\_extra\_types.phone\_numbers.PhoneNumberValidator}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a30443cf73f65432bbff4a94568d88227}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a30443cf73f65432bbff4a94568d88227} 
+None {\bfseries \+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_ac663db6454333395b93f5e7a624c9d7f}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_ac663db6454333395b93f5e7a624c9d7f} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_ac1c63bf7aebedb0ecf276f36e1b5e1c7}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_ac1c63bf7aebedb0ecf276f36e1b5e1c7} 
+dict\+[str, Any]\+ {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (cls, core\+\_\+schema.\+Core\+Schema schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a5b81b1f709603850d2a6302ca81fec45}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a5b81b1f709603850d2a6302ca81fec45} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a3d81c6d57c3ddbb87aba86c877981743}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a3d81c6d57c3ddbb87aba86c877981743} 
+str {\bfseries default\+\_\+region} = None
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a7cdddf74ae57084d8a9ffd250b372729}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a7cdddf74ae57084d8a9ffd250b372729} 
+str {\bfseries number\+\_\+format} = \textquotesingle{}RFC3966\textquotesingle{}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_adb443032d16def9f8422972d6c17b436}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_adb443032d16def9f8422972d6c17b436} 
+Sequence {\bfseries supported\+\_\+regions} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a78baba84edcdffa70572d691d444b53c}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a78baba84edcdffa70572d691d444b53c} 
+str {\bfseries \+\_\+parse} (str\texorpdfstring{$\vert$}{|}None region, str number\+\_\+format, Sequence\+[str]\+\texorpdfstring{$\vert$}{|}None supported\+\_\+regions, Any phone\+\_\+number)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a2e0724f6650f1283d4d171359732bb82}\label{classpydantic__extra__types_1_1phone__numbers_1_1PhoneNumberValidator_a2e0724f6650f1283d4d171359732bb82} 
+{\bfseries \+\_\+parse}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An annotation to validate `phonenumbers.PhoneNumber` objects.
+
+Example:
+    ```python
+    from typing import Annotated, Union
+
+    import phonenumbers
+    from pydantic import BaseModel
+    from pydantic_extra_types.phone_numbers import PhoneNumberValidator
+
+    MyNumberType = Annotated[Union[str, phonenumbers.PhoneNumber], PhoneNumberValidator()]
+
+    USNumberType = Annotated[
+        Union[str, phonenumbers.PhoneNumber], PhoneNumberValidator(supported_regions=['US'], default_region='US')
+    ]
+
+
+    class SomeModel(BaseModel):
+        phone_number: MyNumberType
+        us_number: USNumberType
+    ```
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic\+\_\+extra\+\_\+types/\+phone\+\_\+numbers.\+py\end{DoxyCompactItemize}

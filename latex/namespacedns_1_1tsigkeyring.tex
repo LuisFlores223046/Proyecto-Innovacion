@@ -1,0 +1,41 @@
+\doxysection{dns.\+tsigkeyring Namespace Reference}
+\hypertarget{namespacedns_1_1tsigkeyring}{}\label{namespacedns_1_1tsigkeyring}\index{dns.tsigkeyring@{dns.tsigkeyring}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, Any]\+ \doxymbox{\hyperlink{namespacedns_1_1tsigkeyring_a20c66dae4ac9f2f1eb8a4d0f6af2810f}{from\+\_\+text}} (Dict\+[str, Any]\+ textring)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{namespacedns_1_1tsigkeyring_a836aa8c5a9bf01999363090148e96a64}{to\+\_\+text}} (Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, Any]\+ keyring)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A place to store TSIG keys.\end{DoxyVerb}
+ 
+
+\label{namespacedns_1_1tsigkeyring_doc-func-members}
+\Hypertarget{namespacedns_1_1tsigkeyring_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedns_1_1tsigkeyring_a20c66dae4ac9f2f1eb8a4d0f6af2810f}\index{dns.tsigkeyring@{dns.tsigkeyring}!from\_text@{from\_text}}
+\index{from\_text@{from\_text}!dns.tsigkeyring@{dns.tsigkeyring}}
+\doxysubsubsection{\texorpdfstring{from\_text()}{from\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1tsigkeyring_a20c66dae4ac9f2f1eb8a4d0f6af2810f} 
+ Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, Any]\+ from\+\_\+text (\begin{DoxyParamCaption}\item[{Dict\+[str, Any]\+}]{textring}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a dictionary containing (textual DNS name, base64 secret)
+pairs into a binary keyring which has (dns.name.Name, bytes) pairs, or
+a dictionary containing (textual DNS name, (algorithm, base64 secret))
+pairs into a binary keyring which has (dns.name.Name, dns.tsig.Key) pairs.
+@rtype: dict\end{DoxyVerb}
+ \Hypertarget{namespacedns_1_1tsigkeyring_a836aa8c5a9bf01999363090148e96a64}\index{dns.tsigkeyring@{dns.tsigkeyring}!to\_text@{to\_text}}
+\index{to\_text@{to\_text}!dns.tsigkeyring@{dns.tsigkeyring}}
+\doxysubsubsection{\texorpdfstring{to\_text()}{to\_text()}}
+{\footnotesize\ttfamily \label{namespacedns_1_1tsigkeyring_a836aa8c5a9bf01999363090148e96a64} 
+ Dict\+[str, Any]\+ to\+\_\+text (\begin{DoxyParamCaption}\item[{Dict\+[\doxymbox{\hyperlink{classdns_1_1name_1_1Name}{dns.\+name.\+Name}}, Any]\+}]{keyring}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert a dictionary containing (dns.name.Name, dns.tsig.Key) pairs
+into a text keyring which has (textual DNS name, (textual algorithm,
+base64 secret)) pairs, or a dictionary containing (dns.name.Name, bytes)
+pairs into a text keyring which has (textual DNS name, base64 secret) pairs.
+@rtype: dict\end{DoxyVerb}
+ 

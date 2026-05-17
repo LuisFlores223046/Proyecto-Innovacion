@@ -1,0 +1,81 @@
+\doxysection{passlib.\+utils.\+decor Namespace Reference}
+\hypertarget{namespacepasslib_1_1utils_1_1decor}{}\label{namespacepasslib_1_1utils_1_1decor}\index{passlib.utils.decor@{passlib.utils.decor}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1utils_1_1decor_1_1classproperty}{classproperty}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1utils_1_1decor_1_1hybrid__method}{hybrid\+\_\+method}}
+\item 
+class \doxymbox{\hyperlink{classpasslib_1_1utils_1_1decor_1_1memoized__property}{memoized\+\_\+property}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1utils_1_1decor_ae9bbfc8de848cefd770510fd57287600}{memoize\+\_\+single\+\_\+value}} (func)
+\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1utils_1_1decor_a8c1fa465ab430cad0123499c3832518f}{deprecated\+\_\+function}} (msg=None, deprecated=None, removed=None, updoc=True, replacement=None, \+\_\+is\+\_\+method=False, func\+\_\+module=None)
+\begin{DoxyCompactList}\small\item\em class memoized\+\_\+class\+\_\+property(object):\+ "{}"{}"{}function decorator which calls function as classmethod, and replaces itself with result for current and all future invocations. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespacepasslib_1_1utils_1_1decor_a333deeef0a89cbbc792241537baeeba6}{deprecated\+\_\+method}} (msg=None, deprecated=None, removed=None, updoc=True, replacement=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepasslib_1_1utils_1_1decor_a904f49f7824c3b8ccdfa5cb7593198f0}\label{namespacepasslib_1_1utils_1_1decor_a904f49f7824c3b8ccdfa5cb7593198f0} 
+{\bfseries log} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}passlib.utils.decor -- helper decorators & properties
+\end{DoxyVerb}
+ 
+
+\label{namespacepasslib_1_1utils_1_1decor_doc-func-members}
+\Hypertarget{namespacepasslib_1_1utils_1_1decor_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepasslib_1_1utils_1_1decor_a8c1fa465ab430cad0123499c3832518f}\index{passlib.utils.decor@{passlib.utils.decor}!deprecated\_function@{deprecated\_function}}
+\index{deprecated\_function@{deprecated\_function}!passlib.utils.decor@{passlib.utils.decor}}
+\doxysubsubsection{\texorpdfstring{deprecated\_function()}{deprecated\_function()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1utils_1_1decor_a8c1fa465ab430cad0123499c3832518f} 
+deprecated\+\_\+function (\begin{DoxyParamCaption}\item[{}]{msg}{ = {\ttfamily None}, }\item[{}]{deprecated}{ = {\ttfamily None}, }\item[{}]{removed}{ = {\ttfamily None}, }\item[{}]{updoc}{ = {\ttfamily True}, }\item[{}]{replacement}{ = {\ttfamily None}, }\item[{}]{\+\_\+is\+\_\+method}{ = {\ttfamily False}, }\item[{}]{func\+\_\+module}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+class memoized\+\_\+class\+\_\+property(object):\+ "{}"{}"{}function decorator which calls function as classmethod, and replaces itself with result for current and all future invocations. 
+
+"{}"{}"{} def $<$strong$>$init$<$/\+strong$>$(self, func):\+     self.\+im\+\_\+func = func  def $<$strong$>$get$<$/\+strong$>$(self, obj, cls):\+     func = self.\+im\+\_\+func     value = func(cls)     setattr(cls, func.\+\_\+\+\_\+name\+\_\+\+\_\+, value)     return value   def $<$strong$>$func$<$/\+strong$>$(self):\+     "{}py3 compatible alias"{}
+
+\begin{DoxyVerb}decorator to deprecate a function.
+
+:arg msg: optional msg, default chosen if omitted
+:kwd deprecated: version when function was first deprecated
+:kwd removed: version when function will be removed
+:kwd replacement: alternate name / instructions for replacing this function.
+:kwd updoc: add notice to docstring (default ``True``)
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1utils_1_1decor_a333deeef0a89cbbc792241537baeeba6}\index{passlib.utils.decor@{passlib.utils.decor}!deprecated\_method@{deprecated\_method}}
+\index{deprecated\_method@{deprecated\_method}!passlib.utils.decor@{passlib.utils.decor}}
+\doxysubsubsection{\texorpdfstring{deprecated\_method()}{deprecated\_method()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1utils_1_1decor_a333deeef0a89cbbc792241537baeeba6} 
+deprecated\+\_\+method (\begin{DoxyParamCaption}\item[{}]{msg}{ = {\ttfamily None}, }\item[{}]{deprecated}{ = {\ttfamily None}, }\item[{}]{removed}{ = {\ttfamily None}, }\item[{}]{updoc}{ = {\ttfamily True}, }\item[{}]{replacement}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}decorator to deprecate a method.
+
+:arg msg: optional msg, default chosen if omitted
+:kwd deprecated: version when method was first deprecated
+:kwd removed: version when method will be removed
+:kwd replacement: alternate name / instructions for replacing this method.
+:kwd updoc: add notice to docstring (default ``True``)
+\end{DoxyVerb}
+ \Hypertarget{namespacepasslib_1_1utils_1_1decor_ae9bbfc8de848cefd770510fd57287600}\index{passlib.utils.decor@{passlib.utils.decor}!memoize\_single\_value@{memoize\_single\_value}}
+\index{memoize\_single\_value@{memoize\_single\_value}!passlib.utils.decor@{passlib.utils.decor}}
+\doxysubsubsection{\texorpdfstring{memoize\_single\_value()}{memoize\_single\_value()}}
+{\footnotesize\ttfamily \label{namespacepasslib_1_1utils_1_1decor_ae9bbfc8de848cefd770510fd57287600} 
+memoize\+\_\+single\+\_\+value (\begin{DoxyParamCaption}\item[{}]{func}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}decorator for function which takes no args,
+and memoizes result.  exposes a ``.clear_cache`` method
+to clear the cached value.
+\end{DoxyVerb}
+ 

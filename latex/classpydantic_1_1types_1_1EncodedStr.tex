@@ -1,0 +1,133 @@
+\doxysection{pydantic.\+types.\+Encoded\+Str Class Reference}
+\hypertarget{classpydantic_1_1types_1_1EncodedStr}{}\label{classpydantic_1_1types_1_1EncodedStr}\index{pydantic.types.EncodedStr@{pydantic.types.EncodedStr}}
+Inheritance diagram for pydantic.\+types.\+Encoded\+Str:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1types_1_1EncodedStr}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedStr_ab3bee00614c5a279f70aaf7d01acf3db}\label{classpydantic_1_1types_1_1EncodedStr_ab3bee00614c5a279f70aaf7d01acf3db} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+str \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedStr_aa2ab55229b108264cd0a810939cb94df}{decode\+\_\+str}} (self, bytes data, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\item 
+str \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedStr_ae1c8d8d447ed22b36bb67499cf910ad1}{encode\+\_\+str}} (self, str value)
+\item 
+\Hypertarget{classpydantic_1_1types_1_1EncodedStr_a36cb3fd2df166a153f3bae2dcc236ba1}\label{classpydantic_1_1types_1_1EncodedStr_a36cb3fd2df166a153f3bae2dcc236ba1} 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes}{pydantic.\+types.\+Encoded\+Bytes}}}
+\begin{DoxyCompactItemize}
+\item 
+Json\+Schema\+Value {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+json\+\_\+schema\+\_\+\+\_\+} (self, core\+\_\+schema.\+Core\+Schema core\+\_\+schema, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetJsonSchemaHandler}{Get\+Json\+Schema\+Handler}} handler)
+\item 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (self, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+bytes \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes_a9db6fa8647e0be2c64364e6dfa7edf63}{decode}} (self, bytes data, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\item 
+bytes \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes_a61fdec3432c7bfbdf31b8ddaaca6a74c}{encode}} (self, bytes value)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpydantic_1_1types_1_1EncodedBytes}{pydantic.\+types.\+Encoded\+Bytes}}}
+\begin{DoxyCompactItemize}
+\item 
+type {\bfseries encoder} \+[\doxymbox{\hyperlink{classpydantic_1_1types_1_1EncoderProtocol}{Encoder\+Protocol}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A str type that is encoded and decoded using the specified encoder.
+
+`EncodedStr` needs an encoder that implements `EncoderProtocol` to operate.
+
+```py
+from typing_extensions import Annotated
+
+from pydantic import BaseModel, EncodedStr, EncoderProtocol, ValidationError
+
+class MyEncoder(EncoderProtocol):
+    @classmethod
+    def decode(cls, data: bytes) -> bytes:
+        if data == b'**undecodable**':
+            raise ValueError('Cannot decode data')
+        return data[13:]
+
+    @classmethod
+    def encode(cls, value: bytes) -> bytes:
+        return b'**encoded**: ' + value
+
+    @classmethod
+    def get_json_format(cls) -> str:
+        return 'my-encoder'
+
+MyEncodedStr = Annotated[str, EncodedStr(encoder=MyEncoder)]
+
+class Model(BaseModel):
+    my_encoded_str: MyEncodedStr
+
+# Initialize the model with encoded data
+m = Model(my_encoded_str='**encoded**: some str')
+
+# Access decoded value
+print(m.my_encoded_str)
+#> some str
+
+# Serialize into the encoded form
+print(m.model_dump())
+#> {'my_encoded_str': '**encoded**: some str'}
+
+# Validate encoded data
+try:
+    Model(my_encoded_str='**undecodable**')
+except ValidationError as e:
+    print(e)
+    '''
+    1 validation error for Model
+    my_encoded_str
+      Value error, Cannot decode data [type=value_error, input_value='**undecodable**', input_type=str]
+    '''
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1types_1_1EncodedStr_doc-func-members}
+\Hypertarget{classpydantic_1_1types_1_1EncodedStr_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1types_1_1EncodedStr_aa2ab55229b108264cd0a810939cb94df}\index{pydantic.types.EncodedStr@{pydantic.types.EncodedStr}!decode\_str@{decode\_str}}
+\index{decode\_str@{decode\_str}!pydantic.types.EncodedStr@{pydantic.types.EncodedStr}}
+\doxysubsubsection{\texorpdfstring{decode\_str()}{decode\_str()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1EncodedStr_aa2ab55229b108264cd0a810939cb94df} 
+ str pydantic.\+types.\+Encoded\+Str.\+decode\+\_\+str (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{\doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}}}]{\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode the data using the specified encoder.
+
+Args:
+    data: The data to decode.
+
+Returns:
+    The decoded data.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1types_1_1EncodedStr_ae1c8d8d447ed22b36bb67499cf910ad1}\index{pydantic.types.EncodedStr@{pydantic.types.EncodedStr}!encode\_str@{encode\_str}}
+\index{encode\_str@{encode\_str}!pydantic.types.EncodedStr@{pydantic.types.EncodedStr}}
+\doxysubsubsection{\texorpdfstring{encode\_str()}{encode\_str()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1EncodedStr_ae1c8d8d447ed22b36bb67499cf910ad1} 
+ str pydantic.\+types.\+Encoded\+Str.\+encode\+\_\+str (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode the data using the specified encoder.
+
+Args:
+    value: The data to encode.
+
+Returns:
+    The encoded data.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+types.\+py\end{DoxyCompactItemize}

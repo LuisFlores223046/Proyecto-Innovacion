@@ -1,0 +1,60 @@
+\doxysection{pip.\+\_\+internal.\+utils.\+deprecation Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation}{}\label{namespacepip_1_1__internal_1_1utils_1_1deprecation}\index{pip.\_internal.utils.deprecation@{pip.\_internal.utils.deprecation}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1utils_1_1deprecation_1_1PipDeprecationWarning}{Pip\+Deprecation\+Warning}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation_acfa5c99bb3cf71d1b7875b88e348d2bd}\label{namespacepip_1_1__internal_1_1utils_1_1deprecation_acfa5c99bb3cf71d1b7875b88e348d2bd} 
+None {\bfseries \+\_\+showwarning} (Union\+[Warning, str]\+ message, Type\+[Warning]\+ category, str filename, int lineno, Optional\+[Text\+IO]\+ file=None, Optional\+[str]\+ line=None)
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation_a51b8fbaae95b8fce80bcf014e6d01178}\label{namespacepip_1_1__internal_1_1utils_1_1deprecation_a51b8fbaae95b8fce80bcf014e6d01178} 
+None {\bfseries install\+\_\+warning\+\_\+logger} ()
+\item 
+None \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1utils_1_1deprecation_acb639648bd7181a83782ef19683f14bf}{deprecated}} (\texorpdfstring{$\ast$}{*}, str reason, Optional\+[str]\+ replacement, Optional\+[str]\+ gone\+\_\+in, Optional\+[str]\+ feature\+\_\+flag=None, Optional\+[int]\+ issue=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation_a3176d2d41041fdb856821e895c6aa460}\label{namespacepip_1_1__internal_1_1utils_1_1deprecation_a3176d2d41041fdb856821e895c6aa460} 
+str {\bfseries DEPRECATION\+\_\+\+MSG\+\_\+\+PREFIX} = "{}DEPRECATION:\+ "{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A module that implements tooling to enable easy warnings about deprecations.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1utils_1_1deprecation_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1utils_1_1deprecation_acb639648bd7181a83782ef19683f14bf}\index{pip.\_internal.utils.deprecation@{pip.\_internal.utils.deprecation}!deprecated@{deprecated}}
+\index{deprecated@{deprecated}!pip.\_internal.utils.deprecation@{pip.\_internal.utils.deprecation}}
+\doxysubsubsection{\texorpdfstring{deprecated()}{deprecated()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1utils_1_1deprecation_acb639648bd7181a83782ef19683f14bf} 
+ None deprecated (\begin{DoxyParamCaption}\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{str}]{reason}{, }\item[{Optional\+[str]\+}]{replacement}{, }\item[{Optional\+[str]\+}]{gone\+\_\+in}{, }\item[{Optional\+[str]\+ }]{feature\+\_\+flag}{ = {\ttfamily None}, }\item[{Optional\+[int]\+ }]{issue}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Helper to deprecate existing functionality.
+
+reason:
+    Textual reason shown to the user about why this functionality has
+    been deprecated. Should be a complete sentence.
+replacement:
+    Textual suggestion shown to the user about what alternative
+    functionality they can use.
+gone_in:
+    The version of pip does this functionality should get removed in.
+    Raises an error if pip's current version is greater than or equal to
+    this.
+feature_flag:
+    Command-line flag of the form --use-feature={feature_flag} for testing
+    upcoming functionality.
+issue:
+    Issue number on the tracker that would serve as a useful place for
+    users to find related discussion and provide feedback.
+\end{DoxyVerb}
+ 

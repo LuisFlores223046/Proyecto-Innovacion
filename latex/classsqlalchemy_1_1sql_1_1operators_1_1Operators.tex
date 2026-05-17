@@ -1,0 +1,282 @@
+\doxysection{sqlalchemy.\+sql.\+operators.\+Operators Class Reference}
+\hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{}\label{classsqlalchemy_1_1sql_1_1operators_1_1Operators}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+Inheritance diagram for sqlalchemy.\+sql.\+operators.\+Operators:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.448276cm]{classsqlalchemy_1_1sql_1_1operators_1_1Operators}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_ad03dc178a54e17a013a4ec2384febacf}{\+\_\+\+\_\+and\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a4d986eadf2497d75bf5b475efc97f937}{\+\_\+\+\_\+or\+\_\+\+\_\+}} (self, Any other)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a56239c4ae808bc51bcf6c7e636396cbe}{\+\_\+\+\_\+invert\+\_\+\+\_\+}} (self)
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a8c7e51c26b45b923a528642f9ccc14c6}{op}} (self, str opstring, int precedence=0, bool is\+\_\+comparison=False, Optional\+[Union\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+]\+ return\+\_\+type=None, Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=None)
+\item 
+Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}}]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a28b4323b854b11f077ac97e00240e187}{bool\+\_\+op}} (self, str opstring, int precedence=0, Optional\+[Callable\+[..., Any]\+]\+ python\+\_\+impl=None)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a7921baa501926ddaab24e5141a12a661}{operate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}} op, \texorpdfstring{$\ast$}{*}Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators_af653ec96ccddf1aff767d3b476442e34}{reverse\+\_\+operate}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}} op, Any other, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any kwargs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base of comparison and logical operators.
+
+Implements base methods
+:meth:`~sqlalchemy.sql.operators.Operators.operate` and
+:meth:`~sqlalchemy.sql.operators.Operators.reverse_operate`, as well as
+:meth:`~sqlalchemy.sql.operators.Operators.__and__`,
+:meth:`~sqlalchemy.sql.operators.Operators.__or__`,
+:meth:`~sqlalchemy.sql.operators.Operators.__invert__`.
+
+Usually is used via its most common subclass
+:class:`.ColumnOperators`.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_ad03dc178a54e17a013a4ec2384febacf}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!\_\_and\_\_@{\_\_and\_\_}}
+\index{\_\_and\_\_@{\_\_and\_\_}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{\_\_and\_\_()}{\_\_and\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_ad03dc178a54e17a013a4ec2384febacf} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} sqlalchemy.\+sql.\+operators.\+Operators.\+\_\+\+\_\+and\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement the ``&`` operator.
+
+When used with SQL expressions, results in an
+AND operation, equivalent to
+:func:`_expression.and_`, that is::
+
+    a & b
+
+is equivalent to::
+
+    from sqlalchemy import and_
+    and_(a, b)
+
+Care should be taken when using ``&`` regarding
+operator precedence; the ``&`` operator has the highest precedence.
+The operands should be enclosed in parenthesis if they contain
+further sub expressions::
+
+    (a == 2) & (b == 4)
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a56239c4ae808bc51bcf6c7e636396cbe}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!\_\_invert\_\_@{\_\_invert\_\_}}
+\index{\_\_invert\_\_@{\_\_invert\_\_}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{\_\_invert\_\_()}{\_\_invert\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a56239c4ae808bc51bcf6c7e636396cbe} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} sqlalchemy.\+sql.\+operators.\+Operators.\+\_\+\+\_\+invert\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement the ``~`` operator.
+
+When used with SQL expressions, results in a
+NOT operation, equivalent to
+:func:`_expression.not_`, that is::
+
+    ~a
+
+is equivalent to::
+
+    from sqlalchemy import not_
+    not_(a)
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a4d986eadf2497d75bf5b475efc97f937}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!\_\_or\_\_@{\_\_or\_\_}}
+\index{\_\_or\_\_@{\_\_or\_\_}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{\_\_or\_\_()}{\_\_or\_\_()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a4d986eadf2497d75bf5b475efc97f937} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} sqlalchemy.\+sql.\+operators.\+Operators.\+\_\+\+\_\+or\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement the ``|`` operator.
+
+When used with SQL expressions, results in an
+OR operation, equivalent to
+:func:`_expression.or_`, that is::
+
+    a | b
+
+is equivalent to::
+
+    from sqlalchemy import or_
+    or_(a, b)
+
+Care should be taken when using ``|`` regarding
+operator precedence; the ``|`` operator has the highest precedence.
+The operands should be enclosed in parenthesis if they contain
+further sub expressions::
+
+    (a == 2) | (b == 4)
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a28b4323b854b11f077ac97e00240e187}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!bool\_op@{bool\_op}}
+\index{bool\_op@{bool\_op}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{bool\_op()}{bool\_op()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a28b4323b854b11f077ac97e00240e187} 
+ Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}}]\+ sqlalchemy.\+sql.\+operators.\+Operators.\+bool\+\_\+op (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{opstring}{, }\item[{int }]{precedence}{ = {\ttfamily 0}, }\item[{Optional\+[Callable\+[..., Any]\+]\+ }]{python\+\_\+impl}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a custom boolean operator.
+
+This method is shorthand for calling
+:meth:`.Operators.op` and passing the
+:paramref:`.Operators.op.is_comparison`
+flag with True.    A key advantage to using :meth:`.Operators.bool_op`
+is that when using column constructs, the "boolean" nature of the
+returned expression will be present for :pep:`484` purposes.
+
+.. seealso::
+
+    :meth:`.Operators.op`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a9d513e64066fb2ed1f534fc63f27d904}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a8c7e51c26b45b923a528642f9ccc14c6}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!op@{op}}
+\index{op@{op}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{op()}{op()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a8c7e51c26b45b923a528642f9ccc14c6} 
+ Callable\+[\+[Any]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}}]\+ sqlalchemy.\+sql.\+operators.\+Operators.\+op (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{opstring}{, }\item[{int }]{precedence}{ = {\ttfamily 0}, }\item[{bool }]{is\+\_\+comparison}{ = {\ttfamily False}, }\item[{Optional\+[             Union\+[Type\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+         ]\+ }]{return\+\_\+type}{ = {\ttfamily None}, }\item[{Optional\+[Callable\+[..., Any]\+]\+ }]{python\+\_\+impl}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Produce a generic operator function.
+
+e.g.::
+
+  somecolumn.op("*")(5)
+
+produces::
+
+  somecolumn * 5
+
+This function can also be used to make bitwise operators explicit. For
+example::
+
+  somecolumn.op('&')(0xff)
+
+is a bitwise AND of the value in ``somecolumn``.
+
+:param opstring: a string which will be output as the infix operator
+  between this element and the expression passed to the
+  generated function.
+
+:param precedence: precedence which the database is expected to apply
+ to the operator in SQL expressions. This integer value acts as a hint
+ for the SQL compiler to know when explicit parenthesis should be
+ rendered around a particular operation. A lower number will cause the
+ expression to be parenthesized when applied against another operator
+ with higher precedence. The default value of ``0`` is lower than all
+ operators except for the comma (``,``) and ``AS`` operators. A value
+ of 100 will be higher or equal to all operators, and -100 will be
+ lower than or equal to all operators.
+
+ .. seealso::
+
+    :ref:`faq_sql_expression_op_parenthesis` - detailed description
+    of how the SQLAlchemy SQL compiler renders parenthesis
+
+:param is_comparison: legacy; if True, the operator will be considered
+ as a "comparison" operator, that is which evaluates to a boolean
+ true/false value, like ``==``, ``>``, etc.  This flag is provided
+ so that ORM relationships can establish that the operator is a
+ comparison operator when used in a custom join condition.
+
+ Using the ``is_comparison`` parameter is superseded by using the
+ :meth:`.Operators.bool_op` method instead;  this more succinct
+ operator sets this parameter automatically, but also provides
+ correct :pep:`484` typing support as the returned object will
+ express a "boolean" datatype, i.e. ``BinaryExpression[bool]``.
+
+:param return_type: a :class:`.TypeEngine` class or object that will
+  force the return type of an expression produced by this operator
+  to be of that type.   By default, operators that specify
+  :paramref:`.Operators.op.is_comparison` will resolve to
+  :class:`.Boolean`, and those that do not will be of the same
+  type as the left-hand operand.
+
+:param python_impl: an optional Python function that can evaluate
+ two Python values in the same way as this operator works when
+ run on the database server.  Useful for in-Python SQL expression
+ evaluation functions, such as for ORM hybrid attributes, and the
+ ORM "evaluator" used to match objects in a session after a multi-row
+ update or delete.
+
+ e.g.::
+
+    >>> expr = column('x').op('+', python_impl=lambda a, b: a + b)('y')
+
+ The operator for the above expression will also work for non-SQL
+ left and right objects::
+
+    >>> expr.operator(5, 10)
+    15
+
+ .. versionadded:: 2.0
+
+
+.. seealso::
+
+    :meth:`.Operators.bool_op`
+
+    :ref:`types_operators`
+
+    :ref:`relationship_custom_operator`
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a362c8ca558d2db53e3d75441af73cee0}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a7eca3fd106f39db8eeb2274f9930d603}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_aa1b195b20b9e61fe1ee6afa669dfe638}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a7921baa501926ddaab24e5141a12a661}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!operate@{operate}}
+\index{operate@{operate}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{operate()}{operate()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_a7921baa501926ddaab24e5141a12a661} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} sqlalchemy.\+sql.\+operators.\+Operators.\+operate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}}}]{op}{, }\item[{\texorpdfstring{$\ast$}{*}Any}]{other}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Operate on an argument.
+
+This is the lowest level of operation, raises
+:class:`NotImplementedError` by default.
+
+Overriding this on a subclass can allow common
+behavior to be applied to all operations.
+For example, overriding :class:`.ColumnOperators`
+to apply ``func.lower()`` to the left and right
+side::
+
+    class MyComparator(ColumnOperators):
+        def operate(self, op, other, **kwargs):
+            return op(func.lower(self), func.lower(other), **kwargs)
+
+:param op:  Operator callable.
+:param \*other: the 'other' side of the operation. Will
+ be a single scalar for most operations.
+:param \**kwargs: modifiers.  These may be passed by special
+ operators such as :meth:`ColumnOperators.contains`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1associationproxy_1_1ColumnAssociationProxyInstance_a79aa43fcab5679c4508b8810acc7ded2}{sqlalchemy.\+ext.\+associationproxy.\+Column\+Association\+Proxy\+Instance}}, \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1hybrid_1_1ExprComparator_a1cce9d839c80f09d3022c3756e2469f9}{sqlalchemy.\+ext.\+hybrid.\+Expr\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute_a50d454dbe82de430650774fb585dd9ae}{sqlalchemy.\+orm.\+attributes.\+Queryable\+Attribute}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1__DeclarativeMapped_a4a10b8800a3841df42f26536c99fdd38}{sqlalchemy.\+orm.\+base.\+\_\+\+Declarative\+Mapped}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1evaluator_1_1__ExpiredObject_a8652357ecaca9babe8ab4b094bf4cb38}{sqlalchemy.\+orm.\+evaluator.\+\_\+\+Expired\+Object}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1evaluator_1_1__NoObject_a69cd488807fe48032f8ca86b48878a7d}{sqlalchemy.\+orm.\+evaluator.\+\_\+\+No\+Object}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1PropComparator_aa23a37c99ba6a824ec75c8880e3d024a}{sqlalchemy.\+orm.\+interfaces.\+Prop\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1properties_1_1ColumnProperty_1_1Comparator_aa34de9df572cf85fe0d8d185f655e38b}{sqlalchemy.\+orm.\+properties.\+Column\+Property.\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1properties_1_1MappedColumn_a632ab2ce24d192760f4f19a9b3747e26}{sqlalchemy.\+orm.\+properties.\+Mapped\+Column}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1CollectionAggregate_a238ee0690b822dff7f3cd8b8a675addb}{sqlalchemy.\+sql.\+elements.\+Collection\+Aggregate}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement_ae2f924ab93109c5bdf6a10c1b11a116d}{sqlalchemy.\+sql.\+elements.\+Column\+Element}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_a67a706603108060aa0840623d0cd6052}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1lambdas_1_1PyWrapper_a7c49042758fb75bf7fb60bd5a5ac8541}{sqlalchemy.\+sql.\+lambdas.\+Py\+Wrapper}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_a641c5b2dc5b1c9786302c44c62ac078e}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeDecorator_1_1Comparator_a626ab7a37d5a0c3790f93a04f6f904e3}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Decorator.\+Comparator}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine_1_1Comparator_ac341fe364e6a2337d9e9fee69bf11551}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine.\+Comparator}}.
+
+\Hypertarget{classsqlalchemy_1_1sql_1_1operators_1_1Operators_af653ec96ccddf1aff767d3b476442e34}\index{sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}!reverse\_operate@{reverse\_operate}}
+\index{reverse\_operate@{reverse\_operate}!sqlalchemy.sql.operators.Operators@{sqlalchemy.sql.operators.Operators}}
+\doxysubsubsection{\texorpdfstring{reverse\_operate()}{reverse\_operate()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1sql_1_1operators_1_1Operators_af653ec96ccddf1aff767d3b476442e34} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1Operators}{Operators}} sqlalchemy.\+sql.\+operators.\+Operators.\+reverse\+\_\+operate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1OperatorType}{Operator\+Type}}}]{op}{, }\item[{Any}]{other}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Any     }]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reverse operate on an argument.
+
+Usage is the same as :meth:`operate`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1ext_1_1hybrid_1_1ExprComparator_a6c79602683e5a8d5bd970622c14bae18}{sqlalchemy.\+ext.\+hybrid.\+Expr\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1attributes_1_1QueryableAttribute_a8ea92e839ebefa928a2692b81b2bf87a}{sqlalchemy.\+orm.\+attributes.\+Queryable\+Attribute}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1base_1_1__DeclarativeMapped_a1b136ce057082b83a78e426eb0c1b44c}{sqlalchemy.\+orm.\+base.\+\_\+\+Declarative\+Mapped}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1evaluator_1_1__ExpiredObject_ac2a606f970b1d3f17ee6eb409d574843}{sqlalchemy.\+orm.\+evaluator.\+\_\+\+Expired\+Object}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1evaluator_1_1__NoObject_ac63d9d146aa3671856c93d2eeed8a7d0}{sqlalchemy.\+orm.\+evaluator.\+\_\+\+No\+Object}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1interfaces_1_1PropComparator_a51215e957429c7bc949e140da4e90e97}{sqlalchemy.\+orm.\+interfaces.\+Prop\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1properties_1_1ColumnProperty_1_1Comparator_ab6e9df05a6ee7061a37bcd0d868df574}{sqlalchemy.\+orm.\+properties.\+Column\+Property.\+Comparator}}, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1properties_1_1MappedColumn_a3d0b64ff24d3ae859be9c84c107efbb2}{sqlalchemy.\+orm.\+properties.\+Mapped\+Column}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1CollectionAggregate_a5259fbf2b568f2b4cc2e8197ebbf596f}{sqlalchemy.\+sql.\+elements.\+Collection\+Aggregate}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1ColumnElement_a1e7a991d90d20c8b41fbc3b7423f8bc2}{sqlalchemy.\+sql.\+elements.\+Column\+Element}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1SQLCoreOperations_af9186f420cb89b855fe4ba4c15dad9ac}{sqlalchemy.\+sql.\+elements.\+SQLCore\+Operations}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1lambdas_1_1PyWrapper_a9880be813ea63484a0dc53576f53049a}{sqlalchemy.\+sql.\+lambdas.\+Py\+Wrapper}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1operators_1_1ColumnOperators_ab5cbf05cedc9efa2da03f047e357ab6d}{sqlalchemy.\+sql.\+operators.\+Column\+Operators}}, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeDecorator_1_1Comparator_ae7838e19bfd196e04bae35c21bef03d3}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Decorator.\+Comparator}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine_1_1Comparator_a8a5a0d8ee89e9e7118498efcc8c59239}{sqlalchemy.\+sql.\+type\+\_\+api.\+Type\+Engine.\+Comparator}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+sql/\+operators.\+py\end{DoxyCompactItemize}

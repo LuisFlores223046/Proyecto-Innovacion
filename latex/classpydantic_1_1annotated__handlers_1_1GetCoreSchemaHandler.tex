@@ -1,0 +1,123 @@
+\doxysection{pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler Class Reference}
+\hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{}\label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+Inheritance diagram for pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_af8a80f2f282e8b41eae628ed42b906b4}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, Any source\+\_\+type)
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a41c013af44cf8c0a8df4026cf5aaf5d4}{generate\+\_\+schema}} (self, Any source\+\_\+type)
+\item 
+core\+\_\+schema.\+Core\+Schema \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a4c3fa4e14908412c93d68e1fd7f038b6}{resolve\+\_\+ref\+\_\+schema}} (self, core\+\_\+schema.\+Core\+Schema maybe\+\_\+ref\+\_\+schema)
+\item 
+str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a7891d32a356093b3ec1741121d554571}{field\+\_\+name}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+dict\+[str, Any]\+\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a5bd999ea2f827407c2ce64a628d468e4}{\+\_\+get\+\_\+types\+\_\+namespace}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Handler to call into the next CoreSchema schema generation function.\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_doc-func-members}
+\Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_af8a80f2f282e8b41eae628ed42b906b4}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}!\_\_call\_\_@{\_\_call\_\_}}
+\index{\_\_call\_\_@{\_\_call\_\_}!pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_call\_\_()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_af8a80f2f282e8b41eae628ed42b906b4} 
+ core\+\_\+schema.\+Core\+Schema pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{source\+\_\+type}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Call the inner handler and get the CoreSchema it returns.
+This will call the next CoreSchema modifying function up until it calls
+into Pydantic's internal schema generation machinery, which will raise a
+`pydantic.errors.PydanticSchemaGenerationError` error if it cannot generate
+a CoreSchema for the given source type.
+
+Args:
+    source_type: The input type.
+
+Returns:
+    CoreSchema: The `pydantic-core` CoreSchema generated.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a5bd999ea2f827407c2ce64a628d468e4}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}!\_get\_types\_namespace@{\_get\_types\_namespace}}
+\index{\_get\_types\_namespace@{\_get\_types\_namespace}!pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{\_get\_types\_namespace()}{\_get\_types\_namespace()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a5bd999ea2f827407c2ce64a628d468e4} 
+ dict\+[str, Any]\+ \texorpdfstring{$\vert$}{|} None pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler.\+\_\+get\+\_\+types\+\_\+namespace (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Internal method used during type resolution for serializer annotations.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler_a6364d5308918fa9e8f7020cb72b8baaf}{pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Callback\+Get\+Core\+Schema\+Handler}}.
+
+\Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a7891d32a356093b3ec1741121d554571}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}!field\_name@{field\_name}}
+\index{field\_name@{field\_name}!pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{field\_name()}{field\_name()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a7891d32a356093b3ec1741121d554571} 
+ str \texorpdfstring{$\vert$}{|} None pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler.\+field\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the name of the closest field to this validator.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler_af3d5e61ed6e0648d8bf900a1f82f2526}{pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Callback\+Get\+Core\+Schema\+Handler}}.
+
+\Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a41c013af44cf8c0a8df4026cf5aaf5d4}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}!generate\_schema@{generate\_schema}}
+\index{generate\_schema@{generate\_schema}!pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{generate\_schema()}{generate\_schema()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a41c013af44cf8c0a8df4026cf5aaf5d4} 
+ core\+\_\+schema.\+Core\+Schema pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler.\+generate\+\_\+schema (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{source\+\_\+type}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate a schema unrelated to the current context.
+Use this function if e.g. you are handling schema generation for a sequence
+and want to generate a schema for its items.
+Otherwise, you may end up doing something like applying a `min_length` constraint
+that was intended for the sequence itself to its items!
+
+Args:
+    source_type: The input type.
+
+Returns:
+    CoreSchema: The `pydantic-core` CoreSchema generated.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler_a9a11e6cca0bfa08a75951cf569a79d9d}{pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Callback\+Get\+Core\+Schema\+Handler}}.
+
+\Hypertarget{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a4c3fa4e14908412c93d68e1fd7f038b6}\index{pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}!resolve\_ref\_schema@{resolve\_ref\_schema}}
+\index{resolve\_ref\_schema@{resolve\_ref\_schema}!pydantic.annotated\_handlers.GetCoreSchemaHandler@{pydantic.annotated\_handlers.GetCoreSchemaHandler}}
+\doxysubsubsection{\texorpdfstring{resolve\_ref\_schema()}{resolve\_ref\_schema()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler_a4c3fa4e14908412c93d68e1fd7f038b6} 
+ core\+\_\+schema.\+Core\+Schema pydantic.\+annotated\+\_\+handlers.\+Get\+Core\+Schema\+Handler.\+resolve\+\_\+ref\+\_\+schema (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{core\+\_\+schema.\+Core\+Schema}]{maybe\+\_\+ref\+\_\+schema}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the real schema for a `definition-ref` schema.
+If the schema given is not a `definition-ref` schema, it will be returned as is.
+This means you don't have to check before calling this function.
+
+Args:
+    maybe_ref_schema: A `CoreSchema`, `ref`-based or not.
+
+Raises:
+    LookupError: If the `ref` is not found.
+
+Returns:
+    A concrete `CoreSchema`.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__schema__generation__shared_1_1CallbackGetCoreSchemaHandler_af418b40c5f571d591e623f2e4d4dfbf4}{pydantic.\+\_\+internal.\+\_\+schema\+\_\+generation\+\_\+shared.\+Callback\+Get\+Core\+Schema\+Handler}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+annotated\+\_\+handlers.\+py\end{DoxyCompactItemize}

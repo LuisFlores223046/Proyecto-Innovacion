@@ -1,0 +1,41 @@
+\doxysection{TBroken\+Greenlet.\+cpp}
+\hypertarget{TBrokenGreenlet_8cpp_source}{}\label{TBrokenGreenlet_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TBrokenGreenlet.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TBrokenGreenlet.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}*\ BrokenGreenlet::operator\ \textcolor{keyword}{new}(\textcolor{keywordtype}{size\_t}\ UNUSED(count))}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ allocator.allocate(1);}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ BrokenGreenlet::operator\ \textcolor{keyword}{delete}(\textcolor{keywordtype}{void}*\ ptr)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ allocator.deallocate(\textcolor{keyword}{static\_cast<}\doxymbox{\hyperlink{classgreenlet_1_1BrokenGreenlet}{BrokenGreenlet}}*\textcolor{keyword}{>}(ptr),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1);}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ greenlet::PythonAllocator<greenlet::BrokenGreenlet>\ greenlet::BrokenGreenlet::allocator;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00032\ BrokenGreenlet::force\_slp\_switch\_error()\ const\ noexcept}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_force\_slp\_switch\_error;}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{UserGreenlet::switchstack\_result\_t}}\ \doxymbox{\hyperlink{classgreenlet_1_1BrokenGreenlet_aaa62040330a7fe07f3bfe78599c18e62}{BrokenGreenlet::g\_switchstack}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (this-\/>\_force\_switch\_error)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{structgreenlet_1_1Greenlet_1_1switchstack__result__t}{switchstack\_result\_t}}(-\/1);}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classgreenlet_1_1Greenlet_ae7da93ce8a1ec90a97b47ccc5cccafe3}{UserGreenlet::g\_switchstack}}();}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \};\ \textcolor{comment}{//namespace\ greenlet}}
+
+\end{DoxyCode}

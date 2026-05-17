@@ -1,0 +1,129 @@
+\doxysection{passlib.\+pwd.\+Sequence\+Generator Class Reference}
+\hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator}{}\label{classpasslib_1_1pwd_1_1SequenceGenerator}\index{passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}}
+Inheritance diagram for passlib.\+pwd.\+Sequence\+Generator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpasslib_1_1pwd_1_1SequenceGenerator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a7c739a067657aeafd577f82e198de313}\label{classpasslib_1_1pwd_1_1SequenceGenerator_a7c739a067657aeafd577f82e198de313} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, entropy=None, length=None, rng=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwds)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1pwd_1_1SequenceGenerator_afe4ba5cfe0ef490a14fa82d8bf4ef3b9}{entropy\+\_\+per\+\_\+symbol}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1pwd_1_1SequenceGenerator_a5296e12fccf7220b09473310062269c5}{entropy}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1pwd_1_1SequenceGenerator_aa848641499197131d849400230f0e952}{\+\_\+\+\_\+next\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1pwd_1_1SequenceGenerator_a882b80ecf8f6e4148a615d8256ff89c7}{\+\_\+\+\_\+call\+\_\+\+\_\+}} (self, returns=None)
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a5d91cb796a0ea72853b6e9dd6dc918f7}\label{classpasslib_1_1pwd_1_1SequenceGenerator_a5d91cb796a0ea72853b6e9dd6dc918f7} 
+{\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_ad77fd3e313ae348180a102d4c38fca67}\label{classpasslib_1_1pwd_1_1SequenceGenerator_ad77fd3e313ae348180a102d4c38fca67} 
+{\bfseries next} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a685be043a86f1fc5153ea163532c8896}\label{classpasslib_1_1pwd_1_1SequenceGenerator_a685be043a86f1fc5153ea163532c8896} 
+{\bfseries length} = None
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a35a893da99f729c6b279411d4df96d74}\label{classpasslib_1_1pwd_1_1SequenceGenerator_a35a893da99f729c6b279411d4df96d74} 
+str {\bfseries requested\+\_\+entropy} = "{}strong"{}
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a80b30e2cc12ac5b203fc39c972952d94}\label{classpasslib_1_1pwd_1_1SequenceGenerator_a80b30e2cc12ac5b203fc39c972952d94} 
+{\bfseries rng} = rng
+\item 
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_adc5d8e1da90064a08dbbe7f87851d101}\label{classpasslib_1_1pwd_1_1SequenceGenerator_adc5d8e1da90064a08dbbe7f87851d101} 
+{\bfseries symbol\+\_\+count} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class used by word & phrase generators.
+
+These objects take a series of options, corresponding
+to those of the :func:`generate` function.
+They act as callables which can be used to generate a password
+or a list of 1+ passwords. They also expose some read-only
+informational attributes.
+
+Parameters
+----------
+:param entropy:
+    Optionally specify the amount of entropy the resulting passwords
+    should contain (as measured with respect to the generator itself).
+    This will be used to auto-calculate the required password size.
+
+:param length:
+    Optionally specify the length of password to generate,
+    measured as count of whatever symbols the subclass uses (characters or words).
+    Note if ``entropy`` requires a larger minimum length,
+    that will be used instead.
+
+:param rng:
+    Optionally provide a custom RNG source to use.
+    Should be an instance of :class:`random.Random`,
+    defaults to :class:`random.SystemRandom`.
+
+Attributes
+----------
+.. autoattribute:: length
+.. autoattribute:: symbol_count
+.. autoattribute:: entropy_per_symbol
+.. autoattribute:: entropy
+
+Subclassing
+-----------
+Subclasses must implement the ``.__next__()`` method,
+and set ``.symbol_count`` before calling base ``__init__`` method.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1pwd_1_1SequenceGenerator_doc-func-members}
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a882b80ecf8f6e4148a615d8256ff89c7}\index{passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}!\_\_call\_\_@{\_\_call\_\_}}
+\index{\_\_call\_\_@{\_\_call\_\_}!passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}}
+\doxysubsubsection{\texorpdfstring{\_\_call\_\_()}{\_\_call\_\_()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1pwd_1_1SequenceGenerator_a882b80ecf8f6e4148a615d8256ff89c7} 
+passlib.\+pwd.\+Sequence\+Generator.\+\_\+\+\_\+call\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{returns}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}frontend used by genword() / genphrase() to create passwords
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_aa848641499197131d849400230f0e952}\index{passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}!\_\_next\_\_@{\_\_next\_\_}}
+\index{\_\_next\_\_@{\_\_next\_\_}!passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}}
+\doxysubsubsection{\texorpdfstring{\_\_next\_\_()}{\_\_next\_\_()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1pwd_1_1SequenceGenerator_aa848641499197131d849400230f0e952} 
+passlib.\+pwd.\+Sequence\+Generator.\+\_\+\+\_\+next\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}main generation function, should create one password/phrase\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_a5296e12fccf7220b09473310062269c5}\index{passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}!entropy@{entropy}}
+\index{entropy@{entropy}!passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}}
+\doxysubsubsection{\texorpdfstring{entropy()}{entropy()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1pwd_1_1SequenceGenerator_a5296e12fccf7220b09473310062269c5} 
+passlib.\+pwd.\+Sequence\+Generator.\+entropy (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Effective entropy of generated passwords.
+
+This value will always be a multiple of :attr:`entropy_per_symbol`.
+If entropy is specified in constructor, :attr:`length` will be chosen so
+so that this value is the smallest multiple >= :attr:`requested_entropy`.
+\end{DoxyVerb}
+ \Hypertarget{classpasslib_1_1pwd_1_1SequenceGenerator_afe4ba5cfe0ef490a14fa82d8bf4ef3b9}\index{passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}!entropy\_per\_symbol@{entropy\_per\_symbol}}
+\index{entropy\_per\_symbol@{entropy\_per\_symbol}!passlib.pwd.SequenceGenerator@{passlib.pwd.SequenceGenerator}}
+\doxysubsubsection{\texorpdfstring{entropy\_per\_symbol()}{entropy\_per\_symbol()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1pwd_1_1SequenceGenerator_afe4ba5cfe0ef490a14fa82d8bf4ef3b9} 
+passlib.\+pwd.\+Sequence\+Generator.\+entropy\+\_\+per\+\_\+symbol (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Average entropy per symbol (assuming all symbols have equal probability)
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+pwd.\+py\end{DoxyCompactItemize}

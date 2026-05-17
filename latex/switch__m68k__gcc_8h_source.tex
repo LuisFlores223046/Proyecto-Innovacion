@@ -1,0 +1,44 @@
+\doxysection{switch\+\_\+m68k\+\_\+gcc.\+h}
+\hypertarget{switch__m68k__gcc_8h_source}{}\label{switch__m68k__gcc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_m68k\_gcc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_m68k\_gcc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 2014-\/01-\/06\ \ Andreas\ Schwab\ \ <schwab@linux-\/m68k.org>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ \ File\ created.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ "{}\%d2"{},\ "{}\%d3"{},\ "{}\%d4"{},\ "{}\%d5"{},\ "{}\%d6"{},\ "{}\%d7"{},\ \(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ "{}\%a2"{},\ "{}\%a3"{},\ "{}\%a4"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00017\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{int}\ err;}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{void}\ *fp,\ *a5;}
+\DoxyCodeLine{00022\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00023\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}move.l\ \%\%fp,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}(fp));}
+\DoxyCodeLine{00024\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}move.l\ \%\%a5,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}(a5));}
+\DoxyCodeLine{00025\ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}move.l\ \%\%sp,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}(stackref));}
+\DoxyCodeLine{00026\ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00028\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}add.l\ \%0,\ \%\%sp;\ add.l\ \%0,\ \%\%fp"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}(stsizediff));}
+\DoxyCodeLine{00029\ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00030\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}clr.l\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=g"{}}\ (err));}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}move.l\ \%0,\ \%\%a5"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}(a5));}
+\DoxyCodeLine{00033\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}move.l\ \%0,\ \%\%fp"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}(fp));}
+\DoxyCodeLine{00034\ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{return}\ err;}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

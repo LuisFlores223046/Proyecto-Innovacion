@@ -1,0 +1,162 @@
+\doxysection{multipart.\+multipart.\+Field Class Reference}
+\hypertarget{classmultipart_1_1multipart_1_1Field}{}\label{classmultipart_1_1multipart_1_1Field}\index{multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_a08df347de8639f40cbe61761852e45d2}\label{classmultipart_1_1multipart_1_1Field_a08df347de8639f40cbe61761852e45d2} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str name)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field}{Field}} \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a310159328cc33ebcd2c8178bccc461e3}{from\+\_\+value}} (cls, str name, bytes\texorpdfstring{$\vert$}{|}None value)
+\item 
+int \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a447c69eaea74421a5406a6a9f9e990b8}{write}} (self, bytes data)
+\item 
+int \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_ab213d5337d775fb07dda5e726323855c}{on\+\_\+data}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a389093b36308e56458940e4a7a21337d}{on\+\_\+end}} (self)
+\item 
+None \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_ae64a02c60b39001889813fe212727ee7}{finalize}} (self)
+\item 
+None \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_abb2d929db353fddacf3849d3a7793266}{close}} (self)
+\item 
+None \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a91efc462478de7e9aab5f4f56e275f55}{set\+\_\+none}} (self)
+\item 
+str \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a7b7f5b0ab9dacf75900c76af351c43c2}{field\+\_\+name}} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field_a76569301d4463e64117c1f5f10954a0e}{value}} (self)
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_a01c761468ae272c628a58b212f59b2a1}\label{classmultipart_1_1multipart_1_1Field_a01c761468ae272c628a58b212f59b2a1} 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, object other)
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_aa847dc89280fae274a3d977573b8a61d}\label{classmultipart_1_1multipart_1_1Field_aa847dc89280fae274a3d977573b8a61d} 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_adbf426132988e9e66bb5559aedc4c4fc}\label{classmultipart_1_1multipart_1_1Field_adbf426132988e9e66bb5559aedc4c4fc} 
+str {\bfseries field\+\_\+name} = other.\+value
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_ade41503f91797db5a1701f13b6d0bc76}\label{classmultipart_1_1multipart_1_1Field_ade41503f91797db5a1701f13b6d0bc76} 
+{\bfseries value}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_ae13efea882c24a90baa720e1c307a81c}\label{classmultipart_1_1multipart_1_1Field_ae13efea882c24a90baa720e1c307a81c} 
+{\bfseries \+\_\+name} = name
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_a20e18b39a13f6bda3ee110e6e51d91d6}\label{classmultipart_1_1multipart_1_1Field_a20e18b39a13f6bda3ee110e6e51d91d6} 
+list {\bfseries \+\_\+value} = \+[$\,$]\+
+\item 
+\Hypertarget{classmultipart_1_1multipart_1_1Field_acab692bac001b709795bc8038deaa82f}\label{classmultipart_1_1multipart_1_1Field_acab692bac001b709795bc8038deaa82f} 
+str {\bfseries \+\_\+cache} = \+\_\+missing
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A Field object represents a (parsed) form field.  It represents a single
+field with a corresponding name and value.
+
+The name that a :class:`Field` will be instantiated with is the same name
+that would be found in the following HTML::
+
+    <input name="name_goes_here" type="text"/>
+
+This class defines two methods, :meth:`on_data` and :meth:`on_end`, that
+will be called when data is written to the Field, and when the Field is
+finalized, respectively.
+
+:param name: the name of the form field
+\end{DoxyVerb}
+ 
+
+\label{classmultipart_1_1multipart_1_1Field_doc-func-members}
+\Hypertarget{classmultipart_1_1multipart_1_1Field_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmultipart_1_1multipart_1_1Field_abb2d929db353fddacf3849d3a7793266}\index{multipart.multipart.Field@{multipart.multipart.Field}!close@{close}}
+\index{close@{close}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_abb2d929db353fddacf3849d3a7793266} 
+ None multipart.\+multipart.\+Field.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the Field object.  This will free any underlying cache.\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a7b7f5b0ab9dacf75900c76af351c43c2}\index{multipart.multipart.Field@{multipart.multipart.Field}!field\_name@{field\_name}}
+\index{field\_name@{field\_name}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{field\_name()}{field\_name()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a7b7f5b0ab9dacf75900c76af351c43c2} 
+ str multipart.\+multipart.\+Field.\+field\+\_\+name (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This property returns the name of the field.\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_ae64a02c60b39001889813fe212727ee7}\index{multipart.multipart.Field@{multipart.multipart.Field}!finalize@{finalize}}
+\index{finalize@{finalize}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_ae64a02c60b39001889813fe212727ee7} 
+ None multipart.\+multipart.\+Field.\+finalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finalize the form field.\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a310159328cc33ebcd2c8178bccc461e3}\index{multipart.multipart.Field@{multipart.multipart.Field}!from\_value@{from\_value}}
+\index{from\_value@{from\_value}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{from\_value()}{from\_value()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a310159328cc33ebcd2c8178bccc461e3} 
+ \doxymbox{\hyperlink{classmultipart_1_1multipart_1_1Field}{Field}} multipart.\+multipart.\+Field.\+from\+\_\+value (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{str}]{name}{, }\item[{bytes \texorpdfstring{$\vert$}{|} None}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create an instance of a :class:`Field`, and set the corresponding
+value - either None or an actual value.  This method will also
+finalize the Field itself.
+
+:param name: the name of the form field
+:param value: the value of the form field - either a bytestring or
+              None
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_ab213d5337d775fb07dda5e726323855c}\index{multipart.multipart.Field@{multipart.multipart.Field}!on\_data@{on\_data}}
+\index{on\_data@{on\_data}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{on\_data()}{on\_data()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_ab213d5337d775fb07dda5e726323855c} 
+ int multipart.\+multipart.\+Field.\+on\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This method is a callback that will be called whenever data is
+written to the Field.
+
+:param data: a bytestring
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a389093b36308e56458940e4a7a21337d}\index{multipart.multipart.Field@{multipart.multipart.Field}!on\_end@{on\_end}}
+\index{on\_end@{on\_end}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{on\_end()}{on\_end()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a389093b36308e56458940e4a7a21337d} 
+ None multipart.\+multipart.\+Field.\+on\+\_\+end (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This method is called whenever the Field is finalized.\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a91efc462478de7e9aab5f4f56e275f55}\index{multipart.multipart.Field@{multipart.multipart.Field}!set\_none@{set\_none}}
+\index{set\_none@{set\_none}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{set\_none()}{set\_none()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a91efc462478de7e9aab5f4f56e275f55} 
+ None multipart.\+multipart.\+Field.\+set\+\_\+none (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Some fields in a querystring can possibly have a value of None - for
+example, the string "foo&bar=&baz=asdf" will have a field with the
+name "foo" and value None, one with name "bar" and value "", and one
+with name "baz" and value "asdf".  Since the write() interface doesn't
+support writing None, this function will set the field value to None.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a76569301d4463e64117c1f5f10954a0e}\index{multipart.multipart.Field@{multipart.multipart.Field}!value@{value}}
+\index{value@{value}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{value()}{value()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a76569301d4463e64117c1f5f10954a0e} 
+multipart.\+multipart.\+Field.\+value (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This property returns the value of the form field.\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1multipart_1_1Field_a447c69eaea74421a5406a6a9f9e990b8}\index{multipart.multipart.Field@{multipart.multipart.Field}!write@{write}}
+\index{write@{write}!multipart.multipart.Field@{multipart.multipart.Field}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1multipart_1_1Field_a447c69eaea74421a5406a6a9f9e990b8} 
+ int multipart.\+multipart.\+Field.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write some data into the form field.
+
+:param data: a bytestring
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+multipart/\+multipart.\+py\end{DoxyCompactItemize}

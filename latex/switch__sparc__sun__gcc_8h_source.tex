@@ -1,0 +1,98 @@
+\doxysection{switch\+\_\+sparc\+\_\+sun\+\_\+gcc.\+h}
+\hypertarget{switch__sparc__sun__gcc_8h_source}{}\label{switch__sparc__sun__gcc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_sparc\_sun\_gcc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_sparc\_sun\_gcc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 16-\/May-\/15\ \ Alexey\ Borzenkov\ <snaury@gmail.com>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ \ \ \ \ Move\ stack\ spilling\ code\ inside\ save/restore\ functions}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ 30-\/Aug-\/13\ \ Floris\ Bruynooghe\ <flub@devork.be>}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ \ \ \ \ \ Clean\ the\ register\ windows\ again\ before\ returning.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ \ \ \ \ This\ does\ not\ clobber\ the\ PIC\ register\ as\ it\ leaves}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ \ \ \ \ the\ current\ window\ intact\ and\ is\ required\ for\ multi-\/}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ \ \ \ \ threaded\ code\ to\ work\ correctly.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ 08-\/Mar-\/11\ \ Floris\ Bruynooghe\ <flub@devork.be>}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ \ \ \ \ \ No\ need\ to\ set\ return\ value\ register\ explicitly}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ \ \ \ \ \ before\ the\ stack\ and\ framepointer\ are\ adjusted}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ \ \ \ \ \ as\ none\ of\ the\ other\ registers\ are\ influenced\ by}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ \ \ \ \ \ this.\ \ Also\ don't\ needlessly\ clean\ the\ windows}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ \ \ \ \ \ ('ta\ \%0"{}\ ::\ "{}i"{}\ (ST\_CLEAN\_WINDOWS)')\ as\ that}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *\ \ \ \ \ \ clobbers\ the\ gcc\ PIC\ register\ (\%l7).}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ *\ 24-\/Nov-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ *\ \ \ \ \ \ needed\ to\ add\ another\ magic\ constant\ to\ insure}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ \ \ \ \ \ that\ f\ in\ slp\_eval\_frame(PyFrameObject\ *f)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ \ \ \ \ \ STACK\_REFPLUS\ will\ probably\ be\ 1\ in\ most\ cases.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *\ \ \ \ \ \ gets\ included\ into\ the\ saved\ stack\ area.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ 17-\/Sep-\/02\ \ Christian\ Tismer\ \ <tismer@tismer.com>}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ \ \ \ \ \ after\ virtualizing\ stack\ save/restore,\ the}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *\ \ \ \ \ \ stack\ size\ shrunk\ a\ bit.\ Needed\ to\ introduce}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ \ \ \ \ \ an\ adjustment\ STACK\_MAGIC\ per\ platform.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ 15-\/Sep-\/02\ \ Gerd\ Woetzel\ \ \ \ \ \ \ <gerd.woetzel@GMD.DE>}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ *\ \ \ \ \ \ added\ support\ for\ SunOS\ sparc\ with\ gcc}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ defined(\_\_sparcv9)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SLP\_FLUSHW\ \_\_asm\_\_\ volatile\ ("{}flushw"{})}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ SLP\_FLUSHW\ \_\_asm\_\_\ volatile\ ("{}ta\ 3"{})\ }\textcolor{comment}{/*\ ST\_FLUSH\_WINDOWS\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{/*\ On\ sparc\ we\ need\ to\ spill\ register\ windows\ inside\ save/restore\ functions\ */}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SLP\_BEFORE\_SAVE\_STATE()\ SLP\_FLUSHW}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SLP\_BEFORE\_RESTORE\_STATE()\ SLP\_FLUSHW}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00052\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{int}\ err;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{int}\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{/*\ Put\ current\ stack\ pointer\ into\ stackref.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ *\ Register\ spilling\ is\ done\ in\ save/restore.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00060\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mov\ \%\%sp,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref));}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Thou\ shalt\ put\ SLP\_SAVE\_STATE\ into\ a\ local\ block\ */}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Copy\ the\ current\ stack\ onto\ the\ heap\ */}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Increment\ stack\ and\ frame\ pointer\ by\ stsizediff\ */}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ \%0,\ \%\%sp,\ \%\%sp\(\backslash\)n\(\backslash\)t"{}}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ \%0,\ \%\%fp,\ \%\%fp"{}}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff));}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Copy\ new\ stack\ from\ it's\ save\ store\ on\ the\ heap\ */}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mov\ \%1,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (err)\ :\ \textcolor{stringliteral}{"{}i"{}}\ (0));}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ err;}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ *\ further\ self-\/processing\ support}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ *\ if\ you\ want\ to\ add\ self-\/inspection\ tools,\ place\ them}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ *\ here.\ See\ the\ x86\_msvc\ for\ the\ necessary\ defines.}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ *\ These\ features\ are\ highly\ experimental\ und\ not}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ *\ essential\ yet.}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ */}}
+
+\end{DoxyCode}

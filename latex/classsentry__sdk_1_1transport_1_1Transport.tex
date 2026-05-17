@@ -1,0 +1,141 @@
+\doxysection{sentry\+\_\+sdk.\+transport.\+Transport Class Reference}
+\hypertarget{classsentry__sdk_1_1transport_1_1Transport}{}\label{classsentry__sdk_1_1transport_1_1Transport}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+Inheritance diagram for sentry\+\_\+sdk.\+transport.\+Transport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.748327cm]{classsentry__sdk_1_1transport_1_1Transport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a94137111bc270c9e1b683f07f6ff276e}\label{classsentry__sdk_1_1transport_1_1Transport_a94137111bc270c9e1b683f07f6ff276e} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15}{capture\+\_\+event}} ("{}Self"{} self, "{}Event"{} event)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a0c3d7767b555bf5963bfd49d6fd80284}{capture\+\_\+envelope}} ("{}Self"{} self, "{}Envelope"{} envelope)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae6fe475f10e1e95a3f72b240bb1a6651}{flush}} ("{}Self"{} self, float timeout, "{}Optional\+[Any]\+"{} callback=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a7a45c1a8ade9b1576ca1f7c8b8ec211e}{kill}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a657422bfe281639b13c927c4bd03b81c}{record\+\_\+lost\+\_\+event}} (self, str reason, "{}Optional\+[Event\+Data\+Category]\+"{} data\+\_\+category=None, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} item=None, \texorpdfstring{$\ast$}{*}, int quantity=1)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a94f5af78b8acbbe539c377cb752fa8ed}\label{classsentry__sdk_1_1transport_1_1Transport_a94f5af78b8acbbe539c377cb752fa8ed} 
+bool {\bfseries is\+\_\+healthy} ("{}Self"{} self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a9bb61518e06c90ce481fa5c0c0e76a8e}\label{classsentry__sdk_1_1transport_1_1Transport_a9bb61518e06c90ce481fa5c0c0e76a8e} 
+{\bfseries options} = options
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a008cb1a3a6ee62ec46d9db128d451222}\label{classsentry__sdk_1_1transport_1_1Transport_a008cb1a3a6ee62ec46d9db128d451222} 
+str {\bfseries parsed\+\_\+dsn} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Baseclass for all transports.
+
+A transport is used to send an event to sentry.
+\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1transport_1_1Transport_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a0c3d7767b555bf5963bfd49d6fd80284}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}!capture\_envelope@{capture\_envelope}}
+\index{capture\_envelope@{capture\_envelope}!sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+\doxysubsubsection{\texorpdfstring{capture\_envelope()}{capture\_envelope()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1Transport_a0c3d7767b555bf5963bfd49d6fd80284} 
+ None sentry\+\_\+sdk.\+transport.\+Transport.\+capture\+\_\+envelope (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{"{}Envelope"{}}]{envelope}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send an envelope to Sentry.
+
+Envelopes are a data container format that can hold any type of data
+submitted to Sentry. We use it to send all event data (including errors,
+transactions, crons check-ins, etc.) to Sentry.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1__FunctionTransport_a0025b9c69c596f90dc9535e604b330c8}{sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport}}, and \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a0913cc99dc9208d9c20bda332ec523ab}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}!capture\_event@{capture\_event}}
+\index{capture\_event@{capture\_event}!sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+\doxysubsubsection{\texorpdfstring{capture\_event()}{capture\_event()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15} 
+ None sentry\+\_\+sdk.\+transport.\+Transport.\+capture\+\_\+event (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{"{}Event"{}}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}DEPRECATED: Please use capture_envelope instead.
+
+This gets invoked with the event dictionary when an event should
+be sent to sentry.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1__FunctionTransport_ac51eb980efb3e02d58fec62234691b10}{sentry\+\_\+sdk.\+transport.\+\_\+\+Function\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_ae6fe475f10e1e95a3f72b240bb1a6651}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}!flush@{flush}}
+\index{flush@{flush}!sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1Transport_ae6fe475f10e1e95a3f72b240bb1a6651} 
+ None sentry\+\_\+sdk.\+transport.\+Transport.\+flush (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{float}]{timeout}{, }\item[{"{}Optional\+[Any]\+"{} }]{callback}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait `timeout` seconds for the current events to be sent out.
+
+The default implementation is a no-op, since this method may only be relevant to some transports.
+Subclasses should override this method if necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ae376d650737fcae044726ac63a03f845}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a7a45c1a8ade9b1576ca1f7c8b8ec211e}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}!kill@{kill}}
+\index{kill@{kill}!sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1Transport_a7a45c1a8ade9b1576ca1f7c8b8ec211e} 
+ None sentry\+\_\+sdk.\+transport.\+Transport.\+kill (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Forcefully kills the transport.
+
+The default implementation is a no-op, since this method may only be relevant to some transports.
+Subclasses should override this method if necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8a367f3b7814bf81ed2fdc16e87a1dd8}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1Transport_a657422bfe281639b13c927c4bd03b81c}\index{sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}!record\_lost\_event@{record\_lost\_event}}
+\index{record\_lost\_event@{record\_lost\_event}!sentry\_sdk.transport.Transport@{sentry\_sdk.transport.Transport}}
+\doxysubsubsection{\texorpdfstring{record\_lost\_event()}{record\_lost\_event()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1Transport_a657422bfe281639b13c927c4bd03b81c} 
+ None sentry\+\_\+sdk.\+transport.\+Transport.\+record\+\_\+lost\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{reason}{, }\item[{"{}Optional\+[Event\+Data\+Category]\+"{} }]{data\+\_\+category}{ = {\ttfamily None}, }\item[{"{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} }]{item}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int }]{quantity}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This increments a counter for event loss by reason and
+data category by the given positive-int quantity (default 1).
+
+If an item is provided, the data category and quantity are
+extracted from the item, and the values passed for
+data_category and quantity are ignored.
+
+When recording a lost transaction via data_category="transaction",
+the calling code should also record the lost spans via this method.
+When recording lost spans, `quantity` should be set to the number
+of contained spans, plus one for the transaction itself. When
+passing an Item containing a transaction via the `item` parameter,
+this method automatically records the lost spans.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a40f7cf7274179445f00b627ae6f1fee7}{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+transport.\+py\end{DoxyCompactItemize}

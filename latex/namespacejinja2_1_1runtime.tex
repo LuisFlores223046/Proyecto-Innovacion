@@ -1,0 +1,166 @@
+\doxysection{jinja2.\+runtime Namespace Reference}
+\hypertarget{namespacejinja2_1_1runtime}{}\label{namespacejinja2_1_1runtime}\index{jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1LoopRenderFunc}{Loop\+Render\+Func}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1TemplateReference}{Template\+Reference}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Context}{Context}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1BlockReference}{Block\+Reference}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1LoopContext}{Loop\+Context}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1AsyncLoopContext}{Async\+Loop\+Context}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Macro}{Macro}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1ChainableUndefined}{Chainable\+Undefined}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1DebugUndefined}{Debug\+Undefined}}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1StrictUndefined}{Strict\+Undefined}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+V \doxymbox{\hyperlink{namespacejinja2_1_1runtime_aabd48783032e3595b5dbf298d7a1f7d9}{identity}} (V x)
+\item 
+str \doxymbox{\hyperlink{namespacejinja2_1_1runtime_a5891d032554bd1e611b2e77e74333b72}{markup\+\_\+join}} (t.\+Iterable\+[t.\+Any]\+ seq)
+\item 
+str \doxymbox{\hyperlink{namespacejinja2_1_1runtime_ad53cfddf9bfab97a1482819e54eefa22}{str\+\_\+join}} (t.\+Iterable\+[t.\+Any]\+ seq)
+\item 
+"{}Context"{} \doxymbox{\hyperlink{namespacejinja2_1_1runtime_ab96ca7ed32905f79aad14458def2c3be}{new\+\_\+context}} ("{}Environment"{} environment, t.\+Optional\+[str]\+ template\+\_\+name, t.\+Dict\+[str, t.\+Callable\+[\+["{}Context"{}]\+, t.\+Iterator\+[str]\+]\+]\+ blocks, t.\+Optional\+[t.\+Dict\+[str, t.\+Any]\+]\+ vars=None, bool shared=False, t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ globals=None, t.\+Optional\+[t.\+Mapping\+[str, t.\+Any]\+]\+ locals=None)
+\item 
+\Hypertarget{namespacejinja2_1_1runtime_a3ec3e55c36d6e88a64730d460babdaea}\label{namespacejinja2_1_1runtime_a3ec3e55c36d6e88a64730d460babdaea} 
+F {\bfseries \+\_\+dict\+\_\+method\+\_\+all} (F dict\+\_\+method)
+\item 
+t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}]\+ \doxymbox{\hyperlink{namespacejinja2_1_1runtime_a74d1eb18db98a004297890468abeb6de}{make\+\_\+logging\+\_\+undefined}} (t.\+Optional\+["{}logging.\+Logger"{}]\+ logger=None, t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}]\+ base=\doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1runtime_a292d9a3230201ad51364b8ab734a090e}\label{namespacejinja2_1_1runtime_a292d9a3230201ad51364b8ab734a090e} 
+{\bfseries V} = t.\+Type\+Var("{}V"{})
+\item 
+\Hypertarget{namespacejinja2_1_1runtime_a53a00015c0a9e51e1a919f913c2bedcc}\label{namespacejinja2_1_1runtime_a53a00015c0a9e51e1a919f913c2bedcc} 
+{\bfseries F} = t.\+Type\+Var("{}F"{}, bound=t.\+Callable\+[..., t.\+Any]\+)
+\item 
+list \doxymbox{\hyperlink{namespacejinja2_1_1runtime_ac237798deca050f6b0cee0ffb219f98e}{exported}}
+\item 
+list \doxymbox{\hyperlink{namespacejinja2_1_1runtime_aa414914b9127c3d7d4afbf6a6a7f246c}{async\+\_\+exported}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The runtime functions and state used by compiled templates.\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1runtime_doc-func-members}
+\Hypertarget{namespacejinja2_1_1runtime_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacejinja2_1_1runtime_aabd48783032e3595b5dbf298d7a1f7d9}\index{jinja2.runtime@{jinja2.runtime}!identity@{identity}}
+\index{identity@{identity}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{identity()}{identity()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_aabd48783032e3595b5dbf298d7a1f7d9} 
+ V identity (\begin{DoxyParamCaption}\item[{V}]{x}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns its argument. Useful for certain things in the
+environment.
+\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1runtime_a74d1eb18db98a004297890468abeb6de}\index{jinja2.runtime@{jinja2.runtime}!make\_logging\_undefined@{make\_logging\_undefined}}
+\index{make\_logging\_undefined@{make\_logging\_undefined}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{make\_logging\_undefined()}{make\_logging\_undefined()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_a74d1eb18db98a004297890468abeb6de} 
+ t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}]\+ make\+\_\+logging\+\_\+undefined (\begin{DoxyParamCaption}\item[{t.\+Optional\+["{}logging.\+Logger"{}]\+ }]{logger}{ = {\ttfamily None}, }\item[{t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}]\+ }]{base}{ = {\ttfamily \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{Undefined}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Given a logger object this returns a new undefined class that will
+log certain failures.  It will log iterations and printing.  If no
+logger is given a default logger is created.
+
+Example::
+
+    logger = logging.getLogger(__name__)
+    LoggingUndefined = make_logging_undefined(
+        logger=logger,
+        base=Undefined
+    )
+
+.. versionadded:: 2.8
+
+:param logger: the logger to use.  If not provided, a default logger
+               is created.
+:param base: the base class to add logging functionality to.  This
+             defaults to :class:`Undefined`.
+\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1runtime_a5891d032554bd1e611b2e77e74333b72}\index{jinja2.runtime@{jinja2.runtime}!markup\_join@{markup\_join}}
+\index{markup\_join@{markup\_join}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{markup\_join()}{markup\_join()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_a5891d032554bd1e611b2e77e74333b72} 
+ str markup\+\_\+join (\begin{DoxyParamCaption}\item[{t.\+Iterable\+[t.\+Any]\+}]{seq}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Concatenation that escapes if necessary and converts to string.\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1runtime_ab96ca7ed32905f79aad14458def2c3be}\index{jinja2.runtime@{jinja2.runtime}!new\_context@{new\_context}}
+\index{new\_context@{new\_context}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{new\_context()}{new\_context()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_ab96ca7ed32905f79aad14458def2c3be} 
+ "{}Context"{} new\+\_\+context (\begin{DoxyParamCaption}\item[{"{}Environment"{}}]{environment}{, }\item[{t.\+Optional\+[str]\+}]{template\+\_\+name}{, }\item[{t.\+Dict\+[str, t.\+Callable\+[\+["{}Context"{}]\+, t.\+Iterator\+[str]\+]\+]\+}]{blocks}{, }\item[{t.\+Optional\+[t.\+Dict\+[str, t.\+Any]\+]\+ }]{vars}{ = {\ttfamily None}, }\item[{bool }]{shared}{ = {\ttfamily False}, }\item[{t.\+Optional\+[t.\+Mutable\+Mapping\+[str, t.\+Any]\+]\+ }]{globals}{ = {\ttfamily None}, }\item[{t.\+Optional\+[t.\+Mapping\+[str, t.\+Any]\+]\+ }]{locals}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Internal helper for context creation.\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1runtime_ad53cfddf9bfab97a1482819e54eefa22}\index{jinja2.runtime@{jinja2.runtime}!str\_join@{str\_join}}
+\index{str\_join@{str\_join}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{str\_join()}{str\_join()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_ad53cfddf9bfab97a1482819e54eefa22} 
+ str str\+\_\+join (\begin{DoxyParamCaption}\item[{t.\+Iterable\+[t.\+Any]\+}]{seq}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Simple args to string conversion and concatenation.\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1runtime_doc-var-members}
+\Hypertarget{namespacejinja2_1_1runtime_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacejinja2_1_1runtime_aa414914b9127c3d7d4afbf6a6a7f246c}\index{jinja2.runtime@{jinja2.runtime}!async\_exported@{async\_exported}}
+\index{async\_exported@{async\_exported}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{async\_exported}{async\_exported}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_aa414914b9127c3d7d4afbf6a6a7f246c} 
+list jinja2.\+runtime.\+async\+\_\+exported}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}AsyncLoopContext"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}auto\_aiter"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}auto\_await"{}},}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}
+\Hypertarget{namespacejinja2_1_1runtime_ac237798deca050f6b0cee0ffb219f98e}\index{jinja2.runtime@{jinja2.runtime}!exported@{exported}}
+\index{exported@{exported}!jinja2.runtime@{jinja2.runtime}}
+\doxysubsubsection{\texorpdfstring{exported}{exported}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1runtime_ac237798deca050f6b0cee0ffb219f98e} 
+list jinja2.\+runtime.\+exported}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ [}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}LoopContext"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TemplateReference"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Macro"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Markup"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TemplateRuntimeError"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}missing"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}escape"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}markup\_join"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}str\_join"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}identity"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}TemplateNotFound"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Namespace"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Undefined"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}internalcode"{}},}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}

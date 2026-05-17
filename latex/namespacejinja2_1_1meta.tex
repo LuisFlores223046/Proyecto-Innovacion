@@ -1,0 +1,79 @@
+\doxysection{jinja2.\+meta Namespace Reference}
+\hypertarget{namespacejinja2_1_1meta}{}\label{namespacejinja2_1_1meta}\index{jinja2.meta@{jinja2.meta}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classjinja2_1_1meta_1_1TrackingCodeGenerator}{Tracking\+Code\+Generator}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+t.\+Set\+[str]\+ \doxymbox{\hyperlink{namespacejinja2_1_1meta_a4cfc84704958f5b0cb6ec6fb6b07b4be}{find\+\_\+undeclared\+\_\+variables}} (\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Template}{nodes.\+Template}} ast)
+\item 
+t.\+Iterator\+[t.\+Optional\+[str]\+]\+ \doxymbox{\hyperlink{namespacejinja2_1_1meta_aae123a7763d2edbdb655037cd2ddb370}{find\+\_\+referenced\+\_\+templates}} (\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Template}{nodes.\+Template}} ast)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacejinja2_1_1meta_a8a62c1932680f206b57f902e3bdb1877}\label{namespacejinja2_1_1meta_a8a62c1932680f206b57f902e3bdb1877} 
+tuple {\bfseries \+\_\+ref\+\_\+types} = (\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Extends}{nodes.\+Extends}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1FromImport}{nodes.\+From\+Import}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Import}{nodes.\+Import}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Include}{nodes.\+Include}})
+\item 
+\Hypertarget{namespacejinja2_1_1meta_ad5f48740f509b697e4598648f598d46e}\label{namespacejinja2_1_1meta_ad5f48740f509b697e4598648f598d46e} 
+{\bfseries \+\_\+\+Ref\+Type} = t.\+Union\+[\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Extends}{nodes.\+Extends}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1FromImport}{nodes.\+From\+Import}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Import}{nodes.\+Import}}, \doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Include}{nodes.\+Include}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Functions that expose information about templates that might be
+interesting for introspection.
+\end{DoxyVerb}
+ 
+
+\label{namespacejinja2_1_1meta_doc-func-members}
+\Hypertarget{namespacejinja2_1_1meta_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacejinja2_1_1meta_aae123a7763d2edbdb655037cd2ddb370}\index{jinja2.meta@{jinja2.meta}!find\_referenced\_templates@{find\_referenced\_templates}}
+\index{find\_referenced\_templates@{find\_referenced\_templates}!jinja2.meta@{jinja2.meta}}
+\doxysubsubsection{\texorpdfstring{find\_referenced\_templates()}{find\_referenced\_templates()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1meta_aae123a7763d2edbdb655037cd2ddb370} 
+ t.\+Iterator\+[t.\+Optional\+[str]\+]\+ find\+\_\+referenced\+\_\+templates (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Template}{nodes.\+Template}}}]{ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finds all the referenced templates from the AST.  This will return an
+iterator over all the hardcoded template extensions, inclusions and
+imports.  If dynamic inheritance or inclusion is used, `None` will be
+yielded.
+
+>>> from jinja2 import Environment, meta
+>>> env = Environment()
+>>> ast = env.parse('{% extends "layout.html" %}{% include helper %}')
+>>> list(meta.find_referenced_templates(ast))
+['layout.html', None]
+
+This function is useful for dependency tracking.  For example if you want
+to rebuild parts of the website after a layout template has changed.
+\end{DoxyVerb}
+ \Hypertarget{namespacejinja2_1_1meta_a4cfc84704958f5b0cb6ec6fb6b07b4be}\index{jinja2.meta@{jinja2.meta}!find\_undeclared\_variables@{find\_undeclared\_variables}}
+\index{find\_undeclared\_variables@{find\_undeclared\_variables}!jinja2.meta@{jinja2.meta}}
+\doxysubsubsection{\texorpdfstring{find\_undeclared\_variables()}{find\_undeclared\_variables()}}
+{\footnotesize\ttfamily \label{namespacejinja2_1_1meta_a4cfc84704958f5b0cb6ec6fb6b07b4be} 
+ t.\+Set\+[str]\+ find\+\_\+undeclared\+\_\+variables (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classjinja2_1_1nodes_1_1Template}{nodes.\+Template}}}]{ast}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a set of all variables in the AST that will be looked up from
+the context at runtime.  Because at compile time it's not known which
+variables will be used depending on the path the execution takes at
+runtime, all variables are returned.
+
+>>> from jinja2 import Environment, meta
+>>> env = Environment()
+>>> ast = env.parse('{% set foo = 42 %}{{ bar + foo }}')
+>>> meta.find_undeclared_variables(ast) == {'bar'}
+True
+
+.. admonition:: Implementation
+
+   Internally the code generator is used for finding undeclared variables.
+   This is good to know because the code generator might raise a
+   :exc:`TemplateAssertionError` during compilation and as a matter of
+   fact this function can currently raise that exception as well.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,28 @@
+var namespacedns_1_1message =
+[
+    [ "ShortHeader", "classdns_1_1message_1_1ShortHeader.html", null ],
+    [ "TrailingJunk", "classdns_1_1message_1_1TrailingJunk.html", null ],
+    [ "UnknownHeaderField", "classdns_1_1message_1_1UnknownHeaderField.html", null ],
+    [ "BadEDNS", "classdns_1_1message_1_1BadEDNS.html", null ],
+    [ "BadTSIG", "classdns_1_1message_1_1BadTSIG.html", null ],
+    [ "UnknownTSIGKey", "classdns_1_1message_1_1UnknownTSIGKey.html", null ],
+    [ "Truncated", "classdns_1_1message_1_1Truncated.html", "classdns_1_1message_1_1Truncated" ],
+    [ "NotQueryResponse", "classdns_1_1message_1_1NotQueryResponse.html", null ],
+    [ "ChainTooLong", "classdns_1_1message_1_1ChainTooLong.html", null ],
+    [ "AnswerForNXDOMAIN", "classdns_1_1message_1_1AnswerForNXDOMAIN.html", null ],
+    [ "NoPreviousName", "classdns_1_1message_1_1NoPreviousName.html", null ],
+    [ "MessageSection", "classdns_1_1message_1_1MessageSection.html", null ],
+    [ "MessageError", "classdns_1_1message_1_1MessageError.html", null ],
+    [ "Message", "classdns_1_1message_1_1Message.html", "classdns_1_1message_1_1Message" ],
+    [ "ChainingResult", "classdns_1_1message_1_1ChainingResult.html", null ],
+    [ "QueryMessage", "classdns_1_1message_1_1QueryMessage.html", "classdns_1_1message_1_1QueryMessage" ],
+    [ "_WireReader", "classdns_1_1message_1_1__WireReader.html", "classdns_1_1message_1_1__WireReader" ],
+    [ "_TextReader", "classdns_1_1message_1_1__TextReader.html", "classdns_1_1message_1_1__TextReader" ],
+    [ "CopyMode", "classdns_1_1message_1_1CopyMode.html", null ],
+    [ "from_file", "namespacedns_1_1message.html#a07e28913d4d7bac5b98f643b1237ffef", null ],
+    [ "from_text", "namespacedns_1_1message.html#ad0fc263b3052aabdb58f5eaa7d168248", null ],
+    [ "from_wire", "namespacedns_1_1message.html#af24f629768f23710514b6dd5aa94947a", null ],
+    [ "make_query", "namespacedns_1_1message.html#a74430670e80e9128367a93ae887fb04d", null ],
+    [ "make_response", "namespacedns_1_1message.html#a745901496c847cc5881a42d9d2ba9aeb", null ],
+    [ "QUESTION", "namespacedns_1_1message.html#adc0a0dd52b55adbd820b729f3878a987", null ]
+];

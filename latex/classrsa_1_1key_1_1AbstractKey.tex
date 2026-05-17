@@ -1,0 +1,228 @@
+\doxysection{rsa.\+key.\+Abstract\+Key Class Reference}
+\hypertarget{classrsa_1_1key_1_1AbstractKey}{}\label{classrsa_1_1key_1_1AbstractKey}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+Inheritance diagram for rsa.\+key.\+Abstract\+Key:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classrsa_1_1key_1_1AbstractKey}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_afa52b9f4c591e78d68388898618ea4c2}\label{classrsa_1_1key_1_1AbstractKey_afa52b9f4c591e78d68388898618ea4c2} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, int n, int e)
+\item 
+T \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_a8b00fdc5df05359e8524336284624b6e}{load\+\_\+pkcs1}} (typing.\+Type\+[T]\+ cls, bytes keyfile, str format="{}PEM"{})
+\item 
+bytes \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_a6f8cb3b72a7072aa66b26d1719d7966f}{save\+\_\+pkcs1}} (self, str format="{}PEM"{})
+\item 
+typing.\+Tuple\+[int, int]\+ \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_a544780ea981ef4d85c2c38382619dd84}{blind}} (self, int message)
+\item 
+int \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_aa6bdd69696aab59939bab20686531a6a}{unblind}} (self, int blinded, int blindfac\+\_\+inverse)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_aaa61f2499362e76d2a69e00835fe727c}\label{classrsa_1_1key_1_1AbstractKey_aaa61f2499362e76d2a69e00835fe727c} 
+{\bfseries n} = n
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_ad1d89fc959ae9c6f2b5f8e2b3aff1d80}\label{classrsa_1_1key_1_1AbstractKey_ad1d89fc959ae9c6f2b5f8e2b3aff1d80} 
+{\bfseries e} = e
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_a002e73987bcc9672095c6764d0a59dd2}\label{classrsa_1_1key_1_1AbstractKey_a002e73987bcc9672095c6764d0a59dd2} 
+int {\bfseries blindfac} = -\/1
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_a74271d8911edfb47e1c78755fff895e8}\label{classrsa_1_1key_1_1AbstractKey_a74271d8911edfb47e1c78755fff895e8} 
+{\bfseries mutex} = threading.\+Lock()
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_acabfe73cc47fb15e64b2c49ec05d622d}\label{classrsa_1_1key_1_1AbstractKey_acabfe73cc47fb15e64b2c49ec05d622d} 
+{\bfseries blindfac\+\_\+inverse} = \doxymbox{\hyperlink{namespacersa_1_1common_a5a115fec76b9e770b8e31544d26f88c0}{rsa.\+common.\+inverse}}(self.\+blindfac, self.\+n)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_aec791612fd274875464d036b9a6ed542}{\+\_\+load\+\_\+pkcs1\+\_\+pem}} (typing.\+Type\+[T]\+ cls, bytes keyfile)
+\item 
+T \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_ae4021c234b3d4b062a10960146899f46}{\+\_\+load\+\_\+pkcs1\+\_\+der}} (typing.\+Type\+[T]\+ cls, bytes keyfile)
+\item 
+bytes \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_ac62237d5b7b4881426b7de42e5d8bd19}{\+\_\+save\+\_\+pkcs1\+\_\+pem}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_ae92fe4281c7bc682a6e8c316af7934bd}{\+\_\+save\+\_\+pkcs1\+\_\+der}} (self)
+\item 
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_a4de442085be7553b5fb486911ed205f8}\label{classrsa_1_1key_1_1AbstractKey_a4de442085be7553b5fb486911ed205f8} 
+int {\bfseries \+\_\+initial\+\_\+blinding\+\_\+factor} (self)
+\item 
+typing.\+Tuple\+[int, int]\+ \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_af04b95e8b28fe7be123c0759b8566f69}{\+\_\+update\+\_\+blinding\+\_\+factor}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+typing.\+Callable \doxymbox{\hyperlink{classrsa_1_1key_1_1AbstractKey_a1626183de9fd2acdeef9a521be7ec89a}{\+\_\+assert\+\_\+format\+\_\+exists}} (str file\+\_\+format, typing.\+Mapping\+[str, typing.\+Callable]\+ methods)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Abstract superclass for private and public keys.\end{DoxyVerb}
+ 
+
+\label{classrsa_1_1key_1_1AbstractKey_doc-func-members}
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_a1626183de9fd2acdeef9a521be7ec89a}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_assert\_format\_exists@{\_assert\_format\_exists}}
+\index{\_assert\_format\_exists@{\_assert\_format\_exists}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_assert\_format\_exists()}{\_assert\_format\_exists()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_a1626183de9fd2acdeef9a521be7ec89a} 
+ typing.\+Callable rsa.\+key.\+Abstract\+Key.\+\_\+assert\+\_\+format\+\_\+exists (\begin{DoxyParamCaption}\item[{str}]{file\+\_\+format}{, }\item[{typing.\+Mapping\+[str, typing.\+Callable]\+     }]{methods}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Checks whether the given file format exists in 'methods'.\end{DoxyVerb}
+ \Hypertarget{classrsa_1_1key_1_1AbstractKey_ae4021c234b3d4b062a10960146899f46}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_load\_pkcs1\_der@{\_load\_pkcs1\_der}}
+\index{\_load\_pkcs1\_der@{\_load\_pkcs1\_der}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_load\_pkcs1\_der()}{\_load\_pkcs1\_der()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_ae4021c234b3d4b062a10960146899f46} 
+ T rsa.\+key.\+Abstract\+Key.\+\_\+load\+\_\+pkcs1\+\_\+der (\begin{DoxyParamCaption}\item[{typing.\+Type\+[T]\+}]{cls}{, }\item[{bytes}]{keyfile}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Loads a key in PKCS#1 PEM format, implement in a subclass.
+
+:param keyfile: contents of a DER-encoded file that contains
+    the public key.
+:type keyfile: bytes
+
+:return: the loaded key
+:rtype: AbstractKey
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey_a79497d0818edd1719cd0e3a8ffb7bedd}{rsa.\+key.\+Private\+Key}}, and \doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey_aa90b04cd8f50c73113c0f3dba2cc8a02}{rsa.\+key.\+Public\+Key}}.
+
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_aec791612fd274875464d036b9a6ed542}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_load\_pkcs1\_pem@{\_load\_pkcs1\_pem}}
+\index{\_load\_pkcs1\_pem@{\_load\_pkcs1\_pem}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_load\_pkcs1\_pem()}{\_load\_pkcs1\_pem()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_aec791612fd274875464d036b9a6ed542} 
+ T rsa.\+key.\+Abstract\+Key.\+\_\+load\+\_\+pkcs1\+\_\+pem (\begin{DoxyParamCaption}\item[{typing.\+Type\+[T]\+}]{cls}{, }\item[{bytes}]{keyfile}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Loads a key in PKCS#1 PEM format, implement in a subclass.
+
+:param keyfile: contents of a PEM-encoded file that contains
+    the public key.
+:type keyfile: bytes
+
+:return: the loaded key
+:rtype: AbstractKey
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey_a20ba4e5111af1129c3e43ce990b0be70}{rsa.\+key.\+Private\+Key}}, and \doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey_a12030cbaf76f5ef7b48e857243763ae0}{rsa.\+key.\+Public\+Key}}.
+
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_ae92fe4281c7bc682a6e8c316af7934bd}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_save\_pkcs1\_der@{\_save\_pkcs1\_der}}
+\index{\_save\_pkcs1\_der@{\_save\_pkcs1\_der}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_save\_pkcs1\_der()}{\_save\_pkcs1\_der()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_ae92fe4281c7bc682a6e8c316af7934bd} 
+ bytes rsa.\+key.\+Abstract\+Key.\+\_\+save\+\_\+pkcs1\+\_\+der (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Saves the key in PKCS#1 DER format, implement in a subclass.
+
+:returns: the DER-encoded key.
+:rtype: bytes
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey_a7951b1cb57220841f94cc78d7e78a63a}{rsa.\+key.\+Private\+Key}}, and \doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey_aaa7773b8da31a48b775d3fed374b8dde}{rsa.\+key.\+Public\+Key}}.
+
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_ac62237d5b7b4881426b7de42e5d8bd19}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_save\_pkcs1\_pem@{\_save\_pkcs1\_pem}}
+\index{\_save\_pkcs1\_pem@{\_save\_pkcs1\_pem}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_save\_pkcs1\_pem()}{\_save\_pkcs1\_pem()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_ac62237d5b7b4881426b7de42e5d8bd19} 
+ bytes rsa.\+key.\+Abstract\+Key.\+\_\+save\+\_\+pkcs1\+\_\+pem (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Saves the key in PKCS#1 PEM format, implement in a subclass.
+
+:returns: the PEM-encoded key.
+:rtype: bytes
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classrsa_1_1key_1_1PrivateKey_a23642d1f9bb14035527c16869f9ecdd7}{rsa.\+key.\+Private\+Key}}, and \doxymbox{\hyperlink{classrsa_1_1key_1_1PublicKey_a9294cafc24a660bddbcb0953e256ee4a}{rsa.\+key.\+Public\+Key}}.
+
+\Hypertarget{classrsa_1_1key_1_1AbstractKey_af04b95e8b28fe7be123c0759b8566f69}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!\_update\_blinding\_factor@{\_update\_blinding\_factor}}
+\index{\_update\_blinding\_factor@{\_update\_blinding\_factor}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{\_update\_blinding\_factor()}{\_update\_blinding\_factor()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_af04b95e8b28fe7be123c0759b8566f69} 
+ typing.\+Tuple\+[int, int]\+ rsa.\+key.\+Abstract\+Key.\+\_\+update\+\_\+blinding\+\_\+factor (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Update blinding factors.
+
+Computing a blinding factor is expensive, so instead this function
+does this once, then updates the blinding factor as per section 9
+of 'A Timing Attack against RSA with the Chinese Remainder Theorem'
+by Werner Schindler.
+See https://tls.mbed.org/public/WSchindler-RSA_Timing_Attack.pdf
+
+:return: the new blinding factor and its inverse.
+\end{DoxyVerb}
+ \Hypertarget{classrsa_1_1key_1_1AbstractKey_a544780ea981ef4d85c2c38382619dd84}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!blind@{blind}}
+\index{blind@{blind}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{blind()}{blind()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_a544780ea981ef4d85c2c38382619dd84} 
+ typing.\+Tuple\+[int, int]\+ rsa.\+key.\+Abstract\+Key.\+blind (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{message}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Performs blinding on the message.
+
+:param message: the message, as integer, to blind.
+:param r: the random number to blind with.
+:return: tuple (the blinded message, the inverse of the used blinding factor)
+
+The blinding is such that message = unblind(decrypt(blind(encrypt(message))).
+
+See https://en.wikipedia.org/wiki/Blinding_%28cryptography%29
+\end{DoxyVerb}
+ \Hypertarget{classrsa_1_1key_1_1AbstractKey_a8b00fdc5df05359e8524336284624b6e}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!load\_pkcs1@{load\_pkcs1}}
+\index{load\_pkcs1@{load\_pkcs1}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{load\_pkcs1()}{load\_pkcs1()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_a8b00fdc5df05359e8524336284624b6e} 
+ T rsa.\+key.\+Abstract\+Key.\+load\+\_\+pkcs1 (\begin{DoxyParamCaption}\item[{typing.\+Type\+[T]\+}]{cls}{, }\item[{bytes}]{keyfile}{, }\item[{str }]{format}{ = {\ttfamily "{}PEM"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Loads a key in PKCS#1 DER or PEM format.
+
+:param keyfile: contents of a DER- or PEM-encoded file that contains
+    the key.
+:type keyfile: bytes
+:param format: the format of the file to load; 'PEM' or 'DER'
+:type format: str
+
+:return: the loaded key
+:rtype: AbstractKey
+\end{DoxyVerb}
+ \Hypertarget{classrsa_1_1key_1_1AbstractKey_a6f8cb3b72a7072aa66b26d1719d7966f}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!save\_pkcs1@{save\_pkcs1}}
+\index{save\_pkcs1@{save\_pkcs1}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{save\_pkcs1()}{save\_pkcs1()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_a6f8cb3b72a7072aa66b26d1719d7966f} 
+ bytes rsa.\+key.\+Abstract\+Key.\+save\+\_\+pkcs1 (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str }]{format}{ = {\ttfamily "{}PEM"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Saves the key in PKCS#1 DER or PEM format.
+
+:param format: the format to save; 'PEM' or 'DER'
+:type format: str
+:returns: the DER- or PEM-encoded key.
+:rtype: bytes
+\end{DoxyVerb}
+ \Hypertarget{classrsa_1_1key_1_1AbstractKey_aa6bdd69696aab59939bab20686531a6a}\index{rsa.key.AbstractKey@{rsa.key.AbstractKey}!unblind@{unblind}}
+\index{unblind@{unblind}!rsa.key.AbstractKey@{rsa.key.AbstractKey}}
+\doxysubsubsection{\texorpdfstring{unblind()}{unblind()}}
+{\footnotesize\ttfamily \label{classrsa_1_1key_1_1AbstractKey_aa6bdd69696aab59939bab20686531a6a} 
+ int rsa.\+key.\+Abstract\+Key.\+unblind (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{blinded}{, }\item[{int}]{blindfac\+\_\+inverse}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Performs blinding on the message using random number 'blindfac_inverse'.
+
+:param blinded: the blinded message, as integer, to unblind.
+:param blindfac: the factor to unblind with.
+:return: the original message.
+
+The blinding is such that message = unblind(decrypt(blind(encrypt(message))).
+
+See https://en.wikipedia.org/wiki/Blinding_%28cryptography%29
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+rsa/\+key.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,82 @@
+\doxysection{pip.\+\_\+vendor.\+resolvelib.\+resolvers.\+Resolver Class Reference}
+\hypertarget{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver}{}\label{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver}\index{pip.\_vendor.resolvelib.resolvers.Resolver@{pip.\_vendor.resolvelib.resolvers.Resolver}}
+Inheritance diagram for pip.\+\_\+vendor.\+resolvelib.\+resolvers.\+Resolver:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver_a25647c106c5091f732ce1d799e458efc}{resolve}} (self, requirements, max\+\_\+rounds=100)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1resolvelib_1_1providers_1_1AbstractResolver}{pip.\+\_\+vendor.\+resolvelib.\+providers.\+Abstract\+Resolver}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, provider, reporter)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1resolvelib_1_1providers_1_1AbstractResolver}{pip.\+\_\+vendor.\+resolvelib.\+providers.\+Abstract\+Resolver}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries provider} = provider
+\item 
+{\bfseries reporter} = reporter
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1resolvelib_1_1providers_1_1AbstractResolver}{pip.\+\_\+vendor.\+resolvelib.\+providers.\+Abstract\+Resolver}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries base\+\_\+exception} = Exception
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The thing that performs the actual resolution work.\end{DoxyVerb}
+ 
+
+\label{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver_doc-func-members}
+\Hypertarget{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver_a25647c106c5091f732ce1d799e458efc}\index{pip.\_vendor.resolvelib.resolvers.Resolver@{pip.\_vendor.resolvelib.resolvers.Resolver}!resolve@{resolve}}
+\index{resolve@{resolve}!pip.\_vendor.resolvelib.resolvers.Resolver@{pip.\_vendor.resolvelib.resolvers.Resolver}}
+\doxysubsubsection{\texorpdfstring{resolve()}{resolve()}}
+{\footnotesize\ttfamily \label{classpip_1_1__vendor_1_1resolvelib_1_1resolvers_1_1Resolver_a25647c106c5091f732ce1d799e458efc} 
+pip.\+\_\+vendor.\+resolvelib.\+resolvers.\+Resolver.\+resolve (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{requirements}{, }\item[{}]{max\+\_\+rounds}{ = {\ttfamily 100}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Take a collection of constraints, spit out the resolution result.
+
+The return value is a representation to the final resolution result. It
+is a tuple subclass with three public members:
+
+* `mapping`: A dict of resolved candidates. Each key is an identifier
+    of a requirement (as returned by the provider's `identify` method),
+    and the value is the resolved candidate.
+* `graph`: A `DirectedGraph` instance representing the dependency tree.
+    The vertices are keys of `mapping`, and each edge represents *why*
+    a particular package is included. A special vertex `None` is
+    included to represent parents of user-supplied requirements.
+* `criteria`: A dict of "criteria" that hold detailed information on
+    how edges in the graph are derived. Each key is an identifier of a
+    requirement, and the value is a `Criterion` instance.
+
+The following exceptions may be raised if a resolution cannot be found:
+
+* `ResolutionImpossible`: A resolution cannot be found for the given
+    combination of requirements. The `causes` attribute of the
+    exception is a list of (requirement, parent), giving the
+    requirements that could not be satisfied.
+* `ResolutionTooDeep`: The dependency tree is too deeply nested and
+    the resolver gave up. This is usually caused by a circular
+    dependency, but you can try to resolve this by increasing the
+    `max_rounds` argument.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classpip_1_1__vendor_1_1resolvelib_1_1providers_1_1AbstractResolver_afc654fcd81b8c2544aa200a7923159f5}{pip.\+\_\+vendor.\+resolvelib.\+providers.\+Abstract\+Resolver}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pip/\+\+\_\+vendor/\+resolvelib/\+resolvers.\+py\end{DoxyCompactItemize}

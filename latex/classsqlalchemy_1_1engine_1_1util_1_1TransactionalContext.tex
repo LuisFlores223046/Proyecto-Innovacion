@@ -1,0 +1,123 @@
+\doxysection{sqlalchemy.\+engine.\+util.\+Transactional\+Context Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext}{}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext}\index{sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}}
+Inheritance diagram for sqlalchemy.\+engine.\+util.\+Transactional\+Context:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.638398cm]{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a90a5dcbfd7bc9430be3eb497b86237fb}{commit}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_ad8b21314536ec04e49b111af38eb264b}{rollback}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a9e79507d1d91355930c07862282ff8df}{close}} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_ae01350d0de81a8edb38c7696755708f5}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_ae01350d0de81a8edb38c7696755708f5} 
+Self {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a0ee511e338d25caab0261d96344434e9}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a0ee511e338d25caab0261d96344434e9} 
+None {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, Any type\+\_\+, Any value, Any traceback)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a69ddd23e1c209c06ed8031c7d03cbb5a}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a69ddd23e1c209c06ed8031c7d03cbb5a} 
+bool {\bfseries \+\_\+transaction\+\_\+is\+\_\+active} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a8152c279ca1298402db0a0ecf5a1c6c9}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a8152c279ca1298402db0a0ecf5a1c6c9} 
+bool {\bfseries \+\_\+transaction\+\_\+is\+\_\+closed} (self)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a17f5d3a9cd149076afb2aa9ff015a857}{\+\_\+rollback\+\_\+can\+\_\+be\+\_\+called}} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a133bb0e66aa52eef72432b9900c11b2b}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a133bb0e66aa52eef72432b9900c11b2b} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1__TConsSubject}{\+\_\+\+TCons\+Subject}} {\bfseries \+\_\+get\+\_\+subject} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a895614efc4184864bf49396f08f652a9}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a895614efc4184864bf49396f08f652a9} 
+None {\bfseries \+\_\+trans\+\_\+ctx\+\_\+check} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1__TConsSubject}{\+\_\+\+TCons\+Subject}} subject)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a174cbc66632b8fe16c531b74d9e4fb4e}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a174cbc66632b8fe16c531b74d9e4fb4e} 
+{\bfseries \+\_\+outer\+\_\+trans\+\_\+ctx} = trans\+\_\+context
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_abd7f6523b85d3a5accd7190e34d7e532}\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_abd7f6523b85d3a5accd7190e34d7e532} 
+Optional {\bfseries \+\_\+trans\+\_\+subject} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1util_1_1__TConsSubject}{\+\_\+\+TCons\+Subject}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Apply Python context manager behavior to transaction objects.
+
+Performs validation to ensure the subject of the transaction is not
+used if the transaction were ended prematurely.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a17f5d3a9cd149076afb2aa9ff015a857}\index{sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}!\_rollback\_can\_be\_called@{\_rollback\_can\_be\_called}}
+\index{\_rollback\_can\_be\_called@{\_rollback\_can\_be\_called}!sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}}
+\doxysubsubsection{\texorpdfstring{\_rollback\_can\_be\_called()}{\_rollback\_can\_be\_called()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a17f5d3a9cd149076afb2aa9ff015a857} 
+ bool sqlalchemy.\+engine.\+util.\+Transactional\+Context.\+\_\+rollback\+\_\+can\+\_\+be\+\_\+called (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}indicates the object is in a state that is known to be acceptable
+for rollback() to be called.
+
+This does not necessarily mean rollback() will succeed or not raise
+an error, just that there is currently no state detected that indicates
+rollback() would fail or emit warnings.
+
+It also does not mean that there's a transaction in progress, as
+it is usually safe to call rollback() even if no transaction is
+present.
+
+.. versionadded:: 1.4.28
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Transaction_a51e959c0af8e267d2943b3c3f28ca676}{sqlalchemy.\+engine.\+base.\+Transaction}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1SessionTransaction_a14da3ba51451fe184ff5c9ee696b3e20}{sqlalchemy.\+orm.\+session.\+Session\+Transaction}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a9e79507d1d91355930c07862282ff8df}\index{sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}!close@{close}}
+\index{close@{close}!sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a9e79507d1d91355930c07862282ff8df} 
+ None sqlalchemy.\+engine.\+util.\+Transactional\+Context.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Transaction_a7a0c38603f57d247f2561ab82077edc9}{sqlalchemy.\+engine.\+base.\+Transaction}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a90a5dcbfd7bc9430be3eb497b86237fb}\index{sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}!commit@{commit}}
+\index{commit@{commit}!sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}}
+\doxysubsubsection{\texorpdfstring{commit()}{commit()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_a90a5dcbfd7bc9430be3eb497b86237fb} 
+ None sqlalchemy.\+engine.\+util.\+Transactional\+Context.\+commit (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Transaction_a66bcc62c68c2b82545775e42bfa9a327}{sqlalchemy.\+engine.\+base.\+Transaction}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_ad8b21314536ec04e49b111af38eb264b}\index{sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}!rollback@{rollback}}
+\index{rollback@{rollback}!sqlalchemy.engine.util.TransactionalContext@{sqlalchemy.engine.util.TransactionalContext}}
+\doxysubsubsection{\texorpdfstring{rollback()}{rollback()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1util_1_1TransactionalContext_ad8b21314536ec04e49b111af38eb264b} 
+ None sqlalchemy.\+engine.\+util.\+Transactional\+Context.\+rollback (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Transaction_ae9bca449cf237664721cea5764420dee}{sqlalchemy.\+engine.\+base.\+Transaction}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+util.\+py\end{DoxyCompactItemize}

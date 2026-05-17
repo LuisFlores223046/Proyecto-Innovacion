@@ -1,0 +1,70 @@
+\doxysection{cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA Class Reference}
+\hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA}{}\label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9f8d384bef9511580c9bd2c7eb63ec85}{get\+\_\+public}} (self, memoryview data)
+\item 
+tuple\+[\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPublicKey}{rsa.\+RSAPublic\+Key}}, memoryview]\+ \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ac32b2d59b68207f2e0345ca04ad2b543}{load\+\_\+public}} (self, memoryview data)
+\item 
+tuple\+[\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPrivateKey}{rsa.\+RSAPrivate\+Key}}, memoryview]\+ \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab8090f5ce5045a613b09f59136486b3f}{load\+\_\+private}} (self, memoryview data, pubfields)
+\item 
+None \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9e7527e91cf5c8444e120bee4597218a}{encode\+\_\+public}} (self, \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPublicKey}{rsa.\+RSAPublic\+Key}} public\+\_\+key, \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__FragList}{\+\_\+\+Frag\+List}} f\+\_\+pub)
+\item 
+None \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab5fc2357bb5dcfa0a84e364e379c823b}{encode\+\_\+private}} (self, \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPrivateKey}{rsa.\+RSAPrivate\+Key}} private\+\_\+key, \doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__FragList}{\+\_\+\+Frag\+List}} f\+\_\+priv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Format for RSA keys.
+
+Public:
+    mpint e, n
+Private:
+    mpint n, e, d, iqmp, p, q
+\end{DoxyVerb}
+ 
+
+\label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_doc-func-members}
+\Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab5fc2357bb5dcfa0a84e364e379c823b}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}!encode\_private@{encode\_private}}
+\index{encode\_private@{encode\_private}!cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection{\texorpdfstring{encode\_private()}{encode\_private()}}
+{\footnotesize\ttfamily \label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab5fc2357bb5dcfa0a84e364e379c823b} 
+ None cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA.\+encode\+\_\+private (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPrivateKey}{rsa.\+RSAPrivate\+Key}}}]{private\+\_\+key}{, }\item[{\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__FragList}{\+\_\+\+Frag\+List}}     }]{f\+\_\+priv}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write RSA private key\end{DoxyVerb}
+ \Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9e7527e91cf5c8444e120bee4597218a}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}!encode\_public@{encode\_public}}
+\index{encode\_public@{encode\_public}!cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection{\texorpdfstring{encode\_public()}{encode\_public()}}
+{\footnotesize\ttfamily \label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9e7527e91cf5c8444e120bee4597218a} 
+ None cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA.\+encode\+\_\+public (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPublicKey}{rsa.\+RSAPublic\+Key}}}]{public\+\_\+key}{, }\item[{\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__FragList}{\+\_\+\+Frag\+List}}     }]{f\+\_\+pub}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write RSA public key\end{DoxyVerb}
+ \Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9f8d384bef9511580c9bd2c7eb63ec85}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}!get\_public@{get\_public}}
+\index{get\_public@{get\_public}!cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection{\texorpdfstring{get\_public()}{get\_public()}}
+{\footnotesize\ttfamily \label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_a9f8d384bef9511580c9bd2c7eb63ec85} 
+cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA.\+get\+\_\+public (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{memoryview}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}RSA public fields\end{DoxyVerb}
+ \Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab8090f5ce5045a613b09f59136486b3f}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}!load\_private@{load\_private}}
+\index{load\_private@{load\_private}!cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection{\texorpdfstring{load\_private()}{load\_private()}}
+{\footnotesize\ttfamily \label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ab8090f5ce5045a613b09f59136486b3f} 
+ tuple\+[\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPrivateKey}{rsa.\+RSAPrivate\+Key}}, memoryview]\+ cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA.\+load\+\_\+private (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{memoryview}]{data}{, }\item[{}]{pubfields}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make RSA private key from data.\end{DoxyVerb}
+ \Hypertarget{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ac32b2d59b68207f2e0345ca04ad2b543}\index{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}!load\_public@{load\_public}}
+\index{load\_public@{load\_public}!cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA@{cryptography.hazmat.primitives.serialization.ssh.\_SSHFormatRSA}}
+\doxysubsubsection{\texorpdfstring{load\_public()}{load\_public()}}
+{\footnotesize\ttfamily \label{classcryptography_1_1hazmat_1_1primitives_1_1serialization_1_1ssh_1_1__SSHFormatRSA_ac32b2d59b68207f2e0345ca04ad2b543} 
+ tuple\+[\doxymbox{\hyperlink{classcryptography_1_1hazmat_1_1primitives_1_1asymmetric_1_1rsa_1_1RSAPublicKey}{rsa.\+RSAPublic\+Key}}, memoryview]\+ cryptography.\+hazmat.\+primitives.\+serialization.\+ssh.\+\_\+\+SSHFormat\+RSA.\+load\+\_\+public (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{memoryview     }]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make RSA public key from data.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+cryptography/\+hazmat/\+primitives/\+serialization/\+ssh.\+py\end{DoxyCompactItemize}

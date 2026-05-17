@@ -1,0 +1,201 @@
+\doxysection{frontend/\+node\+\_\+modules/\+is-\/number Directory Reference}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70}{}\label{dir_217ed168278df948b6c1063cff8cde70}\index{frontend/node\_modules/is-\/number Directory Reference@{frontend/node\_modules/is-\/number Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1470}{}\doxysubsection{\texorpdfstring{is-\/number \+[!\+[NPM version]\+(\href{https://img.shields.io/npm/v/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+is-\/number.\+svg?style=flat}})]\+(\href{https://www.npmjs.com/package/is-number}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+is-\/number}}) \+[!\+[NPM monthly downloads]\+(\href{https://img.shields.io/npm/dm/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dm/\+is-\/number.\+svg?style=flat}})]\+(\href{https://npmjs.org/package/is-number}{\texttt{https:\+/\+/\+npmjs.\+org/\+package/\+is-\/number}}) \+[!\+[NPM total downloads]\+(\href{https://img.shields.io/npm/dt/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dt/\+is-\/number.\+svg?style=flat}})]\+(\href{https://npmjs.org/package/is-number}{\texttt{https:\+/\+/\+npmjs.\+org/\+package/\+is-\/number}}) \+[!\+[Linux Build Status]\+(\href{https://img.shields.io/travis/jonschlinkert/is-number.svg?style=flat&label=Travis}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+travis/\+jonschlinkert/\+is-\/number.\+svg?style=flat\&label=\+Travis}})]\+(\href{https://travis-ci.org/jonschlinkert/is-number}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+jonschlinkert/\+is-\/number}})}{is-\/number \+[!\+[NPM version]\+(\href{https://img.shields.io/npm/v/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+is-\/number.\+svg?style=flat}})]\+(\href{https://www.npmjs.com/package/is-number}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+is-\/number}}) \+[!\+[NPM monthly downloads]\+(\href{https://img.shields.io/npm/dm/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dm/\+is-\/number.\+svg?style=flat}})]\+(\href{https://npmjs.org/package/is-number}{\texttt{https:\+/\+/\+npmjs.\+org/\+package/\+is-\/number}}) \+[!\+[NPM total downloads]\+(\href{https://img.shields.io/npm/dt/is-number.svg?style=flat}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+dt/\+is-\/number.\+svg?style=flat}})]\+(\href{https://npmjs.org/package/is-number}{\texttt{https:\+/\+/\+npmjs.\+org/\+package/\+is-\/number}}) \+[!\+[Linux Build Status]\+(\href{https://img.shields.io/travis/jonschlinkert/is-number.svg?style=flat&label=Travis}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+travis/\+jonschlinkert/\+is-\/number.\+svg?style=flat\&label=\+Travis}})]\+(\href{https://travis-ci.org/jonschlinkert/is-number}{\texttt{https:\+/\+/\+travis-\/ci.\+org/\+jonschlinkert/\+is-\/number}})}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1470}
+\begin{quote}
+Returns true if the value is a finite number. \end{quote}
+
+
+Please consider following this project\textquotesingle{}s author, \href{https://github.com/jonschlinkert}{\texttt{Jon Schlinkert}}, and consider starring the project to show your :\+heart:\+ and support.\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1471}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1471}
+Install with \href{https://www.npmjs.com/}{\texttt{npm}}:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/-\/save\ is-\/number}
+
+\end{DoxyCode}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1472}{}\doxysubsection{\texorpdfstring{Why is this needed?}{Why is this needed?}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1472}
+In Java\+Script, it\textquotesingle{}s not always as straightforward as it should be to reliably check if a value is a number. It\textquotesingle{}s common for devs to use {\ttfamily +}, {\ttfamily -\/}, or {\ttfamily Number()} to cast a string value to a number (for example, when values are returned from user input, regex matches, parsers, etc). But there are many non-\/intuitive edge cases that yield unexpected results:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{console.log(+[]);\ //=>\ 0}
+\DoxyCodeLine{console.log(+'');\ //=>\ 0}
+\DoxyCodeLine{console.log(+'\ \ \ ');\ //=>\ 0}
+\DoxyCodeLine{console.log(typeof\ NaN);\ //=>\ 'number'}
+
+\end{DoxyCode}
+
+
+This library offers a performant way to smooth out edge cases like these.\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1473}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1473}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ isNumber\ =\ require('is-\/number');}
+
+\end{DoxyCode}
+
+
+See the \href{./test.js}{\texttt{tests}} for more examples.\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1474}{}\doxysubsubsection{\texorpdfstring{true}{true}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1474}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{isNumber(5e3);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(0xff);\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(-\/1.1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(1.1);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(10);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(10.10);\ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(100);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('-\/1.1');\ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('0');\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('012');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('0xff');\ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('1');\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('1.1');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('10');\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('10.10');\ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('100');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber('5e3');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ true}
+\DoxyCodeLine{isNumber(parseInt('012'));\ \ \ //\ true}
+\DoxyCodeLine{isNumber(parseFloat('012'));\ //\ true}
+
+\end{DoxyCode}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1475}{}\doxysubsubsection{\texorpdfstring{False}{False}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1475}
+Everything else is false, as you would expect:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{isNumber(Infinity);\ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber(NaN);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber(null);\ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber(undefined);\ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber('');\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber('\ \ \ ');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber('foo');\ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber([1]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber([]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+\DoxyCodeLine{isNumber(function\ ()\ \{\});\ \ \ \ //\ false}
+\DoxyCodeLine{isNumber(\{\});\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ false}
+
+\end{DoxyCode}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1476}{}\doxysubsection{\texorpdfstring{Release history}{Release history}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1476}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1477}{}\doxysubsubsection{\texorpdfstring{7.\+0.\+0}{7.\+0.\+0}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1477}
+
+\begin{DoxyItemize}
+\item Refactor. Now uses {\ttfamily .is\+Finite} if it exists.
+\item Performance is about the same as v6.\+0 when the value is a string or number. But it\textquotesingle{}s now 3x-\/4x faster when the value is not a string or number.
+\end{DoxyItemize}\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1478}{}\doxysubsubsection{\texorpdfstring{6.\+0.\+0}{6.\+0.\+0}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1478}
+
+\begin{DoxyItemize}
+\item Optimizations, thanks to @benaadams.
+\end{DoxyItemize}\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1479}{}\doxysubsubsection{\texorpdfstring{5.\+0.\+0}{5.\+0.\+0}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1479}
+{\bfseries{Breaking changes}}
+
+
+\begin{DoxyItemize}
+\item removed support for {\ttfamily instanceof Number} and {\ttfamily instanceof String}
+\end{DoxyItemize}\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1480}{}\doxysubsection{\texorpdfstring{Benchmarks}{Benchmarks}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1480}
+As with all benchmarks, take these with a grain of salt. See the \href{./benchmark/index.js}{\texttt{benchmarks}} for more detail.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ all}
+\DoxyCodeLine{v7.0\ x\ 413,222\ ops/sec\ ±2.02\%\ (86\ runs\ sampled)}
+\DoxyCodeLine{v6.0\ x\ 111,061\ ops/sec\ ±1.29\%\ (85\ runs\ sampled)}
+\DoxyCodeLine{parseFloat\ x\ 317,596\ ops/sec\ ±1.36\%\ (86\ runs\ sampled)}
+\DoxyCodeLine{fastest\ is\ 'v7.0'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ string}
+\DoxyCodeLine{v7.0\ x\ 3,054,496\ ops/sec\ ±1.05\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{v6.0\ x\ 2,957,781\ ops/sec\ ±0.98\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{parseFloat\ x\ 3,071,060\ ops/sec\ ±1.13\%\ (88\ runs\ sampled)}
+\DoxyCodeLine{fastest\ is\ 'parseFloat,v7.0'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ number}
+\DoxyCodeLine{v7.0\ x\ 3,146,895\ ops/sec\ ±0.89\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{v6.0\ x\ 3,214,038\ ops/sec\ ±1.07\%\ (89\ runs\ sampled)}
+\DoxyCodeLine{parseFloat\ x\ 3,077,588\ ops/sec\ ±1.07\%\ (87\ runs\ sampled)}
+\DoxyCodeLine{fastest\ is\ 'v6.0'}
+
+\end{DoxyCode}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1481}{}\doxysubsection{\texorpdfstring{About}{About}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1481}
+
+
+{\bfseries{{\bfseries{Contributing}}}}\begin{adjustwidth}{1em}{0em}
+
+
+Pull requests and stars are always welcome. For bugs and feature requests, \href{../../issues/new}{\texttt{please create an issue}}.
+
+\end{adjustwidth}
+
+
+
+
+{\bfseries{{\bfseries{Running Tests}}}}\begin{adjustwidth}{1em}{0em}
+
+
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ \&\&\ npm\ test}
+
+\end{DoxyCode}
+
+
+\end{adjustwidth}
+
+
+
+
+{\bfseries{{\bfseries{Building docs}}}}\begin{adjustwidth}{1em}{0em}
+
+
+{\itshape (This project\textquotesingle{}s readme.\+md is generated by \href{https://github.com/verbose/verb-generate-readme}{\texttt{verb}}, please don\textquotesingle{}t edit the readme directly. Any changes to the readme must be made in the .verb.md readme template.)}
+
+To generate the readme, run the following command:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ -\/g\ verbose/verb\#dev\ verb-\/generate-\/readme\ \&\&\ verb}
+
+\end{DoxyCode}
+
+
+\end{adjustwidth}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1482}{}\doxysubsubsection{\texorpdfstring{Related projects}{Related projects}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1482}
+You might also be interested in these projects:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://www.npmjs.com/package/is-plain-object}{\texttt{is-\/plain-\/object}}:\+ Returns true if an object was created by the {\ttfamily Object} constructor. \texorpdfstring{$\vert$}{|} \href{https://github.com/jonschlinkert/is-plain-object}{\texttt{homepage}}
+\item \href{https://www.npmjs.com/package/is-primitive}{\texttt{is-\/primitive}}:\+ Returns {\ttfamily true} if the value is a primitive. \texorpdfstring{$\vert$}{|} \href{https://github.com/jonschlinkert/is-primitive}{\texttt{homepage}}
+\item \href{https://www.npmjs.com/package/isobject}{\texttt{isobject}}:\+ Returns true if the value is an object and not an array or null. \texorpdfstring{$\vert$}{|} \href{https://github.com/jonschlinkert/isobject}{\texttt{homepage}}
+\item \href{https://www.npmjs.com/package/kind-of}{\texttt{kind-\/of}}:\+ Get the native type of a value. \texorpdfstring{$\vert$}{|} \href{https://github.com/jonschlinkert/kind-of}{\texttt{homepage}}
+\end{DoxyItemize}\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1483}{}\doxysubsubsection{\texorpdfstring{Contributors}{Contributors}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1483}
+
+\begin{DoxyTable}{2}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}{\bfseries{Commits}}  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}{\bfseries{Contributor}}  \\
+49  &\href{https://github.com/jonschlinkert}{\texttt{jonschlinkert}}  \\
+5  &\href{https://github.com/charlike-old}{\texttt{charlike-\/old}}  \\
+1  &\href{https://github.com/benaadams}{\texttt{benaadams}}  \\
+1  &\href{https://github.com/realityking}{\texttt{realityking}}  \\
+\end{DoxyTable}
+\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1484}{}\doxysubsubsection{\texorpdfstring{Author}{Author}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1484}
+{\bfseries{Jon Schlinkert}}
+
+
+\begin{DoxyItemize}
+\item \href{https://linkedin.com/in/jonschlinkert}{\texttt{Linked\+In Profile}}
+\item \href{https://github.com/jonschlinkert}{\texttt{Git\+Hub Profile}}
+\item \href{https://twitter.com/jonschlinkert}{\texttt{Twitter Profile}}
+\end{DoxyItemize}\hypertarget{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1485}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_217ed168278df948b6c1063cff8cde70_autotoc_md1485}
+Copyright © 2018, \href{https://github.com/jonschlinkert}{\texttt{Jon Schlinkert}}. Released under the \+[MIT License]\+(LICENSE).
+
+\DoxyHorRuler{0}
+
+
+{\itshape This file was generated by \href{https://github.com/verbose/verb-generate-readme}{\texttt{verb-\/generate-\/readme}}, v0.\+6.\+0, on June 15, 2018.} 

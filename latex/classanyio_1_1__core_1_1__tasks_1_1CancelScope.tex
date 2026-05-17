@@ -1,0 +1,100 @@
+\doxysection{anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope Class Reference}
+\hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope}{}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a55b2c2e36a2a41a01233471a425929fc}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a55b2c2e36a2a41a01233471a425929fc} 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope}{Cancel\+Scope}} {\bfseries \+\_\+\+\_\+new\+\_\+\+\_\+} (cls, \texorpdfstring{$\ast$}{*}, float deadline=math.\+inf, bool shield=False)
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a93ae679df189067691549dbc84ac7b59}{cancel}} (self, str\texorpdfstring{$\vert$}{|}None reason=None)
+\item 
+float \doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope_aa545f8886e54238a143870d7878fae15}{deadline}} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a14d41ebdb11e3dfdc7adb845321594f7}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a14d41ebdb11e3dfdc7adb845321594f7} 
+None {\bfseries deadline} (self, float value)
+\item 
+bool \doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a4db6c6c5c0c8a367f061db338152d688}{cancel\+\_\+called}} (self)
+\item 
+bool \doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope_af055ba83d8f509c63e718fdd512e9e76}{cancelled\+\_\+caught}} (self)
+\item 
+bool \doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a8841118ceac67bdfa4ade6c51aaa2d25}{shield}} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_aafaaa39d03bbc72b4d0c53c95bb61067}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_aafaaa39d03bbc72b4d0c53c95bb61067} 
+None {\bfseries shield} (self, bool value)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a6bd6ceaf70b7ee26bbbcdb517fd615be}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a6bd6ceaf70b7ee26bbbcdb517fd615be} 
+\doxymbox{\hyperlink{classanyio_1_1__core_1_1__tasks_1_1CancelScope}{Cancel\+Scope}} {\bfseries \+\_\+\+\_\+enter\+\_\+\+\_\+} (self)
+\item 
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a8f5af86f835ab04ca06527db90398f76}\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a8f5af86f835ab04ca06527db90398f76} 
+bool {\bfseries \+\_\+\+\_\+exit\+\_\+\+\_\+} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Wraps a unit of work that can be made separately cancellable.
+
+:param deadline: The time (clock value) when this scope is cancelled automatically
+:param shield: ``True`` to shield the cancel scope from external cancellation
+:raises NoEventLoopError: if no supported asynchronous event loop is running in the
+    current thread
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_doc-func-members}
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a93ae679df189067691549dbc84ac7b59}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}!cancel@{cancel}}
+\index{cancel@{cancel}!anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a93ae679df189067691549dbc84ac7b59} 
+ None anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope.\+cancel (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str \texorpdfstring{$\vert$}{|} None }]{reason}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Cancel this scope immediately.
+
+:param reason: a message describing the reason for the cancellation
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a4db6c6c5c0c8a367f061db338152d688}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}!cancel\_called@{cancel\_called}}
+\index{cancel\_called@{cancel\_called}!anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection{\texorpdfstring{cancel\_called()}{cancel\_called()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a4db6c6c5c0c8a367f061db338152d688} 
+ bool anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope.\+cancel\+\_\+called (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}``True`` if :meth:`cancel` has been called.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_af055ba83d8f509c63e718fdd512e9e76}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}!cancelled\_caught@{cancelled\_caught}}
+\index{cancelled\_caught@{cancelled\_caught}!anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection{\texorpdfstring{cancelled\_caught()}{cancelled\_caught()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_af055ba83d8f509c63e718fdd512e9e76} 
+ bool anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope.\+cancelled\+\_\+caught (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}``True`` if this scope suppressed a cancellation exception it itself raised.
+
+This is typically used to check if any work was interrupted, or to see if the
+scope was cancelled due to its deadline being reached. The value will, however,
+only be ``True`` if the cancellation was triggered by the scope itself (and not
+an outer scope).
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_aa545f8886e54238a143870d7878fae15}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}!deadline@{deadline}}
+\index{deadline@{deadline}!anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection{\texorpdfstring{deadline()}{deadline()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_aa545f8886e54238a143870d7878fae15} 
+ float anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope.\+deadline (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}The time (clock value) when this scope is cancelled automatically.
+
+Will be ``float('inf')`` if no timeout has been set.
+\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a8841118ceac67bdfa4ade6c51aaa2d25}\index{anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}!shield@{shield}}
+\index{shield@{shield}!anyio.\_core.\_tasks.CancelScope@{anyio.\_core.\_tasks.CancelScope}}
+\doxysubsubsection{\texorpdfstring{shield()}{shield()}}
+{\footnotesize\ttfamily \label{classanyio_1_1__core_1_1__tasks_1_1CancelScope_a8841118ceac67bdfa4ade6c51aaa2d25} 
+ bool anyio.\+\_\+core.\+\_\+tasks.\+Cancel\+Scope.\+shield (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}``True`` if this scope is shielded from external cancellation.
+
+While a scope is shielded, it will not receive cancellations from outside.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+\+\_\+core/\+\+\_\+tasks.\+py\end{DoxyCompactItemize}

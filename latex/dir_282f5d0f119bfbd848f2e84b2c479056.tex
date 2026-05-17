@@ -1,0 +1,242 @@
+\doxysection{frontend/\+node\+\_\+modules/\+cookie Directory Reference}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056}{}\label{dir_282f5d0f119bfbd848f2e84b2c479056}\index{frontend/node\_modules/cookie Directory Reference@{frontend/node\_modules/cookie Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_494ec1b440b30e89f358cd6b715d8777}{dist}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md774}{}\doxysubsection{\texorpdfstring{cookie}{cookie}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md774}
+\href{https://npmjs.org/package/cookie}{\texttt{}} \href{https://npmjs.org/package/cookie}{\texttt{}} \href{https://github.com/jshttp/cookie/actions/workflows/ci.yml?query=branch\%3Amaster}{\texttt{}} \href{https://app.codecov.io/gh/jshttp/cookie}{\texttt{}}
+
+Basic HTTP cookie parser and serializer for HTTP servers.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md775}{}\doxysubsection{\texorpdfstring{Installation}{Installation}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md775}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\$\ npm\ install\ cookie}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md776}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md776}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ cookie\ =\ require("{}cookie"{});}
+\DoxyCodeLine{//\ import\ *\ as\ cookie\ from\ 'cookie';}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md777}{}\doxysubsubsection{\texorpdfstring{cookie.\+parse\+Cookie(str, options)}{cookie.\+parse\+Cookie(str, options)}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md777}
+Parse an HTTP {\ttfamily Cookie} header string and return an objectobject of all cookie name-\/value pairs. The {\ttfamily str} argument is the string representing a {\ttfamily Cookie} header value and {\ttfamily options} is an optional object containing additional parsing options.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ cookieObject\ =\ cookie.parseCookie("{}foo=bar;\ equation=E\%3Dmc\%5E2"{});}
+\DoxyCodeLine{//\ \{\ foo:\ 'bar',\ equation:\ 'E=mc\string^2'\ \}}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md778}{}\doxysubsubsubsection{\texorpdfstring{Options}{Options}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md778}
+
+\begin{DoxyItemize}
+\item {\ttfamily decode} Specifies the function to decode a \href{https://datatracker.ietf.org/doc/html/rfc6265\#section-4.1.1}{\texttt{cookie-\/value}}. Defaults to \`{}decode\+URIComponent\`{}{\ttfamily decode\+URIComponent}
+\end{DoxyItemize}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md779}{}\doxysubsubsection{\texorpdfstring{cookie.\+stringify\+Cookie(cookie\+Obj, options)}{cookie.\+stringify\+Cookie(cookie\+Obj, options)}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md779}
+Stringifies a cookie objectcookie object into an HTTP {\ttfamily Cookie} header.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ cookieHeader\ =\ cookie.stringify(\{\ a:\ "{}foo"{},\ b:\ "{}bar"{}\ \});}
+\DoxyCodeLine{//\ a=foo;\ b=bar}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md780}{}\doxysubsubsubsection{\texorpdfstring{Options}{Options}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md780}
+
+\begin{DoxyItemize}
+\item {\ttfamily encode} Specifies the function to encode a \href{https://datatracker.ietf.org/doc/html/rfc6265\#section-4.1.1}{\texttt{cookie-\/value}}. Defaults to \`{}encode\+URIComponent\`{}{\ttfamily encode\+URIComponent}
+\end{DoxyItemize}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md781}{}\doxysubsubsection{\texorpdfstring{cookie.\+parse\+Set\+Cookie(str, options)}{cookie.\+parse\+Set\+Cookie(str, options)}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md781}
+Parse an HTTP {\ttfamily Set-\/\+Cookie} header string and return an objectobject of the options.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ setCookieObject\ =\ cookie.parseSetCookie("{}foo=bar;\ httpOnly"{});}
+\DoxyCodeLine{//\ \{\ name:\ "{}foo"{},\ value:\ "{}bar"{},\ httpOnly:\ true\ \}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Note:\+}} Cookie follows the specification and ignores invalid attributes, but does not attempt to normalize or modify any attributes as a browser might. For example:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cookie.parseSetCookie(}
+\DoxyCodeLine{\ \ "{}session=abc;\ max-\/age=1.5;\ expires=invalid;\ custom=value;\ domain=example.com"{},}
+\DoxyCodeLine{);}
+\DoxyCodeLine{//\ \{\ name:\ "{}session"{},\ value:\ "{}abc"{},\ domain:\ "{}example.com"{}\ \}}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md782}{}\doxysubsubsubsection{\texorpdfstring{Options}{Options}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md782}
+
+\begin{DoxyItemize}
+\item {\ttfamily decode} Specifies the function to decode a \href{https://datatracker.ietf.org/doc/html/rfc6265\#section-4.1.1}{\texttt{cookie-\/value}}. Defaults to \`{}decode\+URIComponent\`{}{\ttfamily decode\+URIComponent}
+\end{DoxyItemize}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md783}{}\doxysubsubsection{\texorpdfstring{cookie.\+stringify\+Set\+Cookie(set\+Cookie\+Obj, options)}{cookie.\+stringify\+Set\+Cookie(set\+Cookie\+Obj, options)}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md783}
+Stringifies a \`{}\+Set-\/\+Cookie\`{} object{\ttfamily Set-\/\+Cookie} object into a {\ttfamily Set-\/\+Cookie} header string.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ setCookieHeader\ =\ cookie.stringifySetCookie(\{}
+\DoxyCodeLine{\ \ name:\ "{}foo"{},}
+\DoxyCodeLine{\ \ value:\ "{}bar"{},}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{//\ foo=bar}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md784}{}\doxysubsubsubsection{\texorpdfstring{Options}{Options}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md784}
+
+\begin{DoxyItemize}
+\item {\ttfamily encode} Specifies the function to encode a \href{https://datatracker.ietf.org/doc/html/rfc6265\#section-4.1.1}{\texttt{cookie-\/value}}. Defaults to \`{}encode\+URIComponent\`{}{\ttfamily encode\+URIComponent}
+\end{DoxyItemize}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md785}{}\doxysubsection{\texorpdfstring{Cookie object}{Cookie object}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md785}
+The cookie object represents all cookie name-\/value pairs in a {\ttfamily Cookie} header, where {\ttfamily \{ name:\+ "{}value"{} \}} is used for {\ttfamily name=value}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md786}{}\doxysubsection{\texorpdfstring{{\ttfamily Set-\/\+Cookie} object}{{\ttfamily Set-\/\+Cookie} object}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md786}
+The {\ttfamily Set-\/\+Cookie} object represents all the options in a {\ttfamily Set-\/\+Cookie} header.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md787}{}\doxysubsubsection{\texorpdfstring{name}{name}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md787}
+The name of the cookie.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md788}{}\doxysubsubsection{\texorpdfstring{value}{value}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md788}
+The value of a cookie after it has been decodeddecoded.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md789}{}\doxysubsubsection{\texorpdfstring{max\+Age}{max\+Age}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md789}
+Specifies the {\ttfamily number} (in seconds) to be the value for the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.2}{\texttt{{\ttfamily Max-\/\+Age} {\ttfamily Set-\/\+Cookie} attribute}}.
+
+The \href{https://tools.ietf.org/html/rfc6265\#section-5.3}{\texttt{cookie storage model specification}} states that if both {\ttfamily expires} and {\ttfamily max\+Age} are set, then {\ttfamily max\+Age} takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md790}{}\doxysubsubsection{\texorpdfstring{expires}{expires}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md790}
+Specifies the {\ttfamily Date} object to be the value for the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.1}{\texttt{{\ttfamily Expires} {\ttfamily Set-\/\+Cookie} attribute}}. When no expiration is set, clients consider this a "{}non-\/persistent cookie"{} and delete it when the current session is over.
+
+The \href{https://tools.ietf.org/html/rfc6265\#section-5.3}{\texttt{cookie storage model specification}} states that if both {\ttfamily expires} and {\ttfamily max\+Age} are set, then {\ttfamily max\+Age} takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md791}{}\doxysubsubsection{\texorpdfstring{domain}{domain}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md791}
+Specifies the value for the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.3}{\texttt{{\ttfamily Domain} {\ttfamily Set-\/\+Cookie} attribute}}. When no domain is set, clients consider the cookie to apply to the current domain only.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md792}{}\doxysubsubsection{\texorpdfstring{path}{path}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md792}
+Specifies the value for the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.4}{\texttt{{\ttfamily Path} {\ttfamily Set-\/\+Cookie} attribute}}. When no path is set, the path is considered the \href{https://tools.ietf.org/html/rfc6265\#section-5.1.4}{\texttt{"{}default path"{}}}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md793}{}\doxysubsubsection{\texorpdfstring{http\+Only}{http\+Only}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md793}
+Enables the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.6}{\texttt{{\ttfamily Http\+Only} {\ttfamily Set-\/\+Cookie} attribute}}. When enabled, clients will not allow client-\/side Java\+Script to see the cookie in {\ttfamily document.\+cookie}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md794}{}\doxysubsubsection{\texorpdfstring{secure}{secure}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md794}
+Enables the \href{https://tools.ietf.org/html/rfc6265\#section-5.2.5}{\texttt{{\ttfamily Secure} {\ttfamily Set-\/\+Cookie} attribute}}. When enabled, clients will only send the cookie back if the browser has an HTTPS connection.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md795}{}\doxysubsubsection{\texorpdfstring{partitioned}{partitioned}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md795}
+Enables the \href{https://tools.ietf.org/html/draft-cutler-httpbis-partitioned-cookies/}{\texttt{{\ttfamily Partitioned} {\ttfamily Set-\/\+Cookie} attribute}}. When enabled, clients will only send the cookie back when the current domain {\itshape and} top-\/level domain matches.
+
+This is an attribute that has not yet been fully standardized, and may change in the future. This also means clients may ignore this attribute until they understand it. More information about can be found in \href{https://github.com/privacycg/CHIPS}{\texttt{the proposal}}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md796}{}\doxysubsubsection{\texorpdfstring{priority}{priority}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md796}
+Specifies the value for the \href{https://tools.ietf.org/html/draft-west-cookie-priority-00\#section-4.1}{\texttt{{\ttfamily Priority} {\ttfamily Set-\/\+Cookie} attribute}}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \textquotesingle{}low\textquotesingle{}} will set the {\ttfamily Priority} attribute to {\ttfamily Low}.
+\item {\ttfamily \textquotesingle{}medium\textquotesingle{}} will set the {\ttfamily Priority} attribute to {\ttfamily Medium}, the default priority when not set.
+\item {\ttfamily \textquotesingle{}high\textquotesingle{}} will set the {\ttfamily Priority} attribute to {\ttfamily High}.
+\end{DoxyItemize}
+
+More information about priority levels can be found in \href{https://tools.ietf.org/html/draft-west-cookie-priority-00\#section-4.1}{\texttt{the specification}}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md797}{}\doxysubsubsection{\texorpdfstring{same\+Site}{same\+Site}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md797}
+Specifies the value for the \href{https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-09\#section-5.4.7}{\texttt{{\ttfamily Same\+Site} {\ttfamily Set-\/\+Cookie} attribute}}.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily true} will set the {\ttfamily Same\+Site} attribute to {\ttfamily Strict} for strict same site enforcement.
+\item {\ttfamily \textquotesingle{}lax\textquotesingle{}} will set the {\ttfamily Same\+Site} attribute to {\ttfamily Lax} for lax same site enforcement.
+\item {\ttfamily \textquotesingle{}none\textquotesingle{}} will set the {\ttfamily Same\+Site} attribute to {\ttfamily None} for an explicit cross-\/site cookie.
+\item {\ttfamily \textquotesingle{}strict\textquotesingle{}} will set the {\ttfamily Same\+Site} attribute to {\ttfamily Strict} for strict same site enforcement.
+\end{DoxyItemize}
+
+More information about enforcement levels can be found in \href{https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-09\#section-5.4.7}{\texttt{the specification}}.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md798}{}\doxysubsection{\texorpdfstring{Encode and decode}{Encode and decode}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md798}
+Cookie accepts {\ttfamily encode} or {\ttfamily decode} options for processing a \href{https://datatracker.ietf.org/doc/html/rfc6265\#section-4.1.1}{\texttt{cookie-\/value}}. Since the value of a cookie has a limited character set (and must be a simple string), these functions are used to transform values into strings suitable for a cookies value.
+
+The default {\ttfamily encode} function is the global {\ttfamily encode\+URIComponent}.
+
+The default {\ttfamily decode} function is the global {\ttfamily decode\+URIComponent}, wrapped in a {\ttfamily try..catch}. If an error is thrown it will return the cookie\textquotesingle{}s original value. If you provide your own encode/\+decode scheme you must ensure errors are appropriately handled.\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md799}{}\doxysubsection{\texorpdfstring{Example}{Example}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md799}
+The following example uses this module in conjunction with the Node.\+js core HTTP server to prompt a user for their name and display it back on future visits.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ cookie\ =\ require("{}cookie"{});}
+\DoxyCodeLine{var\ escapeHtml\ =\ require("{}escape-\/html"{});}
+\DoxyCodeLine{var\ http\ =\ require("{}http"{});}
+\DoxyCodeLine{var\ url\ =\ require("{}url"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{function\ onRequest(req,\ res)\ \{}
+\DoxyCodeLine{\ \ //\ Parse\ the\ query\ string}
+\DoxyCodeLine{\ \ var\ query\ =\ url.parse(req.url,\ true,\ true).query;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (query\ \&\&\ query.name)\ \{}
+\DoxyCodeLine{\ \ \ \ //\ Set\ a\ new\ cookie\ with\ the\ name}
+\DoxyCodeLine{\ \ \ \ res.setHeader(}
+\DoxyCodeLine{\ \ \ \ \ \ "{}Set-\/Cookie"{},}
+\DoxyCodeLine{\ \ \ \ \ \ cookie.stringifySetCookie(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}name"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ value:\ String(query.name),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ httpOnly:\ true,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ maxAge:\ 60\ *\ 60\ *\ 24\ *\ 7,\ //\ 1\ week}
+\DoxyCodeLine{\ \ \ \ \ \ \}),}
+\DoxyCodeLine{\ \ \ \ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Redirect\ back\ after\ setting\ cookie}
+\DoxyCodeLine{\ \ \ \ res.statusCode\ =\ 302;}
+\DoxyCodeLine{\ \ \ \ res.setHeader("{}Location"{},\ req.headers.referer\ ||\ "{}/"{});}
+\DoxyCodeLine{\ \ \ \ res.end();}
+\DoxyCodeLine{\ \ \ \ return;}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Parse\ the\ cookies\ on\ the\ request}
+\DoxyCodeLine{\ \ var\ cookies\ =\ cookie.parseCookie(req.headers.cookie\ ||\ "{}"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ //\ Get\ the\ visitor\ name\ set\ in\ the\ cookie}
+\DoxyCodeLine{\ \ var\ name\ =\ cookies.name;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ res.setHeader("{}Content-\/Type"{},\ "{}text/html;\ charset=UTF-\/8"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ if\ (name)\ \{}
+\DoxyCodeLine{\ \ \ \ res.write("{}<p>Welcome\ back,\ <b>"{}\ +\ escapeHtml(name)\ +\ "{}</b>!</p>"{});}
+\DoxyCodeLine{\ \ \}\ else\ \{}
+\DoxyCodeLine{\ \ \ \ res.write("{}<p>Hello,\ new\ visitor!</p>"{});}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ res.write('<form\ method="{}GET"{}>');}
+\DoxyCodeLine{\ \ res.write(}
+\DoxyCodeLine{\ \ \ \ '<input\ placeholder="{}enter\ your\ name"{}\ name="{}name"{}>\ <input\ type="{}submit"{}\ value="{}Set\ Name"{}>',}
+\DoxyCodeLine{\ \ );}
+\DoxyCodeLine{\ \ res.end("{}</form>"{});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{http.createServer(onRequest).listen(3000);}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md800}{}\doxysubsection{\texorpdfstring{Testing}{Testing}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md800}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ test}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md801}{}\doxysubsection{\texorpdfstring{Benchmark}{Benchmark}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md801}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ run\ bench}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hz\ \ \ \ \ min\ \ \ \ \ max\ \ \ \ mean\ \ \ \ \ p75\ \ \ \ \ p99\ \ \ \ p995\ \ \ \ p999\ \ \ \ \ rme\ \ samples}
+\DoxyCodeLine{·\ simple\ \ \ \ \ \ \ 8,566,313.09\ \ 0.0000\ \ 0.3694\ \ 0.0001\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.64\%\ \ 4283157\ \ \ fastest}
+\DoxyCodeLine{·\ decode\ \ \ \ \ \ \ 3,834,348.85\ \ 0.0001\ \ 0.2465\ \ 0.0003\ \ 0.0003\ \ 0.0003\ \ 0.0004\ \ 0.0006\ \ ±0.38\%\ \ 1917175}
+\DoxyCodeLine{·\ unquote\ \ \ \ \ \ 8,315,355.96\ \ 0.0000\ \ 0.3824\ \ 0.0001\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.72\%\ \ 4157880}
+\DoxyCodeLine{·\ duplicates\ \ \ 1,944,765.97\ \ 0.0004\ \ 0.2959\ \ 0.0005\ \ 0.0005\ \ 0.0006\ \ 0.0006\ \ 0.0008\ \ ±0.24\%\ \ \ 972384}
+\DoxyCodeLine{·\ 10\ cookies\ \ \ \ \ 675,345.67\ \ 0.0012\ \ 0.4328\ \ 0.0015\ \ 0.0015\ \ 0.0019\ \ 0.0020\ \ 0.0058\ \ ±0.75\%\ \ \ 337673}
+\DoxyCodeLine{·\ 100\ cookies\ \ \ \ \ 61,040.71\ \ 0.0152\ \ 0.4092\ \ 0.0164\ \ 0.0160\ \ 0.0196\ \ 0.0228\ \ 0.2260\ \ ±0.71\%\ \ \ \ 30521\ \ \ slowest}
+\DoxyCodeLine{✓\ parse\ top-\/sites\ (15)\ 22945ms}
+\DoxyCodeLine{\ \ name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hz\ \ \ \ \ min\ \ \ \ \ max\ \ \ \ mean\ \ \ \ \ p75\ \ \ \ \ p99\ \ \ \ p995\ \ \ \ p999\ \ \ \ \ rme\ \ \ samples}
+\DoxyCodeLine{·\ parse\ accounts.google.com\ \ \ 7,164,349.17\ \ 0.0000\ \ 0.0929\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.09\%\ \ \ 3582184}
+\DoxyCodeLine{·\ parse\ apple.com\ \ \ \ \ \ \ \ \ \ \ \ \ 7,817,686.84\ \ 0.0000\ \ 0.6048\ \ 0.0001\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±1.05\%\ \ \ 3908844}
+\DoxyCodeLine{·\ parse\ cloudflare.com\ \ \ \ \ \ \ \ 7,189,841.70\ \ 0.0000\ \ 0.0390\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.06\%\ \ \ 3594921}
+\DoxyCodeLine{·\ parse\ docs.google.com\ \ \ \ \ \ \ 7,051,765.61\ \ 0.0000\ \ 0.0296\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.06\%\ \ \ 3525883}
+\DoxyCodeLine{·\ parse\ drive.google.com\ \ \ \ \ \ 7,349,104.77\ \ 0.0000\ \ 0.0368\ \ 0.0001\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.05\%\ \ \ 3674553}
+\DoxyCodeLine{·\ parse\ en.wikipedia.org\ \ \ \ \ \ 1,929,909.49\ \ 0.0004\ \ 0.3598\ \ 0.0005\ \ 0.0005\ \ 0.0007\ \ 0.0007\ \ 0.0012\ \ ±0.16\%\ \ \ \ 964955}
+\DoxyCodeLine{·\ parse\ linkedin.com\ \ \ \ \ \ \ \ \ \ 2,225,658.01\ \ 0.0003\ \ 0.0595\ \ 0.0004\ \ 0.0005\ \ 0.0005\ \ 0.0005\ \ 0.0006\ \ ±0.06\%\ \ \ 1112830}
+\DoxyCodeLine{·\ parse\ maps.google.com\ \ \ \ \ \ \ 4,423,511.68\ \ 0.0001\ \ 0.0942\ \ 0.0002\ \ 0.0003\ \ 0.0003\ \ 0.0003\ \ 0.0005\ \ ±0.08\%\ \ \ 2211756}
+\DoxyCodeLine{·\ parse\ microsoft.com\ \ \ \ \ \ \ \ \ 3,387,601.88\ \ 0.0002\ \ 0.0725\ \ 0.0003\ \ 0.0003\ \ 0.0004\ \ 0.0004\ \ 0.0005\ \ ±0.09\%\ \ \ 1693801}
+\DoxyCodeLine{·\ parse\ play.google.com\ \ \ \ \ \ \ 7,375,980.86\ \ 0.0000\ \ 0.1994\ \ 0.0001\ \ 0.0001\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ ±0.12\%\ \ \ 3687991}
+\DoxyCodeLine{·\ parse\ support.google.com\ \ \ \ 4,912,267.94\ \ 0.0001\ \ 2.8958\ \ 0.0002\ \ 0.0002\ \ 0.0003\ \ 0.0003\ \ 0.0005\ \ ±1.28\%\ \ \ 2456134}
+\DoxyCodeLine{·\ parse\ www.google.com\ \ \ \ \ \ \ \ 3,443,035.87\ \ 0.0002\ \ 0.2783\ \ 0.0003\ \ 0.0003\ \ 0.0004\ \ 0.0004\ \ 0.0007\ \ ±0.51\%\ \ \ 1721518}
+\DoxyCodeLine{·\ parse\ youtu.be\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1,910,492.87\ \ 0.0004\ \ 0.3490\ \ 0.0005\ \ 0.0005\ \ 0.0007\ \ 0.0007\ \ 0.0011\ \ ±0.46\%\ \ \ \ 955247}
+\DoxyCodeLine{·\ parse\ youtube.com\ \ \ \ \ \ \ \ \ \ \ 1,895,082.62\ \ 0.0004\ \ 0.7454\ \ 0.0005\ \ 0.0005\ \ 0.0006\ \ 0.0007\ \ 0.0013\ \ ±0.64\%\ \ \ \ 947542\ \ \ slowest}
+\DoxyCodeLine{·\ parse\ example.com\ \ \ \ \ \ \ \ \ \ 21,582,835.27\ \ 0.0000\ \ 0.1095\ \ 0.0000\ \ 0.0000\ \ 0.0001\ \ 0.0001\ \ 0.0001\ \ ±0.13\%\ \ 10791418}
+
+\end{DoxyCode}
+\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md802}{}\doxysubsection{\texorpdfstring{References}{References}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md802}
+
+\begin{DoxyItemize}
+\item \href{https://tools.ietf.org/html/rfc6265}{\texttt{RFC 6265:\+ HTTP State Management Mechanism}}
+\item \href{https://tools.ietf.org/html/draft-ietf-httpbis-rfc6265bis-09\#section-5.4.7}{\texttt{Same-\/site Cookies}}
+\end{DoxyItemize}\hypertarget{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md803}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_282f5d0f119bfbd848f2e84b2c479056_autotoc_md803}
+\+[MIT]\+(LICENSE) 

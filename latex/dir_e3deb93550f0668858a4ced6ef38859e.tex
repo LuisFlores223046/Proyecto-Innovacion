@@ -1,0 +1,69 @@
+\doxysection{frontend/\+node\+\_\+modules/\+flat-\/cache Directory Reference}
+\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e}{}\label{dir_e3deb93550f0668858a4ced6ef38859e}\index{frontend/node\_modules/flat-\/cache Directory Reference@{frontend/node\_modules/flat-\/cache Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_bb734f483f8318ab07471218f65c8385}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2401}{}\doxysubsection{\texorpdfstring{flat-\/cache}{flat-\/cache}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2401}
+\begin{quote}
+A stupidly simple key/\+value storage using files to persist the data \end{quote}
+
+
+\href{https://npmjs.org/package/flat-cache}{\texttt{}} \href{https://github.com/jaredwray/flat-cache/actions/workflows/tests.yaml}{\texttt{}} \href{https://codecov.io/github/jaredwray/flat-cache}{\texttt{}} \href{https://npmjs.com/package/flat-cache}{\texttt{}}\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2402}{}\doxysubsection{\texorpdfstring{install}{install}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2402}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ -\/-\/save\ flat-\/cache}
+
+\end{DoxyCode}
+\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2403}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2403}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ flatCache\ =\ require('flat-\/cache');}
+\DoxyCodeLine{//\ loads\ the\ cache,\ if\ one\ does\ not\ exists\ for\ the\ given}
+\DoxyCodeLine{//\ Id\ a\ new\ one\ will\ be\ prepared\ to\ be\ created}
+\DoxyCodeLine{const\ cache\ =\ flatCache.load('cacheId');}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ sets\ a\ key\ on\ the\ cache}
+\DoxyCodeLine{cache.setKey('key',\ \{\ foo:\ 'var'\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ get\ a\ key\ from\ the\ cache}
+\DoxyCodeLine{cache.getKey('key');\ //\ \{\ foo:\ 'var'\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ fetch\ the\ entire\ persisted\ object}
+\DoxyCodeLine{cache.all();\ //\ \{\ 'key':\ \{\ foo:\ 'var'\ \}\ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ remove\ a\ key}
+\DoxyCodeLine{cache.removeKey('key');\ //\ removes\ a\ key\ from\ the\ cache}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ save\ it\ to\ disk}
+\DoxyCodeLine{cache.save();\ //\ very\ important,\ if\ you\ don't\ save\ no\ changes\ will\ be\ persisted.}
+\DoxyCodeLine{//\ cache.save(\ true\ /*\ noPrune\ */)\ //\ can\ be\ used\ to\ prevent\ the\ removal\ of\ non\ visited\ keys}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ loads\ the\ cache\ from\ a\ given\ directory,\ if\ one\ does}
+\DoxyCodeLine{//\ not\ exists\ for\ the\ given\ Id\ a\ new\ one\ will\ be\ prepared\ to\ be\ created}
+\DoxyCodeLine{const\ cache\ =\ flatCache.load('cacheId',\ path.resolve('./path/to/folder'));}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ The\ following\ methods\ are\ useful\ to\ clear\ the\ cache}
+\DoxyCodeLine{//\ delete\ a\ given\ cache}
+\DoxyCodeLine{flatCache.clearCacheById('cacheId');\ //\ removes\ the\ cacheId\ document\ if\ one\ exists.}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ delete\ all\ cache}
+\DoxyCodeLine{flatCache.clearAll();\ //\ remove\ the\ cache\ directory}
+
+\end{DoxyCode}
+\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2404}{}\doxysubsection{\texorpdfstring{Motivation for this module}{Motivation for this module}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2404}
+I needed a super simple and dumb {\bfseries{in-\/memory cache}} with optional disk persistance in order to make a script that will beutify files with {\ttfamily esformatter} only execute on the files that were changed since the last run. To make that possible we need to store the {\ttfamily file\+Size} and {\ttfamily modification\+Time} of the files. So a simple {\ttfamily key/\+value} storage was needed and Bam! this module was born.\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2405}{}\doxysubsection{\texorpdfstring{Important notes}{Important notes}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2405}
+
+\begin{DoxyItemize}
+\item If no directory is especified when the {\ttfamily load} method is called, a folder named {\ttfamily .cache} will be created inside the module directory when {\ttfamily cache.\+save} is called. If you\textquotesingle{}re committing your {\ttfamily node\+\_\+modules} to any vcs, you might want to ignore the default {\ttfamily .cache} folder, or specify a custom directory.
+\item The values set on the keys of the cache should be {\ttfamily stringify-\/able} ones, meaning no circular references
+\item All the changes to the cache state are done to memory
+\item I could have used a timer or {\ttfamily Object.\+observe} to deliver the changes to disk, but I wanted to keep this module intentionally dumb and simple
+\item Non visited keys are removed when {\ttfamily cache.\+save()} is called. If this is not desired, you can pass {\ttfamily true} to the save call like:\+ {\ttfamily cache.\+save( true /\+\texorpdfstring{$\ast$}{*} no\+Prune \texorpdfstring{$\ast$}{*}/\+ )}.
+\end{DoxyItemize}\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2406}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2406}
+MIT\hypertarget{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2407}{}\doxysubsection{\texorpdfstring{Changelog}{Changelog}}\label{dir_e3deb93550f0668858a4ced6ef38859e_autotoc_md2407}
+\doxysectlink{md_frontend_2node__modules_2flat-cache_2changelog}{changelog}{0} 

@@ -1,0 +1,72 @@
+\doxysection{sqlalchemy.\+util.\+preloaded.\+\_\+\+Module\+Registry Class Reference}
+\hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry}{}\label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry}\index{sqlalchemy.util.preloaded.\_ModuleRegistry@{sqlalchemy.util.preloaded.\_ModuleRegistry}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_a91e6866fcddcb0b2612f7433b06a1cf2}\label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_a91e6866fcddcb0b2612f7433b06a1cf2} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, prefix="{}sqlalchemy."{})
+\item 
+Callable\+[\+[\+\_\+\+FN]\+, \+\_\+\+FN]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae924b45a5969711b49d76b42f2946dae}{preload\+\_\+module}} (self, \texorpdfstring{$\ast$}{*}str deps)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae23d6c71aef80677f02a7d4150812a43}{import\+\_\+prefix}} (self, str path)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ad1be2d3bf348f78fcb40ac7f3972ef91}\label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ad1be2d3bf348f78fcb40ac7f3972ef91} 
+{\bfseries module\+\_\+registry} = set()
+\item 
+\Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ace5226a3355acf3f41cc8d5bac7a380c}\label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ace5226a3355acf3f41cc8d5bac7a380c} 
+{\bfseries prefix} = prefix
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Registry of modules to load in a package init file.
+
+To avoid potential thread safety issues for imports that are deferred
+in a function, like https://bugs.python.org/issue38884, these modules
+are added to the system module cache by importing them after the packages
+has finished initialization.
+
+A global instance is provided under the name :attr:`.preloaded`. Use
+the function :func:`.preload_module` to register modules to load and
+:meth:`.import_prefix` to load all the modules that start with the
+given path.
+
+While the modules are loaded in the global module cache, it's advisable
+to access them using :attr:`.preloaded` to ensure that it was actually
+registered. Each registered module is added to the instance ``__dict__``
+in the form `<package>_<module>`, omitting ``sqlalchemy`` from the package
+name. Example: ``sqlalchemy.sql.util`` becomes ``preloaded.sql_util``.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae23d6c71aef80677f02a7d4150812a43}\index{sqlalchemy.util.preloaded.\_ModuleRegistry@{sqlalchemy.util.preloaded.\_ModuleRegistry}!import\_prefix@{import\_prefix}}
+\index{import\_prefix@{import\_prefix}!sqlalchemy.util.preloaded.\_ModuleRegistry@{sqlalchemy.util.preloaded.\_ModuleRegistry}}
+\doxysubsubsection{\texorpdfstring{import\_prefix()}{import\_prefix()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae23d6c71aef80677f02a7d4150812a43} 
+ None sqlalchemy.\+util.\+preloaded.\+\_\+\+Module\+Registry.\+import\+\_\+prefix (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Resolve all the modules in the registry that start with the
+specified path.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae924b45a5969711b49d76b42f2946dae}\index{sqlalchemy.util.preloaded.\_ModuleRegistry@{sqlalchemy.util.preloaded.\_ModuleRegistry}!preload\_module@{preload\_module}}
+\index{preload\_module@{preload\_module}!sqlalchemy.util.preloaded.\_ModuleRegistry@{sqlalchemy.util.preloaded.\_ModuleRegistry}}
+\doxysubsubsection{\texorpdfstring{preload\_module()}{preload\_module()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1util_1_1preloaded_1_1__ModuleRegistry_ae924b45a5969711b49d76b42f2946dae} 
+ Callable\+[\+[\+\_\+\+FN]\+, \+\_\+\+FN]\+ sqlalchemy.\+util.\+preloaded.\+\_\+\+Module\+Registry.\+preload\+\_\+module (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}str}]{deps}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Adds the specified modules to the list to load.
+
+This method can be used both as a normal function and as a decorator.
+No change is performed to the decorated object.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+util/\+preloaded.\+py\end{DoxyCompactItemize}

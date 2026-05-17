@@ -1,0 +1,191 @@
+\doxysection{TThread\+State\+Destroy.\+cpp}
+\hypertarget{TThreadStateDestroy_8cpp_source}{}\label{TThreadStateDestroy_8cpp_source}\index{venv/lib/python3.12/site-\/packages/greenlet/TThreadStateDestroy.cpp@{venv/lib/python3.12/site-\/packages/greenlet/TThreadStateDestroy.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ -\/*-\/\ indent-\/tabs-\/mode:\ nil;\ tab-\/width:\ 4;\ -\/*-\/\ */}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifndef\ T\_THREADSTATE\_DESTROY}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ T\_THREADSTATE\_DESTROY}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}greenlet\_greenlet.hpp"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}greenlet\_thread\_state.hpp"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}greenlet\_thread\_support.hpp"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}greenlet\_cpython\_add\_pending.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}TGreenletGlobals.cpp"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\doxymbox{\hyperlink{namespacegreenlet}{greenlet}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{struct\ }ThreadState\_DestroyWithGIL}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ ThreadState\_DestroyWithGIL(\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ state)}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ \&\&\ state-\/>has\_main\_greenlet())\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ DestroyWithGIL(state);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00033\ \ \ \ \ DestroyWithGIL(\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ state)}
+\DoxyCodeLine{00034\ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Holding\ the\ GIL.}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Passed\ a\ non-\/shared\ pointer\ to\ the\ actual\ thread\ state.}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ state\ -\/>\ main\ greenlet}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ assert(state-\/>has\_main\_greenlet());}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ PyGreenlet*\ main(state-\/>borrow\_main\_greenlet());}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ we\ need\ to\ do\ cross-\/thread\ operations,\ we\ check\ this.}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ A\ NULL\ value\ means\ the\ thread\ died\ some\ time\ ago.}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ do\ this\ here,\ rather\ than\ in\ a\ Python\ dealloc\ function}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ the\ greenlet,\ in\ case\ there's\ still\ a\ reference\ out}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ there.}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\doxymbox{\hyperlink{classgreenlet_1_1MainGreenlet}{MainGreenlet}}*\textcolor{keyword}{>}(main-\/>pimpl)-\/>thread\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ state;\ \textcolor{comment}{//\ Deleting\ this\ runs\ the\ destructor,\ DECREFs\ the\ main\ greenlet.}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }ThreadState\_DestroyNoGIL}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ ensure\ this\ is\ actually\ defined.}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static\_assert}(GREENLET\_BROKEN\_PY\_ADD\_PENDING\ ==\ 1\ ||\ GREENLET\_BROKEN\_PY\_ADD\_PENDING\ ==\ 0,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}GREENLET\_BROKEN\_PY\_ADD\_PENDING\ not\ defined\ correctly."{}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#if\ GREENLET\_BROKEN\_PY\_ADD\_PENDING}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \_push\_pending\_call(\textcolor{keyword}{struct}\ \_pending\_calls\ *pending,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ (*func)(\textcolor{keywordtype}{void}\ *),\ \textcolor{keywordtype}{void}\ *arg)}
+\DoxyCodeLine{00063\ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ pending-\/>last;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ (i\ +\ 1)\ \%\ NPENDINGCALLS;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ pending-\/>first)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;\ \textcolor{comment}{/*\ Queue\ full\ */}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ pending-\/>calls[i].func\ =\ func;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ pending-\/>calls[i].arg\ =\ arg;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ pending-\/>last\ =\ j;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ AddPendingCall(\textcolor{keywordtype}{int}\ (*func)(\textcolor{keywordtype}{void}\ *),\ \textcolor{keywordtype}{void}\ *arg)}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \_PyRuntimeState\ *runtime\ =\ \&\_PyRuntime;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!runtime)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ obviously\ impossible}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\_pending\_calls\ *pending\ =\ \&runtime-\/>ceval.pending;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pending-\/>lock)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ PyThread\_acquire\_lock(pending-\/>lock,\ WAIT\_LOCK);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!pending-\/>finishing)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ \_push\_pending\_call(pending,\ func,\ arg);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ PyThread\_release\_lock(pending-\/>lock);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ SIGNAL\_PENDING\_CALLS(\&runtime-\/>ceval);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ Python\ <\ 3.8\ or\ >=\ 3.9}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ AddPendingCall(\textcolor{keywordtype}{int}\ (*func)(\textcolor{keywordtype}{void}*),\ \textcolor{keywordtype}{void}*\ arg)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Py\_AddPendingCall(func,\ arg);}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ ThreadState\_DestroyNoGIL(\doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ state)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ are\ *NOT*\ holding\ the\ GIL.\ Our\ thread\ is\ in\ the\ middle}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ of\ its\ death\ throes\ and\ the\ Python\ thread\ state\ is\ already}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ gone\ so\ we\ can't\ use\ most\ Python\ APIs.\ One\ that\ is\ safe\ is}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \`{}\`{}Py\_AddPendingCall``,\ unless\ the\ interpreter\ itself\ has}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ been\ torn\ down.\ There\ is\ a\ limited\ number\ of\ calls\ that\ can}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ be\ queued:\ 32\ (NPENDINGCALLS)\ in\ CPython\ 3.10,\ so\ we}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ coalesce\ these\ calls\ using\ our\ own\ queue.}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ \&\&\ state-\/>has\_main\_greenlet())\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ mark\ the\ thread\ as\ dead\ ASAP.}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ is\ racy!\ If\ we\ try\ to\ throw\ or\ switch\ to\ a}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ greenlet\ from\ this\ thread\ from\ some\ other\ thread\ before}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ clear\ the\ state\ pointer,\ it\ won't\ realize\ the\ state}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ dead\ which\ can\ crash\ the\ process.}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ PyGreenlet*\ p\ =\ state-\/>borrow\_main\_greenlet();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ assert(p-\/>pimpl-\/>thread\_state()\ ==\ state\ ||\ p-\/>pimpl-\/>thread\_state()\ ==\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\doxymbox{\hyperlink{classgreenlet_1_1MainGreenlet}{MainGreenlet}}*\textcolor{keyword}{>}(p-\/>pimpl)-\/>thread\_state(\textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ NOTE:\ Because\ we're\ not\ holding\ the\ GIL\ here,\ some\ other}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Python\ thread\ could\ run\ and\ call\ \`{}\`{}os.fork()``,\ which\ would}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ be\ bad\ if\ that\ happenend\ while\ we\ are\ holding\ the\ cleanup}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lock\ (it\ wouldn't\ function\ in\ the\ child\ process).}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ a\ best\ effort\ to\ try\ to\ keep\ the\ duration\ we\ hold\ the}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ lock\ short.}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TODO:\ On\ platforms\ that\ support\ it,\ use\ \`{}\`{}pthread\_atfork``\ to}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ drop\ this\ lock.}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ LockGuard\ cleanup\_lock(*mod\_globs-\/>thread\_states\_to\_destroy\_lock);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (state\ \&\&\ state-\/>has\_main\_greenlet())\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Because\ we\ don't\ have\ the\ GIL,\ this\ is\ a\ race\ condition.}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!PyInterpreterState\_Head())\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ have\ to\ leak\ the\ thread\ state,\ if\ the}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ interpreter\ has\ shut\ down\ when\ we're\ getting}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ deallocated,\ we\ can't\ run\ the\ cleanup\ code\ that}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ deleting\ it\ would\ imply.}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ mod\_globs-\/>queue\_to\_destroy(state);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mod\_globs-\/>thread\_states\_to\_destroy.size()\ ==\ 1)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ added\ the\ first\ item\ to\ the\ queue.\ We\ need\ to\ schedule}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ cleanup.}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ result\ =\ ThreadState\_DestroyNoGIL::AddPendingCall(}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ThreadState\_DestroyNoGIL::DestroyQueueWithGIL,}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NULL);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (result\ <\ 0)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hmm,\ what\ can\ we\ do\ here?}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fprintf(stderr,}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}greenlet:\ WARNING:\ failed\ in\ call\ to\ Py\_AddPendingCall;\ "{}}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}expect\ a\ memory\ leak.\(\backslash\)n"{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00161\ \ \ \ \ DestroyQueueWithGIL(\textcolor{keywordtype}{void}*\ UNUSED(arg))}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We're\ holding\ the\ GIL\ here,\ so\ no\ Python\ code\ should\ be\ able\ to}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ run\ to\ call\ \`{}\`{}os.fork()``.}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{classgreenlet_1_1ThreadState}{ThreadState}}*\ to\_destroy;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LockGuard\ cleanup\_lock(*mod\_globs-\/>thread\_states\_to\_destroy\_lock);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mod\_globs-\/>thread\_states\_to\_destroy.empty())\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_destroy\ =\ mod\_globs-\/>take\_next\_to\_destroy();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Drop\ the\ lock\ while\ we\ do\ the\ actual\ deletion.}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ ThreadState\_DestroyWithGIL::DestroyWithGIL(to\_destroy);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \};\ \textcolor{comment}{//\ namespace\ greenlet}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{comment}{//\ The\ intent\ when\ GET\_THREAD\_STATE()\ is\ needed\ multiple\ times\ in\ a}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ function\ is\ to\ take\ a\ reference\ to\ its\ return\ value\ in\ a\ local}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ variable,\ to\ avoid\ the\ thread-\/local\ indirection.\ On\ some\ platforms}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ (macOS),\ accessing\ a\ thread-\/local\ involves\ a\ function\ call\ (plus\ an}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ initial\ function\ call\ in\ each\ function\ that\ uses\ a\ thread\ local);}}
+\DoxyCodeLine{00189\ \textcolor{comment}{//\ in\ contrast,\ static\ volatile\ variables\ are\ at\ some\ pre-\/computed}}
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ offset.}}
+\DoxyCodeLine{00191\ \textcolor{keyword}{typedef}\ \doxymbox{\hyperlink{classgreenlet_1_1ThreadStateCreator}{greenlet::ThreadStateCreator<greenlet::ThreadState\_DestroyNoGIL>}}\ ThreadStateCreator;}
+\DoxyCodeLine{00192\ \textcolor{keyword}{static}\ \textcolor{keyword}{thread\_local}\ ThreadStateCreator\ g\_thread\_state\_global;}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ GET\_THREAD\_STATE()\ g\_thread\_state\_global}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//T\_THREADSTATE\_DESTROY}}
+
+\end{DoxyCode}

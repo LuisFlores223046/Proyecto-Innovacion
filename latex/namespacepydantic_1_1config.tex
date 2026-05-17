@@ -1,0 +1,90 @@
+\doxysection{pydantic.\+config Namespace Reference}
+\hypertarget{namespacepydantic_1_1config}{}\label{namespacepydantic_1_1config}\index{pydantic.config@{pydantic.config}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpydantic_1_1config_1_1ConfigDict}{Config\+Dict}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Callable\+[\+[\+\_\+\+TypeT]\+, \+\_\+\+TypeT]\+ \doxymbox{\hyperlink{namespacepydantic_1_1config_a6f7e0052cecd039c31e92e32af78db5d}{with\+\_\+config}} (\doxymbox{\hyperlink{classpydantic_1_1config_1_1ConfigDict}{Config\+Dict}} config)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepydantic_1_1config_a660fe9f801076b01b67aa4c1f6ea67b6}\label{namespacepydantic_1_1config_a660fe9f801076b01b67aa4c1f6ea67b6} 
+Type\+Alias {\bfseries Json\+Value} = Union\+[int, float, str, bool, None, List\+[\textquotesingle{}Json\+Value\textquotesingle{}]\+, \textquotesingle{}Json\+Dict\textquotesingle{}]\+
+\item 
+\Hypertarget{namespacepydantic_1_1config_aa7ffc85de5a3511c066b4face1e2935d}\label{namespacepydantic_1_1config_aa7ffc85de5a3511c066b4face1e2935d} 
+Type\+Alias {\bfseries Json\+Dict} = Dict\+[str, Json\+Value]\+
+\item 
+\Hypertarget{namespacepydantic_1_1config_a4331713cacad73d2dd91cb12cd4343d6}\label{namespacepydantic_1_1config_a4331713cacad73d2dd91cb12cd4343d6} 
+{\bfseries Json\+Encoder} = Callable\+[\+[Any]\+, Any]\+
+\item 
+Type\+Alias \doxymbox{\hyperlink{namespacepydantic_1_1config_a4617d5ba67c3336857f71b244b478001}{Json\+Schema\+Extra\+Callable}}
+\item 
+\Hypertarget{namespacepydantic_1_1config_adafdb92ac0d5eb80da2d0dcaf82a8f1d}\label{namespacepydantic_1_1config_adafdb92ac0d5eb80da2d0dcaf82a8f1d} 
+{\bfseries Extra\+Values} = Literal\+[\textquotesingle{}allow\textquotesingle{}, \textquotesingle{}ignore\textquotesingle{}, \textquotesingle{}forbid\textquotesingle{}]\+
+\item 
+\Hypertarget{namespacepydantic_1_1config_ad1211e465cc9a8e463abee2c9ee15542}\label{namespacepydantic_1_1config_ad1211e465cc9a8e463abee2c9ee15542} 
+{\bfseries \+\_\+\+TypeT} = Type\+Var(\textquotesingle{}\+\_\+\+TypeT\textquotesingle{}, bound=type)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Configuration for Pydantic models.\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1config_doc-func-members}
+\Hypertarget{namespacepydantic_1_1config_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepydantic_1_1config_a6f7e0052cecd039c31e92e32af78db5d}\index{pydantic.config@{pydantic.config}!with\_config@{with\_config}}
+\index{with\_config@{with\_config}!pydantic.config@{pydantic.config}}
+\doxysubsubsection{\texorpdfstring{with\_config()}{with\_config()}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1config_a6f7e0052cecd039c31e92e32af78db5d} 
+ Callable\+[\+[\+\_\+\+TypeT]\+, \+\_\+\+TypeT]\+ with\+\_\+config (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classpydantic_1_1config_1_1ConfigDict}{Config\+Dict}}}]{config}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Usage docs: https://docs.pydantic.dev/2.7/concepts/config/#configuration-with-dataclass-from-the-standard-library-or-typeddict
+
+A convenience decorator to set a [Pydantic configuration](config.md) on a `TypedDict` or a `dataclass` from the standard library.
+
+Although the configuration can be set using the `__pydantic_config__` attribute, it does not play well with type checkers,
+especially with `TypedDict`.
+
+!!! example "Usage"
+
+    ```py
+    from typing_extensions import TypedDict
+
+    from pydantic import ConfigDict, TypeAdapter, with_config
+
+    @with_config(ConfigDict(str_to_lower=True))
+    class Model(TypedDict):
+        x: str
+
+    ta = TypeAdapter(Model)
+
+    print(ta.validate_python({'x': 'ABC'}))
+    #> {'x': 'abc'}
+    ```
+\end{DoxyVerb}
+ 
+
+\label{namespacepydantic_1_1config_doc-var-members}
+\Hypertarget{namespacepydantic_1_1config_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepydantic_1_1config_a4617d5ba67c3336857f71b244b478001}\index{pydantic.config@{pydantic.config}!JsonSchemaExtraCallable@{JsonSchemaExtraCallable}}
+\index{JsonSchemaExtraCallable@{JsonSchemaExtraCallable}!pydantic.config@{pydantic.config}}
+\doxysubsubsection{\texorpdfstring{JsonSchemaExtraCallable}{JsonSchemaExtraCallable}}
+{\footnotesize\ttfamily \label{namespacepydantic_1_1config_a4617d5ba67c3336857f71b244b478001} 
+Type\+Alias pydantic.\+config.\+Json\+Schema\+Extra\+Callable}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Union[}
+\DoxyCodeLine{\ \ \ \ Callable[[JsonDict],\ \textcolor{keywordtype}{None}],}
+\DoxyCodeLine{\ \ \ \ Callable[[JsonDict,\ Type[Any]],\ \textcolor{keywordtype}{None}],}
+\DoxyCodeLine{]}
+
+\end{DoxyCode}

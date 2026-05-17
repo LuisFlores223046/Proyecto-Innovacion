@@ -1,0 +1,125 @@
+\doxysection{frontend/\+node\+\_\+modules/\+thenify Directory Reference}
+\hypertarget{dir_ce655affcee322816a70450f15eb0ee3}{}\label{dir_ce655affcee322816a70450f15eb0ee3}\index{frontend/node\_modules/thenify Directory Reference@{frontend/node\_modules/thenify Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2602}{}\doxysubsection{\texorpdfstring{thenify}{thenify}}\label{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2602}
+\href{https://npmjs.org/package/thenify}{\texttt{}} \href{https://travis-ci.org/thenables/thenify}{\texttt{}} \href{https://coveralls.io/r/thenables/thenify}{\texttt{}} \href{https://david-dm.org/thenables/thenify}{\texttt{}} \+[]\+\+[license-\/url]\+ \href{https://npmjs.org/package/thenify}{\texttt{}}
+
+Promisify a callback-\/based function using \href{https://github.com/kevinbeaty/any-promise}{\texttt{{\ttfamily any-\/promise}}}.
+
+
+\begin{DoxyItemize}
+\item Preserves function names
+\item Uses a native promise implementation if available and tries to fall back to a promise implementation such as {\ttfamily bluebird}
+\item Converts multiple arguments from the callback into an {\ttfamily Array}, also support change the behavior by {\ttfamily options.\+multi\+Args}
+\item Resulting function never deoptimizes
+\item Supports both callback and promise style
+\end{DoxyItemize}
+
+An added benefit is that {\ttfamily throw}n errors in that async function will be caught by the promise!\hypertarget{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2603}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2603}
+\hypertarget{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2604}{}\doxysubsubsection{\texorpdfstring{fn = thenify(fn, options)}{fn = thenify(fn, options)}}\label{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2604}
+Promisifies a function.\hypertarget{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2605}{}\doxysubsubsection{\texorpdfstring{Options}{Options}}\label{dir_ce655affcee322816a70450f15eb0ee3_autotoc_md2605}
+{\ttfamily options} are optional.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily options.\+with\+Callback} -\/ support both callback and promise style, default to {\ttfamily false}.
+\item {\ttfamily options.\+multi\+Args} -\/ change the behavior when callback have multiple arguments. default to {\ttfamily true}.
+\begin{DoxyItemize}
+\item {\ttfamily true} -\/ converts multiple arguments to an array
+\item {\ttfamily false}-\/ always use the first argument
+\item {\ttfamily Array} -\/ converts multiple arguments to an object with keys provided in {\ttfamily options.\+multi\+Args}
+\end{DoxyItemize}
+\item Turn async functions into promises
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ thenify\ =\ require('thenify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ somethingAsync\ =\ thenify(function\ somethingAsync(a,\ b,\ c,\ callback)\ \{}
+\DoxyCodeLine{\ \ callback(null,\ a,\ b,\ c);}
+\DoxyCodeLine{\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Backward compatible with callback
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ thenify\ =\ require('thenify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ somethingAsync\ =\ thenify(function\ somethingAsync(a,\ b,\ c,\ callback)\ \{}
+\DoxyCodeLine{\ \ callback(null,\ a,\ b,\ c);}
+\DoxyCodeLine{\},\ \{\ withCallback:\ true\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ somethingAsync(a,\ b,\ c).then(onFulfilled).catch(onRejected);}
+\DoxyCodeLine{//\ somethingAsync(a,\ b,\ c,\ function\ ()\ \{\});}
+
+\end{DoxyCode}
+
+
+or use {\ttfamily thenify.\+with\+Callback()}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ thenify\ =\ require('thenify').withCallback;}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ somethingAsync\ =\ thenify(function\ somethingAsync(a,\ b,\ c,\ callback)\ \{}
+\DoxyCodeLine{\ \ callback(null,\ a,\ b,\ c);}
+\DoxyCodeLine{\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ somethingAsync(a,\ b,\ c).then(onFulfilled).catch(onRejected);}
+\DoxyCodeLine{//\ somethingAsync(a,\ b,\ c,\ function\ ()\ \{\});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Always return the first argument in callback
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ thenify\ =\ require('thenify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ promise\ =\ thenify(function\ (callback)\ \{}
+\DoxyCodeLine{\ \ callback(null,\ 1,\ 2,\ 3);}
+\DoxyCodeLine{\},\ \{\ multiArgs:\ false\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ promise().then(function\ onFulfilled(value)\ \{}
+\DoxyCodeLine{//\ \ \ assert.equal(value,\ 1);}
+\DoxyCodeLine{//\ \});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Converts callback arguments to an object
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{var\ thenify\ =\ require('thenify');}
+\DoxyCodeLine{}
+\DoxyCodeLine{var\ promise\ =\ thenify(function\ (callback)\ \{}
+\DoxyCodeLine{\ \ callback(null,\ 1,\ 2,\ 3);}
+\DoxyCodeLine{\},\ \{\ multiArgs:\ [\ 'one',\ 'tow',\ 'three'\ ]\ \});}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ promise().then(function\ onFulfilled(value)\ \{}
+\DoxyCodeLine{//\ \ \ assert.deepEqual(value,\ \{}
+\DoxyCodeLine{//\ \ \ \ \ one:\ 1,}
+\DoxyCodeLine{//\ \ \ \ \ tow:\ 2,}
+\DoxyCodeLine{//\ \ \ \ \ three:\ 3}
+\DoxyCodeLine{//\ \ \ \});}
+\DoxyCodeLine{//\ \});}
+
+\end{DoxyCode}
+ 

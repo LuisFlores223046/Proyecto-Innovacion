@@ -1,0 +1,83 @@
+\doxysection{pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator Class Reference}
+\hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}{}\label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}\index{pydantic.\_internal.\_decorators.Decorator@{pydantic.\_internal.\_decorators.Decorator}}
+Inheritance diagram for pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}{Decorator}}\+[Decorator\+Info\+Type]\+ \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a1732681c9564aa2711442a6fac34a1c1}{bind\+\_\+to\+\_\+cls}} (self, Any cls)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}{Decorator}}\+[Decorator\+Info\+Type]\+ \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a781ebb87664e600f3e828a51ebaee469}{build}} (Any cls\+\_\+, \texorpdfstring{$\ast$}{*}, str cls\+\_\+var\+\_\+name, Callable\+[\+[Any]\+, Any]\+\texorpdfstring{$\vert$}{|}None shim, Decorator\+Info\+Type info)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a651bf2c3ca5940fa37dfdb901e1ee3ec}\label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a651bf2c3ca5940fa37dfdb901e1ee3ec} 
+Callable {\bfseries func} \+[..., Any]\+
+\item 
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a0ebcbfdf59cf75e2c08192b13bb32516}\label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a0ebcbfdf59cf75e2c08192b13bb32516} 
+Callable {\bfseries shim} \+[\+[Any]\+, Any]\+ \texorpdfstring{$\vert$}{|} None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A generic container class to join together the decorator metadata
+(metadata from decorator itself, which we have when the
+decorator is called but not when we are building the core-schema)
+and the bound function (which we have after the class itself is created).
+
+Attributes:
+    cls_ref: The class ref.
+    cls_var_name: The decorated function name.
+    func: The decorated function.
+    shim: A wrapper function to wrap V1 style function.
+    info: The decorator info.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_doc-func-members}
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a1732681c9564aa2711442a6fac34a1c1}\index{pydantic.\_internal.\_decorators.Decorator@{pydantic.\_internal.\_decorators.Decorator}!bind\_to\_cls@{bind\_to\_cls}}
+\index{bind\_to\_cls@{bind\_to\_cls}!pydantic.\_internal.\_decorators.Decorator@{pydantic.\_internal.\_decorators.Decorator}}
+\doxysubsubsection{\texorpdfstring{bind\_to\_cls()}{bind\_to\_cls()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a1732681c9564aa2711442a6fac34a1c1} 
+ \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}{Decorator}}\+[Decorator\+Info\+Type]\+ pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator.\+bind\+\_\+to\+\_\+cls (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Any}]{cls}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Bind the decorator to a class.
+
+Args:
+    cls: the class.
+
+Returns:
+    The new decorator instance.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a781ebb87664e600f3e828a51ebaee469}\index{pydantic.\_internal.\_decorators.Decorator@{pydantic.\_internal.\_decorators.Decorator}!build@{build}}
+\index{build@{build}!pydantic.\_internal.\_decorators.Decorator@{pydantic.\_internal.\_decorators.Decorator}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1__internal_1_1__decorators_1_1Decorator_a781ebb87664e600f3e828a51ebaee469} 
+ \doxymbox{\hyperlink{classpydantic_1_1__internal_1_1__decorators_1_1Decorator}{Decorator}}\+[Decorator\+Info\+Type]\+ pydantic.\+\_\+internal.\+\_\+decorators.\+Decorator.\+build (\begin{DoxyParamCaption}\item[{Any}]{cls\+\_\+}{, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{str}]{cls\+\_\+var\+\_\+name}{, }\item[{Callable\+[\+[Any]\+, Any]\+ \texorpdfstring{$\vert$}{|} None}]{shim}{, }\item[{Decorator\+Info\+Type}]{info}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a new decorator.
+
+Args:
+    cls_: The class.
+    cls_var_name: The decorated function name.
+    shim: A wrapper function to wrap V1 style function.
+    info: The decorator info.
+
+Returns:
+    The new decorator instance.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+\+\_\+internal/\+\+\_\+decorators.\+py\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+\doxysection{multipart.\+decoders.\+Quoted\+Printable\+Decoder Class Reference}
+\hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder}{}\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder}\index{multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_ad6daf8105510f8a6e7df7b3b8e80b955}\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_ad6daf8105510f8a6e7df7b3b8e80b955} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, underlying)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a65147340e517c06d882d40b6dbdbf8c8}{write}} (self, data)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a360592df7e113daf10c11e4f84a75a65}{close}} (self)
+\item 
+\doxymbox{\hyperlink{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a948b28cd267608bc19bcc0ba3f3adefe}{finalize}} (self)
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a2d962577f09514bf5df869e0a8a9e648}\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a2d962577f09514bf5df869e0a8a9e648} 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_afba17e3a958d08fa1905300cdee63485}\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_afba17e3a958d08fa1905300cdee63485} 
+str {\bfseries cache} = b"{}"{}
+\item 
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_abc4da9b0b19ff434548068044c970995}\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_abc4da9b0b19ff434548068044c970995} 
+{\bfseries underlying} = underlying
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This object provides an interface to decode a stream of quoted-printable
+data.  It is instantiated with an "underlying object", in the same manner
+as the :class:`multipart.decoders.Base64Decoder` class.  This class behaves
+in exactly the same way, including maintaining a cache of quoted-printable
+chunks.
+
+:param underlying: the underlying object to pass writes to
+\end{DoxyVerb}
+ 
+
+\label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_doc-func-members}
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a360592df7e113daf10c11e4f84a75a65}\index{multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}!close@{close}}
+\index{close@{close}!multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a360592df7e113daf10c11e4f84a75a65} 
+multipart.\+decoders.\+Quoted\+Printable\+Decoder.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close this decoder.  If the underlying object has a `close()`
+method, this function will call it.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a948b28cd267608bc19bcc0ba3f3adefe}\index{multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}!finalize@{finalize}}
+\index{finalize@{finalize}!multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}}
+\doxysubsubsection{\texorpdfstring{finalize()}{finalize()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a948b28cd267608bc19bcc0ba3f3adefe} 
+multipart.\+decoders.\+Quoted\+Printable\+Decoder.\+finalize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Finalize this object.  This should be called when no more data
+should be written to the stream.  This function will not raise any
+exceptions, but it may write more data to the underlying object if
+there is data remaining in the cache.
+
+If the underlying object has a `finalize()` method, this function will
+call it.
+\end{DoxyVerb}
+ \Hypertarget{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a65147340e517c06d882d40b6dbdbf8c8}\index{multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}!write@{write}}
+\index{write@{write}!multipart.decoders.QuotedPrintableDecoder@{multipart.decoders.QuotedPrintableDecoder}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classmultipart_1_1decoders_1_1QuotedPrintableDecoder_a65147340e517c06d882d40b6dbdbf8c8} 
+multipart.\+decoders.\+Quoted\+Printable\+Decoder.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes any input data provided, decodes it as quoted-printable, and
+passes it on to the underlying object.
+
+:param data: quoted-printable data to decode
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+multipart/\+decoders.\+py\end{DoxyCompactItemize}

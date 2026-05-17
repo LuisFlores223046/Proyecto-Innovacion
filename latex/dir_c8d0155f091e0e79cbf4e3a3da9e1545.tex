@@ -1,0 +1,125 @@
+\doxysection{frontend/\+node\+\_\+modules/\+merge2 Directory Reference}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545}{}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545}\index{frontend/node\_modules/merge2 Directory Reference@{frontend/node\_modules/merge2 Directory Reference}}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1701}{}\doxysubsection{\texorpdfstring{merge2}{merge2}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1701}
+Merge multiple streams into one stream in sequence or parallel.
+
+\href{https://npmjs.org/package/merge2}{\texttt{}} \href{https://travis-ci.org/teambition/merge2}{\texttt{}} \href{https://npmjs.org/package/merge2}{\texttt{}}\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1702}{}\doxysubsection{\texorpdfstring{Install}{Install}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1702}
+Install with \href{https://npmjs.org/package/merge2}{\texttt{npm}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ merge2}
+
+\end{DoxyCode}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1703}{}\doxysubsection{\texorpdfstring{Usage}{Usage}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1703}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ gulp\ =\ require('gulp')}
+\DoxyCodeLine{const\ merge2\ =\ require('merge2')}
+\DoxyCodeLine{const\ concat\ =\ require('gulp-\/concat')}
+\DoxyCodeLine{const\ minifyHtml\ =\ require('gulp-\/minify-\/html')}
+\DoxyCodeLine{const\ ngtemplate\ =\ require('gulp-\/ngtemplate')}
+\DoxyCodeLine{}
+\DoxyCodeLine{gulp.task('app-\/js',\ function\ ()\ \{}
+\DoxyCodeLine{\ \ return\ merge2(}
+\DoxyCodeLine{\ \ \ \ \ \ gulp.src('static/src/tpl/*.html')}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .pipe(minifyHtml(\{empty:\ true\}))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .pipe(ngtemplate(\{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ module:\ 'genTemplates',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ standalone:\ true}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\ \ \ \ \ \ ),\ gulp.src([}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/app.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/locale\_zh-\/cn.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/router.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/tools.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/services.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/filters.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/directives.js',}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 'static/src/js/controllers.js'}
+\DoxyCodeLine{\ \ \ \ \ \ ])}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{\ \ \ \ .pipe(concat('app.js'))}
+\DoxyCodeLine{\ \ \ \ .pipe(gulp.dest('static/dist/js/'))}
+\DoxyCodeLine{\})}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ stream\ =\ merge2([stream1,\ stream2],\ stream3,\ \{end:\ false\})}
+\DoxyCodeLine{//...}
+\DoxyCodeLine{stream.add(stream4,\ stream5)}
+\DoxyCodeLine{//..}
+\DoxyCodeLine{stream.end()}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ equal\ to\ merge2([stream1,\ stream2],\ stream3)}
+\DoxyCodeLine{const\ stream\ =\ merge2()}
+\DoxyCodeLine{stream.add([stream1,\ stream2])}
+\DoxyCodeLine{stream.add(stream3)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ merge\ order:}
+\DoxyCodeLine{//\ \ \ 1.\ merge\ \`{}stream1`;}
+\DoxyCodeLine{//\ \ \ 2.\ merge\ \`{}stream2`\ and\ \`{}stream3`\ in\ parallel\ after\ \`{}stream1`\ merged;}
+\DoxyCodeLine{//\ \ \ 3.\ merge\ 'stream4'\ after\ \`{}stream2`\ and\ \`{}stream3`\ merged;}
+\DoxyCodeLine{const\ stream\ =\ merge2(stream1,\ [stream2,\ stream3],\ stream4)}
+\DoxyCodeLine{}
+\DoxyCodeLine{//\ merge\ order:}
+\DoxyCodeLine{//\ \ \ 1.\ merge\ \`{}stream5`\ and\ \`{}stream6`\ in\ parallel\ after\ \`{}stream4`\ merged;}
+\DoxyCodeLine{//\ \ \ 2.\ merge\ 'stream7'\ after\ \`{}stream5`\ and\ \`{}stream6`\ merged;}
+\DoxyCodeLine{stream.add([stream5,\ stream6],\ stream7)}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{//\ nest\ merge}
+\DoxyCodeLine{//\ equal\ to\ merge2(stream1,\ stream2,\ stream6,\ stream3,\ [stream4,\ stream5]);}
+\DoxyCodeLine{const\ streamA\ =\ merge2(stream1,\ stream2)}
+\DoxyCodeLine{const\ streamB\ =\ merge2(stream3,\ [stream4,\ stream5])}
+\DoxyCodeLine{const\ stream\ =\ merge2(streamA,\ streamB)}
+\DoxyCodeLine{streamA.add(stream6)}
+
+\end{DoxyCode}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1704}{}\doxysubsection{\texorpdfstring{API}{API}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1704}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ merge2\ =\ require('merge2')}
+
+\end{DoxyCode}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1705}{}\doxysubsubsection{\texorpdfstring{merge2()}{merge2()}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1705}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1706}{}\doxysubsubsection{\texorpdfstring{merge2(options)}{merge2(options)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1706}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1707}{}\doxysubsubsection{\texorpdfstring{merge2(stream1, stream2, ..., stream\+N)}{merge2(stream1, stream2, ..., stream\+N)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1707}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1708}{}\doxysubsubsection{\texorpdfstring{merge2(stream1, stream2, ..., stream\+N, options)}{merge2(stream1, stream2, ..., stream\+N, options)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1708}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1709}{}\doxysubsubsection{\texorpdfstring{merge2(stream1, \+[stream2, stream3, ...]\+, stream\+N, options)}{merge2(stream1, \+[stream2, stream3, ...]\+, stream\+N, options)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1709}
+return a duplex stream (merged\+Stream). streams in array will be merged in parallel.\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1710}{}\doxysubsubsection{\texorpdfstring{merged\+Stream.\+add(stream)}{merged\+Stream.\+add(stream)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1710}
+\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1711}{}\doxysubsubsection{\texorpdfstring{merged\+Stream.\+add(stream1, \+[stream2, stream3, ...]\+, ...)}{merged\+Stream.\+add(stream1, \+[stream2, stream3, ...]\+, ...)}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1711}
+return the merged\+Stream.\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1712}{}\doxysubsubsection{\texorpdfstring{merged\+Stream.\+on(\textquotesingle{}queue\+Drain\textquotesingle{}, function() \{\})}{merged\+Stream.\+on(\textquotesingle{}queue\+Drain\textquotesingle{}, function() \{\})}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1712}
+It will emit \textquotesingle{}queue\+Drain\textquotesingle{} when all streams merged. If you set {\ttfamily end === false} in options, this event give you a notice that should add more streams to merge or end the merged\+Stream.\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1713}{}\doxysubsubsubsection{\texorpdfstring{stream}{stream}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1713}
+{\itshape option} Type:\+ {\ttfamily Readable} or {\ttfamily Duplex} or {\ttfamily Transform} stream.\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1714}{}\doxysubsubsubsection{\texorpdfstring{options}{options}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1714}
+{\itshape option} Type:\+ {\ttfamily Object}.
+
+
+\begin{DoxyItemize}
+\item {\bfseries{end}} -\/ {\ttfamily Boolean} -\/ if {\ttfamily end === false} then merged\+Stream will not be auto ended, you should end by yourself. {\bfseries{Default:\+}} {\ttfamily undefined}
+\item {\bfseries{pipe\+Error}} -\/ {\ttfamily Boolean} -\/ if {\ttfamily pipe\+Error === true} then merged\+Stream will emit {\ttfamily error} event from source streams. {\bfseries{Default:\+}} {\ttfamily undefined}
+\item {\bfseries{object\+Mode}} -\/ {\ttfamily Boolean} . {\bfseries{Default:\+}} {\ttfamily true}
+\end{DoxyItemize}
+
+{\ttfamily object\+Mode} and other options({\ttfamily high\+Water\+Mark}, {\ttfamily default\+Encoding} ...) is same as Node.\+js {\ttfamily Stream}.\hypertarget{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1715}{}\doxysubsection{\texorpdfstring{License}{License}}\label{dir_c8d0155f091e0e79cbf4e3a3da9e1545_autotoc_md1715}
+MIT © \href{https://www.teambition.com}{\texttt{Teambition}} 

@@ -1,0 +1,270 @@
+\doxysection{sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport Class Reference}
+\hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport}{}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+Inheritance diagram for sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{classsentry__sdk_1_1transport_1_1BaseHttpTransport}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aaa74ae01e2bde28499319edf9ac22191}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aaa74ae01e2bde28499319edf9ac22191} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Dict\+[str, Any]\+"{} options)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a40f7cf7274179445f00b627ae6f1fee7}{record\+\_\+lost\+\_\+event}} (self, str reason, "{}Optional\+[Event\+Data\+Category]\+"{} data\+\_\+category=None, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} item=None, \texorpdfstring{$\ast$}{*}, int quantity=1)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a6160242c9802bb9ed944531edc445400}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a6160242c9802bb9ed944531edc445400} 
+None {\bfseries on\+\_\+dropped\+\_\+event} ("{}Self"{} self, str \+\_\+reason)
+\item 
+bool \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45e9cb51a2d6877084c2c643ddaa14b6}{is\+\_\+healthy}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a0913cc99dc9208d9c20bda332ec523ab}{capture\+\_\+envelope}} (self, "{}Envelope"{} envelope)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ae376d650737fcae044726ac63a03f845}{flush}} ("{}Self"{} self, float timeout, "{}Optional\+[Callable\+[\+[int, float]\+, None]\+]\+"{} callback=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8a367f3b7814bf81ed2fdc16e87a1dd8}{kill}} ("{}Self"{} self)
+\item 
+"{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{} \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a69460e0728d31b3d2cde8c8c07e2469f}{hub\+\_\+cls}} ("{}Self"{} self)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a123a829dece5043cdbc2078caeb77b17}{hub\+\_\+cls}} ("{}Self"{} self, "{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{} value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} ("{}Self"{} self, "{}Optional\+[Dict\+[str, Any]\+]\+"{} options=None)
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae1c913415f352dc30769a0caf4b82e15}{capture\+\_\+event}} ("{}Self"{} self, "{}Event"{} event)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa85502e1e5bd9e89e35d1eae3f771aae}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa85502e1e5bd9e89e35d1eae3f771aae} 
+int {\bfseries TIMEOUT} = 30
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+str {\bfseries parsed\+\_\+dsn} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a7a020620c829e53def958c03730cd26d}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a7a020620c829e53def958c03730cd26d} 
+"{}Optional\+[str]\+"{} {\bfseries \+\_\+get\+\_\+header\+\_\+value} ("{}Self"{} self, "{}Any"{} response, str header)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a184d42436106859924a194ceacf910bf}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a184d42436106859924a194ceacf910bf} 
+None {\bfseries \+\_\+update\+\_\+rate\+\_\+limits} ("{}Self"{} self, "{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1response_1_1BaseHTTPResponse}{urllib3.\+Base\+HTTPResponse}}, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{httpcore.\+Response}}]\+"{} response)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a51c62e0968fc01e5d1b2cae4d4931368}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a51c62e0968fc01e5d1b2cae4d4931368} 
+None {\bfseries \+\_\+send\+\_\+request} ("{}Self"{} self, bytes body, "{}Dict\+[str, str]\+"{} headers, "{}Endpoint\+Type"{} endpoint\+\_\+type=Endpoint\+Type.\+ENVELOPE, "{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Envelope}{Envelope}}]\+"{} envelope=None)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a67e5b5b6afd40ce049d35ed431c8d486}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a67e5b5b6afd40ce049d35ed431c8d486} 
+"{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} {\bfseries \+\_\+fetch\+\_\+pending\+\_\+client\+\_\+report} ("{}Self"{} self, bool force=False, int interval=60)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa7a9db82393cba1848e489eeb932b37d}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa7a9db82393cba1848e489eeb932b37d} 
+None {\bfseries \+\_\+flush\+\_\+client\+\_\+reports} ("{}Self"{} self, bool force=False)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a5813b13cd70a0ae01953948876418c58}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a5813b13cd70a0ae01953948876418c58} 
+bool {\bfseries \+\_\+check\+\_\+disabled} (self, str category)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a1990fa221c8cab42920ff027817462c9}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a1990fa221c8cab42920ff027817462c9} 
+bool {\bfseries \+\_\+is\+\_\+rate\+\_\+limited} ("{}Self"{} self)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a966f1de4b0fc304929772d1639194a01}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a966f1de4b0fc304929772d1639194a01} 
+bool {\bfseries \+\_\+is\+\_\+worker\+\_\+full} ("{}Self"{} self)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a84869ef4fabbec95da0636950f6fac32}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a84869ef4fabbec95da0636950f6fac32} 
+None {\bfseries \+\_\+send\+\_\+envelope} ("{}Self"{} self, "{}Envelope"{} envelope)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45aa76cc48a21756a22e73912a1fa2a1}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45aa76cc48a21756a22e73912a1fa2a1} 
+"{}tuple\+[Optional\+[str]\+, io.\+Bytes\+IO]\+"{} {\bfseries \+\_\+serialize\+\_\+envelope} ("{}Self"{} self, "{}Envelope"{} envelope)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ac18e2ed8d9555e8b2f5d708ffe58ca4c}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ac18e2ed8d9555e8b2f5d708ffe58ca4c} 
+"{}Dict\+[str, Any]\+"{} {\bfseries \+\_\+get\+\_\+pool\+\_\+options} ("{}Self"{} self)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa5946b72330e5a02b7a4cd2bcaca2839}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_aa5946b72330e5a02b7a4cd2bcaca2839} 
+bool {\bfseries \+\_\+in\+\_\+no\+\_\+proxy} ("{}Self"{} self, "{}Dsn"{} parsed\+\_\+dsn)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_afd5291650914390a9b2ce15c1545eb17}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_afd5291650914390a9b2ce15c1545eb17} 
+"{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1PoolManager}{Pool\+Manager}}, \doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1ProxyManager}{Proxy\+Manager}}, \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1SOCKSProxy}{httpcore.\+SOCKSProxy}}, httpcore.\+HTTPProxy, httpcore.\+Connection\+Pool]\+"{} {\bfseries \+\_\+make\+\_\+pool} ("{}Self"{} self)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a085f03cb32031bddd8b6e0bcb6606f8f}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a085f03cb32031bddd8b6e0bcb6606f8f} 
+"{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1response_1_1BaseHTTPResponse}{urllib3.\+Base\+HTTPResponse}}, \doxymbox{\hyperlink{classhttpcore_1_1__models_1_1Response}{httpcore.\+Response}}]\+"{} {\bfseries \+\_\+request} ("{}Self"{} self, str method, "{}Endpoint\+Type"{} endpoint\+\_\+type, "{}Any"{} body, "{}Mapping\+[str, str]\+"{} headers)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8d2ba6fd992f33406fdd32c801739b72}{\+\_\+warn\+\_\+hub\+\_\+cls}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a19c1460e66c478258fef549f2dce8991}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a19c1460e66c478258fef549f2dce8991} 
+{\bfseries \+\_\+worker} = \doxymbox{\hyperlink{classsentry__sdk_1_1worker_1_1BackgroundWorker}{Background\+Worker}}(queue\+\_\+size=options\+["{}transport\+\_\+queue\+\_\+size"{}]\+)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a5e5845ae9a6b4075ce95f8d6d8265c46}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a5e5845ae9a6b4075ce95f8d6d8265c46} 
+{\bfseries \+\_\+auth} = self.\+parsed\+\_\+dsn.\+to\+\_\+auth("{}sentry.\+python/\+\%s"{} \% VERSION)
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a176a0dcff7de185b10b75481e0feab0a}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a176a0dcff7de185b10b75481e0feab0a} 
+dict {\bfseries \+\_\+disabled\+\_\+until} = \{\}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a2ec75ac8bf0ef13254b7def1f2097c0f}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a2ec75ac8bf0ef13254b7def1f2097c0f} 
+{\bfseries \+\_\+retry} = \doxymbox{\hyperlink{classurllib3_1_1util_1_1retry_1_1Retry}{urllib3.\+util.\+Retry}}()
+\item 
+tuple \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1BaseHttpTransport_acb3463d4b02e8885da96bb4a0fa6ef07}{\+\_\+discarded\+\_\+events}}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ab2e265b34bdfc5f556ce28ad91ba9492}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ab2e265b34bdfc5f556ce28ad91ba9492} 
+{\bfseries \+\_\+last\+\_\+client\+\_\+report\+\_\+sent} = time.\+time()
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a34352ae6ebca1d3509f3a636e52af510}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a34352ae6ebca1d3509f3a636e52af510} 
+"{}Union\+[\doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1PoolManager}{Pool\+Manager}}, \doxymbox{\hyperlink{classurllib3_1_1poolmanager_1_1ProxyManager}{Proxy\+Manager}}, \doxymbox{\hyperlink{classhttpcore_1_1__sync_1_1SOCKSProxy}{httpcore.\+SOCKSProxy}}, httpcore.\+HTTPProxy, httpcore.\+Connection\+Pool]\+"{} {\bfseries \+\_\+pool} = self.\+\_\+make\+\_\+pool()
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_abfc3fe4e39504a781ae3e830c3b5fb2a}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_abfc3fe4e39504a781ae3e830c3b5fb2a} 
+{\bfseries \+\_\+hub\+\_\+cls} = \doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a7bffe6908b1fc27c056829424f9ff4c5}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a7bffe6908b1fc27c056829424f9ff4c5} 
+int {\bfseries \+\_\+compression\+\_\+level} = 0
+\item 
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a6c084d53f029be8ed8d4eb4888b57485}\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a6c084d53f029be8ed8d4eb4888b57485} 
+str {\bfseries \+\_\+compression\+\_\+algo} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries options} = options
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}The base HTTP transport.\end{DoxyVerb}
+ 
+
+\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_doc-func-members}
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8d2ba6fd992f33406fdd32c801739b72}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!\_warn\_hub\_cls@{\_warn\_hub\_cls}}
+\index{\_warn\_hub\_cls@{\_warn\_hub\_cls}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{\_warn\_hub\_cls()}{\_warn\_hub\_cls()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8d2ba6fd992f33406fdd32c801739b72} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+\_\+warn\+\_\+hub\+\_\+cls (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Convenience method to warn users about the deprecation of the `hub_cls` attribute.\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a0913cc99dc9208d9c20bda332ec523ab}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!capture\_envelope@{capture\_envelope}}
+\index{capture\_envelope@{capture\_envelope}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{capture\_envelope()}{capture\_envelope()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a0913cc99dc9208d9c20bda332ec523ab} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+capture\+\_\+envelope (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Envelope"{}}]{envelope}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send an envelope to Sentry.
+
+Envelopes are a data container format that can hold any type of data
+submitted to Sentry. We use it to send all event data (including errors,
+transactions, crons check-ins, etc.) to Sentry.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a0c3d7767b555bf5963bfd49d6fd80284}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ae376d650737fcae044726ac63a03f845}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!flush@{flush}}
+\index{flush@{flush}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{flush()}{flush()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_ae376d650737fcae044726ac63a03f845} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+flush (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{float}]{timeout}{, }\item[{"{}Optional\+[Callable\+[\+[int, float]\+, None]\+]\+"{} }]{callback}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait `timeout` seconds for the current events to be sent out.
+
+The default implementation is a no-op, since this method may only be relevant to some transports.
+Subclasses should override this method if necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_ae6fe475f10e1e95a3f72b240bb1a6651}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a69460e0728d31b3d2cde8c8c07e2469f}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!hub\_cls@{hub\_cls}}
+\index{hub\_cls@{hub\_cls}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{hub\_cls()}{hub\_cls()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a69460e0728d31b3d2cde8c8c07e2469f} 
+ "{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{} sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+hub\+\_\+cls (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}DEPRECATED: This attribute is deprecated and will be removed in a future release.\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a123a829dece5043cdbc2078caeb77b17}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!hub\_cls@{hub\_cls}}
+\index{hub\_cls@{hub\_cls}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{hub\_cls()}{hub\_cls()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a123a829dece5043cdbc2078caeb77b17} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+hub\+\_\+cls (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{, }\item[{"{}type\+[\doxymbox{\hyperlink{classsentry__sdk_1_1hub_1_1Hub}{sentry\+\_\+sdk.\+Hub}}]\+"{}}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}DEPRECATED: This attribute is deprecated and will be removed in a future release.\end{DoxyVerb}
+ \Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45e9cb51a2d6877084c2c643ddaa14b6}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!is\_healthy@{is\_healthy}}
+\index{is\_healthy@{is\_healthy}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{is\_healthy()}{is\_healthy()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a45e9cb51a2d6877084c2c643ddaa14b6} 
+ bool sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+is\+\_\+healthy (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8a367f3b7814bf81ed2fdc16e87a1dd8}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!kill@{kill}}
+\index{kill@{kill}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a8a367f3b7814bf81ed2fdc16e87a1dd8} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+kill (\begin{DoxyParamCaption}\item[{"{}Self"{}}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Forcefully kills the transport.
+
+The default implementation is a no-op, since this method may only be relevant to some transports.
+Subclasses should override this method if necessary.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a7a45c1a8ade9b1576ca1f7c8b8ec211e}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a40f7cf7274179445f00b627ae6f1fee7}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!record\_lost\_event@{record\_lost\_event}}
+\index{record\_lost\_event@{record\_lost\_event}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{record\_lost\_event()}{record\_lost\_event()}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_a40f7cf7274179445f00b627ae6f1fee7} 
+ None sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+record\+\_\+lost\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{reason}{, }\item[{"{}Optional\+[Event\+Data\+Category]\+"{} }]{data\+\_\+category}{ = {\ttfamily None}, }\item[{"{}Optional\+[\doxymbox{\hyperlink{classsentry__sdk_1_1envelope_1_1Item}{Item}}]\+"{} }]{item}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}}]{}{, }\item[{int }]{quantity}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This increments a counter for event loss by reason and
+data category by the given positive-int quantity (default 1).
+
+If an item is provided, the data category and quantity are
+extracted from the item, and the values passed for
+data_category and quantity are ignored.
+
+When recording a lost transaction via data_category="transaction",
+the calling code should also record the lost spans via this method.
+When recording lost spans, `quantity` should be set to the number
+of contained spans, plus one for the transaction itself. When
+passing an Item containing a transaction via the `item` parameter,
+this method automatically records the lost spans.
+\end{DoxyVerb}
+ 
+
+Reimplemented from \doxymbox{\hyperlink{classsentry__sdk_1_1transport_1_1Transport_a657422bfe281639b13c927c4bd03b81c}{sentry\+\_\+sdk.\+transport.\+Transport}}.
+
+
+
+\label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_doc-variable-members}
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsentry__sdk_1_1transport_1_1BaseHttpTransport_acb3463d4b02e8885da96bb4a0fa6ef07}\index{sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}!\_discarded\_events@{\_discarded\_events}}
+\index{\_discarded\_events@{\_discarded\_events}!sentry\_sdk.transport.BaseHttpTransport@{sentry\_sdk.transport.BaseHttpTransport}}
+\doxysubsubsection{\texorpdfstring{\_discarded\_events}{\_discarded\_events}}
+{\footnotesize\ttfamily \label{classsentry__sdk_1_1transport_1_1BaseHttpTransport_acb3463d4b02e8885da96bb4a0fa6ef07} 
+tuple sentry\+\_\+sdk.\+transport.\+Base\+Http\+Transport.\+\_\+discarded\+\_\+events\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ defaultdict(int)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sentry\+\_\+sdk/\+transport.\+py\end{DoxyCompactItemize}

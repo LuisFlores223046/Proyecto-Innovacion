@@ -1,0 +1,77 @@
+\doxysection{httpx.\+\_\+multipart.\+Data\+Field Class Reference}
+\hypertarget{classhttpx_1_1__multipart_1_1DataField}{}\label{classhttpx_1_1__multipart_1_1DataField}\index{httpx.\_multipart.DataField@{httpx.\_multipart.DataField}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_a62accd0efb331c8bb61df33caac98ea7}\label{classhttpx_1_1__multipart_1_1DataField_a62accd0efb331c8bb61df33caac98ea7} 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, str name, str\texorpdfstring{$\vert$}{|}bytes\texorpdfstring{$\vert$}{|}int\texorpdfstring{$\vert$}{|}float\texorpdfstring{$\vert$}{|}None value)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_a7366867779647dc08b4b794d82d7b209}\label{classhttpx_1_1__multipart_1_1DataField_a7366867779647dc08b4b794d82d7b209} 
+bytes {\bfseries render\+\_\+headers} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_a420228656f854ffeb8e0668aa123a28d}\label{classhttpx_1_1__multipart_1_1DataField_a420228656f854ffeb8e0668aa123a28d} 
+bytes {\bfseries render\+\_\+data} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_afa31079dcb24fbfc1093eade17aa4260}\label{classhttpx_1_1__multipart_1_1DataField_afa31079dcb24fbfc1093eade17aa4260} 
+int {\bfseries get\+\_\+length} (self)
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_ae093c00b568a3135112af37621bb9c3a}\label{classhttpx_1_1__multipart_1_1DataField_ae093c00b568a3135112af37621bb9c3a} 
+typing.\+Iterator\+[bytes]\+ {\bfseries render} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_a06b45c93c2575810d9ceba648090d7c2}\label{classhttpx_1_1__multipart_1_1DataField_a06b45c93c2575810d9ceba648090d7c2} 
+{\bfseries name} = name
+\item 
+tuple \doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1DataField_a8862e7c6f49fa78e314efcb97a985c8e}{value}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classhttpx_1_1__multipart_1_1DataField_aa1d41ed8a7c879a065ccbd78ff79a47a}{\+\_\+headers}}
+\item 
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_aed7c5e3c822e460faa8d996931bc978a}\label{classhttpx_1_1__multipart_1_1DataField_aed7c5e3c822e460faa8d996931bc978a} 
+{\bfseries \+\_\+data} = to\+\_\+bytes(self.\+value)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A single form field item, within a multipart form field.
+\end{DoxyVerb}
+ 
+
+\label{classhttpx_1_1__multipart_1_1DataField_doc-variable-members}
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_aa1d41ed8a7c879a065ccbd78ff79a47a}\index{httpx.\_multipart.DataField@{httpx.\_multipart.DataField}!\_headers@{\_headers}}
+\index{\_headers@{\_headers}!httpx.\_multipart.DataField@{httpx.\_multipart.DataField}}
+\doxysubsubsection{\texorpdfstring{\_headers}{\_headers}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__multipart_1_1DataField_aa1d41ed8a7c879a065ccbd78ff79a47a} 
+str httpx.\+\_\+multipart.\+Data\+Field.\+\_\+headers\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ b\textcolor{stringliteral}{"{}"{}}.join(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [b\textcolor{stringliteral}{"{}Content-\/Disposition:\ form-\/data;\ "{}},\ name,\ b\textcolor{stringliteral}{"{}\(\backslash\)r\(\backslash\)n\(\backslash\)r\(\backslash\)n"{}}]}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+\Hypertarget{classhttpx_1_1__multipart_1_1DataField_a8862e7c6f49fa78e314efcb97a985c8e}\index{httpx.\_multipart.DataField@{httpx.\_multipart.DataField}!value@{value}}
+\index{value@{value}!httpx.\_multipart.DataField@{httpx.\_multipart.DataField}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{classhttpx_1_1__multipart_1_1DataField_a8862e7c6f49fa78e314efcb97a985c8e} 
+tuple httpx.\+\_\+multipart.\+Data\+Field.\+value}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ (}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ value\ \textcolor{keywordflow}{if}\ isinstance(value,\ bytes)\ \textcolor{keywordflow}{else}\ primitive\_value\_to\_str(value)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+httpx/\+\+\_\+multipart.\+py\end{DoxyCompactItemize}

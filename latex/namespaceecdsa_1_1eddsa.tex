@@ -1,0 +1,132 @@
+\doxysection{ecdsa.\+eddsa Namespace Reference}
+\hypertarget{namespaceecdsa_1_1eddsa}{}\label{namespaceecdsa_1_1eddsa}\index{ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classecdsa_1_1eddsa_1_1PublicKey}{Public\+Key}}
+\item 
+class \doxymbox{\hyperlink{classecdsa_1_1eddsa_1_1PrivateKey}{Private\+Key}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_ae3ba977d9d4a24c890b9cee7442e836a}\label{namespaceecdsa_1_1eddsa_ae3ba977d9d4a24c890b9cee7442e836a} 
+{\bfseries \+\_\+sha512} (data)
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_a8cd5dd71f873c78b4a4625289acd1978}\label{namespaceecdsa_1_1eddsa_a8cd5dd71f873c78b4a4625289acd1978} 
+{\bfseries \+\_\+shake256} (data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_a86f05263ffa87c783e4c1d3520797363}\label{namespaceecdsa_1_1eddsa_a86f05263ffa87c783e4c1d3520797363} 
+int {\bfseries \+\_\+p} = 2\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}255 -\/ 19
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_aa03a8bd6d1b51b0159d17c28c2595b5a}\label{namespaceecdsa_1_1eddsa_aa03a8bd6d1b51b0159d17c28c2595b5a} 
+int {\bfseries \+\_\+a} = -\/1
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1eddsa_a641a8241b5dca2fa9c866a6904ec173a}{\+\_\+d}}
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_afa4611d877dc22791055da1732c09723}\label{namespaceecdsa_1_1eddsa_afa4611d877dc22791055da1732c09723} 
+int {\bfseries \+\_\+h} = 8
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1eddsa_a64c82498010ce20bf9d560a84e06c29d}{\+\_\+\+Gx}}
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1eddsa_ad3e9b9f86687ebd707ed752c032ea34e}{\+\_\+\+Gy}}
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_a12e7ec55ba8f0cf0b99fa695d2106eb6}\label{namespaceecdsa_1_1eddsa_a12e7ec55ba8f0cf0b99fa695d2106eb6} 
+int {\bfseries \+\_\+r} = 2\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}252 + 0x14\+DEF9\+DEA2\+F79\+CD65812631\+A5\+CF5\+D3\+ED
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_a0d71a03876085e744ccc61dd0f3b92c7}\label{namespaceecdsa_1_1eddsa_a0d71a03876085e744ccc61dd0f3b92c7} 
+{\bfseries curve\+\_\+ed25519} = \doxymbox{\hyperlink{classecdsa_1_1ellipticcurve_1_1CurveEdTw}{ellipticcurve.\+Curve\+Ed\+Tw}}(\+\_\+p, \+\_\+a, \+\_\+d, \+\_\+h, \+\_\+sha512)
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1eddsa_ac074d19a491a06db2e23eee5770ef611}{generator\+\_\+ed25519}}
+\item 
+\Hypertarget{namespaceecdsa_1_1eddsa_aa2c0aeb061033d59cddb10395b305125}\label{namespaceecdsa_1_1eddsa_aa2c0aeb061033d59cddb10395b305125} 
+{\bfseries curve\+\_\+ed448} = \doxymbox{\hyperlink{classecdsa_1_1ellipticcurve_1_1CurveEdTw}{ellipticcurve.\+Curve\+Ed\+Tw}}(\+\_\+p, \+\_\+a, \+\_\+d, \+\_\+h, \+\_\+shake256)
+\item 
+\doxymbox{\hyperlink{namespaceecdsa_1_1eddsa_aa836a2f68760959d3eec0adb971e7dce}{generator\+\_\+ed448}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Implementation of Edwards Digital Signature Algorithm.\end{DoxyVerb}
+ 
+
+\label{namespaceecdsa_1_1eddsa_doc-var-members}
+\Hypertarget{namespaceecdsa_1_1eddsa_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceecdsa_1_1eddsa_a641a8241b5dca2fa9c866a6904ec173a}\index{ecdsa.eddsa@{ecdsa.eddsa}!\_d@{\_d}}
+\index{\_d@{\_d}!ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection{\texorpdfstring{\_d}{\_d}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1eddsa_a641a8241b5dca2fa9c866a6904ec173a} 
+int \+\_\+d\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ int(}
+\DoxyCodeLine{\ \ \ \ remove\_whitespace(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}370957059346694393431380835087545651895421138798432190163887855330"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}85940283555"{}}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespaceecdsa_1_1eddsa_a64c82498010ce20bf9d560a84e06c29d}\index{ecdsa.eddsa@{ecdsa.eddsa}!\_Gx@{\_Gx}}
+\index{\_Gx@{\_Gx}!ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection{\texorpdfstring{\_Gx}{\_Gx}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1eddsa_a64c82498010ce20bf9d560a84e06c29d} 
+ecdsa.\+eddsa.\+\_\+\+Gx\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ int(}
+\DoxyCodeLine{\ \ \ \ remove\_whitespace(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}151122213495354007725011514095885315114540126930418572060461132"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}83949847762202"{}}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespaceecdsa_1_1eddsa_ad3e9b9f86687ebd707ed752c032ea34e}\index{ecdsa.eddsa@{ecdsa.eddsa}!\_Gy@{\_Gy}}
+\index{\_Gy@{\_Gy}!ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection{\texorpdfstring{\_Gy}{\_Gy}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1eddsa_ad3e9b9f86687ebd707ed752c032ea34e} 
+ecdsa.\+eddsa.\+\_\+\+Gy\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ int(}
+\DoxyCodeLine{\ \ \ \ remove\_whitespace(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}463168356949264781694283940034751631413079938662562256157830336"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}03165251855960"{}}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespaceecdsa_1_1eddsa_ac074d19a491a06db2e23eee5770ef611}\index{ecdsa.eddsa@{ecdsa.eddsa}!generator\_ed25519@{generator\_ed25519}}
+\index{generator\_ed25519@{generator\_ed25519}!ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection{\texorpdfstring{generator\_ed25519}{generator\_ed25519}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1eddsa_ac074d19a491a06db2e23eee5770ef611} 
+ecdsa.\+eddsa.\+generator\+\_\+ed25519}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ellipticcurve.PointEdwards(}
+\DoxyCodeLine{\ \ \ \ curve\_ed25519,\ \_Gx,\ \_Gy,\ 1,\ \_Gx\ *\ \_Gy\ \%\ \_p,\ \_r,\ generator=\textcolor{keyword}{True}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespaceecdsa_1_1eddsa_aa836a2f68760959d3eec0adb971e7dce}\index{ecdsa.eddsa@{ecdsa.eddsa}!generator\_ed448@{generator\_ed448}}
+\index{generator\_ed448@{generator\_ed448}!ecdsa.eddsa@{ecdsa.eddsa}}
+\doxysubsubsection{\texorpdfstring{generator\_ed448}{generator\_ed448}}
+{\footnotesize\ttfamily \label{namespaceecdsa_1_1eddsa_aa836a2f68760959d3eec0adb971e7dce} 
+ecdsa.\+eddsa.\+generator\+\_\+ed448}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ ellipticcurve.PointEdwards(}
+\DoxyCodeLine{\ \ \ \ curve\_ed448,\ \_Gx,\ \_Gy,\ 1,\ \_Gx\ *\ \_Gy\ \%\ \_p,\ \_r,\ generator=\textcolor{keyword}{True}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}

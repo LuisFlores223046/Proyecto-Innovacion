@@ -1,0 +1,116 @@
+\doxysection{passlib.\+handlers.\+windows.\+lmhash Class Reference}
+\hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash}{}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash}\index{passlib.handlers.windows.lmhash@{passlib.handlers.windows.lmhash}}
+Inheritance diagram for passlib.\+handlers.\+windows.\+lmhash:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.803543cm]{classpasslib_1_1handlers_1_1windows_1_1lmhash}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpasslib_1_1handlers_1_1windows_1_1lmhash_a121852f398331529562968cac1664a86}{raw}} (cls, secret, encoding=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_aeb23b1ae9c71918e08357c0d3dbbe298}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_aeb23b1ae9c71918e08357c0d3dbbe298} 
+{\bfseries use\+\_\+defaults}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a0869cfe0cda9963d402f8c873708dc91}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a0869cfe0cda9963d402f8c873708dc91} 
+{\bfseries encoding}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a7279d175e5eaf2332891070911c0cc74}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a7279d175e5eaf2332891070911c0cc74} 
+str {\bfseries name} = "{}lmhash"{}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a02cf24e03e4903df34fcf5f751675d80}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a02cf24e03e4903df34fcf5f751675d80} 
+tuple {\bfseries setting\+\_\+kwds} = ("{}truncate\+\_\+error"{},)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a4e909fa6b4c1921114e3e354cfaf5c4f}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a4e909fa6b4c1921114e3e354cfaf5c4f} 
+{\bfseries checksum\+\_\+chars} = uh.\+HEX\+\_\+\+CHARS
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_af89c15e7be23bc34faa723f81e1f4d16}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_af89c15e7be23bc34faa723f81e1f4d16} 
+int {\bfseries checksum\+\_\+size} = 32
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_ad84487c5f90f397e2a5008e1c0987bac}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_ad84487c5f90f397e2a5008e1c0987bac} 
+int {\bfseries truncate\+\_\+size} = 14
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a79307cf93705c66dd24273dc9f71fa20}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a79307cf93705c66dd24273dc9f71fa20} 
+str {\bfseries default\+\_\+encoding} = "{}cp437"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a3193273b9bc073c464e2a02523a03c1a}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a3193273b9bc073c464e2a02523a03c1a} 
+{\bfseries \+\_\+norm\+\_\+hash} (cls, hash)
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a248f569aa57e89cdb8f7c1f373663542}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a248f569aa57e89cdb8f7c1f373663542} 
+{\bfseries \+\_\+calc\+\_\+checksum} (self, secret)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a4acc5b0e09f7fddd0089682f91decc52}\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a4acc5b0e09f7fddd0089682f91decc52} 
+str {\bfseries \+\_\+magic} = b"{}\+KGS!@\+\#\$\%"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This class implements the Lan Manager Password hash, and follows the :ref:`password-hash-api`.
+
+It has no salt and a single fixed round.
+
+The :meth:`~passlib.ifc.PasswordHash.using` method accepts a single
+optional keyword:
+
+:param bool truncate_error:
+    By default, this will silently truncate passwords larger than 14 bytes.
+    Setting ``truncate_error=True`` will cause :meth:`~passlib.ifc.PasswordHash.hash`
+    to raise a :exc:`~passlib.exc.PasswordTruncateError` instead.
+
+    .. versionadded:: 1.7
+
+The :meth:`~passlib.ifc.PasswordHash.hash` and :meth:`~passlib.ifc.PasswordHash.verify` methods accept a single
+optional keyword:
+
+:type encoding: str
+:param encoding:
+
+    This specifies what character encoding LMHASH should use when
+    calculating digest. It defaults to ``cp437``, the most
+    common encoding encountered.
+
+Note that while this class outputs digests in lower-case hexadecimal,
+it will accept upper-case as well.
+\end{DoxyVerb}
+ 
+
+\label{classpasslib_1_1handlers_1_1windows_1_1lmhash_doc-func-members}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpasslib_1_1handlers_1_1windows_1_1lmhash_a121852f398331529562968cac1664a86}\index{passlib.handlers.windows.lmhash@{passlib.handlers.windows.lmhash}!raw@{raw}}
+\index{raw@{raw}!passlib.handlers.windows.lmhash@{passlib.handlers.windows.lmhash}}
+\doxysubsubsection{\texorpdfstring{raw()}{raw()}}
+{\footnotesize\ttfamily \label{classpasslib_1_1handlers_1_1windows_1_1lmhash_a121852f398331529562968cac1664a86} 
+passlib.\+handlers.\+windows.\+lmhash.\+raw (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{}]{secret}{, }\item[{}]{encoding}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}encode password using LANMAN hash algorithm.
+
+:type secret: unicode or utf-8 encoded bytes
+:arg secret: secret to hash
+:type encoding: str
+:arg encoding:
+    optional encoding to use for unicode inputs.
+    this defaults to ``cp437``, which is the
+    common case for most situations.
+
+:returns: returns string of raw bytes
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+passlib/\+handlers/\+windows.\+py\end{DoxyCompactItemize}

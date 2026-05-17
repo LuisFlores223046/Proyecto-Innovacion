@@ -1,0 +1,159 @@
+\doxysection{pyasn1.\+type.\+constraint.\+With\+Components\+Constraint Class Reference}
+\hypertarget{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint}{}\label{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint}\index{pyasn1.type.constraint.WithComponentsConstraint@{pyasn1.type.constraint.WithComponentsConstraint}}
+Inheritance diagram for pyasn1.\+type.\+constraint.\+With\+Components\+Constraint:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_a0c36cb681b193f1f054958b29f0f374c}{\+\_\+test\+Value}} (self, value, idx)
+\item 
+\doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_acf9347490fcc89e83383f052fa251478}{\+\_\+set\+Values}} (self, values)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}values)
+\item 
+{\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, value, idx=None)
+\item 
+{\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+lt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+le\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+gt\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+ge\+\_\+\+\_\+} (self, other)
+\item 
+{\bfseries \+\_\+\+\_\+nonzero\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+{\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+{\bfseries get\+Value\+Map} (self)
+\item 
+{\bfseries is\+Super\+Type\+Of} (self, other\+Constraint)
+\item 
+{\bfseries is\+Sub\+Type\+Of} (self, other\+Constraint)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+value\+Map} = set()
+\item 
+{\bfseries \+\_\+values}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Create a WithComponentsConstraint object.
+
+The `WithComponentsConstraint` satisfies any mapping object that has
+constrained fields present or absent, what is indicated by
+`ComponentPresentConstraint` and `ComponentAbsentConstraint`
+objects respectively.
+
+The `WithComponentsConstraint` object is typically applied
+to  :class:`~pyasn1.type.univ.Set` or
+:class:`~pyasn1.type.univ.Sequence` types.
+
+Parameters
+----------
+*fields: :class:`tuple`
+    Zero or more tuples of (`field`, `constraint`) indicating constrained
+    fields.
+
+Notes
+-----
+On top of the primary use of `WithComponentsConstraint` (ensuring presence
+or absence of particular components of a :class:`~pyasn1.type.univ.Set` or
+:class:`~pyasn1.type.univ.Sequence`), it is also possible to pass any other
+constraint objects or their combinations. In case of scalar fields, these
+constraints will be verified in addition to the constraints belonging to
+scalar components themselves. However, formally, these additional
+constraints do not change the type of these ASN.1 objects.
+
+Examples
+--------
+
+.. code-block:: python
+
+    class Item(Sequence):  #  Set is similar
+        '''
+        ASN.1 specification:
+
+        Item ::= SEQUENCE {
+            id    INTEGER OPTIONAL,
+            name  OCTET STRING OPTIONAL
+        } WITH COMPONENTS id PRESENT, name ABSENT | id ABSENT, name PRESENT
+        '''
+        componentType = NamedTypes(
+            OptionalNamedType('id', Integer()),
+            OptionalNamedType('name', OctetString())
+        )
+        withComponents = ConstraintsUnion(
+            WithComponentsConstraint(
+                ('id', ComponentPresentConstraint()),
+                ('name', ComponentAbsentConstraint())
+            ),
+            WithComponentsConstraint(
+                ('id', ComponentAbsentConstraint()),
+                ('name', ComponentPresentConstraint())
+            )
+        )
+
+    item = Item()
+
+    # This will succeed
+    item['id'] = 1
+
+    # This will succeed
+    item.reset()
+    item['name'] = 'John'
+
+    # This will fail (on encoding)
+    item.reset()
+    descr['id'] = 1
+    descr['name'] = 'John'
+\end{DoxyVerb}
+ 
+
+\label{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_doc-func-members}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_acf9347490fcc89e83383f052fa251478}\index{pyasn1.type.constraint.WithComponentsConstraint@{pyasn1.type.constraint.WithComponentsConstraint}!\_setValues@{\_setValues}}
+\index{\_setValues@{\_setValues}!pyasn1.type.constraint.WithComponentsConstraint@{pyasn1.type.constraint.WithComponentsConstraint}}
+\doxysubsubsection{\texorpdfstring{\_setValues()}{\_setValues()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_acf9347490fcc89e83383f052fa251478} 
+pyasn1.\+type.\+constraint.\+With\+Components\+Constraint.\+\_\+set\+Values (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{values}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}.
+
+\Hypertarget{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_a0c36cb681b193f1f054958b29f0f374c}\index{pyasn1.type.constraint.WithComponentsConstraint@{pyasn1.type.constraint.WithComponentsConstraint}!\_testValue@{\_testValue}}
+\index{\_testValue@{\_testValue}!pyasn1.type.constraint.WithComponentsConstraint@{pyasn1.type.constraint.WithComponentsConstraint}}
+\doxysubsubsection{\texorpdfstring{\_testValue()}{\_testValue()}}
+{\footnotesize\ttfamily \label{classpyasn1_1_1type_1_1constraint_1_1WithComponentsConstraint_a0c36cb681b193f1f054958b29f0f374c} 
+pyasn1.\+type.\+constraint.\+With\+Components\+Constraint.\+\_\+test\+Value (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{value}{, }\item[{}]{idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classpyasn1_1_1type_1_1constraint_1_1AbstractConstraint}{pyasn1.\+type.\+constraint.\+Abstract\+Constraint}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pyasn1/\+type/\+constraint.\+py\end{DoxyCompactItemize}

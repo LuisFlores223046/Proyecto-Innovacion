@@ -1,0 +1,130 @@
+\chapter{1.\+2.\+1 }
+\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG}{}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG}\index{1.2.1@{1.2.1}}
+\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4024}%
+\Hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4024}%
+
+
+
+\begin{DoxyItemize}
+\item fix version
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4025}{}\doxysection{\texorpdfstring{1.\+2.\+0}{1.\+2.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4025}
+
+\begin{DoxyItemize}
+\item add {\ttfamily List.\+remove}
+\item build with Live\+Script 1.\+6.\+0
+\item update dependencies
+\item remove coverage calculation
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4026}{}\doxysection{\texorpdfstring{1.\+1.\+2}{1.\+1.\+2}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4026}
+
+\begin{DoxyItemize}
+\item add {\ttfamily Func.\+memoize}
+\item fix {\ttfamily zip-\/all} and {\ttfamily zip-\/with-\/all} corner case (no input)
+\item build with Live\+Script 1.\+4.\+0
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4027}{}\doxysection{\texorpdfstring{1.\+1.\+1}{1.\+1.\+1}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4027}
+
+\begin{DoxyItemize}
+\item curry {\ttfamily unique-\/by}, {\ttfamily minimum-\/by}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4028}{}\doxysection{\texorpdfstring{1.\+1.\+0}{1.\+1.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4028}
+
+\begin{DoxyItemize}
+\item added {\ttfamily List} functions:\+ {\ttfamily maximum-\/by}, {\ttfamily minimum-\/by}, {\ttfamily unique-\/by}
+\item added {\ttfamily List} functions:\+ {\ttfamily at}, {\ttfamily elem-\/index}, {\ttfamily elem-\/indices}, {\ttfamily find-\/index}, {\ttfamily find-\/indices}
+\item added {\ttfamily Str} functions:\+ {\ttfamily capitalize}, {\ttfamily camelize}, {\ttfamily dasherize}
+\item added {\ttfamily Func} function:\+ {\ttfamily over} -\/ eg. {\ttfamily same-\/length = (==) \`{}over\`{} (.length)}
+\item exported {\ttfamily Str.\+repeat} through main {\ttfamily prelude} object
+\item fixed definition of {\ttfamily foldr} and {\ttfamily foldr1}, the new correct definition is backwards incompatible with the old, incorrect one
+\item fixed issue with {\ttfamily fix}
+\item improved code coverage
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4029}{}\doxysection{\texorpdfstring{1.\+0.\+3}{1.\+0.\+3}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4029}
+
+\begin{DoxyItemize}
+\item build browser versions
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4030}{}\doxysection{\texorpdfstring{1.\+0.\+2}{1.\+0.\+2}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4030}
+
+\begin{DoxyItemize}
+\item bug fix for {\ttfamily flatten} -\/ slight change with bug fix, flattens arrays only, not array-\/like objects
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4031}{}\doxysection{\texorpdfstring{1.\+0.\+1}{1.\+0.\+1}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4031}
+
+\begin{DoxyItemize}
+\item bug fixes for {\ttfamily drop-\/while} and {\ttfamily take-\/while}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4032}{}\doxysection{\texorpdfstring{1.\+0.\+0}{1.\+0.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4032}
+
+\begin{DoxyItemize}
+\item massive update -\/ separated functions into separate modules
+\item functions do not accept multiple types anymore -\/ use different versions in their respective modules in some cases (eg. {\ttfamily Obj.\+map}), or use {\ttfamily chars} or {\ttfamily values} in other cases to transform into a list
+\item objects are no longer transformed into functions, simply use {\ttfamily (obj.)} in Live\+Script to do that
+\item browser version now using browserify -\/ use {\ttfamily prelude = require(\textquotesingle{}prelude-\/ls\textquotesingle{})}
+\item added {\ttfamily compact}, {\ttfamily split}, {\ttfamily flatten}, {\ttfamily difference}, {\ttfamily intersection}, {\ttfamily union}, {\ttfamily count-\/by}, {\ttfamily group-\/by}, {\ttfamily chars}, {\ttfamily unchars}, {\ttfamily apply}
+\item added {\ttfamily lists-\/to-\/obj} which takes a list of keys and list of values and zips them up into an object, and the converse {\ttfamily obj-\/to-\/lists}
+\item added {\ttfamily pairs-\/to-\/obj} which takes a list of pairs (2 element lists) and creates an object, and the converse {\ttfamily obj-\/to-\/pairs}
+\item removed {\ttfamily cons}, {\ttfamily append} -\/ use the concat operator
+\item removed {\ttfamily compose} -\/ use the compose operator
+\item removed {\ttfamily obj-\/to-\/func} -\/ use partially applied access (eg. {\ttfamily (obj.)})
+\item removed {\ttfamily length} -\/ use {\ttfamily (.length)}
+\item {\ttfamily sort-\/by} renamed to {\ttfamily sort-\/with}
+\item added new {\ttfamily sort-\/by}
+\item removed {\ttfamily compare} -\/ just use the new {\ttfamily sort-\/by}
+\item {\ttfamily break-\/it} renamed {\ttfamily break-\/list}, ({\ttfamily Str.\+break-\/str} for the string version)
+\item added {\ttfamily Str.\+repeat} which creates a new string by repeating the input n times
+\item {\ttfamily unfold} as alias to {\ttfamily unfoldr} is no longer used
+\item fixed up style and compiled with Live\+Script 1.\+1.\+1
+\item use Make instead of Slake
+\item greatly improved tests
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4033}{}\doxysection{\texorpdfstring{0.\+6.\+0}{0.\+6.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4033}
+
+\begin{DoxyItemize}
+\item fixed various bugs
+\item added {\ttfamily fix}, a fixpoint (Y combinator) for anonymous recursive functions
+\item added {\ttfamily unfoldr} (alias {\ttfamily unfold})
+\item calling {\ttfamily replicate} with a string now returns a list of strings
+\item removed {\ttfamily partial}, just use native partial application in Live\+Script using the {\ttfamily \+\_\+} placeholder, or currying
+\item added {\ttfamily sort}, {\ttfamily sort\+By}, and {\ttfamily compare}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4034}{}\doxysection{\texorpdfstring{0.\+5.\+0}{0.\+5.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4034}
+
+\begin{DoxyItemize}
+\item removed {\ttfamily lookup} -\/ use (.prop)
+\item removed {\ttfamily call} -\/ use (.func arg1, arg2)
+\item removed {\ttfamily pluck} -\/ use map (.prop), xs
+\item fixed buys wtih {\ttfamily head} and {\ttfamily last}
+\item added non-\/minifed browser version, as {\ttfamily prelude-\/browser.\+js}
+\item renamed {\ttfamily prelude-\/min.\+js} to {\ttfamily prelude-\/browser-\/min.\+js}
+\item renamed {\ttfamily zip} to {\ttfamily zip\+All}
+\item renamed {\ttfamily zip\+With} to {\ttfamily zip\+All\+With}
+\item added {\ttfamily zip}, a curried zip that takes only two arguments
+\item added {\ttfamily zip\+With}, a curried zip\+With that takes only two arguments
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4035}{}\doxysection{\texorpdfstring{0.\+4.\+0}{0.\+4.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4035}
+
+\begin{DoxyItemize}
+\item added {\ttfamily parition} function
+\item added {\ttfamily curry} function
+\item removed {\ttfamily elem} function (use {\ttfamily in})
+\item removed {\ttfamily not\+Elem} function (use {\ttfamily not in})
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4036}{}\doxysection{\texorpdfstring{0.\+3.\+0}{0.\+3.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4036}
+
+\begin{DoxyItemize}
+\item added {\ttfamily list\+To\+Object}
+\item added {\ttfamily unique}
+\item added {\ttfamily obj\+To\+Func}
+\item added support for using strings in map and the like
+\item added support for using objects in map and the like
+\item added ability to use objects instead of functions in certain cases
+\item removed {\ttfamily error} (just use throw)
+\item added {\ttfamily tau} constant
+\item added {\ttfamily join}
+\item added {\ttfamily values}
+\item added {\ttfamily keys}
+\item added {\ttfamily partial}
+\item renamed {\ttfamily log} to {\ttfamily ln}
+\item added alias to {\ttfamily head}:\+ {\ttfamily first}
+\item added {\ttfamily install\+Prelude} helper
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4037}{}\doxysection{\texorpdfstring{0.\+2.\+0}{0.\+2.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4037}
+
+\begin{DoxyItemize}
+\item removed functions that simply warp operators as you can now use operators as functions in Live\+Script
+\item {\ttfamily min/\+max} are now curried and take only 2 arguments
+\item added {\ttfamily call}
+\end{DoxyItemize}\hypertarget{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4038}{}\doxysection{\texorpdfstring{0.\+1.\+0}{0.\+1.\+0}}\label{md_frontend_2node__modules_2prelude-ls_2CHANGELOG_autotoc_md4038}
+
+\begin{DoxyItemize}
+\item initial public release 
+\end{DoxyItemize}

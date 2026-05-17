@@ -1,0 +1,83 @@
+\doxysection{pip.\+\_\+internal.\+resolution.\+resolvelib.\+found\+\_\+candidates Namespace Reference}
+\hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates}{}\label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates}\index{pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_1_1FoundCandidates}{Found\+Candidates}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a2a31a60e1a2a139f4e3395c731f076cc}{\+\_\+iter\+\_\+built}} (Iterator\+[Index\+Candidate\+Info]\+ infos)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a172c4290096d4d5edac850fd5152db6b}{\+\_\+iter\+\_\+built\+\_\+with\+\_\+prepended}} (\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}} installed, Iterator\+[Index\+Candidate\+Info]\+ infos)
+\item 
+Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \doxymbox{\hyperlink{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_aba14f1763c6d51f3910fec4bccdaa911}{\+\_\+iter\+\_\+built\+\_\+with\+\_\+inserted}} (\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}} installed, Iterator\+[Index\+Candidate\+Info]\+ infos)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a5dc497406a3176c6265b8c383ee1ca94}\label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a5dc497406a3176c6265b8c383ee1ca94} 
+{\bfseries Index\+Candidate\+Info} = Tuple\+[\doxymbox{\hyperlink{classpip_1_1__vendor_1_1packaging_1_1version_1_1__BaseVersion}{\+\_\+\+Base\+Version}}, Callable\+[\+[$\,$]\+, Optional\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+]\+]\+
+\item 
+\Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_ad3a8f843281127d3565e14d85d93f6d6}\label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_ad3a8f843281127d3565e14d85d93f6d6} 
+{\bfseries Sequence\+Candidate} = Sequence\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Utilities to lazily create and visit candidates found.
+
+Creating and visiting a candidate is a *very* costly operation. It involves
+fetching, extracting, potentially building modules from source, and verifying
+distribution metadata. It is therefore crucial for performance to keep
+everything here lazy all the way down, so we only touch candidates that we
+absolutely need, and not "download the world" when we only need one version of
+something.
+\end{DoxyVerb}
+ 
+
+\label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_doc-func-members}
+\Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a2a31a60e1a2a139f4e3395c731f076cc}\index{pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}!\_iter\_built@{\_iter\_built}}
+\index{\_iter\_built@{\_iter\_built}!pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}}
+\doxysubsubsection{\texorpdfstring{\_iter\_built()}{\_iter\_built()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a2a31a60e1a2a139f4e3395c731f076cc} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \+\_\+iter\+\_\+built (\begin{DoxyParamCaption}\item[{Iterator\+[Index\+Candidate\+Info]\+}]{infos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Iterator for ``FoundCandidates``.
+
+This iterator is used when the package is not already installed. Candidates
+from index come later in their normal ordering.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_aba14f1763c6d51f3910fec4bccdaa911}\index{pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}!\_iter\_built\_with\_inserted@{\_iter\_built\_with\_inserted}}
+\index{\_iter\_built\_with\_inserted@{\_iter\_built\_with\_inserted}!pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}}
+\doxysubsubsection{\texorpdfstring{\_iter\_built\_with\_inserted()}{\_iter\_built\_with\_inserted()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_aba14f1763c6d51f3910fec4bccdaa911} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \+\_\+iter\+\_\+built\+\_\+with\+\_\+inserted (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}}]{installed}{, }\item[{Iterator\+[Index\+Candidate\+Info]\+ }]{infos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Iterator for ``FoundCandidates``.
+
+This iterator is used when the resolver prefers to upgrade an
+already-installed package. Candidates from index are returned in their
+normal ordering, except replaced when the version is already installed.
+
+The implementation iterates through and yields other candidates, inserting
+the installed candidate exactly once before we start yielding older or
+equivalent candidates, or after all other candidates if they are all newer.
+\end{DoxyVerb}
+ \Hypertarget{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a172c4290096d4d5edac850fd5152db6b}\index{pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}!\_iter\_built\_with\_prepended@{\_iter\_built\_with\_prepended}}
+\index{\_iter\_built\_with\_prepended@{\_iter\_built\_with\_prepended}!pip.\_internal.resolution.resolvelib.found\_candidates@{pip.\_internal.resolution.resolvelib.found\_candidates}}
+\doxysubsubsection{\texorpdfstring{\_iter\_built\_with\_prepended()}{\_iter\_built\_with\_prepended()}}
+{\footnotesize\ttfamily \label{namespacepip_1_1__internal_1_1resolution_1_1resolvelib_1_1found__candidates_a172c4290096d4d5edac850fd5152db6b} 
+ Iterator\+[\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}]\+ \+\_\+iter\+\_\+built\+\_\+with\+\_\+prepended (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classpip_1_1__internal_1_1resolution_1_1resolvelib_1_1base_1_1Candidate}{Candidate}}}]{installed}{, }\item[{Iterator\+[Index\+Candidate\+Info]\+ }]{infos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Iterator for ``FoundCandidates``.
+
+This iterator is used when the resolver prefers the already-installed
+candidate and NOT to upgrade. The installed candidate is therefore
+always yielded first, and candidates from index come later in their
+normal ordering, except skipped when the version is already installed.
+\end{DoxyVerb}
+ 

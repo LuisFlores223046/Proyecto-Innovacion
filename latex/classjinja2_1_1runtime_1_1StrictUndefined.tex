@@ -1,0 +1,80 @@
+\doxysection{jinja2.\+runtime.\+Strict\+Undefined Class Reference}
+\hypertarget{classjinja2_1_1runtime_1_1StrictUndefined}{}\label{classjinja2_1_1runtime_1_1StrictUndefined}\index{jinja2.runtime.StrictUndefined@{jinja2.runtime.StrictUndefined}}
+Inheritance diagram for jinja2.\+runtime.\+Strict\+Undefined:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1runtime_1_1StrictUndefined}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+None {\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, t.\+Optional\+[str]\+ hint=None, t.\+Any obj=missing, t.\+Optional\+[str]\+ name=None, t.\+Type\+[\doxymbox{\hyperlink{classjinja2_1_1exceptions_1_1TemplateRuntimeError}{Template\+Runtime\+Error}}]\+ exc=\doxymbox{\hyperlink{classjinja2_1_1exceptions_1_1UndefinedError}{Undefined\+Error}})
+\item 
+t.\+Any {\bfseries \+\_\+\+\_\+getattr\+\_\+\+\_\+} (self, str name)
+\item 
+bool {\bfseries \+\_\+\+\_\+eq\+\_\+\+\_\+} (self, t.\+Any other)
+\item 
+bool {\bfseries \+\_\+\+\_\+ne\+\_\+\+\_\+} (self, t.\+Any other)
+\item 
+int {\bfseries \+\_\+\+\_\+hash\+\_\+\+\_\+} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+\item 
+int {\bfseries \+\_\+\+\_\+len\+\_\+\+\_\+} (self)
+\item 
+t.\+Iterator\+[t.\+Any]\+ {\bfseries \+\_\+\+\_\+iter\+\_\+\+\_\+} (self)
+\item 
+t.\+Async\+Iterator\+[t.\+Any]\+ {\bfseries \+\_\+\+\_\+aiter\+\_\+\+\_\+} (self)
+\item 
+bool {\bfseries \+\_\+\+\_\+bool\+\_\+\+\_\+} (self)
+\item 
+str {\bfseries \+\_\+\+\_\+repr\+\_\+\+\_\+} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined_aabb255113b922b275cd184482bdd7629}{\+\_\+undefined\+\_\+message}} (self)
+\item 
+"{}te.\+No\+Return"{} \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined_a016a637ab04793a6dcc75979af5a3ea6}{\+\_\+fail\+\_\+with\+\_\+undefined\+\_\+error}} (self, \texorpdfstring{$\ast$}{*}t.\+Any args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}t.\+Any kwargs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \doxymbox{\hyperlink{classjinja2_1_1runtime_1_1Undefined}{jinja2.\+runtime.\+Undefined}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+undefined\+\_\+hint} = hint
+\item 
+{\bfseries \+\_\+undefined\+\_\+obj} = obj
+\item 
+{\bfseries \+\_\+undefined\+\_\+name} = name
+\item 
+{\bfseries \+\_\+undefined\+\_\+exception} = exc
+\item 
+{\bfseries \+\_\+undefined\+\_\+message}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}An undefined that barks on print and iteration as well as boolean
+tests and all kinds of comparisons.  In other words: you can do nothing
+with it except checking if it's defined using the `defined` test.
+
+>>> foo = StrictUndefined(name='foo')
+>>> str(foo)
+Traceback (most recent call last):
+  ...
+jinja2.exceptions.UndefinedError: 'foo' is undefined
+>>> not foo
+Traceback (most recent call last):
+  ...
+jinja2.exceptions.UndefinedError: 'foo' is undefined
+>>> foo + 42
+Traceback (most recent call last):
+  ...
+jinja2.exceptions.UndefinedError: 'foo' is undefined
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+runtime.\+py\end{DoxyCompactItemize}

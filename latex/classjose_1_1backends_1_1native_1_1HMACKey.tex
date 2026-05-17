@@ -1,0 +1,110 @@
+\doxysection{jose.\+backends.\+native.\+HMACKey Class Reference}
+\hypertarget{classjose_1_1backends_1_1native_1_1HMACKey}{}\label{classjose_1_1backends_1_1native_1_1HMACKey}\index{jose.backends.native.HMACKey@{jose.backends.native.HMACKey}}
+Inheritance diagram for jose.\+backends.\+native.\+HMACKey:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjose_1_1backends_1_1native_1_1HMACKey}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_a4690e64e707482e96da6c8ccfa14d456}\label{classjose_1_1backends_1_1native_1_1HMACKey_a4690e64e707482e96da6c8ccfa14d456} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, key, algorithm)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1native_1_1HMACKey_a79e00ea0de3dcfab50f2440d24d69a03}{sign}} (self, msg)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1native_1_1HMACKey_ae8586c8430928f8050fabb5c474145c2}{verify}} (self, msg, sig)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1native_1_1HMACKey_aa18a7d7903b272a067cd29604f37e6e8}{to\+\_\+dict}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key}{jose.\+backends.\+base.\+Key}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, key, algorithm)
+\item 
+{\bfseries public\+\_\+key} (self)
+\item 
+{\bfseries to\+\_\+pem} (self)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a8c71b41142c4595f3e14d6241a326e21}{encrypt}} (self, plain\+\_\+text, aad=None)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a5f8af656a5330b057cc9d8d01ee11486}{decrypt}} (self, cipher\+\_\+text, iv=None, aad=None, tag=None)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a035084303f96337dd54da298c36adf2d}{wrap\+\_\+key}} (self, key\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key_a8c72b3bcdca061ace544c220c488f7f0}{unwrap\+\_\+key}} (self, wrapped\+\_\+key)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_a5c6b695c616380c8b2bd81899fc42fc2}\label{classjose_1_1backends_1_1native_1_1HMACKey_a5c6b695c616380c8b2bd81899fc42fc2} 
+{\bfseries prepared\+\_\+key} = self.\+\_\+process\+\_\+jwk(key)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_ab276392d704355b4de654c99eabafa81}\label{classjose_1_1backends_1_1native_1_1HMACKey_ab276392d704355b4de654c99eabafa81} 
+dict {\bfseries HASHES} = \{ALGORITHMS.\+HS256:\+ hashlib.\+sha256, ALGORITHMS.\+HS384:\+ hashlib.\+sha384, ALGORITHMS.\+HS512:\+ hashlib.\+sha512\}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_ae458a160c2f6059e4677ecdb047bebec}\label{classjose_1_1backends_1_1native_1_1HMACKey_ae458a160c2f6059e4677ecdb047bebec} 
+{\bfseries \+\_\+process\+\_\+jwk} (self, jwk\+\_\+dict)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_af2ceb741cd1e54dd75c26bf6ed7ce1bb}\label{classjose_1_1backends_1_1native_1_1HMACKey_af2ceb741cd1e54dd75c26bf6ed7ce1bb} 
+{\bfseries \+\_\+algorithm} = algorithm
+\item 
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_a5f146b25de9d9b322187342e798dc48f}\label{classjose_1_1backends_1_1native_1_1HMACKey_a5f146b25de9d9b322187342e798dc48f} 
+dict {\bfseries \+\_\+hash\+\_\+alg} = self.\+HASHES.\+get(algorithm)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Performs signing and verification operations using HMAC
+and the specified hash function.
+\end{DoxyVerb}
+ 
+
+\label{classjose_1_1backends_1_1native_1_1HMACKey_doc-func-members}
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_a79e00ea0de3dcfab50f2440d24d69a03}\index{jose.backends.native.HMACKey@{jose.backends.native.HMACKey}!sign@{sign}}
+\index{sign@{sign}!jose.backends.native.HMACKey@{jose.backends.native.HMACKey}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1native_1_1HMACKey_a79e00ea0de3dcfab50f2440d24d69a03} 
+jose.\+backends.\+native.\+HMACKey.\+sign (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key}{jose.\+backends.\+base.\+Key}}.
+
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_aa18a7d7903b272a067cd29604f37e6e8}\index{jose.backends.native.HMACKey@{jose.backends.native.HMACKey}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!jose.backends.native.HMACKey@{jose.backends.native.HMACKey}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1native_1_1HMACKey_aa18a7d7903b272a067cd29604f37e6e8} 
+jose.\+backends.\+native.\+HMACKey.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key}{jose.\+backends.\+base.\+Key}}.
+
+\Hypertarget{classjose_1_1backends_1_1native_1_1HMACKey_ae8586c8430928f8050fabb5c474145c2}\index{jose.backends.native.HMACKey@{jose.backends.native.HMACKey}!verify@{verify}}
+\index{verify@{verify}!jose.backends.native.HMACKey@{jose.backends.native.HMACKey}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}}
+{\footnotesize\ttfamily \label{classjose_1_1backends_1_1native_1_1HMACKey_ae8586c8430928f8050fabb5c474145c2} 
+jose.\+backends.\+native.\+HMACKey.\+verify (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{msg}{, }\item[{}]{sig}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented from \doxymbox{\hyperlink{classjose_1_1backends_1_1base_1_1Key}{jose.\+backends.\+base.\+Key}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jose/\+backends/\+native.\+py\end{DoxyCompactItemize}

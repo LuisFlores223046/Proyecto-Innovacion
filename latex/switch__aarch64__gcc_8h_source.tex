@@ -1,0 +1,130 @@
+\doxysection{switch\+\_\+aarch64\+\_\+gcc.\+h}
+\hypertarget{switch__aarch64__gcc_8h_source}{}\label{switch__aarch64__gcc_8h_source}\index{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_aarch64\_gcc.h@{venv/lib/python3.12/site-\/packages/greenlet/platform/switch\_aarch64\_gcc.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ this\ is\ the\ internal\ transfer\ function.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ HISTORY}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ 07-\/Sep-\/16\ Add\ clang\ support\ using\ x\ register\ naming.\ Fredrik\ Fornwall}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ 13-\/Apr-\/13\ Add\ support\ for\ strange\ GCC\ caller-\/save\ decisions}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ 08-\/Apr-\/13\ File\ creation.\ Michael\ Matz}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ NOTES}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ Simply\ save\ all\ callee\ saved\ registers}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ STACK\_REFPLUS\ 1}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifdef\ SLP\_EVAL}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ STACK\_MAGIC\ 0}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ REGS\_TO\_SAVE\ "{}x19"{},\ "{}x20"{},\ "{}x21"{},\ "{}x22"{},\ "{}x23"{},\ "{}x24"{},\ "{}x25"{},\ "{}x26"{},\ \(\backslash\)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}x27"{},\ "{}x28"{},\ "{}x30"{}\ }\textcolor{comment}{/*\ aka\ lr\ */}\textcolor{preprocessor}{,\ \(\backslash\)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}v8"{},\ "{}v9"{},\ "{}v10"{},\ "{}v11"{},\ \(\backslash\)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}v12"{},\ "{}v13"{},\ "{}v14"{},\ "{}v15"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ Recall:}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ asm\ asm-\/qualifiers\ (\ AssemblerTemplate}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ OutputOperands}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ :\ InputOperands}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [\ :\ Clobbers\ ]\ ])}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ or\ \ (if\ asm-\/qualifiers\ contains\ 'goto')}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ asm\ asm-\/qualifiers\ (\ AssemblerTemplate}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ OutputOperands}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ InputOperands}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ Clobbers}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ GotoLabels)}}
+\DoxyCodeLine{00038\ \textcolor{comment}{}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ and\ OutputOperands\ are}}
+\DoxyCodeLine{00040\ \textcolor{comment}{}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ [\ [asmSymbolicName]\ ]\ constraint\ (cvariablename)}}
+\DoxyCodeLine{00042\ \textcolor{comment}{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ When\ a\ name\ is\ given,\ refer\ to\ it\ as\ \`{}\`{}\%[the\ name]``.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ When\ not\ given,\ \`{}\`{}\%i``\ where\ \`{}\`{}i``\ is\ the\ zero-\/based\ index.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ constraints\ starting\ with\ \`{}\`{}=``\ means\ only\ writing;\ \`{}\`{}+``\ means}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ reading\ and\ writing.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ This\ is\ followed\ by\ \`{}\`{}r``\ (must\ be\ register)\ or\ \`{}\`{}m``\ (must\ be\ memory)}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ and\ these\ can\ be\ combined.}}
+\DoxyCodeLine{00051\ \textcolor{comment}{}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ The\ \`{}\`{}cvariablename``\ is\ actually\ an\ lvalue\ expression.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ In\ AArch65,\ 31\ general\ purpose\ registers.\ If\ named\ X0...\ they\ are}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ 64-\/bit.\ If\ named\ W0...\ they\ are\ the\ bottom\ 32\ bits\ of\ the}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ corresponding\ 64\ bit\ register.}}
+\DoxyCodeLine{00057\ \textcolor{comment}{}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ XZR\ and\ WZR\ are\ hardcoded\ to\ 0,\ and\ ignore\ writes.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ Arguments\ are\ in\ X0..X7.\ C++\ uses\ X0\ for\ \`{}\`{}this``.\ X0\ holds\ simple\ return}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ values\ (?)}}
+\DoxyCodeLine{00062\ \textcolor{comment}{}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ Whenever\ a\ W\ register\ is\ written,\ the\ top\ half\ of\ the\ X\ register\ is\ zeroed.}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00067\ slp\_switch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ err;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ *fp;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Windowz\ uses\ a\ 32-\/bit\ long\ on\ a\ 64-\/bit\ platform,\ unlike\ the\ rest\ of}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ the\ world,\ and\ in\ theory\ we\ can\ be\ compiled\ with\ GCC/llvm\ on\ 64-\/bit}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ windows.\ So\ we\ need\ a\ fixed-\/width\ type.}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ int64\_t\ *stackref,\ stsizediff;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00077\ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}str\ x29,\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=m"{}}(fp)\ :\ :\ );}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ (\textcolor{stringliteral}{"{}mov\ \%0,\ sp"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (stackref));}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE(stackref,\ stsizediff);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ sp,sp,\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}add\ x29,x29,\%0\(\backslash\)n"{}}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}r"{}}\ (stsizediff)}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ SLP\_RESTORE\_STATE();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ SLP\_SAVE\_STATE\ macro\ contains\ some\ return\ statements}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ (of\ -\/1\ and\ 1).\ \ It\ falls\ through\ only\ when}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ the\ return\ value\ of\ slp\_save\_state()\ is\ zero,\ which}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ is\ placed\ in\ x0.}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ In\ that\ case\ we\ (slp\_switch)\ also\ want\ to\ return\ zero}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ (also\ in\ x0\ of\ course).}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ Now,\ some\ GCC\ versions\ (seen\ with\ 4.8)\ think\ it's\ a}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ good\ idea\ to\ save/restore\ x0\ around\ the\ call\ to}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ slp\_restore\_state(),\ instead\ of\ simply\ zeroing\ it}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ at\ the\ return\ below.\ \ But\ slp\_restore\_state}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ writes\ random\ values\ to\ the\ stack\ slot\ used\ for\ this}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ save/restore\ (from\ when\ it\ once\ was\ saved\ above\ in}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ SLP\_SAVE\_STATE,\ when\ it\ was\ still\ uninitialized),\ so}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ "{}restoring"{}\ that\ precious\ zero\ actually\ makes\ us}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ return\ random\ values.\ \ There\ are\ some\ ways\ to\ make}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ GCC\ not\ use\ that\ zero\ value\ in\ the\ normal\ return\ path}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ (e.g.\ making\ err\ volatile,\ but\ that\ costs\ a\ little}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ stack\ space),\ and\ the\ simplest\ is\ to\ call\ a\ function}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ that\ returns\ an\ unknown\ value\ (which\ happens\ to\ be\ zero),}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ so\ the\ saved/restored\ value\ is\ unused.}}
+\DoxyCodeLine{00108\ \textcolor{comment}{}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Thus,\ this\ line\ stores\ a\ 0\ into\ the\ \`{}\`{}err``\ variable}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (which\ must\ be\ held\ in\ a\ register\ for\ this\ instruction,}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ of\ course).\ The\ \`{}\`{}w``\ qualifier\ causes\ the\ instruction}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\ use\ W0\ instead\ of\ X0,\ otherwise\ we\ get\ a\ warning}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ about\ a\ value\ size\ mismatch\ (because\ err\ is\ an\ int,}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ and\ aarch64\ platforms\ are\ LP64:\ 32-\/bit\ int,\ 64\ bit\ long}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ and\ pointer).}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}mov\ \%w0,\ \#0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (err));}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}ldr\ x29,\ \%0"{}}\ :\ :\ \textcolor{stringliteral}{"{}m"{}}\ (fp)\ :);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \_\_asm\_\_\ \textcolor{keyword}{volatile}\ (\textcolor{stringliteral}{"{}"{}}\ :\ :\ :\ REGS\_TO\_SAVE);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ err;}
+\DoxyCodeLine{00122\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

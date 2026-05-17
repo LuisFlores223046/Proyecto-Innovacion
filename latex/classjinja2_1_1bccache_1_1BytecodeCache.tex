@@ -1,0 +1,137 @@
+\doxysection{jinja2.\+bccache.\+Bytecode\+Cache Class Reference}
+\hypertarget{classjinja2_1_1bccache_1_1BytecodeCache}{}\label{classjinja2_1_1bccache_1_1BytecodeCache}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+Inheritance diagram for jinja2.\+bccache.\+Bytecode\+Cache:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classjinja2_1_1bccache_1_1BytecodeCache}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_ae145388705cf26b278492c73bbc388d9}{load\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9247d0d7453cf47dbd00cb43809479f8}{dump\+\_\+bytecode}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_adfccc9f4c141b0886859bb885bcf8e6a}{clear}} (self)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a1ce40bddff60f1a61df8b054fa5cd4b3}{get\+\_\+cache\+\_\+key}} (self, str name, t.\+Optional\+[t.\+Union\+[str]\+]\+ filename=None)
+\item 
+str \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a3eabf30b7c8ef6b72ecafafea0d86c93}{get\+\_\+source\+\_\+checksum}} (self, str source)
+\item 
+\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a9f6f2505ffdb01644e0138709be1fffb}{get\+\_\+bucket}} (self, "{}Environment"{} environment, str name, t.\+Optional\+[str]\+ filename, str source)
+\item 
+None \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1BytecodeCache_a61ce7c88076ceccc0409dc7e86a028ac}{set\+\_\+bucket}} (self, \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} bucket)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}To implement your own bytecode cache you have to subclass this class
+and override :meth:`load_bytecode` and :meth:`dump_bytecode`.  Both of
+these methods are passed a :class:`~jinja2.bccache.Bucket`.
+
+A very basic bytecode cache that saves the bytecode on the file system::
+
+    from os import path
+
+    class MyCache(BytecodeCache):
+
+        def __init__(self, directory):
+            self.directory = directory
+
+        def load_bytecode(self, bucket):
+            filename = path.join(self.directory, bucket.key)
+            if path.exists(filename):
+                with open(filename, 'rb') as f:
+                    bucket.load_bytecode(f)
+
+        def dump_bytecode(self, bucket):
+            filename = path.join(self.directory, bucket.key)
+            with open(filename, 'wb') as f:
+                bucket.write_bytecode(f)
+
+A more advanced version of a filesystem based bytecode cache is part of
+Jinja.
+\end{DoxyVerb}
+ 
+
+\label{classjinja2_1_1bccache_1_1BytecodeCache_doc-func-members}
+\Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_adfccc9f4c141b0886859bb885bcf8e6a}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!clear@{clear}}
+\index{clear@{clear}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_adfccc9f4c141b0886859bb885bcf8e6a} 
+ None jinja2.\+bccache.\+Bytecode\+Cache.\+clear (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clears the cache.  This method is not used by Jinja but should be
+implemented to allow applications to clear the bytecode cache used
+by a particular environment.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a93b8e4291d1cf7cfced445e6dbbf3007}{jinja2.\+bccache.\+File\+System\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_a9247d0d7453cf47dbd00cb43809479f8}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!dump\_bytecode@{dump\_bytecode}}
+\index{dump\_bytecode@{dump\_bytecode}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{dump\_bytecode()}{dump\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_a9247d0d7453cf47dbd00cb43809479f8} 
+ None jinja2.\+bccache.\+Bytecode\+Cache.\+dump\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to write the bytecode
+from a bucket back to the cache.  If it unable to do so it must not
+fail silently but raise an exception.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_a3d2a0bfb022dfb929c2964b730f2866b}{jinja2.\+bccache.\+File\+System\+Bytecode\+Cache}}, and \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_abdcb2bf438e2e6ad580b215e236d8e4a}{jinja2.\+bccache.\+Memcached\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_a9f6f2505ffdb01644e0138709be1fffb}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!get\_bucket@{get\_bucket}}
+\index{get\_bucket@{get\_bucket}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{get\_bucket()}{get\_bucket()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_a9f6f2505ffdb01644e0138709be1fffb} 
+ \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}} jinja2.\+bccache.\+Bytecode\+Cache.\+get\+\_\+bucket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Environment"{}}]{environment}{, }\item[{str}]{name}{, }\item[{t.\+Optional\+[str]\+}]{filename}{, }\item[{str}]{source}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a cache bucket for the given template.  All arguments are
+mandatory but filename may be `None`.
+\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_a1ce40bddff60f1a61df8b054fa5cd4b3}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!get\_cache\_key@{get\_cache\_key}}
+\index{get\_cache\_key@{get\_cache\_key}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{get\_cache\_key()}{get\_cache\_key()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_a1ce40bddff60f1a61df8b054fa5cd4b3} 
+ str jinja2.\+bccache.\+Bytecode\+Cache.\+get\+\_\+cache\+\_\+key (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{name}{, }\item[{t.\+Optional\+[t.\+Union\+[str]\+]\+ }]{filename}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns the unique hash key for this template name.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_a3eabf30b7c8ef6b72ecafafea0d86c93}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!get\_source\_checksum@{get\_source\_checksum}}
+\index{get\_source\_checksum@{get\_source\_checksum}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{get\_source\_checksum()}{get\_source\_checksum()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_a3eabf30b7c8ef6b72ecafafea0d86c93} 
+ str jinja2.\+bccache.\+Bytecode\+Cache.\+get\+\_\+source\+\_\+checksum (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{source}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Returns a checksum for the source.\end{DoxyVerb}
+ \Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_ae145388705cf26b278492c73bbc388d9}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!load\_bytecode@{load\_bytecode}}
+\index{load\_bytecode@{load\_bytecode}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{load\_bytecode()}{load\_bytecode()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_ae145388705cf26b278492c73bbc388d9} 
+ None jinja2.\+bccache.\+Bytecode\+Cache.\+load\+\_\+bytecode (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subclasses have to override this method to load bytecode into a
+bucket.  If they are not able to find code in the cache for the
+bucket, it must not do anything.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1FileSystemBytecodeCache_abdd8611d72101dd79b1e9d1c4e462357}{jinja2.\+bccache.\+File\+System\+Bytecode\+Cache}}, and \doxymbox{\hyperlink{classjinja2_1_1bccache_1_1MemcachedBytecodeCache_aa50e79c302f41dced335e043aad6d7f4}{jinja2.\+bccache.\+Memcached\+Bytecode\+Cache}}.
+
+\Hypertarget{classjinja2_1_1bccache_1_1BytecodeCache_a61ce7c88076ceccc0409dc7e86a028ac}\index{jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}!set\_bucket@{set\_bucket}}
+\index{set\_bucket@{set\_bucket}!jinja2.bccache.BytecodeCache@{jinja2.bccache.BytecodeCache}}
+\doxysubsubsection{\texorpdfstring{set\_bucket()}{set\_bucket()}}
+{\footnotesize\ttfamily \label{classjinja2_1_1bccache_1_1BytecodeCache_a61ce7c88076ceccc0409dc7e86a028ac} 
+ None jinja2.\+bccache.\+Bytecode\+Cache.\+set\+\_\+bucket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classjinja2_1_1bccache_1_1Bucket}{Bucket}}}]{bucket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Put the bucket into the cache.\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+jinja2/\+bccache.\+py\end{DoxyCompactItemize}

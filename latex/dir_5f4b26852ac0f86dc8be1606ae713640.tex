@@ -1,0 +1,270 @@
+\doxysection{frontend/\+node\+\_\+modules/\+espree Directory Reference}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640}{}\label{dir_5f4b26852ac0f86dc8be1606ae713640}\index{frontend/node\_modules/espree Directory Reference@{frontend/node\_modules/espree Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_e0a088c9d95ab24784805d85bec31393}{lib}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+[!\+[npm version]\+(\href{https://img.shields.io/npm/v/espree.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+espree.\+svg}})]\+(\href{https://www.npmjs.com/package/espree}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+espree}}) \href{https://www.npmjs.com/package/espree}{\texttt{}} \href{https://github.com/js/espree/actions}{\texttt{}} \href{https://www.bountysource.com/trackers/9348450-eslint?utm_source=9348450&utm_medium=shield&utm_campaign=TRACKER_BADGE}{\texttt{}}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2088}{}\doxysubsection{\texorpdfstring{Espree}{Espree}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2088}
+Espree started out as a fork of \href{http://esprima.org}{\texttt{Esprima}} v1.\+2.\+2, the last stable published released of Esprima before work on ECMAScript 6 began. Espree is now built on top of \href{https://github.com/ternjs/acorn}{\texttt{Acorn}}, which has a modular architecture that allows extension of core functionality. The goal of Espree is to produce output that is similar to Esprima with a similar API so that it can be used in place of Esprima.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2089}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2089}
+Install:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ i\ espree}
+
+\end{DoxyCode}
+
+
+To use in an ESM file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ espree\ from\ "{}espree"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ast\ =\ espree.parse(code);}
+
+\end{DoxyCode}
+
+
+To use in a Common JS file:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ espree\ =\ require("{}espree"{});}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ast\ =\ espree.parse(code);}
+
+\end{DoxyCode}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2090}{}\doxysubsubsection{\texorpdfstring{API}{API}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2090}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2091}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily parse()}}{{\ttfamily parse()}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2091}
+{\ttfamily parse} parses the given code and returns a abstract syntax tree (AST). It takes two parameters.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily code} \+[string]\+() -\/ the code which needs to be parsed.
+\item {\ttfamily options (Optional)} \+[Object]\+() -\/ read more about this herehere
+\end{DoxyItemize}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ espree\ from\ "{}espree"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ ast\ =\ espree.parse(code);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Example :\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ ast\ =\ espree.parse('let\ foo\ =\ "{}bar"{}',\ \{\ ecmaVersion:\ 6\ \});}
+\DoxyCodeLine{console.log(ast);}
+
+\end{DoxyCode}
+
+
+
+
+{\bfseries{Output}}\begin{adjustwidth}{1em}{0em}
+
+
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Node\ \{}
+\DoxyCodeLine{\ \ type:\ 'Program',}
+\DoxyCodeLine{\ \ start:\ 0,}
+\DoxyCodeLine{\ \ end:\ 15,}
+\DoxyCodeLine{\ \ body:\ [}
+\DoxyCodeLine{\ \ \ \ Node\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ type:\ 'VariableDeclaration',}
+\DoxyCodeLine{\ \ \ \ \ \ start:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ end:\ 15,}
+\DoxyCodeLine{\ \ \ \ \ \ declarations:\ [Array],}
+\DoxyCodeLine{\ \ \ \ \ \ kind:\ 'let'}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ ],}
+\DoxyCodeLine{\ \ sourceType:\ 'script'}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+
+\end{adjustwidth}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2092}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily tokenize()}}{{\ttfamily tokenize()}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2092}
+{\ttfamily tokenize} returns the tokens of a given code. It takes two parameters.
+
+
+\begin{DoxyItemize}
+\item {\ttfamily code} \+[string]\+() -\/ the code which needs to be parsed.
+\item {\ttfamily options (Optional)} \+[Object]\+() -\/ read more about this herehere
+\end{DoxyItemize}.
+
+Even if {\ttfamily options} is empty or undefined or {\ttfamily options.\+tokens} is {\ttfamily false}, it assigns it to {\ttfamily true} in order to get the {\ttfamily tokens} array
+
+{\bfseries{Example :\+}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ *\ as\ espree\ from\ "{}espree"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{const\ tokens\ =\ espree.tokenize('let\ foo\ =\ "{}bar"{}',\ \{\ ecmaVersion:\ 6\ \});}
+\DoxyCodeLine{console.log(tokens);}
+
+\end{DoxyCode}
+
+
+
+
+{\bfseries{Output}}\begin{adjustwidth}{1em}{0em}
+
+
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Token\ \{\ type:\ 'Keyword',\ value:\ 'let',\ start:\ 0,\ end:\ 3\ \},}
+\DoxyCodeLine{Token\ \{\ type:\ 'Identifier',\ value:\ 'foo',\ start:\ 4,\ end:\ 7\ \},}
+\DoxyCodeLine{Token\ \{\ type:\ 'Punctuator',\ value:\ '=',\ start:\ 8,\ end:\ 9\ \},}
+\DoxyCodeLine{Token\ \{\ type:\ 'String',\ value:\ '"{}bar"{}',\ start:\ 10,\ end:\ 15\ \}}
+
+\end{DoxyCode}
+
+
+
+
+\end{adjustwidth}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2093}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily version}}{{\ttfamily version}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2093}
+Returns the current {\ttfamily espree} version\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2094}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily Visitor\+Keys}}{{\ttfamily Visitor\+Keys}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2094}
+Returns all visitor keys for traversing the AST from \href{https://github.com/eslint/js/tree/main/packages/eslint-visitor-keys}{\texttt{eslint-\/visitor-\/keys}}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2095}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily latest\+Ecma\+Version}}{{\ttfamily latest\+Ecma\+Version}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2095}
+Returns the latest ECMAScript supported by {\ttfamily espree}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2096}{}\doxysubsubsubsection{\texorpdfstring{{\ttfamily supported\+Ecma\+Versions}}{{\ttfamily supported\+Ecma\+Versions}}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2096}
+Returns an array of all supported ECMAScript versions\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2097}{}\doxysubsubsection{\texorpdfstring{Options}{Options}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2097}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{const\ options\ =\ \{}
+\DoxyCodeLine{\ \ \ \ //\ attach\ range\ information\ to\ each\ node}
+\DoxyCodeLine{\ \ \ \ range:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ attach\ line/column\ location\ information\ to\ each\ node}
+\DoxyCodeLine{\ \ \ \ loc:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ create\ a\ top-\/level\ comments\ array\ containing\ all\ comments}
+\DoxyCodeLine{\ \ \ \ comment:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ create\ a\ top-\/level\ tokens\ array\ containing\ all\ tokens}
+\DoxyCodeLine{\ \ \ \ tokens:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ Set\ to\ 3,\ 5\ (the\ default),\ 6,\ 7,\ 8,\ 9,\ 10,\ 11,\ 12,\ 13,\ 14,\ 15,\ 16\ or\ 17\ to\ specify\ the\ version\ of\ ECMAScript\ syntax\ you\ want\ to\ use.}
+\DoxyCodeLine{\ \ \ \ //\ You\ can\ also\ set\ to\ 2015\ (same\ as\ 6),\ 2016\ (same\ as\ 7),\ 2017\ (same\ as\ 8),\ 2018\ (same\ as\ 9),\ 2019\ (same\ as\ 10),\ 2020\ (same\ as\ 11),\ 2021\ (same\ as\ 12),\ 2022\ (same\ as\ 13),\ 2023\ (same\ as\ 14),\ 2024\ (same\ as\ 15),\ 2025\ (same\ as\ 16)\ or\ 2026\ (same\ as\ 17)\ to\ use\ the\ year-\/based\ naming.}
+\DoxyCodeLine{\ \ \ \ //\ You\ can\ also\ set\ "{}latest"{}\ to\ use\ the\ most\ recently\ supported\ version.}
+\DoxyCodeLine{\ \ \ \ ecmaVersion:\ 3,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ allowReserved:\ true,\ //\ only\ allowed\ when\ ecmaVersion\ is\ 3}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ specify\ which\ type\ of\ script\ you're\ parsing\ ("{}script"{},\ "{}module"{},\ or\ "{}commonjs"{})}
+\DoxyCodeLine{\ \ \ \ sourceType:\ "{}script"{},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ specify\ additional\ language\ features}
+\DoxyCodeLine{\ \ \ \ ecmaFeatures:\ \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ enable\ JSX\ parsing}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ jsx:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ enable\ return\ in\ global\ scope\ (set\ to\ true\ automatically\ when\ sourceType\ is\ "{}commonjs"{})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ globalReturn:\ false,}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ //\ enable\ implied\ strict\ mode\ (if\ ecmaVersion\ >=\ 5)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ impliedStrict:\ false}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2098}{}\doxysubsubsection{\texorpdfstring{Esprima Compatibility Going Forward}{Esprima Compatibility Going Forward}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2098}
+The primary goal is to produce the exact same AST structure and tokens as Esprima, and that takes precedence over anything else. (The AST structure being the \href{https://github.com/estree/estree}{\texttt{ESTree}} API with JSX extensions.) Separate from that, Espree may deviate from what Esprima outputs in terms of where and how comments are attached, as well as what additional information is available on AST nodes. That is to say, Espree may add more things to the AST nodes than Esprima does but the overall AST structure produced will be the same.
+
+Espree may also deviate from Esprima in the interface it exposes.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2099}{}\doxysubsubsection{\texorpdfstring{Contributing}{Contributing}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2099}
+Issues and pull requests will be triaged and responded to as quickly as possible. We operate under the \href{http://eslint.org/docs/developer-guide/contributing}{\texttt{ESLint Contributor Guidelines}}, so please be sure to read them before contributing. If you\textquotesingle{}re not sure where to dig in, check out the \href{https://github.com/eslint/js/issues}{\texttt{issues}}.
+
+Espree is licensed under a permissive BSD 2-\/clause license.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2100}{}\doxysubsubsection{\texorpdfstring{Security Policy}{Security Policy}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2100}
+We work hard to ensure that Espree is safe for everyone and that security issues are addressed quickly and responsibly. Read the full \href{https://github.com/eslint/.github/blob/master/SECURITY.md}{\texttt{security policy}}.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2101}{}\doxysubsubsection{\texorpdfstring{Build Commands}{Build Commands}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2101}
+
+\begin{DoxyItemize}
+\item {\ttfamily npm test} -\/ run all tests
+\item {\ttfamily npm run lint} -\/ run all linting
+\end{DoxyItemize}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2102}{}\doxysubsubsection{\texorpdfstring{Differences from Espree 2.\+x}{Differences from Espree 2.\+x}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2102}
+
+\begin{DoxyItemize}
+\item The {\ttfamily tokenize()} method does not use {\ttfamily ecma\+Features}. Any string will be tokenized completely based on ECMAScript 6 semantics.
+\item Trailing whitespace no longer is counted as part of a node.
+\item {\ttfamily let} and {\ttfamily const} declarations are no longer parsed by default. You must opt-\/in by using an {\ttfamily ecma\+Version} newer than {\ttfamily 5} or setting {\ttfamily source\+Type} to {\ttfamily module}.
+\item The {\ttfamily esparse} and {\ttfamily esvalidate} binary scripts have been removed.
+\item There is no {\ttfamily tolerant} option. We will investigate adding this back in the future.
+\end{DoxyItemize}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2103}{}\doxysubsubsection{\texorpdfstring{Known Incompatibilities}{Known Incompatibilities}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2103}
+In an effort to help those wanting to transition from other parsers to Espree, the following is a list of noteworthy incompatibilities with other parsers. These are known differences that we do not intend to change.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2104}{}\doxysubsubsubsection{\texorpdfstring{Esprima 1.\+2.\+2}{Esprima 1.\+2.\+2}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2104}
+
+\begin{DoxyItemize}
+\item Esprima counts trailing whitespace as part of each AST node while Espree does not. In Espree, the end of a node is where the last token occurs.
+\item Espree does not parse {\ttfamily let} and {\ttfamily const} declarations by default.
+\item Error messages returned for parsing errors are different.
+\item There are two addition properties on every node and token:\+ {\ttfamily start} and {\ttfamily end}. These represent the same data as {\ttfamily range} and are used internally by Acorn.
+\end{DoxyItemize}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2105}{}\doxysubsubsubsection{\texorpdfstring{Esprima 2.\+x}{Esprima 2.\+x}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2105}
+
+\begin{DoxyItemize}
+\item Esprima 2.\+x uses a different comment attachment algorithm that results in some comments being added in different places than Espree. The algorithm Espree uses is the same one used in Esprima 1.\+2.\+2.
+\end{DoxyItemize}\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2106}{}\doxysubsubsection{\texorpdfstring{Frequently Asked Questions}{Frequently Asked Questions}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2106}
+\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2107}{}\doxysubsubsubsection{\texorpdfstring{Why another parser}{Why another parser}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2107}
+\href{http://eslint.org}{\texttt{ESLint}} had been relying on Esprima as its parser from the beginning. While that was fine when the Java\+Script language was evolving slowly, the pace of development increased dramatically and Esprima had fallen behind. ESLint, like many other tools reliant on Esprima, has been stuck in using new Java\+Script language features until Esprima updates, and that caused our users frustration.
+
+We decided the only way for us to move forward was to create our own parser, bringing us inline with JSHint and JSLint, and allowing us to keep implementing new features as we need them. We chose to fork Esprima instead of starting from scratch in order to move as quickly as possible with a compatible API.
+
+With Espree 2.\+0.\+0, we are no longer a fork of Esprima but rather a translation layer between Acorn and Esprima syntax. This allows us to put work back into a community-\/supported parser (Acorn) that is continuing to grow and evolve while maintaining an Esprima-\/compatible parser for those utilities still built on Esprima.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2108}{}\doxysubsubsubsection{\texorpdfstring{Have you tried working with Esprima?}{Have you tried working with Esprima?}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2108}
+Yes. Since the start of ESLint, we\textquotesingle{}ve regularly filed bugs and feature requests with Esprima and will continue to do so. However, there are some different philosophies around how the projects work that need to be worked through. The initial goal was to have Espree track Esprima and eventually merge the two back together, but we ultimately decided that building on top of Acorn was a better choice due to Acorn\textquotesingle{}s plugin support.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2109}{}\doxysubsubsubsection{\texorpdfstring{Why don\textquotesingle{}t you just use Acorn?}{Why don\textquotesingle{}t you just use Acorn?}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2109}
+Acorn is a great Java\+Script parser that produces an AST that is compatible with Esprima. Unfortunately, ESLint relies on more than just the AST to do its job. It relies on Esprima\textquotesingle{}s tokens and comment attachment features to get a complete picture of the source code. We investigated switching to Acorn, but the inconsistencies between Esprima and Acorn created too much work for a project like ESLint.
+
+We are building on top of Acorn, however, so that we can contribute back and help make Acorn even better.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2110}{}\doxysubsubsubsection{\texorpdfstring{What ECMAScript features do you support?}{What ECMAScript features do you support?}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2110}
+Espree supports all ECMAScript 2025 features and partially supports ECMAScript 2026 features.
+
+Because ECMAScript 2026 is still under development, we are implementing features as they are finalized. Currently, Espree supports:\+
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/tc39/proposal-explicit-resource-management}{\texttt{Explicit Resource Management}}
+\end{DoxyItemize}
+
+See \href{https://github.com/tc39/proposals/blob/master/finished-proposals.md}{\texttt{finished-\/proposals.\+md}} to know what features are finalized.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2111}{}\doxysubsubsubsection{\texorpdfstring{How do you determine which experimental features to support?}{How do you determine which experimental features to support?}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2111}
+In general, we do not support experimental Java\+Script features. We may make exceptions from time to time depending on the maturity of the features.\hypertarget{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2112}{}\doxysubsubsection{\texorpdfstring{Sponsors}{Sponsors}}\label{dir_5f4b26852ac0f86dc8be1606ae713640_autotoc_md2112}
+The following companies, organizations, and individuals support ESLint\textquotesingle{}s ongoing maintenance and development. \href{https://eslint.org/donate}{\texttt{Become a Sponsor}} to get your logo on our READMEs and \href{https://eslint.org/sponsors}{\texttt{website}}.
+
+\doxysubsubsubsection*{Diamond Sponsors}
+
+\href{https://www.ag-grid.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Platinum Sponsors}
+
+\href{https://automattic.com}{\texttt{}} \href{https://www.airbnb.com/}{\texttt{}}
+
+\doxysubsubsubsection*{Gold Sponsors}
+
+\href{https://qlty.sh/}{\texttt{}} \href{https://trunk.io/}{\texttt{}} \href{https://shopify.engineering/}{\texttt{}}
+
+\doxysubsubsubsection*{Silver Sponsors}
+
+\href{https://vite.dev/}{\texttt{}} \href{https://liftoff.io/}{\texttt{}} \href{https://americanexpress.io}{\texttt{}} \href{https://stackblitz.com}{\texttt{}}
+
+\doxysubsubsubsection*{Bronze Sponsors}
+
+\href{https://sentry.io}{\texttt{}} \href{https://syntax.fm}{\texttt{}} \href{https://cybozu.co.jp/}{\texttt{}} \href{https://www.crosswordsolver.org/anagram-solver/}{\texttt{}} \href{https://icons8.com/}{\texttt{}} \href{https://discord.com}{\texttt{}} \href{https://www.gitbook.com}{\texttt{}} \href{https://nolebase.ayaka.io}{\texttt{}} \href{https://nx.dev}{\texttt{}} \href{https://opensource.mercedes-benz.com/}{\texttt{}} \href{https://herocoders.com}{\texttt{}} \href{https://www.lambdatest.com}{\texttt{}}
+
+\doxysubsubsubsection*{Technology Sponsors}
+
+Technology sponsors allow us to use their products and services for free as part of a contribution to the open source ecosystem and our work. 
+
+\href{https://netlify.com}{\texttt{}} \href{https://algolia.com}{\texttt{}} \href{https://1password.com}{\texttt{}}

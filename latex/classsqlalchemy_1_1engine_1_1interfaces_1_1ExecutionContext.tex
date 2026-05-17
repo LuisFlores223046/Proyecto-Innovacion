@@ -1,0 +1,293 @@
+\doxysection{sqlalchemy.\+engine.\+interfaces.\+Execution\+Context Class Reference}
+\hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+Inheritance diagram for sqlalchemy.\+engine.\+interfaces.\+Execution\+Context:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.897196cm]{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a2d00ddfec000074bf21da5a6dca8ad}{fire\+\_\+sequence}} (self, Sequence\+\_\+\+Schema\+Item seq, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1sqltypes_1_1Integer}{Integer}} type\+\_\+)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a55095263645369b331c46ff2357a2819}{create\+\_\+cursor}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_aa857c2028e5ed5d0d04a0472caae2f41}{pre\+\_\+exec}} (self)
+\item 
+Sequence\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a169784bd7b73cd82aa902278f5ad7b46}{get\+\_\+out\+\_\+parameter\+\_\+values}} (self, Sequence\+[str]\+ out\+\_\+param\+\_\+names)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a65177761886a7dbfc155b9411eef7cfd}{post\+\_\+exec}} (self)
+\item 
+None \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af707caba38e14d76a568bf282320deda}{handle\+\_\+dbapi\+\_\+exception}} (self, Base\+Exception e)
+\item 
+bool \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ae5c92b00fadb632b76fae42e49c669f2}{lastrow\+\_\+has\+\_\+defaults}} (self)
+\item 
+Optional\+[int]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a738877e45c5ce6135756549437f82be6}{get\+\_\+rowcount}} (self)
+\item 
+Sequence\+[Any]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af1e545e407ac8230dba03ec244f3fce0}{fetchall\+\_\+for\+\_\+returning}} (self, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} cursor)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a35efeaaa7a8f6fec7b69c03072c762fd}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a35efeaaa7a8f6fec7b69c03072c762fd} 
+Optional {\bfseries compiled} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1Compiled}{Compiled}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ae388494d42e0044c1d8b3016a9006504}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ae388494d42e0044c1d8b3016a9006504} 
+Optional {\bfseries invoked\+\_\+statement} \+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ad96e830412ec45510279f2c543e35dd5}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ad96e830412ec45510279f2c543e35dd5} 
+util {\bfseries prefetch\+\_\+cols} .generic\+\_\+fn\+\_\+descriptor\+[Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+]\+]\+]\+
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ab51547592619128d1b9af62572898dbd}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ab51547592619128d1b9af62572898dbd} 
+util {\bfseries postfetch\+\_\+cols} .generic\+\_\+fn\+\_\+descriptor\+[Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+]\+]\+]\+
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a8084b39d94fb708a84a71dfcd4c7bcbe}{\+\_\+init\+\_\+ddl}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection, \+\_\+\+Execute\+Options execution\+\_\+options, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1DDLCompiler}{DDLCompiler}} compiled\+\_\+ddl)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7b8d0a0cc9abd71ea4e0bbe233670e67}{\+\_\+init\+\_\+compiled}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection, \+\_\+\+Execute\+Options execution\+\_\+options, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1SQLCompiler}{SQLCompiler}} compiled, \+\_\+\+Core\+Multi\+Execute\+Params parameters, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}} invoked\+\_\+statement, Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+]\+]\+ extracted\+\_\+parameters, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CacheStats}{Cache\+Stats}} cache\+\_\+hit=Cache\+Stats.\+CACHING\+\_\+\+DISABLED)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a39a69085b4e305aab2aba56d4d4ef7}{\+\_\+init\+\_\+statement}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection, \+\_\+\+Execute\+Options execution\+\_\+options, str statement, \+\_\+\+DBAPIMulti\+Execute\+Params parameters)
+\item 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_adc4e89f2379005c5578b96406dcaa866}{\+\_\+init\+\_\+default}} (cls, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}} dialect, \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}} connection, \doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}} dbapi\+\_\+connection, \+\_\+\+Execute\+Options execution\+\_\+options)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a5aa4243e228b09bd11954a15db9f08a9}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a5aa4243e228b09bd11954a15db9f08a9} 
+Any {\bfseries \+\_\+exec\+\_\+default} (self, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1Column}{Column}}\+[Any]\+]\+ column, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1schema_1_1DefaultGenerator}{Default\+Generator}} default, Optional\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+ type\+\_\+)
+\item 
+Optional\+[List\+[Tuple\+[str, Any, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+]\+]\+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a95c43b96cb4c17eb9b9450f9ee056520}{\+\_\+prepare\+\_\+set\+\_\+input\+\_\+sizes}} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a52f616a7f86b71a19ecc45314537e1b7}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a52f616a7f86b71a19ecc45314537e1b7} 
+str {\bfseries \+\_\+get\+\_\+cache\+\_\+stats} (self)
+\item 
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a4083708fdc46cd957e3c6c4f819a6ed6}\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a4083708fdc46cd957e3c6c4f819a6ed6} 
+\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1cursor_1_1CursorResult}{Cursor\+Result}}\+[Any]\+ {\bfseries \+\_\+setup\+\_\+result\+\_\+proxy} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}A messenger object for a Dialect that corresponds to a single
+execution.
+\end{DoxyVerb}
+ 
+
+\label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_doc-func-members}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7b8d0a0cc9abd71ea4e0bbe233670e67}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!\_init\_compiled@{\_init\_compiled}}
+\index{\_init\_compiled@{\_init\_compiled}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{\_init\_compiled()}{\_init\_compiled()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7b8d0a0cc9abd71ea4e0bbe233670e67} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+\_\+init\+\_\+compiled (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1SQLCompiler}{SQLCompiler}}}]{compiled}{, }\item[{\+\_\+\+Core\+Multi\+Execute\+Params}]{parameters}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1base_1_1Executable}{Executable}}}]{invoked\+\_\+statement}{, }\item[{Optional\+[Sequence\+[\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1elements_1_1BindParameter}{Bind\+Parameter}}\+[Any]\+]\+]\+}]{extracted\+\_\+parameters}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1CacheStats}{Cache\+Stats}} }]{cache\+\_\+hit}{ = {\ttfamily CacheStats.CACHING\+\_\+DISABLED}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a9e1cbefcef489a61039d9875b93e0bd9}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a8084b39d94fb708a84a71dfcd4c7bcbe}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!\_init\_ddl@{\_init\_ddl}}
+\index{\_init\_ddl@{\_init\_ddl}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{\_init\_ddl()}{\_init\_ddl()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a8084b39d94fb708a84a71dfcd4c7bcbe} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+\_\+init\+\_\+ddl (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1compiler_1_1DDLCompiler}{DDLCompiler}}}]{compiled\+\_\+ddl}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a4c38ffa83b65ac090383783ccb24c95d}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_adc4e89f2379005c5578b96406dcaa866}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!\_init\_default@{\_init\_default}}
+\index{\_init\_default@{\_init\_default}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{\_init\_default()}{\_init\_default()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_adc4e89f2379005c5578b96406dcaa866} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+\_\+init\+\_\+default (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a799b5c89c3554fd649f5386b8e599679}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a39a69085b4e305aab2aba56d4d4ef7}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!\_init\_statement@{\_init\_statement}}
+\index{\_init\_statement@{\_init\_statement}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{\_init\_statement()}{\_init\_statement()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a39a69085b4e305aab2aba56d4d4ef7} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext}{Execution\+Context}} sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+\_\+init\+\_\+statement (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1Dialect}{Dialect}}}]{dialect}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1base_1_1Connection}{Connection}}}]{connection}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1pool_1_1base_1_1PoolProxiedConnection}{Pool\+Proxied\+Connection}}}]{dbapi\+\_\+connection}{, }\item[{\+\_\+\+Execute\+Options}]{execution\+\_\+options}{, }\item[{str}]{statement}{, }\item[{\+\_\+\+DBAPIMulti\+Execute\+Params}]{parameters}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a241f01901df6e64668c13400edb1355e}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a95c43b96cb4c17eb9b9450f9ee056520}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!\_prepare\_set\_input\_sizes@{\_prepare\_set\_input\_sizes}}
+\index{\_prepare\_set\_input\_sizes@{\_prepare\_set\_input\_sizes}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{\_prepare\_set\_input\_sizes()}{\_prepare\_set\_input\_sizes()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a95c43b96cb4c17eb9b9450f9ee056520} 
+ Optional\+[List\+[Tuple\+[str, Any, \doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1type__api_1_1TypeEngine}{Type\+Engine}}\+[Any]\+]\+]\+]\+ sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+\_\+prepare\+\_\+set\+\_\+input\+\_\+sizes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_aec05b7299e9412a64248da0842f4a350}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a55095263645369b331c46ff2357a2819}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!create\_cursor@{create\_cursor}}
+\index{create\_cursor@{create\_cursor}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{create\_cursor()}{create\_cursor()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a55095263645369b331c46ff2357a2819} 
+ \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}} sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+create\+\_\+cursor (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a new cursor generated from this ExecutionContext's
+connection.
+
+Some dialects may wish to change the behavior of
+connection.cursor(), such as postgresql which may return a PG
+"server side" cursor.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleExecutionContext__cx__oracle_aaaa6fa943dc9f46bb34876d5fda07cdb}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Execution\+Context\+\_\+cx\+\_\+oracle}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_ab551dbb523b2b21e76d455fc967a586b}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af1e545e407ac8230dba03ec244f3fce0}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!fetchall\_for\_returning@{fetchall\_for\_returning}}
+\index{fetchall\_for\_returning@{fetchall\_for\_returning}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{fetchall\_for\_returning()}{fetchall\_for\_returning()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af1e545e407ac8230dba03ec244f3fce0} 
+ Sequence\+[Any]\+ sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+fetchall\+\_\+for\+\_\+returning (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1interfaces_1_1DBAPICursor}{DBAPICursor}}}]{cursor}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}For a RETURNING result, deliver cursor.fetchall() from the
+DBAPI cursor.
+
+This is a dialect-specific hook for dialects that have special
+considerations when calling upon the rows delivered for a
+"RETURNING" statement.   Default implementation is
+``cursor.fetchall()``.
+
+This hook is currently used only by the :term:`insertmanyvalues`
+feature.   Dialects that don't set ``use_insertmanyvalues=True``
+don't need to consider this hook.
+
+.. versionadded:: 2.0.10
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleExecutionContext__cx__oracle_a6f17642567df70fe945e14f42cff3e37}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Execution\+Context\+\_\+cx\+\_\+oracle}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a4d273e2d47d2eae752c1ed22edb23418}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a2d00ddfec000074bf21da5a6dca8ad}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!fire\_sequence@{fire\_sequence}}
+\index{fire\_sequence@{fire\_sequence}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{fire\_sequence()}{fire\_sequence()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a7a2d00ddfec000074bf21da5a6dca8ad} 
+ int sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+fire\+\_\+sequence (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Sequence\+\_\+\+Schema\+Item}]{seq}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1sql_1_1sqltypes_1_1Integer}{Integer}}}]{type\+\_\+}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}given a :class:`.Sequence`, invoke it and return the next int
+value\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSExecutionContext_a3e83c5d9156617909de698559085bb64}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLExecutionContext_ac136e14a1d80f2c5f5dc216be0ca3034}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleExecutionContext_a113c19d1ecac453e145eb54d7384cd89}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Execution\+Context}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1base_1_1PGExecutionContext_afa76ba25183bfc858b85f7b5aa1626bd}{sqlalchemy.\+dialects.\+postgresql.\+base.\+PGExecution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a169784bd7b73cd82aa902278f5ad7b46}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!get\_out\_parameter\_values@{get\_out\_parameter\_values}}
+\index{get\_out\_parameter\_values@{get\_out\_parameter\_values}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{get\_out\_parameter\_values()}{get\_out\_parameter\_values()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a169784bd7b73cd82aa902278f5ad7b46} 
+ Sequence\+[Any]\+ sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+get\+\_\+out\+\_\+parameter\+\_\+values (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Sequence\+[str]\+     }]{out\+\_\+param\+\_\+names}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a sequence of OUT parameter values from a cursor.
+
+For dialects that support OUT parameters, this method will be called
+when there is a :class:`.SQLCompiler` object which has the
+:attr:`.SQLCompiler.has_out_parameters` flag set.  This flag in turn
+will be set to True if the statement itself has :class:`.BindParameter`
+objects that have the ``.isoutparam`` flag set which are consumed by
+the :meth:`.SQLCompiler.visit_bindparam` method.  If the dialect
+compiler produces :class:`.BindParameter` objects with ``.isoutparam``
+set which are not handled by :meth:`.SQLCompiler.visit_bindparam`, it
+should set this flag explicitly.
+
+The list of names that were rendered for each bound parameter
+is passed to the method.  The method should then return a sequence of
+values corresponding to the list of parameter objects. Unlike in
+previous SQLAlchemy versions, the values can be the **raw values** from
+the DBAPI; the execution context will apply the appropriate type
+handler based on what's present in self.compiled.binds and update the
+values.  The processed dictionary will then be made available via the
+``.out_parameters`` collection on the result object.  Note that
+SQLAlchemy 1.4 has multiple kinds of result object as part of the 2.0
+transition.
+
+.. versionadded:: 1.4 - added
+   :meth:`.ExecutionContext.get_out_parameter_values`, which is invoked
+   automatically by the :class:`.DefaultExecutionContext` when there
+   are :class:`.BindParameter` objects with the ``.isoutparam`` flag
+   set.  This replaces the practice of setting out parameters within
+   the now-removed ``get_result_proxy()`` method.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleExecutionContext__cx__oracle_a50b146313464fc6b133e8d2eedbe2b9f}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Execution\+Context\+\_\+cx\+\_\+oracle}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a462ac585e57c831080f629de21b4ea38}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a738877e45c5ce6135756549437f82be6}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!get\_rowcount@{get\_rowcount}}
+\index{get\_rowcount@{get\_rowcount}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{get\_rowcount()}{get\_rowcount()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a738877e45c5ce6135756549437f82be6} 
+ Optional\+[int]\+ sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+get\+\_\+rowcount (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return the DBAPI ``cursor.rowcount`` value, or in some
+cases an interpreted value.
+
+See :attr:`_engine.CursorResult.rowcount` for details on this.
+\end{DoxyVerb}
+ \Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af707caba38e14d76a568bf282320deda}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!handle\_dbapi\_exception@{handle\_dbapi\_exception}}
+\index{handle\_dbapi\_exception@{handle\_dbapi\_exception}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{handle\_dbapi\_exception()}{handle\_dbapi\_exception()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_af707caba38e14d76a568bf282320deda} 
+ None sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+handle\+\_\+dbapi\+\_\+exception (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Base\+Exception}]{e}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive a DBAPI exception which occurred upon execute, result
+fetch, etc.\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSExecutionContext_ad3e36d518af07833c35be91ef49e4552}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGExecutionContext__asyncpg_a14692cc734ad1578f41e1a6ea0ced2e8}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGExecution\+Context\+\_\+asyncpg}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a8c668fbd55e1121108eb18e60bae36d1}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ae5c92b00fadb632b76fae42e49c669f2}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!lastrow\_has\_defaults@{lastrow\_has\_defaults}}
+\index{lastrow\_has\_defaults@{lastrow\_has\_defaults}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{lastrow\_has\_defaults()}{lastrow\_has\_defaults()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_ae5c92b00fadb632b76fae42e49c669f2} 
+ bool sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+lastrow\+\_\+has\+\_\+defaults (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return True if the last INSERT or UPDATE row contained
+inlined or database-side defaults.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_aedb5f9a6e94902a721205c4d219a2722}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a65177761886a7dbfc155b9411eef7cfd}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!post\_exec@{post\_exec}}
+\index{post\_exec@{post\_exec}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{post\_exec()}{post\_exec()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_a65177761886a7dbfc155b9411eef7cfd} 
+ None sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+post\+\_\+exec (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called after the execution of a compiled statement.
+
+If a compiled statement was passed to this ExecutionContext,
+the `last_insert_ids`, `last_inserted_params`, etc.
+datamembers should be available after this method completes.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSExecutionContext_ac1c3a00ad6649d15b7cb53a00cb6db12}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSExecutionContext__pyodbc_a7b9ccacab7315d83cdefc08236e35181}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSExecution\+Context\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1base_1_1MySQLExecutionContext_a6d082acba125a8baaafb8cc454787c49}{sqlalchemy.\+dialects.\+mysql.\+base.\+My\+SQLExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mysql_1_1mariadbconnector_1_1MySQLExecutionContext__mariadbconnector_a1fd81c63be7a2abcb8e8c59c76375beb}{sqlalchemy.\+dialects.\+mysql.\+mariadbconnector.\+My\+SQLExecution\+Context\+\_\+mariadbconnector}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleExecutionContext__cx__oracle_a353000e05e9949ab5969c644cc0747c6}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Execution\+Context\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1psycopg2_1_1PGExecutionContext__psycopg2_a967e2e82f13cb087d3e779f5b27f5827}{sqlalchemy.\+dialects.\+postgresql.\+psycopg2.\+PGExecution\+Context\+\_\+psycopg2}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a9155042a85ae626d408075186ee2a31f}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+\Hypertarget{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_aa857c2028e5ed5d0d04a0472caae2f41}\index{sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}!pre\_exec@{pre\_exec}}
+\index{pre\_exec@{pre\_exec}!sqlalchemy.engine.interfaces.ExecutionContext@{sqlalchemy.engine.interfaces.ExecutionContext}}
+\doxysubsubsection{\texorpdfstring{pre\_exec()}{pre\_exec()}}
+{\footnotesize\ttfamily \label{classsqlalchemy_1_1engine_1_1interfaces_1_1ExecutionContext_aa857c2028e5ed5d0d04a0472caae2f41} 
+ None sqlalchemy.\+engine.\+interfaces.\+Execution\+Context.\+pre\+\_\+exec (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Called before an execution of a compiled statement.
+
+If a compiled statement was passed to this ExecutionContext,
+the `statement` and `parameters` datamembers must be
+initialized after this statement is complete.
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1base_1_1MSExecutionContext_ae4db1d557f10211169025735f07dc704}{sqlalchemy.\+dialects.\+mssql.\+base.\+MSExecution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1mssql_1_1pyodbc_1_1MSExecutionContext__pyodbc_a22fcb59f65faf0e29b2a182a32f3957c}{sqlalchemy.\+dialects.\+mssql.\+pyodbc.\+MSExecution\+Context\+\_\+pyodbc}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1base_1_1OracleExecutionContext_a1f1564033114894265e95e504e80b27e}{sqlalchemy.\+dialects.\+oracle.\+base.\+Oracle\+Execution\+Context}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1oracle_1_1cx__oracle_1_1OracleExecutionContext__cx__oracle_a20a458579b61a321e7cbd2f22fc1e7d2}{sqlalchemy.\+dialects.\+oracle.\+cx\+\_\+oracle.\+Oracle\+Execution\+Context\+\_\+cx\+\_\+oracle}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1asyncpg_1_1PGExecutionContext__asyncpg_a8bf48edb6ffb8f42fa5292b339fb8ecb}{sqlalchemy.\+dialects.\+postgresql.\+asyncpg.\+PGExecution\+Context\+\_\+asyncpg}}, \doxymbox{\hyperlink{classsqlalchemy_1_1dialects_1_1postgresql_1_1pg8000_1_1PGExecutionContext__pg8000_a4c3042996ee425dd0c710c25ca69eab9}{sqlalchemy.\+dialects.\+postgresql.\+pg8000.\+PGExecution\+Context\+\_\+pg8000}}, and \doxymbox{\hyperlink{classsqlalchemy_1_1engine_1_1default_1_1DefaultExecutionContext_a9846668bb7976bd31d96148e8f95a073}{sqlalchemy.\+engine.\+default.\+Default\+Execution\+Context}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+sqlalchemy/\+engine/\+interfaces.\+py\end{DoxyCompactItemize}

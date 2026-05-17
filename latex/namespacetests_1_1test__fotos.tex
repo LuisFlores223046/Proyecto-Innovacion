@@ -1,0 +1,71 @@
+\doxysection{tests.\+test\+\_\+fotos Namespace Reference}
+\hypertarget{namespacetests_1_1test__fotos}{}\label{namespacetests_1_1test__fotos}\index{tests.test\_fotos@{tests.test\_fotos}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__fotos_1_1TestSubirFoto}{Test\+Subir\+Foto}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__fotos_1_1TestActualizarFoto}{Test\+Actualizar\+Foto}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__fotos_1_1TestEliminarFoto}{Test\+Eliminar\+Foto}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} \doxymbox{\hyperlink{namespacetests_1_1test__fotos_a775479ebd2f824ab5cfacfe715d3f178}{espacio\+\_\+con\+\_\+piso}} (db\+\_\+session, categoria\+\_\+prueba)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} \doxymbox{\hyperlink{namespacetests_1_1test__fotos_ad15d5d77dc94d1b2c2e55821ee6cd9a1}{foto\+\_\+existente}} (db\+\_\+session, espacio\+\_\+prueba)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__fotos_abe665a1c965ea858f9114fba9bf3764d}\label{namespacetests_1_1test__fotos_abe665a1c965ea858f9114fba9bf3764d} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\item 
+\Hypertarget{namespacetests_1_1test__fotos_ab95a63ee2ae37b442146a375eccba037}\label{namespacetests_1_1test__fotos_ab95a63ee2ae37b442146a375eccba037} 
+str {\bfseries FAKE\+\_\+\+CLOUDINARY\+\_\+\+URL} = "{}https:\+/\+/\+res.\+cloudinary.\+com/\+fake/\+image/\+upload/\+v1/\+mapacu/\+espacios/\+lab101\+\_\+1.\+jpg"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_fotos.py — Tests de integración para /api/v1/fotos
+
+Qué se valida:
+  ✔ POST /fotos sube una foto y la vincula a un espacio (mock Cloudinary).
+  ✔ POST /fotos sin token → 401/403.
+  ✔ PATCH /fotos/{id} actualiza metadatos (descripcion, es_principal, orden).
+  ✔ PATCH /fotos/{id} inexistente → 404.
+  ✔ PATCH /fotos/{id} sin token → 401/403.
+  ✔ DELETE /fotos/{id} elimina la foto y llama a Cloudinary.destroy (mock).
+  ✔ DELETE /fotos/{id} inexistente → 404.
+  ✔ DELETE /fotos/{id} sin token → 401/403.
+
+Nota: POST /fotos usa multipart/form-data con un archivo binario.
+      Cloudinary se mockea completamente para no requerir credenciales reales.
+      El servicio de subida requiere que el espacio tenga piso + edificio
+      asignados, por lo que se usa la fixture espacio_con_piso.
+\end{DoxyVerb}
+ 
+
+\label{namespacetests_1_1test__fotos_doc-func-members}
+\Hypertarget{namespacetests_1_1test__fotos_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetests_1_1test__fotos_a775479ebd2f824ab5cfacfe715d3f178}\index{tests.test\_fotos@{tests.test\_fotos}!espacio\_con\_piso@{espacio\_con\_piso}}
+\index{espacio\_con\_piso@{espacio\_con\_piso}!tests.test\_fotos@{tests.test\_fotos}}
+\doxysubsubsection{\texorpdfstring{espacio\_con\_piso()}{espacio\_con\_piso()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1test__fotos_a775479ebd2f824ab5cfacfe715d3f178} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1espacio_1_1Espacio}{Espacio}} espacio\+\_\+con\+\_\+piso (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{, }\item[{}]{categoria\+\_\+prueba}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}El servicio de subida de fotos requiere que el espacio esté asignado
+a un piso que pertenezca a un edificio.  Esta fixture crea toda la cadena.
+\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1test__fotos_ad15d5d77dc94d1b2c2e55821ee6cd9a1}\index{tests.test\_fotos@{tests.test\_fotos}!foto\_existente@{foto\_existente}}
+\index{foto\_existente@{foto\_existente}!tests.test\_fotos@{tests.test\_fotos}}
+\doxysubsubsection{\texorpdfstring{foto\_existente()}{foto\_existente()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1test__fotos_ad15d5d77dc94d1b2c2e55821ee6cd9a1} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1foto__espacio_1_1FotoEspacio}{Foto\+Espacio}} foto\+\_\+existente (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{, }\item[{}]{espacio\+\_\+prueba}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea directamente un registro FotoEspacio en la BD de test.
+No requiere piso/edificio porque solo inserta la fila, sin usar el service.
+\end{DoxyVerb}
+ 

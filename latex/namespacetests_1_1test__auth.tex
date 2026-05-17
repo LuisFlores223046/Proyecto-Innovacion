@@ -1,0 +1,38 @@
+\doxysection{tests.\+test\+\_\+auth Namespace Reference}
+\hypertarget{namespacetests_1_1test__auth}{}\label{namespacetests_1_1test__auth}\index{tests.test\_auth@{tests.test\_auth}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestLoginExitoso}{Test\+Login\+Exitoso}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestLoginFallido}{Test\+Login\+Fallido}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestCuentaBloqueada}{Test\+Cuenta\+Bloqueada}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestEndpointMe}{Test\+Endpoint\+Me}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__auth_1_1TestCrearAdministrador}{Test\+Crear\+Administrador}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__auth_a71bbba172eba04de108b5dffc93a02c5}\label{namespacetests_1_1test__auth_a71bbba172eba04de108b5dffc93a02c5} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_auth.py — Tests de integración para /api/v1/auth
+
+Qué se valida:
+  ✔ Login exitoso devuelve access_token JWT.
+  ✔ Credenciales incorrectas → 401 Unauthorized.
+  ✔ Usuario inexistente → 401 Unauthorized.
+  ✔ Cuenta bloqueada (bloqueado_hasta en el futuro) → 403 Forbidden.
+  ✔ Contador de intentos fallidos se incrementa y dispara bloqueo.
+  ✔ Endpoint /auth/me devuelve el perfil del admin autenticado.
+  ✔ Acceso a /auth/me sin token → 403/401.
+  ✔ Creación de nuevo administrador por un admin autenticado.
+  ✔ Creación con username duplicado → 409 Conflict.
+\end{DoxyVerb}
+ 

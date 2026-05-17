@@ -1,0 +1,100 @@
+\doxysection{frontend/\+node\+\_\+modules/\+@eslint/\+js Directory Reference}
+\hypertarget{dir_51c81abd8a14fbb46270b92e9f982d8b}{}\label{dir_51c81abd8a14fbb46270b92e9f982d8b}\index{frontend/node\_modules/"@eslint/js Directory Reference@{frontend/node\_modules/"@eslint/js Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \doxymbox{\hyperlink{dir_d38fb4fcf11d7efa21bad6f920b0b8d7}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\+[!\+[npm version]\+(\href{https://img.shields.io/npm/v/@eslint/js.svg}{\texttt{https:\+/\+/\+img.\+shields.\+io/\+npm/\+v/\+@eslint/\+js.\+svg}})]\+(\href{https://www.npmjs.com/package/@eslint/js}{\texttt{https:\+/\+/\+www.\+npmjs.\+com/\+package/\+@eslint/\+js}}) \href{https://www.npmjs.com/package/@eslint/js}{\texttt{}} \href{https://github.com/eslint/eslint/actions}{\texttt{}} ~\newline
+ \href{https://opencollective.com/eslint}{\texttt{}} \href{https://opencollective.com/eslint}{\texttt{}}\hypertarget{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md246}{}\doxysubsection{\texorpdfstring{ESLint Java\+Script Plugin}{ESLint Java\+Script Plugin}}\label{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md246}
+\href{https://eslint.org}{\texttt{Website}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/use/configure}{\texttt{Configure ESLint}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/rules/}{\texttt{Rules}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/contribute}{\texttt{Contribute to ESLint}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/docs/latest/contribute/report-bugs}{\texttt{Report Bugs}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/conduct}{\texttt{Code of Conduct}} \texorpdfstring{$\vert$}{|} \href{https://x.com/geteslint}{\texttt{X}} \texorpdfstring{$\vert$}{|} \href{https://eslint.org/chat}{\texttt{Discord}} \texorpdfstring{$\vert$}{|} \href{https://fosstodon.org/@eslint}{\texttt{Mastodon}} \texorpdfstring{$\vert$}{|} \href{https://bsky.app/profile/eslint.org}{\texttt{Bluesky}}
+
+The beginnings of separating out Java\+Script-\/specific functionality from ESLint.
+
+Right now, this plugin contains two configurations:\+
+
+
+\begin{DoxyItemize}
+\item {\ttfamily recommended} -\/ enables the rules recommended by the ESLint team (the replacement for {\ttfamily "{}eslint:\+recommended"{}})
+\item {\ttfamily all} -\/ enables all ESLint rules (the replacement for {\ttfamily "{}eslint:\+all"{}})
+\end{DoxyItemize}\hypertarget{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md247}{}\doxysubsubsection{\texorpdfstring{Installation}{Installation}}\label{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md247}
+You can install ESLint using npm or other package managers:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ eslint\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ eslint\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ eslint\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ eslint\ -\/D}
+
+\end{DoxyCode}
+
+
+Then install this plugin:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm\ install\ @eslint/js\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{yarn\ add\ @eslint/js\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{pnpm\ install\ @eslint/js\ -\/D}
+\DoxyCodeLine{\#\ or}
+\DoxyCodeLine{bun\ add\ @eslint/js\ -\/D}
+
+\end{DoxyCode}
+\hypertarget{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md248}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md248}
+Use in your {\ttfamily eslint.\+config.\+js} file anytime you want to extend one of the configs:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{import\ \{\ defineConfig\ \}\ from\ "{}eslint/config"{};}
+\DoxyCodeLine{import\ js\ from\ "{}@eslint/js"{};}
+\DoxyCodeLine{}
+\DoxyCodeLine{export\ default\ defineConfig([}
+\DoxyCodeLine{\ \ \ \ //\ apply\ recommended\ rules\ to\ JS\ files}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}your-\/project/recommended-\/rules"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ js,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ ["{}js/recommended"{}],}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ apply\ recommended\ rules\ to\ JS\ files\ with\ an\ override}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}your-\/project/recommended-\/rules-\/with-\/override"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ js,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ ["{}js/recommended"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}no-\/unused-\/vars"{}:\ "{}warn"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ //\ apply\ all\ rules\ to\ JS\ files}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ name:\ "{}your-\/project/all-\/rules"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ files:\ ["{}**/*.js"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ plugins:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ js,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ extends:\ ["{}js/all"{}],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ rules:\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ "{}no-\/unused-\/vars"{}:\ "{}warn"{},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \},}
+\DoxyCodeLine{]);}
+
+\end{DoxyCode}
+\hypertarget{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md249}{}\doxysubsubsection{\texorpdfstring{License}{License}}\label{dir_51c81abd8a14fbb46270b92e9f982d8b_autotoc_md249}
+MIT 

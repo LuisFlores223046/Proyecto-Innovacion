@@ -1,0 +1,65 @@
+\doxysection{tests.\+test\+\_\+eventos Namespace Reference}
+\hypertarget{namespacetests_1_1test__eventos}{}\label{namespacetests_1_1test__eventos}\index{tests.test\_eventos@{tests.test\_eventos}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__eventos_1_1TestListarEventos}{Test\+Listar\+Eventos}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__eventos_1_1TestCrearEvento}{Test\+Crear\+Evento}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__eventos_1_1TestActualizarEvento}{Test\+Actualizar\+Evento}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__eventos_1_1TestEliminarEvento}{Test\+Eliminar\+Evento}}
+\item 
+class \doxymbox{\hyperlink{classtests_1_1test__eventos_1_1TestEventosDeEspacio}{Test\+Eventos\+De\+Espacio}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1evento_1_1Evento}{Evento}} \doxymbox{\hyperlink{namespacetests_1_1test__eventos_a66054aeae317a407ad93e0e21a8344c7}{evento\+\_\+activo}} (db\+\_\+session)
+\item 
+\doxymbox{\hyperlink{classapp_1_1models_1_1evento_1_1Evento}{Evento}} \doxymbox{\hyperlink{namespacetests_1_1test__eventos_a723053fbf863b99f6fdd34ca900ba5d9}{evento\+\_\+expirado}} (db\+\_\+session)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacetests_1_1test__eventos_ab41b909c7ad6e5808e612db113957c8c}\label{namespacetests_1_1test__eventos_ab41b909c7ad6e5808e612db113957c8c} 
+{\bfseries pytestmark} = pytest.\+mark.\+asyncio
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}test_eventos.py — Tests de integración para /api/v1/eventos
+
+Qué se valida:
+  ✔ GET /eventos devuelve eventos activos cuya fecha_fin no ha pasado.
+  ✔ GET /eventos?tipo= filtra por tipo correctamente.
+  ✔ POST /eventos crea un evento (requiere JWT).
+  ✔ POST /eventos sin token → 401/403.
+  ✔ PATCH /eventos/{id} actualiza campos del evento.
+  ✔ PATCH /eventos/{id} inexistente → 404.
+  ✔ DELETE /eventos/{id} elimina el evento permanentemente.
+  ✔ DELETE /eventos/{id} inexistente → 404.
+  ✔ Eventos con fecha_fin pasada NO aparecen en el listado público.
+  ✔ GET /espacios/{id}/eventos retorna los eventos de un espacio.
+\end{DoxyVerb}
+ 
+
+\label{namespacetests_1_1test__eventos_doc-func-members}
+\Hypertarget{namespacetests_1_1test__eventos_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetests_1_1test__eventos_a66054aeae317a407ad93e0e21a8344c7}\index{tests.test\_eventos@{tests.test\_eventos}!evento\_activo@{evento\_activo}}
+\index{evento\_activo@{evento\_activo}!tests.test\_eventos@{tests.test\_eventos}}
+\doxysubsubsection{\texorpdfstring{evento\_activo()}{evento\_activo()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1test__eventos_a66054aeae317a407ad93e0e21a8344c7} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1evento_1_1Evento}{Evento}} evento\+\_\+activo (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Evento futuro visible en el listado público.\end{DoxyVerb}
+ \Hypertarget{namespacetests_1_1test__eventos_a723053fbf863b99f6fdd34ca900ba5d9}\index{tests.test\_eventos@{tests.test\_eventos}!evento\_expirado@{evento\_expirado}}
+\index{evento\_expirado@{evento\_expirado}!tests.test\_eventos@{tests.test\_eventos}}
+\doxysubsubsection{\texorpdfstring{evento\_expirado()}{evento\_expirado()}}
+{\footnotesize\ttfamily \label{namespacetests_1_1test__eventos_a723053fbf863b99f6fdd34ca900ba5d9} 
+ \doxymbox{\hyperlink{classapp_1_1models_1_1evento_1_1Evento}{Evento}} evento\+\_\+expirado (\begin{DoxyParamCaption}\item[{}]{db\+\_\+session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Evento cuya fecha_fin ya pasó — no debe aparecer en el listado público.\end{DoxyVerb}
+ 

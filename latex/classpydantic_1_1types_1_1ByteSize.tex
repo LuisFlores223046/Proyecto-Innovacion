@@ -1,0 +1,159 @@
+\doxysection{pydantic.\+types.\+Byte\+Size Class Reference}
+\hypertarget{classpydantic_1_1types_1_1ByteSize}{}\label{classpydantic_1_1types_1_1ByteSize}\index{pydantic.types.ByteSize@{pydantic.types.ByteSize}}
+Inheritance diagram for pydantic.\+types.\+Byte\+Size:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classpydantic_1_1types_1_1ByteSize}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_a37c7884dcb82d32632f968cf7297b2a2}\label{classpydantic_1_1types_1_1ByteSize_a37c7884dcb82d32632f968cf7297b2a2} 
+core\+\_\+schema.\+Core\+Schema {\bfseries \+\_\+\+\_\+get\+\_\+pydantic\+\_\+core\+\_\+schema\+\_\+\+\_\+} (cls, type\+[Any]\+ source, \doxymbox{\hyperlink{classpydantic_1_1annotated__handlers_1_1GetCoreSchemaHandler}{Get\+Core\+Schema\+Handler}} handler)
+\item 
+str \doxymbox{\hyperlink{classpydantic_1_1types_1_1ByteSize_abcbd29ccaad03439c4dbbd1ce2c1bef7}{human\+\_\+readable}} (self, bool decimal=False, str separator=\textquotesingle{}\textquotesingle{})
+\item 
+float \doxymbox{\hyperlink{classpydantic_1_1types_1_1ByteSize_a0067f10aafd7a0239345ae62b3103e3e}{to}} (self, str unit)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classpydantic_1_1types_1_1ByteSize_a7d81aa21d488288d3f5f1bd2d7922580}{byte\+\_\+sizes}}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_aa841d703d7a9f9eb81c50f1f03f06e76}\label{classpydantic_1_1types_1_1ByteSize_aa841d703d7a9f9eb81c50f1f03f06e76} 
+str {\bfseries byte\+\_\+string\+\_\+pattern} = r\textquotesingle{}\texorpdfstring{$^\wedge$}{\string^}\textbackslash{}s\texorpdfstring{$\ast$}{*}(\textbackslash{}d\texorpdfstring{$\ast$}{*}\textbackslash{}.?\textbackslash{}d+)\textbackslash{}s\texorpdfstring{$\ast$}{*}(\textbackslash{}w+)?\textquotesingle{}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_aed89b6168db0b57f779d14e32122bec6}\label{classpydantic_1_1types_1_1ByteSize_aed89b6168db0b57f779d14e32122bec6} 
+{\bfseries byte\+\_\+string\+\_\+re} = re.\+compile(byte\+\_\+string\+\_\+pattern, re.\+IGNORECASE)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_a5c53e505ac8cac59e787a1aeac36bce8}\label{classpydantic_1_1types_1_1ByteSize_a5c53e505ac8cac59e787a1aeac36bce8} 
+\doxymbox{\hyperlink{classpydantic_1_1types_1_1ByteSize}{Byte\+Size}} {\bfseries \+\_\+validate} (cls, Any input\+\_\+value, \doxymbox{\hyperlink{classpydantic__core_1_1core__schema_1_1ValidationInfo}{core\+\_\+schema.\+Validation\+Info}} \+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Converts a string representing a number of bytes with units (such as `'1KB'` or `'11.5MiB'`) into an integer.
+
+You can use the `ByteSize` data type to (case-insensitively) convert a string representation of a number of bytes into
+an integer, and also to print out human-readable strings representing a number of bytes.
+
+In conformance with [IEC 80000-13 Standard](https://en.wikipedia.org/wiki/ISO/IEC_80000) we interpret `'1KB'` to mean 1000 bytes,
+and `'1KiB'` to mean 1024 bytes. In general, including a middle `'i'` will cause the unit to be interpreted as a power of 2,
+rather than a power of 10 (so, for example, `'1 MB'` is treated as `1_000_000` bytes, whereas `'1 MiB'` is treated as `1_048_576` bytes).
+
+!!! info
+    Note that `1b` will be parsed as "1 byte" and not "1 bit".
+
+```py
+from pydantic import BaseModel, ByteSize
+
+class MyModel(BaseModel):
+    size: ByteSize
+
+print(MyModel(size=52000).size)
+#> 52000
+print(MyModel(size='3000 KiB').size)
+#> 3072000
+
+m = MyModel(size='50 PB')
+print(m.size.human_readable())
+#> 44.4PiB
+print(m.size.human_readable(decimal=True))
+#> 50.0PB
+print(m.size.human_readable(separator=' '))
+#> 44.4 PiB
+
+print(m.size.to('TiB'))
+#> 45474.73508864641
+```
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1types_1_1ByteSize_doc-func-members}
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_abcbd29ccaad03439c4dbbd1ce2c1bef7}\index{pydantic.types.ByteSize@{pydantic.types.ByteSize}!human\_readable@{human\_readable}}
+\index{human\_readable@{human\_readable}!pydantic.types.ByteSize@{pydantic.types.ByteSize}}
+\doxysubsubsection{\texorpdfstring{human\_readable()}{human\_readable()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1ByteSize_abcbd29ccaad03439c4dbbd1ce2c1bef7} 
+ str pydantic.\+types.\+Byte\+Size.\+human\+\_\+readable (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{decimal}{ = {\ttfamily False}, }\item[{str }]{separator}{ = {\ttfamily \textquotesingle{}\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Converts a byte size to a human readable string.
+
+Args:
+    decimal: If True, use decimal units (e.g. 1000 bytes per KB). If False, use binary units
+        (e.g. 1024 bytes per KiB).
+    separator: A string used to split the value and unit. Defaults to an empty string ('').
+
+Returns:
+    A human readable string representation of the byte size.
+\end{DoxyVerb}
+ \Hypertarget{classpydantic_1_1types_1_1ByteSize_a0067f10aafd7a0239345ae62b3103e3e}\index{pydantic.types.ByteSize@{pydantic.types.ByteSize}!to@{to}}
+\index{to@{to}!pydantic.types.ByteSize@{pydantic.types.ByteSize}}
+\doxysubsubsection{\texorpdfstring{to()}{to()}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1ByteSize_a0067f10aafd7a0239345ae62b3103e3e} 
+ float pydantic.\+types.\+Byte\+Size.\+to (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{unit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Converts a byte size to another unit, including both byte and bit units.
+
+Args:
+    unit: The unit to convert to. Must be one of the following: B, KB, MB, GB, TB, PB, EB,
+        KiB, MiB, GiB, TiB, PiB, EiB (byte units) and
+        bit, kbit, mbit, gbit, tbit, pbit, ebit,
+        kibit, mibit, gibit, tibit, pibit, eibit (bit units).
+
+Returns:
+    The byte size in the new unit.
+\end{DoxyVerb}
+ 
+
+\label{classpydantic_1_1types_1_1ByteSize_doc-variable-members}
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classpydantic_1_1types_1_1ByteSize_a7d81aa21d488288d3f5f1bd2d7922580}\index{pydantic.types.ByteSize@{pydantic.types.ByteSize}!byte\_sizes@{byte\_sizes}}
+\index{byte\_sizes@{byte\_sizes}!pydantic.types.ByteSize@{pydantic.types.ByteSize}}
+\doxysubsubsection{\texorpdfstring{byte\_sizes}{byte\_sizes}}
+{\footnotesize\ttfamily \label{classpydantic_1_1types_1_1ByteSize_a7d81aa21d488288d3f5f1bd2d7922580} 
+dict pydantic.\+types.\+Byte\+Size.\+byte\+\_\+sizes\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'b'}:\ 1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'kb'}:\ 10**3,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mb'}:\ 10**6,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'gb'}:\ 10**9,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'tb'}:\ 10**12,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'pb'}:\ 10**15,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'eb'}:\ 10**18,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'kib'}:\ 2**10,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mib'}:\ 2**20,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'gib'}:\ 2**30,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'tib'}:\ 2**40,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'pib'}:\ 2**50,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'eib'}:\ 2**60,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'bit'}:\ 1\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'kbit'}:\ 10**3\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mbit'}:\ 10**6\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'gbit'}:\ 10**9\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'tbit'}:\ 10**12\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'pbit'}:\ 10**15\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'ebit'}:\ 10**18\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'kibit'}:\ 2**10\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'mibit'}:\ 2**20\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'gibit'}:\ 2**30\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'tibit'}:\ 2**40\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'pibit'}:\ 2**50\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{'eibit'}:\ 2**60\ /\ 8,}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pydantic/\+types.\+py\end{DoxyCompactItemize}

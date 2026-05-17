@@ -1,0 +1,47 @@
+\doxysection{app.\+routers.\+contactos Namespace Reference}
+\hypertarget{namespaceapp_1_1routers_1_1contactos}{}\label{namespaceapp_1_1routers_1_1contactos}\index{app.routers.contactos@{app.routers.contactos}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1contactos_a500c1df77bf4b37de10827537184664c}{crear}} (\doxymbox{\hyperlink{classapp_1_1schemas_1_1contacto_1_1ContactoCreate}{Contacto\+Create}} datos, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\item 
+\doxymbox{\hyperlink{namespaceapp_1_1routers_1_1contactos_a9b7b789edd0c951b19dfb7d9e5ab2869}{eliminar}} (int contacto\+\_\+id, \doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} db=Depends(get\+\_\+db), \doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} \+\_\+=Depends(get\+\_\+current\+\_\+admin))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespaceapp_1_1routers_1_1contactos_a38c2fd9f3aef8943cbbb16908ab6ee50}\label{namespaceapp_1_1routers_1_1contactos_a38c2fd9f3aef8943cbbb16908ab6ee50} 
+{\bfseries router} = \doxymbox{\hyperlink{classfastapi_1_1routing_1_1APIRouter}{APIRouter}}(prefix="{}/\+contactos"{}, tags=\+["{}Contactos"{}]\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Rutas para contactos de espacios.\end{DoxyVerb}
+ 
+
+\label{namespaceapp_1_1routers_1_1contactos_doc-func-members}
+\Hypertarget{namespaceapp_1_1routers_1_1contactos_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceapp_1_1routers_1_1contactos_a500c1df77bf4b37de10827537184664c}\index{app.routers.contactos@{app.routers.contactos}!crear@{crear}}
+\index{crear@{crear}!app.routers.contactos@{app.routers.contactos}}
+\doxysubsubsection{\texorpdfstring{crear()}{crear()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1contactos_a500c1df77bf4b37de10827537184664c} 
+crear (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classapp_1_1schemas_1_1contacto_1_1ContactoCreate}{Contacto\+Create}}}]{datos}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Crea un registro de contacto (teléfono, red social, etc.) para un espacio.\end{DoxyVerb}
+ \Hypertarget{namespaceapp_1_1routers_1_1contactos_a9b7b789edd0c951b19dfb7d9e5ab2869}\index{app.routers.contactos@{app.routers.contactos}!eliminar@{eliminar}}
+\index{eliminar@{eliminar}!app.routers.contactos@{app.routers.contactos}}
+\doxysubsubsection{\texorpdfstring{eliminar()}{eliminar()}}
+{\footnotesize\ttfamily \label{namespaceapp_1_1routers_1_1contactos_a9b7b789edd0c951b19dfb7d9e5ab2869} 
+eliminar (\begin{DoxyParamCaption}\item[{int}]{contacto\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsqlalchemy_1_1orm_1_1session_1_1Session}{Session}} }]{db}{ = {\ttfamily Depends(get\+\_\+db)}, }\item[{\doxymbox{\hyperlink{classapp_1_1models_1_1administrador_1_1Administrador}{Administrador}} }]{\+\_\+}{ = {\ttfamily Depends(get\+\_\+current\+\_\+admin)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Elimina un contacto específico de la base de datos.
+
+Args:
+    contacto_id: ID del contacto a remover.
+    db: Sesión de base de datos.
+
+Returns:
+    Contacto: Los datos del contacto eliminado.
+\end{DoxyVerb}
+ 

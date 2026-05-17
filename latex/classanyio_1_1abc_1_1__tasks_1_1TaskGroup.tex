@@ -1,0 +1,107 @@
+\doxysection{anyio.\+abc.\+\_\+tasks.\+Task\+Group Class Reference}
+\hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{}\label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}\index{anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}}
+Inheritance diagram for anyio.\+abc.\+\_\+tasks.\+Task\+Group:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a1a42368535c6efc061d48cd15a0b8328}{start\+\_\+soon}} (self, Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[Any]\+]\+ func, \texorpdfstring{$\ast$}{*}Unpack\+[Pos\+ArgsT]\+ args, object name=None)
+\item 
+Any \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_ae89161762764ff7cebd9e700601294ec}{start}} (self, Callable\+[..., Awaitable\+[Any]\+]\+ func, \texorpdfstring{$\ast$}{*}object args, object name=None)
+\item 
+\doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{Task\+Group}} \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a38c2109f8a54aaf22a32aac201ca9f93}{\+\_\+\+\_\+aenter\+\_\+\+\_\+}} (self)
+\item 
+bool \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a293e295b0762d43ea2fd8da100c3c210}{\+\_\+\+\_\+aexit\+\_\+\+\_\+}} (self, type\+[Base\+Exception]\+\texorpdfstring{$\vert$}{|}None exc\+\_\+type, Base\+Exception\texorpdfstring{$\vert$}{|}None exc\+\_\+val, Traceback\+Type\texorpdfstring{$\vert$}{|}None exc\+\_\+tb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Groups several asynchronous tasks together.
+
+:ivar cancel_scope: the cancel scope inherited by all child tasks
+:vartype cancel_scope: CancelScope
+
+.. note:: On asyncio, support for eager task factories is considered to be
+    **experimental**. In particular, they don't follow the usual semantics of new
+    tasks being scheduled on the next iteration of the event loop, and may thus
+    cause unexpected behavior in code that wasn't written with such semantics in
+    mind.
+\end{DoxyVerb}
+ 
+
+\label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_doc-func-members}
+\Hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a38c2109f8a54aaf22a32aac201ca9f93}\index{anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}!\_\_aenter\_\_@{\_\_aenter\_\_}}
+\index{\_\_aenter\_\_@{\_\_aenter\_\_}!anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}}
+\doxysubsubsection{\texorpdfstring{\_\_aenter\_\_()}{\_\_aenter\_\_()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a38c2109f8a54aaf22a32aac201ca9f93} 
+ \doxymbox{\hyperlink{classanyio_1_1abc_1_1__tasks_1_1TaskGroup}{Task\+Group}} anyio.\+abc.\+\_\+tasks.\+Task\+Group.\+\_\+\+\_\+aenter\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Enter the task group context and allow starting new tasks.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a293e295b0762d43ea2fd8da100c3c210}\index{anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}!\_\_aexit\_\_@{\_\_aexit\_\_}}
+\index{\_\_aexit\_\_@{\_\_aexit\_\_}!anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}}
+\doxysubsubsection{\texorpdfstring{\_\_aexit\_\_()}{\_\_aexit\_\_()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a293e295b0762d43ea2fd8da100c3c210} 
+ bool anyio.\+abc.\+\_\+tasks.\+Task\+Group.\+\_\+\+\_\+aexit\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{type\+[Base\+Exception]\+ \texorpdfstring{$\vert$}{|} None}]{exc\+\_\+type}{, }\item[{Base\+Exception \texorpdfstring{$\vert$}{|} None}]{exc\+\_\+val}{, }\item[{Traceback\+Type \texorpdfstring{$\vert$}{|} None}]{exc\+\_\+tb}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Exit the task group context waiting for all tasks to finish.\end{DoxyVerb}
+ \Hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_ae89161762764ff7cebd9e700601294ec}\index{anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}!start@{start}}
+\index{start@{start}!anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_ae89161762764ff7cebd9e700601294ec} 
+ Any anyio.\+abc.\+\_\+tasks.\+Task\+Group.\+start (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[..., Awaitable\+[Any]\+]\+}]{func}{, }\item[{\texorpdfstring{$\ast$}{*}object}]{args}{, }\item[{object }]{name}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start a new task and wait until it signals for readiness.
+
+The target callable must accept a keyword argument ``task_status`` (of type
+:class:`TaskStatus`). Awaiting on this method will return whatever was passed to
+``task_status.started()`` (``None`` by default).
+
+.. note:: The :class:`TaskStatus` class is generic, and the type argument should
+    indicate the type of the value that will be passed to
+    ``task_status.started()``.
+
+:param func: a coroutine function that accepts the ``task_status`` keyword
+    argument
+:param args: positional arguments to call the function with
+:param name: an optional name for the task, for introspection and debugging
+:return: the value passed to ``task_status.started()``
+:raises RuntimeError: if the task finishes without calling
+    ``task_status.started()``
+
+.. seealso:: :ref:`start_initialize`
+
+.. versionadded:: 3.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TaskGroup_a07b8569827e3e2d94f70e86a22409860}{anyio.\+\_\+backends.\+\_\+asyncio.\+Task\+Group}}, and \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1TaskGroup_a714dfafe9bd1b4046baa7d476888101d}{anyio.\+\_\+backends.\+\_\+trio.\+Task\+Group}}.
+
+\Hypertarget{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a1a42368535c6efc061d48cd15a0b8328}\index{anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}!start\_soon@{start\_soon}}
+\index{start\_soon@{start\_soon}!anyio.abc.\_tasks.TaskGroup@{anyio.abc.\_tasks.TaskGroup}}
+\doxysubsubsection{\texorpdfstring{start\_soon()}{start\_soon()}}
+{\footnotesize\ttfamily \label{classanyio_1_1abc_1_1__tasks_1_1TaskGroup_a1a42368535c6efc061d48cd15a0b8328} 
+ None anyio.\+abc.\+\_\+tasks.\+Task\+Group.\+start\+\_\+soon (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[Unpack\+[Pos\+ArgsT]\+]\+, Awaitable\+[Any]\+]\+}]{func}{, }\item[{\texorpdfstring{$\ast$}{*}Unpack\+[Pos\+ArgsT]\+}]{args}{, }\item[{object }]{name}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start a new task in this task group.
+
+:param func: a coroutine function
+:param args: positional arguments to call the function with
+:param name: name of the task, for the purposes of introspection and debugging
+
+.. versionadded:: 3.0
+\end{DoxyVerb}
+ 
+
+Reimplemented in \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__asyncio_1_1TaskGroup_a08f62efbc8c0929bc064e0039e001f9d}{anyio.\+\_\+backends.\+\_\+asyncio.\+Task\+Group}}, and \doxymbox{\hyperlink{classanyio_1_1__backends_1_1__trio_1_1TaskGroup_af2b1f4daeb14a4746a428b5dd7089ec4}{anyio.\+\_\+backends.\+\_\+trio.\+Task\+Group}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+anyio/\+abc/\+\+\_\+tasks.\+py\end{DoxyCompactItemize}

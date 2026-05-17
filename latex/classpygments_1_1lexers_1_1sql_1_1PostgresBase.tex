@@ -1,0 +1,45 @@
+\doxysection{pygments.\+lexers.\+sql.\+Postgres\+Base Class Reference}
+\hypertarget{classpygments_1_1lexers_1_1sql_1_1PostgresBase}{}\label{classpygments_1_1lexers_1_1sql_1_1PostgresBase}\index{pygments.lexers.sql.PostgresBase@{pygments.lexers.sql.PostgresBase}}
+Inheritance diagram for pygments.\+lexers.\+sql.\+Postgres\+Base:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.666667cm]{classpygments_1_1lexers_1_1sql_1_1PostgresBase}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1sql_1_1PostgresBase_a805f5832c4f56054378740cf503c1d37}\label{classpygments_1_1lexers_1_1sql_1_1PostgresBase_a805f5832c4f56054378740cf503c1d37} 
+{\bfseries get\+\_\+tokens\+\_\+unprocessed} (self, text, \texorpdfstring{$\ast$}{*}args)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1sql_1_1PostgresBase_af18c61d1f28e2194b07719131e3bcb5f}\label{classpygments_1_1lexers_1_1sql_1_1PostgresBase_af18c61d1f28e2194b07719131e3bcb5f} 
+{\bfseries text} = text
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1sql_1_1PostgresBase_acd95bb1077614fe93be0ac4f2b7ee4c3}\label{classpygments_1_1lexers_1_1sql_1_1PostgresBase_acd95bb1077614fe93be0ac4f2b7ee4c3} 
+{\bfseries options}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classpygments_1_1lexers_1_1sql_1_1PostgresBase_a82b0103ff053d31cb4f8e877c8357464}\label{classpygments_1_1lexers_1_1sql_1_1PostgresBase_a82b0103ff053d31cb4f8e877c8357464} 
+{\bfseries \+\_\+get\+\_\+lexer} (self, lang)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Base class for Postgres-related lexers.
+
+This is implemented as a mixin to avoid the Lexer metaclass kicking in.
+this way the different lexer don't have a common Lexer ancestor. If they
+had, _tokens could be created on this ancestor and not updated for the
+other classes, resulting e.g. in PL/pgSQL parsed as SQL. This shortcoming
+seem to suggest that regexp lexers are not really subclassable.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+pygments/\+lexers/\+sql.\+py\end{DoxyCompactItemize}

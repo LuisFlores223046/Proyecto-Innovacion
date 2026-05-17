@@ -1,0 +1,85 @@
+\doxysection{fastapi.\+security.\+api\+\_\+key.\+APIKey\+Query Class Reference}
+\hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery}{}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery}\index{fastapi.security.api\_key.APIKeyQuery@{fastapi.security.api\_key.APIKeyQuery}}
+Inheritance diagram for fastapi.\+security.\+api\+\_\+key.\+APIKey\+Query:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_acc00bf1f5b400ef93087f8e8f3849b13}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_acc00bf1f5b400ef93087f8e8f3849b13} 
+{\bfseries \+\_\+\+\_\+init\+\_\+\+\_\+} (self, \texorpdfstring{$\ast$}{*}, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[str, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}Query parameter name."{}),]\+ name, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme name.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ scheme\+\_\+name=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[Optional\+[str]\+, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                Security scheme description.                It will be included in the generated Open\+API (e.\+g. visible at \`{}/\+docs\`{}).                "{}"{}"{}),]\+ description=None, \doxymbox{\hyperlink{classtyping__extensions_1_1Annotated}{Annotated}}\+[bool, \doxymbox{\hyperlink{classtyping__extensions_1_1Doc}{Doc}}("{}"{}"{}                By default, if the query parameter is not provided, \`{}\doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery}{APIKey\+Query}}\`{} will                automatically cancel the request and send the client an error.                If \`{}auto\+\_\+error\`{} is set to \`{}False\`{}, when the query parameter is not                available, instead of erroring out, the dependency result will be                \`{}None\`{}.                This is useful when you want to have optional authentication.                It is also useful when you want to have authentication that can be                provided in one of multiple optional ways (for example, in a query                parameter or in an HTTP Bearer token).                "{}"{}"{}),]\+ auto\+\_\+error=True)
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a864fefbb4150ed93dd22b154a7d3a2e8}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a864fefbb4150ed93dd22b154a7d3a2e8} 
+Optional\+[str]\+ {\bfseries \+\_\+\+\_\+call\+\_\+\+\_\+} (self, \doxymbox{\hyperlink{classstarlette_1_1requests_1_1Request}{Request}} request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} \doxymbox{\hyperlink{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a03043ea6a532eabe2fb760ee05943c0e}{model}}
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a952b198080ee107ba0b926e4153aa34f}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a952b198080ee107ba0b926e4153aa34f} 
+{\bfseries scheme\+\_\+name} = scheme\+\_\+name or self.\+\_\+\+\_\+class\+\_\+\+\_\+.\+\_\+\+\_\+name\+\_\+\+\_\+
+\item 
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_ab579e8ef1346891450795d92ed1e9f16}\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_ab579e8ef1346891450795d92ed1e9f16} 
+{\bfseries auto\+\_\+error} = auto\+\_\+error
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}API key authentication using a query parameter.
+
+This defines the name of the query parameter that should be provided in the request
+with the API key and integrates that into the OpenAPI documentation. It extracts
+the key value sent in the query parameter automatically and provides it as the
+dependency result. But it doesn't define how to send that API key to the client.
+
+## Usage
+
+Create an instance object and use that object as the dependency in `Depends()`.
+
+The dependency result will be a string containing the key value.
+
+## Example
+
+```python
+from fastapi import Depends, FastAPI
+from fastapi.security import APIKeyQuery
+
+app = FastAPI()
+
+query_scheme = APIKeyQuery(name="api_key")
+
+
+@app.get("/items/")
+async def read_items(api_key: str = Depends(query_scheme)):
+    return {"api_key": api_key}
+```
+\end{DoxyVerb}
+ 
+
+\label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_doc-variable-members}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a03043ea6a532eabe2fb760ee05943c0e}\index{fastapi.security.api\_key.APIKeyQuery@{fastapi.security.api\_key.APIKeyQuery}!model@{model}}
+\index{model@{model}!fastapi.security.api\_key.APIKeyQuery@{fastapi.security.api\_key.APIKeyQuery}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{classfastapi_1_1security_1_1api__key_1_1APIKeyQuery_a03043ea6a532eabe2fb760ee05943c0e} 
+\doxymbox{\hyperlink{classfastapi_1_1openapi_1_1models_1_1APIKey}{APIKey}} fastapi.\+security.\+api\+\_\+key.\+APIKey\+Query.\+model}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ APIKey(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ **\{\textcolor{stringliteral}{"{}in"{}}:\ APIKeyIn.query\},\ \ \textcolor{comment}{\#\ type:\ ignore[arg-\/type]}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ name=name,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ description=description,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+venv/\+lib/\+python3.\+12/\+site-\/packages/\+fastapi/\+security/\+api\+\_\+key.\+py\end{DoxyCompactItemize}
